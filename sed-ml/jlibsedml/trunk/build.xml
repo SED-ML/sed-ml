@@ -1,0 +1,69 @@
+<project name="sedml" default="main">
+	
+<property file ="build.properties"/>
+<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+  <classpath id="classpath">
+    <fileset dir="./lib/jaxb-2.1.9/" includes="*.jar" />
+  </classpath>
+</taskdef>
+	
+
+
+
+  <target name="main" description="Regenerates all schema classes, compiles, deploys">
+    <antcall target="compileSchema"/>
+    <echo message="Compiling the java source files..." />
+  	<antcall target="compile"/>
+  	<echo message="Copying resources" />
+  	
+  	<echo message="Creating jar..." />
+  	<antcall target="jarUp"/>
+  
+  	<echo message="Tidying up" />
+  	<delete dir="${build.dir}"/>
+  </target>
+	
+	
+	
+  <target name="jarUp" depends="compile" description="Packages library in jar file">
+	<jar destfile="${jar.output.dir}/libSEDML.jar" basedir="${classes.dir}">
+  	<manifest>
+  	      <!-- Who is building this jar? -->
+  	      <attribute name="Built-By" value="${user.name}"/>
+  	      <!-- Information about the program itself -->
+  	      <attribute name="Implementation-Title" value="jlibsedml"/>
+  	      <attribute name="Implementation-Version" value="${jar.version}"/>
+  	    
+  	    </manifest>
+	</jar>
+  	
+  	
+
+  </target>
+
+	
+  <target name="compile" description="Compiles all java src files">
+  	<mkdir dir="${build.dir}"/>
+  	  	<mkdir dir="${classes.dir}"/>
+  	    <javac destdir="${classes.dir}" debug="on">
+  	      <src path="src"/>
+  	      <src path="${gen.srcdir}" />
+  	      <classpath refid="classpath" />
+  	    </javac>
+  	<copy todir="${classes.dir}">
+  	  		<fileset dir="src" excludes="**/*.java"/>
+  	  		</copy>
+  </target>
+  <target name="compileSchema" description="Compile XML schema and generates classes">
+  	<!-- forces regeneration of classes -->
+  	<touch file="${sedml.schema}"></touch>
+    <echo message="Compiling the schema..." />
+     <echo message="Deleting old classes.."/>
+  	 <delete dir="src/${sedml.generated.packageTree}"></delete>
+     <xjc schema= "${sedml.schema}"
+     	extension="true"
+     	binding="Schema/extbind.binding" destdir="${gen.srcdir}" package="${sedml.generated.package}" >
+       <produces dir="${gen.srcdir}" includes="**/*.java" />
+     </xjc>
+  </target>
+	</project>
