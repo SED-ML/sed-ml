@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sedML version="1.0" xmlns="http://www.biomodels.net/sed-ml">
+  <notes>Showing the oscillating behaviour of the Repressilator model 
+   using deterministic and stochastic simulators</notes>
+  <listOfSimulations>
+    <uniformTimeCourse id="simulation1"
+    algorithm="KiSAO:0000088" initialTime="0" outputStartTime="0" 
+    outputEndTime="1000" numberOfPoints="1000" />
+    <uniformTimeCourse id="simulation2"
+    algorithm="KiSAO:0000027" initialTime="0" outputStartTime="0"
+    outputEndTime="1000" numberOfPoints="1000" />
+  </listOfSimulations>
+  <listOfModels>
+    <model id="model1" name="Repressilator" type="SBML" 
+    source="urn:miriam:biomodels.db:BIOMD0000000012" /> 
+  </listOfModels>
+  <listOfTasks>
+    <task id="task1" name="Oscillation using a deterministic simulator" modelReference="model1" 
+    simulationReference="simulation1">
+    </task>
+    <task id="task2" name="Oscillation using a stochastic simulator" modelReference="model1" 
+    simulationReference="simulation2">
+    </task>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time" name="Time">
+      <mathExpression>
+        <math>
+          <apply>
+            <plus />
+            <csymbol encoding="text" 
+            definitionURL="http://www.sbml.org/sbml/symbols/time">time
+            </csymbol>
+          </apply>
+        </math>
+      </mathExpression>
+    </dataGenerator>
+    <dataGenerator id="LaCI" name="LaCI repressor">
+      <listOfVariables>
+        <variable id="v1" taskReference="task1" 
+        target="/sbml/model/listOfSpecies/species[@id='PX']" />
+      </listOfVariables>
+      <mathExpression>
+        <math>
+          <apply>
+            <plus />
+            <ci>v1</ci>
+          </apply>
+        </math>
+      </mathExpression>
+    </dataGenerator>
+    <dataGenerator id="TetR" name="TetR repressor">
+      <listOfVariables>
+        <variable id="v2" taskReference="task1" 
+        target="/sbml/model/listOfSpecies/species[@id='PY']" />
+      </listOfVariables>
+      <mathExpression>
+        <math>
+          <apply>
+            <plus />
+            <ci>v2</ci>
+          </apply>
+        </math>
+      </mathExpression>
+    </dataGenerator>
+    <dataGenerator id="CI" name="CI repressor">
+      <listOfVariables>
+        <variable id="v3" taskReference="task1" 
+        target="/sbml/model/listOfSpecies/species[@id='PZ']" />
+      </listOfVariables>
+      <mathExpression>
+        <math>
+          <apply>
+            <plus />
+            <ci>v3</ci>
+          </apply>
+        </math>
+      </mathExpression>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot1" name="protein numbers per time point">
+      <listOfCurves>
+        <curve logX="false" logY="false" xDataReference="time" 
+        yDataReference="LaCI" />
+        <curve logX="false" logY="false" xDataReference="time" 
+        yDataReference="TetR" />
+	<curve logX="false" logY="false" xDataReference="time" 
+        yDataReference="CI" />
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>
