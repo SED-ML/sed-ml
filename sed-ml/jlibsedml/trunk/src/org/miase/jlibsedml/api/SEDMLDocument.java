@@ -1,6 +1,8 @@
 package org.miase.jlibsedml.api;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.List;
 import javax.xml.bind.Marshaller;
 
 import org.miase.jlibsedml.generated.SedML;
+
+import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 /**
  * Encapsulates a {@link SedML} model and provides additional validation services
  * @author Richard Adams
@@ -70,6 +74,33 @@ public class SEDMLDocument {
 	public String toString (){
 		return "SEdmlD ocument for " + sedml.getNotes();
 	}
+	
+	public void writeDocument (File file) throws XMLException {
+		Assert.checkNoNullArgs(file);
+		Marshaller m = null;
+		
+		try {
+		 m = JAXBUtils.createMarshaller( errors);
+	     m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+	     m.setProperty("com.sun.xml.bind.namespacePrefixMapper", new PreferredMapper());
+
+		 m.marshal(sedml, new FileOutputStream(file));
+		}catch(Exception e) {
+			throw new XMLException("Error validating XML" , e);
+		}
+	}
+	
+	private static class PreferredMapper extends NamespacePrefixMapper {
+        @Override
+        public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix) {
+           if(namespaceUri.equals("http://www.miase.org/")){
+        	   return "sedml";
+           } else {
+        	   return "math";
+           }
+        }
+    }
+
 	
 	
 
