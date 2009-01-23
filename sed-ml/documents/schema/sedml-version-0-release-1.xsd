@@ -1,5 +1,5 @@
 
-<xs:schema targetNamespace="http://www.miase.org/" xmlns="http://www.miase.org/"
+<xs:schema targetNamespace="http://www.biomodels.net/sed-ml" xmlns="http://www.biomodels.net/sed-ml"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML">
 	<xs:import namespace="http://www.w3.org/1998/Math/MathML"
 		schemaLocation="sbml-mathml.xsd" />
