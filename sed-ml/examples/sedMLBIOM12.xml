@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sedML version="1.0" xmlns="http://www.biomodels.net/sed-ml">
+<sedML version="0.1" xmlns="http://www.miase.org/" xmlns:math="http://www.w3.org/1998/Math/MathML">
   <notes>Showing the oscillating behaviour of the Repressilator model 
    using deterministic and stochastic simulators</notes>
   <listOfSimulations>
@@ -15,67 +15,65 @@
     source="urn:miriam:biomodels.db:BIOMD0000000012" /> 
   </listOfModels>
   <listOfTasks>
-    <task id="task1" name="Oscillation using a deterministic simulator" modelReference="model1" 
-    simulationReference="simulation1">
-    </task>
-    <task id="task2" name="Oscillation using a stochastic simulator" modelReference="model1" 
-    simulationReference="simulation2">
-    </task>
+    <task id="task1" name="Oscillation using a deterministic simulator"  modelReference="model1" 
+    simulationReference="simulation1"/>
+    <task id="task2"  name="Oscillation using a stochastic simulator"  modelReference="model1" 
+    simulationReference="simulation2"/>
   </listOfTasks>
   <listOfDataGenerators>
     <dataGenerator id="time" name="Time">
-      <mathExpression>
-        <math>
-          <apply>
-            <plus />
-            <csymbol encoding="text" 
+   
+        <math:math>
+          <math:apply>
+            <math:plus />
+            <math:csymbol encoding="text" 
             definitionURL="http://www.sbml.org/sbml/symbols/time">time
-            </csymbol>
-          </apply>
-        </math>
-      </mathExpression>
+            </math:csymbol>
+          </math:apply>
+        </math:math>
+     
     </dataGenerator>
     <dataGenerator id="LaCI" name="LaCI repressor">
       <listOfVariables>
         <variable id="v1" taskReference="task1" 
         target="/sbml/model/listOfSpecies/species[@id='PX']" />
       </listOfVariables>
-      <mathExpression>
-        <math>
-          <apply>
-            <plus />
-            <ci>v1</ci>
-          </apply>
-        </math>
-      </mathExpression>
+      
+        <math:math>
+          <math:apply>
+            <math:plus />
+            <math:ci>v1</math:ci>
+          </math:apply>
+        </math:math>
+      
     </dataGenerator>
     <dataGenerator id="TetR" name="TetR repressor">
       <listOfVariables>
         <variable id="v2" taskReference="task1" 
         target="/sbml/model/listOfSpecies/species[@id='PY']" />
       </listOfVariables>
-      <mathExpression>
-        <math>
-          <apply>
-            <plus />
-            <ci>v2</ci>
-          </apply>
-        </math>
-      </mathExpression>
+      
+        <math:math>
+          <math:apply>
+            <math:plus />
+            <math:ci>v2</math:ci>
+          </math:apply>
+        </math:math>
+      
     </dataGenerator>
     <dataGenerator id="CI" name="CI repressor">
       <listOfVariables>
         <variable id="v3" taskReference="task1" 
         target="/sbml/model/listOfSpecies/species[@id='PZ']" />
       </listOfVariables>
-      <mathExpression>
-        <math>
-          <apply>
-            <plus />
-            <ci>v3</ci>
-          </apply>
-        </math>
-      </mathExpression>
+      
+        <math:math>
+          <math:apply>
+            <math:plus />
+            <math:ci>v3</math:ci>
+          </math:apply>
+        </math:math>
+      
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
