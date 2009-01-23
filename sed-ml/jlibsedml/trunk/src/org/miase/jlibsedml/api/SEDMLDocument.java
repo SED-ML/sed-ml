@@ -75,6 +75,14 @@ public class SEDMLDocument {
 		return "SEdmlD ocument for " + sedml.getNotes();
 	}
 	
+	/**
+	 * Writes out a document to file . This operation will write valid and
+	 * invalid documents, to check  a adocument is valid, call hasErrors()
+	 * before writing document.
+	 * @param file A {@link File} that can be written to.
+	 * @throws XMLException if model cannot be marshalled properly
+	 * @throws IllegalArgumentException if <code>file</code> param is null
+	 */
 	public void writeDocument (File file) throws XMLException {
 		Assert.checkNoNullArgs(file);
 		Marshaller m = null;
