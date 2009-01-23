@@ -3,8 +3,6 @@ package org.miase.jlibsedml.api;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 import org.miase.jlibsedml.generated.UniformTimeCourse;
 
 class UniformTimeCourseValidator  {
@@ -14,13 +12,22 @@ class UniformTimeCourseValidator  {
 	  List<SedMLError> errors = new ArrayList<SedMLError>();
 	  
 	  if(tc.getOutputStartTime() >= tc.getOutputEndTime()){
-		  errors.add(new SedMLError(0, START_AFTER_END, 1));
+		  SedMLError err = new SedMLError(0, START_AFTER_END, 1); 
+		  
+		  errors.add(err);
 	  }
 	  if(tc.getInitialTime() > tc.getOutputStartTime()){
-		  errors.add(new SedMLError(0, INITIAL_AFTER_START,1));
+		  SedMLError err= new SedMLError(0, INITIAL_AFTER_START,1);
+		  err.setNode(tc);
+		  errors.add(err);
 	  }
+	  
+	  
 	  
 	  return errors;
 	}
+	
+
+
 
 }
