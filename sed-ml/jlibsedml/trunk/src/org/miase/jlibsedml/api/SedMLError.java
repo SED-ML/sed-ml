@@ -7,8 +7,15 @@ package org.miase.jlibsedml.api;
  */
 public class SedMLError {
 	
+	Object getNode() {
+		return node;
+	}
+	void setNode(Object node) {
+		this.node = node;
+	}
 	private int severity, lineNo;
 	private String message;
+	private Object node;
 	SedMLError(int lineNo, String message, int severity) {
 		super();
 		this.lineNo = lineNo;

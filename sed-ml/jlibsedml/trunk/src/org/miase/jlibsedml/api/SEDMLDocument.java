@@ -1,0 +1,76 @@
+package org.miase.jlibsedml.api;
+
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import javax.xml.bind.Marshaller;
+
+import org.miase.jlibsedml.generated.SedML;
+/**
+ * Encapsulates a {@link SedML} model and provides additional validation services
+ * @author Richard Adams
+ *
+ */
+public class SEDMLDocument {
+	
+	private List<SedMLError> errors = new ArrayList<SedMLError>();
+	
+	private SedML sedml;
+	 /*
+	  * No parameter can be null, errors can be empty list
+	  * @throws IllegalArgumentException if any arg is null.
+	  */
+	 SEDMLDocument(SedML model, List<SedMLError> errors) {
+		 Assert.checkNoNullArgs(model, errors);
+		this.sedml=model;
+		this.errors=errors;
+	}
+	/**
+	 * 
+	 * @return An unmodifiable (read-only), non-null list of this document's errors
+	 */
+	public List<SedMLError> getErrors () {
+		return Collections.unmodifiableList(errors);
+	}
+	
+	/**
+	 * @return <code>true</code> if this document has at least one validation error
+	 */
+	boolean hasErrors (){
+		return errors.size() >0;
+	}
+	
+	 /**
+	  * @return A non-null {@link SedML} object
+	  */
+	public SedML getSedMLModel () {
+		return sedml;
+	}
+	/**
+	 *  Revalidates this document
+	 * @return An unmodifiable, non-null <code>List</code> of errors
+	 * @throws XMLException
+	 */
+	List<SedMLError> revalidate () throws XMLException {
+		Marshaller m = null;
+	
+		try {
+		 m = JAXBUtils.createMarshaller( errors);
+	//	 m.setProperty("jaxb.formatted.output", Boolean.TRUE);
+		 m.marshal(sedml, new ByteArrayOutputStream());
+		}catch(Exception e) {
+			throw new XMLException("Error validating XML" , e);
+		}
+		SemanticValidationManager.performSemanticValidation(sedml, errors);
+		return getErrors();
+	}
+	
+	public String toString (){
+		return "SEdmlD ocument for " + sedml.getNotes();
+	}
+	
+	
+
+}
