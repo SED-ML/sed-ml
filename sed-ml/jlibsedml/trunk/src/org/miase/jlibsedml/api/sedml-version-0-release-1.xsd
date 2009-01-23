@@ -1,8 +1,8 @@
-
-<xs:schema targetNamespace="http://www.miase.org/" xmlns="http://www.miase.org/"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML">
-	<xs:import namespace="http://www.w3.org/1998/Math/MathML"
-		schemaLocation="sbml-mathml.xsd" />
+<xs:schema targetNamespace="http://www.biomodels.net/sed-ml" xmlns="http://www.biomodels.net/sed-ml"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML"
+	    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified">
+	<xs:import namespace="http://www.w3.org/1998/Math/MathML" schemaLocation="sbml-mathml.xsd" />
 
 <!-- global element declarations -->
 	<xs:element name="variable">
@@ -151,8 +151,8 @@
 	<xs:element name="listOfSimulations">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="uniformTimeCourse" minOccurs="0" />
-				<xs:element ref="anySimulation" minOccurs="0" />
+				<xs:element ref="uniformTimeCourse" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="anySimulation" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
