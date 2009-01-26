@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sedML version="0.1" xmlns="http://www.miase.org/" xmlns:math="http://www.w3.org/1998/Math/MathML">
+<sedML version="0.1" xmlns="http://www.biomodels.net/sed-ml" xmlns:math="http://www.w3.org/1998/Math/MathML">
   <notes>Showing the oscillating behaviour of the Repressilator model 
    using deterministic and stochastic simulators</notes>
   <listOfSimulations>
