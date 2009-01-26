@@ -60,10 +60,17 @@
     <echo message="Compiling the schema..." />
      <echo message="Deleting old classes.."/>
   	 <delete dir="src/${sedml.generated.packageTree}"></delete>
-     <xjc schema= "${sedml.schema}"
+     <xjc schema="${sedml.schema}"
      	extension="true"
      	binding="Schema/extbind.binding" destdir="${gen.srcdir}" package="${sedml.generated.package}" >
        <produces dir="${gen.srcdir}" includes="**/*.java" />
      </xjc>
+  	 <!-- copy generated classes to src file for compilation -->
+  	 <copy toDir="src/${sedml.api.packageTree}"  overwrite="true">
+  	 	 <fileset dir="Schema" includes="**/*.xsd"/>
+  	 </copy>
+  	 <copy toDir="TestData"  overwrite="true">
+  	  	  <fileset dir="${sedml.examples.dir}" includes="**/*.xml"/>
+  	  </copy>
   </target>
 	</project>
