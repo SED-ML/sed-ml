@@ -23,3 +23,6 @@ Unit tests
 
 JUnit tests run using JUnit4, which needs to be added to the classpath to execute them.
 
+Junits can also be executed via the ant build file. These run out of the box with Java 5. For Java 6 JRE you will need to invoke the tests
+with the above jvm argument set
+
