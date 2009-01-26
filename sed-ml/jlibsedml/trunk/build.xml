@@ -1,11 +1,14 @@
 <project name="sedml" default="main">
 	
 <property file ="build.properties"/>
-<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
+
+	<taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
   <classpath id="classpath">
     <fileset dir="./lib/jaxb-2.1.9/" includes="*.jar" />
   </classpath>
 </taskdef>
+
+ 
 	
 
 
@@ -62,7 +65,7 @@
   	 <delete dir="src/${sedml.generated.packageTree}"></delete>
      <xjc schema="${sedml.schema}"
      	extension="true"
-     	binding="Schema/extbind.binding" destdir="${gen.srcdir}" package="${sedml.generated.package}" >
+     	binding="SchemaBindings/extbind.binding" destdir="${gen.srcdir}" package="${sedml.generated.package}" >
        <produces dir="${gen.srcdir}" includes="**/*.java" />
      </xjc>
   	 <!-- copy generated classes to src file for compilation -->
@@ -73,4 +76,44 @@
   	  	  <fileset dir="${sedml.examples.dir}" includes="**/*.xml"/>
   	  </copy>
   </target>
+	
+  <!-- compiles and runs tests, after a fresh rebuild of the classes from the schema-->
+  <target name="test" depends="main">
+  	 <echo message="Cleaning test report folders..."/>
+  	 <delete dir="${test.rawreport.dir}"/>
+  	 <mkdir dir="${test.rawreport.dir}"/>
+     <mkdir dir="${test.formatted.report}"/>
+      <mkdir dir="${build.dir}/tests"/>
+  	
+  	<echo message="Compiling tests..  "></echo>
+	<javac debug="true" srcdir="test/" destdir="${build.dir}/tests" >
+		  <include name="**/*Test.java"/>
+		
+	  	<classpath id="testClassPath">
+	  	   <path location="${jar.output.dir}/libSEDML.jar"/>
+	  		<path refid="classpath"/>
+	  	</classpath>
+		</javac>
+  	 <echo message="Running Junit tests..."></echo>
+  	 <junit printsummary="true">
+  		 <classpath>
+  	  	 	<path refid= "testClassPath" />
+  	  	 	<path location="${build.dir}/tests"  />
+  		 
+  	  	 </classpath>
+  	 	<batchtest todir="${test.rawreport.dir}" >
+  	 		<fileset dir="${build.dir}/tests">
+  	 		</fileset>
+  	 	   </batchtest>
+  	  <formatter type="xml"/>
+    </junit>
+ 	<!-- generate report -->
+  	    <echo message="Generating JUnit test report"></echo>
+	   	<junitreport todir="${test.formatted.report}">
+	   		<fileset dir="${test.rawreport.dir}" includes="**/*.xml"/>
+	   		<report todir="${test.formatted.report}/junitReports"/>
+	    </junitreport>
+  	 <echo message="Tidying up..."></echo>
+  	 <delete dir="${build.dir}/tests"/>
+</target>
 	</project>
