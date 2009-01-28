@@ -1,0 +1,387 @@
+
+<xs:schema targetNamespace="http://www.biomodels.net/sed-ml" xmlns="http://www.biomodels.net/sed-ml"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML">
+	<xs:import namespace="http://www.w3.org/1998/Math/MathML"
+		schemaLocation="sbml-mathml.xsd" />
+	<!-- global type definition -->
+	<xs:complexType name="SEDBase">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+				The SEDBase type is the base type of all main types in SED-ML. It serves as a container for the annotation of any part of the experiment description.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="notes" minOccurs="0" />
+			<xs:element ref="annotation" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+<!-- global element declarations -->
+	<xs:element name="variable">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:attribute name="taskReference" type="xs:string" use="optional" />
+			<xs:attribute name="modelReference" type="xs:string"
+				use="optional" />
+			<xs:attribute name="name" type="xs:string" use="optional" />
+			<xs:attribute name="target" type="xs:token" />
+			<xs:attribute name="id" type="xs:string" />
+			</xs:extension>
+		</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="parameter">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:attribute name="id" type="xs:string" />
+			<xs:attribute name="name" type="xs:string" use="optional" />
+			<xs:attribute name="value" type="xs:string" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="anySimulation">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element name="simulationProperty">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="SEDBase">
+						<xs:attribute name="propertyName" type="xs:string"
+							use="required" />
+						<xs:attribute name="propertyValue" type="xs:string"
+							use="required" />
+							</xs:extension>
+							</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="uniformTimeCourse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:attribute name="id" type="xs:string" />
+			<xs:attribute name="outputStartTime" type="xs:double"
+				use="required" />
+			<xs:attribute name="outputEndTime" type="xs:double" use="required" />
+			<xs:attribute name="numberOfPoints" type="xs:integer"
+				use="required" />
+			<xs:attribute name="initialTime" type="xs:double" use="required" />
+			<xs:attribute name="algorithm" type="xs:string" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="task">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:attribute name="simulationReference" type="xs:string"
+				use="required" />
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="modelReference" type="xs:string"
+				use="required" />
+			<xs:attribute name="id" type="xs:string" />
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="sedML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="listOfSimulations" />
+						<xs:element ref="listOfModels" />
+						<xs:element ref="listOfTasks" />
+						<xs:element ref="listOfDataGenerators" />
+						<xs:element ref="listOfOutputs" />
+					</xs:sequence>
+					<xs:attribute name="version" type="xs:decimal" use="required"
+						fixed="0.1" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="plot2D">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="listOfCurves" />
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="id" type="xs:string" />
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="plot3D">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="listOfSurfaces" />
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="id" type="xs:string" />
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="report">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="listOfDataSets" />
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="id" type="xs:string" />
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="model">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="listOfChanges" minOccurs="0" />
+			</xs:sequence>
+			<xs:attribute name="type" type="xs:string" use="required" />
+			<xs:attribute name="source" use="required" type="xs:string" />
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="id" type="xs:string" />
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--  <xs:element name="math" type="math:Math" /> -->
+	<xs:element name="listOfVariables">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="variable" />
+			</xs:sequence>
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listOfParameters">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="parameter" />
+			</xs:sequence>
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listOfTasks">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="task" maxOccurs="unbounded" />
+			</xs:sequence>
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listOfSimulations">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="uniformTimeCourse" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="anySimulation" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listOfOutputs">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence minOccurs="0">
+				<xs:element ref="plot2D" minOccurs="0" />
+				<xs:element ref="plot3D" minOccurs="0" />
+				<xs:element ref="report" minOccurs="0" />
+			</xs:sequence>
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listOfModels">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="model" maxOccurs="unbounded" />
+			</xs:sequence>
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listOfDataGenerators">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="dataGenerator" maxOccurs="unbounded" />
+			</xs:sequence>
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listOfCurves">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="curve" maxOccurs="unbounded" />
+			</xs:sequence>
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listOfSurfaces">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="surface" maxOccurs="unbounded" />
+			</xs:sequence>
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listOfDataSets">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="dataSet" maxOccurs="unbounded" />
+			</xs:sequence>
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listOfChanges">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="changeAttribute" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xs:element ref="changeXML" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="changeMath" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataGenerator">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="listOfVariables" minOccurs="0" />
+				<xs:element ref="listOfParameters" minOccurs="0" />
+				<xs:element ref="math:math" />
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required" />
+			<xs:attribute name="id" type="xs:string" />
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="curve">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:attribute name="yDataReference" type="xs:string"
+				use="required" />
+			<xs:attribute name="xDataReference" type="xs:string"
+				use="required" />
+			<xs:attribute name="logY" use="required" type="xs:boolean" />
+			<xs:attribute name="logX" use="required" type="xs:boolean" />
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="surface">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:attribute name="yDataReference" type="xs:string"
+				use="required" />
+			<xs:attribute name="xDataReference" type="xs:string"
+				use="required" />
+			<xs:attribute name="zDataReference" type="xs:string"
+				use="required" />
+			<xs:attribute name="logY" use="required" type="xs:boolean" />
+			<xs:attribute name="logX" use="required" type="xs:boolean" />
+			<xs:attribute name="logZ" use="required" type="xs:boolean" />
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataSet">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:attribute name="dataReference" type="xs:string" use="required"></xs:attribute>
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="changeAttribute">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:attribute name="target" type="xs:token" />
+			<xs:attribute name="newValue" type="xs:string" use="required" />
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="changeXML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:attribute name="target" type="xs:token" />
+			<xs:attribute name="newValue" type="xs:string" use="required" />
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="changeMath">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="listOfVariables" />
+				<xs:element ref="listOfParameters" />
+				<xs:element ref="math:math" />
+			</xs:sequence>
+			<xs:attribute name="target" type="xs:token" />
+				</xs:extension>
+				</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="notes" type="xs:string" />
+	<xs:element name="annotation" type="xs:string" />
+</xs:schema>
