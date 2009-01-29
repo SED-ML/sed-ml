@@ -62,7 +62,8 @@ public class SEDMLDocument {
 	
 		try {
 		 m = JAXBUtils.createMarshaller( errors);
-	//	 m.setProperty("jaxb.formatted.output", Boolean.TRUE);
+		 
+	//	 We're just marshalling to revalidate, don't want to actually write the file
 		 m.marshal(sedml, new ByteArrayOutputStream());
 		}catch(Exception e) {
 			throw new XMLException("Error validating XML" , e);
