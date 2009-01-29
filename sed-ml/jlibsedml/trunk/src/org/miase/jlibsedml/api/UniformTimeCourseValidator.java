@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.miase.jlibsedml.generated.UniformTimeCourse;
 
+/*
+ * Internal validation class, not API.
+ */
 class UniformTimeCourseValidator  {
 	static String START_AFTER_END ="Start of time course is before end of time course";
 	static String INITIAL_AFTER_START ="Initial time  is after start of output start time";
