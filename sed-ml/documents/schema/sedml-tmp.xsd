@@ -36,7 +36,7 @@
 				<xs:extension base="SEDBase">
 			<xs:attribute name="id" type="xs:string" />
 			<xs:attribute name="name" type="xs:string" use="optional" />
-			<xs:attribute name="value" type="xs:string" use="required" />
+			<xs:attribute name="value" type="xs:double" use="required" />
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
