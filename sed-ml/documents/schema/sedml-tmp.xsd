@@ -308,8 +308,9 @@
 				</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="curve">
-		<xs:complexType>
+	<!-- changed unnamed curve type to named curveType in order to extend the surface type -->
+	<xs:element name="curve" type="curveType" />
+		<xs:complexType name="curveType">
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
 			<xs:attribute name="yDataReference" type="xs:string"
@@ -321,19 +322,21 @@
 				</xs:extension>
 				</xs:complexContent>
 		</xs:complexType>
-	</xs:element>
 	<xs:element name="surface">
 		<xs:complexType>
 			<xs:complexContent>
-				<xs:extension base="SEDBase">
-			<xs:attribute name="yDataReference" type="xs:string"
+				<xs:extension base="curveType">
+			<!--
+					<xs:attribute name="yDataReference" type="xs:string"
 				use="required" />
 			<xs:attribute name="xDataReference" type="xs:string"
 				use="required" />
+			-->
 			<xs:attribute name="zDataReference" type="xs:string"
 				use="required" />
-			<xs:attribute name="logY" use="required" type="xs:boolean" />
+			<!-- <xs:attribute name="logY" use="required" type="xs:boolean" />
 			<xs:attribute name="logX" use="required" type="xs:boolean" />
+			-->
 			<xs:attribute name="logZ" use="required" type="xs:boolean" />
 				</xs:extension>
 				</xs:complexContent>
