@@ -385,6 +385,23 @@
 				</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="notes" type="xs:string" />
-	<xs:element name="annotation" type="xs:string" />
+	
+	<xs:element name="notes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any namespace="http://www.w3.org/1999/xhtml" 
+					processContents="skip"
+					minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="annotation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any processContents="skip" 
+					minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
 </xs:schema>
