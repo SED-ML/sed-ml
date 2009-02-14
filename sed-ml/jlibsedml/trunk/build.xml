@@ -1,4 +1,4 @@
-<project name="sedml" default="main">
+<project name="sedml" default="test">
 	
 <property file ="build.properties"/>
 

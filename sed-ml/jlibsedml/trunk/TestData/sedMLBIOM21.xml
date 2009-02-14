@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sedML version="0.1"  xmlns="http://www.biomodels.net/sed-ml"
-xmlns:math="http://www.w3.org/1998/Math/MathML">
+<sedML version="0.1" xmlns="http://www.biomodels.net/sed-ml" xmlns:math="http://www.w3.org/1998/Math/MathML">
   <notes>Changing a system from oscillation to chaos</notes> 
   <listOfSimulations>
     <uniformTimeCourse id="simulation1"
     algorithm="KiSAO:0000071" initialTime="0" outputStartTime="50" outputEndTime="1000" numberOfPoints="1000" />
-   
   </listOfSimulations>
- 
   <listOfModels>
     <model id="model1" name="Circadian Oscillations" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000021" /> 
     <model id="model2" name="Circadian Chaos" type="SBML" source="model1">
