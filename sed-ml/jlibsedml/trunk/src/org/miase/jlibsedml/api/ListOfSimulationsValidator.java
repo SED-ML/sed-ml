@@ -14,7 +14,7 @@ import org.miase.jlibsedml.generated.UniformTimeCourse;
  class ListOfSimulationsValidator {
 	 
 	static final String DUPLICATED_IDS="Duplicated IDs";
-	List<SedMLError> validate(IListOfSimulations simList){
+	List<SedMLError> validate(ListOfSimulations simList){
 		  List<SedMLError> errors = new ArrayList<SedMLError>();
 		  List<UniformTimeCourse> utcs = simList.getUniformTimeCourses();
 		  Map<String, UniformTimeCourse> seen = new HashMap<String, UniformTimeCourse>();
