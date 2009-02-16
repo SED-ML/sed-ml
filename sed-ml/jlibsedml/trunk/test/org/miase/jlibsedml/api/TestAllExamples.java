@@ -40,8 +40,7 @@ public class TestAllExamples {
 
 		for (File testFile : filtered) {
 
-			SEDMLDocument doc = Libsedml.readDocument(testFile
-					.getAbsolutePath());
+			SEDMLDocument doc = Libsedml.readDocument(testFile);
 			List<SedMLError> errors = doc.getErrors();
 			for (SedMLError error : errors) {
 				System.out.println(error.getMessage());
