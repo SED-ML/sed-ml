@@ -57,6 +57,19 @@
   	  		<fileset dir="src" excludes="**/*.java"/>
   	  		</copy>
   </target>
+
+	
+ <!-- official current schema files -->
+ <patternset id="current.sedml.schema">
+ 	 <include name="sbml-mathml.xsd"/>
+ 	 <include name="sedml-version-0-release-1.xsd"/>
+ </patternset>
+	<!-- experimetnal current schema files -->
+	 <patternset id="experimental.sedml.schema">
+	 	 <include name="sbml-mathml.xsd"/>
+	 	 <include name="sedml-tmp.xsd"/>
+	 </patternset>
+	<property name="include.schemas" value="current.sedml.schema"/>
   <target name="compileSchema" description="Compile XML schema and generates classes">
   	<!-- forces regeneration of classes -->
   	<touch file="${sedml.schema}"></touch>
@@ -70,7 +83,9 @@
      </xjc>
   	 <!-- copy generated classes to src file for compilation -->
   	 <copy toDir="src/${sedml.api.packageTree}"  overwrite="true">
-  	 	 <fileset dir="Schema" includes="**/*.xsd"/>
+  	 	 <fileset dir="${sedml.schema.dir}">
+  	 	 	 <patternset refid="${include.schemas}"/>
+  	 	 </fileset>
   	 </copy>
   	 <copy toDir="TestData"  overwrite="true">
   	  	  <fileset dir="${sedml.examples.dir}" includes="**/*.xml"/>

@@ -3,10 +3,17 @@
               xmlns:xs="http://www.w3.org/2001/XMLSchema"
               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
               xmlns:ext="http://xml.w_wins.com/xjc-plugins/interfaces" 
-              jxb:extensionBindingPrefixes="xjc">
+              jxb:extensionBindingPrefixes="xjc"
+              schemaLocation="../../sed-ml/documents/schema/sedml-version-0-release-1.xsd">
   <jxb:globalBindings>
         <xjc:simple />
  
   </jxb:globalBindings>
+  
+ 
+    <jxb:schemaBindings>
+      <jxb:package name="org.sbml.mathml.generated"/>
+    </jxb:schemaBindings>
+
  
 </jxb:bindings>
