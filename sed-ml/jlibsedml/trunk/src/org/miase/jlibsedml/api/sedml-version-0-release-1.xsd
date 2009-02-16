@@ -1,8 +1,8 @@
+
 <xs:schema targetNamespace="http://www.biomodels.net/sed-ml" xmlns="http://www.biomodels.net/sed-ml"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML"
-	    elementFormDefault="qualified" 
-    attributeFormDefault="unqualified">
-	<xs:import namespace="http://www.w3.org/1998/Math/MathML" schemaLocation="sbml-mathml.xsd" />
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML">
+	<xs:import namespace="http://www.w3.org/1998/Math/MathML"
+		schemaLocation="sbml-mathml.xsd" />
 
 <!-- global element declarations -->
 	<xs:element name="variable">

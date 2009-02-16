@@ -1,8 +1,11 @@
 package org.miase.jlibsedml.api;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,16 +25,16 @@ public class Libsedml {
 	
 	/**
 	 * 
-	 * @param fileName A non-null file Name
+	 * @param fileName A non-null, readable file 
 	 * @return A non null {@link SEDMLDocument}
 	 * @throws XMLException for parsing errors
 	 * @throws IOException If the file cannot be read
 	 */
-	public static SEDMLDocument readDocument (String  fileName) throws XMLException, IOException{
+	public static SEDMLDocument readDocument (File  file) throws XMLException, IOException{
 		SedML sedml = null;
 		List<SedMLError> errors = new ArrayList<SedMLError>();
 		try {
-		sedml = loadDocument(fileName, errors);
+		sedml = loadDocument(new FileInputStream(file), errors);
 		} catch (JAXBException e){
 			throw new XMLException("Error reading file", e);
 		}catch (SAXException e){
@@ -41,19 +44,41 @@ public class Libsedml {
 		return new SEDMLDocument(sedml, errors);
 	}
 	
-	private static SedML loadDocument (String fileName ,final List<SedMLError> errors) throws JAXBException, FileNotFoundException, SAXException{
+	public static SEDMLDocument readDocument (String document)throws XMLException, IOException {
+		SedML sedml = null;
+		List<SedMLError> errors = new ArrayList<SedMLError>();
+		ByteArrayInputStream bis = new ByteArrayInputStream(document.getBytes());
+		try {
+			sedml = loadDocument(bis, errors);
+			} catch (JAXBException e){
+				throw new XMLException("Error reading file", e);
+			}catch (SAXException e){
+				StringBuffer sb = new StringBuffer();
+				sb.append(e.getMessage());
+				if(e.getCause()!=null){
+					sb.append(e.getCause().getMessage());
+					for (StackTraceElement el : e.getStackTrace()){
+						sb.append(el.toString());
+					}
+				}
+				throw new XMLException("Error reading file " +sb.toString(), e);
+			} 
+			SemanticValidationManager.performSemanticValidation(sedml, errors);
+			return new SEDMLDocument(sedml, errors);
+	}
+	
+	private static SedML loadDocument (InputStream is ,final List<SedMLError> errors) throws JAXBException, FileNotFoundException, SAXException{
 
 		Unmarshaller unmarshaller = JAXBUtils.createUnmarshaller( errors);
-		FileInputStream fis =null;
-		try {
-			 fis =new FileInputStream(fileName);	
-			SedML sedml = (SedML)unmarshaller.unmarshal(fis);
+	
+		try {	
+			SedML sedml = (SedML)unmarshaller.unmarshal(is);
 			
 			return sedml;
 		} finally{
-			if(fis!=null)
+			if(is!=null)
 				try {
-					fis.close();
+					is.close();
 				} catch (IOException e) {}
 		}
 		
