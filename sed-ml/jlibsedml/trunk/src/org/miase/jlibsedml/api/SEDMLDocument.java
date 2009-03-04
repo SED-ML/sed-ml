@@ -9,6 +9,12 @@ import java.util.List;
 
 import javax.xml.bind.Marshaller;
 
+import org.miase.jlibsedml.generated.ListOfChanges;
+import org.miase.jlibsedml.generated.ListOfDataGenerators;
+import org.miase.jlibsedml.generated.ListOfModels;
+import org.miase.jlibsedml.generated.ListOfOutputs;
+import org.miase.jlibsedml.generated.ListOfSimulations;
+import org.miase.jlibsedml.generated.ListOfTasks;
 import org.miase.jlibsedml.generated.SedML;
 
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
@@ -31,6 +37,20 @@ public class SEDMLDocument {
 		this.sedml=model;
 		this.errors=errors;
 	}
+	 
+	public SEDMLDocument() {
+		this.sedml = new SedML();
+		ListOfSimulations los = new ListOfSimulations();
+		sedml.setListOfSimulations(los);
+		ListOfModels lom = new ListOfModels();
+		sedml.setListOfModels(lom);
+		ListOfDataGenerators lodg = new ListOfDataGenerators();
+		sedml.setListOfDataGenerators(lodg);
+		ListOfOutputs loo = new ListOfOutputs();
+		sedml.setListOfOutputs(loo);
+		ListOfTasks lot = new ListOfTasks();
+		sedml.setListOfTasks(lot);
+	} 
 	/**
 	 * 
 	 * @return An unmodifiable (read-only), non-null list of this document's errors
