@@ -28,7 +28,7 @@ public class libSedMLTest {
 	@Test
 	public void testEmptyDocumentCanBeSaved() throws Exception{
 		SEDMLDocument doc = Libsedml.createDocument();
-		File f = File.createTempFile("sedml", "xml");
+		File f = new File("sedml.xml");
 		doc.writeDocument(f);
 		SEDMLDocument doc2 = Libsedml.readDocument(f);
 		assertNotNull(doc2);
