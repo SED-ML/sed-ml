@@ -66,6 +66,14 @@ public class Libsedml {
 			SemanticValidationManager.performSemanticValidation(sedml, errors);
 			return new SEDMLDocument(sedml, errors);
 	}
+	/**
+	 * Creates a new, empty SedML document
+	 * @return A non-null, empty document. 
+	 */
+	public static SEDMLDocument createDocument() {
+		return new SEDMLDocument();
+		
+	}
 	
 	private static SedML loadDocument (InputStream is ,final List<SedMLError> errors) throws JAXBException, FileNotFoundException, SAXException{
 
