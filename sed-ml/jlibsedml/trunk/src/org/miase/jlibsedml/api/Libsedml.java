@@ -44,6 +44,13 @@ public class Libsedml {
 		return new SEDMLDocument(sedml, errors);
 	}
 	
+	/**
+	 * Generates a {@link SEDMLDocument} from a String representation of a document
+	 * @param document
+	 * @return
+	 * @throws XMLException
+	 * @throws IOException
+	 */
 	public static SEDMLDocument readDocument (String document)throws XMLException, IOException {
 		SedML sedml = null;
 		List<SedMLError> errors = new ArrayList<SedMLError>();
