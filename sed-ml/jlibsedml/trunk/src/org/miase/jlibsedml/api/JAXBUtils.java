@@ -96,8 +96,14 @@ import org.xml.sax.SAXException;
 		Marshaller marshaller = context.createMarshaller();
 
 		SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-		Schema schema2 = factory.newSchema(JAXBUtils.class.getResource(SBML_MATHML_SCHEMA));
-		Schema schema = factory.newSchema(JAXBUtils.class.getResource(SEDML_SCHEMA));
+		File math = loadSchema(SBML_MATHML_SCHEMA);
+		File sed = loadSchema(SEDML_SCHEMA);
+	
+		StreamSource s1= new StreamSource(math);
+		StreamSource s2= new StreamSource(sed);
+	
+		
+		Schema schema = factory.newSchema(new Source[]{s1,s2});
 		marshaller.setSchema(schema);
 
 		marshaller.setEventHandler(new ValidationEventHandler (){			

@@ -122,7 +122,7 @@ public class SEDMLDocument {
 	private static class PreferredMapper extends NamespacePrefixMapper {
         @Override
         public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix) {
-           if(namespaceUri.equals("http://www.miase.org/")){
+           if(namespaceUri.equals("http://www.biomodels.net/sed-ml")){
         	   return "sedml";
            } else {
         	   return "math";
