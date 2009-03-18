@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.xml.bind.Marshaller;
 
-import org.miase.jlibsedml.generated.ListOfChanges;
 import org.miase.jlibsedml.generated.ListOfDataGenerators;
 import org.miase.jlibsedml.generated.ListOfModels;
 import org.miase.jlibsedml.generated.ListOfOutputs;
@@ -37,7 +36,9 @@ public class SEDMLDocument {
 		this.sedml=model;
 		this.errors=errors;
 	}
-	 
+	/**
+	 * Constructs a document and a SedML model
+	 */
 	public SEDMLDocument() {
 		this.sedml = new SedML();
 		ListOfSimulations los = new ListOfSimulations();
@@ -67,6 +68,7 @@ public class SEDMLDocument {
 	}
 	
 	 /**
+	  * Gets the 
 	  * @return A non-null {@link SedML} object
 	  */
 	public SedML getSedMLModel () {
@@ -117,6 +119,27 @@ public class SEDMLDocument {
 		}catch(Exception e) {
 			throw new XMLException("Error validating XML" , e);
 		}
+	}
+	
+	/**
+	 * Writes the document contents to formatted XML format, and returns it as a <code>String</code>
+	 * @return A <code>String</code>
+	 * @throws XMLException if errors occur during XML generation.
+	 */
+	public String writeDocumentToString () throws XMLException {
+		Marshaller m = null;
+		
+		try {
+		 m = JAXBUtils.createMarshaller( errors);
+	     m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+	     m.setProperty("com.sun.xml.bind.namespacePrefixMapper", new PreferredMapper());
+         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		 m.marshal(sedml, baos);
+		 return new String (baos.toByteArray());
+		}catch(Exception e) {
+			throw new XMLException("Error validating XML" , e);
+		}	
+		
 	}
 	
 	private static class PreferredMapper extends NamespacePrefixMapper {

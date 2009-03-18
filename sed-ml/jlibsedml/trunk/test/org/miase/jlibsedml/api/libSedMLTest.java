@@ -3,6 +3,7 @@ package org.miase.jlibsedml.api;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.util.Arrays;
 
 import org.junit.After;
 import org.junit.Before;
@@ -23,6 +24,15 @@ public class libSedMLTest {
 		SEDMLDocument doc = Libsedml.createDocument();
 		assertNotNull(doc);
 		assertFalse(doc.hasErrors());
+	}
+	
+	@Test
+	public void testCreateMiaseFile() throws Exception{
+		SEDMLDocument doc = Libsedml.createDocument();
+		File f = new File("TestData/sedMLBIOM12.xml");
+		byte [] b = Libsedml.writeMiaseArchive(doc, Arrays.asList(new File []{f}));
+		assertTrue(b.length>0);
+		System.out.println(b.length);
 	}
 	
 	@Test
