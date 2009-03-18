@@ -1,6 +1,7 @@
 package org.miase.jlibsedml.api;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -25,7 +28,7 @@ public class Libsedml {
 	
 	/**
 	 * 
-	 * @param fileName A non-null, readable file 
+	 * @param fileName A non-null, readable file of a Sedml xml file
 	 * @return A non null {@link SEDMLDocument}
 	 * @throws XMLException for parsing errors
 	 * @throws IOException If the file cannot be read
@@ -45,7 +48,7 @@ public class Libsedml {
 	}
 	
 	/**
-	 * Generates a {@link SEDMLDocument} from a String representation of a document
+	 * Generates a {@link SEDMLDocument} from a String representation of a Sedml document
 	 * @param document
 	 * @return
 	 * @throws XMLException
@@ -75,10 +78,58 @@ public class Libsedml {
 	}
 	/**
 	 * Creates a new, empty SedML document
-	 * @return A non-null, empty document. 
+	 * @return A non-null, empty {@link SEDMLDocument}. This document is not free of errors after creation, as a 
+	 * valid document 
 	 */
 	public static SEDMLDocument createDocument() {
 		return new SEDMLDocument();
+		
+	}
+	
+	public static byte[] writeMiaseArchive(SEDMLDocument doc,
+			List<File> modelFiles) throws XMLException {
+		ZipOutputStream out = null;
+		ByteArrayOutputStream baos = null;
+		try {
+			baos = new ByteArrayOutputStream();
+			out = new ZipOutputStream(baos);
+			for (File modelFile:modelFiles) {
+				out.putNextEntry(new ZipEntry(modelFile.getName()));
+				byte[] buf = new byte[4096];
+				FileInputStream fis = new FileInputStream(modelFile);
+				int bytesRead;
+				while ((bytesRead = fis.read(buf)) != -1) {
+					out.write(buf, 0, bytesRead);
+				}
+				fis.close();
+			}
+			out.putNextEntry(new ZipEntry("sedml.xml"));
+			String sedmlString = doc.writeDocumentToString();
+
+			byte[] array = sedmlString.getBytes();
+			ByteArrayInputStream bais = new ByteArrayInputStream(
+					sedmlString.getBytes());
+			int bytesRead;
+			while ((bytesRead = bais.read(array)) != -1) {
+				out.write(array, 0, bytesRead);
+			}
+			out.close();
+
+		} catch (Exception e) {
+			throw new XMLException ("Error generating miase zip file", e);
+		}  finally {
+			try {
+				if (out != null) {
+					out.close();
+				}
+			} catch (IOException e) {
+			}
+		}
+		if (baos!=null)
+			return baos.toByteArray();
+		else {
+			return null;
+		}
 		
 	}
 	
@@ -88,7 +139,6 @@ public class Libsedml {
 	
 		try {	
 			SedML sedml = (SedML)unmarshaller.unmarshal(is);
-			
 			return sedml;
 		} finally{
 			if(is!=null)
