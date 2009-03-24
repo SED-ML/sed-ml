@@ -6,7 +6,7 @@
     algorithm="KiSAO:0000019" initialTime="0" outputStartTime="0" outputEndTime="180" numberOfPoints="1000" />
   </listOfSimulations>
   <listOfModels>
-    <model id="model1" name="Circadian Oscillations" type="CellML" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02" />
+    <model id="model1" name="Circadian Oscillations" type="CellML" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02" >
       <listOfChanges>
         <changeAttribute target="/model/component[@cmeta:id='MP']/variable[@name='vsP']/@initial_value" newValue="1"/>
         <changeAttribute target="/model/component[@cmeta:id='MP']/variable[@name='vmP']/@initial_value" newValue="0.7"/>
@@ -16,6 +16,7 @@
         <changeAttribute target="/model/component[@name='parameters']/variable[@name='K4P']/@initial_value" newValue="1"/>
         <changeAttribute target="/model/component[@name='parameters']/variable[@name='K4T']/@initial_value" newValue="1"/>
       </listOfChanges>
+    </model>
     <model id="model2" name="Circadian Chaos" type="CellML" source="model1">
       <listOfChanges>
         <changeAttribute target="/model/component[@cmeta:id='MT']/variable[@name='vmT']/@initial_value" newValue="0.28"/>
