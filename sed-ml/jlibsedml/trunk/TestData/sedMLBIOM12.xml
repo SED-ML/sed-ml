@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sedML version="0.1" xmlns="http://www.biomodels.net/sed-ml" xmlns:math="http://www.w3.org/1998/Math/MathML">
+<sedML xmlns:math="http://www.w3.org/1998/Math/MathML"
+ xmlns="http://www.biomodels.net/sed-ml"
+ version="0.1">
   <notes>Showing the oscillating behaviour of the Repressilator model 
    using deterministic and stochastic simulators</notes>
   <listOfSimulations>
+    
     <uniformTimeCourse id="simulation1"
     algorithm="KiSAO:0000088" initialTime="0" outputStartTime="0" 
     outputEndTime="1000" numberOfPoints="1000" />
@@ -12,11 +15,11 @@
   </listOfSimulations>
   <listOfModels>
     <model id="model1" name="Repressilator" type="SBML" 
-    source="urn:miriam:biomodels.db:BIOMD0000000012" /> 
+    source="urn:miriam:biomodels.db:BIOMD0000000012" />
   </listOfModels>
   <listOfTasks>
     <task id="task1" name="Oscillation using a deterministic simulator"  modelReference="model1" 
-    simulationReference="simulation1"/>
+      simulationReference="simulation1" />
     <task id="task2"  name="Oscillation using a stochastic simulator"  modelReference="model1" 
     simulationReference="simulation2"/>
   </listOfTasks>
@@ -36,7 +39,7 @@
     <dataGenerator id="LaCI" name="LaCI repressor">
       <listOfVariables>
         <variable id="v1" taskReference="task1" 
-        target="/sbml/model/listOfSpecies/species[@id='PX']" />
+        target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PX']" />
       </listOfVariables>
       
         <math:math>
@@ -50,7 +53,7 @@
     <dataGenerator id="TetR" name="TetR repressor">
       <listOfVariables>
         <variable id="v2" taskReference="task1" 
-        target="/sbml/model/listOfSpecies/species[@id='PY']" />
+        target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PY']" />
       </listOfVariables>
       
         <math:math>
@@ -64,7 +67,7 @@
     <dataGenerator id="CI" name="CI repressor">
       <listOfVariables>
         <variable id="v3" taskReference="task1" 
-        target="/sbml/model/listOfSpecies/species[@id='PZ']" />
+        target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PZ']" />
       </listOfVariables>
       
         <math:math>
