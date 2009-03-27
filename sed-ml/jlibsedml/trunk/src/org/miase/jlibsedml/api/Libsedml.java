@@ -26,7 +26,7 @@ import org.xml.sax.SAXException;
  * 
  */
 public class Libsedml {
-
+    public static String  SEDML_ARCHIVE_NAME = "sedml.xml";
 	/**
 	 * 
 	 * @param fileName
@@ -89,7 +89,8 @@ public class Libsedml {
 	 * Creates a new, empty SedML document
 	 * 
 	 * @return A non-null, empty {@link SEDMLDocument}. This document is not
-	 *         free of errors after creation, as a valid document
+	 *         free of errors after creation, as a valid document contains at least one task,
+	 *          for example.
 	 */
 	public static SEDMLDocument createDocument() {
 		return new SEDMLDocument();
@@ -98,12 +99,12 @@ public class Libsedml {
 
 	/**
 	 * Generates a zip archive of a Sedml document and its constituent model
-	 * files
+	 * files. Within the archive, the SedML document will called 'sedml.xml'
 	 * 
 	 * @param doc
 	 *            A non-null, {@link SEDMLDocument}
 	 * @param modelFiles
-	 * @return A byte[] of the zipped contents
+	 * @return A byte[] of the zipped contents, or null
 	 * @throws XMLException
 	 *             if any aspect of zipping could not be performed.
 	 */
@@ -120,7 +121,7 @@ public class Libsedml {
 				out.write(data);
 				
 			}
-			out.putNextEntry(new ZipEntry("sedml.xml"));
+			out.putNextEntry(new ZipEntry(SEDML_ARCHIVE_NAME));
 			String sedmlString = components.getSedmlDocument()
 					.writeDocumentToString();
 
@@ -143,20 +144,18 @@ public class Libsedml {
 			} catch (IOException e) {// ignore
 			}
 		}
-		if (baos != null)
+		
 			return baos.toByteArray();
-		else {
-			return null;
-		}
+		
 
 	}
 
 	/**
-	 * 
-	 * @param archive
-	 * @return
+	 * Reads an archive, which should be in miase format - i.e., a zip archive
+	 * @param archive An {@link InputStream} onto the archive
+	 * @return A non-null {@link ArchiveComponents} objects.
 	 * @throws XMLException
-	 *             @ throws {@link IllegalArgumentException} if parameter File
+	 * @throws {@link IllegalArgumentException} if parameter File
 	 *             is null, unreadable, or does not end in ".miase" or ".zip".
 	 */
 	public static ArchiveComponents readArchive(InputStream archive)
@@ -179,15 +178,13 @@ public class Libsedml {
 				while ((read = zis.read(buf)) != -1) {
 					baos.write(buf, 0, read);
 				}
-				if (!entry.getName().equals("sedml.xml")){
+				if (!entry.getName().equals(SEDML_ARCHIVE_NAME)){
 				   IModelContent imc = new BaseModelContent(baos.toString(), entry.getName());
 				   contents.add(imc);
-				   System.out.println(imc.getContents());
 					
 				} else {
 					doc = readDocument(baos.toString());
 				}
-				System.out.println();
 			}
 			return new ArchiveComponents(contents, doc);
 		} catch (Exception e) {
