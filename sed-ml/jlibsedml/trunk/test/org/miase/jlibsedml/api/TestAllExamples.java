@@ -45,6 +45,7 @@ public class TestAllExamples {
 			for (SedMLError error : errors) {
 				System.out.println(error.getMessage());
 			}
+			System.out.println(testFile.getName());
 			assertEquals(0, errors.size());
 		}
 	}
