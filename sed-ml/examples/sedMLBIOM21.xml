@@ -9,8 +9,8 @@
     <model id="model1" name="Circadian Oscillations" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000021" /> 
     <model id="model2" name="Circadian Chaos" type="SBML" source="model1">
       <listOfChanges>
-        <changeAttribute target="/sbml/model/listOfParameters/parameter[@id='V_mT']/@value" newValue="0.28"/>
-        <changeAttribute target="/sbml/model/listOfParameters/parameter[@id='V_dT']/@value" newValue="4.8"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_mT']/@value" newValue="0.28"/>
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_dT']/@value" newValue="4.8"/>
       </listOfChanges>
     </model>
   </listOfModels>
@@ -34,7 +34,7 @@
     </dataGenerator>
     <dataGenerator id="tim1" name="tim mRNA (total)">
       <listOfVariables>
-        <variable id="v1" taskReference="task1" target="/sbml/model/listOfSpecies/species[@id='Mt']" />
+        <variable id="v1" taskReference="task1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Mt']" />
       </listOfVariables>
        <math:math>
           <math:apply>
@@ -45,7 +45,7 @@
     </dataGenerator>
     <dataGenerator id="tim2" name="tim mRNA (changed parameters)">
       <listOfVariables>
-        <variable id="v2" taskReference="task2" target="/sbml/model/listOfSpecies/species[@id='Mt']" />
+        <variable id="v2" taskReference="task2" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Mt']" />
       </listOfVariables>
       
         <math:math>

@@ -19,7 +19,7 @@
     <model id="model2" name="Repressilator_2" type="SBML" 
       source="model1">
       <listOfChanges>
-        <changeAttribute target="/sbml/model/listOfParameters/parameter[@id='alpha']" newValue="9" />
+        <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='alpha']" newValue="9" />
       </listOfChanges>
     </model>
   </listOfModels>
@@ -44,7 +44,7 @@
     <dataGenerator id="LaCI" name="LaCI repressor">
       <listOfVariables>
         <variable id="v1" taskReference="task1" 
-          target="/sbml/model/listOfSpecies/species[@id='PX']" />
+          target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PX']" />
       </listOfVariables>
       
       <math:math>
@@ -58,7 +58,7 @@
     <dataGenerator id="TetR" name="TetR repressor">
       <listOfVariables>
         <variable id="v2" taskReference="task1" 
-          target="/sbml/model/listOfSpecies/species[@id='PY']" />
+          target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PY']" />
       </listOfVariables>
       
       <math:math>
@@ -72,7 +72,7 @@
     <dataGenerator id="CI" name="CI repressor">
       <listOfVariables>
         <variable id="v3" taskReference="task1" 
-          target="/sbml/model/listOfSpecies/species[@id='PZ']" />
+          target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PZ']" />
       </listOfVariables>
       
       <math:math>
@@ -86,7 +86,7 @@
     <dataGenerator id="LaCI_2" name="LaCI repressor">
       <listOfVariables>
         <variable id="v4" taskReference="task2" 
-        target="/sbml/model/listOfSpecies/species[@id='PX']" />
+        target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PX']" />
       </listOfVariables>
       
         <math:math>
@@ -100,7 +100,7 @@
     <dataGenerator id="TetR_2" name="TetR repressor">
       <listOfVariables>
         <variable id="v5" taskReference="task2" 
-        target="/sbml/model/listOfSpecies/species[@id='PY']" />
+        target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PY']" />
       </listOfVariables>
       
         <math:math>
@@ -114,7 +114,7 @@
     <dataGenerator id="CI_2" name="CI repressor">
       <listOfVariables>
         <variable id="v6" taskReference="task2" 
-        target="/sbml/model/listOfSpecies/species[@id='PZ']" />
+        target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PZ']" />
       </listOfVariables>
       
         <math:math>

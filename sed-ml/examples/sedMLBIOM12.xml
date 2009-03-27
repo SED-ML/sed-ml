@@ -39,7 +39,7 @@
     <dataGenerator id="LaCI" name="LaCI repressor">
       <listOfVariables>
         <variable id="v1" taskReference="task1" 
-        target="/sbml/model/listOfSpecies/species[@id='PX']" />
+        target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PX']" />
       </listOfVariables>
       
         <math:math>
@@ -53,7 +53,7 @@
     <dataGenerator id="TetR" name="TetR repressor">
       <listOfVariables>
         <variable id="v2" taskReference="task1" 
-        target="/sbml/model/listOfSpecies/species[@id='PY']" />
+        target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PY']" />
       </listOfVariables>
       
         <math:math>
@@ -67,7 +67,7 @@
     <dataGenerator id="CI" name="CI repressor">
       <listOfVariables>
         <variable id="v3" taskReference="task1" 
-        target="/sbml/model/listOfSpecies/species[@id='PZ']" />
+        target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PZ']" />
       </listOfVariables>
       
         <math:math>
