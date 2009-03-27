@@ -1,5 +1,7 @@
 package org.miase.jlibsedml.api;
-
+/*
+ * This is used as an implementation class for holding model content when reading a .miase file.
+ */
 class BaseModelContent implements IModelContent {
 	private String content, name;
     
