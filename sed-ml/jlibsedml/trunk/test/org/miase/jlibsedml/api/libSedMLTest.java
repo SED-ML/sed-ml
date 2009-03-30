@@ -48,7 +48,7 @@ public class libSedMLTest {
 	
 	@Test
 	public void testReadMiaseArchive() throws Exception{
-		ArchiveComponents ac = Libsedml.readArchive(new FileInputStream(TEST_ARCHIVE));
+		ArchiveComponents ac = Libsedml.readMiaseArchive(new FileInputStream(TEST_ARCHIVE));
 		assertNotNull(ac);
 		assertNotNull(ac.getSedmlDocument());
 		assertEquals("sbml", ac.getSedmlDocument().getSedMLModel()
@@ -67,7 +67,7 @@ public class libSedMLTest {
 		fos.write(miase);
 		fos.flush();
 		fos.close();
-		ArchiveComponents ac = Libsedml.readArchive(new FileInputStream(tmp));
+		ArchiveComponents ac = Libsedml.readMiaseArchive(new FileInputStream(tmp));
 		assertEquals("BIOMD0000000012.xml", ac.getModelFiles().get(0).getName());
 		tmp.deleteOnExit();
 	}
