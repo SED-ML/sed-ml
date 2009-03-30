@@ -8,19 +8,19 @@
   <listOfModels>
     <model id="model1" name="Circadian Oscillations" type="CellML" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02" >
       <listOfChanges>
-        <changeAttribute target="/sbml:model/sbml:component[@cmeta:id='MP']/sbml:variable[@name='vsP']/@initial_value" newValue="1"/>
-        <changeAttribute target="/sbml:model/sbml:component[@cmeta:id='MP']/sbml:variable[@name='vmP']/@initial_value" newValue="0.7"/>
-        <changeAttribute target="/sbml:model/sbml:component[@cmeta:id='P2']/sbml:variable[@name='vdP']/@initial_value" newValue="2"/>
-        <changeAttribute target="/sbml:model/sbml:component[@cmeta:id='T2']/sbml:variable[@name='vdT']/@initial_value" newValue="2"/>  
-        <changeAttribute target="/sbml:model/sbml:component[@name='parameters']/sbml:variable[@name='k1']/@initial_value" newValue="0.6"/>
-        <changeAttribute target="/sbml:model/sbml:component[@name='parameters']/sbml:variable[@name='K4P']/@initial_value" newValue="1"/>
-        <changeAttribute target="/sbml:model/sbml:component[@name='parameters']/sbml:variable[@name='K4T']/@initial_value" newValue="1"/>
+        <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" newValue="1"/>
+        <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vmP']/@initial_value" newValue="0.7"/>
+        <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='P2']/cellml:variable[@name='vdP']/@initial_value" newValue="2"/>
+        <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='T2']/cellml:variable[@name='vdT']/@initial_value" newValue="2"/>  
+        <changeAttribute target="/cellml:model/cellml:component[@name='parameters']/cellml:variable[@name='k1']/@initial_value" newValue="0.6"/>
+        <changeAttribute target="/cellml:model/cellml:component[@name='parameters']/cellml:variable[@name='K4P']/@initial_value" newValue="1"/>
+        <changeAttribute target="/cellml:model/cellml:component[@name='parameters']/cellml:variable[@name='K4T']/@initial_value" newValue="1"/>
       </listOfChanges>
     </model>
     <model id="model2" name="Circadian Chaos" type="CellML" source="model1">
       <listOfChanges>
-        <changeAttribute target="/sbml:model/sbml:component[@cmeta:id='MT']/sbml:variable[@name='vmT']/@initial_value" newValue="0.28"/>
-        <changeAttribute target="/sbml:model/sbml:component[@cmeta:id='T2']/sbml:variable[@name='vdT']/@initial_value" newValue="4.8"/>        
+        <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MT']/cellml:variable[@name='vmT']/@initial_value" newValue="0.28"/>
+        <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='T2']/cellml:variable[@name='vdT']/@initial_value" newValue="4.8"/>        
       </listOfChanges>
     </model>
   </listOfModels>
@@ -32,7 +32,7 @@
   <listOfDataGenerators>
     <dataGenerator id="tim1" name="tim mRNA">
       <listOfVariables>
-        <variable id="v1" taskReference="task1" target="/sbml:model/sbml:component[@cmeta:id='MT']" />
+        <variable id="v1" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
       </listOfVariables>
        <math:math>
           <math:apply>
@@ -44,7 +44,7 @@
 
     <dataGenerator id="per-tim" name="nuclear PER-TIM complex">
       <listOfVariables>
-        <variable id="v1" taskReference="task1" target="/sbml:model/sbml:component[@cmeta:id='CN']" />
+        <variable id="v1" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
       </listOfVariables>
       <math:math>
         <math:apply>
@@ -56,7 +56,7 @@
     
     <dataGenerator id="tim2" name="tim mRNA (changed parameters)">
       <listOfVariables>
-        <variable id="v2" taskReference="task2" target="/sbml:model/sbml:component[@cmeta:id='MT']" />
+        <variable id="v2" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
       </listOfVariables>  
         <math:math>
           <math:apply>
@@ -68,7 +68,7 @@
     
     <dataGenerator id="per-tim2" name="nuclear PER-TIM complex">
       <listOfVariables>
-        <variable id="v1" taskReference="task2" target="/sbml:model/sbml:component[@cmeta:id='CN']" />
+        <variable id="v1" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
       </listOfVariables>
       <math:math>
         <math:apply>
