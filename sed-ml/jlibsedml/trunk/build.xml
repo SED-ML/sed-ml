@@ -12,19 +12,43 @@
 	
 
 
-
-  <target name="main" description="Regenerates all schema classes, compiles, deploys">
-    <antcall target="compileSchema"/>
+  <!--   
+  ##################################################################
+  
+     This task uses existing java aource code, compiles and produces a jar
+  
+  ##################################################################
+  -->
+  <target name="main" description="Compiles and deploys library using existing classes ">
+  
     <echo message="Compiling the java source files..." />
   	<antcall target="compile"/>
   	<echo message="Copying resources" />
   	
   	<echo message="Creating jar..." />
   	<antcall target="jarUp"/>
+  	<antcall target="javadoc"/>
   
-  	<echo message="Tidying up" />
+  			
+  	<echo message="Generating javadoc" />
   	<delete dir="${build.dir}"/>
   </target>
+	<property name="export.docs" value="javadocs"/>
+	<target name ="javadoc">
+		   
+	
+  			<javadoc destdir="${export.docs}" author="true" version="true">
+  			
+  				<fileset dir="src/">
+  					<include name="org/miase/jlibsedml/**/*.java" />
+  				</fileset>
+  				<doctitle><![CDATA[<h1>Java SedML library</h1>]]></doctitle>
+  			</javadoc>
+	</target>
+	<target name="Clean build from JAXB" description="Regenerates all schema classes, compiles, deploys">
+	   <antcall target="compileSchema"/> 
+	   <antcall target="main"/>
+	  </target>
 	
 	
 	
@@ -92,7 +116,11 @@
   	  </copy>
   </target>
 	
-  <!-- compiles and runs tests, after a fresh rebuild of the classes from the schema-->
+	 <!--   
+	  ##################################################################
+	     This task runs 'main', then runs tests
+	  ##################################################################
+	  -->
   <target name="test" depends="main">
   	 <echo message="Cleaning test report folders..."/>
   	 <delete dir="${test.rawreport.dir}"/>

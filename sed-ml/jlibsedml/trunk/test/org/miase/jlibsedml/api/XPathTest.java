@@ -12,7 +12,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 
 public class XPathTest {
@@ -27,6 +26,11 @@ public class XPathTest {
 	
 	@Test
 	public void test1 () throws Exception {
+		
+		
+		
+		
+		
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true); // never forget this!
 		DocumentBuilder builder = factory.newDocumentBuilder();
@@ -41,8 +45,6 @@ public class XPathTest {
 			System.out.println(nodes.item(i).getNodeValue());
 			nodes.item(i).setNodeValue("0.28");
 			System.out.println(nodes.item(i).getNodeValue());
-//		    NamedNodeMap map = nodes.item(i).getAttributes();
-//		    System.out.println(map.getNamedItem("id").getNodeValue());
 		}
 	}
 
