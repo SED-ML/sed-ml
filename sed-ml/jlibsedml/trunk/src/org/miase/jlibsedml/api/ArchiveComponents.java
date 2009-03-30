@@ -3,7 +3,7 @@ package org.miase.jlibsedml.api;
 import java.util.List;
 
 /**
- * Encapsulates the contents of an archive file
+ * Encapsulates the contents of an archive file.
  * @author Richard Adams
  *
  */
@@ -15,7 +15,7 @@ public class ArchiveComponents {
 	
 	/**
 	 * 
-	 * @param modelFiles a non-null, but possible empty list of <code>File</code> objects.
+	 * @param modelFiles a non-null, but possible empty list of <code>IModelContent</code> objects.
 	 * @param sedmlDoc A {@link SEDMLDocument}
 	 * @throws IllegalArgumentException if either parameter is null.
 	 */
@@ -34,6 +34,11 @@ public class ArchiveComponents {
 		return modelFiles;
 	}
 	
+	/**
+	 * Removes a model content from this object.
+	 * @param toRemove A Non-null {@link IModelContent} object.
+	 * @return <code>true</code> if <code>toRemove</code> was removed.
+	 */
 	public boolean removeModelContent (IModelContent toRemove){
 		return modelFiles.remove(toRemove);
 	}
@@ -46,8 +51,8 @@ public class ArchiveComponents {
 		return modelFiles.add(toAdd);
 	}
     /**
-     * GEts the SEMLDocument
-     * @return A {@link SEDMLDocument}, not null
+     * Gets the SEMLDocument
+     * @return A {@link SEDMLDocument}, which will not be null.
      */
 	public SEDMLDocument getSedmlDocument() {
 		return sedmlDoc;

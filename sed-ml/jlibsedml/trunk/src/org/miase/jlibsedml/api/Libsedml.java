@@ -21,6 +21,32 @@ import org.xml.sax.SAXException;
 
 /**
  * Provides an entry point to the SedML object model
+ * To read a Sedml file,
+ * <pre>
+ *   SEDMLDocument doc = Libsedml.readDocument(myFile);
+ *   // get errors 
+ *   List<SedMLError> errors = doc.getErrors();
+ *   
+ *   
+ *   // alternatively, if you're creating a sedml document from scratch, do 
+ *   doc = LibsedML.createDocument();
+ *   //get model
+ *   Sedml model = doc.getSedMLModel();
+ *   
+ *   // apply changes to your model using the SedML dom
+ *   
+ *   // write document back to file
+ *   doc.writeDocument(myFile);
+ *   
+ *   // to write a .miase archive file with the model file included: 
+ *   List<IModelFile> models = new ArrayList<IModelFile>();
+ *   models.add(new FileModelContent(myModelFile));
+ *   ArchiveComponents comps = new ArchiveComponents(models, doc);
+ *   
+ *   byte [] zippedBytes = LibSedml.writeMiaseAchive(comps);
+ *   
+ *   // persist your zipped archive
+ * </pre>
  * 
  * @author Richard Adams
  * 
@@ -28,7 +54,6 @@ import org.xml.sax.SAXException;
 public class Libsedml {
     public static String  SEDML_ARCHIVE_NAME = "sedml.xml";
 	/**
-	 * 
 	 * @param fileName
 	 *            A non-null, readable file of a Sedml xml file
 	 * @return A non null {@link SEDMLDocument}
@@ -158,7 +183,7 @@ public class Libsedml {
 	 * @throws {@link IllegalArgumentException} if parameter File
 	 *             is null, unreadable, or does not end in ".miase" or ".zip".
 	 */
-	public static ArchiveComponents readArchive(InputStream archive)
+	public static ArchiveComponents readMiaseArchive(InputStream archive)
 			throws XMLException {
 		if (archive == null) {
 			throw new IllegalArgumentException();
