@@ -46,7 +46,7 @@ import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
 
 /**
  * Encapsulates a {@link SedML} model and provides additional validation
- * services
+ * services.
  * 
  * @author Richard Adams
  * 
@@ -70,7 +70,7 @@ public class SEDMLDocument {
 	}
 
 	/**
-	 * Constructs a document and a SedML model
+	 * Constructs a document and a SedML model.
 	 */
 	public SEDMLDocument() {
 		this.sedml = new SedML();
@@ -90,7 +90,7 @@ public class SEDMLDocument {
 	}
 
 	/**
-	 * 
+	 * Gets a readonly list of this document's errors.
 	 * @return An unmodifiable (read-only), non-null list of this document's
 	 *         errors
 	 */
@@ -99,6 +99,7 @@ public class SEDMLDocument {
 	}
 
 	/**
+	 * A boolean test as to whether the model referenced by this document has errors or not.
 	 * @return <code>true</code> if this document has at least one validation
 	 *         error
 	 */
@@ -107,7 +108,7 @@ public class SEDMLDocument {
 	}
 
 	/**
-	 * Gets the
+	 * Gets the Sedml model referenced contained in this document.
 	 * 
 	 * @return A non-null {@link SedML} object
 	 */
@@ -116,7 +117,7 @@ public class SEDMLDocument {
 	}
 
 	/**
-	 * Revalidates this document
+	 * Revalidates this document.
 	 * 
 	 * @return An unmodifiable, non-null <code>List</code> of errors
 	 * @throws XMLException
@@ -171,7 +172,7 @@ public class SEDMLDocument {
 
 	/**
 	 * Writes the document contents to formatted XML format, and returns it as a
-	 * <code>String</code>
+	 * <code>String</code>.
 	 * 
 	 * @return A <code>String</code>
 	 * @throws XMLException
@@ -207,10 +208,11 @@ public class SEDMLDocument {
 	}
 
 	/**
-	 * 
+	 * Gets a model variant, by applying whatever changes are defined in a model's List of changes.
+	 * At present, only {@link ChangeAttribute} changes are supported.
 	 * @param model_ID
-	 *            The id of the model
-	 * @return
+	 *            The id of the model, which is a model defined in the ListOfModels element.
+	 * @return A String representation of the changed model. The original model will be unchanged by 
 	 * @throws IllegalArgumentException
 	 *             if modelID not defined in ListOfModels
 	 */

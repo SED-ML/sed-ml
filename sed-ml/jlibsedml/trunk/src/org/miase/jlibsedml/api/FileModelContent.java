@@ -25,7 +25,7 @@ public class FileModelContent implements IModelContent {
 
 		
         /**
-         * Gets the file contents as a String
+         * Gets the contents of the this object's file as a String.
          * @return The contents, or an empty String if the file could not be read.
          */
 		public String getContents() {
