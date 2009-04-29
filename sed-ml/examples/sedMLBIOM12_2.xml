@@ -134,7 +134,7 @@
         yDataReference="LaCI" />
         <curve logX="false" logY="false" xDataReference="time" 
         yDataReference="TetR" />
-	<curve logX="false" logY="false" xDataReference="time" 
+	    <curve logX="false" logY="false" xDataReference="time" 
         yDataReference="CI" />
       </listOfCurves>
     </plot2D>
