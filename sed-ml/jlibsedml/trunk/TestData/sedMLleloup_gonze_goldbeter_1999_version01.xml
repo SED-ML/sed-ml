@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sedML version="0.1" xmlns="http://www.biomodels.net/sed-ml" xmlns:math="http://www.w3.org/1998/Math/MathML">
-  <notes>Comparing Limit Cycles and strange attractors for oscillation in Drosophila</notes> 
-  <listOfSimulations>
+ <!--   <notes>Comparing Limit Cycles and strange attractors for oscillation in Drosophila</notes> 
+ --> <listOfSimulations>
     <uniformTimeCourse id="simulation1"
     algorithm="KiSAO:0000019" initialTime="0" outputStartTime="0" outputEndTime="180" numberOfPoints="1000" />
   </listOfSimulations>
