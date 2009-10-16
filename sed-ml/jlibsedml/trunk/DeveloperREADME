@@ -1,5 +1,7 @@
-This is a preliminary implementation of a Sed-ML validating parser. This has been developed in Eclipse. If you use Eclipse as your Java IDE,
-this project should import as a java project with its classpath set properly (subject to library requirements below).
+This is a preliminary implementation of a Sed-ML validating parser.
+ This has been developed in Eclipse. If you use Eclipse as your Java IDE,
+this project should import as a java project with its classpath set properly
+ (subject to library requirements below).
 
 Library requirements
 ---------------------
@@ -10,7 +12,8 @@ of JaxB. To overcome this you need to add the following system property, for the
 
 -Djava.endorsed.dirs="lib/jaxb-2.1.9"
 
-For JDK5, this problem does not exist, as it does not contain JAxb, in this case you may need to add more jaxb jars to the classpath.
+For JDK5, this problem does not exist, as it does not contain JAxb,
+ in this case you may need to add more jaxb jars to the classpath.
 
 
 
@@ -20,11 +23,10 @@ Running the 'main' task regenerates classes, compiles java source and generates 
 
 Unit tests
 ----------
-
 JUnit tests run using JUnit4, which needs to be added to the classpath to execute them.
 
-Junits can also be executed via the ant build file. These run out of the box with Java 5. For Java 6 JRE you will need to invoke the tests
-with the above jvm argument set
+Junits can also be executed via the ant build file. These run out of the box with Java 5. 
+For Java 6 JRE you will need to invoke the testswith the above jvm argument set
 
 
 Licences

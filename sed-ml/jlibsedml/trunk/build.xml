@@ -27,7 +27,7 @@
   	
   	<echo message="Creating jar..." />
   	<antcall target="jarUp"/>
-  	<antcall target="javadoc"/>
+  	<!--<antcall target="javadoc"/>-->
   
   			
   	<echo message="Generating javadoc" />

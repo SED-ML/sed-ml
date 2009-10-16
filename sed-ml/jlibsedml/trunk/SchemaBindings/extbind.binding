@@ -4,7 +4,7 @@
               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
               xmlns:ext="http://xml.w_wins.com/xjc-plugins/interfaces" 
               jxb:extensionBindingPrefixes="xjc"
-              schemaLocation="../../sed-ml/documents/schema/sedml-version-0-release-1.xsd">
+              schemaLocation="../../sedml/documents/schema/sedml-version-0-release-1.xsd">
   <jxb:globalBindings>
         <xjc:simple />
  

@@ -249,18 +249,18 @@
       <parameter metaid="metaid_0000008" id="Pt" name="Total Per" constant="false"/>
       <parameter metaid="metaid_0000009" id="Tt" name="Total Tim" constant="false"/>
       <parameter metaid="metaid_0000010" id="V_mT" value="0.7">
-        <notes>
+        <!-- -<notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>V_mT=.7 (physiological oscillations); 0.28 (chaos); .4 or .99 (biorhythmicity example)</p>
           </body>
-        </notes>
+        </notes> -->
       </parameter>
       <parameter metaid="metaid_0000011" id="V_dT" value="2">
-        <notes>
+        <!--  <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>V_dT=2 (physiological oscillations); 4.8 (chaos); 3.8 or 2 (biorhythmicity example)</p>
           </body>
-        </notes>
+        </notes>-->
       </parameter>
     </listOfParameters>
     <listOfRules>
@@ -291,7 +291,7 @@
     </listOfRules>
     <listOfReactions>
       <reaction metaid="metaid_0000025" id="P0_to_P1" name="First Phosphorylation of PER" reversible="false">
-        <notes>
+       <!--   <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>This phosphorylation is triggered by the protein product of the gene 
             
@@ -299,7 +299,7 @@
             
             <a href="http://www.uniprot.org/entry/O76324">DCO_DROME</a>). Not explicitely represented in the model.</p>
           </body>
-        </notes>
+        </notes>-->
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#metaid_0000025">
@@ -468,7 +468,7 @@
         </kineticLaw>
       </reaction>
       <reaction metaid="metaid_0000029" id="P1_to_P2" name="Second Phosphorylation of PER" reversible="false">
-        <notes>
+        <!--  <notes>
           <body xmlns="http://www.w3.org/1999/xhtml">
             <p>This phosphorylation is triggered by the protein product of the gene 
             
@@ -476,7 +476,7 @@
             
             <a href="http://www.uniprot.org/entry/O76324">DCO_DROME</a>). Not explicitely represented in the model.</p>
           </body>
-        </notes>
+        </notes>-->
         <annotation>
           <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
             <rdf:Description rdf:about="#metaid_0000029">
