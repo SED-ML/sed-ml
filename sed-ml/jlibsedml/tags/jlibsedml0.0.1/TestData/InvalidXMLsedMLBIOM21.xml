@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sedML version="0.1" xmlns="http://www.miase.org/" xmlns:math="http://www.w3.org/1998/Math/MathML">
+  <notes>Changing a system from oscillation to chaos</notes>
+   <!-- missinng element here -->
+    <uniformTimeCourse id="simulation1"
+    algorithm="KiSAO:0000071" initialTime="0" outputStartTime="50" outputEndTime="1000" numberOfPoints="1000" />
+  </listOfSimulations>
+  <listOfModels>
+    <model id="model1" name="Circadian Oscillations" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000021" /> 
+    <model id="model2" name="Circadian Chaos" type="SBML" source="model1">
+      <listOfChanges>
+        <changeAttribute target="/sbml/model/listOfParameters/parameter[@id='V_mT']/@value" newValue="0.28"/>
+        <changeAttribute target="/sbml/model/listOfParameters/parameter[@id='V_dT']/@value" newValue="4.8"/>
+      </listOfChanges>
+    </model>
+  </listOfModels>
+  <listOfTasks>
+    <task id="task1" name="Baseline" modelReference="model1" simulationReference="simulation1"/>
+    <task id="task2" name="Modified parameters" modelReference="model2" simulationReference="simulation1"/>
+    
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time" name="Time">
+      
+        <math:math>
+          <math:apply>
+            <math:plus />
+            <math:csymbol encoding="text" 
+            definitionURL="http://www.sbml.org/sbml/symbols/time">time
+            </math:csymbol>
+          </math:apply>
+        </math:math>
+      
+    </dataGenerator>
+    <dataGenerator id="tim1" name="tim mRNA (total)">
+      <listOfVariables>
+        <variable id="v1" taskReference="task1" target="/sbml/model/listOfSpecies/species[@id='Mt']" />
+      </listOfVariables>
+       <math:math>
+          <math:apply>
+            <math:plus />
+            <math:ci>v1</math:ci>
+          </math:apply>
+        </math:math>
+    </dataGenerator>
+    <dataGenerator id="tim2" name="tim mRNA (changed parameters)">
+      <listOfVariables>
+        <variable id="v2" taskReference="task2" target="/sbml/model/listOfSpecies/species[@id='Mt']" />
+      </listOfVariables>
+      
+        <math:math>
+          <math:apply>
+            <math:plus />
+            <math:ci>v2</math:ci>
+          </math:apply>
+        </math:math>
+      
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot1" name="tim mRNA with Oscillation and Chaos">
+      <listOfCurves>
+        <curve logX="false" logY="false" xDataReference="time" yDataReference="tim1" />
+        <curve logX="false" logY="false" xDataReference="time" yDataReference="tim2" />
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>
