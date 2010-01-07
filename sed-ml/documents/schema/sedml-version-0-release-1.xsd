@@ -159,9 +159,9 @@
 	<xs:element name="listOfOutputs">
 		<xs:complexType>
 			<xs:sequence minOccurs="0">
-				<xs:element ref="plot2D" minOccurs="0" />
-				<xs:element ref="plot3D" minOccurs="0" />
-				<xs:element ref="report" minOccurs="0" />
+				<xs:element ref="plot2D" minOccurs="0"  maxOccurs="unbounded"/>
+				<xs:element ref="plot3D" minOccurs="0"  maxOccurs="unbounded"/>
+				<xs:element ref="report" minOccurs="0"  maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
