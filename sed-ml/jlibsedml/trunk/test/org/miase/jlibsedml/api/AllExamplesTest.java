@@ -17,7 +17,7 @@ import org.junit.Test;
  * @author Richard Adams
  * 
  */
-public class TestAllExamples {
+public class AllExamplesTest {
 
 	final File TEST_DIR = new File("TestData/");
 	List<File> filtered = new ArrayList<File>();
@@ -39,13 +39,13 @@ public class TestAllExamples {
 	public void testValidSedMLDocHasNoErrors() throws XMLException, IOException {
 
 		for (File testFile : filtered) {
-
+			System.out.println(testFile.getName());
 			SEDMLDocument doc = Libsedml.readDocument(testFile);
 			List<SedMLError> errors = doc.getErrors();
 			for (SedMLError error : errors) {
 				System.out.println(error.getMessage());
 			}
-			System.out.println(testFile.getName());
+			
 			assertEquals(0, errors.size());
 		}
 	}
