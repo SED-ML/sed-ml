@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sedml:sedML xmlns:sedml="http://www.biomodels.net/sed-ml" xmlns:math="http://www.w3.org/1998/Math/MathML">
+    <sedml:listOfSimulations/>
+    <sedml:listOfModels/>
+    <sedml:listOfTasks/>
+    <sedml:listOfDataGenerators/>
+    <sedml:listOfOutputs/>
+</sedml:sedML>

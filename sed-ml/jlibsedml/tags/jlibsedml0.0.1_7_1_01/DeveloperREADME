@@ -1,0 +1,35 @@
+This is a preliminary implementation of a Sed-ML validating parser.
+ This has been developed in Eclipse. If you use Eclipse as your Java IDE,
+this project should import as a java project with its classpath set properly
+ (subject to library requirements below).
+
+Library requirements
+---------------------
+
+JaxB is needed to generate classes from the schema. In this project we are using JaxB2.1.9,
+however in combination with JDk6 this can cause problems as this JDK comes bundled with an earlier version
+of JaxB. To overcome this you need to add the following system property, for the tests to run.
+
+-Djava.endorsed.dirs="lib/jaxb-2.1.9"
+
+For JDK5, this problem does not exist, as it does not contain JAxb,
+ in this case you may need to add more jaxb jars to the classpath.
+
+
+
+Ant build file
+--------------
+Running the 'main' task regenerates classes, compiles java source and generates a jar file of the library in the top level of the project
+
+Unit tests
+----------
+JUnit tests run using JUnit4, which needs to be added to the classpath to execute them.
+
+Junits can also be executed via the ant build file. These run out of the box with Java 5. 
+For Java 6 JRE you will need to invoke the testswith the above jvm argument set
+
+
+Licences
+-----------
+
+This code is made available under an Apache v2 licence, see licences in the Licences folder for more details.
