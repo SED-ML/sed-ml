@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sedML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.biomodels.net/sed-ml" version="0.1">
+<sedML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.biomodels.net/sed-ml" version="0.1">
   <!--  <notes> Showing the switch in behaviour from oscillation to stable depending on the 
     total number of proteins per cell.
   </notes>-->
   <listOfSimulations>
-  
     <uniformTimeCourse id="simulation1" algorithm="KiSAO:0000088" initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfPoints="1000" />
   </listOfSimulations>
   <listOfModels>
@@ -80,20 +79,20 @@
   </listOfDataGenerators>
   <listOfOutputs>
     <plot2D id="plot1" name="protein numbers per time point&gt;">
-     <!-- <notes> (oscillating) </notes>  -->
       <listOfCurves>
         <curve logX="false" logY="false" xDataReference="time" yDataReference="LaCI" />
         <curve logX="false" logY="false" xDataReference="time" yDataReference="TetR" />
         <curve logX="false" logY="false" xDataReference="time" yDataReference="CI" />
       </listOfCurves>
     </plot2D>
-   <!--  <plot2D id="plot2" name="protein numbers per time point">
-      <notes>asymptotic</notes> 
+      <plot2D id="plot2" name="protein numbers per time point">
+      <!--  <notes>asymptotic</notes>-->
       <listOfCurves>
         <curve logX="false" logY="false" xDataReference="time" yDataReference="LaCI_2" />
         <curve logX="false" logY="false" xDataReference="time" yDataReference="TetR_2" />
         <curve logX="false" logY="false" xDataReference="time" yDataReference="CI_2" />
       </listOfCurves>
-    </plot2D>-->
+    </plot2D>
+ 
   </listOfOutputs>
 </sedML>

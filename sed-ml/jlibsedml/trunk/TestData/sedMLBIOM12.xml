@@ -3,7 +3,6 @@
   <!--  <notes>Showing the oscillating behaviour of the Repressilator model 
    using deterministic and stochastic simulators</notes>-->
   <listOfSimulations>
-    
     <uniformTimeCourse id="simulation1" algorithm="KiSAO:0000088" initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfPoints="1000" />
     <uniformTimeCourse id="simulation2" algorithm="KiSAO:0000027" initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfPoints="1000" />
   </listOfSimulations>
