@@ -259,7 +259,7 @@ public class SEDMLDocument {
 
 				XPathFactory xpf = XPathFactory.newInstance();
 				XPath xpath = xpf.newXPath();
-				xpath.setNamespaceContext(new PersonalNamespaceContext());
+				xpath.setNamespaceContext(new SBMLNamespaceContext());
 				for (ChangeAttribute change : changes) {
 					XPathExpression expr;
 					
@@ -295,7 +295,7 @@ public class SEDMLDocument {
 
 	}
 
-	private class PersonalNamespaceContext implements NamespaceContext {
+	private class SBMLNamespaceContext implements NamespaceContext {
 
 		public String getNamespaceURI(String prefix) {
 			if (prefix == null)
