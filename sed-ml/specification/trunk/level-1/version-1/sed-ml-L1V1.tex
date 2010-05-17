@@ -1,0 +1,96 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Master file SED-ML specification 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt]{article}
+
+% layout (initialy done for the SBGN project)
+\input{sources/latex-style}
+
+% packages and commands
+\input{sources/latex-macros}
+
+\begin{document}
+\input{sources/front-page}
+\tableofcontents
+\newpage
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% INTRODUCTION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\input{sources/introduction}
+
+  %% EXAMPLE OF A SIMULATION EXPERIMENT DESCRIPTION (INFORMAL)
+  \input{sources/motivation}
+
+  %% NOTATION CONVENTIONS
+  \input{sources/conventions}
+
+  %% MATHML SUBSET USED
+  \input{sources/mathML.tex}
+
+  %% THE SUGGESTED URI SCHEME
+  \subsection{The URI Scheme used in SED-ML}  
+  \input{sources/uriScheme.tex}
+
+  %% KISAO
+  \subsection{KiSAO}
+  \input{sources/kisao.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% RESOURCES
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  \input{sources/resources.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% CONTACT
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  \input{sources/contact.tex}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% SYNTAX
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  \input{sources/syntax}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% ACKNOWLEDGMENTS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section*{Acknowledgements}
+\input{sources/acknowledgements}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% APPENDIX
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{appendix}
+
+%% UML DIAGRAM
+\section{SED-ML UML Overview}
+\label{app:uml}
+\fig{sedML} shows the complete UML diagram of the SED-ML. It gives the full picture of all implemented classes (see the XML Schema definition in \pageref{lst:schema}).
+% Fig: SED-ML complete
+\sedfig[width=\textwidth]{sedML}{The SED-ML UML class diagram}{fig:sedML}
+%
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% OVERVIEW  (BPMN)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  \input{sources/overview}
+
+%% XML SCHEMA
+\section{XML Schema}
+\label{sec:xmlschema}
+Listing \ref{lst:schema} shows the full SED-ML XML Schema. The code is commented inline.
+\input{xml/sedml-v0-r1-schema.tex}
+
+%% SAMPLE FILE
+\section{Examples}
+
+\subsection{Le Loup Model (CellML)}
+\input{xml/leloupCellml.tex}
+
+\end{appendix}
+
+% REFERENCES
+\bibliographystyle{plainnat}
+\bibliography{sed-ml-L1V1}
+
+\end{document}

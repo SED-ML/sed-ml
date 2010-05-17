@@ -1,0 +1,90 @@
+\label{sec:reference}
+
+The \concept{reference} association is used to refer to a particular source. It may occur in four different ways in the SED-ML document:
+\begin{enumerate}
+\item{as an association between a \hyperref[class:variable]{Variable} and a \hyperref[class:Model]{Model} (\hyperref[sec:modelReference]{modelReference})}
+\item{as an association between a \hyperref[class:variable]{Variable} and a \hyperref[class:task]{Task} (\hyperref[sec:taskReference]{taskReference})}
+\item{as an association between the \hyperref[class:Task]{Task} and the associated \hyperref[class:Model]{Model} (\hyperref[sec:modelReference]{modelRereference})}
+\item{or as an association between the \hyperref[class:Task]{Task} and the \hyperref[class:Simulation]{Simulation} (\hyperref[sec:simulationReference]{simulationReference})}
+\end{enumerate}
+
+
+Depending on the use of the \concept{reference} relation in connection with a \concept{Variable} object, it may take different roles: 
+The \concept{reference} association might occur between a Variable and a Model, when the Variable is to define a \hyperref[class:change]{Change}. In that case the \code{variable} element contains a \hyperref[class:modelReference]{modelReference}, i.\,e. a reference to the \hyperref[class:model]{model} that must be used to execute the XPath expression given in the \hyperref[class:target]{target} arribute of the Variable. An example is shown in listing \ref{lst:reference1}
+
+If the \concept{reference} is used as an association between a \concept{Variable} object and a  inside the \hyperref[class:dataGenerator]{dataGenerator} class, then the \code{variable} contains a \concept{taskReference} to unambiguously refer to an observable in a given task. 
+
+If the \concept{reference} is used as an association between a \hyperref[class:task]{Task} and a \hyperref[class:simulation]{Simulation} then the Task contains a \hyperref[sec:simulationReference]{simulationReference}.
+
+\subsubsection{model Reference}
+\label{sec:modelReference}
+%
+The \concept{modelReference} might occur as a relation between a \hyperref[class:variable]{Variable} object and a \hyperref[class:Model]{Model} object, or as a relation between a \hyperref[class:Task]{Task} object and a \hyperref[class:Model]{Model} object.
+
+If pre-processing needs to be applied to a model before simulation the model update can be specified by creating a \hyperref[class:Change]{Change} object. If the change is calculated using mathematics, variables need to be defined. To refer to an existing entity in a defined \hyperref[class:model]{Model}, the \concept{modelReference} is used. Listing \ref{lst:reference1} shows the definition of a model reference.
+%
+\begin{myXmlLst}{SED-ML \code{modelReference} definition inside a \code{changeMath} element}{lst:reference1}
+<model id="m0001" [..]>
+ <listOfChanges>
+   <changeMath>
+    <listOfVariables>
+     <variable id="v1" modelReference="cellML" target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" />
+    </listOdVariables>
+    <listOfParameters [..] />
+    <math>
+     [CALCULATION OF CHANGE]
+    </math>
+   </changeMath>
+ </listOfChanges>
+ [..]
+</model>
+\end{myXmlLst}
+%
+In the example, a change using mathematical functions is defined for model \code{m0001}. In the \code{changeMath} a list of variables is defined. One of those variable is \code{v1} which is defined in another model, namely \code{cellML}. To identify the variable in model \code{cellML} the XPath expression given in the \hyperref[sec:target]{target} attribute.
+
+The \concept{modelReference} is as well used to define that a \hyperref[class:model]{Model} object is used in a particular  \hyperref[class:task]{Task}. 
+Listing \ref{lst:reference2} shows how this can be done for a sample SED-ML document.
+%
+\begin{myXmlLst}{SED-ML \code{modelReference} definition inside a \element{task} element}{lst:reference2}
+<listOfTasks>
+ <task id="t1" name="Baseline" modelReference="model1" simulationReference="simulation1" />
+ <task id="t2" name="Modified" modelReference="model2" simulationReference="simulation1" />
+</listOfTasks>
+\end{myXmlLst}
+%
+The example defines two different tasks, the first one applies the simulation settings of \code{simulation1} on \code{model1}, the second one applies the same simulation settings on \code{model2}.
+
+\subsubsection{taskReference}
+\label{sec:taskReference}
+In order to define the output of a simulation so-called \hyperref[class:dataGenerator]{DataGenerator} objects are created that take the simulation results and apply post-processing to them. To define certain types of post-processing, \hyperref[class:variable]{Variable} objects need to be created. Those link to a defined \hyperref[class:task]{Task} from which the model that contains the variable of interest can be inferred. 
+A \concept{taskReference} association is used to realise that link from a \hyperref[class:variable]{Variable} object inside a \hyperref[class:dataGenerator]{DataGenerator} to a \hyperref[class:task]{Task} object. 
+Listing \ref{lst:reference3} shows an example for a \concept{taskReference} inside a \hyperref[class:dataGenerator]{DataGenerator}.
+%
+\begin{myXmlLst}{SED-ML \code{taskReference} definition inside a \element{dataGenerator} element}{lst:reference3}
+<listOfDataGenerators>
+ <dataGenerator id="tim3" name="tim mRNA (difference v1-v2+20)">
+  <listOfVariables>
+   <variable id="v1" taskReference="t1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='Mt']" />
+  </listOfVariables>
+  <math />
+ </dataGenerator>
+</listOfDataGenerators>
+\end{myXmlLst}
+%
+The example shows the definition of a variable \code{v1} in a \code{dataGenerator} element. The variable appears in the model that is used in task \code{t1}. The task definition of \code{t1} might look as follows:
+\begin{myXmlLst}{}{}
+<listOfTasks>
+  <task id="t1" name="task definition" modelReference="model1" 
+        simulationReference="simulation 1" />
+</listOfTasks>
+\end{myXmlLst}
+In the above task definition the variable \code{v1} is part of the model \code{model1} as it is the model referred to from \code{t1}. As such, the variable defined in the data generator in example \ref{lst:reference3} is equivalent to the SBML species \code{Mt} in \code{model1}.
+
+\subsubsection{simulationReference}
+\label{sec:simulationReference}
+The \concept{simulationReference} is used to refer to a particular \hyperref[class:simulation]{Simulation} in a \hyperref[class:task]{Task}. 
+Listing \ref{lst:reference2} shows how the reference to a defined simulation for a sample SED-ML document. In the example, both tasks \code{t1} and \code{t2} use the simulation settings defined in \code{simulation1} to run the experiment.
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

@@ -1,0 +1,71 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\token}[1]{\texttt{#1}}
+\newcommand{\concept}[1]{\textcolor{blue}{#1}}
+\newcommand{\element}[1]{\texttt{#1}}
+\newcommand{\alert}[1]{\textcolor{red}{#1}}
+\newcommand{\note}[1]{\paragraph*{} \emph{\scshape{\alert{Please Note}}: #1} \newline}
+\newcommand{\mailto}[1]   {\link{mailto:#1}{#1}}
+\newcommand{\link}[2]     {\literalFont{\href{#1}{#2}}}
+\newcommand{\literalFont}[1]{\textup{\texttt{#1}}}
+\newcommand{\version}{1\xspace}
+\newcommand{\level}{1\xspace}
+\newcommand{\LoneVone}{Level~1 Version~1\xspace}
+\newcommand{\biom}{BioModels Database\xspace}
+% attribute table layout
+\newcommand{\attribute}{attribute\xspace}
+\newcommand{\desc}{description\xspace}
+\newcommand{\subelements}{sub-elements\xspace}
+
+\newcommand{\refpage}[1]{\hyperref[#1]{page \pageref{#1}}} % to hyperref to a particular page in the spec
+\newcommand{\tabcap}[1]{  % to create table captions for overview tables for each SED-ML class
+Attributes and nested elements for \concept{#1}
+}
+
+\newcommand{\tabtext}[2]{
+\tab{#1} shows all attributes and derived classes for the \concept{#2} element as defined in the SED-ML XML Schema.
+}
+
+%figures:
+\newcommand{\sedfig}[4][]
+	{\begin{figure}[ht]\begin{center}{\includegraphics[width=0.9\textwidth,#1]{#2}}\caption{#3}\label{#4}\end{center}\end{figure}}
+%
+\newcommand{\sect}[1]     {Section~\protect\ref{sec:#1}\xspace}
+\newcommand{\fig}[1]      {Figure~\protect\vref{fig:#1}\xspace}
+\newcommand{\tab}[1]      {Table~\protect\vref{tab:#1}\xspace}
+\newcommand{\eg}          {e.g.,\xspace}
+\newcommand{\ie}          {i.e.,\xspace}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  environments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% standard listings:
+\lstnewenvironment{mylisting}[2]
+	{\lstset{float,basicstyle=\ttfamily\scriptsize,caption={#1},label={#2},%
+	numbers=left,
+        stepnumber=1,
+        numberstyle=\tiny,
+        language=xml,
+        keywordstyle=\color[rgb]{0,0,1},
+        commentstyle=\color[rgb]{0.133,0.545,0.133}, 
+        stringstyle=\color[rgb]{0.627,0.126,0.941}, 
+        showspaces=false, 
+        showstringspaces=false, 
+        identifierstyle=\ttfamily}}{}
+
+\lstnewenvironment{mylistingNoNumbers}[2]
+	{\lstset{float,basicstyle=\ttfamily\footnotesize,caption={#1},label={#2}}}
+	{}
+% listings in appendixes:
+\lstnewenvironment{mylistingAppendix}[2]
+	{\lstset{float=h,basicstyle=\ttfamily\footnotesize,caption={#1},label={#2},%
+	numbers=left,stepnumber=1,numberstyle=\tiny}}
+	{}
+\lstnewenvironment{myXmlLst}[2]
+	{\lstset{basicstyle=\ttfamily\scriptsize, caption={#1},label={#2}, keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue}, commentstyle=\color{red}, captionpos=b, breaklines=true, xleftmargin=1.5em, xrightmargin=1.5em, numbers=left, numberstyle=\ttfamily\tiny, numbersep=5pt, tabsize=4, showstringspaces=false, language=XML}}
+	{}

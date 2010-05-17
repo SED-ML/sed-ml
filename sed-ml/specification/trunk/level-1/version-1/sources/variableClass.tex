@@ -1,0 +1,94 @@
+% variable class
+\label{class:variable}
+Variables in SED-ML are references to already existing constituents in one of the defined \hyperref[class:model]{models}. A variable always is placed inside a \hyperref[class:listOfVariables]{listOfVariables}.
+%
+\sedfig[width=0.3\textwidth]{variableClass}{The Variable class}{fig:variable}
+%
+Each instance of the \concept{Variable} class  (see \fig{variable}) has a required \hyperref[sec:id]{id} and an optional \hyperref[sec:name]{name}. 
+Variables are used to refer to a model constituent, i.\,e. a model observable, such as an SBML species. The referenced constituent is specified through the mandatory \hyperref[sec:target]{target} attribute.  
+
+\tabtext{variable}{Variable}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name & \refpage{sec:name}\\
+target & \refpage{sec:target}\\
+taskReference & \refpage{sec:taskReference}\\
+modelReference & \refpage{sec:modelReference}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes & \refpage{class:notes}\\
+annotation & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\label{tab:variable}
+\caption{\tabcap{Variable}}
+\end{table}
+
+The \hyperref[sec:reference]{reference} to an object of the \concept{Variable} class may occur in two different places of the SED-ML document: 
+
+First, it may occur in the \hyperref[class:change]{Change} class where it is used for describing the mathematical computation of a change of a model's observable, using other observables existing in a defined \hyperref[class:model]{model}.
+
+The second use of the \concept{Variable} class and its \concept{target} attribute is for defining a \hyperref[class:dataGenerator]{DataGenerator}. Here, a variable in an existing model might be used to define the post-processing of the simulation.
+
+\subsubsection{The \element{target} attribute}
+\label{sec:target}
+Each instance of \concept{Variable} refers to a model constituent inside a particular \hyperref[class:model]{model}  through an \concept{XPath} expression stored in the required \concept{target} attribute. 
+
+XPath allows to unambiguously identify an element or attribute in an XML file.
+
+An example for a variable definition is given in listing \ref{lst:variable}.
+%
+\begin{myXmlLst}{SED-ML variable definition}{lst:variable}
+<model id="m0001" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000012">
+ <listOfVariables>
+  <variable id="v1" name="Tet Repressor protein" taskreference="t1"  target="/sbml/listOfSpecies/species[@id="PY"]" />
+ </listOfVariables>
+ [..]
+</model>
+\end{myXmlLst}
+%
+Please note that the identifier and names inside the SED-ML document do not have to comply with the identifiers and names that the model and its constituents carry in the model definition. In the above example \ref{lst:variable}, the variable with ID \code{v1} is defined. It is described as the \code{TetR protein}. The reference points to a species in the referenced SBML model. The particular species can be identified through its ID in the SBML model, namely \code{PY}. However, SED-ML does not forbid to use identical identifiers and names as in the referenced models neither. The following is the same valid SED-ML example for the specification of a variable as the above in listing \ref{lst:variable}, but with different naming:
+%
+\begin{myXmlLst}{SED-ML variable definition using the original model identifier and name in SED-ML}{}
+<model id="m0001" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000012">
+ <listOfVariables>
+  <variable id="PY" name="TetR protein" target="/sbml/listOfSpecies/species[@id="PY"]" />
+ </listOfVariables>
+ [..]
+</model>
+\end{myXmlLst}
+%
+ The XPath expression used in the \concept{\code{target}} attribute unambiguously leads to the particular place in the XML SBML model -- the species is to be found in the \emph{sbml} element, and there inside the \emph{listOfSpecies}:
+%
+\begin{myXmlLst}{Species definition in the referenced model (extracted from \url{urn:miriam:biomodels.db:BIOMD0000000012})}{}
+<sbml [..]>
+ <listOfSpecies]
+  <species metaid="PY" id="PY" name="TetR protein" [..]>
+   [..]
+  </species>
+ </listOfSpecies>
+ [..]
+</sbml>
+\end{myXmlLst}
+%
+
+
+%\alert{What about the following points?}
+%\begin{itemize}
+%\item {implicit/explicit notion of time in different formats.}
+%\item {reserved words}
+%\end{itemize}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

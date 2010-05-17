@@ -1,0 +1,57 @@
+% ChangeAttribute Class
+\label{class:changeAttribute}
+The \concept{ChangeAttribute} allows to update the value of an XML attribute in the model. 
+One required attribute for \concept{ChangeAttribute} is the \hyperref[sec:target]{target} of change, i.\,e. the location of the addressed XML attribute.
+
+\tab{changeAttribute} lists all attributes of the \concept{ChangeAttribute} class.
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{attribute} & \textbf{description}\\
+\hline
+metaid & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name & \refpage{sec:name}\\
+target & \refpage{sec:target}\\
+newValue & \refpage{sec:newValue}\\
+\hline
+\hline
+\textbf{derived class} & \textbf{description link}\\
+\hline
+Notes & \refpage{class:notes}\\
+Annotation & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\label{tab:changeAttribute}
+\caption{\tabcap{ChangeAttribute}}
+\end{table}
+%
+
+The \concept{ChangeXML} class covers the possibilities provided by the \hyperref[class:changeAttribute]{ChangeAttribute} class. That is, everything that can be expressed by a \hyperref[class:changeAttribute]{ChangeAttribute} construct can also be expressed by a \concept{ChangeXML}. However, both concepts exist to allow for being very specific in defining changes. It is recommended to use the \concept{ChangeAttribute} for any changes of an XML attribute, and to use the more general \hyperref[class:changeXml]{ChangeXML} for all other cases.
+
+
+\subsubsection{The \element{newValue} attribute}
+\label{sec:newValue}
+The second required attribute is the \element{newValue}, which assignes a new value to the targeted XML attribute. 
+\alert{tbw}
+
+For SBML, an example is the update of the initial concentration of a certain parameter, as shown in listing  \ref{lst:changeAttribute}.
+%
+\begin{myXmlLst}{The changeAttribute element}{lst:changeAttribute}
+<model id="model1" name="Circadian Chaos" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000021">
+ <listOfChanges>
+  <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_mT']/@value" newValue="0.28"/>
+  <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_dT']/@value" newValue="4.8"/>
+ </listOfChanges>
+</model>
+\end{myXmlLst}
+%
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

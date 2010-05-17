@@ -1,0 +1,23 @@
+\label{sec:listOfParameters}
+All parameters needed throughout the simulation experiment, either to apply a \hyperref[class:change]{Change} on a model prior to simulation or to set up a \hyperref[class:dataGenerator]{DataGenerator},  are defined inside a \concept{listOfParameters}.
+
+\fig{listOfParameters} shows the use of the listOfParameters container. It is optional and may contain zero to many models.
+% Fig: sed model
+\sedfig{listOfParameters}{The SED-ML \code{listOfParameters} container}{fig:listOfParameters}
+%
+
+An XML code snippet for the definition of a \code{listOfParameters} element is shown in listing \ref{lst:listOfParameters}.
+%
+\begin{myXmlLst}{SED-ML \code{listOfParameters} element}{lst:listOfParameters}
+<listOfParameters>
+ <parameter id="p1" value="1" />
+ <parameter id="p2" name="Kadp_2" value="0.23" />
+</listOfParameters>
+\end{myXmlLst}
+%
+
+
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

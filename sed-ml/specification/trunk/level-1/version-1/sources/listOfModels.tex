@@ -1,0 +1,45 @@
+\label{sec:listOfModels}
+In order to specify a simulation experiment, the participating models have to be defined. SED-ML uses the XML \concept{listOfModels} element as a container for all necessary models (see Figure \fig{listOfModels}. The listOfModels is optional and may contain zero to many models. 
+
+% Fig: sed model
+\sedfig{listOfModels}{The SED-ML listOfModels container}{fig:listOfModels}
+%
+
+An XML code snippet for the \code{listOfModels} element is shown in listing \ref{lst:listOfModels}.
+%
+\begin{myXmlLst}{SED-ML listOfModels element}{lst:listOfModels}
+<listOfModels>
+ <model id="m0001" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000012">
+ [MODEL PRE-PROCESSING]
+ </model>
+ <model id="m0002" type="SBML" source="m0001">
+ [MODEL PRE-PROCESSING]
+ </model>
+ <model id="m0003" type="CellML" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02">
+ [MODEL PRE-PROCESSING]
+ </model>
+</listOfModels>
+\end{myXmlLst}
+%
+The above \code{listOfModels} references three models: The first model (\code{m0001}) is the Repressilator model taken from \biom. The model itself is available from \url{urn:miriam:biomodels.db:BIOMD0000000012}. For the SED-ML simulation, the model might undergo pre-processings, described in the \hyperref[class:change]{Change} class.
+Based on the description of the first model \code{m0001}, the second model is build. It refers to the model that was originally the \url{urn:miriam:biomodels.db:BIOMD0000000012} model, but had changes applied to it. \code{m0002} might then have even further changes applied to it on top of the changes defined in the pre-processing of \code{m0001}.
+The third model in the code example above is a different model in CellML representation. \code{m0003} is the model available from \url{urn:miriam:biomodels.db:BIOMD0000000012}, and might have additional pre-processing applied to it before used in the simulation.
+Such pre-processings might include a (new) parametrisation of model constituents, or a model update in terms of revised reaction equations, as well as the substitution of whole model constituents. Further details will be given in the description of the \hyperref[class:change]{Change} class.
+
+A SED-ML description can be a sole storage container for a \emph{general} simulation setting, comparible to an experiment procudure description. In that case, no particular model needs to be related to that description to store the settings for later use in SED-ML format:
+%
+\begin{myXmlLst}{}{}
+<sedML>
+ <listOfModels />
+ [SIMULATION SETTINGS FOLLOWING]
+</sedML>
+\end{myXmlLst}
+%
+
+
+
+
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

@@ -1,0 +1,57 @@
+% Output 
+\label{class:output}
+
+The ouput container describes how the results of a simulaion should be presented to the user. It does not contain the data itself, but only the type of output and the data generators (\concept{dataGenerator}) which are to be used in the desired output type. Figure \ref{fig:sedOutput} shows the UML class definition of the \concept{Output} class.
+% Fig: sed output
+\sedfig{outputClass}{The SED-ML Output class}{fig:sedOutput}
+%
+
+
+\tabtext{output}{Output}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{description}\\
+\hline
+metaid & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name & \refpage{sec:name}\\
+\hline
+\hline
+\textbf{sub-elements} & \textbf{description}\\
+\hline
+notes & \refpage{class:notes}\\
+annotation & \refpage{class:annotation}\\
+plot2D & \refpage{class:plot2D}\\
+plot3D & \refpage{class:plot3D}\\
+report & \refpage{class:report}\\
+\hline
+\end{tabular}
+\label{tab:output}
+\caption{\tabcap{Output}}
+\end{table}
+%
+
+
+The types of output pre-defined in SED-ML are plots and \hyperref[class:report]{reports}, also referrible as data tables. The output can be defined as a \hyperref[class:plot2D]{2D plot} or alternatively as a \hyperref[class:plot3D]{3D plot}. 
+
+%An example for a 2D plot and a report defined in one output is given in listing \ref{lst:listOfOutputs}.
+%
+%\begin{myXmlLst}{The listOfOutput element}{lst:listOfOutputs}
+%<listOfOutputs>
+% <plot2D id="plot1" name="sample 2D plot">
+%  <listOfCurves> 
+%   \alert{[..]}
+%  </listOfCurves>
+% </plot2D>
+%</listOfOutputs>
+%\end{myXmlLst}
+%
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

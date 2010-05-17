@@ -1,0 +1,28 @@
+\label{sec:listOfSimulations}
+
+The \concept{listOfSimulation} is the container for \concept{simulation} descriptions. The listOfSimulations is optional (see \fig{sedListOfSimulations}).
+
+
+% Fig: sed simulation
+\sedfig[width=\textwidth]{listOfSimulations}{The listOfSimulations container}{fig:sedListOfSimulations}
+%
+
+SED-ML version \version offers the predefined simulation class \hyperref[class:timeCourse]{UniformTimeCourse}. 
+Further simulation classes are planned for future versions of SED-ML, including simulation classes for bifurcation analysis and parameter scans. 
+
+Example \ref{lst:listOfSimulations} shows the definition of a \element{listOfSimulation} container inside a \element{sedML} element.
+\begin{myXmlLst}{The SED-ML \element{listOfSimulations} element, defining a change on a model}{lst:listOfSimulations}
+<sedML>
+ <listOfSimulations>
+  [UNIFORM TIMECOURSE DEFINITION]
+ </listOfSimulations>
+ [..]
+</sedML>
+\end{myXmlLst}
+%
+In the example a \element{listOfSimulations} element is created that contains all simulations, encoded in single \hyperref[class:simulation]{simulation} elements. For all SED-ML \LoneVone documents, the encoded simulation definitions are instances of the \hyperref[class:timeCourse]{Uniform Timecourse} class.
+
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

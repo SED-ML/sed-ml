@@ -1,0 +1,47 @@
+\label{class:plot3D}
+
+
+% Fig: 2DPlot
+\sedfig[width=0.7\textwidth]{plot3DClass.png}{The SED-ML Plot3D class}{fig:plot3D}
+%
+
+
+\tabtext{plot3D}{Plot3D}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name & \refpage{sec:name}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes & \refpage{class:notes}\\
+annotation & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\label{tab:plot3D}
+\caption{\tabcap{Plot3D}}
+\end{table}
+%
+
+A 3D plot is defined similarly to a 2D plot, but having 3 axes. To every axis a data generator is assigned using the \concept{xDataReference}, \concept{yDataReference}, and the \concept{zDataReference}. As well, each axis can be defined as logarithmix (\concept{logX/logY/logZ} set to true). An example for a 3D plot with one defined surface is given in listing \ref{lst:listOfSurfaces}.
+%
+\begin{myXmlLst}{The listOfSurfaces element}{lst:listOfSurfaces}
+<listOfSurfaces>
+ <surface logX="true" logY="false" logZ="false" 
+  xDataReference="datagenerator1" yDataReference="datagenerator2" 
+  zDataReference="datagenerator3" /> 
+</listOfSurfaces>
+\end{myXmlLst}
+%
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

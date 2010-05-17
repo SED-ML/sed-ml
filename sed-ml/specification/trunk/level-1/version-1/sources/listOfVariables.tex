@@ -1,0 +1,21 @@
+\label{sec:listOfVariables}
+In order to refer to existing entities inside a model, these variables have to be referrable to from the simulation experiment description. SED-ML uses the XML \concept{listOfVariable} element as a container for all necessary variables that need to be defined in order to either describe a change in the mathematics of a model (\hyperref[class:changeMath]{ChangeMath}) or to define a data generator using existing variables from a given task (\hyperref[lass:dataGenerator]{dataGeneratorClass}). \fig{listOfVariables} shows the use of the \concept{listOfVariables} container. The listOfVariables is optional and may contain zero to many models. 
+
+% Fig: sed model
+\sedfig{listOfVariables}{The SED-ML listOfVariables container}{fig:listOfVariables}
+%
+
+An XML code snippet for the definition of a \code{listOfVariables} element is shown in listing \ref{lst:listOfVariables}.
+%
+\begin{myXmlLst}{SED-ML listOfVariables element}{lst:listOfVariables}
+<listOfVariables>
+ <variable id="v1" name="maximum velocity" target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" />
+ <variable id="v2" target="SBML" />
+</listOfVariables>
+\end{myXmlLst}
+%
+
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

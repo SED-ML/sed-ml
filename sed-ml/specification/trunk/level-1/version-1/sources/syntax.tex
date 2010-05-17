@@ -1,0 +1,147 @@
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% PRE-DEFINITIONS
+\section{Preliminary definitions and general classes}
+In this section we introduce attributes and concepts used repeatedly throughout the SED-ML specification. 
+
+\subsection{The \element{xmlns} attribute}
+\input{sources/xmlns}
+
+\subsection{The \element{id}  attribute}
+\input{sources/idAttribute}
+
+\subsection{The \element{name} attribute}
+\input{sources/nameAttribute}
+
+\subsection{The SEDBase Class}
+\input{sources/sedBaseClass}
+
+\subsubsection{The Notes Class}
+\input{sources/notesClass}
+
+\subsubsection{The Annotation Class}
+\input{sources/annotationClass}
+
+\subsection{The SED-ML Class}
+\input{sources/sed-mlClass}
+
+\subsection{The reference Relations}
+\input{sources/referenceRelation.tex}
+
+\subsection{The Variable Class}
+\input{sources/variableClass}
+
+\subsection{The Parameter Class}
+\input{sources/parameterClass}
+
+
+\subsection{The ListOf containers}
+\input{sources/listOfElements}
+
+  \subsubsection{listOfVariables: The variable definition container}
+  \input{sources/listOfVariables.tex}
+
+  \subsubsection{listOfParameters: The parameter definition container}
+  \input{sources/listOfParameters.tex}
+
+  \subsubsection{listOfModels: The model description container}
+  \input{sources/listOfModels}
+
+  \subsubsection{listOfChanges: The change definition container}
+  \input{sources/listOfChanges}
+
+  \subsubsection{listOfSimulations: The simulation description container}
+  \input{sources/listOfSimulations}
+
+  \subsubsection{listOfTasks: The task specification container}
+  \input{sources/listOfTasks}
+
+ \subsubsection{listOfDataGenerators: The post-processing container}
+ \input{sources/listOfDatagenerators}
+
+ \subsubsection{listOfOutputs: The output specification container}
+ \input{sources/listOfOutputs}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% MAIN CLASSES
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{SED-ML Components}
+% the sed-ml elements
+In this section we describe the major components of SED-ML. In the following we 
+use the UML notation described in section \ref{sec:umlconventions}. For an overview we 
+provide a BNMP diagram in Appendix \ref{sec:overview} and an XML Schema in 
+\ref{sec:xmlschema}. 
+
+%% MODELS
+  \subsection{Model}
+  \input{sources/modelClass}
+
+  \subsection{Change}
+  \input{sources/changeClass}
+
+  \subsubsection{ChangeXML}
+  \input{sources/changeXmlClass}
+
+  \subsubsection{ChangeAttribute}
+  \input{sources/changeAttributeClass}
+
+  \subsubsection{ChangeMath}
+  \input{sources/changeMathClass}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% SIMULATIONS
+
+ \subsection{Simulation}
+ \input{sources/simulationClass}
+
+ \subsubsection{UniformTimeCourse}
+ \input{sources/timeCourseSimulationClass}
+
+%\subsubsection{The AnySimulation Class \alert{obsolete}}
+%\input{sources/anySimulationClass.tex}
+
+%\subsubsection{Range Class (\alert{prob not part of L1V1})}
+%\input{sources/rangeClass.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% TASKS
+
+ \subsection{Task}
+ \input{sources/taskClass.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% DATA GENERATORS
+
+ \subsection{DataGenerator}
+ \input{sources/dataGeneratorClass.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% OUTPUT
+
+\subsection{Output}
+\input{sources/outputClass}
+
+\subsubsection{Plot2D}
+\input{sources/2dPlotClass}
+
+\subsubsection{Plot3D}
+\input{sources/3dPlotClass}
+
+\subsubsection{Report}
+\input{sources/reportClass}
+
+\subsection{Curve}
+\input{sources/curveClass}
+
+\subsection{Surface}
+\input{sources/surfaceClass}
+
+\subsection{DataSet}
+\input{sources/dataSetClass}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

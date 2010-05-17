@@ -1,0 +1,17 @@
+\label{sec:listOfDataGenerators}
+
+
+In SED-ML, all variables/parameters/values that shall be used in the \concept{Output} class need  to be defined as a \concept{dataGenerator} beforehand, in the \concept{listofDataGenerators} (see Figure \fig{listOfDataGenerators}). 
+
+% Fig: DG
+\sedfig[width=\textwidth]{listOfDataGenerators}{The SED-ML listOfDataGenerators container}{fig:listOfDataGenerators}
+%
+
+
+Each \concept{dataGenerator} is identifiable within the experiment by its unambiguous \concept{id}. It can be further characterised by an optional \concept{name}. The \concept{math} element contains a mathML expression for the calculation of the data generator. Within the mathematical expression, variables defined in the \concept{listOfVariables} and parameters defined in the \concept{listOfParameters} can be used.
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 
