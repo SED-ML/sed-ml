@@ -1,0 +1,103 @@
+% on the MathML subset used in SED-ML
+\label{sec:mathML}
+\subsection{The MathML Subset used in SED-ML}
+The SED-ML specification allows for the pre-processing of computational models, 
+as well as post processing of the simulation results. The corresponding 
+mathematical expressions are encoded using MathML 2.0. MathML is an 
+international standard for encoding mathematical expressions using XML and is 
+used as representation of mathematical expressions in SBML and CellML, two of 
+the languages supported by SED-ML. A problem arises, because the individual 
+supported model exchange languages allow different subsets of MathML. Thus, 
+when for example a ChangeXML element replaces a mathematical expression of  an 
+SBML reaction, only the MathML subset allowed by SBML should be used here. 
+
+In order to make the SED-ML format easier to adopt, at the beginning we 
+restrict the MathML subset to the following operations: 
+
+\begin{itemize}\setlength{\parskip}{-0.1ex}
+
+\item \emph{token}: \token{cn}, \token{ci}, \token{csymbol},
+  \token{sep}
+  
+\item \emph{general}: \token{apply}, \token{piecewise},
+  \token{piece}, \token{otherwise}, \token{lambda} 
+
+\item \emph{relational operators}: \token{eq}, \token{neq},
+  \token{gt}, \token{lt}, \token{geq}, \token{leq}
+
+\item \emph{arithmetic operators}: \token{plus}, \token{minus},
+  \token{times}, \token{divide}, \token{power}, \token{root},
+  \token{abs}, \token{exp}, \token{ln}, \token{log},
+  \token{floor}, \token{ceiling}, \token{factorial}
+
+\item \emph{logical operators}: \token{and}, \token{or},
+  \token{xor}, \token{not}
+
+\item \emph{qualifiers}: \token{degree}, \token{bvar},
+  \token{logbase}
+
+\item \emph{trigonometric operators}: \token{sin}, \token{cos},
+  \token{tan}, \token{sec}, \token{csc}, \token{cot},
+  \token{sinh}, \token{cosh}, \token{tanh}, \token{sech},
+  \token{csch}, \token{coth}, \token{arcsin}, \token{arccos},
+  \token{arctan}, \token{arcsec}, \token{arccsc}, \token{arccot},
+  \token{arcsinh}, \token{arccosh}, \token{arctanh},
+  \token{arcsech}, \token{arccsch}, \token{arccoth}
+
+\item \emph{constants}: \token{true}, \token{false},
+  \token{notanumber}, \token{pi}, \token{infinity},
+  \token{exponentiale}
+
+\item \emph{MathML annotations}: \token{semantics},
+  \token{annotation}, \token{annotation-xml}
+
+\end{itemize}
+
+It should be noted, that all the operations listed above, only operate on 
+singular values. However, as one of SED-ML's aim is to provide post processing 
+on the results of simulation experiments, we need to enhance this basic set of 
+operations by some aggregate functions. 
+
+\subsubsection{Enabling post processing of simulation experiments}
+
+The first step for enabling for post processing, is to define the symbols that 
+represent vector values. To simplify things for SED-ML L1V1 the only symbols to 
+be used are the identifiers of variables defined in the listOfVariables of 
+DataGenerators. These variables represent the data collected from the 
+simulation experiment with the associated task. 
+
+To enable post processing the following aggregate functions are available for 
+use with DataGenerator variables: 
+
+\begin{itemize}\setlength{\parskip}{-0.1ex}
+
+\item \emph{min}: Where the minimum of a variable represents the smallest value 
+the simulation experiment yielded. Example: 
+
+\begin{verbatim} <min> <ci> variableId </ci></min> \end{verbatim}.
+
+\item \emph{max}: Where the maximum of a variables represents the largest value 
+the simulation experiment yielded. Example: 
+
+\begin{verbatim} <max> <ci> variableId </ci></max> \end{verbatim}.
+
+\item \emph{sum}: All values of the variable returned by the simulation 
+experiment are added up. Example: 
+
+\begin{verbatim} <sum> <ci> variableId </ci></sum> \end{verbatim}.
+
+\item \emph{product}: All values of the variable returned by the simulation 
+experiment are multiplied. Example: 
+
+\begin{verbatim} <product> <ci> variableId </ci></product> \end{verbatim}.
+
+\end{itemize}
+
+These represent the only exceptions. At this point SED-ML does not define a 
+complete algebra of vector values. For more information see the description of 
+DataGenerators.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

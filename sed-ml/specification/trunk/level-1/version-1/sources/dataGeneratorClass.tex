@@ -1,0 +1,80 @@
+\label{class:dataGenerator}
+
+% Fig: DG
+\sedfig[width=0.7\textwidth]{dataGeneratorClass}{The SED-ML DataGenerator class}{fig:sedDG}
+%
+
+
+\tabtext{dataGenerator}{DataGenerator}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name & \refpage{sec:name}\\
+math & \refpage{sec:math}\\
+listOfVariables & \refpage{sec:listOfVariables}\\
+listOfParameters & \refpage{sec:listOfParameters}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes & \refpage{class:notes}\\
+annotation & \refpage{class:annotation}\\
+variable & \refpage{class:variable}\\
+parameter & \refpage{class:parameter}\\
+\hline
+\end{tabular}
+\label{tab:dataGenerator}
+\caption{\tabcap{DataGenerator}}
+\end{table}
+%
+
+The \concept{DataGenerator} prepares the simulation data for usage in the \concept{output}. Often, data needs to be post-processed before being returned to the user. Those post-processing steps can be simple normalisation of data, but also mathematical calculations. The data generator describes the rules to build the \concept{Output} from simulation results and existing entities. The data Generator class is shown in Figure \ref{fig:sedDG}.
+
+
+An example for a data generator is given in listing \ref{lst:listOfDataGenerators}.
+%
+\begin{myXmlLst}{The listOfDataGenerators element, defining two data generators \emph{time} and \emph{LaCI repressor}}{lst:listOfDataGenerators}
+<listOfDatGenerators>
+ <dataGenerator id="d1" name="time">
+  <listOfVariables>
+   <variable id="time" taskReference="task1" target="time" />
+  </listOfVariables >
+  <listOfParameters />
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+   <ci> time </ci>
+  </math>
+ </dataGenerator>
+ <dataGenerator id="LaCI" name="LaCI repressor">
+  <listOfVariables>
+   <variable id="v1" taskReference="task1" 
+    target="/sbml:sbml/sbml:model/sbml:listOfSpecies/
+            sbml:species[@id='PX']" />
+  </listOfVariables>
+  <math:math>
+   <math:ci>v1</math:ci>
+  </math:math>
+ </dataGenerator>
+</listOfDataGenerators>
+\end{myXmlLst}
+%
+
+%% Todo: better example for math
+
+%% Change in schema: The math attribute in the UML would become an attribuet in the XMLS -> maybe better to define a Math class (for consistent conversion and reuse of the Math class)
+
+%% Comment: listOfVariables and listOfParameters should be global lists which are then referred to from inside the listOfDataGenerator/listOfChanges and so on -> propose a change in the XML schema
+
+%% variable has a task reference -> need 2 variable types, as it seems -> propose change in the schema
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

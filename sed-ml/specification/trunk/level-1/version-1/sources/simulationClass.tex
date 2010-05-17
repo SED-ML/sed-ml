@@ -1,0 +1,54 @@
+% simulation class
+\label{class:simulation}
+
+A simulation is the execution of some defined algorithm(s). Therefore, a simulation is defined through it's \code{id}, an optional \code{name}, and the \concept{simulation algorithm} used to run the simulation. 
+SED-ML makes use of the \hyperref[sec:kisao]{KiSA ontology} to refer to a term in the controlled vocabulary identifying the particular simulation algorithm to be used in the simulation. 
+
+% Fig: sed simulation
+\sedfig[width=0.5\textwidth]{simulationClass}{The SED-ML Simulation class}{fig:sedSimulation}
+%
+
+In SED-ML \version every simulation must contain a reference to a simulation algorithm that shall be used to perform the defined simulation.
+
+
+\tabtext{simulation}{Simulation}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name & \refpage{sec:name}\\
+algorithm & \refpage{sec:kisao}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes & \refpage{class:notes}\\
+annotation & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\label{tab:simulation}
+\caption{\tabcap{Simulation}}
+\end{table}
+
+%
+
+An example for the definition of a set of simulations is given in the XML snippet in listing \ref{lst:simulation}.
+%
+\begin{myXmlLst}{The SED-ML listOfSimulations element, defining three different simulations}{lst:simulation}
+<listOfSimulations>
+  <timeCourse id="s1" name="time course simulation of variable v1 over 100 minutes" 
+   algorithm ="KiSAO:ID ">
+  <timeCourse id="s2" name="time course definition for concentration of p" algorithm ="KiSAO:ID ">
+  <timeCourse id="s3" name="time course definition for concentration of p" algorithm ="KiSAO:ID ">
+</listOfSimulations>
+\end{myXmlLst}
+%
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

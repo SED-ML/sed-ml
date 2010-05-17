@@ -1,0 +1,47 @@
+\label{class:report}
+% Fig: Report
+\sedfig[width=0.7\textwidth]{report.png}{The SED-ML Report class}{fig:report}
+%
+
+\tabtext{report}{Report}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name & \refpage{sec:name}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes & \refpage{class:notes}\\
+annotation & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\label{tab:report}
+\caption{\tabcap{Report}}
+\end{table}
+%
+
+The \concept{Report} class defines an output type that returns the simulation result in actual \emph{numbers}. The particular columns of the report table are defined by creating a \hyperref[class:dataSet]{DataSet} for each column. 
+
+Listing \ref{lst:listOfDataSets} provides an example for the definition of such a report.
+%
+\begin{myXmlLst}{The listOfReports element}{lst:listOfDataSets}
+<listOfDataSets>
+ <dataReference="datagenerator1" />
+ <dataReference="datagenerator2" /> 
+</listOfDataSets>
+\end{myXmlLst}
+%
+
+The simulation result itself, i.\,e. concrete result numbers, are not stored in SED-ML, but the directive how to \emph{calculate} them from the output of the simulator is provided through the \concept{dataGenerator}.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

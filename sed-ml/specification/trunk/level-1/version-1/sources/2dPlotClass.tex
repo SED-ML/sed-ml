@@ -1,0 +1,48 @@
+\label{class:plot2D}
+
+% Fig: 2DPlot
+\sedfig[width=0.7\textwidth]{plot2DClass.png}{The SED-ML Plot2D class}{fig:plot2D}
+%
+
+\tabtext{plot2D}{Plot2D}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name & \refpage{sec:name}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes & \refpage{class:notes}\\
+annotation & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\label{tab:plot2D}
+\caption{\tabcap{Plot2D}}
+\end{table}
+%
+
+A 2D plot needs a data generator to be assigned to each of its two axes using the \concept{xDataReference} to refer to a \concept{dataGenerator} for the x-axis and using the \concept{yDataReference} to refer to \concept{dataGenerator} for the y-axis. Additionally, the curve can be logarithmic on the x-axis (\concept{logX} set to true) as well as on the y-axis (\concept{logY} set to true).
+
+
+An example for the definition of a 2D-plot with 2 curves in it is given in listing \ref{lst:listOfCurves}.
+%
+\begin{myXmlLst}{The listOfCurves element}{lst:listOfCurves}
+<listOfCurves>
+  <curve logX="true" logY="false" xDataReference="datagenerator1" 
+   yDataReference="datagenerator2" /> 
+  <curve logX="true" logY="false" xDataReference="datagenerator3" 
+   yDataReference="datagenerator4"/> 
+</listOfCurves>
+\end{myXmlLst}
+%
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

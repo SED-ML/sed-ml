@@ -1,0 +1,59 @@
+\label{class:task}
+
+% Fig: sed task
+\sedfig[width=0.5\textwidth]{taskClass}{The SED-ML Task class}{fig:sedTask}
+%
+
+A task in SED-ML links a \concept{model} as defined in the \concept{listOfModels} to a certain \concept{simulation} description as defined in the \concept{listOfSimulations} via the two according IDs (model ID and simulation ID).
+
+
+\tabtext{task}{Task}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name & \refpage{sec:name}\\
+modelReference & \refpage{sec:modelReference}\\
+simulationReference & \refpage{sec:simulationReference}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes & \refpage{class:notes}\\
+annotation & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\label{tab:task}
+\caption{\tabcap{Task}}
+\end{table}
+%
+
+
+Each task does have its own task \concept{id} for later reference and an optional \concept{name}.
+
+
+An example linking a simulation experiment to two different models  using two task definitions within the list of tasks is given in listing \ref{lst:listOfTasks}.
+%
+\begin{myXmlLst}{The listOfTasks element}{lst:listOfTasks}
+<listOfTasks>
+  <task id="t1" name="task definition" modelReference="model1" 
+        simulationReference="simulation 1" />
+  <task id="t2" name="another task definition" modelReference="model2" 
+        simulationReference="simulation 1" />
+</listOfTasks>
+\end{myXmlLst}
+%
+In the example, a simulation setting \emph{simulation1} is applied first to \emph{model1} and then is applied to \emph{model2}. Please note, that the tasks may be executed in any order, as XML does not have an ordering concept.
+
+In SED-ML \version it is only possible to link one simulation description to one model at a time. However, one can define as many tasks as needed within one experiment description, i.\,e. one SED-ML file.
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

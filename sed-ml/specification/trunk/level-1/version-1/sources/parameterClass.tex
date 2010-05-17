@@ -1,0 +1,57 @@
+% parameter class
+\label{class:parameter}
+An instance of the \concept{Parameter} class in SED-ML defines a symbol associated with a constant value (see \fig{parameter}).
+%
+\sedfig[width=0.3\textwidth]{parameterClass}{The Parameter class}{fig:parameter}
+%
+A parameter can unambiguously be identified through it's given \concept{id}. It may additionally carry an optional \concept{name}. Each parameter has one associated \concept{value}. \tab{parameter} shows all attributes and derived classes for \concept{Parameter}.
+
+\tabtext{parameter}{Parameter}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaID & \refpage{sec:metaID} \\
+id & \refpage{sec:id}\\
+name & \refpage{sec:name}\\
+value & \refpage{sec:value}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes & \refpage{class:notes}\\
+annotation & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\label{tab:parameter}
+\caption{\tabcap{Parameter}}
+\end{table}
+%
+
+SED-ML uses parameters in two ways: 
+First, they may occur in the \hyperref[class:change]{Change} class for describing the mathematical computation of a change of a model's observable through predefined parameters.
+The second use of the \concept{Parameter} class is to refer from a \hyperref[class:dataGenerator]{DataGenerator} definition to a constant value. 
+
+In both cases the parameter definitions are local to the according particular class defining them. 
+
+\subsubsection{The \element{value} attribute}
+\label{sec:value}
+Each instance of \concept{Parameter} defines a particular thing with a fixed \concept{value}. The value in the XML representation is of the data type \code{String}. The \code{value} attribute is required for each \code{parameter} element. A parameter gets exactly one constant value assigned, meaning that the value is fixed and cannot be changed. 
+
+An example for a parameter definition is given in listing \ref{lst:parameter}.
+%
+\begin{myXmlLst}{{The definition of a parameter in SED-ML}}{lst:parameter}
+<listOfParameters>
+ <parameter id="p1" name="KM" value="40" />
+</listOfParameters>
+\end{myXmlLst}
+%
+
+
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

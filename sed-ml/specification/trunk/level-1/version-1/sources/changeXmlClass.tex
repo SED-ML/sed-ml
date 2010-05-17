@@ -1,0 +1,58 @@
+% ChangeAttribute Class
+\label{class:changeXml}
+The \concept{ChangeXML} element is used to change any XML element in the model that can be addressed by a valid XPath expression. 
+
+\tabtext{changeXml}{changeXml}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name & \refpage{sec:name}\\
+target & \refpage{sec:target}\\
+newXML & \refpage{sec:newXml}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes & \refpage{class:notes}\\
+annotation & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\label{tab:changeXml}
+\caption{\tabcap{ChangeXML}, \alert{newXML is an attribute, probably should be made an element!? (see problems in listing \ref{lst:changeXML})}}
+\end{table}
+%
+
+The XPath is specified in the required \hyperref[sec:target]{target} (see definition on page \pageref{sec:target}). 
+
+\subsubsection{The \element{newXML} attribute}
+\label{sec:newXml}
+
+The new piece of XML code that is to substitute the XML element addressed by the XPAth is provided in the required \element{newXML} attribute. 
+
+An example that adds an additional parameter to a model is given in listing \ref{lst:changeXML}.
+%
+\begin{myXmlLst}{The changeXML element}{lst:changeXML}
+<model [..]>
+ <listOfChanges>
+  <changeXML target="/sbml:sbml/sbml:model/sbml:listOfParameters
+                     /sbml:parameter[@id='V_mT']" 
+   newXML="<parameter metaid="metaid_0000010" id="V_mT" value="0.7">
+           <parameter metaid="metaid_0000050" id="V_mT_2" value="4.6">" />
+ </listOfChanges>
+</model>
+\end{myXmlLst}
+%
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

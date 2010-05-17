@@ -1,0 +1,104 @@
+% ChangeAttribute Class
+\label{class:changeMath}
+The \concept{ChangeMath} is used to make changes on any element of the XML file addressable by an XPath expression, where the changes are described by mathematical expressions through MathML. 
+
+\tabtext{changeMath}{ChangeMath}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name & \refpage{sec:name}\\
+target & \refpage{sec:target}\\
+\alert{math} & \refpage{sec:math}\\
+listOfVariables & \refpage{sec:listOfVariables}\\
+listOfParameter & \refpage{sec:listOfParameters}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes & \refpage{class:notes}\\
+annotation & \refpage{class:annotation}\\
+variable & \refpage{class:variable}\\
+parameter & \refpage{class:parameter}\\
+\hline
+\end{tabular}
+\label{tab:changeMath}
+\caption{\tabcap{ChangeMath}, \alert{math currently is an attribute, probably should be turned into an element (see listing \ref{lst:changeMath})}}
+\end{table}
+%
+
+
+The \element{target} attribute contains the XPath addressing the piece of XML that is to be changed. 
+It is possible to introduce additional parameters for the mathematics. Therefore, the parameters first need to be defined in the \concept{listOfParameters}. They are then referenced through their ID.
+To use model variables for the definition of a mathematical expression, those variables need to be defined in the \concept{listOfVariables} first, and can then be incorporated through their ID.
+
+\subsubsection{The \element{math} attribute}
+\label{sec:math}
+
+The \element{math} element contains the updated mathematics. 
+
+An example for the definition of an updated mathematical function in SBML is given in listing \ref{lst:changeMath}.
+%
+\begin{myXmlLst}{The changeMath element}{lst:changeMath}
+<model [..]>
+    <changeMath target="/sbml/model/listOfParameters/parameter[@id='w']">
+
+      <listOfVariables>
+        <variable id="camkii" name="active calcium/calmoduline kinase II" 
+                  target="/sbml/model[@id='calcium']/listOfSpecies/species[@id='KII']" />
+        <variable id="w" name="synaptic weight"
+                  target="/sbml/model[@id='synapse']/listOfParameters/parameter[@id='w']" />
+      <listOfVariables/>
+      <listOfParameter>
+        <parameter id="w0" name="synaptic weight change" value="1">
+        <parameter id="n" name="utrasensitivity to calcium" value="2">
+        <parameter id="K" name="sensitivity to calcium" value="1e-6">
+      <listOfVariables/>
+
+      <math>
+         <apply>
+           <plus />
+           <ci>w</ci>
+           <apply>
+             <times />
+             <ci>w0</ci>
+             <apply>
+               <divide />
+               <apply>
+                 <power />
+                 <ci>camkii</ci>
+                 <ci>n</ci>
+               </apply>
+               <apply>
+                 <plus />
+                 <apply>
+                   <power />
+                   <ci>K</ci>
+                   <ci>n</ci>
+                 </apply>
+                 <apply>
+                   <power />
+                   <ci> camkii </ci>
+                   <ci>n</ci>
+                 </apply>
+               </apply>
+             </apply>
+           </apply> 
+         </apply>
+      </math>
+    </changeMath>
+  </listOfChanges>
+</model>
+\end{myXmlLst}
+%
+%\note{The \concept{changeAttribute} is a special case of \concept{changeXML}. To express the parameter value change given in listing \ref{lst:changeAttribute} using \concept{changeXML}, the code shown in listing \ref{lst:changeXML2} is needed. Thus, for attribute changes, the \concept{changeAttribute} element provides a shortened notation.}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

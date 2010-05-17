@@ -1,0 +1,129 @@
+% sed-ml example file
+The following example provides a SED-ML description for the simulation of the model based on the publication by Leoup, Gonze and Goldbeter ``Limit Cycle Models for Circadian Rhythms Based on Transcriptional Regulation in Drosophila and Neurospora'' (PubMed ID: 10643740).
+The model source code is taken from the CellML Model Repository \citep{LLH+08}. 
+
+The original model used in the simulation experiment is referred to using a URL (\url{http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/d6613d7e1051b3eff2bb1d3d419a445bb8c754ad/leloup_gonze_goldbeter_1999_b.cellml}, ll. 15-16).
+In order to st up the model some pre-processing needs to be applied: Those are defined in the \code{listOfChanges} from ll. 17-25. All changes defined update particular parameter values in the model.
+
+A second model is defined in l. 28 of the example, using \code{model1} as a source and applying even further changes to it, in this case updating two more model parameters.
+
+One simulation setup is defined in the \code{listOfSimulations}. It is a \code{uniformTimeCourse} over 180 time units, using 1000 simulation points. The algorithm used is the CVODE solver, as denoted by the KiSAO ID \code{KiSAO:0000019}.
+
+A number of \code{dataGenerator}s are defined in ll. 42-92. Those are the prerequisite for defining the output of the simulation. The first dataGenerator named \code{tim1} in l. 45 maps on the \code{Mt} entity in the model that is used in \code{task1} which here is the model with ID \code{model1}. The second dataGenerator named \code{per-tim} in l. 57 maps on the \code{CN} entity in \code{model1}. Finally  the third and fourth dataGenerators map on the \code{Mt} and \code{per-tim} entity respectively in the updated model with ID \code{model2}.
+
+The \code{output} defined in the experiment constists of a 2D plot with two different curves (ll. 96-102). Both curves plot the \code{per-tim} concentration against the \code{tim} concentration. In the first curve the original parametrisation (as given in \code{model1}) is used, in the second curve the updated one is used (as given in \code{model2}).
+
+\footnotesize
+\begin{myXmlLst}{LeLoup Model Simulation Description in SED-ML}{lst:leloup}
+<?xml version="1.0" encoding="utf-8"?>
+<sedML version="0.1" xmlns="http://www.biomodels.net/sed-ml" xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <!-- textual information about the experiment (optional) -->
+ <notes>Comparing Limit Cycles and strange attractors for oscillation in Drosophila
+ </notes> 
+ <!-- definition of simulation setup -->
+ <listOfSimulations>
+  <!-- definition of a uniform time course over 180 time uints using the deterministic CVODE solver (KISAO:0000019) -->
+  <uniformTimeCourse id="simulation1" algorithm="KISAO:0000019" initialTime="0" outputStartTime="0" outputEndTime="180" numberOfPoints="1000" />
+ </listOfSimulations>
+ <!-- definition of models used during the experiment -->
+ <listOfModels>
+  <!-- reference to a cellML model -->
+  <model id="model1" name="Circadian Oscillations" type="CellML" 
+   source="http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/d6613d7e1051b3eff2bb1d3d419a445bb8c754ad/leloup_gonze_goldbeter_1999_b.cellml" >
+   <!-- definition of changes to be applied to the original model (changing initial conditions) -->
+   <listOfChanges>
+    <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" newValue="1"/>
+    <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vmP']/@initial_value" newValue="0.7"/>
+    <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='P2']/cellml:variable[@name='vdP']/@initial_value" newValue="2"/>
+    <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='T2']/cellml:variable[@name='vdT']/@initial_value" newValue="2"/>  
+    <changeAttribute target="/cellml:model/cellml:component[@name='parameters']/cellml:variable[@name='k1']/@initial_value" newValue="0.6"/>
+    <changeAttribute target="/cellml:model/cellml:component[@name='parameters']/cellml:variable[@name='K4P']/@initial_value" newValue="1"/>
+    <changeAttribute target="/cellml:model/cellml:component[@name='parameters']/cellml:variable[@name='K4T']/@initial_value" newValue="1"/>
+   </listOfChanges>
+  </model>
+  <!-- reference to the above model (model1) with additional changes of initial values of MY and T2 -->
+  <model id="model2" name="Circadian Chaos" type="CellML" source="model1">
+   <listOfChanges>
+    <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MT']/cellml:variable[@name='vmT']/@initial_value" newValue="0.28"/>
+    <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='T2']/cellml:variable[@name='vdT']/@initial_value" newValue="4.8"/>        
+   </listOfChanges>
+  </model>
+ </listOfModels>
+ <!-- definition of tasks (combining simulation setup and model) --> 
+ <listOfTasks>
+  <!-- limit cycle on model1 --> 
+  <task id="task1" name="Limit Cycle" modelReference="model1" simulationReference="simulation1"/>
+  <!-- strange attractors on the further perturbated model model2 -->
+  <task id="task2" name="Strange attractors" modelReference="model2" simulationReference="simulation1"/>
+ </listOfTasks>
+ <!-- definition of the data generators needed to produce the output -->
+ <listOfDataGenerators>
+  <!-- definition of data generator for tim mRNA -->
+  <dataGenerator id="tim1" name="tim mRNA">
+   <listOfVariables>
+    <variable id="v1" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
+   </listOfVariables>
+   <math:math>
+    <math:apply>
+     <math:plus />
+     <math:ci>v1</math:ci>
+    </math:apply>
+   </math:math>
+  </dataGenerator>
+  <!-- definition of data generator for the nuclear PER-TIM complex -->
+  <dataGenerator id="per-tim" name="nuclear PER-TIM complex">
+   <listOfVariables>
+    <variable id="v1" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
+   </listOfVariables>
+   <math:math>
+    <math:apply>
+     <math:plus />
+     <math:ci>v1</math:ci>
+    </math:apply>
+   </math:math>
+  </dataGenerator>
+  <!-- definition of data generator for pertubated tim mRNA -->  
+  <dataGenerator id="tim2" name="tim mRNA (changed parameters)">
+   <listOfVariables>
+    <variable id="v2" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
+   </listOfVariables>  
+   <math:math>
+    <math:apply>
+     <math:plus />
+     <math:ci>v2</math:ci>
+    </math:apply>
+   </math:math>
+  </dataGenerator>
+  <!-- definition of data generator for perturbated nuclear PER-TIM complex -->  
+  <dataGenerator id="per-tim2" name="nuclear PER-TIM complex">
+   <listOfVariables>
+    <variable id="v1" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
+   </listOfVariables>
+   <math:math>
+    <math:apply>
+     <math:plus />
+     <math:ci>v1</math:ci>
+    </math:apply>
+   </math:math>
+  </dataGenerator>
+ </listOfDataGenerators>
+ <!-- output definition --> 
+  <listOfOutputs>
+   <!-- definition of a 2D plot to show the tim mRNA concentration with different initial conditions -->
+   <plot2D id="plot1" name="tim mRNA with Oscillation and Chaos">
+    <!-- definition of two output curves, both plotting per-tim (original and perturbated) against the tim concentration (original and perturbated) -->
+    <listOfCurves>
+     <curve logX="false" logY="false" xDataReference="per-tim" yDataReference="tim1" />
+     <curve logX="false" logY="false" xDataReference="per-tim2" yDataReference="tim2" />
+    </listOfCurves>
+   </plot2D>
+  </listOfOutputs>
+</sedML>
+\end{myXmlLst}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

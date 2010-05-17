@@ -1,0 +1,21 @@
+% The proposed URI scheme to use
+\label{sec:uriScheme}
+To reference external models that are necessary for the simulation experiment we propose the use of a standardised URI Scheme to ensure long-time availability  of a model that can unambiguously be identified. The preferred reference standard in SED-ML is the \concept{MIRIAM standard}.
+
+MIRIAM allows to identify a data entry in a data resource using predefined URNs. That way a  model may be referenced through it's \concept{ID} in a particular model repository. To be part of the MIRIAM resources, a model repository must ensure permanent and consistent model references, that is stable IDs.
+
+One model repository that has a MIRIAM URN assigned is the \concept{BioModels Database}. It's data resource name in MIRIAM is \code{urn:miriam:biomodels.db}. To refer to a particular model, a standardised identifier scheme is defined in \concept{MIRIAM Resources}. The ID entry maps to a particular model in the model repository. That model is never deleted. 
+A sample BioModels Database ID is \code{:BIOMD0000000048}. Together with the data resource name it becomes the unambiguous ID \code{urn:miriam:biomodels.db:BIOMD0000000048} for the Kholodenko model of 1999 on EGFR signaling. 
+%
+
+SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offers web services to do so \footnote{\url{http://www.ebi.ac.uk/miriam}}. For the above example of the \code{urn:miriam:biomodels.db:BIOMD0000000048} model, the resolved URL may look like: 
+\begin{itemize}
+ \item{\code{http://biomodels.caltech.edu/BIOMD0000000048}}
+ \item{\code{http://www.ebi.ac.uk/biomodels-main/BIOMD0000000048}}
+\end{itemize}
+depending on the physical location of the resource chosen to resolve the URN.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

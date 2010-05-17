@@ -1,0 +1,48 @@
+\label{dataSetClass}
+
+% Fig: Report
+\sedfig[width=0.3\textwidth]{dataSetClass}{The SED-ML DataSet class}{fig:dataSet}
+%
+
+\tabtext{dataSet}{DataSet}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name & \refpage{sec:name}\\
+dataReference & \refpage{sec:dataReference}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes & \refpage{class:notes}\\
+annotation & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\label{tab:dataSet}
+\caption{\tabcap{DataSet}}
+\end{table}
+%
+
+\subsubsection{The \element{dataReference} attribute}
+\label{sec:dataReference}
+
+tbw
+
+An example for the definition of a data set in form of a table is given in the XML snippet in listing \ref{lst:dataSet}.
+%
+\begin{myXmlLst}{The SED-ML dataSet element, defining the output  showing the result of the referenced task}{lst:dataSet}
+<listOfDataSets>
+  <dataSet id="d1" name="v1 over time" dataReference="dg1">
+</listOfDataSets>
+\end{myXmlLst}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 
