@@ -4,7 +4,7 @@ SED-ML not only allows to use the sole model for simlation, but on the contrary 
 \begin{enumerate}
  \item{Changes on attributes of the model's XML representation (\hyperref[class:changeAttribute]{ChangeAttribute})}
  \item{Changes on any XML snippet of the model's XML representation (\hyperref[class:changeXml]{ChangeXML})}
- \item{Applying changes based on mathematical calculations (\hyperref[class:changeMath]{ChangeMath})} 
+ \item{Applying changes based on mathematical calculations (\hyperref[class:computeChange]{ComputeChange})} 
  \end{enumerate}
 
 The \concept{Change} class is abstract and serves as the container for all different types of changes.
@@ -32,7 +32,7 @@ notes & \refpage{class:notes}\\
 annotation & \refpage{class:annotation}\\
 changeXML & \refpage{class:changeXml}\\
 changeAttribute & \refpage{class:changeAttribute}\\
-changeMath & \refpage{class:changeMath}\\
+computeChange & \refpage{class:computeChange}\\
 \hline
 \end{tabular}
 \label{tab:change}
@@ -42,7 +42,7 @@ changeMath & \refpage{class:changeMath}\\
 
 Each Change has a \hyperref[sec:target]{target} attribute that holds a valid XPath expression pointing to the XML element or XML attribute that is to undergo the defined changes.
 
-The \concept{Change} class itself is abstract, a SED-ML document therefor will always contain one of the classes derived from \concept{Change}; those currently are the aforementioned classes  \hyperref[class:changeAttribute]{ChangeAttribute}, \hyperref[class:changeXml]{ChangeXML}, or \hyperref[class:changeMath]{ChangeMath}.
+The \concept{Change} class itself is abstract, a SED-ML document therefor will always contain one of the classes derived from \concept{Change}; those currently are the aforementioned classes  \hyperref[class:changeAttribute]{ChangeAttribute}, \hyperref[class:changeXml]{ChangeXML}, or \hyperref[class:computeChange]{ComputeChange}.
 
 %A typical example for a model update (or change) is the assignment of new parameter values to the model. 
 

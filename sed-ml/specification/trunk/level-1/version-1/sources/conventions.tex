@@ -89,8 +89,8 @@ XML Schema \concept{definitions} create new types, \concept{declarations} define
 Definition of new (simple and complex) types can be based on a number of already existing, prefedined types (string, boolean, float). Simple types are restrictions or extensions of predefined types. Complex types describe how attribues can be assigned to elements and how elements can contain further elements. The SED-ML XML Schema only does make use of complex types.
 An example for a complex type definition is given in listing \ref{lst:complexType}:
 %
-\begin{myXmlLst}{Complex Type definition of the SED-ML \code{changeMath} element}{lst:complexType}
-<xs:element name="changeMath">
+\begin{myXmlLst}{Complex Type definition of the SED-ML \code{computeChange} element}{lst:complexType}
+<xs:element name="computeChange">
  <xs:complexType>
   <xs:sequence>
    <xs:element ref="listOfVariables" />
@@ -102,8 +102,8 @@ An example for a complex type definition is given in listing \ref{lst:complexTyp
 </xs:element>
 \end{myXmlLst}
 %
-It shows the declaration of an element called \code{changeMath} that is used in SED-ML to change mathematical expressions. The element is defined using an \emph{unnamed} complex type which is build of further elements called \code{listOfVariables}, \code{listOfParameters}, and \code{math}. 
-Additionally, the element \code{changeMath} has an attribute \code{target} declared. Please note that the definition of the elements inside the complex type are only referred to and will be found elsewhere in the schema.
+It shows the declaration of an element called \code{computeChange} that is used in SED-ML to change mathematical expressions. The element is defined using an \emph{unnamed} complex type which is build of further elements called \code{listOfVariables}, \code{listOfParameters}, and \code{math}. 
+Additionally, the element \code{computeChange} has an attribute \code{target} declared. Please note that the definition of the elements inside the complex type are only referred to and will be found elsewhere in the schema.
 The nesting of elements in the schema can be expressed using the \code{xs:sequence} (a sequence of elements), \code{xs:choice} (an alternative of elements to choose from), or \code{xs:all} (a set of elements that can occur in any order) concepts. The SED-ML XML Schema make use only of the \code{sequence} of elements. 
 
 \subsubsection{Multiplicities}

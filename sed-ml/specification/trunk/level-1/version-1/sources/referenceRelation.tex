@@ -23,10 +23,10 @@ The \concept{modelReference} might occur as a relation between a \hyperref[class
 
 If pre-processing needs to be applied to a model before simulation the model update can be specified by creating a \hyperref[class:Change]{Change} object. If the change is calculated using mathematics, variables need to be defined. To refer to an existing entity in a defined \hyperref[class:model]{Model}, the \concept{modelReference} is used. Listing \ref{lst:reference1} shows the definition of a model reference.
 %
-\begin{myXmlLst}{SED-ML \code{modelReference} definition inside a \code{changeMath} element}{lst:reference1}
+\begin{myXmlLst}{SED-ML \code{modelReference} definition inside a \code{computeChange} element}{lst:reference1}
 <model id="m0001" [..]>
  <listOfChanges>
-   <changeMath>
+   <computeChange>
     <listOfVariables>
      <variable id="v1" modelReference="cellML" target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" />
     </listOdVariables>
@@ -34,13 +34,13 @@ If pre-processing needs to be applied to a model before simulation the model upd
     <math>
      [CALCULATION OF CHANGE]
     </math>
-   </changeMath>
+   </computeChange>
  </listOfChanges>
  [..]
 </model>
 \end{myXmlLst}
 %
-In the example, a change using mathematical functions is defined for model \code{m0001}. In the \code{changeMath} a list of variables is defined. One of those variable is \code{v1} which is defined in another model, namely \code{cellML}. To identify the variable in model \code{cellML} the XPath expression given in the \hyperref[sec:target]{target} attribute.
+In the example, a change using mathematical functions is defined for model \code{m0001}. In the \code{computeChange} a list of variables is defined. One of those variable is \code{v1} which is defined in another model, namely \code{cellML}. To identify the variable in model \code{cellML} the XPath expression given in the \hyperref[sec:target]{target} attribute.
 
 The \concept{modelReference} is as well used to define that a \hyperref[class:model]{Model} object is used in a particular  \hyperref[class:task]{Task}. 
 Listing \ref{lst:reference2} shows how this can be done for a sample SED-ML document.
