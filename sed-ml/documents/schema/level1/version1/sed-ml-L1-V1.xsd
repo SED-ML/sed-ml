@@ -8,11 +8,11 @@
 	<xs:element name="variable">
 		<xs:complexType>
 			<xs:attribute name="taskReference" type="xs:string" use="optional" />
-			<xs:attribute name="modelReference" type="xs:string"
-				use="optional" />
+			<xs:attribute name="modelReference" type="xs:string" use="optional" />
 			<xs:attribute name="name" type="xs:string" use="optional" />
-			<xs:attribute name="target" type="xs:token" />
-			<xs:attribute name="id" type="xs:string" />
+			<xs:attribute name="target" type="xs:token" use="optional" />
+			<xs:attribute name="symbol" type="xs:string" use="optional" />
+			<xs:attribute name="id" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="parameter">
@@ -20,20 +20,6 @@
 			<xs:attribute name="id" type="xs:string" />
 			<xs:attribute name="name" type="xs:string" use="optional" />
 			<xs:attribute name="value" type="xs:string" use="required" />
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="anySimulation">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element name="simulationProperty">
-					<xs:complexType>
-						<xs:attribute name="propertyName" type="xs:string"
-							use="required" />
-						<xs:attribute name="propertyValue" type="xs:string"
-							use="required" />
-					</xs:complexType>
-				</xs:element>
-			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="uniformTimeCourse">
@@ -120,8 +106,8 @@
 			<xs:sequence>
 				<xs:element ref="listOfChanges" minOccurs="0" />
 			</xs:sequence>
-			<xs:attribute name="type" type="xs:string" use="required" />
-			<xs:attribute name="source" use="required" type="xs:string" />
+			<xs:attribute name="language" type="xs:anyURI" use="required" />
+			<xs:attribute name="source" type="xs:string" use="required"/>
 			<xs:attribute name="name" type="xs:string" use="required" />
 			<xs:attribute name="id" type="xs:string" />
 		</xs:complexType>
@@ -206,7 +192,7 @@
 				<xs:element ref="changeAttribute" minOccurs="0"
 					maxOccurs="unbounded" />
 				<xs:element ref="changeXML" minOccurs="0" maxOccurs="unbounded" />
-				<xs:element ref="changeMath" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="computeChange" minOccurs="0" maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -261,7 +247,7 @@
 			<xs:attribute name="newValue" type="xs:string" use="required" />
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="changeMath">
+	<xs:element name="computeChange">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="listOfVariables" />
