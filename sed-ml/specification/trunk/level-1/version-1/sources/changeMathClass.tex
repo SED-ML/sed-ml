@@ -1,8 +1,8 @@
 % ChangeAttribute Class
-\label{class:changeMath}
-The \concept{ChangeMath} is used to make changes on any element of the XML file addressable by an XPath expression, where the changes are described by mathematical expressions through MathML. 
+\label{class:computeChange}
+The \concept{ComputeChange} is used to make changes on any element of the XML file addressable by an XPath expression, where the changes are described by mathematical expressions through MathML. 
 
-\tabtext{changeMath}{ChangeMath}
+\tabtext{computeChange}{ComputeChange}
 %
 \begin{table}[ht]
 \center
@@ -27,8 +27,8 @@ variable & \refpage{class:variable}\\
 parameter & \refpage{class:parameter}\\
 \hline
 \end{tabular}
-\label{tab:changeMath}
-\caption{\tabcap{ChangeMath}, \alert{math currently is an attribute, probably should be turned into an element (see listing \ref{lst:changeMath})}}
+\label{tab:computeChange}
+\caption{\tabcap{ComputeChange}, \alert{math currently is an attribute, probably should be turned into an element (see listing \ref{lst:computeChange})}}
 \end{table}
 %
 
@@ -42,24 +42,22 @@ To use model variables for the definition of a mathematical expression, those va
 
 The \element{math} element contains the updated mathematics. 
 
-An example for the definition of an updated mathematical function in SBML is given in listing \ref{lst:changeMath}.
+An example for the definition of an updated mathematical function in SBML is given in listing \ref{lst:computeChange}.
 %
-\begin{myXmlLst}{The changeMath element}{lst:changeMath}
+\begin{myXmlLst}{The computeChange element}{lst:computeChange}
 <model [..]>
-    <changeMath target="/sbml/model/listOfParameters/parameter[@id='w']">
-
+    <computeChange target="/sbml/model/listOfParameters/parameter[@id='w']">
       <listOfVariables>
         <variable id="camkii" name="active calcium/calmoduline kinase II" 
                   target="/sbml/model[@id='calcium']/listOfSpecies/species[@id='KII']" />
         <variable id="w" name="synaptic weight"
                   target="/sbml/model[@id='synapse']/listOfParameters/parameter[@id='w']" />
       <listOfVariables/>
-      <listOfParameter>
+      <listOfParameters>
         <parameter id="w0" name="synaptic weight change" value="1">
         <parameter id="n" name="utrasensitivity to calcium" value="2">
         <parameter id="K" name="sensitivity to calcium" value="1e-6">
-      <listOfVariables/>
-
+      <listOfParameters/>
       <math>
          <apply>
            <plus />
@@ -91,7 +89,7 @@ An example for the definition of an updated mathematical function in SBML is giv
            </apply> 
          </apply>
       </math>
-    </changeMath>
+    </computeChange>
   </listOfChanges>
 </model>
 \end{myXmlLst}
