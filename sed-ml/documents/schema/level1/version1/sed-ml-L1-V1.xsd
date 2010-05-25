@@ -138,7 +138,6 @@
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="uniformTimeCourse" minOccurs="0" maxOccurs="unbounded"/>
-				<xs:element ref="anySimulation" minOccurs="0" maxOccurs="unbounded"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
