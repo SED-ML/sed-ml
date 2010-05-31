@@ -32,12 +32,14 @@ annotation & \refpage{class:annotation}\\
 
 A 3D plot is defined similarly to a 2D plot, but having 3 axes. To every axis a data generator is assigned using the \concept{xDataReference}, \concept{yDataReference}, and the \concept{zDataReference}. As well, each axis can be defined as logarithmix (\concept{logX/logY/logZ} set to true). An example for a 3D plot with one defined surface is given in listing \ref{lst:listOfSurfaces}.
 %
-\begin{myXmlLst}{The listOfSurfaces element}{lst:listOfSurfaces}
-<listOfSurfaces>
- <surface logX="true" logY="false" logZ="false" 
-  xDataReference="datagenerator1" yDataReference="datagenerator2" 
-  zDataReference="datagenerator3" /> 
-</listOfSurfaces>
+\begin{myXmlLst}{The \code{plot3D} element with the nested \code{listOfSurfaces} element}{lst:listOfSurfaces}
+<plot3D>
+ <listOfSurfaces>
+  <surface> 
+   [SURFACE DEFINITION FOLLOWING]
+  </surface>
+ </listOfSurfaces>
+</plot3D>
 \end{myXmlLst}
 %
 

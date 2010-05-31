@@ -29,13 +29,16 @@ annotation & \refpage{class:annotation}\\
 
 The \concept{Report} class defines an output type that returns the simulation result in actual \emph{numbers}. The particular columns of the report table are defined by creating a \hyperref[class:dataSet]{DataSet} for each column. 
 
-Listing \ref{lst:listOfDataSets} provides an example for the definition of such a report.
+Listing \ref{lst:listOfDataSets} provides an example for the definition of such a report with one column.
 %
-\begin{myXmlLst}{The listOfReports element}{lst:listOfDataSets}
-<listOfDataSets>
- <dataReference="datagenerator1" />
- <dataReference="datagenerator2" /> 
-</listOfDataSets>
+\begin{myXmlLst}{The \code{report} element with the nested \code{listOfDataSets} element}{lst:listOfDataSets}
+<report>
+ <listOfDataSets>
+  <dataSet>
+   [DATA REFERENCE FOLLOWING]
+  </dataSet>
+ </listOfDataSets>
+</report>
 \end{myXmlLst}
 %
 
