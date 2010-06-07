@@ -1,5 +1,5 @@
-\label{class:timeCourse}
-SED-ML \version so far only supports uniform time courses.
+\label{class:uniformTimeCourse}
+SED-ML \LoneVone so far only supports uniform time courses. It defines 
 %A \concept{time course} is defined by the initial time, and the \concept{range} of the simulation (see the \hyperref[class:range]{Range} class for further definition of the range). 
 
 \tabtext{uniformTimeCourse}{UniformTimeCourse}
@@ -13,7 +13,6 @@ SED-ML \version so far only supports uniform time courses.
 metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
-algorithm & \refpage{sec:kisao}\\
 initialTime & \refpage{sec:initialTime}\\
 outputStartTime & \refpage{sec:outputStartTime}\\
 outputEndTime & \refpage{sec:outputEndTime}\\
@@ -24,6 +23,7 @@ numberOfPoints & \refpage{sec:numberOfPoints}\\
 \hline
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
+algorithm & \refpage{class:algorithm}\\
 \hline
 \end{tabular}
 \label{tab:uniformTimeCourse}
@@ -32,11 +32,15 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 %
 
 
-An example for the definition of a time course simulation is given in the XML snippet in listing \ref{lst:timecourse}.
+An example for the definition of a uniform time course simulation is given in the XML snippet in listing \ref{lst:timecourse}.
 %
 \begin{myXmlLst}{The SED-ML \code{uniformTimeCourse} element, defining a uniform time course simulation over 2500 time units with 1000 simulation points, using the CVODE solver.}{lst:timecourse}
 <listOfSimulations>
- <uniformTimeCourse id="simulation1" algorithm="KISAO:0000019" initialTime="0" outputStartTime="0" outputEndTime="2500" numberOfPoints="1000" />
+ <uniformTimeCourse id="s1"  name="time course simulation of variable v1 over 100 minutes"  initialTime="0" outputStartTime="0" outputEndTime="2500" numberOfPoints="1000">
+  <listOfAlgorithms>
+    <algorithm kisaoID="KiSAO:0000030" />
+  </listOfAlgorithms>
+ </uniformTimeCourse>
 </listOfSimulations>
 \end{myXmlLst}
 

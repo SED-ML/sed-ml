@@ -1,0 +1,54 @@
+% algorithm class
+\label{class:algorithm}
+
+SED-ML makes use of the \hyperref[sec:kisao]{KiSA ontology} to refer to a term in the controlled vocabulary identifying the particular simulation algorithm to be used in the simulation. 
+
+If the \hyperref[sec:listOfAlgorithms]{listOfAlgorithms} is created, then at least one algorithm must be defined. The instance of the \concept{Algorithm} class must contain a \hyperref[sec:kisao]{KiSAO} reference to a simulation algorithm. The reference should define the  simulation algorithm to be used in the simulation as precisely as possible.
+
+
+\tabtext{algorithm}{Algorithm}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{attribute} & \textbf{description}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+kisaoID & \refpage{sec:kisao}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\label{tab:algorithm}
+\caption{\tabcap{Algorithm}}
+\end{table}
+%
+
+The example given in code snipped \ref{lst:simulation}, completed by algorithm definitions looks as in listing \ref{lst:algorithm}.
+%
+\begin{myXmlLst}{The SED-ML \code{algorithm} element, defining the two different algorithms in the two defined simulations}{lst:algorithm}
+<listOfSimulations>
+  <uniformTimeCourse id="s1" name="time course simulation of variable v1 over 100 minutes" [..]>
+    <listOfAlgorithms>
+      <algorithm kisaoID="KiSAO:0000030" />
+    </listOfAlgorithms>
+  </uniformTimeCourse>
+  <uniformTimeCourse id="s2" name="time course definition for concentration of p" [..]>
+    <listOfAlgorithms>
+      <algorithm kisaoID="KiSAO:0000021" />
+    </listOfAlgorithms>
+  </uniformTimeCourse>
+</listOfSimulations>
+\end{myXmlLst}
+%
+For both simulations, one algorithm is defined. In the first simulation \code{s1} a deterministic simulation algorithm is used (Euler forward method), in the second simulation \code{s2} a stochastic one is used (Next reaction method).
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 
