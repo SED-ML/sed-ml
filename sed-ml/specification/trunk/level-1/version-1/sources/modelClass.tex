@@ -5,7 +5,14 @@ The \concept{Model} class is the container for a model reference (see \fig{sedMo
 \sedfig[width=0.9\textwidth]{modelClass}{The SED-ML Model class}{fig:sedModel}
 %
 
-A model is defined through an unambiguous and mandatory \hyperref[sec:id]{id}. An additional, optional \hyperref[sec:name]{name} may be given to the model. For each model, the \hyperref[sec:type]{type} can be specified, defining the format the model is encoded in. The \concept{Model} class refers to a particular model available from an external resource; it is addressed through the \hyperref[sec:target]{target} attribute. 
+A model is defined through an unambiguous and mandatory \hyperref[sec:id]{id}. An additional, optional \hyperref[sec:name]{name} may be given to the model. For each model, the \hyperref[sec:language]{language} may be specified, defining the format the model is encoded in, if such a format exists. Example formats are SBML, CellML, or myFancyLanguageML.
+The \concept{Model} class refers to the particular model of interest through the \hyperref[sec:source]{source} attribute. The restrictions on the model reference are
+\begin{itemize}
+ \item{The model must be encoded in an XML format.}
+ \item{To refer to the model encoding language, a reference to a valid definition of that XML format must be given.}
+ \item{To refer to a particular model in an external resource, an unambiguous reference must be given.}
+\end{itemize}
+
 
 \tabtext{model}{Model}
 %
@@ -15,18 +22,18 @@ A model is defined through an unambiguous and mandatory \hyperref[sec:id]{id}. A
 \hline
 \textbf{\attribute} & \textbf{\desc}\\
 \hline
-metaid & \refpage{sec:metaID}\\
+metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
-name & \refpage{sec:name}\\
-type & \refpage{sec:type}\\
+name$^{o}$ & \refpage{sec:name}\\
+language & \refpage{sec:language}\\
 source & \refpage{sec:source}\\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
 \hline
-notes & \refpage{class:notes}\\
-annotation & \refpage{class:annotation}\\
-change & \refpage{class:change}\\
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+change$^{o}$ & \refpage{class:change}\\
 \hline
 \end{tabular}
 \label{tab:model}
@@ -37,13 +44,15 @@ change & \refpage{class:change}\\
 A model might need to undergo pre-processings before simulation. Those pre-processings are specified in the SED-ML \hyperref[class:change]{Change} class.
 
 \subsubsection{The \element{language} attribute}
-\label{sec:type}
-The evaluation of a SED-ML file will decide whether or not it can be used for a particular simulation environment. One crucial criterium is the particular model representation language used to encode the model. A simulation software usually only supports a small subset of the representation formats available to model biological systems computationally. Therefore SED-ML provides information on the model encoding for each referenced model through the \concept{language} attribute. 
+\label{sec:language}
+The evaluation of a SED-ML file will decide whether or not it can be used for a particular simulation environment. One crucial criterium is the particular model representation language used to encode the model. A simulation software usually only supports a small subset of the representation formats available to model biological systems computationally. 
+
+To help a software decide whether or not it supports a SED-ML description file, the information on the model encoding for each referenced model can be provided through the \concept{language} attribute. 
 %Examples for such  are \element{SBML} denoting the standard format SBML \citep{Hucka:2003}, or \code{CellML} denoting the standard format  CellML \citep{Lloyd:2004}.
 %As there is no controlled vocabulary of representation formats for biological models available as of now, the data type for \element{type} is \element{String}. 
-As the description of a language name and version through an unrestricted \code{String} is error-prone, SED-ML provides a set of standard URIs to refer to particular language definitions. A prerequisite for a language to be fully supported by SED-ML is that the language definition, e.\,g. the XML Schema, is provided online. One example for a XML Schema location is \url{} \alert{tbc}
+As the description of a language name and version through an unrestricted \code{String} is error-prone, SED-ML provides a set of standard URIs to refer to particular language definitions. A prerequisite for a language to be fully supported by SED-ML is that the language definition, e.\,g. the XML Schema, is provided online. One example for a XML Schema location is \alert{tbc}
 
-The \element{language} attribute is mandatory for the XML representation of a SED-ML file. Not only does it help a user to decide whether or not he is able to run the simulation, that is to parse the model referenced in the SED-ML file. The language attribute is also needed to decide how to handle a particular implicit variable in the \hyperref[class:variable]{Variable} class. The interpretation of implicit variables depends on the language of the representation format.
+The \element{language} attribute is mandatory for the XML representation of a SED-ML file. Not only does it help a user to decide whether or not he is able to run the simulation, that is to parse the model referenced in the SED-ML file. The language attribute is also needed to decide how to handle a particular implicit variable in the \hyperref[class:variable]{Variable} class. The interpretation of implicit variables depends on the language of the representation format. The concept of implicit variables has been introduced in section \ref{sec:implicitVariable} on  \refpage{sec:implicitVariable}.
 
 
 \subsubsection{The \element{source} attribute}

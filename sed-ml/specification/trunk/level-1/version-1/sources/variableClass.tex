@@ -2,10 +2,23 @@
 \label{class:variable}
 Variables in SED-ML are references to already existing constituents in one of the defined \hyperref[class:model]{models}. A variable always is placed inside a \hyperref[class:listOfVariables]{listOfVariables}.
 %
-\sedfig[width=0.3\textwidth]{variableClass}{The Variable class}{fig:variable}
+\sedfig[width=0.35\textwidth]{variableClass}{The Variable class}{fig:variable}
 %
 Each instance of the \concept{Variable} class  (see \fig{variable}) has a required \hyperref[sec:id]{id} and an optional \hyperref[sec:name]{name}. 
-Variables are used to refer to a model constituent, i.\,e. a model observable, such as an SBML species. The referenced constituent is specified through the mandatory \hyperref[sec:target]{target} attribute.  
+Variables are used to either refer to a model constituent, i.\,e. a model observable, such as an SBML species, or to refer to am implicit variable. 
+The referenced constituent is specified through the mandatory \hyperref[sec:target]{target} attribute in the first case, and through a \hyperref[sec:symbol]{symbol} holding a MIRIAM URI in the second case. 
+
+Listing \ref{lst:variable} shows a model with a listOfVariables declared that holds the variable definitions.
+%
+\begin{myXmlLst}{SED-ML \code{variable} definition}{lst:variable}
+<model [..]>
+ <listOfVariables>
+   [VARIABLE DEFINITIONS FOLLOWING]
+ </listOfVariables>
+ [..]
+</model>
+\end{myXmlLst}
+%
 
 \tabtext{variable}{Variable}
 %
@@ -15,18 +28,21 @@ Variables are used to refer to a model constituent, i.\,e. a model observable, s
 \hline
 \textbf{\attribute} & \textbf{\desc}\\
 \hline
-metaid & \refpage{sec:metaID}\\
+metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
-name & \refpage{sec:name}\\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
 target & \refpage{sec:target}\\
+symbol & \refpage{sec:symbol}\\
+\hline
 taskReference & \refpage{sec:taskReference}\\
 modelReference & \refpage{sec:modelReference}\\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
 \hline
-notes & \refpage{class:notes}\\
-annotation & \refpage{class:annotation}\\
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
 \hline
 \end{tabular}
 \label{tab:variable}
@@ -37,22 +53,26 @@ The \hyperref[sec:reference]{reference} to an object of the \concept{Variable} c
 
 First, it may occur in the \hyperref[class:change]{Change} class where it is used for describing the mathematical computation of a change of a model's observable, using other observables existing in a defined \hyperref[class:model]{model}.
 
-The second use of the \concept{Variable} class and its \concept{target} attribute is for defining a \hyperref[class:dataGenerator]{DataGenerator}. Here, a variable in an existing model might be used to define the post-processing of the simulation.
+The second use of the \concept{Variable} class is for defining a \hyperref[class:dataGenerator]{DataGenerator}. Here, a variable in an existing model or an implicit variable might be used to define the post-processing of the simulation.
 
 \subsubsection{The \element{target} attribute}
 \label{sec:target}
-Each instance of \concept{Variable} refers to a model constituent inside a particular \hyperref[class:model]{model}  through an \concept{XPath} expression stored in the required \concept{target} attribute. 
+An instance of \concept{Variable} refers to a model constituent inside a particular \hyperref[class:model]{model} through an \concept{XPath} expression stored in the required \concept{target} attribute. 
 
 XPath allows to unambiguously identify an element or attribute in an XML file.
 
 An example for a variable definition is given in listing \ref{lst:variable}.
 %
-\begin{myXmlLst}{SED-ML variable definition}{lst:variable}
+\begin{myXmlLst}{SED-ML \code{target} definition}{lst:target}
 <model id="m0001" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000012">
- <listOfVariables>
-  <variable id="v1" name="Tet Repressor protein" taskreference="t1"  target="/sbml/listOfSpecies/species[@id="PY"]" />
- </listOfVariables>
- [..]
+ <listOfChanges>
+  <computeChange>
+   <listOfVariables>
+    <variable id="v1" name="Tet Repressor protein" taskreference="t1"  target="/sbml/listOfSpecies/species[@id="PY"]" />
+   </listOfVariables>
+   [CHANGE DEFINITION FOLLOWING]
+  </computeChange>
+ </listOfChanges>
 </model>
 \end{myXmlLst}
 %
@@ -67,7 +87,8 @@ Please note that the identifier and names inside the SED-ML document do not have
 </model>
 \end{myXmlLst}
 %
- The XPath expression used in the \concept{\code{target}} attribute unambiguously leads to the particular place in the XML SBML model -- the species is to be found in the \emph{sbml} element, and there inside the \emph{listOfSpecies}:
+
+The XPath expression used in the \concept{\code{target}} attribute unambiguously leads to the particular place in the XML SBML model -- the species is to be found in the \emph{sbml} element, and there inside the \emph{listOfSpecies}:
 %
 \begin{myXmlLst}{Species definition in the referenced model (extracted from \url{urn:miriam:biomodels.db:BIOMD0000000012})}{}
 <sbml [..]>
@@ -78,6 +99,23 @@ Please note that the identifier and names inside the SED-ML document do not have
  </listOfSpecies>
  [..]
 </sbml>
+\end{myXmlLst}
+%
+
+\subsubsection{The \element{symbol} attribute}
+\label{sec:symbol}
+
+\concept{Symbols} are predefined, implicit variables that can be called in a SED-ML file by referring to the defined URNs representing that variable's concept. The notion of implicit variables is explained in section \ref{sec:implicitVariable} on page \refpage{sec:implicitVariable}.
+
+An example for a \concept{symbol} definition is given in listing \ref{lst:symbol}.
+%
+\begin{myXmlLst}{SED-ML \code{symbol} definition}{lst:symbol}
+<model id="m0001" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000012">
+ <listOfVariables>
+  <variable id="t1" name="time" symbol="urn:sedml:symbol:time" />
+ </listOfVariables>
+ [..]
+</model>
 \end{myXmlLst}
 %
 

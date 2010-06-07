@@ -2,8 +2,6 @@
 SED-ML \version so far only supports uniform time courses.
 %A \concept{time course} is defined by the initial time, and the \concept{range} of the simulation (see the \hyperref[class:range]{Range} class for further definition of the range). 
 
-
-
 \tabtext{uniformTimeCourse}{UniformTimeCourse}
 %
 \begin{table}[ht]
@@ -12,9 +10,9 @@ SED-ML \version so far only supports uniform time courses.
 \hline
 \textbf{attribute} & \textbf{description}\\
 \hline
-metaid & \refpage{sec:metaID}\\
+metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
-name & \refpage{sec:name}\\
+name$^{o}$ & \refpage{sec:name}\\
 algorithm & \refpage{sec:kisao}\\
 initialTime & \refpage{sec:initialTime}\\
 outputStartTime & \refpage{sec:outputStartTime}\\
@@ -24,9 +22,8 @@ numberOfPoints & \refpage{sec:numberOfPoints}\\
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
 \hline
-notes & \refpage{class:notes}\\
-annotation & \refpage{class:annotation}\\
-simulation & \refpage{class:simulation}\\
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
 \hline
 \end{tabular}
 \label{tab:uniformTimeCourse}

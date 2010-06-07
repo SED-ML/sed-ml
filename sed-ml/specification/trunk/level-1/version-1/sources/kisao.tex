@@ -8,7 +8,8 @@ The sole reference of a simulation algorithm through its name in form of a strin
 These problems can be solved by using controlled vocabulary to refer to a particular simulation algorithm. One attempt to provide such a vocabulary is the \emph{Kinetic Simulation Algorithm Ontology} (KiSAO, \url{http://www.ebi.ac.uk/compneur-srv/kisao/}). KiSAO is a community-driven approach of classifying and structuring simulation approaches by model characteristics and numerical characteristics.  Model characteristics include, for instance, the type of variables used for the simulation (such as discrete or continuous variables) and the spatial resolution (spatial or non-spatial descriptions). Numerical characteristics specify whether the system's behavior can be described as deterministic or stochastic, and whether the algorithms use fixed or adaptive time steps.  
 Related algorithms are grouped together, producing classes of algorithms \citep{CWK+10}.
 
-Although work is still at an early stage, the use of KiSAO is recommended when referring to a simulation algorithm from a SED-ML description.
+Although work is still at an early stage, the use of KiSAO is recommended when referring to a simulation algorithm from a SED-ML description. The use of KiSAO for the moment is limited to looking up the algorithm that was used in the simulation experiment (through resolving the KiSAO ID) and then to try and use one algorithm that is as similar to the original one as possible. KiSAO will become more supportive for SED-ML as soon as the ontology contains a wider range of relationships between different algorithms, as well as extended descriptions of the algorithm characteristics.
+
 
 %%% Local Variables: 
 %%% mode: latex

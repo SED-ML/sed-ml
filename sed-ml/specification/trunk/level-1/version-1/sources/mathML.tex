@@ -1,6 +1,5 @@
 % on the MathML subset used in SED-ML
 \label{sec:mathML}
-\subsection{The MathML Subset used in SED-ML}
 The SED-ML specification allows for the pre-processing of computational models, 
 as well as post processing of the simulation results. The corresponding 
 mathematical expressions are encoded using MathML 2.0. MathML is an 
@@ -58,16 +57,14 @@ singular values. However, as one of SED-ML's aim is to provide post processing
 on the results of simulation experiments, we need to enhance this basic set of 
 operations by some aggregate functions. 
 
-\subsubsection{Enabling post processing of simulation experiments}
+\subsubsection{MathML Symbols}
 
-The first step for enabling for post processing, is to define the symbols that 
-represent vector values. To simplify things for SED-ML L1V1 the only symbols to 
-be used are the identifiers of variables defined in the listOfVariables of 
-DataGenerators. These variables represent the data collected from the 
-simulation experiment with the associated task. 
+To start enabling for post processing in SED-ML, a defined set of MathML symbols that 
+represent vector values are supported by SED-ML \LoneVone. 
 
-To enable post processing the following aggregate functions are available for 
-use with DataGenerator variables: 
+%To simplify things for SED-ML L1V1 the only symbols to be used are the identifiers of variables defined in the listOfVariables of DataGenerators. These variables represent the data collected from the simulation experiment with the associated task. 
+
+The following aggregate functions are available for use with \hyperref[class:dataGenerator]{DataGenerator} variables: 
 
 \begin{itemize}\setlength{\parskip}{-0.1ex}
 
@@ -93,9 +90,7 @@ experiment are multiplied. Example:
 
 \end{itemize}
 
-These represent the only exceptions. At this point SED-ML does not define a 
-complete algebra of vector values. For more information see the description of 
-DataGenerators.
+These represent the only exceptions. At this point SED-ML does not define a complete algebra of vector values. For more information see the description of the \hyperref[class:dataGenerator]{DataGenerator} class.
 
 %%% Local Variables: 
 %%% mode: latex
