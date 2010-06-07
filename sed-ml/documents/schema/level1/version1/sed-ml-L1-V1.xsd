@@ -3,7 +3,7 @@
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML">
 	<xs:import namespace="http://www.w3.org/1998/Math/MathML"
 		schemaLocation="sbml-mathml.xsd" />
-
+		
 <!-- global element declarations -->
 	<xs:element name="variable">
 		<xs:complexType>
@@ -18,13 +18,21 @@
 	</xs:element>
 	<xs:element name="parameter">
 		<xs:complexType>
-			<xs:attribute name="id" type="xs:string" />
+		 	<xs:attribute name="id" type="xs:string" />
 			<xs:attribute name="name" type="xs:string" use="optional" />
 			<xs:attribute name="value" type="xs:string" use="required" />
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="algorithm">
+		<xs:complexType>
+			<xs:attribute name="kisaoID" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="uniformTimeCourse">
 		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="listOfAlgorithms"/>
+			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" />
 			<xs:attribute name="outputStartTime" type="xs:double"
 				use="required" />
@@ -123,6 +131,12 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="listOfAlgorithms">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="algorithm" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
 	<xs:element name="listOfParameters">
 		<xs:complexType>
 			<xs:sequence>
@@ -217,6 +231,7 @@
 				use="required" />
 			<xs:attribute name="logY" use="required" type="xs:boolean" />
 			<xs:attribute name="logX" use="required" type="xs:boolean" />
+			<xs:attribute name="label" use="optional" type="xs:string" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="surface">
@@ -230,11 +245,13 @@
 			<xs:attribute name="logY" use="required" type="xs:boolean" />
 			<xs:attribute name="logX" use="required" type="xs:boolean" />
 			<xs:attribute name="logZ" use="required" type="xs:boolean" />
+			<xs:attribute name="label" use="optional" type="xs:string" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="dataSet">
 		<xs:complexType>
 			<xs:attribute name="dataReference" type="xs:string" use="required"></xs:attribute>
+			<xs:attribute name="label" use="optional" type="xs:string" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="changeAttribute">
