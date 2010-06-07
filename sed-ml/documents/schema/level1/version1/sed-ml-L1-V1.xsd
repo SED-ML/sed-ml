@@ -10,6 +10,7 @@
 			<xs:attribute name="taskReference" type="xs:string" use="optional" />
 			<xs:attribute name="modelReference" type="xs:string" use="optional" />
 			<xs:attribute name="name" type="xs:string" use="optional" />
+			<!-- either target or symbol have to be used  in the variable definition-->
 			<xs:attribute name="target" type="xs:token" use="optional" />
 			<xs:attribute name="symbol" type="xs:string" use="optional" />
 			<xs:attribute name="id" type="xs:string"/>
@@ -118,14 +119,14 @@
 	<xs:element name="listOfVariables">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="variable" />
+				<xs:element ref="variable" maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="listOfParameters">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="parameter" />
+				<xs:element ref="parameter" maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
