@@ -10,21 +10,21 @@ The \concept{ComputeChange} is used to make changes on any element of the XML fi
 \hline
 \textbf{\attribute} & \textbf{\desc}\\
 \hline
-metaid & \refpage{sec:metaID}\\
+metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
-name & \refpage{sec:name}\\
+name$^{o}$ & \refpage{sec:name}\\
 target & \refpage{sec:target}\\
-\alert{math} & \refpage{sec:math}\\
-listOfVariables & \refpage{sec:listOfVariables}\\
-listOfParameter & \refpage{sec:listOfParameters}\\
+\alert{math} &\refpage{sec:math}\\
+%listOfVariables$^{o}$ & \refpage{sec:listOfVariables}\\
+%listOfParameter$^{o}$ & \refpage{sec:listOfParameters}\\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
 \hline
-notes & \refpage{class:notes}\\
-annotation & \refpage{class:annotation}\\
-variable & \refpage{class:variable}\\
-parameter & \refpage{class:parameter}\\
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+variable$^{o}$ & \refpage{class:variable}\\
+parameter$^{o}$ & \refpage{class:parameter}\\
 \hline
 \end{tabular}
 \label{tab:computeChange}
@@ -37,12 +37,13 @@ The \element{target} attribute contains the XPath addressing the piece of XML th
 It is possible to introduce additional parameters for the mathematics. Therefore, the parameters first need to be defined in the \concept{listOfParameters}. They are then referenced through their ID.
 To use model variables for the definition of a mathematical expression, those variables need to be defined in the \concept{listOfVariables} first, and can then be incorporated through their ID.
 
-\subsubsection{The \element{math} attribute}
+\paragraph{The \element{math} attribute}
 \label{sec:math}
 
-The \element{math} element contains the updated mathematics. 
+The \element{math} element is used to define mathematical functions. 
+If used as an attribute of the \concept{ComputeChange} class, it computes the change of the element or attribute addressed by the \hyperref[sec:target]{target} attribute.
 
-An example for the definition of an updated mathematical function in SBML is given in listing \ref{lst:computeChange}.
+An example is given in listing \ref{lst:computeChange}.
 %
 \begin{myXmlLst}{The computeChange element}{lst:computeChange}
 <model [..]>
