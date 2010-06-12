@@ -40,7 +40,7 @@ The second required attribute is the \element{newValue}, which assignes a new va
 For SBML, an example is the update of the initial concentration of a certain parameter, as shown in listing  \ref{lst:changeAttribute}.
 %
 \begin{myXmlLst}{The changeAttribute element}{lst:changeAttribute}
-<model id="model1" name="Circadian Chaos" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000021">
+<model id="model1" name="Circadian Chaos" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000021">
  <listOfChanges>
   <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_mT']/@value" newValue="0.28"/>
   <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_dT']/@value" newValue="4.8"/>

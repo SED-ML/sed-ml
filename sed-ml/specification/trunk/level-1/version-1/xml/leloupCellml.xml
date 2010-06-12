@@ -9,7 +9,7 @@
     numberOfPoints="1000" />
  </listOfSimulations>
  <listOfModels>
-  <model id="model1" name="Circadian Oscillations" type="CellML" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02" >
+  <model id="model1" name="Circadian Oscillations" language="urn:sedml:language:cellml" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02" >
    <listOfChanges>
     <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" newValue="1"/>
     <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vmP']/@initial_value" newValue="0.7"/>
@@ -20,7 +20,7 @@
     <changeAttribute target="/cellml:model/cellml:component[@name='parameters']/cellml:variable[@name='K4T']/@initial_value" newValue="1"/>
    </listOfChanges>
   </model>
-  <model id="model2" name="Circadian Chaos" type="CellML" source="model1">
+  <model id="model2" name="Circadian Chaos" language="urn:sedml:language:cellml" source="model1">
    <listOfChanges>
     <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MT']/cellml:variable[@name='vmT']/@initial_value" newValue="0.28"/>
     <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='T2']/cellml:variable[@name='vdT']/@initial_value" newValue="4.8"/>        
