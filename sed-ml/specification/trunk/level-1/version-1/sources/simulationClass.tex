@@ -40,9 +40,9 @@ An example for the definition of two different simulations is given in the XML s
 \begin{myXmlLst}{The SED-ML \code{listOfSimulations} element, defining three different simulations}{lst:simulation}
 <listOfSimulations>
   <uniformTimeCourse id="s1" name="time course simulation of variable v1 over 100 minutes" [..]>
-    <listOfAlgorithms>
+    <algorithm>
       [ALGORITHM DEFINITION FOLLOWING]
-    </listOfAlgorithms>
+    </algorithm>
   </uniformTimeCourse>
   <uniformTimeCourse id="s2" name="time course definition for concentration of p" [..]>
     [..]
@@ -50,7 +50,7 @@ An example for the definition of two different simulations is given in the XML s
 </listOfSimulations>
 \end{myXmlLst}
 %
-Two timcourses with uniform range are defined. How to define the concrete algorithm to be used inside the \hyperref[sec:listOfAlgorithms]{listOfAlgorithms} is shown on page \refpage{class:algorithm}.
+Two timcourses with uniform range are defined. How to define the concrete algorithm is specified on page \refpage{class:algorithm}.
 %%% Local Variables: 
 %%% mode: plain-tex
 %%% TeX-master: "../sed-ml-L1V1"
