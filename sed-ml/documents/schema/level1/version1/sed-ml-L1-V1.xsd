@@ -31,7 +31,7 @@
 	<xs:element name="uniformTimeCourse">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="listOfAlgorithms"/>
+				<xs:element ref="algorithm"/>
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:string" />
 			<xs:attribute name="outputStartTime" type="xs:double"
@@ -40,7 +40,6 @@
 			<xs:attribute name="numberOfPoints" type="xs:integer"
 				use="required" />
 			<xs:attribute name="initialTime" type="xs:double" use="required" />
-			<xs:attribute name="algorithm" type="xs:string" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="task">
@@ -131,12 +130,6 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="listOfAlgorithms">
-		<xs:complexType>
-			<xs:sequence>
-				<xs:element ref="algorithm" maxOccurs="unbounded" />
-			</xs:sequence>
-		</xs:complexType>
 	<xs:element name="listOfParameters">
 		<xs:complexType>
 			<xs:sequence>
