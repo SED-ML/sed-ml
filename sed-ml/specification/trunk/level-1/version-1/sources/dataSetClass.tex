@@ -16,7 +16,7 @@ metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 dataReference & \refpage{sec:dataReference}\\
-label$^{o}$ & \refpage{sec:label}\\
+label & \refpage{sec:label}\\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
@@ -37,12 +37,16 @@ tbw
 
 An example for the definition of a data set in form of a table is given in the XML snippet in listing \ref{lst:dataSet}.
 %
-\begin{myXmlLst}{The SED-ML dataSet element, defining the output  showing the result of the referenced task}{lst:dataSet}
+\begin{myXmlLst}{The SED-ML \code{dataSet} element, defining a data set containing the result of the referenced task}{lst:dataSet}
 <listOfDataSets>
-  <dataSet id="d1" name="v1 over time" dataReference="dg1">
+  <dataSet id="d1" name="v1 over time" dataReference="dg1" label="_1">
 </listOfDataSets>
 \end{myXmlLst}
 
+\subsubsection{The \element{label} attribute}
+\label{sec:label}
+
+ tbw
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../sed-ml-L1V1"

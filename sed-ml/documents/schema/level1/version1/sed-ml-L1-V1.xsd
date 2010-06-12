@@ -222,9 +222,9 @@
 				use="required" />
 			<xs:attribute name="xDataReference" type="xs:string"
 				use="required" />
+			<xs:attribute name="name" use="optional" type="xs:string" />
 			<xs:attribute name="logY" use="required" type="xs:boolean" />
 			<xs:attribute name="logX" use="required" type="xs:boolean" />
-			<xs:attribute name="label" use="optional" type="xs:string" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="surface">
@@ -235,16 +235,17 @@
 				use="required" />
 			<xs:attribute name="zDataReference" type="xs:string"
 				use="required" />
+			<xs:attribute name="name" use="optional" type="xs:string" />
 			<xs:attribute name="logY" use="required" type="xs:boolean" />
 			<xs:attribute name="logX" use="required" type="xs:boolean" />
 			<xs:attribute name="logZ" use="required" type="xs:boolean" />
-			<xs:attribute name="label" use="optional" type="xs:string" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="dataSet">
 		<xs:complexType>
 			<xs:attribute name="dataReference" type="xs:string" use="required"></xs:attribute>
-			<xs:attribute name="label" use="optional" type="xs:string" />
+			<xs:attribute name="label" use="required" type="xs:string" />
+			<xs:attribute name="name" use="optional" type="xs:string" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="changeAttribute">
