@@ -1,6 +1,8 @@
 % The proposed URI scheme to use
 \label{sec:uriScheme}
-To reference external models that are necessary for the simulation experiment we propose the use of a standardised URI Scheme to ensure long-time availability  of a model that can unambiguously be identified. The preferred reference standard in SED-ML is the \concept{MIRIAM standard}.
+
+The URI Scheme is used at two different points in the SED-ML \LoneVone language: First, it is the preferred mechanism to refer to model encodings. Secondly, it is the way to specify the language of the referenced model.
+The use of a standardised URI Scheme ensures long-time availability  of a model that can unambiguously be identified. The preferred reference standard in SED-ML is the \concept{MIRIAM standard}.
 
 MIRIAM allows to identify a data entry in a data resource using predefined URNs. That way a  model may be referenced through it's \concept{ID} in a particular model repository. To be part of the MIRIAM resources, a model repository must ensure permanent and consistent model references, that is stable IDs.
 
@@ -15,6 +17,8 @@ SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offer
 \end{itemize}
 depending on the physical location of the resource chosen to resolve the URN.
 
+
+To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used. They are available from \url{http://www.biomodels.net/sed-ml}. Further information on the \code{language} attribute is provided in section \ref{sec:language}.
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../sed-ml-L1V1"
