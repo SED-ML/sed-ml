@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <sedML xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.biomodels.net/sed-ml" version="0.1">
-  <notes>Showing the oscillating behaviour of the Repressilator model 
-   using deterministic and stochastic simulators</notes>
+  <!--  <notes>Showing the oscillating behaviour of the Repressilator model 
+   using deterministic and stochastic simulators</notes>-->
   <listOfSimulations>
-    <notes>test</notes>
-    <uniformTimeCourse id="simulation1" algorithm="KiSAO:0000088" initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfPoints="1000" />
-    <uniformTimeCourse id="simulation2" algorithm="KiSAO:0000027" initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfPoints="1000" />
+    <uniformTimeCourse id="simulation1"  initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfPoints="1000" >
+    <algorithm kisaoID="KiSAO:0000088"/>
+    </uniformTimeCourse>
+    <uniformTimeCourse id="simulation2" algorithm="KiSAO:0000027" initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfPoints="1000" >
+    <algorithm kisaoID="KiSAO:0000027"/>
+    </uniformTimeCourse>
   </listOfSimulations>
   <listOfModels>
-    <model id="model1" name="Repressilator" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000012" />
+    <model id="model1" name="Repressilator" language="SBML" source="urn:miriam:biomodels.db:BIOMD0000000012" />
   </listOfModels>
   <listOfTasks>
     <task id="task1" name="Oscillation using a deterministic simulator" modelReference="model1" simulationReference="simulation1" />
@@ -17,7 +20,7 @@
   <listOfDataGenerators>
     <dataGenerator id="time" name="Time">
       <listOfVariables>
-        <variable id="time" taskReference="task1" target="time" />
+        <variable id="time2" taskReference="task1" target="time" />
       </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> time </ci>
