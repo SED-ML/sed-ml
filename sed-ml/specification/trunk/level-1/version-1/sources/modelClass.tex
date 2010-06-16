@@ -25,7 +25,7 @@ The \concept{Model} class refers to the particular model of interest through the
 metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
-language & \refpage{sec:language}\\
+language$^{o}$ & \refpage{sec:language}\\
 source & \refpage{sec:source}\\
 \hline
 \hline
@@ -50,11 +50,15 @@ The evaluation of a SED-ML file will decide whether or not it can be used for a 
 To help a software decide whether or not it supports a SED-ML description file, the information on the model encoding for each referenced model can be provided through the \concept{language} attribute. 
 %Examples for such  are \element{SBML} denoting the standard format SBML \citep{Hucka:2003}, or \code{CellML} denoting the standard format  CellML \citep{Lloyd:2004}.
 %As there is no controlled vocabulary of representation formats for biological models available as of now, the data type for \element{type} is \element{String}. 
-As the description of a language name and version through an unrestricted \code{String} is error-prone, SED-ML provides a set of standard URIs to refer to particular language definitions. A prerequisite for a language to be fully supported by SED-ML is that a formalised language definition, e.\,g. an XML Schema, is provided online. The notion of URNs is described in section \ref{sec:uriScheme} on \refpage{sec:uriScheme}. The list of URIs for languages so far associated with SED-ML is available from \url{http://www.biomodels.net/sed-ml}. 
+As the description of a language name and version through an unrestricted \code{String} is error-prone, SED-ML provides a set of standard URIs to refer to particular language definitions. A prerequisite for a language to be fully supported by SED-ML is that a formalised language definition, e.\,g. an XML Schema, is provided online. The notion of URNs is described in section \ref{sec:uriScheme} on \refpage{sec:uriScheme}. 
 
 To refer to a specific language and it's version, following the idea of MIRIAM URNs, the SED-ML URN scheme \code{urn:sedml:language:}\emph{language name} is used. A model in a SED-ML file of type ``SBML Level 2 Version 2'' can be referred to, for example, through the URN \code{urn:sedml:language:sbml.level-2.version-2}.
 
-The \element{language} attribute is mandatory for the XML representation of a SED-ML file. Not only does it help a user to decide whether or not he is able to run the simulation, that is to parse the model referenced in the SED-ML file. The language attribute is also needed to decide how to handle a particular implicit variable in the \hyperref[class:variable]{Variable} class. The interpretation of implicit variables depends on the language of the representation format. The concept of implicit variables has been introduced in section \ref{sec:implicitVariable} on  \refpage{sec:implicitVariable}.
+The list of URNs for languages so far associated with SED-ML is available from the SED-ML web site on \url{http://biomodels.net/sed-ml}. 
+
+The \element{language} attribute is optional for the XML representation of a SED-ML file. If it is not explicitely defined otherwise in the SED-ML file, the default value for the \element{language} attribute is \code{urn:sedml:language:xml}, referring to any XML based model representation. 
+
+However, the use of the \element{language} attribute is strongly encouraged. Not only does it help a user decide whether or not he is able to run the simulation, that is to parse the model referenced in the SED-ML file. The language attribute is also needed to decide how to handle a particular implicit variable in the \hyperref[class:variable]{Variable} class. The interpretation of implicit variables depends on the language of the representation format. The concept of implicit variables has been introduced in section \ref{sec:implicitVariable} on  \refpage{sec:implicitVariable}.
 
 
 \subsubsection{The \element{source} attribute}
