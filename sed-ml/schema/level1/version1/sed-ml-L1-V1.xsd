@@ -1,4 +1,4 @@
-
+plot
 <xs:schema targetNamespace="http://www.biomodels.net/sed-ml" xmlns="http://www.biomodels.net/sed-ml"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML">
 	<xs:import namespace="http://www.w3.org/1998/Math/MathML"
@@ -225,8 +225,8 @@
 			<xs:attribute name="xDataReference" type="xs:string"
 				use="required" />
 			<xs:attribute name="name" use="optional" type="xs:string" />
-			<xs:attribute name="logY" use="required" type="xs:boolean" />
-			<xs:attribute name="logX" use="required" type="xs:boolean" />
+			<xs:attribute name="logY" use="required" type="xs:boolean" default="false"/>
+			<xs:attribute name="logX" use="required" type="xs:boolean" default="false"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="surface">
@@ -239,9 +239,9 @@
 			<xs:attribute name="zDataReference" type="xs:string"
 				use="required" />
 			<xs:attribute name="name" use="optional" type="xs:string" />
-			<xs:attribute name="logY" use="required" type="xs:boolean" />
-			<xs:attribute name="logX" use="required" type="xs:boolean" />
-			<xs:attribute name="logZ" use="required" type="xs:boolean" />
+			<xs:attribute name="logY" use="required" type="xs:boolean" default="false"/>
+			<xs:attribute name="logX" use="required" type="xs:boolean" default="false"/>
+			<xs:attribute name="logZ" use="required" type="xs:boolean" default="false"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="dataSet">
