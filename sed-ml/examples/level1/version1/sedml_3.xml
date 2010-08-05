@@ -78,12 +78,12 @@
 		</dataGenerator>
 	</listOfDataGenerators>
 	<listOfOutputs>
-		<plot2D id="plot1" name="BioModel 3" logX="false" logY="false">
+		<plot2D id="plot1" name="BioModel 3" >
 			<listOfCurves>
-				<curve xDataReference="time" yDataReference="C1" />
-				<curve xDataReference="time" yDataReference="M1" />
-				<curve xDataReference="time" yDataReference="X1" />
-				<curve xDataReference="time" yDataReference="Total" />
+				<curve xDataReference="time" yDataReference="C1" logX="false" logY="false"/>
+				<curve xDataReference="time" yDataReference="M1" logX="false" logY="false"/>
+				<curve xDataReference="time" yDataReference="X1" logX="false" logY="false"/>
+				<curve xDataReference="time" yDataReference="Total" logX="false" logY="false"/>
 			</listOfCurves>
 		</plot2D>
 	</listOfOutputs>
