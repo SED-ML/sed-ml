@@ -9,26 +9,29 @@ To describe the interactions of the molecular species involved in the network, t
 
 \subsubsection{A simple time-course simulation}
 \label{sec:intro1}
-The first experiment we intend to run on the model is the simulation that will lead to the oscillation shown in Figure 1c of the reference publication \citep{Elowitz:2000}. The according simulation experiment can be described through the following steps:
+The first experiment we intend to run on the model is the simulation that will lead to the oscillation shown in Figure 1c of the reference publication \citep{Elowitz:2000}. The according simulation experiment can be described as:
 
 \begin{enumerate}
 	\item{Import the model identified by the Unified Resource Identifier \citep{Berners-Lee:2005} \url{urn:miriam:biomodels.db:BIOMD0000000012}.}
+
 %  or \url{http://models.cellml.org/exposure/bee9fb9df261ba69b51897f2e49b1691/elowitz\_leibler\_2000.cellml.index.html} (for the CellML model)
+
 	\item{Select a deterministic method.}
 	\item{Run a uniform time course simulation for 1000~min with an output interval of 1~min.}
 	\item{Plot the amount of \code{lacI}, \code{tetR} and \code{cI} against time in a 2D Plot.}
 \end{enumerate}
+
 Following those steps and performing the simulation in the simulation tool COPASI \citep{Hoops:2006} let to the result shown in \fig{simEx1}. 
 
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{images/simEx1.png}
-\caption{Time-course of the repressilator model, imported from BioModels Database and simulated in COPASI. The number of repressor proteins lacI, tetR and cI is shown. (taken from \citep{Waltemath:2010})}
+\caption{Time-course simulation of the repressilator model, imported from BioModels Database and simulated in COPASI. The number of repressor proteins lacI, tetR and cI is shown. (taken from \citep{Waltemath:2010})}
 \label{fig:simEx1}
 \end{figure}
 
 \subsubsection{Applying pre-processing}
-The fine-tuning of the model can be shown by changing parameters before simulation. When changing the initial values of the parameters \emph{protein copies per promoter} and \emph{leakiness in protein copies per promoter} the system's behavior switches from sustained oscillation to asymptotic steady-state. The adjustment towards a new experiment may be described as follows:  
+The fine-tuning of the model can be shown by adjusting parameters before simulation. When changing the initial values of the parameters \emph{protein copies per promoter} and \emph{leakiness in protein copies per promoter} the system's behavior switches from sustained oscillation to asymptotic steady-state. The adjustments leading to that behavior may be described as: 
 \begin{enumerate}
 \item{Import the model as above.}
 \item{Change the value of the parameter \code{tps$\_$repr} from “0.0005” to “1.3e-05”. }
@@ -42,13 +45,15 @@ The fine-tuning of the model can be shown by changing parameters before simulati
 \begin{figure}
 \centering
 \includegraphics[width=0.7\textwidth]{images/simEx3.png}
-\caption{Time-course of the repressilator model, imported from BioModels Databas and simulated in COPASI after modification of the initial values of the \emph{protein copies per promoter} and the \emph{leakiness in protein copies per promoter}. The number of repressor proteins lacI, tetR and cI is shown. (taken from \citep{Waltemath:2010})}
+\caption{Time-course simulation of the repressilator model, imported from BioModels Databas and simulated in COPASI after modification of the initial values of the \emph{protein copies per promoter} and the \emph{leakiness in protein copies per promoter}. The number of repressor proteins lacI, tetR and cI is shown. (taken from \citep{Waltemath:2010})}
 \label{fig:simEx3}
 \end{figure}
 
 
 \subsubsection{Applying post-processing}
-However, the raw numerical output of the simulation steps may be subjected to data post-processing before plotting or reporting.  In order to describe the production of a normalized plot of the time-course in the first example (section \ref{sec:intro1}), depicting the influence of one variable on another (in phase-planes), one could define the following further steps (Please note that the description steps 1 - 4 remain as above): 
+However, the raw numerical output of the simulation steps may be subjected to data post-processing before plotting or reporting.  In order to describe the production of a normalized plot of the time-course in the first example (section \ref{sec:intro1}), depicting the influence of one variable on another (in phase-planes), one could define the following further steps:
+
+(Please note that the description steps 1 - 4 remain as above)
 \begin{enumerate}
 \item[5.]{Collect PX(t) (lacI), PY(t) (tetR) and PZ(t) (cI).}
 \item[6.]{Compute the highest value for each of the repressor proteins,  max(PX(t)), max(PY(t)), max(PZ(t)) .}
@@ -59,11 +64,10 @@ However, the raw numerical output of the simulation steps may be subjected to da
 \begin{figure}
 \centering
 \includegraphics[width=0.7\textwidth]{images/simEx2.png}
-\caption{Time-course of the repressilator model, imported from BioModels Database and simulated in COPASI, showing the normalized temporal evolution of repressor proteins lacI, tetR and cI in phase-plane. (taken from \citep{Waltemath:2010})}
+\caption{Time-course simulation of the repressilator model, imported from BioModels Database and simulated in COPASI, showing the normalized temporal evolution of repressor proteins lacI, tetR and cI in phase-plane. (taken from \citep{Waltemath:2010})}
 \label{fig:simEx2}
 \end{figure}
 %
-
 
 %%% Local Variables: 
 %%% mode: latex

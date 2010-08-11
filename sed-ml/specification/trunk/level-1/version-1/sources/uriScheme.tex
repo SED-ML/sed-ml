@@ -1,13 +1,20 @@
 % The proposed URI scheme to use
 \label{sec:uriScheme}
 
-The URI Scheme is used at two different points in the SED-ML \LoneVone language: First, it is the preferred mechanism to refer to model encodings. Secondly, it is the way to specify the language of the referenced model.
-The use of a standardised URI Scheme ensures long-time availability  of a model that can unambiguously be identified. The preferred reference standard in SED-ML is the \concept{MIRIAM standard}.
+URIs are needed at three different points in SED-ML \LoneVone: 
+Firstly, they are the preferred mechanism to refer to model encodings. 
+Secondly, they are used to specify the language of the referenced model.
+Thirdly, they enable addressing implicit model variables.
 
-MIRIAM allows to identify a data entry in a data resource using predefined URNs. That way a  model may be referenced through it's \concept{ID} in a particular model repository. To be part of the MIRIAM resources, a model repository must ensure permanent and consistent model references, that is stable IDs.
+The use of a standardised URI Scheme ensures long-time availability  of a particular information that can unambiguously be identified. 
 
-One model repository that has a MIRIAM URN assigned is the \concept{BioModels Database}. It's data resource name in MIRIAM is \code{urn:miriam:biomodels.db}. To refer to a particular model, a standardised identifier scheme is defined in \concept{MIRIAM Resources}. The ID entry maps to a particular model in the model repository. That model is never deleted. 
-A sample BioModels Database ID is \code{:BIOMD0000000048}. Together with the data resource name it becomes the unambiguous ID \code{urn:miriam:biomodels.db:BIOMD0000000048} for the Kholodenko model of 1999 on EGFR signaling. 
+\subsubsection{Model references}
+The preferred way for referencing a model from a SED-ML file is the \concept{MIRIAM URI Scheme}.
+MIRIAM allows to identify  a data resource by a predefined URN. A data entry inside that resource is identified by an ID. 
+That way each single  model  in a particular model repository can be unambiguously referenced. To become part of MIRIAM resources, a model repository must ensure permanent and consistent model references, that is stable IDs.
+
+One model repository that is part of MIRIAM resources is the \concept{BioModels Database}. It's data resource name in MIRIAM is \code{urn:miriam:biomodels.db}. To refer to a particular model, a standardised identifier scheme is defined in \concept{MIRIAM Resources}. The ID entry maps to a particular model in the model repository. That model is never deleted. 
+A sample BioModels Database ID is \code{BIOMD0000000048}. Together with the data resource name it becomes unambiguously referrable by the URN \code{urn:miriam:biomodels.db:BIOMD0000000048} (in this case referring to the 1999 Kholodenko model on EGFR signaling). 
 %
 
 SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offers web services to do so \footnote{\url{http://www.ebi.ac.uk/miriam}}. For the above example of the \code{urn:miriam:biomodels.db:BIOMD0000000048} model, the resolved URL may look like: 
@@ -17,8 +24,32 @@ SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offer
 \end{itemize}
 depending on the physical location of the resource chosen to resolve the URN.
 
+Further information on the \hyperref[sec:source]{source} attribute referencing the model location is provided in section \ref{sec:source}.
 
-To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used. They are available from \url{http://www.biomodels.net/sed-ml}. Further information on the \code{language} attribute is provided in section \ref{sec:language}.
+\subsubsection{Language references}
+To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used. 
+The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{name.version}. 
+SED-ML allows to specify a model representation format very generally as ``XML'', if no standardised representation format has been used to encode the model. On the other hand, one can be as specific as defining
+a model being in a particular version of a language, as ``SBML Level 2, Version 2, Revision 1''.
+
+The list of URNs is available from \url{http://www.biomodels.net/sed-ml/#sedmlLanguage}. 
+Further information on the \hyperref[sec:language]{language} attribute is provided in section \ref{sec:language}.
+
+\subsubsection{Implicit variables}
+\label{sec:implicitVariable}
+
+Some variables used in an experiment are not explicitely defined in the model, but may be implicitely contained in it. 
+For example, to plot a variable's behaviour over time, that variable is defined in an SBML model, while time is not explicitely defined. 
+
+To overcome that shortness and allow SED-ML to refer to such variables in a common way, the notion of \emph{implicit variables} is used.
+Those variables are called \code{symbols} in SED-ML. They are defined following the idea of MIRIAM URNs and using the SED-ML URN scheme. The structure of the URNs is \element{urn:sedml:symbol:}\emph{implicit variable}.
+To refer from a SED-ML file to the definition of \emph{time}, for example, the URN is \element{urn:sedml:symbol:time}.
+
+The list of predefined symbols is available from the SED-ML site on \url{http://biomodels.net/sed-ml}.
+From that source, also a mapping of SED-ML symbols on possibly existing concepts in the single languages supported by SED-ML is provided.
+
+\alert{FRANK: we have to define a symbols section on the web site, anything apart time for the moment?}
+
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../sed-ml-L1V1"
