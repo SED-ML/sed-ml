@@ -25,9 +25,15 @@
 Attributes and nested elements for \concept{#1}. \emph{elements$^{o}$} denotes optional elements.
 }
 
-\newcommand{\tabtext}[2]{
-\tab{#1} shows all attributes and derived classes for the \concept{#2} element as defined in the SED-ML XML Schema.
+\newcommand{\tabtext}[2]{ % to create the introducing table text for each table reference
+\tab{#1} shows all attributes and sub-elements for the \concept{#2} element as defined by the SED-ML \LoneVone XML Schema.
 }
+
+\newcommand{\lsttext}[2]{ % to create the introducing listing text for each listing reference
+Listing \ref{lst:#1} shows the use of the \element{#2} element in a SED-ML file as defined by the SED-ML \LoneVone XML Schema.
+}
+
+
 
 %figures:
 \newcommand{\sedfig}[4][]

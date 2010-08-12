@@ -1,10 +1,11 @@
 \label{sec:id}
 %
 
-Most objects in SED-ML carry the \concept{id} and \hyperref[sec:name]{name} attributes. 
-The \concept{id} attribute, if existent for an object, is always required and can be used to identify SED-ML constituents unambiguously.  The {id} attribute can be used to refer to a constituent from other constituents. 
-The \code{id} data type is \code{String}. All \code{id}s have a global scope, meaning that throughout a whole SED-ML document, the \code{id} should be unambiguous and as such identifying the constituent it is related to.
-An example for a defined \concept{id} is given in listing \ref{lst:id}.
+Most objects in SED-ML carry an \concept{id} attribute. 
+The \hyperref[sec:id]{id} attribute, if existent for an object, is always required and identifies SED-ML constituents unambiguously.  
+It is used to refer to a constituent from other constituents. 
+The \code{id} data type is \code{String}. All \code{id}s have a global scope, i.\,e. the \code{id} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
+An example for a defined \code{id} is given in listing \ref{lst:id}.
 %
 \begin{myXmlLst}{SED-ML identifier definition, e.\,g. for a model}{lst:id}
 <model id="m00001" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000012">
@@ -12,6 +13,7 @@ An example for a defined \concept{id} is given in listing \ref{lst:id}.
 </model>
 \end{myXmlLst}
 %
+The defined model carries the ID \code{m00001}. If the model is used somewhere else in the SED-ML document, it is referred to by that ID.
 
 %%% Local Variables: 
 %%% mode: latex

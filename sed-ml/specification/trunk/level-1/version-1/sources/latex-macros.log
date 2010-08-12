@@ -1,5 +1,6 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2010.5.9)  6 JUN 2010 20:52
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.7.19)  12 AUG 2010 11:35
 entering extended mode
+ restricted \write18 enabled.
  %&-line parsing enabled.
 **\input latex-macros.tex
 (./latex-macros.tex
@@ -473,11 +474,11 @@ and I'll forget about whatever was undefined.
 
  
 Here is how much of TeX's memory you used:
- 42 strings out of 95086
- 403 string characters out of 1183256
- 45034 words of memory out of 1500000
- 3313 multiletter control sequences out of 10000+50000
- 3808 words of font info for 15 fonts, out of 1200000 for 2000
+ 42 strings out of 495061
+ 397 string characters out of 1182621
+ 45108 words of memory out of 3000000
+ 3318 multiletter control sequences out of 15000+50000
+ 3808 words of font info for 15 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 16i,1n,11p,375b,92s stack positions out of 5000i,500n,6000p,200000b,5000s
+ 16i,1n,11p,375b,92s stack positions out of 5000i,500n,10000p,200000b,50000s
 !  ==> Fatal error occurred, no output PDF file produced!
