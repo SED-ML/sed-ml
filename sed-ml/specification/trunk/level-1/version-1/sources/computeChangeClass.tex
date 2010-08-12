@@ -97,6 +97,15 @@ An example is given in listing \ref{lst:computeChange}.
 \LoneVone supports the subset of MathML 2.0 shown in section \ref{sec:mathML}.
 %
 
+The example in listing \ref{lst:computeChange} computes a change on the model parameter $w$. To do so, it defines two variables. \code{camkii} corresponds to the value of the species \code{KII} defined in the model with ID \code{calcium}. \code{w} corresponds to the value of the parameter \code{w} defined in the model with ID \code{synapse}. 
+In addition, three further parameter are defined: \code{w0=1}, \code{n=2}, and \code{K=1e-6}.
+The mathematical expression in the mathML then computes the change of $w$ using the encoded equation:
+\begin{math}
+
+w + wo \times \frac{camkii^{n}}{camkii^{n}+K^{n}}
+
+\end{math}
+
 %A problem arises, because the individual supported model exchange languages allow different subsets of MathML. Thus, when an instance of ComputeChange replaces a %mathematical expression of  an SBML reaction, only the MathML subset allowed by SBML should be used here.
 
 

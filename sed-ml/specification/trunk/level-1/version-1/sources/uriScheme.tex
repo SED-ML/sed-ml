@@ -1,15 +1,16 @@
 % The proposed URI scheme to use
 \label{sec:uriScheme}
 
-URIs are needed at three different points in SED-ML \LoneVone: 
+URIs are needed at different points in SED-ML \LoneVone: 
 Firstly, they are the preferred mechanism to refer to model encodings. 
 Secondly, they are used to specify the language of the referenced model.
 Thirdly, they enable addressing implicit model variables.
+Finally, annotations of SED-ML elements should be provided with a standardised annotation scheme.
 
 The use of a standardised URI Scheme ensures long-time availability  of a particular information that can unambiguously be identified. 
 
 \subsubsection{Model references}
-The preferred way for referencing a model from a SED-ML file is the \concept{MIRIAM URI Scheme}.
+The preferred way for referencing a model from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}.
 MIRIAM allows to identify  a data resource by a predefined URN. A data entry inside that resource is identified by an ID. 
 That way each single  model  in a particular model repository can be unambiguously referenced. To become part of MIRIAM resources, a model repository must ensure permanent and consistent model references, that is stable IDs.
 
@@ -17,6 +18,7 @@ One model repository that is part of MIRIAM resources is the \concept{BioModels 
 A sample BioModels Database ID is \code{BIOMD0000000048}. Together with the data resource name it becomes unambiguously referrable by the URN \code{urn:miriam:biomodels.db:BIOMD0000000048} (in this case referring to the 1999 Kholodenko model on EGFR signaling). 
 %
 
+SED-ML recommends to follow the above scheme for model references, if possible. 
 SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offers web services to do so \footnote{\url{http://www.ebi.ac.uk/miriam}}. For the above example of the \code{urn:miriam:biomodels.db:BIOMD0000000048} model, the resolved URL may look like: 
 \begin{itemize}
  \item{\code{http://biomodels.caltech.edu/BIOMD0000000048}}
@@ -48,7 +50,9 @@ To refer from a SED-ML file to the definition of \emph{time}, for example, the U
 The list of predefined symbols is available from the SED-ML site on \url{http://biomodels.net/sed-ml}.
 From that source, also a mapping of SED-ML symbols on possibly existing concepts in the single languages supported by SED-ML is provided.
 
-
+\subsubsection{Annotations}
+\label{sec:annotations}
+When annotating SED-ML elements with the \hyperref[class:annotation]{annotation} concept, the \concept{MIRIAM URI Scheme} should be used. In addition to providing the data type (e.\,g. PubMed) and the particular data entry inside that data type (e.\,g. \code{10415827}), the relation of the annotation to the annotated element should be described using the standardised \concept{biomodels.net qualifier}. The list of qualifiers, as well as further information about their usage, is available from \url{http://www.biomodels.net/qualifiers/}.
 
 %%% Local Variables: 
 %%% mode: latex

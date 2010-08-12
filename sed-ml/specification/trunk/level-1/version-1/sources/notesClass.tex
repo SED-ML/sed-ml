@@ -1,12 +1,10 @@
 \label{class:notes}
 
 A \concept{note} is considered a  human-readable description of the element it is assigned to. It serves to display information to the user. 
-\concept{Notes} contains any valid XHTML \citep{P+02}, ranging from short comments to whole HTML pages for display in a Web browser. 
+Instances of the \concept{Notes} class may contain any valid XHTML \citep{P+02}, ranging from short comments to whole HTML pages for display in a Web browser. 
+The namespace URL for \code{XHTML} content inside the \hyperref[class:notes]{Notes} class is \url{http://www.w3.org/1999/xhtml}. It may either be declared in the \hyperref[class:sed-ml]{\code{sedML} XML element}, or directly for use in each \code{notes} element of the XML file. For further options of how to set the namespace and detailed examples, please refer to (\citep{HBH+10}, p. 14).
 
-\concept{Notes} has a mandatory attribute \hyperref[sec:xmlns]{xmlns} to declare the \code{XHTML} namespace. It does not have any further subclasses nor attributes associated to it (see \tab{notes}).
-
-\tabtext{notes}{Notes}
-
+\tabtext{notes}{notes}
 %
 \begin{table}[ht]
 \center
@@ -25,18 +23,21 @@ xmlns & \refpage{sec:xmlns} \\
 \label{tab:notes}
 \caption{\tabcap{Notes}}
 \end{table}
+%
+\code{Notes} has a mandatory attribute \hyperref[sec:xmlns]{xmlns} to declare the \code{XHTML} namespace. It does not have any further sub-elements nor attributes associated to it.
+%
 
-The namespace URL for \code{XHTML} content inside the \hyperref[class:notes]{Notes} class is \url{http://www.w3.org/1999/xhtml}. It may either be declared in the \hyperref[class:sed-ml]{\code{sedML} XML element}, or directly for use in each \code{notes} element of the XML file. For further options of how to set the namespace and detailed examples, please refer to (\citep{HBH+10}, p. 14).
-
-Listing \ref{lst:notes} shows the use of the \element{notes} element in a SED-ML file. 
+\lsttext{notes}{notes}
+%
 \begin{myXmlLst}{The \element{notes} element}{lst:notes}
-<sedML version="0.1">
+<sedML [..]>
  <notes http://www.w3.org/1999/xhtml>
   The enclosed simulation description shows the oscillating behaviour of the Repressilator model using deterministic and stochastic simulators.
  </notes>
 </sedML>
 \end{myXmlLst}
-In this example the namespace declaration is inside the \element{notes} element and the note is related to the \element{sedML} root element of the SED-ML file. A note may, however, occur inside \emph{any} SED-ML XML element, except \element{note} itself and \hyperref[class:annotation]{\code{annotation}}.
+%
+In this example, the namespace declaration is inside the \element{notes} element and the note is related to the \element{sedML} root element of the SED-ML file. A note may, however, occur inside \emph{any} SED-ML XML element, except \code{note} itself and \hyperref[class:annotation]{\code{annotation}}.
 
 %%% Local Variables: 
 %%% mode: latex
