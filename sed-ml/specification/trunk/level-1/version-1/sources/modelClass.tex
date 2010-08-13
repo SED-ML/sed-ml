@@ -1,20 +1,23 @@
 % model class
 \label{class:model}
-The \concept{Model} class is the container for a model reference (see \fig{sedModel}).
+The \concept{Model} defines the models to be used in the simulation experiment (\fig{sedModel}).
 % Fig: sed model
-\sedfig[width=0.9\textwidth]{listOfChanges}{The SED-ML Model class}{fig:sedModel}
+\sedfig[width=0.85\textwidth]{listOfChanges}{The SED-ML Model class}{fig:sedModel}
 %
 
-A model is defined through an unambiguous and mandatory \hyperref[sec:id]{id}. An additional, optional \hyperref[sec:name]{name} may be given to the model. For each model, the \hyperref[sec:language]{language} may be specified, defining the format the model is encoded in, if such a format exists. Example formats are SBML, CellML, or myFancyLanguageML.
+Each instance of the Model class has an unambiguous and mandatory \hyperref[sec:id]{id}. An additional, optional \hyperref[sec:name]{name} may be given to the model. 
+
+The \hyperref[sec:language]{language} may be specified, defining the format the model is encoded in, if such a format exists. Example formats are SBML, CellML, or myFancyLanguageML.
+
 The \concept{Model} class refers to the particular model of interest through the \hyperref[sec:source]{source} attribute. The restrictions on the model reference are
 \begin{itemize}
  \item{The model must be encoded in an XML format.}
- \item{To refer to the model encoding language, a reference to a valid definition of that XML format must be given.}
- \item{To refer to a particular model in an external resource, an unambiguous reference must be given.}
+ \item{To refer to the model encoding language, a reference to a valid definition of that XML format must be given (\hyperref[sec:language]{language} attribute).}
+ \item{To refer to a particular model in an external resource, an unambiguous reference must be given (\hyperref[sec:source]{source} attribute).}
 \end{itemize}
 
 
-\tabtext{model}{Model}
+\tabtext{model}{model}
 %
 \begin{table}[ht]
 \center
@@ -25,6 +28,7 @@ The \concept{Model} class refers to the particular model of interest through the
 metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
+\hline
 language$^{o}$ & \refpage{sec:language}\\
 source & \refpage{sec:source}\\
 \hline
@@ -33,72 +37,96 @@ source & \refpage{sec:source}\\
 \hline
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
 change$^{o}$ & \refpage{class:change}\\
 \hline
 \end{tabular}
 \label{tab:model}
-\caption{\tabcap{Model}}
+\caption{\tabcap{model}}
 \end{table}
 %
 
 A model might need to undergo pre-processings before simulation. Those pre-processings are specified in the SED-ML \hyperref[class:change]{Change} class.
 
-\subsubsection{The \element{language} attribute}
+\lsttext{model}{model}
+%
+\begin{myXmlLst}{SED-ML \code{model} element}{lst:model}
+<listOfModels>
+ <model id="m0001" language="urn:sedml:language:sbml" 
+  source="urn:miriam:biomodels.db:BIOMD0000000012">
+  <listOfChanges>
+   <change>
+    [MODEL PRE-PROCESSING]
+   </change>
+   </listOfChanges> 
+ </model>
+ <model id="m0002" language="urn:sedml:language:sbml" source="m0001">
+  [MODEL PRE-PROCESSING]
+ </model>
+ <model id="m0003" language="urn:sedml:language:cellml" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02">
+  [MODEL PRE-PROCESSING]
+ </model>
+</listOfModels>
+\end{myXmlLst} 
+%
+
+The above \code{listOfModels} contains three models: 
+The first model \code{m0001} is the Repressilator model taken from \biom. 
+The original model is available from \url{urn:miriam:biomodels.db:BIOMD0000000012}. 
+For the SED-ML simulation, the model might undergo pre-processings, described in the \hyperref[class:change]{change} element (ll. 5-7).
+Based on the description of the first model \code{m0001}, the second model is build. 
+It refers to the model \code{m001} in the \code{source} attribute, that is the modified version of the Repressilator model.
+\code{m0002} might then have even further changes applied to it on top of the changes defined in the pre-processing of \code{m0001}.
+The third model in the code example above (ll. 13-15) is a different model in CellML representation. \code{m0003} is the model available from the given URL in the \code{source} attribute. Again, it might have additional pre-processing applied to it before used in the simulation.
+
+
+\subsubsection{The \code{language} attribute}
 \label{sec:language}
 The evaluation of a SED-ML file will decide whether or not it can be used for a particular simulation environment. One crucial criterium is the particular model representation language used to encode the model. A simulation software usually only supports a small subset of the representation formats available to model biological systems computationally. 
 
 To help a software decide whether or not it supports a SED-ML description file, the information on the model encoding for each referenced model can be provided through the \concept{language} attribute. 
 %Examples for such  are \element{SBML} denoting the standard format SBML \citep{Hucka:2003}, or \code{CellML} denoting the standard format  CellML \citep{Lloyd:2004}.
 %As there is no controlled vocabulary of representation formats for biological models available as of now, the data type for \element{type} is \element{String}. 
-As the description of a language name and version through an unrestricted \code{String} is error-prone, SED-ML provides a set of standard URIs to refer to particular language definitions. A prerequisite for a language to be fully supported by SED-ML is that a formalised language definition, e.\,g. an XML Schema, is provided online. The notion of URNs is described in section \ref{sec:uriScheme} on \refpage{sec:uriScheme}. 
-
-To refer to a specific language and it's version, following the idea of MIRIAM URNs, the SED-ML URN scheme \code{urn:sedml:language:}\emph{language name} is used. A model in a SED-ML file of type ``SBML Level 2 Version 2'' can be referred to, for example, through the URN \code{urn:sedml:language:sbml.level-2.version-2}.
-
+As the description of a language name and version through an unrestricted \code{String} is error-prone. 
+A prerequisite for a language to be fully supported by SED-ML is that a formalised language definition, e.\,g. an XML Schema, is provided online. SED-ML also defines a set of standard URIs to refer to particular language definitions (see again section \ref{sec:languageURI} on \refpage{sec:languageURI}). 
 The list of URNs for languages so far associated with SED-ML is available from the SED-ML web site on \url{http://biomodels.net/sed-ml}. 
+To specify language and version, following the idea of MIRIAM URNs, the SED-ML URN scheme \code{urn:sedml:language:}\emph{language name} is used. A model's language being ``SBML Level 2 Version 2'' can be referred to, for example, through the URN \code{urn:sedml:language:sbml.level-2.version-2}.
 
-The \element{language} attribute is optional for the XML representation of a SED-ML file. If it is not explicitely defined otherwise in the SED-ML file, the default value for the \element{language} attribute is \code{urn:sedml:language:xml}, referring to any XML based model representation. 
+The \element{language} attribute is optional in the XML representation of a SED-ML file. 
+If it is not explicitely defined in the SED-ML file, the default value for the \element{language} attribute is \code{urn:sedml:language:xml}, referring to any XML based model representation. 
 
 However, the use of the \element{language} attribute is strongly encouraged. Not only does it help a user decide whether or not he is able to run the simulation, that is to parse the model referenced in the SED-ML file. The language attribute is also needed to decide how to handle a particular implicit variable in the \hyperref[class:variable]{Variable} class. The interpretation of implicit variables depends on the language of the representation format. The concept of implicit variables has been introduced in section \ref{sec:implicitVariable} on  \refpage{sec:implicitVariable}.
 
 
-\subsubsection{The \element{source} attribute}
+\subsubsection{The \code{source} attribute}
 \label{sec:source}
-To make the model available during  execution of a SED-ML file, the model \element{source} should be specified through an XLink. 
+To make the model available for the execution of a SED-ML file, the model \element{source} must be specified through an XLink. 
 The XLink should preferably point to a public, consistent URI that contains the model description file and follows the proposed \hyperref[sec:uriScheme]{URI Scheme}.
-Consistent URIs ensure the long-term availability of models used in a SED-ML simulation description file. 
-Therefore, reference to curated, open model bases are recommended. An example for such a resource is BioModels Database \citep{N+06}. However, any resource registered with MIRIAM resources\footnote{\url{http://www.ebi.ac.uk/miriam/main/}} can easily be used in SED-ML. Even without a MIRIAM URN, SED-ML can be used. The long-term availability of a model, and thus the validity of a simulation experiment cannot be assured in those cases though.
+References to curated, open model bases are recommended, such as the BioModels Database. However, any resource registered with MIRIAM resources\footnote{\url{http://www.ebi.ac.uk/miriam/main/}} can easily be referenced. Even without a MIRIAM URN, SED-ML can be used (see again section \ref{sec:modelURI} on \refpage{sec:modelURI}).
 
-
-An example for the definition of a model inside the \hyperref[sec:listOfModels]{listOfModels} and using the MIRIAM \hyperref[sec:uriScheme]{URI scheme} is given in the XML snippet in listing \ref{lst:modelA}.
+An example for the definition of a model, and using the  \hyperref[sec:uriScheme]{URI scheme} is given in listing \ref{lst:sourceA}.
 %
-\begin{myXmlLst}{The SED-ML model element, using the URI scheme}{lst:modelA}
-<listOfModels>
+\begin{myXmlLst}{The SED-ML \code{source} element, using the URI scheme}{lst:sourceA}
  <model id="m1" name="repressilator" language="urn:sedml:language:sbml" 
   source="urn:miriam:biomodels.db:BIOMD0000000012">
   <listOfChanges>
    [DEFINE MODEL PRE-PROCESSING HERE]
   </listOfChanges>
  </model>
-</listOfModels>
 \end{myXmlLst}
 %
-In the example one model is defined. An \element{id} and a \element{name} are given. The \element{language} the model is described in is \element{SBML}, and the model source code is available from \element{urn:miriam:biomodels.db:BIOMD0000000012}. The MIRIAM URN can be resolved into the SBML model stored in BioModels Database under ID \element{BIOMD0000000012}.
+The example defines one model \code{m1}. \code{urn:miriam:biomodels.db:BIOMD0000000012} defines the source of the model code. The MIRIAM URN can be resolved into the SBML model stored in BioModels Database under ID \element{BIOMD0000000012}.
 
-An example for the definintion of a model inside the \hyperref[sec:listOfModels]{listOfModels} and using a URL is given in the XML snippet in listing \ref{lst:modelB}.
+An example for the definition of a model and using a URL is given in listing \ref{lst:sourceB}.
 %
-\begin{myXmlLst}{The SED-ML model element, using a URL}{lst:modelB}
-<listOfModels>
+\begin{myXmlLst}{The SED-ML \code{source} element, using a URL}{lst:sourceB}
  <model id="m1" name="repressilator" language="urn:sedml:language:cellml" 
   source="http://models.cellml.org/exposure/bba4e39f2c7ba8af51fd045463e7bdd3/aguda_b_1999.cellml">
-  <listOfChanges>
-   [DEFINE MODEL PRE-PROCESSING HERE]
-  </listOfChanges>
+  <listOfChanges />
  </model>
-</listOfModels>
 \end{myXmlLst}
 %
-In the example one model is defined. An \element{id} and a \element{name} are given. The \element{type} of the model is \element{CellML}. As CellML currently does not provide a MIRIAM URI scheme for model reference, the URL pointing to the model code is used to refer to the model. The URL is given in the \element{source} element.
-
+In the example one model is defined. The \element{language} of the model is \element{CellML}. As the CellML model repository currently does not provide a MIRIAM URI for model reference, the URL pointing to the model code is used to refer to the model. The URL is given in the \element{source} element.
 
 %%% Local Variables: 
 %%% mode: plain-tex

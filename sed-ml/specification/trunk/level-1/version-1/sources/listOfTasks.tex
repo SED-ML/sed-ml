@@ -1,17 +1,19 @@
 \label{sec:listOfTasks}
+The \concept{listOfTasks} container contains the defined tasks for the simulation experiment (\fig{listOfTasks}).
 %
-\sedfig[width=\textwidth]{listOfTasks}{The SED-ML listOfTasks container}{fig:listOfTasks}
+\sedfig[width=0.85\textwidth]{listOfTasks}{The SED-ML listOfTasks container}{fig:listOfTasks}
 %
-The \concept{listOfTasks} container contains the defined tasks for the simulation experiment (see \fig{listOfTasks}).
 
-An example for the definition of a task inside the listOfTasks is given in the XML snippet in listing \ref{lst:listOfTask}.
-\begin{myXmlLst}{The SED-ML listOfTasks element, defining one task}{lst:listOfTask}
+\lsttext{listOfTasks}{listOfTasks}
+%
+\begin{myXmlLst}{The SED-ML \code{listOfTasks} element, defining one task}{lst:listOfTask}
 <listOfTasks>
  <task id="t1" name="simulating v1" modelReference="m1" simulationReference="s1">
+ [FURTHER TASK DEFINITIONS]
 </listOfTasks>
 \end{myXmlLst}
 %
-In the given example, a \concept{task} is created that makes use of one of the previously defined \hyperref[class:model]{models} and runs it with  the simulation settings of one of the previously defined \hyperref[class:simulation]{simulations}.
+The example shows the definition of one task \code{t1} in the \code{listOfTasks} container.
 
 %%% Local Variables: 
 %%% mode: latex

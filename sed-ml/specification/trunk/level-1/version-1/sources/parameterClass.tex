@@ -1,12 +1,15 @@
 % parameter class
 \label{class:parameter}
-An instance of the \concept{Parameter} class in SED-ML defines a symbol associated with a constant value (see \fig{parameter}).
+The SED-ML \concept{Parameter} class creates instances with a constant value (\fig{parameter}).
 %
 \sedfig[width=0.3\textwidth]{parameterClass}{The Parameter class}{fig:parameter}
 %
-A parameter can unambiguously be identified through it's given \concept{id}. It may additionally carry an optional \concept{name}. Each parameter has one associated \concept{value}. \tab{parameter} shows all attributes and derived classes for \concept{Parameter}.
+SED-ML uses parameters in two ways: 
+Firstly, parameters may be defined in the \hyperref[class:computeChange]{ComputeChange} class for describing the mathematical computation of a change of a model's observable.
+Secondly, parameters may be part of a \hyperref[class:dataGenerator]{DataGenerator} specification. 
+In both cases the parameter definitions are local to the particular class defining them. 
 
-\tabtext{parameter}{Parameter}
+\tabtext{parameter}{parameter}
 %
 \begin{table}[ht]
 \center
@@ -17,6 +20,7 @@ A parameter can unambiguously be identified through it's given \concept{id}. It 
 metaID$^{o}$ & \refpage{sec:metaID} \\
 id & \refpage{sec:id}\\
 name$^{o}$ & \refpage{sec:name}\\
+\hline
 value & \refpage{sec:value}\\
 \hline
 \hline
@@ -27,21 +31,13 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \hline
 \end{tabular}
 \label{tab:parameter}
-\caption{\tabcap{Parameter}}
+\caption{\tabcap{parameter}}
 \end{table}
 %
 
-SED-ML uses parameters in two ways: 
-First, they may occur in the \hyperref[class:change]{Change} class for describing the mathematical computation of a change of a model's observable through predefined parameters.
-The second use of the \concept{Parameter} class is to refer from a \hyperref[class:dataGenerator]{DataGenerator} definition to a constant value. 
+A parameter can unambiguously be identified through it's given \hyperref[sec:id]{id}. It may additionally carry an optional \hyperref[sec:name]{name}. Each parameter has one associated \hyperref[sec:value]{value}. 
 
-In both cases the parameter definitions are local to the according particular class defining them. 
-
-\subsubsection{The \element{value} attribute}
-\label{sec:value}
-Each instance of \concept{Parameter} defines a particular thing with a fixed \concept{value}. The value in the XML representation is of the data type \code{String}. The \code{value} attribute is required for each \code{parameter} element. A parameter gets exactly one constant value assigned, meaning that the value is fixed and cannot be changed. 
-
-An example for a parameter definition is given in listing \ref{lst:parameter}.
+\lsttext{parameter}{parameter}
 %
 \begin{myXmlLst}{{The definition of a parameter in SED-ML}}{lst:parameter}
 <listOfParameters>
@@ -49,7 +45,11 @@ An example for a parameter definition is given in listing \ref{lst:parameter}.
 </listOfParameters>
 \end{myXmlLst}
 %
+The listing shows the definition of a parameter \code{p1} with the \code{value="40"} assigned. 
 
+\subsubsection{The \code{value} attribute}
+\label{sec:value}
+Each \concept{parameter} defines a particular thing with a exactly one fixed \concept{value}. The \code{value} attribute of XML data type \code{String} is required for each \code{parameter} element. 
 
 %%% Local Variables: 
 %%% mode: plain-tex

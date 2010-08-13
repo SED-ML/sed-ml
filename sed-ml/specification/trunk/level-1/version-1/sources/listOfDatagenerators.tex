@@ -1,14 +1,24 @@
 \label{sec:listOfDataGenerators}
 
-
-In SED-ML, all variables/parameters/values that shall be used in the \concept{Output} class need  to be defined as a \concept{dataGenerator} beforehand, in the \concept{listofDataGenerators} (see Figure \fig{listOfDataGenerators}). 
-
+In SED-ML, all variables/parameters/values that shall be used in the \hyperref[class:output]{Output} class need to be defined as a \hyperref[class:dataGenerator]{dataGenerator} beforehand. The container for those data generators is the \concept{listofDataGenerators} (\fig{listOfDataGenerators}). 
 % Fig: DG
 \sedfig[width=\textwidth]{listOfDataGenerators}{The SED-ML listOfDataGenerators container}{fig:listOfDataGenerators}
 %
 
+\lsttext{listOfDataGenerators}{listOfDataGenerators}
+%
+\begin{myXmlLst}{The \code{listOfDataGenerators} element, defining two data generators \emph{time} and \emph{LaCI repressor}}{lst:listOfDataGenerators}
+<listOfDatGenerators>
+ <dataGenerator id="d1" name="time">
+  [DATA GENERATOR DEFINITION FOLLOWING]
+ </dataGenerator>
+ <dataGenerator id="LaCI" name="LaCI repressor">
+  [DATA GENERATOR DEFINITION FOLLOWING]
+ </dataGenerator>
+</listOfDataGenerators>
+\end{myXmlLst}
+%
 
-Each \concept{dataGenerator} is identifiable within the experiment by its unambiguous \concept{id}. It can be further characterised by an optional \concept{name}. The \concept{math} element contains a mathML expression for the calculation of the data generator. Within the mathematical expression, variables defined in the \concept{listOfVariables} and parameters defined in the \concept{listOfParameters} can be used.
 
 
 %%% Local Variables: 

@@ -1,13 +1,13 @@
 % Output 
 \label{class:output}
 
-The ouput container describes how the results of a simulaion should be presented to the user. It does not contain the data itself, but only the type of output and the data generators (\concept{dataGenerator}) which are to be used in the desired output type. Figure \ref{fig:sedOutput} shows the UML class definition of the \concept{Output} class.
-% Fig: sed output
+The \concept{Ouput} class describes how the results of a simulation should be presented to the user (\fig{sedOutput}). 
+%
 \sedfig{outputClass}{The SED-ML Output class}{fig:sedOutput}
 %
+It does not contain the data itself, but the type of output and the \hyperref[class:dataGenerator]{data generators} used with the output type.
 
-
-\tabtext{output}{Output}
+\tabtext{output}{output}
 %
 \begin{table}[ht]
 \center
@@ -31,10 +31,9 @@ report$^{o}$ & \refpage{class:report}\\
 \hline
 \end{tabular}
 \label{tab:output}
-\caption{\tabcap{Output}}
+\caption{\tabcap{output}}
 \end{table}
 %
-
 
 The types of output pre-defined in SED-ML are plots and \hyperref[class:report]{reports}, also referrible as data tables. The output can be defined as a \hyperref[class:plot2D]{2D plot} or alternatively as a \hyperref[class:plot3D]{3D plot}. 
 

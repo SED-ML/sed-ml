@@ -1,6 +1,7 @@
 % ChangeAttribute Class
 \label{class:changeXml}
-The \concept{ChangeXML} element is used to change any XML element in the model that can be addressed by a valid XPath expression. 
+The \concept{ChangeXML} class defines changes of any XML element in the model that can be addressed by a valid XPath expression. 
+The XPath is specified in the required \hyperref[sec:target]{target} attribute (see again section \ref{sec:target} on page \refpage{sec:target}). 
 
 \tabtext{changeXml}{changeXml}
 %
@@ -24,20 +25,19 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \hline
 \end{tabular}
 \label{tab:changeXml}
-\caption{\tabcap{ChangeXML}, \alert{newXML is an attribute, probably should be made an element!? (see problems in listing \ref{lst:changeXML})}}
+\caption{\tabcap{changeXML}, \alert{newXML is an attribute, probably should be made an element!? (see problems in listing \ref{lst:changeXML})}}
 \end{table}
 %
 
-The XPath is specified in the required \hyperref[sec:target]{target} (see definition on page \pageref{sec:target}). 
 
 \subsubsection{The \element{newXML} attribute}
 \label{sec:newXml}
 
-The new piece of XML code that is to substitute the XML element addressed by the XPAth is provided in the required \element{newXML} attribute. 
+The new piece of XML code that is to substitute the XML element addressed by the XPath is provided in the required \code{newXML} attribute. 
 
-An example that adds an additional parameter to a model is given in listing \ref{lst:changeXML}.
+An example for a change that adds an additional parameter to a model is given in listing \ref{lst:changeXML}.
 %
-\begin{myXmlLst}{The changeXML element}{lst:changeXML}
+\begin{myXmlLst}{The \code{changeXML} element with its \code{newXML} attribute}{lst:changeXML}
 <model [..]>
  <listOfChanges>
   <changeXML target="/sbml:sbml/sbml:model/sbml:listOfParameters
@@ -48,7 +48,7 @@ An example that adds an additional parameter to a model is given in listing \ref
 </model>
 \end{myXmlLst}
 %
-
+The code of the model is changed in the way that its parameter with ID \code{V\_mT} is substituted by another two parameters \code{V\_mT} and \code{V\_mT\_2}.
 
 
 
