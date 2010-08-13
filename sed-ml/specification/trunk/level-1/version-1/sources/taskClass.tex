@@ -1,13 +1,12 @@
 \label{class:task}
 
-% Fig: sed task
+A task in SED-ML links a \hyperref[class:model]{model} to a certain \hyperref[class:simulation]{simulation} description via the two according IDs (\fig{sedTask}), using the \hyperref[sec:modelReference]{modelReference} and the \hyperref[sec:simulationReference]{simulationReference}.
+%
 \sedfig[width=0.35\textwidth]{taskClass}{The SED-ML Task class}{fig:sedTask}
 %
+In SED-ML \LoneVone it is only possible to link one simulation description to one model at a time. However, one can define as many tasks as needed within one experiment description, i.\,e. one SED-ML file. Please note, that the tasks may be executed in any order, as XML does not have an ordering concept.
 
-A task in SED-ML links a \concept{model} as defined in the \concept{listOfModels} to a certain \concept{simulation} description as defined in the \concept{listOfSimulations} via the two according IDs (model ID and simulation ID).
-
-
-\tabtext{task}{Task}
+\tabtext{task}{task}
 %
 \begin{table}[ht]
 \center
@@ -18,6 +17,7 @@ A task in SED-ML links a \concept{model} as defined in the \concept{listOfModels
 metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
+\hline
 modelReference & \refpage{sec:modelReference}\\
 simulationReference & \refpage{sec:simulationReference}\\
 \hline
@@ -29,17 +29,14 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \hline
 \end{tabular}
 \label{tab:task}
-\caption{\tabcap{Task}}
+\caption{\tabcap{task}}
 \end{table}
 %
 
+\lsttext{task}{task}
 
-Each task does have its own task \concept{id} for later reference and an optional \concept{name}.
-
-
-An example linking a simulation experiment to two different models  using two task definitions within the list of tasks is given in listing \ref{lst:listOfTasks}.
 %
-\begin{myXmlLst}{The listOfTasks element}{lst:listOfTasks}
+\begin{myXmlLst}{The \code{task} element}{lst:task}
 <listOfTasks>
   <task id="t1" name="task definition" modelReference="model1" 
         simulationReference="simulation 1" />
@@ -48,9 +45,7 @@ An example linking a simulation experiment to two different models  using two ta
 </listOfTasks>
 \end{myXmlLst}
 %
-In the example, a simulation setting \emph{simulation1} is applied first to \emph{model1} and then is applied to \emph{model2}. Please note, that the tasks may be executed in any order, as XML does not have an ordering concept.
-
-In SED-ML \version it is only possible to link one simulation description to one model at a time. However, one can define as many tasks as needed within one experiment description, i.\,e. one SED-ML file.
+In the example, a simulation setting \emph{simulation1} is applied first to \emph{model1} and then is applied to \emph{model2}. 
 
 
 %%% Local Variables: 

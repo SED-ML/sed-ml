@@ -1,9 +1,9 @@
 % ChangeAttribute Class
 \label{class:changeAttribute}
-The \concept{ChangeAttribute} allows to update the value of an XML attribute in the model. 
-One required attribute for \concept{ChangeAttribute} is the \hyperref[sec:target]{target} of change, i.\,e. the location of the addressed XML attribute.
+The \concept{ChangeAttribute} class allows to define updates on the XML attribute values of the corresponding model. 
+The \concept{ChangeXML} class covers the possibilities provided by the \hyperref[class:changeAttribute]{ChangeAttribute} class. That is, everything that can be expressed by a \hyperref[class:changeAttribute]{ChangeAttribute} construct can also be expressed by a \concept{ChangeXML}. However, both concepts exist to allow for being very specific in defining changes. It is recommended to use the \concept{ChangeAttribute} for any changes of an XML attribute, and to use the more general \hyperref[class:changeXml]{ChangeXML} for all other cases.
 
-\tab{changeAttribute} lists all attributes of the \concept{ChangeAttribute} class.
+\tabtext{changeAttribute}{changeAttribute}
 %
 \begin{table}[ht]
 \center
@@ -14,6 +14,7 @@ One required attribute for \concept{ChangeAttribute} is the \hyperref[sec:target
 metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
+\hline
 target & \refpage{sec:target}\\
 newValue & \refpage{sec:newValue}\\
 \hline
@@ -29,17 +30,16 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \end{table}
 %
 
-The \concept{ChangeXML} class covers the possibilities provided by the \hyperref[class:changeAttribute]{ChangeAttribute} class. That is, everything that can be expressed by a \hyperref[class:changeAttribute]{ChangeAttribute} construct can also be expressed by a \concept{ChangeXML}. However, both concepts exist to allow for being very specific in defining changes. It is recommended to use the \concept{ChangeAttribute} for any changes of an XML attribute, and to use the more general \hyperref[class:changeXml]{ChangeXML} for all other cases.
+One required attribute of the \code{changeAttribute} element is the \hyperref[sec:target]{target} of change, i.\,e. the location of the addressed XML attribute.
 
 
-\subsubsection{The \element{newValue} attribute}
+\subsubsection{The \code{newValue} attribute}
 \label{sec:newValue}
-The second required attribute is the \element{newValue}, which assignes a new value to the targeted XML attribute. 
-\alert{tbw}
+The second required attribute in the \code{changeAttribute} element is \code{newValue}, which assignes a new value to the targeted XML attribute. 
 
-For SBML, an example is the update of the initial concentration of a certain parameter, as shown in listing  \ref{lst:changeAttribute}.
+An example for an SBML model is the update of the initial concentration of a certain parameter, as shown in listing  \ref{lst:changeAttribute}.
 %
-\begin{myXmlLst}{The changeAttribute element}{lst:changeAttribute}
+\begin{myXmlLst}{The \code{changeAttribute} element and its \code{newValue} attribute}{lst:changeAttribute}
 <model id="model1" name="Circadian Chaos" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000021">
  <listOfChanges>
   <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_mT']/@value" newValue="0.28"/>
@@ -48,8 +48,6 @@ For SBML, an example is the update of the initial concentration of a certain par
 </model>
 \end{myXmlLst}
 %
-
-
 
 %%% Local Variables: 
 %%% mode: latex

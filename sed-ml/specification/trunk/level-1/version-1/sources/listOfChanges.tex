@@ -1,10 +1,13 @@
 \label{sec:listOfChanges}
+The \concept{listOfChanges} contains the defined changes to be applied to a particular \hyperref[class:model]{model} (\fig{listOfChanges}). 
 %
-\sedfig[width=\textwidth]{listOfChanges}{The SED-ML listOfChanges container}{fig:listOfChanges}
+\sedfig[width=0.85\textwidth]{listOfChanges}{The SED-ML listOfChanges container}{fig:listOfChanges}
 %
-The \concept{listOfChanges} container contains the defined changes to be applied to a particular \hyperref[class:model]{model} (see \fig{listOfChanges}). \concept{listOfChanges} always occurs within a \element{model} element. It is an optional subelement of the \element{model} element.
+It always occurs as an optional subelement of the \element{model} element. 
 
-Example \ref{lst:listOfChanges} shows the definition of a \element{listOfChanges} container inside a \element{model} element.
+\lsttext{listOfChanges}{listOfChanges}
+The \code{listOfChanges} is nested inside the \code{model} element.
+%
 \begin{myXmlLst}{The SED-ML \element{listOfChanges} element, defining a change on a model}{lst:listOfChanges}
 <model id="m0001" [..]>
  <listOfChanges>
@@ -13,7 +16,8 @@ Example \ref{lst:listOfChanges} shows the definition of a \element{listOfChanges
 </model>
 \end{myXmlLst}
 %
-In the example a change is defined on the model \element{m0001}. To encode the change, a \element{listOfChanges} is created that contains all changes in single \element{change} elements, as explained in the definition of the \hyperref[class:change]{Change} class.
+
+In the example, a change is defined on the model \element{m0001}. To encode the change, a \element{listOfChanges} is created that contains all changes, each stored in a single \element{change} element, as explained in the definition of the \hyperref[class:change]{Change} class.
 
 %%% Local Variables: 
 %%% mode: latex

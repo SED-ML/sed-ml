@@ -1,8 +1,8 @@
 % ChangeAttribute Class
 \label{class:computeChange}
-The \concept{ComputeChange} is used to make changes on any element of the XML file addressable by an XPath expression, where the changes are described by mathematical expressions through MathML. 
+The \concept{ComputeChange} class allows to make changes on any element of the XML file addressable by an XPath expression. The changes  are described by mathematical expressions using a \hyperref[sec:mathML]{subset of MathML}. 
 
-\tabtext{computeChange}{ComputeChange}
+\tabtext{computeChange}{computeChange}
 %
 \begin{table}[ht]
 \center
@@ -13,6 +13,7 @@ The \concept{ComputeChange} is used to make changes on any element of the XML fi
 metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
+\hline
 target & \refpage{sec:target}\\
 \alert{math} &\refpage{sec:math}\\
 %listOfVariables$^{o}$ & \refpage{sec:listOfVariables}\\
@@ -23,26 +24,29 @@ target & \refpage{sec:target}\\
 \hline
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
 variable$^{o}$ & \refpage{class:variable}\\
 parameter$^{o}$ & \refpage{class:parameter}\\
 \hline
 \end{tabular}
 \label{tab:computeChange}
-\caption{\tabcap{ComputeChange}, \alert{math currently is an attribute, probably should be turned into an element (see listing \ref{lst:computeChange})}}
+\caption{\tabcap{computeChange}, \alert{math currently is an attribute, probably should be turned into an element (see listing \ref{lst:computeChange})}}
 \end{table}
 %
 
-The \element{target} attribute contains the XPath addressing the piece of XML that is to be changed. 
-It is possible to introduce additional parameters for the mathematics. Therefore, the parameters first need to be defined in the \concept{listOfParameters}. They are then referenced through their ID.
-To use model variables for the definition of a mathematical expression, those variables need to be defined in the \concept{listOfVariables} first, and can then be incorporated through their ID.
+The \hyperref[sec:target]{target} attribute contains the XPath addressing the piece of XML that is to be changed. 
+It is possible to introduce additional parameters for the mathematics. Therefore, the parameters first need to be defined in the 
+\hyperref[sec:listOfParameters]{listOfParameters}. They are then referenced through their ID.
+To use model variables for the definition of a mathematical expression, those variables need to be defined in the \hyperref[sec:listOfVariables]{listOfVariables} first, and can then be addressed by their ID.
 
-\paragraph{The \element{math} attribute}
+\paragraph{The \code{math} attribute}
 \label{sec:math}
 
-The \element{math} element is used to define mathematical functions. 
+The \code{math} element encodes mathematical functions. 
 If used as an attribute of the \concept{ComputeChange} class, it computes the change of the element or attribute addressed by the \hyperref[sec:target]{target} attribute.
+\LoneVone supports the subset of MathML 2.0 shown in section \ref{sec:mathML}.
 
-An example is given in listing \ref{lst:computeChange}.
+\lsttext{computeChange}{computeChange}
 %
 \begin{myXmlLst}{The computeChange element}{lst:computeChange}
 <model [..]>
@@ -93,8 +97,6 @@ An example is given in listing \ref{lst:computeChange}.
   </listOfChanges>
 </model>
 \end{myXmlLst}
-
-\LoneVone supports the subset of MathML 2.0 shown in section \ref{sec:mathML}.
 %
 
 The example in listing \ref{lst:computeChange} computes a change on the model parameter $w$. To do so, it defines two variables. \code{camkii} corresponds to the value of the species \code{KII} defined in the model with ID \code{calcium}. \code{w} corresponds to the value of the parameter \code{w} defined in the model with ID \code{synapse}. 

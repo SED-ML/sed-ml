@@ -3,7 +3,7 @@
 
 SED-ML makes use of the \hyperref[sec:kisao]{KiSA ontology} to refer to a term in the controlled vocabulary identifying the particular simulation algorithm to be used in the simulation. 
 
-One algorithm must be defined for each simulation setup. The instance of the \concept{Algorithm} class must contain a \hyperref[sec:kisao]{KiSAO} reference to a simulation algorithm. The reference should define the  simulation algorithm to be used in the simulation as precisely as possible.
+Each instance of the \hyperref[class:simulation]{Simulation} class must contain one reference to a simulation algorithm. And each instance of the \concept{Algorithm} class must contain a \hyperref[sec:kisao]{KiSAO} reference to a simulation algorithm. The reference should define the  simulation algorithm to be used in the simulation as precisely as possible.
 
 
 \tabtext{algorithm}{Algorithm}
@@ -25,24 +25,24 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \hline
 \end{tabular}
 \label{tab:algorithm}
-\caption{\tabcap{Algorithm}}
+\caption{\tabcap{algorithm}}
 \end{table}
 %
 
 The example given in code snipped \ref{lst:simulation}, completed by algorithm definitions looks as in listing \ref{lst:algorithm}.
 %
-\begin{myXmlLst}{The SED-ML \code{algorithm} element, defining the two different algorithms in the two defined simulations}{lst:algorithm}
+\begin{myXmlLst}{The SED-ML \code{algorithm} element, defining two different algorithms in the two defined simulations}{lst:algorithm}
 <listOfSimulations>
-  <uniformTimeCourse id="s1" name="time course simulation of variable v1 over 100 minutes" [..]>
-      <algorithm kisaoID="KiSAO:0000030" />
-  </uniformTimeCourse>
-  <uniformTimeCourse id="s2" name="time course definition for concentration of p" [..]>
-      <algorithm kisaoID="KiSAO:0000021" />
-  </uniformTimeCourse>
+ <uniformTimeCourse id="s1" name="time course simulation over 100 minutes" [..]>
+  <algorithm kisaoID="KiSAO:0000030" />
+ </uniformTimeCourse>
+ <uniformTimeCourse id="s2" name="time course definition for concentration of p" [..]>
+  <algorithm kisaoID="KiSAO:0000021" />
+ </uniformTimeCourse>
 </listOfSimulations>
 \end{myXmlLst}
 %
-For both simulations, one algorithm is defined. In the first simulation \code{s1} a deterministic simulation algorithm is used (Euler forward method), in the second simulation \code{s2} a stochastic one is used (Next reaction method).
+For both simulations, one algorithm is defined. In the first simulation \code{s1} a deterministic simulation algorithm is used (Euler forward method), in the second simulation \code{s2} a stochastic one is used (Stochsim nearest neighbor).
 
 %%% Local Variables: 
 %%% mode: latex
