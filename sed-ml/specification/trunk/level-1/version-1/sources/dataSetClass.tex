@@ -1,10 +1,11 @@
 \label{class:dataSet}
-
-% Fig: Report
+The \concept{DataSet} class holds definitions of data to be used in the \hyperref[class:report]{Report} class (\fig{dataSet}).
+% 
 \sedfig[width=0.3\textwidth]{dataSetClass}{The SED-ML DataSet class}{fig:dataSet}
 %
+Data sets are labeled references to instances of the \hyperref[class:dataGenerator]{DataGenerator} class.
 
-\tabtext{dataSet}{DataSet}
+\tabtext{dataSet}{dataSet}
 %
 \begin{table}[ht]
 \center
@@ -15,6 +16,7 @@
 metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
+\hline
 dataReference & \refpage{sec:dataReference}\\
 label & \refpage{sec:label}\\
 \hline
@@ -26,16 +28,16 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \hline
 \end{tabular}
 \label{tab:dataSet}
-\caption{\tabcap{DataSet}}
+\caption{\tabcap{dataSet}}
 \end{table}
 %
 
-\subsubsection{The \element{dataReference} attribute}
+\subsubsection{The \code{dataReference} attribute}
 \label{sec:dataReference}
 
-tbw
+The \concept{dataReference} attribute contains the ID of a \concept{dataGenerator} element. As such it represents a link to that data generator. The data produced by that particular data generator is used to fill the according data set in the \hyperref[class:report]{report}.
 
-An example for the definition of a data set in form of a table is given in the XML snippet in listing \ref{lst:dataSet}.
+\lsttext{dataSet}{dataSet}
 %
 \begin{myXmlLst}{The SED-ML \code{dataSet} element, defining a data set containing the result of the referenced task}{lst:dataSet}
 <listOfDataSets>
@@ -43,7 +45,7 @@ An example for the definition of a data set in form of a table is given in the X
 </listOfDataSets>
 \end{myXmlLst}
 
-\subsubsection{The \element{label} attribute}
+\subsubsection{The \code{label} attribute}
 \label{sec:label}
 Each data set in a \hyperref[class:report]{Report} does have to carry an unambiguous \concept{label}. The label is then used to refer to a particular data set in a report for later use.
 

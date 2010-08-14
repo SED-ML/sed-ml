@@ -1,11 +1,10 @@
 \label{class:plot3D}
-
+A \concept{3 dimensional plot} (\fig{plot3D}) contains a number of \hyperref[class:surface]{surface} definitions.
 % Fig: 2DPlot
-\sedfig[width=0.8\textwidth]{plot3DClass.png}{The SED-ML Plot3D class}{fig:plot3D}
+\sedfig[width=0.85\textwidth]{plot3DClass.png}{The SED-ML Plot3D class}{fig:plot3D}
 %
 
-
-\tabtext{plot3D}{Plot3D}
+\tabtext{plot3D}{plot3D}
 %
 \begin{table}[ht]
 \center
@@ -22,17 +21,18 @@ name$^{o}$ & \refpage{sec:name}\\
 \hline
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
 surface & \refpage{class:surface}\\
 \hline
 \end{tabular}
 \label{tab:plot3D}
-\caption{\tabcap{Plot3D}}
+\caption{\tabcap{plot3D}}
 \end{table}
 %
 
-A 3D plot is defined similarly to a 2D plot, but having 3 axes. To every axis a data generator is assigned using the \concept{xDataReference}, \concept{yDataReference}, and the \concept{zDataReference}. An example for a 3D plot with one defined surface is given in listing \ref{lst:listOfSurfaces}.
+\lsttext{plot3D}{plot3D}
 %
-\begin{myXmlLst}{The \code{plot3D} element with the nested \code{listOfSurfaces} element}{lst:listOfSurfaces}
+\begin{myXmlLst}{The \code{plot3D} element with the nested \code{listOfSurfaces} element}{lst:plot3D}
 <plot3D>
  <listOfSurfaces>
   <surface> 
@@ -42,6 +42,8 @@ A 3D plot is defined similarly to a 2D plot, but having 3 axes. To every axis a 
 </plot3D>
 \end{myXmlLst}
 %
+The example defines one \hyperref[class:surface]{surface} for the 3 dimensional plot.
+The surface definition follows in section \ref{class:surface} on \refpage{class:surface}.
 
 %%% Local Variables: 
 %%% mode: latex

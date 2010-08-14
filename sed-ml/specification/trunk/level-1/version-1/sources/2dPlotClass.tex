@@ -1,10 +1,10 @@
 \label{class:plot2D}
-
+A \concept{2 dimensional plot} (\fig{plot2D}) contains a number of \hyperref[class:curve]{curve} definitions. 
 % Fig: 2DPlot
-\sedfig[width=0.8\textwidth]{plot2DClass.png}{The SED-ML Plot2D class}{fig:plot2D}
+\sedfig[width=0.85\textwidth]{plot2DClass.png}{The SED-ML Plot2D class}{fig:plot2D}
 %
 
-\tabtext{plot2D}{Plot2D}
+\tabtext{plot2D}{plot2D}
 %
 \begin{table}[ht]
 \center
@@ -12,26 +12,19 @@
 \hline
 \textbf{\attribute} & \textbf{\desc}\\
 \hline
-metaid$^{o}$ & \refpage{sec:metaID}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\hline
-\hline
-\textbf{\subelements} & \textbf{\desc}\\
 \hline
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
 curve & \refpage{class:curve}\\
 \hline
 \end{tabular}
 \label{tab:plot2D}
-\caption{\tabcap{Plot2D}}
+\caption{\tabcap{plot2D}}
 \end{table}
 %
 
-A 2D plot needs a data generator to be assigned to each of its two axes using the \concept{xDataReference} to refer to a \concept{dataGenerator} for the x-axis and using the \concept{yDataReference} to refer to \concept{dataGenerator} for the y-axis. 
-
-An example for the definition of a 2D-plot with 1 defined curve is given in listing \ref{lst:listOfCurves}.
+\lsttext{listOfCurves}{listOfCurves}
 %
 \begin{myXmlLst}{The \code{plot2D} element with the nested \code{listOfCurves} element}{lst:listOfCurves}
 <plot2D>
@@ -39,10 +32,12 @@ An example for the definition of a 2D-plot with 1 defined curve is given in list
   <curve>
     [CURVE DEFINITION FOLLOWING]
   </curve>
+  [FURTHER CURVE DEFINITIONS]
  </listOfCurves>
 </plot2D>
 \end{myXmlLst}
 %
+The listing shows the definition of a 2 dimensional plot containing one \hyperref[class:curve]{curve} element inside the \code{listOfCurves}. The curve definition follows in section \ref{class:curve} on \refpage{class:curve}.
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../sed-ml-L1V1"

@@ -1,9 +1,11 @@
 \label{class:report}
-% Fig: Report
-\sedfig[width=\textwidth]{report.png}{The SED-ML Report class}{fig:report}
+A \concept{report} defines da data table consisting of several single instances of the \hyperref[class:dataSet]{DataSet} class (\fig{report}).
+% 
+\sedfig[width=0.85\textwidth]{report.png}{The SED-ML Report class}{fig:report}
 %
+The \concept{Report} class defines an output type that returns the simulation result in actual \emph{numbers}. The particular columns of the report table are defined by creating a \hyperref[class:dataSet]{DataSet} for each column. 
 
-\tabtext{report}{Report}
+\tabtext{report}{report}
 %
 \begin{table}[ht]
 \center
@@ -20,17 +22,16 @@ name$^{o}$ & \refpage{sec:name}\\
 \hline
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
 dataSet & \refpage{class:dataSet}\\
 \hline
 \end{tabular}
 \label{tab:report}
-\caption{\tabcap{Report}}
+\caption{\tabcap{report}}
 \end{table}
 %
 
-The \concept{Report} class defines an output type that returns the simulation result in actual \emph{numbers}. The particular columns of the report table are defined by creating a \hyperref[class:dataSet]{DataSet} for each column. 
-
-Listing \ref{lst:listOfDataSets} provides an example for the definition of such a report with one column.
+\lsttext{listOfDataSets}{listOfDataSets}
 %
 \begin{myXmlLst}{The \code{report} element with the nested \code{listOfDataSets} element}{lst:listOfDataSets}
 <report>
