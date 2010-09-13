@@ -7,7 +7,7 @@ The \concept{Model} defines the models to be used in the simulation experiment (
 
 Each instance of the Model class has an unambiguous and mandatory \hyperref[sec:id]{id}. An additional, optional \hyperref[sec:name]{name} may be given to the model. 
 
-The \hyperref[sec:language]{language} may be specified, defining the format the model is encoded in, if such a format exists. Example formats are SBML, CellML, or myFancyLanguageML.
+The \hyperref[sec:language]{language} may be specified, defining the format the model is encoded in, if such a format exists. Example formats are SBML or CellML.
 
 The \concept{Model} class refers to the particular model of interest through the \hyperref[sec:source]{source} attribute. The restrictions on the model reference are
 \begin{itemize}
@@ -73,11 +73,11 @@ A model might need to undergo pre-processings before simulation. Those pre-proce
 The above \code{listOfModels} contains three models: 
 The first model \code{m0001} is the Repressilator model taken from \biom. 
 The original model is available from \url{urn:miriam:biomodels.db:BIOMD0000000012}. 
-For the SED-ML simulation, the model might undergo pre-processings, described in the \hyperref[class:change]{change} element (ll. 5-7).
+For the SED-ML simulation, the model might undergo pre-processings, described in the \hyperref[class:change]{change} element (lines 5-7).
 Based on the description of the first model \code{m0001}, the second model is build. 
 It refers to the model \code{m001} in the \code{source} attribute, that is the modified version of the Repressilator model.
 \code{m0002} might then have even further changes applied to it on top of the changes defined in the pre-processing of \code{m0001}.
-The third model in the code example above (ll. 13-15) is a different model in CellML representation. \code{m0003} is the model available from the given URL in the \code{source} attribute. Again, it might have additional pre-processing applied to it before used in the simulation.
+The third model in the code example above (lines 13-15) is a different model in CellML representation. \code{m0003} is the model available from the given URL in the \code{source} attribute. Again, it might have additional pre-processing applied to it before used in the simulation.
 
 
 \subsubsection{The \code{language} attribute}

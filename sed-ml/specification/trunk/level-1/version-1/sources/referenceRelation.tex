@@ -21,11 +21,11 @@ The definition of a \hyperref[class:task]{Task} object demands a reference to a 
 \subsubsection{model Reference}
 \label{sec:modelReference}
 %
-The \concept{modelReference} represents a relation between a \hyperref[class:variable]{Variable} object and a \hyperref[class:Model]{Model} object, or  a relation between a \hyperref[class:Task]{Task} object and a \hyperref[class:Model]{Model} object.
+The \concept{modelReference} represents a relation between a \hyperref[class:variable]{Variable} object and a \hyperref[class:Model]{Model} object, or  a relation between a \hyperref[class:task]{Task} object and a \hyperref[class:Model]{Model} object.
 
 If pre-processing needs to be applied to a model before simulation, then the model update can be specified by creating a \hyperref[class:Change]{Change} object. In the particular case that a change must be calculated with a mathematical function, variables need to be defined. To refer to an existing entity in a defined \hyperref[class:model]{Model}, the \concept{modelReference} is used. 
 
-The \code{modelReference} attribute of the \code{variable} element contains a \concept{modelID}.
+The \code{modelReference} attribute of the \code{variable} element contains the \concept{id} of a model that is defined in the document.. 
 \lsttext{modelReference1}{modelReference} 
 %
 \begin{myXmlLst}{SED-ML \code{modelReference} attribute inside a variable definition of a  \code{computeChange} element}{lst:modelReference1}

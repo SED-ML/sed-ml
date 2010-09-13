@@ -1,10 +1,11 @@
 \label{class:dataGenerator}
 
-The \concept{DataGenerator} class prepares the raw simulation results for later output (\fig{sedDG}). It stores the post-processings necessary to be applied to the simulation data.
+The \concept{DataGenerator} class prepares the raw simulation results for later output (\fig{sedDG}). It encodes the post-processing the researcher intends to be applied to the simulation data. The post-processing steps could be anything, from simple normalisations of data to mathematical calculations. 
+
+
 % Fig: DG
 \sedfig[width=0.85\textwidth]{dataGeneratorClass}{The SED-ML DataGenerator class}{fig:sedDG}
 %
-Those post-processing steps can be simple normalisation of data, but also mathematical calculations. 
 
 \tabtext{dataGenerator}{dataGenerator}
 %
@@ -18,13 +19,13 @@ metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 \hline
-math & \refpage{sec:math}\\
 %listOfVariables$^{o}$ & \refpage{sec:listOfVariables}\\
 %listOfParameters$^{o}$ & \refpage{sec:listOfParameters}\\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
 \hline
+math & \refpage{sec:math}\\
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
 \hline
