@@ -1,8 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Master file SED-ML specification 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\documentclass[11pt]{article}
+\listfiles
+\documentclass[pdftex,rgb,dvipsnames,svgnames,hyperref,table]{article}
 
 % layout (initialy done for the SBGN project)
 \input{sources/latex-style}
@@ -21,9 +21,10 @@
 
 %% EXAMPLE OF A SIMULATION EXPERIMENT DESCRIPTION (INFORMAL)
   \input{sources/motivation}
-
+  \newpage
 %% NOTATION CONVENTIONS
   \input{sources/conventions}
+  \newpage
   \section{Concepts used in SED-ML}
 
   %% MATHML SUBSET USED
@@ -68,11 +69,11 @@
 % APPENDIX
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \begin{appendix}
-
+\newpage
 %% UML DIAGRAM
 \section{SED-ML UML Overview}
-\label{app:uml}
 \fig{sedML} shows the complete UML diagram of the SED-ML. It gives the full picture of all implemented classes (see the XML Schema definition in \pageref{lst:schema}).
+\label{app:uml}
 % Fig: SED-ML complete
 \sedfig[width=\textwidth]{sedML}{The SED-ML UML class diagram}{fig:sedML}
 %
@@ -83,11 +84,11 @@
 
 %% XML SCHEMA
 \section{XML Schema}
-\label{sec:xmlschema}
 Listing \ref{lst:schema} shows the full SED-ML XML Schema. The code is commented inline.
+\label{sec:xmlschema}
 \input{xml/sedml-v0-r1-schema.tex}
 
-
+\newpage
 %% SAMPLE FILE
 \section{Examples}
 
