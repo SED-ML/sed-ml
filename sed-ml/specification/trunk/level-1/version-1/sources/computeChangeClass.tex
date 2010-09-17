@@ -15,8 +15,6 @@ id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 \hline
 target & \refpage{sec:target}\\
-%listOfVariables$^{o}$ & \refpage{sec:listOfVariables}\\
-%listOfParameter$^{o}$ & \refpage{sec:listOfParameters}\\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
@@ -24,9 +22,11 @@ target & \refpage{sec:target}\\
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
 \hline
+listOfVariables$^{o}$ & \refpage{sec:listOfVariables}\\
+listOfParameters$^{o}$ & \refpage{sec:listOfParameters}\\
+%variable$^{o}$ & \refpage{class:variable}\\
+%parameter$^{o}$ & \refpage{class:parameter}\\
 math &\refpage{sec:math}\\
-variable$^{o}$ & \refpage{class:variable}\\
-parameter$^{o}$ & \refpage{class:parameter}\\
 \hline
 \end{tabular}
 \label{tab:computeChange}
@@ -39,11 +39,11 @@ It is possible to introduce additional parameters for the mathematics. Therefore
 \hyperref[sec:listOfParameters]{listOfParameters}. They are then referenced through their ID.
 To use model variables for the definition of a mathematical expression, those variables need to be defined in the \hyperref[sec:listOfVariables]{listOfVariables} first, and can then be addressed by their ID.
 
-\paragraph{The \code{math} attribute}
+\paragraph{The \code{math} element}
 \label{sec:math}
 
 The \code{math} element encodes mathematical functions. 
-If used as an attribute of the \concept{ComputeChange} class, it computes the change of the element or attribute addressed by the \hyperref[sec:target]{target} attribute.
+If used as an element of the \concept{ComputeChange} class, it computes the change of the element or attribute addressed by the \hyperref[sec:target]{target} attribute.
 \LoneVone supports the subset of MathML 2.0 shown in section \ref{sec:mathML}.
 
 \lsttext{computeChange}{computeChange}

@@ -15,13 +15,14 @@ metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 target & \refpage{sec:target}\\
-newXML & \refpage{sec:newXml}\\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
 \hline
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+newXML & \refpage{sec:newXml}\\
 \hline
 \end{tabular}
 \label{tab:changeXml}
@@ -30,20 +31,22 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 %
 
 
-\subsubsection{The \element{newXML} attribute}
+\subsubsection{The \element{newXML} element}
 \label{sec:newXml}
 
-The new piece of XML code that is to substitute the XML element addressed by the XPath is provided in the required \code{newXML} attribute. 
+The new piece of XML code that is to substitute the XML element addressed by the XPath is provided in the required \code{newXML} element. 
 
 An example for a change that adds an additional parameter to a model is given in listing \ref{lst:changeXML}.
 %
-\begin{myXmlLst}{The \code{changeXML} element with its \code{newXML} attribute}{lst:changeXML}
+\begin{myXmlLst}{The \code{changeXML} element with its \code{newXML} sub-element}{lst:changeXML}
 <model [..]>
  <listOfChanges>
   <changeXML target="/sbml:sbml/sbml:model/sbml:listOfParameters
-                     /sbml:parameter[@id='V_mT']" 
-   newXML="<parameter metaid="metaid_0000010" id="V_mT" value="0.7">
-           <parameter metaid="metaid_0000050" id="V_mT_2" value="4.6">" />
+                     /sbml:parameter[@id='V_mT']" >
+   <newXML>
+     <parameter metaid="metaid_0000010" id="V_mT" value="0.7" />
+     <parameter metaid="metaid_0000050" id="V_mT_2" value="4.6"> />
+  </newXML>
  </listOfChanges>
 </model>
 \end{myXmlLst}
