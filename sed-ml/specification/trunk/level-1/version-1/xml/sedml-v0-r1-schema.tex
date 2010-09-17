@@ -125,7 +125,7 @@
 			<xs:attribute name="id" type="xs:string" use="required" />
 		</xs:complexType>
 	</xs:element>
-	<!--  <xs:element name="math" type="math:Math" /> -->
+	<xs:element name="math" type="math:Math" />
 	<xs:element name="listOfVariables">
 		<xs:complexType>
 			<xs:sequence>
@@ -213,7 +213,7 @@
 			<xs:sequence>
 				<xs:element ref="listOfVariables" minOccurs="0" />
 				<xs:element ref="listOfParameters" minOccurs="0" />
-				<xs:element ref="math:math" />
+				<xs:element ref="math" />
 			</xs:sequence>
 			<xs:attribute name="name" type="xs:string" use="required" />
 			<xs:attribute name="id" type="xs:string" />
@@ -241,9 +241,9 @@
 			<xs:attribute name="zDataReference" type="xs:string"
 				use="required" />
 			<xs:attribute name="name" use="optional" type="xs:string" />
-			<xs:attribute name="logY" use="required" type="xs:boolean" default="false"/>
-			<xs:attribute name="logX" use="required" type="xs:boolean" default="false"/>
-			<xs:attribute name="logZ" use="required" type="xs:boolean" default="false"/>
+			<xs:attribute name="logY" use="required" type="xs:boolean" />
+			<xs:attribute name="logX" use="required" type="xs:boolean" />
+			<xs:attribute name="logZ" use="required" type="xs:boolean" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="dataSet">
@@ -256,28 +256,30 @@
 	</xs:element>
 	<xs:element name="changeAttribute">
 		<xs:complexType>
-			<xs:attribute name="target" type="xs:token" />
+			<xs:attribute name="target" use="required" type="xs:token" />
 			<xs:attribute name="newValue" type="xs:string" use="required" />
 		</xs:complexType>
 	</xs:element>
+ 	<xs:element name="newXML" type="xs:string" />
 	<xs:element name="changeXML">
 		<xs:complexType>
-			<xs:attribute name="target" type="xs:token" />
-			<xs:attribute name="newValue" type="xs:string" use="required" />
+			<xs:sequence>
+				<xs:element ref="newXML" />
+			</xs:sequence>
+			<xs:attribute name="target" use="required" type="xs:token" />
 		</xs:complexType>
-	</xs:element>
+	</xs:element>	
 	<xs:element name="computeChange">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:element ref="listOfVariables" />
 				<xs:element ref="listOfParameters" />
-				<xs:element ref="math:math" />
+				<xs:element ref="math" />
 			</xs:sequence>
-			<xs:attribute name="target" type="xs:token" />
+			<xs:attribute name="target" use="required" type="xs:token" />
 		</xs:complexType>
 	</xs:element>
 </xs:schema>
-
 \end{myXmlLst}
 
 %%% Local Variables: 
