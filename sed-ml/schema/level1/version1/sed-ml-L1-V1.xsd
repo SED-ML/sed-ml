@@ -238,9 +238,9 @@
 			<xs:attribute name="zDataReference" type="xs:string"
 				use="required" />
 			<xs:attribute name="name" use="optional" type="xs:string" />
-			<xs:attribute name="logY" use="required" type="xs:boolean" default="false"/>
-			<xs:attribute name="logX" use="required" type="xs:boolean" default="false"/>
-			<xs:attribute name="logZ" use="required" type="xs:boolean" default="false"/>
+			<xs:attribute name="logY" use="required" type="xs:boolean" />
+			<xs:attribute name="logX" use="required" type="xs:boolean" />
+			<xs:attribute name="logZ" use="required" type="xs:boolean" />
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="dataSet">
