@@ -6,7 +6,7 @@
     <uniformTimeCourse id="simulation1"  initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfPoints="1000" >
     <algorithm kisaoID="KiSAO:0000088"/>
     </uniformTimeCourse>
-    <uniformTimeCourse id="simulation2" algorithm="KiSAO:0000027" initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfPoints="1000" >
+    <uniformTimeCourse id="simulation2" initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfPoints="1000" >
     <algorithm kisaoID="KiSAO:0000027"/>
     </uniformTimeCourse>
   </listOfSimulations>
