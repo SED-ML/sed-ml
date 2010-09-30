@@ -56,23 +56,56 @@ The following aggregate functions are available for use in \LoneVone.
 
 \item \emph{min}: Where the minimum of a variable represents the smallest value 
 the simulation experiment yielded. Example: 
-
-\begin{verbatim} <min> <ci> variableId </ci></min> \end{verbatim}.
+%
+%\begin{verbatim} <min> <ci> variableId </ci></min> \end{verbatim}.
+\begin{verbatim} 
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://www.biomodels.net/sed-ml/#min">
+ 		min
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{verbatim}
 
 \item \emph{max}: Where the maximum of a variables represents the largest value 
 the simulation experiment yielded. Example: 
-
-\begin{verbatim} <max> <ci> variableId </ci></max> \end{verbatim}.
+%
+%\begin{verbatim} <max> <ci> variableId </ci></max> \end{verbatim}.
+\begin{verbatim} 
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://www.biomodels.net/sed-ml/#max">
+ 		max
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{verbatim}
 
 \item \emph{sum}: All values of the variable returned by the simulation 
 experiment are added up. Example: 
+%
+%\begin{verbatim} <sum> <ci> variableId </ci></sum> \end{verbatim}.
+\begin{verbatim} 
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://www.biomodels.net/sed-ml/#sum">
+ 		sum
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{verbatim}
 
-\begin{verbatim} <sum> <ci> variableId </ci></sum> \end{verbatim}.
 
 \item \emph{product}: All values of the variable returned by the simulation 
 experiment are multiplied. Example: 
-
-\begin{verbatim} <product> <ci> variableId </ci></product> \end{verbatim}.
+%
+%\begin{verbatim} <product> <ci> variableId </ci></product> \end{verbatim}.
+\begin{verbatim} 
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://www.biomodels.net/sed-ml/#product">
+ 		product
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{verbatim}
 
 \end{itemize}
 

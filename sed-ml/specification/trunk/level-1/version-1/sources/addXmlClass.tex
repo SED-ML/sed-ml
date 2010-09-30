@@ -1,0 +1,58 @@
+% ChangeAttribute Class
+\label{class:addXml}
+The \concept{AddXML} class specifies a snippet of XML that is to be added as child of the specified XPath \hyperref[sec:target]{target} (see again section \ref{sec:target} on page \refpage{sec:target}). 
+
+\tabtext{addXml}{addXml}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+target & \refpage{sec:target}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+newXML & \refpage{sec:newXml}\\
+\hline
+\end{tabular}
+\label{tab:addXml}
+\caption{\tabcap{addXML}}
+\end{table}
+%
+
+\subsubsection{The \element{newXML} element}
+\label{sec:newXml}
+
+The new piece of XML code that is to be inserted as child of the the XML element addressed by the XPath is provided in the required \code{newXML} element. 
+
+An example for a change that adds an additional parameter to a model is given in listing \ref{lst:addXML}.
+%
+\begin{myXmlLst}{The \code{addXML} element with its \code{newXML} sub-element}{lst:addXML}
+<model [..]>
+ <listOfChanges>
+  <addXML target="/sbml:sbml/sbml:model/sbml:listOfParameters" >
+   <newXML>
+     <parameter metaid="metaid_0000010" id="V_mT" value="0.7" />
+  </newXML>
+  </addXML>
+ </listOfChanges>
+</model>
+\end{myXmlLst}
+%
+The code of the model is changed in the way that its parameter with ID \code{V\_mT} is added to its list of parameters.
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

@@ -3,11 +3,11 @@
 SED-ML not only allows to use the sole model for simlation, but on the contrary enables the description of \concept{changes} to be made on the model before simulation  (\fig{sedChange}). Changes can be of three different types:
 \begin{enumerate}
  \item{Changes on attributes of the model's XML representation (\hyperref[class:changeAttribute]{ChangeAttribute})}
- \item{Changes on any XML snippet of the model's XML representation (\hyperref[class:changeXml]{ChangeXML})}
+ \item{Changes on any XML snippet of the model's XML representation (\hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML})}
  \item{Changes based on mathematical calculations (\hyperref[class:computeChange]{ComputeChange})} 
  \end{enumerate}
 
-The \concept{Change} class is abstract and serves as the container for the different types of changes. Therefore, a SED-ML document will only contain the derived classes, i.\,e. \hyperref[class:changeAttribute]{ChangeAttribute}, \hyperref[class:changeXml]{ChangeXML}, or \hyperref[class:computeChange]{ComputeChange}.
+The \concept{Change} class is abstract and serves as the container for the different types of changes. Therefore, a SED-ML document will only contain the derived classes, i.\,e. \hyperref[class:changeAttribute]{ChangeAttribute}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML}, or \hyperref[class:computeChange]{ComputeChange}.
 %
 \sedfig{changeClass}{The SED-ML Change class}{fig:sedChange}
 %
@@ -32,7 +32,9 @@ target & \refpage{sec:target}\\
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
 \hline
+addXML$^{o}$ & \refpage{class:addXml}\\
 changeXML$^{o}$ & \refpage{class:changeXml}\\
+removeXML$^{o}$ & \refpage{class:removeXml}\\
 changeAttribute$^{o}$ & \refpage{class:changeAttribute}\\
 computeChange$^{o}$ & \refpage{class:computeChange}\\
 \hline

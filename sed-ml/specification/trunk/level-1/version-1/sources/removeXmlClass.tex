@@ -1,0 +1,48 @@
+% ChangeAttribute Class
+\label{class:removeXml}
+The \concept{RemoveXML} class can be used to delete any XML element of the model that is addressed by a valid XPath expression. The XPath is specified in the required \hyperref[sec:target]{target} attribute (see again section \ref{sec:target} on page \refpage{sec:target}). 
+
+\tabtext{removeXml}{removeXml}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+target & \refpage{sec:target}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\label{tab:removeXml}
+\caption{\tabcap{removeXML}}
+\end{table}
+%
+
+An example for a change that adds an additional parameter to a model is given in listing \ref{lst:removeXML}.
+%
+\begin{myXmlLst}{The \code{removeXML} element}{lst:removeXML}
+<model [..]>
+ <listOfChanges>
+  <removeXML target="/sbml:sbml/sbml:model/sbml:listOfReactions
+                     /sbml:reaction[@id='J1']" />
+ </listOfChanges>
+</model>
+\end{myXmlLst}
+%
+The code of the model is changed by deleting the reaction with ID \code{V\_mT} from its list of reactions.
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 
