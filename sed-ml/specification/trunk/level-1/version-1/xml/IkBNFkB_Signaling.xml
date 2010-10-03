@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sedML xmlns="http://www.biomodels.net/sed-ml">
+  <listOfSimulations>
+    <uniformTimeCourse id="simulation1" algorithm="KISAO:0000019"
+    initialTime="0" outputStartTime="0" outputEndTime="2500"
+    numberOfPoints="1000" />
+  </listOfSimulations>
+  <listOfModels>
+    <model id="model1" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000140" />
+  </listOfModels>
+  <listOfTasks>
+    <task id="task1" modelReference="model1"
+    simulationReference="simulation1" />
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="time" name="time">
+      <listOfVariables>
+        <variable id="time" taskReference="task1" target="time" />
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci>time</ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Total_NFkBn" name="Total_NFkBn">
+      <listOfVariables>
+        <variable id="Total_NFkBn" taskReference="task1"
+        target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='Total_NFkBn']" />
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci>Total_NFkBn</ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Total_IkBbeta" name="Total_IkBbeta">
+      <listOfVariables>
+        <variable id="Total_IkBbeta" taskReference="task1"
+        target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='Total_IkBbeta']" />
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci>Total_IkBbeta</ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Total_IkBeps" name="Total_IkBeps">
+      <listOfVariables>
+        <variable id="Total_IkBeps" taskReference="task1"
+        target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='Total_IkBeps']" />
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci>Total_IkBeps</ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="Total_IkBalpha" name="Total_IkBalpha">
+      <listOfVariables>
+        <variable id="Total_IkBalpha" taskReference="task1"
+        target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='Total_IkBalpha']" />
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci>Total_IkBalpha</ci>
+      </math>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot1" name="BM140 Total_NFkBn">
+      <listOfCurves>
+        <curve logX="false" logY="false" xDataReference="time" 
+        yDataReference="Total_NFkBn" />
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot2" name="BM140 Total_IkBbeta">
+      <listOfCurves>
+        <curve logX="false" logY="false" xDataReference="time"
+        yDataReference="Total_IkBbeta" />
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot3" name="BM140 Total_IkBeps">
+      <listOfCurves>
+        <curve logX="false" logY="false" xDataReference="time"
+        yDataReference="Total_IkBeps" />
+      </listOfCurves>
+    </plot2D>
+    <plot2D id="plot4" name="BM140 Total_IkBalpha">
+      <listOfCurves>
+        <curve logX="false" logY="false" xDataReference="time" 
+        yDataReference="Total_IkBalpha" />
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>
