@@ -3,11 +3,11 @@
 
 Most objects in SED-ML carry an \concept{id} attribute. 
 The \hyperref[sec:id]{id} attribute, if existent for an object, is always required and identifies SED-ML constituents unambiguously.  
-It is used to refer to a constituent from other constituents. 
-The \code{id} data type is \code{String}. All \code{id}s have a global scope, i.\,e. the \code{id} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
+It is used to refer to a constituent from other constituents, as in 
+The \code{id} data type is \code{String}. All \code{id}s have a global scope, i.\,e.\ the \code{id} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
 An example for a defined \code{id} is given in listing \ref{lst:id}.
 %
-\begin{myXmlLst}{SED-ML identifier definition, e.\,g. for a model}{lst:id}
+\begin{myXmlLst}{SED-ML identifier definition, e.\,g.\ for a model}{lst:id}
 <model id="m00001" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000012">
  [MODEL DEFINITION]
 </model>

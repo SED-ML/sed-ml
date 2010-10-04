@@ -1,8 +1,8 @@
 % variable class
 \label{class:variable}
-In SED-ML \concept{variables} are references to already existing entities, either existing in one of the defined \hyperref[class:model]{models} or externally defined \hyperref[sec:symbol]{symbols} (\fig{variable}). 
+\concept{Variables} are references to already existing entities, either existing in one of the defined \hyperref[class:model]{models} or externally defined \hyperref[sec:symbol]{symbols} (\fig{variable}). 
 %
-\sedfig[width=0.35\textwidth]{variableClass}{The Variable class}{fig:variable}
+\sedfig[width=0.3\textwidth]{variableClass}{The Variable class}{fig:variable}
 %
 If the variable is defined through a reference to a model constituent, such as an SBML species, then the reference is specified using the  \hyperref[sec:target]{target} attribute.
 If the variable is defined through a reference to an external entity, then the  \hyperref[sec:symbol]{symbol} attribute is used. It holds a SED-ML \hyperref[sec:uriScheme]{URI}. A \code{variable} is  always placed inside a \hyperref[class:listOfVariables]{listOfVariables}. \code{Symbol} and \code{target} must not be used together in a single instance of Variable.
@@ -89,7 +89,7 @@ XPath allows to unambiguously identify an element or attribute in an XML file.
  <listOfChanges>
   <computeChange [..]>
    <listOfVariables>
-    <variable id="v1" name="Tet protein" target="/sbml/listOfSpecies/species[@id='PY']" />
+    <variable id="v1" name="TetR protein" target="/sbml/listOfSpecies/species[@id='PY']" />
    </listOfVariables>
   </computeChange>
  </listOfChanges>
@@ -141,17 +141,13 @@ The XPath expression used in the \concept{\code{target}} attribute unambiguously
    <listOfVariables>
     <variable id="t1" name="time" symbol="urn:sedml:symbol:time" />
    </listOfVariables>
+   [CHANGE COMPUTATION]
   </computeChange>
  </listOfChanges>
 </model>
 \end{myXmlLst}
 %
-
-%\alert{What about the following points?}
-%\begin{itemize}
-%\item {implicit/explicit notion of time in different formats.}
-%\item {reserved words}
-%\end{itemize}
+The example shows a computed change of model \code{m001}. To specify that change, a symbol is first defined, namely the SED-ML symbol for \code{time} is assigned to the variable \code{t1}. How to compute the change itself is explained in section \ref{class:computeChange}.
 
 %%% Local Variables: 
 %%% mode: latex
