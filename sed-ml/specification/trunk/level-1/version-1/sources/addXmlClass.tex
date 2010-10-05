@@ -1,6 +1,11 @@
 % ChangeAttribute Class
 \label{class:addXml}
-The \concept{AddXML} class specifies a snippet of XML that is to be added as a child of the specified XPath \hyperref[sec:target]{target} attribute (see again section \ref{sec:target} on page \refpage{sec:target}). 
+The \concept{AddXML} class specifies a snippet of XML that is to be added as a child of the specified XPath \hyperref[sec:target]{target} attribute (\fig{addXMLClass}). 
+The new piece of XML code is provided by the \hyperref[sec:newXml]{NewXML} class.
+%
+\sedfig[width=0.75\textwidth]{addXMLClass}{The SED-ML \code{AddXML} class}{fig:addXMLClass}
+%
+
 
 \tabtext{addXml}{addXml}
 %
@@ -29,15 +34,10 @@ newXML & \refpage{sec:newXml}\\
 \end{table}
 %
 
-\subsubsection{The \element{newXML} element}
-\label{sec:newXml}
-
-The new piece of XML code that is to be inserted as child of the the XML element addressed by the XPath is provided in the required \code{newXML} element. 
-
 An example for a change that adds an additional parameter to a model is given in listing \ref{lst:addXML}.
 %
 \begin{myXmlLst}{The \code{addXML} element with its \code{newXML} sub-element}{lst:addXML}
-<model [..]>
+<model language="urn:sedml:language:sbml" [..]>
  <listOfChanges>
   <addXML target="/sbml:sbml/sbml:model/sbml:listOfParameters" >
    <newXML>
@@ -48,9 +48,8 @@ An example for a change that adds an additional parameter to a model is given in
 </model>
 \end{myXmlLst}
 %
-The code of the model is changed in the way that its parameter with ID \code{V\_mT} is added to its list of parameters.
 
-
+The code of the model is changed in the way that its parameter with ID \code{V\_mT} is added to its list of parameters. The \code{newXML} element adds an additional XML element to the original model. The element's name is \code{parameter} and it is added to the existing parent element \code{listOfParameters} that is addressed by the XPath expression in the \code{target} attribute.
 
 %%% Local Variables: 
 %%% mode: latex

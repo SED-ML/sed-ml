@@ -1,5 +1,8 @@
 \label{class:uniformTimeCourse}
-SED-ML \LoneVone so far only supports uniform time courses. 
+SED-ML \LoneVone so far only supports the encoding of uniform time course experiments. 
+%
+\sedfig[width=0.75\textwidth]{timecourseSimulation}{The \code{UniformTimeCourse} class}{fig:timecourseSimulation}
+%
 
 \tabtext{uniformTimeCourse}{uniformTimeCourse}
 %
@@ -38,7 +41,9 @@ algorithm & \refpage{class:algorithm}\\
 <listOfSimulations>
  <uniformTimeCourse id="s1"  name="time course simulation of variable v1 over 100 minutes"  
   initialTime="0" outputStartTime="0" outputEndTime="2500" numberOfPoints="1000">
-  <algorithm kisaoID="KiSAO:0000030" />
+  <algorithm [..]>
+    [ALGORITHM DEFINITION]
+  </algorithm>
  </uniformTimeCourse>
 </listOfSimulations>
 \end{myXmlLst}
@@ -62,7 +67,7 @@ The attribute \element{outputEndTime} of type \code{double} marks the end time o
 \subsubsection{The \element{numberOfPoints} attribute}
 \label{sec:numberOfPoints}
 
-When executed, the \element{uniformTimeCourse} simulation produces output on a regular grid starting with \element{outputStartTime} and ending with \element{outputEndTime}. The attribute  \element{numberOfPoints} of type \code{integer}, describes the number of points expected in the result. Software interpreting the \element{uniformTimeCourse} is expected to produce a first outputPoint at time \element{outputStartTime} with the initial values of the model to be simulated, and then \element{numberOfPoints} output points with the results of the simulation. Thus a total of \code{numberOfPoints + 1} output points will be produced.
+When executed, the \element{uniformTimeCourse} simulation produces output on a regular grid starting with \element{outputStartTime} and ending with \element{outputEndTime}. The attribute  \element{numberOfPoints} of type \code{integer} describes the number of points expected in the result. Software interpreting the \element{uniformTimeCourse} is expected to produce a first outputPoint at time \element{outputStartTime} with the initial values of the model to be simulated, and then \element{numberOfPoints} output points with the results of the simulation. Thus a total of \code{numberOfPoints + 1} output points will be produced.
 
 Just because the output points lie on the regular grid described above, this does not mean that the simulation algorithm has to work with the same step size. Usually the step size the simulator chooses will be adaptive and much smaller than the required output step size. On the other side a stochastic simulator might not have any new events occurring between two grid points. Nevertheless the simulator has to produce data on this regular grid. For an example, see listing \ref{lst:timecourse}. 
 

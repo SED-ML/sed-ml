@@ -1,11 +1,10 @@
 \label{class:dataGenerator}
 
-The \concept{DataGenerator} class prepares the raw simulation results for later output (\fig{sedDG}). It encodes the post-processing the researcher intends to be applied to the simulation data. The post-processing steps could be anything, from simple normalisations of data to mathematical calculations. 
-
-
-% Fig: DG
+The \concept{DataGenerator} class prepares the raw simulation results for later output (\fig{sedDG}). It encodes the post-processing  to be applied to the simulation data. The post-processing steps could be anything, from simple normalisations of data to mathematical calculations. 
+%
 \sedfig[width=0.85\textwidth]{dataGeneratorClass}{The SED-ML DataGenerator class}{fig:sedDG}
 %
+Each instance of the \concept{DataGenerator} class is identifiable within the experiment by its unambiguous \concept{id}. It can be further characterised by an optional \concept{name}. The related \hyperref[sec:math]{Math} class contains a mathML expression for the calculation of the data generator. Mathematical functions available for the specification of dara generators are given in section \ref{sec:mathML} on \refpage{sec:mathML}. \hyperref[class:variable]{Variable} and \hyperref[class:parameter]{Parameter} instances can be used to encode the mathematical expression.
 
 \tabtext{dataGenerator}{dataGenerator}
 %
@@ -38,11 +37,9 @@ parameter$^{o}$ & \refpage{class:parameter}\\
 \end{table}
 %
 
-Each \concept{dataGenerator} is identifiable within the experiment by its unambiguous \concept{id}. It can be further characterised by an optional \concept{name}. The \hyperref[sec:mathML]{math} element contains a mathML expression for the calculation of the data generator. Mathematical functions available for the specification of \hyperref[class:dataGenerator]{DataGenerator} variables are given in section \ref{sec:mathML} on page \refpage{sec:mathML}. Within the mathematical expression, variables defined in the \hyperref[sec:listOfVariables]{listOfVariables} and parameters defined in the \hyperref[sec:listOfParameters]{listOfParameters} can be used.
-
-\lsttext{listOfDataGenerators}{listOfDataGenerators}
+\lsttext{dataGenerator}{dataGenerator}
 %
-\begin{myXmlLst}{The \code{listOfDataGenerators} element, defining two data generators \emph{time} and \emph{LaCI repressor}}{lst:listOfDataGenerators}
+\begin{myXmlLst}{Definition of two \code{daraGenerator} elements, \emph{time} and \emph{LaCI repressor}}{lst:dataGenerator}
 <listOfDatGenerators>
  <dataGenerator id="d1" name="time">
   <listOfVariables>

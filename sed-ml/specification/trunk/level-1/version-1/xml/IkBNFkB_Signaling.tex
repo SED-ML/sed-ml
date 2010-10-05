@@ -1,11 +1,17 @@
 % sed-ml example file
 The following example provides a SED-ML description for the simulation of the IkappaB-NF-kappaB signaling module based on the publication by Hoffmann, Levchenko, Scott and  Baltimore ``The IkappaB-NF-kappaB signaling module: temporal control and selective gene activation. '' (PubMed ID: 12424381)
 
-This model is referenced by a MRIAM URN as \code{model1}. Software applications interpreting this example know to dereference this URN and access the BioModels Database \citep{N+06} in order to retrieve the model. The simulation description speciies one simulation \code{simulation1}, a uniform timecourse simulation that simulates the model for 41 hours. \code{task1} then applies this simulation to the model. 
+This model is referenced by its SED-ML ID  \code{model1} and refers to the model with the MRIAM URN \url{urn:miriam:biomodels.db:BIOMD0000000140}. 
+Software applications interpreting this example know how to dereference this URN and access the model in \biom \citep{N+06}.
 
-As output this simulation description collects four parameters: \code{Total\_NFkBn}, \code{Total\_IkBbeta}, \code{Total\_IkBeps} and \code{Total\_IkBalpha}. These variables are to be plotted against the simulation time and displayed in four separate plots. 
+The simulation description specifies one simulation \code{simulation1}, which is a uniform timecourse simulation that simulates the model for 41 hours. \code{task1} then applies this simulation to the model. 
 
+As output this simulation description collects four parameters: \code{Total\_NFkBn}, \code{Total\_IkBbeta}, \code{Total\_IkBeps} and \code{Total\_IkBalpha}. These variables are to be plotted against the simulation time and displayed in four separate plots, as shown in Figure \ref{fig:ikappabExample}. 
+%
+\sedfig[width=0.8\textwidth]{ikappab}{The simulation result gained from the simulation description given in listing \ref{ikappab}}{fig:ikappabExample}
+%
 
+The SED-ML description of the simulation experiment is given in listing \ref{lst:ikappab}.
 
 \footnotesize
 \begin{myXmlLst}{IkappaB-NF-kappaB signaling Model Simulation Description in SED-ML}{lst:ikappab}

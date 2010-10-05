@@ -1,6 +1,15 @@
 % ChangeAttribute Class
 \label{class:computeChange}
-The \concept{ComputeChange} class allows to make changes on any element of the XML file addressable by an XPath expression. The changes  are described by mathematical expressions using a \hyperref[sec:mathML]{subset of MathML}. 
+The \concept{ComputeChange} class allows to make changes on any element of the XML file addressable by an XPath expression (\fig{computeChange}). 
+%
+\sedfig[width=\textwidth]{computeChangeClass}{The \code{ComputeChange} class}{fig:computeChange}
+%
+The changes are described by mathematical expressions using a \hyperref[sec:mathML]{subset of MathML} (see again section \ref{sec:mathML} on \refpage{sec:mathML}). 
+
+To define a computable change it is often necessary to introduce additional parameters for the mathematics. Therefore, the  \hyperref[class:parameter]{parameters} first need to be defined. They can then referenced through their ID.
+To use model variables for the definition of a mathematical expression, those  \hyperref[class:variable]{variables} need to be defined first, and can then be addressed by their ID.
+Finally, the change itself is specified using an instance of the \hyperref[sec:math]{Math} class.
+
 
 \tabtext{computeChange}{computeChange}
 %
@@ -24,8 +33,6 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \hline
 listOfVariables$^{o}$ & \refpage{sec:listOfVariables}\\
 listOfParameters$^{o}$ & \refpage{sec:listOfParameters}\\
-%variable$^{o}$ & \refpage{class:variable}\\
-%parameter$^{o}$ & \refpage{class:parameter}\\
 math &\refpage{sec:math}\\
 \hline
 \end{tabular}
@@ -34,10 +41,6 @@ math &\refpage{sec:math}\\
 \end{table}
 %
 
-The \hyperref[sec:target]{target} attribute contains the XPath addressing the piece of XML that is to be changed. 
-It is possible to introduce additional parameters for the mathematics. Therefore, the parameters first need to be defined in the 
-\hyperref[sec:listOfParameters]{listOfParameters}. They are then referenced through their ID.
-To use model variables for the definition of a mathematical expression, those variables need to be defined in the \hyperref[sec:listOfVariables]{listOfVariables} first, and can then be addressed by their ID.
 
 \paragraph{The \code{math} element}
 \label{sec:math}
@@ -106,7 +109,7 @@ The mathematical expression in the mathML then computes the change of $w$ using 
 \begin{math}
 w + wo \times \frac{camkii^{n}}{camkii^{n}+K^{n}}
 \end{math}
-
+.
 %A problem arises, because the individual supported model exchange languages allow different subsets of MathML. Thus, when an instance of ComputeChange replaces a %mathematical expression of  an SBML reaction, only the MathML subset allowed by SBML should be used here.
 
 
