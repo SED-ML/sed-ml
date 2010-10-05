@@ -1,7 +1,11 @@
 % ChangeAttribute Class
 \label{class:changeXml}
-The \concept{ChangeXML} class defines changes of any XML element in the model that can be addressed by a valid XPath expression. 
+The \concept{ChangeXML} class defines changes of any XML element in the model that can be addressed by a valid XPath expression (\fig{changeXml}). 
+%
+\sedfig[width=0.75\textwidth]{changeXmlClass}{The \code{ChangeXML} class}{fig:changeXml}
+%
 The XPath is specified in the required \hyperref[sec:target]{target} attribute (see again section \ref{sec:target} on page \refpage{sec:target}). 
+The change of XML is specified in the \hyperref[sec:newXml]{NewXML} class.
 
 \tabtext{changeXml}{changeXml}
 %
@@ -30,20 +34,14 @@ newXML & \refpage{sec:newXml}\\
 \end{table}
 %
 
-\subsubsection{The \element{newXML} element}
-\label{sec:newXml}
-
-The new piece of XML code that is to substitute the XML element addressed by the XPath is provided in the required \code{newXML} element. 
-
 An example for a change that adds an additional parameter to a model is given in listing \ref{lst:changeXML}.
 %
-\begin{myXmlLst}{The \code{changeXML} element with its \code{newXML} sub-element}{lst:changeXML}
+\begin{myXmlLst}{The \code{changeXML} element}{lst:changeXML}
 <model [..]>
  <listOfChanges>
-  <changeXML target="/sbml:sbml/sbml:model/sbml:listOfParameters
-                     /sbml:parameter[@id='V_mT']" >
+  <changeXML target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_mT']" >
    <newXML>
-     <parameter metaid="metaid_0000010" id="V_mT" value="0.7" />
+     <parameter metaid="metaid_0000010" id="V_mT_1" value="0.7" />
      <parameter metaid="metaid_0000050" id="V_mT_2" value="4.6"> />
   </newXML>
   </changeXML>
@@ -51,8 +49,8 @@ An example for a change that adds an additional parameter to a model is given in
 </model>
 \end{myXmlLst}
 %
-The code of the model is changed in the way that its parameter with ID \code{V\_mT} is substituted by another two parameters \code{V\_mT} and \code{V\_mT\_2}.
-
+The code of the model is changed in the way that its parameter with ID \code{V\_mT} is substituted by two other parameters \code{V\_mT\_1} and \code{V\_mT\_2}.
+The \code{target} attribute defines that the parameter with ID \code{V\_mT} is to be changed. The \code{newXML} element then specifies the XML that is to exchange that parameter.
 
 
 %%% Local Variables: 

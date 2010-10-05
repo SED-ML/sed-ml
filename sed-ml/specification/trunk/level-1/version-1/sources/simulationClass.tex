@@ -3,7 +3,7 @@
 
 A simulation is the execution of some defined algorithm(s). 
 Simulations are described differently depending on the type of simulation experiment to be performed (\fig{sedSimulation}). 
-% Fig: sed simulation
+%
 \sedfig[width=0.85\textwidth]{simulationClass}{The SED-ML Simulation class}{fig:sedSimulation}
 %
 \concept{Simulation} is an abstract class and serves as the container for the different types of simulation experiments. SED-ML \LoneVone offers the predefined simulation class \hyperref[class:uniformTimeCourse]{UniformTimeCourse}. 
@@ -40,13 +40,11 @@ algorithm & \refpage{class:algorithm}\\
 %
 \begin{myXmlLst}{The SED-ML \code{listOfSimulations} element, defining two different simulations}{lst:simulation}
 <listOfSimulations>
-  <uniformTimeCourse id="s1" name="time course simulation of variable v1 over 100 minutes" [..]>
-    <algorithm>
-      [ALGORITHM DEFINITION FOLLOWING]
-    </algorithm>
+  <uniformTimeCourse [..]>
+    [SIMULATION SPECIFICATION]
   </uniformTimeCourse>
-  <uniformTimeCourse id="s2" name="time course definition for concentration of p" [..]>
-    [..]
+  <uniformTimeCourse [..]>
+    [SIMULATION SPECIFICATION]
   </uniformTimeCourse>
 </listOfSimulations>
 \end{myXmlLst}
