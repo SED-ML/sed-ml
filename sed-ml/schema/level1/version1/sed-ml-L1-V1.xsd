@@ -294,20 +294,91 @@
 		</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
+	<!-- change -->
 	<xs:element name="listOfChanges">
 		<xs:complexType>
 		<xs:complexContent>
 		<xs:extension base="SEDBase">
 			<xs:sequence>
-				<xs:element ref="changeAttribute" minOccurs="0"
-					maxOccurs="unbounded" />
+				<xs:element ref="changeAttribute" minOccurs="0"	maxOccurs="unbounded" />
 				<xs:element ref="changeXML" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="addXML" minOccurs="0" maxOccurs="unbounded" />
+				<xs:element ref="removeXML" minOccurs="0" maxOccurs="unbounded" />
 				<xs:element ref="computeChange" minOccurs="0" maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:extension>
 		</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
+ 	<xs:element name="newXML">
+	 	<xs:complexType>
+		<xs:complexContent>
+		<xs:extension base="SEDBase"> 		 	
+			 <xs:sequence>
+				 <xs:any namespace="http://www.w3.org/1999/xhtml" processContents="skip" minOccurs="1" maxOccurs="unbounded"/>
+			 </xs:sequence>
+		</xs:extension>
+		</xs:complexContent>
+		</xs:complexType>
+ 	</xs:element>
+	<xs:element name="changeAttribute">
+		<xs:complexType>
+		<xs:complexContent>
+		<xs:extension base="SEDBase">
+			<xs:attribute name="target" use="required" type="xs:token" />
+			<xs:attribute name="newValue" type="xs:string" use="required" />
+		</xs:extension>
+		</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="changeXML">
+		<xs:complexType>
+		<xs:complexContent>
+		<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="newXML" />
+			</xs:sequence>
+			<xs:attribute name="target" use="required" type="xs:token" />
+		</xs:extension>
+		</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+		<xs:element name="addXML">
+		<xs:complexType>
+		<xs:complexContent>
+		<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="newXML" />
+			</xs:sequence>
+			<xs:attribute name="target" use="required" type="xs:token" />
+		</xs:extension>
+		</xs:complexContent>
+		</xs:complexType>
+	</xs:element>	
+	<xs:element name="removeXML">
+		<xs:complexType>
+		<xs:complexContent>
+		<xs:extension base="SEDBase">
+			<xs:attribute name="target" use="required" type="xs:token" />
+		</xs:extension>
+		</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="computeChange">
+		<xs:complexType>
+		<xs:complexContent>
+		<xs:extension base="SEDBase">
+			<xs:sequence>
+				<xs:element ref="listOfVariables" />
+				<xs:element ref="listOfParameters" />
+				<xs:element ref="math" />
+			</xs:sequence>
+			<xs:attribute name="target" use="required" type="xs:token" />
+		</xs:extension>
+		</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!-- data generator -->
 	<xs:element name="dataGenerator">
 		<xs:complexType>
 		<xs:complexContent>
@@ -366,53 +437,6 @@
 			<xs:attribute name="dataReference" type="xs:string" use="required"></xs:attribute>
 			<xs:attribute name="label" use="required" type="xs:string" />
 			<xs:attribute name="name" use="optional" type="xs:string" />
-		</xs:extension>
-		</xs:complexContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="changeAttribute">
-		<xs:complexType>
-		<xs:complexContent>
-		<xs:extension base="SEDBase">
-			<xs:attribute name="target" use="required" type="xs:token" />
-			<xs:attribute name="newValue" type="xs:string" use="required" />
-		</xs:extension>
-		</xs:complexContent>
-		</xs:complexType>
-	</xs:element>
- 	<xs:element name="newXML">
-	 	<xs:complexType>
-		<xs:complexContent>
-		<xs:extension base="SEDBase"> 		 	
-			 <xs:sequence>
-				 <xs:any namespace="http://www.w3.org/1999/xhtml" processContents="skip" minOccurs="1" maxOccurs="unbounded"/>
-			 </xs:sequence>
-		</xs:extension>
-		</xs:complexContent>
-		</xs:complexType>
- 	</xs:element>
-	<xs:element name="changeXML">
-		<xs:complexType>
-		<xs:complexContent>
-		<xs:extension base="SEDBase">
-			<xs:sequence>
-				<xs:element ref="newXML" />
-			</xs:sequence>
-			<xs:attribute name="target" use="required" type="xs:token" />
-		</xs:extension>
-		</xs:complexContent>
-		</xs:complexType>
-	</xs:element>	
-	<xs:element name="computeChange">
-		<xs:complexType>
-		<xs:complexContent>
-		<xs:extension base="SEDBase">
-			<xs:sequence>
-				<xs:element ref="listOfVariables" />
-				<xs:element ref="listOfParameters" />
-				<xs:element ref="math" />
-			</xs:sequence>
-			<xs:attribute name="target" use="required" type="xs:token" />
 		</xs:extension>
 		</xs:complexContent>
 		</xs:complexType>
