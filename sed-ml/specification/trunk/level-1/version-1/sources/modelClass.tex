@@ -75,7 +75,7 @@ The above \code{listOfModels} contains three models:
 The first model \code{m0001} is the Repressilator model taken from \biom. 
 The original model is available from \url{urn:miriam:biomodels.db:BIOMD0000000012}. 
 For the SED-ML simulation, the model might undergo pre-processings, described in the \hyperref[class:change]{change} element (lines 5-7).
-Based on the description of the first model \code{m0001}, the second model is build. 
+Based on the description of the first model \code{m0001}, the second model is built. 
 It refers to the model \code{m001} in the \code{source} attribute, that is the modified version of the Repressilator model.
 \code{m0002} might then have even further changes applied to it on top of the changes defined in the pre-processing of \code{m0001}.
 The third model in the code example above (lines 13-15) is a different model in CellML representation. \code{m0003} is the model available from the given URL in the \code{source} attribute. Again, it might have additional pre-processing applied to it before used in the simulation.
@@ -83,9 +83,9 @@ The third model in the code example above (lines 13-15) is a different model in 
 
 \subsubsection{The \code{language} attribute}
 \label{sec:language}
-The evaluation of a SED-ML file will decide whether or not it can be used for a particular simulation environment. One crucial criterium is the particular model representation language used to encode the model. A simulation software usually only supports a small subset of the representation formats available to model biological systems computationally. 
+The evaluation of a SED-ML file will decide whether or not it can be used for a particular simulation environment. One crucial criterion is the particular model representation language used to encode the model. A simulation software usually only supports a small subset of the representation formats available to model biological systems computationally. 
 
-To help a software decide whether or not it supports a SED-ML description file, the information on the model encoding for each referenced model can be provided through the \concept{language} attribute, s the description of a language name and version through an unrestricted \code{String} is error-prone. 
+To help a software decide whether or not it supports a SED-ML description file, the information on the model encoding for each referenced model can be provided through the \concept{language} attribute, as the description of a language name and version through an unrestricted \code{String} is error-prone. 
 A prerequisite for a language to be fully supported by SED-ML is that a formalised language definition, e.\,g. an XML Schema, is provided online. SED-ML also defines a set of standard URIs to refer to particular language definitions. 
 The list of URNs for languages so far associated with SED-ML is available from the SED-ML web site on \url{http://biomodels.net/sed-ml}  (see again section \ref{sec:languageURI} on \refpage{sec:languageURI}). 
 To specify language and version, following the idea of MIRIAM URNs, the SED-ML URN scheme \code{urn:sedml:language:}\emph{language name} is used. A model's language being ``SBML Level 2 Version 2'' can be referred to, for example, through the URN \code{urn:sedml:language:sbml.level-2.version-2}.
