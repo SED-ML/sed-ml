@@ -63,7 +63,7 @@ A \code{variable} element must contain a \hyperref[sec:taskReference]{taskRefere
  <listOfDataGenerators>
   <dataGenerator [..]>
    <listOfVariables>
-    <variable id="v2" name="time" symbol="urn:sedml:symbol:time" />
+    <variable id="v2" name="time" task="task1" symbol="urn:sedml:symbol:time" />
       [FURTHER VARIABLE DEFINITIONS]
    </listOfVariables>
   </dataGenerator>
@@ -73,7 +73,7 @@ A \code{variable} element must contain a \hyperref[sec:taskReference]{taskRefere
 \end{myXmlLst}
 %
 Listing \ref{lst:variable} defines a variable \code{v1} (line 7) to compute a change on a model constituent (referenced by the \code{target} attribute on \element{computeChange} in line 5). The value of \code{v1} corresponds with the value of the targeted model constituent references by the \code{target} attribute in line 8. 
-The second variable, \code{v2} (line 21), is used inside a \code{dataGenerator}. As the variable is \concept{time}, the \code{symbol} attribute is used to refer to the SED-ML URI for time (line 21).
+The second variable, \code{v2} (line 21), is used inside a \code{dataGenerator}. As the variable is \concept{time} as used in  \code{task1}, the \code{symbol} attribute is used to refer to the SED-ML URI for time (line 21).
 
 \subsubsection{The \element{target} attribute}
 \label{sec:target}
