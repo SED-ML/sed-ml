@@ -28,7 +28,7 @@ The \code{output} defined in the experiment constists of a 2D plot with two diff
  <!-- definition of models used during the experiment -->
  <listOfModels>
   <!-- reference to a cellML model -->
-  <model id="model1" name="Circadian Oscillations" type="CellML" 
+  <model id="model1" name="Circadian Oscillations" language="urn:sedml:language:cellml" 
    source="http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/d6613d7e1051b3eff2bb1d3d419a445bb8c754ad/leloup_gonze_goldbeter_1999_b.cellml" >
    <!-- definition of changes to be applied to the original model (changing initial conditions) -->
    <listOfChanges>
@@ -42,7 +42,7 @@ The \code{output} defined in the experiment constists of a 2D plot with two diff
    </listOfChanges>
   </model>
   <!-- reference to the above model (model1) with additional changes of initial values of MY and T2 -->
-  <model id="model2" name="Circadian Chaos" type="CellML" source="model1">
+  <model id="model2" name="Circadian Chaos" language="urn:sedml:language:cellml" source="model1">
    <listOfChanges>
     <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MT']/cellml:variable[@name='vmT']/@initial_value" newValue="0.28"/>
     <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='T2']/cellml:variable[@name='vdT']/@initial_value" newValue="4.8"/>        

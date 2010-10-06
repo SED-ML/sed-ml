@@ -23,7 +23,7 @@ The SED-ML description of the simulation experiment is given in listing \ref{lst
     numberOfPoints="1000" />
   </listOfSimulations>
   <listOfModels>
-    <model id="model1" type="SBML" source="urn:miriam:biomodels.db:BIOMD0000000140" />
+    <model id="model1" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000140" />
   </listOfModels>
   <listOfTasks>
     <task id="task1" modelReference="model1"
@@ -32,7 +32,7 @@ The SED-ML description of the simulation experiment is given in listing \ref{lst
   <listOfDataGenerators>
     <dataGenerator id="time" name="time">
       <listOfVariables>
-        <variable id="time" taskReference="task1" target="time" />
+        <variable id="time" taskReference="task1" symbol="urn:sedml:symbol:time" />
       </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci>time</ci>
