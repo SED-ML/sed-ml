@@ -1,7 +1,7 @@
 % algorithm class
 \label{class:algorithm}
 
-SED-ML makes use of the \hyperref[sec:kisao]{KiSA ontology} (see again section \ref{sec:kisao} on \refpage{sec:kisao}) to refer to a term in the controlled vocabulary identifying the particular simulation algorithm to be used in the simulation. 
+SED-ML makes use of the \hyperref[sec:kisao]{KiSAO ontology} (see again section \ref{sec:kisao} on \refpage{sec:kisao}) to refer to a term in the controlled vocabulary identifying the particular simulation algorithm to be used in the simulation. 
 
 Each instance of the \hyperref[class:simulation]{Simulation} class must contain one reference to a simulation algorithm (\fig{algorithm}). 
 %
@@ -39,15 +39,15 @@ The example given in code snipped \ref{lst:simulation}, completed by algorithm d
 \begin{myXmlLst}{The SED-ML \code{algorithm} element, defining two different algorithms in the two defined simulations}{lst:algorithm}
 <listOfSimulations>
  <uniformTimeCourse id="s1" name="time course simulation over 100 minutes" [..]>
-  <algorithm kisaoID="KiSAO:0000030" />
+  <algorithm kisaoID="KISAO:0000030" />
  </uniformTimeCourse>
  <uniformTimeCourse id="s2" name="time course definition for concentration of p" [..]>
-  <algorithm kisaoID="KiSAO:0000021" />
+  <algorithm kisaoID="KISAO:0000021" />
  </uniformTimeCourse>
 </listOfSimulations>
 \end{myXmlLst}
 %
-For both simulations, one algorithm is defined. In the first simulation \code{s1} a deterministic approach has been chosen (Euler forward method), in the second simulation \code{s2} a stochastic one is used (Stochsim nearest neighbor).
+For both simulations, one algorithm is defined. In the first simulation \code{s1} a deterministic approach has been chosen (Euler forward method), in the second simulation \code{s2} a stochastic approach is used (Stochsim nearest neighbor).
 
 %%% Local Variables: 
 %%% mode: latex
