@@ -90,10 +90,12 @@ A prerequisite for a language to be fully supported by SED-ML is that a formalis
 The list of URNs for languages so far associated with SED-ML is available from the SED-ML web site on \url{http://biomodels.net/sed-ml}  (see again section \ref{sec:languageURI} on \refpage{sec:languageURI}). 
 To specify language and version, following the idea of MIRIAM URNs, the SED-ML URN scheme \code{urn:sedml:language:}\emph{language name} is used. A model's language being ``SBML Level 2 Version 2'' can be referred to, for example, through the URN \code{urn:sedml:language:sbml.level-2.version-2}.
 
-The \element{language} attribute is optional in the XML representation of a SED-ML file. 
-If it is not explicitely defined in the SED-ML file, the default value for the \element{language} attribute is \code{urn:sedml:language:xml}, referring to any XML based model representation. 
+The \concept{language} attribute is optional in the XML representation of a SED-ML file. 
+If it is not explicitely defined in the SED-ML file, the default value for the \concept{language} attribute is \code{urn:sedml:language:xml}, referring to any XML based model representation. 
 
-However, the use of the \element{language} attribute is strongly encouraged. Not only does it help a user decide whether or not he is able to run the simulation, that is to parse the model referenced in the SED-ML file. The language attribute is also needed to decide how to handle the implicit variables in the \hyperref[class:variable]{Variable} class, as the interpretation of implicit variables depends on the language of the representation format. The concept of implicit variables has been introduced in section \ref{sec:implicitVariable} on  \refpage{sec:implicitVariable}.
+However, the use of the \concept{language} attribute is strongly encouraged for two reasons. 
+Firstly, it helps a user decide whether or not he is able to run the simulation, that is to parse the model referenced in the SED-ML file. 
+Secondly, the language attribute is also needed to decide how to handle the implicit variables in the \hyperref[class:variable]{Variable} class, as the interpretation of implicit variables depends on the language of the representation format. The concept of implicit variables has been introduced in section \ref{sec:implicitVariable} on \refpage{sec:implicitVariable}.
 
 
 \subsubsection{The \code{source} attribute}
