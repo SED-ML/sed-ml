@@ -1,12 +1,13 @@
 \label{sec:reference}
 
-The \concept{reference} concept is used to refer to a particular element inside the SED-ML document. It may occur in four different ways in the SED-ML document:
+The \concept{reference} concept is used to refer to a particular element inside the SED-ML document. It may occur in five different ways in the SED-ML document:
 %
 \begin{enumerate}
 \item{as an association between a \hyperref[class:variable]{Variable} and a \hyperref[class:model]{Model} (\hyperref[sec:modelReference]{modelReference}),}
 \item{as an association between a \hyperref[class:variable]{Variable} and a \hyperref[class:task]{Task} (\hyperref[sec:taskReference]{taskReference}),}
 \item{as an association between a \hyperref[class:task]{Task} and the associated \hyperref[class:model]{Model} (\hyperref[sec:modelReference]{modelRereference}) or}
 \item{as an association between a \hyperref[class:task]{Task} and the \hyperref[class:simulation]{Simulation} (\hyperref[sec:simulationReference]{simulationReference}).}
+\item{as an association between an \hyperref[class:output]{Output} and a \hyperref[class:dataGenerator]{DataGenerator} (\hyperref[sec:dataReference]{dataReference}),}
 \end{enumerate}
 %
 The definition of a \hyperref[class:task]{Task} object demands a reference to a particular Model object (\hyperref[sec:modelReference]{modelReference}, see section \ref{sec:modelReference} on page \pageref{sec:modelReference}); furthermore, the Task object must be associated with a particular Simulation object (\hyperref[sec:simulationReference]{simulationReference}, see section \ref{sec:simulationReference} on page \pageref{sec:simulationReference}).
@@ -18,6 +19,7 @@ In that case the \code{variable} element contains a \hyperref[sec:modelReference
 \item[b.]{If the \concept{reference} is used as an association between a Variable object and a Task object  inside the \hyperref[class:dataGenerator]{dataGenerator} class, then the \code{variable} element contains a \hyperref[sec:taskReference]{taskReference} to unambiguously refer to an observable in a given task (see section \ref{sec:taskReference} on page \pageref{sec:taskReference}).}
 \end{enumerate}
 
+Four different types of \concept{data references} exist in SED-ML \LoneVone. They are used depending on the \emph{type} of output for the simulation. A 2d plot has an \hyperref[sec:xDataReference]{xDataReference} and a \hyperref[sec:yDataReference]{yDataReference} assigned. A 3D plot has in addition a \hyperref[sec:zDataReference]{zDataReference} assigned. To define a report, each data column has a \hyperref[sec:dataReference1]{dataReference} assigned.
 
 \subsubsection{modelReference}
 \label{sec:modelReference}
@@ -80,8 +82,8 @@ Listing \ref{lst:reference3} gives an example.
 </listOfDataGenerators>
 \end{myXmlLst}
 %
-The example shows the definition of a variable \code{v1} in a \code{dataGenerator} element. The variable appears in the model that is used in task \code{t1}. The task definition of \code{t1} might look as follows:
-\begin{myXmlLst}{}{}
+The example shows the definition of a variable \code{v1} in a \code{dataGenerator} element. The variable appears in the model that is used in task \code{t1}. The task definition of \code{t1} might look as shown in listing \ref{lst:taskReferences}.
+\begin{myXmlLst}{Use of the reference relations in a task definition}{lst:taskReferences}
 <listOfTasks>
   <task id="t1" name="task definition" modelReference="model1" simulationReference="simulation1" />
 </listOfTasks>
@@ -92,6 +94,24 @@ Task \code{t1} references the model \code{model1}. Therefore we can conclude tha
 \label{sec:simulationReference}
 The \concept{simulationReference} is used to refer to a particular \hyperref[class:simulation]{Simulation} in a \hyperref[class:task]{Task}. 
 Listing \ref{lst:modelReference2} shows the reference to a defined simulation for a sample SED-ML document. In the example, both tasks \code{t1} and \code{t2} use the simulation settings defined in \code{simulation1} to run the experiment.
+
+\subsubsection{dataReference}
+\label{sec:dataReference}
+The \concept{dataReference} is used to refer to a particular \hyperref[class:dataGenerator]{DataGenerator} instance from an \hyperref[class:output]{Output} instance. 
+Listing \ref{lst:dataReference} shows the reference to a defined data set for a sample SED-ML document. 
+%
+\begin{myXmlLst}{Example for the use of data references in a curve definition}{lst:dataReference}
+<listOfOutputs>
+  <plot2D id="p1" [..] >
+    <curve id="c1" xDataReference="dg1" yDataReference="dg2" />
+    [..]
+  </plot>
+</listOfOutputs>
+\end{myXmlLst}
+%
+In the example, the output type is a 2D plot, which defines one curve with id \code{c1}. A curve needs to refer to two different locations which contain the description how to procude the data that is to be plotted on the x-axis and y-axis respectively. 
+
+
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../sed-ml-L1V1"
