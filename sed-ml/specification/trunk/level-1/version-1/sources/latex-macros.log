@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  4 OCT 2010 20:15
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  7 OCT 2010 15:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -480,5 +480,5 @@ Here is how much of TeX's memory you used:
  3319 multiletter control sequences out of 15000+50000
  3808 words of font info for 15 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 16i,1n,11p,375b,92s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 16i,1n,11p,382b,92s stack positions out of 5000i,500n,10000p,200000b,50000s
 !  ==> Fatal error occurred, no output PDF file produced!

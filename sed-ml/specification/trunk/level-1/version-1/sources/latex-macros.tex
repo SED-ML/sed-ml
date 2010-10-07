@@ -37,7 +37,7 @@ Attributes and nested elements for \concept{#1}. \emph{xy$^{o}$} denotes optiona
 
 %figures:
 \newcommand{\sedfig}[4][]
-	{\begin{figure}[ht]\begin{center}{\includegraphics[width=0.9\textwidth,#1]{#2}}\caption{#3}\label{#4}\end{center}\end{figure}}
+	{\begin{figure}[t]\begin{center}{\includegraphics[width=0.9\textwidth,#1]{#2}}\caption{#3}\label{#4}\end{center}\end{figure}}
 %
 \newcommand{\sect}[1]     {Section~\protect\ref{sec:#1}\xspace}
 \newcommand{\fig}[1]      {Figure~\protect\vref{fig:#1}\xspace}
@@ -73,5 +73,5 @@ Attributes and nested elements for \concept{#1}. \emph{xy$^{o}$} denotes optiona
 	numbers=left,stepnumber=1,numberstyle=\tiny}}
 	{}
 \lstnewenvironment{myXmlLst}[2]
-	{\lstset{basicstyle=\ttfamily\scriptsize, caption={#1},label={#2}, keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue}, commentstyle=\color{red}, captionpos=b, breaklines=true, xleftmargin=1.5em, xrightmargin=1.5em, numbers=left, numberstyle=\ttfamily\tiny, numbersep=5pt, tabsize=4, showstringspaces=false, language=XML}}
+	{\lstset{basicstyle=\ttfamily\scriptsize, caption={#1},label={#2}, keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue}, commentstyle=\color{red}, captionpos=b, breaklines=true, xleftmargin=1.5em, xrightmargin=1.5em, numbers=left, numberstyle=\ttfamily\tiny, numbersep=5pt, tabsize=4, showstringspaces=false, language=XML, float=t}}
 	{}

@@ -1,8 +1,9 @@
 \label{class:uniformTimeCourse}
-SED-ML \LoneVone so far only supports the encoding of uniform time course experiments. 
 %
 \sedfig[width=0.75\textwidth]{timecourseSimulation}{The \code{UniformTimeCourse} class}{fig:timecourseSimulation}
 %
+
+SED-ML \LoneVone so far only supports the encoding of uniform time course experiments. 
 
 \tabtext{uniformTimeCourse}{uniformTimeCourse}
 %
@@ -36,14 +37,13 @@ algorithm & \refpage{class:algorithm}\\
 %
 
 \lsttext{timecourse}{uniformTimeCourse}
+
 %
 \begin{myXmlLst}{The SED-ML \code{uniformTimeCourse} element, defining a uniform time course simulation over 2500 time units with 1000 simulation points, using the CVODE solver.}{lst:timecourse}
 <listOfSimulations>
  <uniformTimeCourse id="s1"  name="time course simulation of variable v1 over 100 minutes"  
   initialTime="0" outputStartTime="0" outputEndTime="2500" numberOfPoints="1000">
-  <algorithm [..]>
-    [ALGORITHM DEFINITION]
-  </algorithm>
+  <algorithm [..] />
  </uniformTimeCourse>
 </listOfSimulations>
 \end{myXmlLst}
