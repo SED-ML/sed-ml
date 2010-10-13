@@ -1,0 +1,42 @@
+% Miase archive
+\label{sec:archive} 
+A \concept{MIASE archive} is a self-contained repository of all the resources necessary to run a simulation and display its output. It may be a convenient alternative if a model  source URI cannot be resolved,  or if an end-user is offline. 
+
+An archive is zipped folder containing one SED-ML file and any number of model files. By convention,
+ the name of the archive will be the name of the SED-ML file contained in the archive, with the suffix ``.zip". Each model file contained in the archive is  referred to  by a relative URI  in the \concept{source} attribute of the SED-ML document's  \hyperref[class:model]{model} element.
+ 
+ For example, the contents of  an archive, when unzipped, may be as follows:
+ 
+ Name of archive: Mysedml.zip\\
+ Contents: 
+ \begin{verbatim}
+ Mysedml.xml
+ model1.xml
+ model2.xml
+ \end{verbatim}
+ Listing \ref{lst:miase} shows how a model would be referenced in the SED-ML file \emph{Mysedml.xml} in the above example.
+ 
+ Future versions of SED-ML may expand the permitted contents of an archive to include experimental data files or other resources.
+%
+\begin{myXmlLst}{Usage of relative URIs to reference a model in a miase archive}{lst:miase}
+<listOfModels>
+ <model id="m0001" language="urn:sedml:language:sbml" 
+  source="model1.xml">
+  <listOfChanges>
+   <change>
+    [MODEL PRE-PROCESSING]
+   </change>
+   </listOfChanges> 
+ </model>
+ </model>
+</listOfModels>
+\end{myXmlLst} 
+%
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 
