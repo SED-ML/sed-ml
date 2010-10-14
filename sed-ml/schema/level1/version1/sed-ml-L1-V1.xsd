@@ -11,8 +11,8 @@
 		</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element ref="notes"  />
-			<xs:element ref="annotation" />
+			<xs:element ref="notes" minOccurs="0" />
+			<xs:element ref="annotation" minOccurs="0" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="sedML">
@@ -35,14 +35,14 @@
 		</xs:complexType>
 	</xs:element>
 <!-- notes and annotations -->
-	<xs:element name="notes" minOccurs="0">
+	<xs:element name="notes" >
 	 	<xs:complexType>
 			 <xs:sequence>
 				 <xs:any namespace="http://www.w3.org/1999/xhtml" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
 			 </xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="annotation" minOccurs="0">
+	<xs:element name="annotation">
 		<xs:complexType>
 			<xs:sequence>
 				<xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
