@@ -2,9 +2,13 @@
 %
 
 Most objects in SED-ML carry an \concept{id} attribute. 
-The \hyperref[sec:id]{id} attribute, if existent for an object, is always required and identifies SED-ML constituents unambiguously.  
-It is used to refer to a constituent from other constituents, as in 
-The \code{id} data type is \code{String}. All \code{id}s have a global scope, i.\,e.\ the \code{id} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
+The \hyperref[sec:id]{id} attribute, if it exists for an object, is always required and identifies SED-ML constituents unambiguously.   
+The \code{id} data type is \code{String}. The following rules govern the scope of an identifier within a SED-ML document.
+\begin{itemize}
+\item Values of  id attributes for top level elements  \concept{Model}, \concept{Simulation}, \concept{Task}, \concept{DataGenerator}, \concept{Output} ) should be globally unique within a SED-ML document. 
+\item Values of id attributes for other identifiable elements need only be unique within their enclosing contained element. For example, a
+ \hyperref[class:variable]{Variable} element must be uniquely identifiable within its enclosing  \hyperref[sec:listOfVariables] {ListOfVariables} element, but the same identifier can be used elsewhere in other containers.
+\end{itemize}
 An example for a defined \code{id} is given in listing \ref{lst:id}.
 %
 \begin{myXmlLst}{SED-ML identifier definition, e.\,g.\ for a model}{lst:id}
