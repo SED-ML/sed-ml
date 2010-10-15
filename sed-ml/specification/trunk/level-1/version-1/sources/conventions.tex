@@ -48,7 +48,7 @@ The \concept{aggregation} (\fig{umlAggregation}, top) indicates that the objects
 \end{figure}
 
 %% Composite Aggregation
-The \concept{composite aggregation} (\fig{umlAggregation}, bottom) indicates that the objects of the participating classes are connected in a way that one class (\code{Whole}) consists of several parts (\code{Part}). In contrast to the aggregation, the subelements (\code{Part}) are dependent on the parent class (\code{Whole}). An example is that a university (\code{Whole}) consists of a number of departments (\code{Part}) which have a so-called ``lifetime responsibility'' with the university, e.\,g.\ if the university vanishes, so will with it the departments \citep{Bel03}.
+The \concept{composite aggregation} (\fig{umlAggregation}, bottom) indicates that the objects of the participating classes are connected in a way that one class (\code{Whole}) consists of several parts (\code{Part}). In contrast to the aggregation, the subelements (\code{Part}) are dependent on the parent class (\code{Whole}). An example is that a university (\code{Whole}) consists of a number of departments (\code{Part}) which have a so-called ``lifetime responsibility'' with the university, e.\,g.\ if the university vanishes,  the departments will vanish with it. \citep{Bel03}.
 
 %% Inheritance
 The \concept{generalisation} (\fig{umlGeneralisation}) allows to extend classes (\code{BaseClass}) by additional properties. The derived class (\code{DerivedClass}) inherites all properties of the base class and defines additional ones. In the given example, an instance of \code{DerivedClass} has two attributes \code{attribute1} and \code{attribute2}.
@@ -136,7 +136,8 @@ XML Schema offers mechanisms to restrict and extend previously defined complex t
      <xs:element ref="listOfDataGenerators" />
      <xs:element ref="listOfOutputs" />
     </xs:sequence>
-    <xs:attribute name="version" type="xs:decimal" use="required" fixed="0.1" />
+    <xs:attribute name="version" type="xs:decimal" use="required" fixed="1" />
+    <xs:attribute name="level" type="xs:decimal" use="required" fixed="1" />
    </xs:extension>
   </xs:complexContent>
  </xs:complexType>
