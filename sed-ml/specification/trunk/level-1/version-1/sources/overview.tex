@@ -39,7 +39,7 @@ While there exist a number of different gateway types (see \citep{White:2004}, p
 \label{fig:connectorEvents}
 \end{figure}
 
-All events are graphically drawn as small circles. A \emph{start event} is drawn with a single thin line and mark the start of a process, it can not have any incoming sequence flow. Start event may be triggered by different mechanisms, for the case of SED-ML the untyped start event (no marker inside the circle) is used. The trigger to start the process is ``Create new simulation experiment''. The \emph{end event} is marked with a thick line. It indicates the end of a process. SED-ML specification makes use of the untyped end event (no marker inside the circle). The end event is used to show the end of sub-processes as well as processes. If the end of a sub-process is reached, the sequence flow returns to the according parent process.
+All events are graphically drawn as small circles. A \emph{start event} is drawn with a single thin line and mark the start of a process, it can not have any incoming sequence flow. Start events may be triggered by different mechanisms, for the case of SED-ML the untyped start event (no marker inside the circle) is used. The trigger to start the process is ``Create new simulation experiment''. The \emph{end event} is marked with a thick line. It indicates the end of a process. SED-ML specification makes use of the untyped end event (no marker inside the circle). The end event is used to show the end of sub-processes as well as processes. If the end of a sub-process is reached, the sequence flow returns to the according parent process.
 
 \emph{Connectors} are used to combine different BPMN objects with each other (\citep{White:2004} page 30 shows the full list of valid connections). SED-ML uses only a subset of available connectors, namely sequence flow, default flow, and unidirectional associations (\fig{connectorEvents}). \emph{Sequence flow} defines the execution order of activities. \emph{Default flow} marks the default branch to be chosen if other conditions leave various possibilities for further execution of the sequence flow. A \emph{unidirectional association} is used to indicate that a data object is modified, i.\,e. read and written during the execution of an activity \citep{bpmnPoster}.
 
@@ -53,13 +53,13 @@ The rough SED-ML workflow is shown in Figure \ref{fig:sedmlWorkflow}.
 \label{fig:sedmlWorkflow}
 \end{figure}
 %
-The process of defining a SED-ML simulation experiment starts by initialising the experiment and creating a new sed-ml file. Afterwards, the \concept{models} needed for the simulation are specified and stored into the existing sed-ml file (see section \ref{overview:models}). In a third step, the simulation experiment \concept{setups} are defined and stored into the same file (see section \ref{overview:simulation}). To assign a setup to a number of models used in the experiment, these connections have to be defined and recorded (see section \ref{overview:task}), called \concept{task} in SED-ML. After simulation, the \concept{output} should befined, based on the specified tasks and performed simulation experiment. The information is added to the existing SED-ML file (see section \ref{overview:output}). In the end, the whole experiment is stored in the final SED-ML file.
+The process of defining a SED-ML simulation experiment starts by initialising the experiment and creating a new sed-ml file. Afterwards, the \concept{models} needed for the simulation are specified and stored into the existing sed-ml file (see section \ref{overview:models}). In a third step, the simulation experiment \concept{setups} are defined and stored into the same file (see section \ref{overview:simulation}). To assign a setup to a number of models used in the experiment, these connections have to be defined and recorded (see section \ref{overview:task}), called \concept{task} in SED-ML. After simulation, the \concept{output} should defined, based on the specified tasks and performed simulation experiment. The information is added to the existing SED-ML file (see section \ref{overview:output}). In the end, the whole experiment is stored in the final SED-ML file.
 %
-All collapsed processes are described in the following. Examples in XML are provided in the more technical description
+All collapsed processes are described in the following. Examples in XML are provided in the more technical description.
 
 \subsubsection{Models}
 \label{overview:models}
-To define a simulation experiment, first a new SED-ML file is created. The models to be used in the experiment (zero or many) are referenced, using a link to a model description in some open, curated model base (such as Biomodels Database \cite{LDR+10}, CellML Repository \cite{BBC+09}, or alike). Changes that are necessary to simulate the model correctly are defined, e.\,g. assigning new parameter values or updating the mathematics of the model (Figure \ref{fig:workflowModel}).
+To define a simulation experiment, first of all a new SED-ML file is created. The models to be used in the experiment (zero or many) are referenced, using a link to a model description in some open, curated model base (such as Biomodels Database \cite{LDR+10}, CellML Repository \cite{BBC+09}, or alike). Changes that are necessary to simulate the model correctly are defined, e.\,g. assigning new parameter values or updating the mathematics of the model (Figure \ref{fig:workflowModel}).
 %
 \begin{figure}[h]
 \centering
@@ -129,9 +129,9 @@ The SED-ML specification comes with three pre-defined types of outputs: 2D- and 
 \label{fig:workflowDataGenerator}
 \end{figure}
 %
-A data generator may use data elements, e.\,g. variables, or parameters, that either (1) have been taken directly from the model, or (2) have been generated in a post-processing step. If post-processing needs to be applied, variables and parameters from the various, previously defined models may be used, but also existing global parameters, such as \emph{time}.
+A data generator may use data elements, e.\,g. variables or parameters, that either (1) have been taken directly from the model, or (2) have been generated in a post-processing step. If post-processing needs to be applied, variables and parameters from the various, previously defined models may be used, but also existing global parameters, such as \emph{time}.
 If the variables are taken from existing models, a reference to the model and the particular variable needs to be given. 
-If post-processing is necessary, a reference to an existing variable or parameter, including other data generators, has to be provided. Additional mathematical rules to be applied on the referred variable or parameter needs then to be specified. 
+If post-processing is necessary, a reference to an existing variable or parameter, including other data generators, has to be provided. Additional mathematical rules to be applied on the referred variable or parameter must then  be specified. 
 %
 In a SED-ML file, any number of data generators can be created for later re-use in the output definition.
 
