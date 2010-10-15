@@ -24,15 +24,15 @@ The namespace URL for \code{XHTML} content inside the \hyperref[class:notes]{Not
 % \caption{\tabcap{Notes}}
 % \end{table}
 % %
-\code{Notes} has a mandatory attribute \hyperref[sec:xmlns]{xmlns} to declare the \code{XHTML} namespace. It does not have any further sub-elements nor attributes associated to it.
+\code{Notes}  does not have any further sub-elements defined in SED-ML, nor attributes associated to it.
 %
 
 \lsttext{notes}{notes}
 %
 \begin{myXmlLst}{The \element{notes} element}{lst:notes}
 <sedML [..]>
- <notes xmlns=http://www.w3.org/1999/xhtml>
-  <p>The enclosed simulation description shows the oscillating behaviour of 
+ <notes >
+  <p xmlns=http://www.w3.org/1999/xhtml>The enclosed simulation description shows the oscillating behaviour of 
      the Repressilator model using deterministic and stochastic simulators.</p>
  </notes>
 </sedML>
