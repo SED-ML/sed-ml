@@ -7,16 +7,16 @@ Secondly, they are used to specify the language of the referenced model.
 Thirdly, they enable addressing implicit model variables.
 Finally, annotations of SED-ML elements should be provided with a standardised annotation scheme.
 
-The use of a standardised URI Scheme ensures long-time availability  of a particular information that can unambiguously be identified. 
+The use of a standardised URI Scheme ensures long-time availability  of particular information that can unambiguously be identified. 
 
 \subsubsection{Model references}
 \label{sec:modelURI}
 The preferred way for referencing a model from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}.
-MIRIAM allows to identify  a data resource (in this case a model resource) by a predefined URN. A data entry inside that resource is identified by an ID. 
+MIRIAM enables identification of a data resource (in this case a model resource) by a predefined URN. A data entry inside that resource is identified by an ID. 
 That way each single  model  in a particular model repository can be unambiguously referenced. To become part of MIRIAM resources, a model repository must ensure permanent and consistent model references, that is stable IDs.
 
 One model repository that is part of MIRIAM resources is the \concept{BioModels Database} \citep{LDR+10}. Its data resource name in MIRIAM is \code{urn:miriam:biomodels.db}. To refer to a particular model, a standardised identifier scheme is defined in \concept{MIRIAM Resources}\footnote{\url{http://www.ebi.ac.uk/miriam/}}. The ID entry maps to a particular model in the model repository. That model is never deleted. 
-A sample BioModels Database ID is \code{BIOMD0000000048}. Together with the data resource name it becomes unambiguously identifyable by the URN \code{urn:miriam:biomodels.db:BIOMD0000000048} (in this case referring to the 1999 Kholodenko model on EGFR signaling). 
+A sample BioModels Database ID is \code{BIOMD0000000048}. Together with the data resource name it becomes unambiguously identifiable by the URN \code{urn:miriam:biomodels.db:BIOMD0000000048} (in this case referring to the 1999 Kholodenko model on EGFR signaling). 
 %
 
 SED-ML recommends to follow the above scheme for model references, if possible. 
@@ -43,7 +43,7 @@ Further information on the \hyperref[sec:language]{language} attribute is provid
 \subsubsection{Implicit variables}
 \label{sec:implicitVariable}
 
-Some variables used in an experiment are not explicitely defined in the model, but may be implicitely contained in it. 
+Some variables used in an experiment are not explicitly defined in the model, but may be implicitly contained in it. 
 For example, to plot a variable's behaviour over time, that variable is defined in an SBML model, while \emph{time} is not explicitly defined. 
 
 To overcome this issue and allow SED-ML to refer to such variables in a common way, the notion of \emph{implicit variables} is used.
