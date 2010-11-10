@@ -6,6 +6,7 @@ The \code{newXML} element provides a piece of XML code (\fig{newXml}).
 \sedfig[width=0.35\textwidth]{newXml}{The \code{NewXML} class}{fig:newXml}.
 
 \tabtext{newXml}{newXml}
+
 %
 \begin{table}[ht]
 \center
@@ -13,16 +14,15 @@ The \code{newXML} element provides a piece of XML code (\fig{newXml}).
 \hline
 \textbf{\attribute} & \textbf{\desc}\\
 \hline
-metaid$^{o}$ & \refpage{sec:metaID}\\
+\emph{none} & \\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
 \hline
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
+\emph{anyXML} & \\
 \hline
 \end{tabular}
-\label{tab:newXml}
+\label{tab:newXML}
 \caption{\tabcap{newXML}}
 \end{table}
 %
@@ -31,8 +31,8 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 The \code{newXML} element is used at two different places inside SED-ML \LoneVone:
 %
 \begin{enumerate}
-\item{If it is used as a sub-element of the \hyperref[class:addXML]{addXML} element, then it is to be \emph{inserted as a child} of the XML element addressed by the XPath.}
-\item{It it is used as a sub-element of the \hyperref[class:changeXML]{changeXML} element, then it is to \emph{replace} the XML element addressed by the XPath.}
+\item{If it is used as a sub-element of the \hyperref[class:addXML]{addXML} element, then the XML it contains  it is to be \emph{inserted as a child} of the XML element addressed by the XPath.}
+\item{It it is used as a sub-element of the \hyperref[class:changeXML]{changeXML} element, then the XML it contains is to \emph{replace} the XML element addressed by the XPath.}
 \end{enumerate}
 %
 Examples are given in the relevant change class definitions.
