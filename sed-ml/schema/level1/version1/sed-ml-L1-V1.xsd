@@ -315,7 +315,7 @@
 		<xs:complexContent>
 		<xs:extension base="SEDBase"> 		 	
 			 <xs:sequence>
-				 <xs:any namespace="http://www.w3.org/1999/xhtml" processContents="skip" minOccurs="1" maxOccurs="unbounded"/>
+				 <xs:any  processContents="skip" minOccurs="1" maxOccurs="unbounded"/>
 			 </xs:sequence>
 		</xs:extension>
 		</xs:complexContent>
