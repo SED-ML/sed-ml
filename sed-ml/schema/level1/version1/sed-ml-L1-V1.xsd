@@ -312,13 +312,11 @@
 	</xs:element>
  	<xs:element name="newXML">
 	 	<xs:complexType>
-		<xs:complexContent>
-		<xs:extension base="SEDBase"> 		 	
+				 	
 			 <xs:sequence>
 				 <xs:any  processContents="skip" minOccurs="1" maxOccurs="unbounded"/>
 			 </xs:sequence>
-		</xs:extension>
-		</xs:complexContent>
+		
 		</xs:complexType>
  	</xs:element>
 	<xs:element name="changeAttribute">
