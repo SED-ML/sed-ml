@@ -53,12 +53,12 @@ If used as an element of the \concept{ComputeChange} class, it computes the chan
 %
 \begin{myXmlLst}{The computeChange element}{lst:computeChange}
 <model [..]>
-    <computeChange target="/sbml/model/listOfParameters/parameter[@id='w']">
+    <computeChange target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='w']">
       <listOfVariables>
         <variable id="camkii" name="active calcium/calmoduline kinase II" 
-                  target="/sbml/model[@id='calcium']/listOfSpecies/species[@id='KII']" />
+                  target="/sbml:sbml/sbml:model[@id='calcium']/sbml:listOfSpecies/sbml:species[@id='KII']" />
         <variable id="w" name="synaptic weight"
-                  target="/sbml/model[@id='synapse']/listOfParameters/parameter[@id='w']" />
+                  target="/sbml:sbml/sbml:model[@id='synapse']/sbml:listOfParameters/sbml:parameter[@id='w']" />
       <listOfVariables/>
       <listOfParameters>
         <parameter id="w0" name="synaptic weight change" value="1">
