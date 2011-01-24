@@ -61,13 +61,15 @@
 		<xs:complexType>
  		<xs:complexContent>
 		<xs:extension base="SEDBase">
+		   <!--  at least one of taskReference or modelReference must be set -->
 			<xs:attribute name="taskReference" type="xs:string" use="optional" />
 			<xs:attribute name="modelReference" type="xs:string" use="optional" />
+			
 			<xs:attribute name="name" type="xs:string" use="optional" />
 			<!-- either target or symbol have to be used  in the variable definition-->
 			<xs:attribute name="target" type="xs:token" use="optional" />
 			<xs:attribute name="symbol" type="xs:string" use="optional" />
-			<xs:attribute name="id" type="xs:string"/>
+			<xs:attribute name="id" type="xs:string" use="required"/>
 		</xs:extension>
 		</xs:complexContent>
 		</xs:complexType>
@@ -76,7 +78,7 @@
 		<xs:complexType>
 		<xs:complexContent>
 		<xs:extension base="SEDBase">
-		 	<xs:attribute name="id" type="xs:string" />
+		 	<xs:attribute name="id" type="xs:string" use="required"/>
 			<xs:attribute name="name" type="xs:string" use="optional" />
 			<xs:attribute name="value" type="xs:double" use="required" />
 		</xs:extension>
@@ -99,7 +101,7 @@
 			<xs:sequence>
 				<xs:element ref="algorithm"/>
 			</xs:sequence>
-			<xs:attribute name="id" type="xs:string" />
+			<xs:attribute name="id" type="xs:string" use="required"/>
 			<xs:attribute name="name" type="xs:string" use="optional" />
 			<xs:attribute name="outputStartTime" type="xs:double"
 				use="required" />
@@ -120,7 +122,7 @@
 			<xs:attribute name="name" type="xs:string" use="optional" />
 			<xs:attribute name="modelReference" type="xs:string"
 				use="required" />
-			<xs:attribute name="id" type="xs:string" />
+			<xs:attribute name="id" type="xs:string" use="required"/>
 		</xs:extension>
 		</xs:complexContent>
 		</xs:complexType>
@@ -133,7 +135,7 @@
 				<xs:element ref="listOfCurves" />
 			</xs:sequence>
 			<xs:attribute name="name" type="xs:string" use="optional" />
-			<xs:attribute name="id" type="xs:string" />
+			<xs:attribute name="id" type="xs:string" use="required"/>
 		</xs:extension>
 		</xs:complexContent>
 		</xs:complexType>
@@ -146,7 +148,7 @@
 				<xs:element ref="listOfSurfaces" />
 			</xs:sequence>
 			<xs:attribute name="name" type="xs:string" use="optional" />
-			<xs:attribute name="id" type="xs:string" />
+			<xs:attribute name="id" type="xs:string" use="required"/>
 		</xs:extension>
 		</xs:complexContent>
 		</xs:complexType>
@@ -159,7 +161,7 @@
 				<xs:element ref="listOfDataSets" />
 			</xs:sequence>
 			<xs:attribute name="name" type="xs:string" use="optional" />
-			<xs:attribute name="id" type="xs:string" />
+			<xs:attribute name="id" type="xs:string" use="required"/>
 		</xs:extension>
 		</xs:complexContent>
 		</xs:complexType>
@@ -386,8 +388,8 @@
 				<xs:element ref="listOfParameters" minOccurs="0" />
 				<xs:element ref="math" />
 			</xs:sequence>
-			<xs:attribute name="name" type="xs:string" use="required" />
-			<xs:attribute name="id" type="xs:string" />
+			<xs:attribute name="name" type="xs:string" />
+			<xs:attribute name="id" type="xs:string" use="required"/>
 		</xs:extension>
 		</xs:complexContent>
 		</xs:complexType>
