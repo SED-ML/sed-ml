@@ -1,0 +1,33 @@
+% XPath
+
+\label{sec:xpath} 
+XPath is a language for finding information in an XML document \cite{xpath:1999}. Within \LoneVone, XPath version 1 expressions are  used to identify nodes and attributes within an XML representation of a biological model in the following ways:
+%
+\begin{enumerate}
+\item {Within a \hyperref[class:variable]{Variable} definition, where XPath identifies the model variable required for manipulation in SED-ML.}
+\item {Within a  \hyperref[class:change]{Change} definition, where XPath is used to identify the target XML to which a change should be applied.} 
+
+\end{enumerate}
+
+For proper application, XPath expressions should contain prefixes that allow their resolution to the correct XML namespace within an XML document. For example, the XPath expression referring to a species \emph{X} in an SBML model:
+\begin{verbatim}
+/sbml/model/listOfSpecies/species[@id=`X'] 
+\end{verbatim}
+will only be interpretable by standard XML software tools  if the SBML file declares no namespaces. In a typical SBML  model from \biom though, namespaces are declared, often without prefixes:
+\begin{lstlisting}[keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue},language=XML,basicstyle=\ttfamily\scriptsize,xleftmargin=1.5em, xrightmargin=1.5em ]
+<sbml xmlns="http://www.sbml.org/sbml/level2" metaid="_153818" level="2" version="1">
+\end{lstlisting}
+
+Therefore we recommend that  XPath expressions within  \LoneVone should be use prefixes, for example:
+
+\begin{verbatim}
+/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=`X'] 
+\end{verbatim}
+
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 
