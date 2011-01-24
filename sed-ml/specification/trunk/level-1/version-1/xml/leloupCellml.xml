@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sedML version="0.1" xmlns="http://www.biomodels.net/sed-ml" 
        xmlns:math="http://www.w3.org/1998/Math/MathML">
- <notes>Comparing Limit Cycles and strange attractors for
-        oscillation in Drosophila</notes> 
+ <notes><p xmlns="http://www.w3.org/1999/xhtml">Comparing Limit Cycles and strange attractors for
+        oscillation in Drosophila</p></notes> 
  <listOfSimulations>
    <uniformTimeCourse id="simulation1" algorithm="KiSAO:0000019" 
     initialTime="0" outputStartTime="0" outputEndTime="180" 
-    numberOfPoints="1000" />
+    numberOfPoints="1000" >
+     <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
  </listOfSimulations>
  <listOfModels>
   <model id="model1" name="Circadian Oscillations" language="urn:sedml:language:cellml" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02" >
@@ -85,8 +87,8 @@
   <listOfOutputs>
     <plot2D id="plot1" name="tim mRNA with Oscillation and Chaos">
       <listOfCurves>
-        <curve logX="false" logY="false" xDataReference="per-tim" yDataReference="tim1" />
-        <curve logX="false" logY="false" xDataReference="per-tim2" yDataReference="tim2" />
+        <curve id ="c1" logX="false" logY="false" xDataReference="per-tim" yDataReference="tim1" />
+        <curve id ="c2" logX="false" logY="false" xDataReference="per-tim2" yDataReference="tim2" />
       </listOfCurves>
     </plot2D>
   </listOfOutputs>
