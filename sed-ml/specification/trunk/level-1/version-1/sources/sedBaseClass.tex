@@ -1,6 +1,6 @@
 % SED-Base class
 \label{class:sedBase}
-\concept{SEDBase} is the base class  of SED-ML \LoneVone. All other classes are derived from it. As such it provides means to attach additional information on all other classes  (\fig{sedBase}). That information can be specified in form of human readable \hyperref[class:notes]{Notes} or custom \hyperref[class:annotation]{Annotations}. 
+\concept{SEDBase} is the base class  of SED-ML \LoneVone. All other classes are derived from it. As such it provides means to attach additional information on all other classes  (\fig{sedBase}). That information can be specified by human readable \hyperref[class:notes]{Notes} or custom \hyperref[class:annotation]{Annotations}. 
 %
 \sedfig[width=0.9\textwidth]{sedBaseClass}{The SEDBase class}{fig:sedBase}
 %
@@ -32,7 +32,7 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \label{sec:metaID}
 The main purpose of the \element{metaid} attribute is to attach semantic annotations in form of the \hyperref[class:annotation]{Annotation} class to SED-ML elements.  The type of \code{metaid} is XML ID and as such the \code{metaid} attribute is globally unique throughout the whole SED-ML document. 
 
-For an example showing how to link a semantic annotation to a SED-ML object via the \element{metaid} is given in the \hyperref[class:annotation]{Annotation} class description.
+An example showing how to link a semantic annotation to a SED-ML object via the \element{metaid} is given in the \hyperref[class:annotation]{Annotation} class description.
 
 
 %%% Local Variables: 
