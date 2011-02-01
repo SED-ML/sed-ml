@@ -49,7 +49,7 @@ The \code{modelReference} attribute of the \code{variable} element contains the 
 </model>
 \end{myXmlLst}
 %
-In the example, a change is  applied on model \code{m0001}. In the \code{computeChange} element a list of variables is defined. One of those variable is \code{v1} which is defined in another model, namely \code{cellML}. 
+In the example, a change is  applied on model \code{m0001}. In the \code{computeChange} element a list of variables is defined. One of those variable is \code{v1} which is defined in another model ( \code{cellML}). 
 The XPath expression given in the \hyperref[sec:target]{target} attribute identifies the variable in the model which carries the ID \code{cellML}.
 
 The \concept{modelReference} is also used to indicate that a \hyperref[class:model]{Model} object is used in a particular  \hyperref[class:task]{Task}. Listing \ref{lst:modelReference2} shows how this can be done for a sample SED-ML document.
@@ -67,7 +67,7 @@ The example defines two different tasks; the first one applies the simulation se
 \label{sec:taskReference}
 \hyperref[class:dataGenerator]{DataGenerator} objects are created to apply post-processing to the simulation results before simulation output. 
 
-For certain types of post-processing \hyperref[class:variable]{Variable} objects need to be created. Those link to a defined \hyperref[class:task]{Task} from which the model that contains the variable of interest can be inferred. 
+For certain types of post-processing \hyperref[class:variable]{Variable} objects need to be created. These link to a defined \hyperref[class:task]{Task} from which the model that contains the variable of interest can be inferred. 
 A \concept{taskReference} association is used to realise that link from a \hyperref[class:variable]{Variable} object inside a \hyperref[class:dataGenerator]{DataGenerator} to a \hyperref[class:task]{Task} object. 
 Listing \ref{lst:reference3} gives an example.
 %
