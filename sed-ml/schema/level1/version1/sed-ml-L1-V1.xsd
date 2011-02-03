@@ -12,21 +12,22 @@
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element ref="notes" minOccurs="0" />
-			<xs:element ref="annotation" minOccurs="0" />
+			<xs:element ref="annotation" minOccurs="0"/>
 		</xs:sequence>
+		<xs:attribute name="metaid" type="xs:ID" use="optional"></xs:attribute>
 	</xs:complexType>
 	<xs:element name="sedML">
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
 					<xs:sequence>
-						<xs:element ref="listOfSimulations" />
-						<xs:element ref="listOfModels" />
-						<xs:element ref="listOfTasks" />
-						<xs:element ref="listOfDataGenerators" />
-						<xs:element ref="listOfOutputs" />
+						<xs:element ref="listOfSimulations" minOccurs="0"/>
+						<xs:element ref="listOfModels" minOccurs="0"/>
+						<xs:element ref="listOfTasks" minOccurs="0"/>
+						<xs:element ref="listOfDataGenerators" minOccurs="0" />
+						<xs:element ref="listOfOutputs" minOccurs="0"/>
 					</xs:sequence>
-					<xs:attribute name="level " type="xs:decimal" use="required"
+					<xs:attribute name="level" type="xs:decimal" use="required"
 						fixed="1" />
 					<xs:attribute name="version" type="xs:decimal" use="required"
 						fixed="1" />
@@ -64,7 +65,6 @@
 		   <!--  at least one of taskReference or modelReference must be set -->
 			<xs:attribute name="taskReference" type="xs:string" use="optional" />
 			<xs:attribute name="modelReference" type="xs:string" use="optional" />
-			
 			<xs:attribute name="name" type="xs:string" use="optional" />
 			<!-- either target or symbol have to be used  in the variable definition-->
 			<xs:attribute name="target" type="xs:token" use="optional" />
@@ -189,7 +189,7 @@
 		<xs:complexContent>
 		<xs:extension base="SEDBase">
 			<xs:sequence>
-				<xs:element ref="variable" maxOccurs="unbounded" />
+				<xs:element ref="variable" minOccurs="0"maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:extension>
 		</xs:complexContent>
@@ -200,7 +200,7 @@
 		<xs:complexContent>
 		<xs:extension base="SEDBase">
 			<xs:sequence>
-				<xs:element ref="parameter" maxOccurs="unbounded" />
+				<xs:element ref="parameter" minOccurs="0" maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:extension>
 		</xs:complexContent>
@@ -211,7 +211,7 @@
 		<xs:complexContent>
 		<xs:extension base="SEDBase">
 			<xs:sequence>
-				<xs:element ref="task" maxOccurs="unbounded" />
+				<xs:element ref="task" minOccurs="0" maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:extension>
 		</xs:complexContent>
@@ -246,7 +246,7 @@
 		<xs:complexContent>
 		<xs:extension base="SEDBase">
 			<xs:sequence>
-				<xs:element ref="model" maxOccurs="unbounded" />
+				<xs:element ref="model"  minOccurs="0" maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:extension>
 		</xs:complexContent>
@@ -257,7 +257,7 @@
 		<xs:complexContent>
 		<xs:extension base="SEDBase">
 			<xs:sequence>
-				<xs:element ref="dataGenerator" maxOccurs="unbounded" />
+				<xs:element ref="dataGenerator"  minOccurs="0" maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:extension>
 		</xs:complexContent>

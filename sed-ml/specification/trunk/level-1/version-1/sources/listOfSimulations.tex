@@ -19,7 +19,7 @@ The \concept{listOfSimulations} element is the container for \concept{simulation
 \end{myXmlLst}
 %
 %Listing \ref{lst:listOfSimulations} shows the definition of two simulation setups, each of them encoded in a single \hyperref[class:simulation]{simulation} element. 
-For all SED-ML \LoneVone documents, the encoded simulation definitions are instances of the \hyperref[class:timeCourse]{Uniform Timecourse} class.
+For all SED-ML \LoneVone documents, the encoded simulation definitions are instances of the \hyperref[class:timeCourse]{Uniform Timecourse} class.  The \code{listOfSimulations} is optional and may contain zero to many simulations. However, if the \LoneVone document contains  one or more   \code{Task}  elements,  at least one  \code{Simulation} element must be defined to which  the   \code{Task} element refers - see  section \ref{sec:simulationReference} on \refpage{sec:simulationReference}.
 
 % A SED-ML description can be a sole storage container for a \emph{general} simulation setting, comparible to an experiment procudure description. In that case, no particular model needs to be related to the simulation description:
 % %
