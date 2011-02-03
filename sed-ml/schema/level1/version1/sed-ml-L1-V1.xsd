@@ -328,11 +328,9 @@
 	</xs:element>
 	<xs:element name="newXML">
 		<xs:complexType>
-
 			<xs:sequence>
 				<xs:any processContents="skip" minOccurs="1" maxOccurs="unbounded" />
 			</xs:sequence>
-
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="changeAttribute">
