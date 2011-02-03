@@ -10,19 +10,15 @@ XPath is a language for finding information in an XML document \cite{xpath:1999}
 \end{enumerate}
 
 For proper application, XPath expressions should contain prefixes that allow their resolution to the correct XML namespace within an XML document. For example, the XPath expression referring to a species \emph{X} in an SBML model:
-\begin{verbatim}
-/sbml/model/listOfSpecies/species[@id=`X'] 
-\end{verbatim}
-will only be interpretable by standard XML software tools  if the SBML file declares no namespaces. In a typical SBML  model from \biom though, namespaces are declared, often without prefixes:
-\begin{lstlisting}[keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue},language=XML,basicstyle=\ttfamily\scriptsize,xleftmargin=1.5em, xrightmargin=1.5em ]
-<sbml xmlns="http://www.sbml.org/sbml/level2" metaid="_153818" level="2" version="1">
-\end{lstlisting}
+\begin{alltt}
+/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=`X'] {\color{green} \tickYes -\emph{CORRECT}}
+\end{alltt}
+is preferable to 
+\begin{alltt}
+/sbml/model/listOfSpecies/species[@id=`X'] {\color{red} \tickNo -\emph{INCORRECT} }
+\end{alltt}
 
-Therefore we recommend that  XPath expressions within  \LoneVone should be use prefixes, for example:
-
-\begin{verbatim}
-/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=`X'] 
-\end{verbatim}
+which will only be interpretable by standard XML software tools  if the SBML file declares no namespaces. 
 
 
 
