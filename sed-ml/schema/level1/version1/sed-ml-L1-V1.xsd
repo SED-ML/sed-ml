@@ -4,19 +4,29 @@
 	<xs:import namespace="http://www.w3.org/1998/Math/MathML"
 		schemaLocation="sbml-mathml.xsd" />
 
+    <!--  attribute group for elements with ID/name att -->
+	<xs:attributeGroup name="idGroup">
+		<xs:attribute name="id" use="required" type="xs:string"></xs:attribute>
+		<xs:attribute name="name" use="optional" type="xs:string"></xs:attribute>
+	</xs:attributeGroup>
+
 	<!-- SED Base class -->
 	<xs:complexType name="SEDBase">
 		<xs:annotation>
 			<xs:documentation xml:lang="en">
-				The SEDBase type is the base type of all main types in SED-ML. It
-				serves as a container for the annotation of any part of the
+				The SEDBase type is the
+				base type of all main types in SED-ML. It
+				serves as a container for
+				the annotation of any part of the
 				experiment description.
-		</xs:documentation>
+			</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
 			<xs:element ref="notes" minOccurs="0" />
 			<xs:element ref="annotation" minOccurs="0" />
 		</xs:sequence>
+		<!-- This must be a variable-type identifier ,i.e., (Letter | '_') (NCNameChar)*
+		  that is unique in the document. -->
 		<xs:attribute name="metaid" type="xs:ID" use="optional"></xs:attribute>
 	</xs:complexType>
 	<xs:element name="sedML">
@@ -71,13 +81,13 @@
 						use="optional" />
 					<xs:attribute name="modelReference" type="xs:string"
 						use="optional" />
-					<xs:attribute name="name" type="xs:string" use="optional" />
+
 					<!--
 						either target or symbol have to be used in the variable definition
 					-->
 					<xs:attribute name="target" type="xs:token" use="optional" />
 					<xs:attribute name="symbol" type="xs:string" use="optional" />
-					<xs:attribute name="id" type="xs:string" use="required" />
+					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -86,8 +96,7 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
-					<xs:attribute name="id" type="xs:string" use="required" />
-					<xs:attribute name="name" type="xs:string" use="optional" />
+					<xs:attributeGroup ref="idGroup" />
 					<xs:attribute name="value" type="xs:double" use="required" />
 				</xs:extension>
 			</xs:complexContent>
@@ -109,8 +118,7 @@
 					<xs:sequence>
 						<xs:element ref="algorithm" />
 					</xs:sequence>
-					<xs:attribute name="id" type="xs:string" use="required" />
-					<xs:attribute name="name" type="xs:string" use="optional" />
+					<xs:attributeGroup ref="idGroup" />
 					<xs:attribute name="outputStartTime" type="xs:double"
 						use="required" />
 					<xs:attribute name="outputEndTime" type="xs:double"
@@ -128,10 +136,10 @@
 				<xs:extension base="SEDBase">
 					<xs:attribute name="simulationReference" type="xs:string"
 						use="required" />
-					<xs:attribute name="name" type="xs:string" use="optional" />
+
 					<xs:attribute name="modelReference" type="xs:string"
 						use="required" />
-					<xs:attribute name="id" type="xs:string" use="required" />
+					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -143,8 +151,7 @@
 					<xs:sequence>
 						<xs:element ref="listOfCurves" />
 					</xs:sequence>
-					<xs:attribute name="name" type="xs:string" use="optional" />
-					<xs:attribute name="id" type="xs:string" use="required" />
+					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -156,8 +163,7 @@
 					<xs:sequence>
 						<xs:element ref="listOfSurfaces" />
 					</xs:sequence>
-					<xs:attribute name="name" type="xs:string" use="optional" />
-					<xs:attribute name="id" type="xs:string" use="required" />
+					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -169,8 +175,7 @@
 					<xs:sequence>
 						<xs:element ref="listOfDataSets" />
 					</xs:sequence>
-					<xs:attribute name="name" type="xs:string" use="optional" />
-					<xs:attribute name="id" type="xs:string" use="required" />
+					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -185,8 +190,7 @@
 					<xs:attribute name="language" type="xs:anyURI" use="optional"
 						default="urn:sedml:language:xml" />
 					<xs:attribute name="source" type="xs:anyURI" use="required" />
-					<xs:attribute name="name" type="xs:string" use="optional" />
-					<xs:attribute name="id" type="xs:string" use="required" />
+					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -400,8 +404,7 @@
 						<xs:element ref="listOfParameters" minOccurs="0" />
 						<xs:element ref="math" />
 					</xs:sequence>
-					<xs:attribute name="name" type="xs:string" />
-					<xs:attribute name="id" type="xs:string" use="required" />
+					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -410,12 +413,12 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
-					<xs:attribute name="id" use="required" type="xs:string" />
+					<xs:attributeGroup ref="idGroup" />
 					<xs:attribute name="yDataReference" type="xs:string"
 						use="required" />
 					<xs:attribute name="xDataReference" type="xs:string"
 						use="required" />
-					<xs:attribute name="name" use="optional" type="xs:string" />
+
 					<xs:attribute name="logY" use="required" type="xs:boolean" />
 					<xs:attribute name="logX" use="required" type="xs:boolean" />
 				</xs:extension>
@@ -426,14 +429,12 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
-					<xs:attribute name="id" use="required" type="xs:string" />
 					<xs:attribute name="yDataReference" type="xs:string"
 						use="required" />
 					<xs:attribute name="xDataReference" type="xs:string"
 						use="required" />
 					<xs:attribute name="zDataReference" type="xs:string"
 						use="required" />
-					<xs:attribute name="name" use="optional" type="xs:string" />
 					<xs:attribute name="logY" use="required" type="xs:boolean" />
 					<xs:attribute name="logX" use="required" type="xs:boolean" />
 					<xs:attribute name="logZ" use="required" type="xs:boolean" />
@@ -445,11 +446,10 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
-					<xs:attribute name="id" use="required" type="xs:string" />
 					<xs:attribute name="dataReference" type="xs:string"
 						use="required"></xs:attribute>
 					<xs:attribute name="label" use="required" type="xs:string" />
-					<xs:attribute name="name" use="optional" type="xs:string" />
+					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
