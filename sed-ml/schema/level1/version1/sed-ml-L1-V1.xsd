@@ -429,6 +429,7 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
+				<xs:attributeGroup ref="idGroup" />
 					<xs:attribute name="yDataReference" type="xs:string"
 						use="required" />
 					<xs:attribute name="xDataReference" type="xs:string"
