@@ -1,13 +1,13 @@
 % Miase archive
 \label{sec:archive} 
-A \concept{MIASE archive} is a self-contained repository of all the resources necessary to run a simulation and display its output. It may be a convenient alternative if a model  source URI cannot be resolved,  or if an end-user is offline. 
+A \concept{SED-ML archive} is a self-contained repository of all the resources necessary to run a simulation and display its output. It may be a convenient alternative if a model  source URI cannot be resolved,  or if an end-user is offline. 
 
 An archive is zipped folder containing one SED-ML file and any number of model files. By convention,
- the name of the archive will be the name of the SED-ML file contained in the archive, with the suffix ``.zip". Each model file contained in the archive is  referred to  by a relative URI  in the \concept{source} attribute of the SED-ML document's  \hyperref[class:model]{model} element.
+ the name of the archive will be the name of the SED-ML file contained in the archive, with the suffix ``.sedx". Each model file contained in the archive is  referred to  by a relative URI  in the \concept{source} attribute of the SED-ML document's  \hyperref[class:model]{model} element.
  
  For example, the contents of  an archive, when unzipped, may be as follows:
  
- Name of archive: Mysedml.zip\\
+ Name of archive: Mysedml.sedx\\
  Contents: 
  \begin{verbatim}
  Mysedml.xml
