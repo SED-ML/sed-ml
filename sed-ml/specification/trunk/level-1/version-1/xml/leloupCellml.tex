@@ -23,7 +23,9 @@ The \code{output} defined in the experiment constists of a 2D plot with two diff
  <!-- definition of simulation setup -->
  <listOfSimulations>
   <!-- definition of a uniform time course over 180 time uints using the deterministic CVODE solver (KISAO:0000019) -->
-  <uniformTimeCourse id="simulation1" algorithm="KISAO:0000019" initialTime="0" outputStartTime="0" outputEndTime="180" numberOfPoints="1000" />
+  <uniformTimeCourse id="simulation1" initialTime="0" outputStartTime="0" outputEndTime="180" numberOfPoints="1000">
+  <algorithm kisaoID="KISAO:0000019"/>
+  </uniformTimeCourse>
  </listOfSimulations>
  <!-- definition of models used during the experiment -->
  <listOfModels>
@@ -73,20 +75,8 @@ The \code{output} defined in the experiment constists of a 2D plot with two diff
   <!-- definition of data generator for the nuclear PER-TIM complex -->
   <dataGenerator id="per-tim" name="nuclear PER-TIM complex">
    <listOfVariables>
-    <variable id="v1" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
+    <variable id="v2" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
    </listOfVariables>
-   <math:math>
-    <math:apply>
-     <math:plus />
-     <math:ci>v1</math:ci>
-    </math:apply>
-   </math:math>
-  </dataGenerator>
-  <!-- definition of data generator for pertubated tim mRNA -->  
-  <dataGenerator id="tim2" name="tim mRNA (changed parameters)">
-   <listOfVariables>
-    <variable id="v2" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
-   </listOfVariables>  
    <math:math>
     <math:apply>
      <math:plus />
@@ -94,15 +84,27 @@ The \code{output} defined in the experiment constists of a 2D plot with two diff
     </math:apply>
    </math:math>
   </dataGenerator>
+  <!-- definition of data generator for pertubated tim mRNA -->  
+  <dataGenerator id="tim2" name="tim mRNA (changed parameters)">
+   <listOfVariables>
+    <variable id="v3" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
+   </listOfVariables>  
+   <math:math>
+    <math:apply>
+     <math:plus />
+     <math:ci>v3</math:ci>
+    </math:apply>
+   </math:math>
+  </dataGenerator>
   <!-- definition of data generator for perturbated nuclear PER-TIM complex -->  
   <dataGenerator id="per-tim2" name="nuclear PER-TIM complex">
    <listOfVariables>
-    <variable id="v1" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
+    <variable id="v4" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
    </listOfVariables>
    <math:math>
     <math:apply>
      <math:plus />
-     <math:ci>v1</math:ci>
+     <math:ci>v4</math:ci>
     </math:apply>
    </math:math>
   </dataGenerator>
