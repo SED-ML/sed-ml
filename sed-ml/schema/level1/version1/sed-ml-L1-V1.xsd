@@ -4,11 +4,26 @@
 	<xs:import namespace="http://www.w3.org/1998/Math/MathML"
 		schemaLocation="sbml-mathml.xsd" />
 
-    <!--  attribute group for elements with ID/name att -->
+
+	<xs:simpleType name="SId">
+		<xs:annotation>
+			<xs:documentation>
+				The type SId is used throughout SED-ML as the
+				type of the 'id' attributes on model elements.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!--  attribute group for elements with ID/name att -->
 	<xs:attributeGroup name="idGroup">
-		<xs:attribute name="id" use="required" type="xs:string"></xs:attribute>
+		<xs:attribute name="id" use="required" type="SId"></xs:attribute>
 		<xs:attribute name="name" use="optional" type="xs:string"></xs:attribute>
 	</xs:attributeGroup>
+
+
 
 	<!-- SED Base class -->
 	<xs:complexType name="SEDBase">
@@ -25,8 +40,10 @@
 			<xs:element ref="notes" minOccurs="0" />
 			<xs:element ref="annotation" minOccurs="0" />
 		</xs:sequence>
-		<!-- This must be a variable-type identifier ,i.e., (Letter | '_') (NCNameChar)*
-		  that is unique in the document. -->
+		<!--
+			This must be a variable-type identifier ,i.e., (Letter | '_')
+			(NCNameChar)* that is unique in the document.
+		-->
 		<xs:attribute name="metaid" type="xs:ID" use="optional"></xs:attribute>
 	</xs:complexType>
 	<xs:element name="sedML">
@@ -77,9 +94,9 @@
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
 					<!--  at least one of taskReference or modelReference must be set -->
-					<xs:attribute name="taskReference" type="xs:string"
+					<xs:attribute name="taskReference" type="SId"
 						use="optional" />
-					<xs:attribute name="modelReference" type="xs:string"
+					<xs:attribute name="modelReference" type="SId"
 						use="optional" />
 
 					<!--
@@ -134,10 +151,10 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
-					<xs:attribute name="simulationReference" type="xs:string"
+					<xs:attribute name="simulationReference" type="SId"
 						use="required" />
 
-					<xs:attribute name="modelReference" type="xs:string"
+					<xs:attribute name="modelReference" type="SId"
 						use="required" />
 					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
@@ -161,7 +178,7 @@
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
 					<xs:sequence>
-						<xs:element ref="listOfSurfaces" minOccurs="0"/>
+						<xs:element ref="listOfSurfaces" minOccurs="0" />
 					</xs:sequence>
 					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
@@ -414,9 +431,9 @@
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
 					<xs:attributeGroup ref="idGroup" />
-					<xs:attribute name="yDataReference" type="xs:string"
+					<xs:attribute name="yDataReference" type="SId"
 						use="required" />
-					<xs:attribute name="xDataReference" type="xs:string"
+					<xs:attribute name="xDataReference" type="SId"
 						use="required" />
 
 					<xs:attribute name="logY" use="required" type="xs:boolean" />
@@ -429,12 +446,12 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
-				<xs:attributeGroup ref="idGroup" />
-					<xs:attribute name="yDataReference" type="xs:string"
+					<xs:attributeGroup ref="idGroup" />
+					<xs:attribute name="yDataReference" type="SId"
 						use="required" />
-					<xs:attribute name="xDataReference" type="xs:string"
+					<xs:attribute name="xDataReference" type="SId"
 						use="required" />
-					<xs:attribute name="zDataReference" type="xs:string"
+					<xs:attribute name="zDataReference" type="SId"
 						use="required" />
 					<xs:attribute name="logY" use="required" type="xs:boolean" />
 					<xs:attribute name="logX" use="required" type="xs:boolean" />
@@ -447,7 +464,7 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
-					<xs:attribute name="dataReference" type="xs:string"
+					<xs:attribute name="dataReference" type="SId"
 						use="required"></xs:attribute>
 					<xs:attribute name="label" use="required" type="xs:string" />
 					<xs:attributeGroup ref="idGroup" />
