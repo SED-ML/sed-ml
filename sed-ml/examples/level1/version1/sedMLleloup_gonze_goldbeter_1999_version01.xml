@@ -3,7 +3,9 @@
   <notes>Comparing Limit Cycles and strange attractors for oscillation in Drosophila</notes> 
   <listOfSimulations>
     <uniformTimeCourse id="simulation1"
-    algorithm="KiSAO:0000019" initialTime="0" outputStartTime="0" outputEndTime="180" numberOfPoints="1000" />
+     initialTime="0" outputStartTime="0" outputEndTime="180" numberOfPoints="1000" >
+      <algorithm kisaoID="KISAO:0000019"/>
+     </uniformTimeCourse>
   </listOfSimulations>
   <listOfModels>
     <model id="model1" name="Circadian Oscillations" type="CellML" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02" >
@@ -32,17 +34,17 @@
   <listOfDataGenerators>
     <dataGenerator id="tim1" name="tim mRNA">
       <listOfVariables>
-        <variable id="v1" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
+        <variable id="v4" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
       </listOfVariables>
        <math:math>
           <math:apply>
             <math:plus />
-            <math:ci>v1</math:ci>
+            <math:ci>v4</math:ci>
           </math:apply>
         </math:math>
     </dataGenerator>
 
-    <dataGenerator id="per-tim" name="nuclear PER-TIM complex">
+    <dataGenerator id="per_tim" name="nuclear PER-TIM complex">
       <listOfVariables>
         <variable id="v1" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
       </listOfVariables>
@@ -66,14 +68,14 @@
         </math:math>
     </dataGenerator>
     
-    <dataGenerator id="per-tim2" name="nuclear PER-TIM complex">
+    <dataGenerator id="per_tim2" name="nuclear PER-TIM complex">
       <listOfVariables>
-        <variable id="v1" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
+        <variable id="v3" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
       </listOfVariables>
       <math:math>
         <math:apply>
           <math:plus />
-          <math:ci>v1</math:ci>
+          <math:ci>v3</math:ci>
         </math:apply>
       </math:math>
     </dataGenerator>
@@ -82,8 +84,8 @@
   <listOfOutputs>
     <plot2D id="plot1" name="tim mRNA with Oscillation and Chaos">
       <listOfCurves>
-        <curve logX="false" logY="false" xDataReference="per-tim" yDataReference="tim1" />
-        <curve logX="false" logY="false" xDataReference="per-tim2" yDataReference="tim2" />
+        <curve id="c1" logX="false" logY="false" xDataReference="per_tim" yDataReference="tim1" />
+        <curve id="c2" logX="false" logY="false" xDataReference="per_tim2" yDataReference="tim2" />
       </listOfCurves>
     </plot2D>
   </listOfOutputs>

@@ -3,7 +3,7 @@
   <notes>Changing a system from oscillation to chaos</notes> 
   <listOfSimulations>
     <uniformTimeCourse id="simulation1" initialTime="0" outputStartTime="50" outputEndTime="1000" numberOfPoints="1000" >
-   <algorithm kisaoID="KiSAO:0000027"></algorithm>
+   <algorithm kisaoID="KISAO:0000027"></algorithm>
    </uniformTimeCourse>
   </listOfSimulations>
   <listOfModels>
@@ -21,17 +21,16 @@
     
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="time" name="Time">
-      
+    <dataGenerator id="timeDG" name="Time">
+      <listOfVariables>
+        <variable id="time" name ="time" taskReference="task1" symbol="urn:sedml:symbol:time" />
+      </listOfVariables>
         <math:math>
           <math:apply>
             <math:plus />
-            <math:csymbol encoding="text" 
-            definitionURL="http://www.sbml.org/sbml/symbols/time">time
-            </math:csymbol>
+           <math:ci>time</math:ci>
           </math:apply>
-        </math:math>
-      
+        </math:math>    
     </dataGenerator>
     <dataGenerator id="tim1" name="tim mRNA (total)">
       <listOfVariables>
@@ -61,8 +60,8 @@
   <listOfOutputs>
     <plot2D id="plot1" name="tim mRNA with Oscillation and Chaos">
       <listOfCurves>
-        <curve logX="false" logY="false" xDataReference="time" yDataReference="tim1" />
-        <curve logX="false" logY="false" xDataReference="time" yDataReference="tim2" />
+        <curve id="c1" logX="false" logY="false" xDataReference="timeDG" yDataReference="tim1" />
+        <curve id="c2" logX="false" logY="false" xDataReference="timeDG" yDataReference="tim2" />
       </listOfCurves>
     </plot2D>
   </listOfOutputs>

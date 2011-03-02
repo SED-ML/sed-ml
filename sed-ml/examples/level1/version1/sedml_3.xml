@@ -30,7 +30,7 @@
 				<variable id="timeVar" taskReference="task1" target="time" />
 			</listOfVariables>
 			<math xmlns="http://www.w3.org/1998/Math/MathML">
-				<ci> time </ci>
+				<ci> timeVar </ci>
 			</math>
 		</dataGenerator>
 		<dataGenerator id="C1" name="C1">
@@ -80,10 +80,10 @@
 	<listOfOutputs>
 		<plot2D id="plot1" name="BioModel 3" >
 			<listOfCurves>
-				<curve xDataReference="time" yDataReference="C1" logX="false" logY="false"/>
-				<curve xDataReference="time" yDataReference="M1" logX="false" logY="false"/>
-				<curve xDataReference="time" yDataReference="X1" logX="false" logY="false"/>
-				<curve xDataReference="time" yDataReference="Total" logX="false" logY="false"/>
+				<curve id="c1Curve" xDataReference="time" yDataReference="C1" logX="false" logY="false"/>
+				<curve id="M1Curve" xDataReference="time" yDataReference="M1" logX="false" logY="false"/>
+				<curve id="X1Curve" xDataReference="time" yDataReference="X1" logX="false" logY="false"/>
+				<curve id="TotalCurve" xDataReference="time" yDataReference="Total" logX="false" logY="false"/>
 			</listOfCurves>
 		</plot2D>
 	</listOfOutputs>

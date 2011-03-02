@@ -4,10 +4,10 @@
    using deterministic and stochastic simulators</notes>-->
   <listOfSimulations>
     <uniformTimeCourse id="simulation1"  initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfPoints="1000" >
-    <algorithm kisaoID="KiSAO:0000088"/>
+    <algorithm kisaoID="KISAO:0000088"/>
     </uniformTimeCourse>
     <uniformTimeCourse id="simulation2" initialTime="0" outputStartTime="0" outputEndTime="1000" numberOfPoints="1000" >
-    <algorithm kisaoID="KiSAO:0000027"/>
+    <algorithm kisaoID="KISAO:0000027"/>
     </uniformTimeCourse>
   </listOfSimulations>
   <listOfModels>
@@ -23,15 +23,8 @@
         <variable id="time2" taskReference="task1" target="time" />
       </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> time </ci>
+        <ci> time2 </ci>
       </math>
-      <!-- <math:math>
-          <math:apply>
-            <math:csymbol encoding="text" 
-            definitionURL="http://www.sbml.org/sbml/symbols/time">time
-            </math:csymbol>
-          </math:apply>
-        </math:math> -->
     </dataGenerator>
     <dataGenerator id="LaCI" name="LaCI repressor">
       <listOfVariables>
@@ -61,9 +54,9 @@
   <listOfOutputs>
     <plot2D id="plot1" name="protein numbers per time point">
       <listOfCurves>
-        <curve logX="false" logY="false" xDataReference="time" yDataReference="LaCI" />
-        <curve logX="false" logY="false" xDataReference="time" yDataReference="TetR" />
-        <curve logX="false" logY="false" xDataReference="time" yDataReference="CI" />
+        <curve id="c1" logX="false" logY="false" xDataReference="time" yDataReference="LaCI" />
+        <curve  id="c2" logX="false" logY="false" xDataReference="time" yDataReference="TetR" />
+        <curve id="c3" logX="false" logY="false" xDataReference="time" yDataReference="CI" />
       </listOfCurves>
     </plot2D>
   </listOfOutputs>
