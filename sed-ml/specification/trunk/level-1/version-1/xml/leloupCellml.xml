@@ -11,7 +11,7 @@
     </uniformTimeCourse>
  </listOfSimulations>
  <listOfModels>
-  <model id="model1" name="Circadian Oscillations" language="urn:sedml:language:cellml" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02" >
+  <model id="model1" name="Circadian Oscillations" language="urn:sedml:language:cellml" source="http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/d6613d7e1051b3eff2bb1d3d419a445bb8c754ad/leloup_gonze_goldbeter_1999_a.cellml" >
    <listOfChanges>
     <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" newValue="1"/>
     <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vmP']/@initial_value" newValue="0.7"/>
@@ -37,12 +37,12 @@
   <listOfDataGenerators>
     <dataGenerator id="tim1" name="tim mRNA">
       <listOfVariables>
-        <variable id="v1" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
+        <variable id="v0" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
       </listOfVariables>
        <math:math>
           <math:apply>
             <math:plus />
-            <math:ci>v1</math:ci>
+            <math:ci>v0</math:ci>
           </math:apply>
         </math:math>
     </dataGenerator>
@@ -73,12 +73,12 @@
     
     <dataGenerator id="per-tim2" name="nuclear PER-TIM complex">
       <listOfVariables>
-        <variable id="v1" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
+        <variable id="v3" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
       </listOfVariables>
       <math:math>
         <math:apply>
           <math:plus />
-          <math:ci>v1</math:ci>
+          <math:ci>v3</math:ci>
         </math:apply>
       </math:math>
     </dataGenerator>
