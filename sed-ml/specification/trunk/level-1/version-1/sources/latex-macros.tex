@@ -33,8 +33,6 @@ Attributes and nested elements for \concept{#1}. \emph{xy$^{o}$} denotes optiona
   Listing \ref{lst:#1} shows the use of the \element{#2} element in a SED-ML file as defined by the SED-ML \LoneVone XML Schema.
 }
 
-
-
 %figures:
 \newcommand{\sedfig}[4][]
 	{\begin{figure}[t]\begin{center}{\includegraphics[width=0.9\textwidth,#1]{#2}}\caption{#3}\label{#4}\end{center}\end{figure}}
@@ -47,6 +45,7 @@ Attributes and nested elements for \concept{#1}. \emph{xy$^{o}$} denotes optiona
 
 \newcommand{\tickYes}{\hspace{1pt}\ding{52}}
 \newcommand{\tickNo}{\hspace{1pt}\ding{56}}
+
 
 
 
@@ -70,11 +69,17 @@ Attributes and nested elements for \concept{#1}. \emph{xy$^{o}$} denotes optiona
 \lstnewenvironment{mylistingNoNumbers}[2]
 	{\lstset{float,basicstyle=\ttfamily\footnotesize,caption={#1},label={#2}}}
 	{}
+
 % listings in appendixes:
 \lstnewenvironment{mylistingAppendix}[2]
 	{\lstset{float=h,basicstyle=\ttfamily\footnotesize,caption={#1},label={#2},%
 	numbers=left,stepnumber=1,numberstyle=\tiny}}
 	{}
+
+% listings test in appendixes:
+\newcommand{\myXmlImport}[3]	{\lstinputlisting[basicstyle=\ttfamily\scriptsize,caption={#1},label={#2},%
+	keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue}, commentstyle=\color{red}, captionpos=b, breaklines=true, xleftmargin=1.5em, xrightmargin=1.5em, numbers=left, numberstyle=\ttfamily\tiny, numbersep=5pt, tabsize=4, showstringspaces=false, language=XML, stepnumber=1]{#3}} %float=h!
+
 
 \lstnewenvironment{myXmlLst}[2]
 	{\lstset{basicstyle=\ttfamily\scriptsize, caption={#1},label={#2}, keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue}, commentstyle=\color{red}, captionpos=b, breaklines=true, xleftmargin=1.5em, xrightmargin=1.5em, numbers=left, numberstyle=\ttfamily\tiny, numbersep=5pt, tabsize=4, showstringspaces=false, language=XML, float=h!}}
