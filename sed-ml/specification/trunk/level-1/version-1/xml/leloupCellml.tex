@@ -16,23 +16,19 @@ The \code{output} defined in the experiment constists of a 2D plot with two diff
 \footnotesize
 \begin{myXmlLst}{LeLoup Model Simulation Description in SED-ML}{lst:leloup}
 <?xml version="1.0" encoding="utf-8"?>
-<sedML version="0.1" xmlns="http://www.biomodels.net/sed-ml" xmlns:math="http://www.w3.org/1998/Math/MathML">
- <!-- textual information about the experiment (optional) -->
- <notes>Comparing Limit Cycles and strange attractors for oscillation in Drosophila
- </notes> 
- <!-- definition of simulation setup -->
+<sedML version="0.1" xmlns="http://www.biomodels.net/sed-ml" 
+       xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <notes><p xmlns="http://www.w3.org/1999/xhtml">Comparing Limit Cycles and strange attractors for
+        oscillation in Drosophila</p></notes> 
  <listOfSimulations>
-  <!-- definition of a uniform time course over 180 time uints using the deterministic CVODE solver (KISAO:0000019) -->
-  <uniformTimeCourse id="simulation1" initialTime="0" outputStartTime="0" outputEndTime="180" numberOfPoints="1000">
-  <algorithm kisaoID="KISAO:0000019"/>
-  </uniformTimeCourse>
+   <uniformTimeCourse id="simulation1" algorithm="KiSAO:0000019" 
+    initialTime="0" outputStartTime="0" outputEndTime="180" 
+    numberOfPoints="1000" >
+     <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
  </listOfSimulations>
- <!-- definition of models used during the experiment -->
  <listOfModels>
-  <!-- reference to a cellML model -->
-  <model id="model1" name="Circadian Oscillations" language="urn:sedml:language:cellml" 
-   source="http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/d6613d7e1051b3eff2bb1d3d419a445bb8c754ad/leloup_gonze_goldbeter_1999_b.cellml" >
-   <!-- definition of changes to be applied to the original model (changing initial conditions) -->
+  <model id="model1" name="Circadian Oscillations" language="urn:sedml:language:cellml" source="http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/d6613d7e1051b3eff2bb1d3d419a445bb8c754ad/leloup_gonze_goldbeter_1999_a.cellml" >
    <listOfChanges>
     <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" newValue="1"/>
     <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vmP']/@initial_value" newValue="0.7"/>
@@ -43,7 +39,6 @@ The \code{output} defined in the experiment constists of a 2D plot with two diff
     <changeAttribute target="/cellml:model/cellml:component[@name='parameters']/cellml:variable[@name='K4T']/@initial_value" newValue="1"/>
    </listOfChanges>
   </model>
-  <!-- reference to the above model (model1) with additional changes of initial values of MY and T2 -->
   <model id="model2" name="Circadian Chaos" language="urn:sedml:language:cellml" source="model1">
    <listOfChanges>
     <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MT']/cellml:variable[@name='vmT']/@initial_value" newValue="0.28"/>
@@ -51,74 +46,68 @@ The \code{output} defined in the experiment constists of a 2D plot with two diff
    </listOfChanges>
   </model>
  </listOfModels>
- <!-- definition of tasks (combining simulation setup and model) --> 
- <listOfTasks>
-  <!-- limit cycle on model1 --> 
-  <task id="task1" name="Limit Cycle" modelReference="model1" simulationReference="simulation1"/>
-  <!-- strange attractors on the further perturbated model model2 -->
-  <task id="task2" name="Strange attractors" modelReference="model2" simulationReference="simulation1"/>
- </listOfTasks>
- <!-- definition of the data generators needed to produce the output -->
- <listOfDataGenerators>
-  <!-- definition of data generator for tim mRNA -->
-  <dataGenerator id="tim1" name="tim mRNA">
-   <listOfVariables>
-    <variable id="v1" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
-   </listOfVariables>
-   <math:math>
-    <math:apply>
-     <math:plus />
-     <math:ci>v1</math:ci>
-    </math:apply>
-   </math:math>
-  </dataGenerator>
-  <!-- definition of data generator for the nuclear PER-TIM complex -->
-  <dataGenerator id="per-tim" name="nuclear PER-TIM complex">
-   <listOfVariables>
-    <variable id="v2" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
-   </listOfVariables>
-   <math:math>
-    <math:apply>
-     <math:plus />
-     <math:ci>v2</math:ci>
-    </math:apply>
-   </math:math>
-  </dataGenerator>
-  <!-- definition of data generator for pertubated tim mRNA -->  
-  <dataGenerator id="tim2" name="tim mRNA (changed parameters)">
-   <listOfVariables>
-    <variable id="v3" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
-   </listOfVariables>  
-   <math:math>
-    <math:apply>
-     <math:plus />
-     <math:ci>v3</math:ci>
-    </math:apply>
-   </math:math>
-  </dataGenerator>
-  <!-- definition of data generator for perturbated nuclear PER-TIM complex -->  
-  <dataGenerator id="per-tim2" name="nuclear PER-TIM complex">
-   <listOfVariables>
-    <variable id="v4" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
-   </listOfVariables>
-   <math:math>
-    <math:apply>
-     <math:plus />
-     <math:ci>v4</math:ci>
-    </math:apply>
-   </math:math>
-  </dataGenerator>
- </listOfDataGenerators>
- <!-- output definition --> 
+ 
+  <listOfTasks>
+    <task id="task1" name="Limit Cycle" modelReference="model1" simulationReference="simulation1"/>
+    <task id="task2" name="Strange attractors" modelReference="model2" simulationReference="simulation1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="tim1" name="tim mRNA">
+      <listOfVariables>
+        <variable id="v0" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
+      </listOfVariables>
+       <math:math>
+          <math:apply>
+            <math:plus />
+            <math:ci>v0</math:ci>
+          </math:apply>
+        </math:math>
+    </dataGenerator>
+
+    <dataGenerator id="per-tim" name="nuclear PER-TIM complex">
+      <listOfVariables>
+        <variable id="v1" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
+      </listOfVariables>
+      <math:math>
+        <math:apply>
+          <math:plus />
+          <math:ci>v1</math:ci>
+        </math:apply>
+      </math:math>
+    </dataGenerator>
+    
+    <dataGenerator id="tim2" name="tim mRNA (changed parameters)">
+      <listOfVariables>
+        <variable id="v2" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
+      </listOfVariables>  
+        <math:math>
+          <math:apply>
+            <math:plus />
+            <math:ci>v2</math:ci>
+          </math:apply>
+        </math:math>
+    </dataGenerator>
+    
+    <dataGenerator id="per-tim2" name="nuclear PER-TIM complex">
+      <listOfVariables>
+        <variable id="v3" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
+      </listOfVariables>
+      <math:math>
+        <math:apply>
+          <math:plus />
+          <math:ci>v3</math:ci>
+        </math:apply>
+      </math:math>
+    </dataGenerator>
+  </listOfDataGenerators>
+  
   <listOfOutputs>
-   <!-- definition of a 2D plot to show the tim mRNA concentration with different initial conditions -->
-   <plot2D id="plot1" name="tim mRNA with Oscillation and Chaos">
-    <!-- definition of two output curves, both plotting per-tim (original and perturbated) against the tim concentration (original and perturbated) -->
-    <listOfCurves>
-     <curve logX="false" logY="false" xDataReference="per-tim" yDataReference="tim1" />
-     <curve logX="false" logY="false" xDataReference="per-tim2" yDataReference="tim2" />
-    </listOfCurves>
-   </plot2D>
+    <plot2D id="plot1" name="tim mRNA with Oscillation and Chaos">
+      <listOfCurves>
+        <curve id ="c1" logX="false" logY="false" xDataReference="per-tim" yDataReference="tim1" />
+        <curve id ="c2" logX="false" logY="false" xDataReference="per-tim2" yDataReference="tim2" />
+      </listOfCurves>
+    </plot2D>
   </listOfOutputs>
 </sedML>
 \end{myXmlLst}
