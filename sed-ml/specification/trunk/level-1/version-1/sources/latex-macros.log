@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  2 MAR 2011 21:03
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.9.1)  2 MAR 2011 21:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **\input latex-macros.tex
 (./latex-macros.tex
 ! Undefined control sequence.
-l.57 \lstnewenvironment
+l.56 \lstnewenvironment
                        {mylisting}[2]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -20,7 +20,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.57 \lstnewenvironment{m
+l.56 \lstnewenvironment{m
                          ylisting}[2]
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -38,7 +38,7 @@ Missing character: There is no [ in font nullfont!
 Missing character: There is no 2 in font nullfont!
 Missing character: There is no ] in font nullfont!
 ! Undefined control sequence.
-l.58 	{\lstset
+l.57 	{\lstset
               {float,basicstyle=\ttfamily\scriptsize,caption={#1},label={#2},%
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -64,7 +64,7 @@ Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no = in font nullfont!
 ! Undefined control sequence.
-l.58 ...tset{float,basicstyle=\ttfamily\scriptsize
+l.57 ...tset{float,basicstyle=\ttfamily\scriptsize
                                                   ,caption={#1},label={#2},%
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -73,7 +73,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! You can't use `macro parameter character #' in horizontal mode.
-l.58 ...basicstyle=\ttfamily\scriptsize,caption={#
+l.57 ...basicstyle=\ttfamily\scriptsize,caption={#
                                                   1},label={#2},%
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -81,7 +81,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! You can't use `macro parameter character #' in horizontal mode.
-l.58 ...\ttfamily\scriptsize,caption={#1},label={#
+l.57 ...\ttfamily\scriptsize,caption={#1},label={#
                                                   2},%
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -89,7 +89,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! Undefined control sequence.
-l.61         numberstyle=\tiny
+l.60         numberstyle=\tiny
                               ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -98,7 +98,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.63         keywordstyle=\color
+l.62         keywordstyle=\color
                                 [rgb]{0,0,1},
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -107,7 +107,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.64         commentstyle=\color
+l.63         commentstyle=\color
                                 [rgb]{0.133,0.545,0.133},
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -116,7 +116,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.65         stringstyle=\color
+l.64         stringstyle=\color
                                [rgb]{0.627,0.126,0.941},
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -125,62 +125,62 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 57--69
+Overfull \hbox (20.0pt too wide) in paragraph at lines 56--68
 []
  []
 
 
-Overfull \hbox (167.99854pt too wide) in paragraph at lines 57--69
+Overfull \hbox (167.99854pt too wide) in paragraph at lines 56--68
 \OT1/cmtt/m/n/10 ,caption=1,label=2,numbers=left,
  []
 
 
-Overfull \hbox (68.2494pt too wide) in paragraph at lines 57--69
+Overfull \hbox (68.2494pt too wide) in paragraph at lines 56--68
 \OT1/cmtt/m/n/10 stepnumber=1,
  []
 
 
-Overfull \hbox (68.2494pt too wide) in paragraph at lines 57--69
+Overfull \hbox (68.2494pt too wide) in paragraph at lines 56--68
 \OT1/cmtt/m/n/10 numberstyle=,
  []
 
 
-Overfull \hbox (68.2494pt too wide) in paragraph at lines 57--69
+Overfull \hbox (68.2494pt too wide) in paragraph at lines 56--68
 \OT1/cmtt/m/n/10 language=xml,
  []
 
 
-Overfull \hbox (125.9989pt too wide) in paragraph at lines 57--69
+Overfull \hbox (125.9989pt too wide) in paragraph at lines 56--68
 \OT1/cmtt/m/n/10 keywordstyle=[rgb]0,0,1,
  []
 
 
-Overfull \hbox (188.99835pt too wide) in paragraph at lines 57--69
+Overfull \hbox (188.99835pt too wide) in paragraph at lines 56--68
 \OT1/cmtt/m/n/10 commentstyle=[rgb]0.133,0.545,0.133,
  []
 
 
-Overfull \hbox (183.7484pt too wide) in paragraph at lines 57--69
+Overfull \hbox (183.7484pt too wide) in paragraph at lines 56--68
 \OT1/cmtt/m/n/10 stringstyle=[rgb]0.627,0.126,0.941,
  []
 
 
-Overfull \hbox (89.24922pt too wide) in paragraph at lines 57--69
+Overfull \hbox (89.24922pt too wide) in paragraph at lines 56--68
 \OT1/cmtt/m/n/10 showspaces=false,
  []
 
 
-Overfull \hbox (120.74895pt too wide) in paragraph at lines 57--69
+Overfull \hbox (120.74895pt too wide) in paragraph at lines 56--68
 \OT1/cmtt/m/n/10 showstringspaces=false,
  []
 
 
-Overfull \hbox (83.99927pt too wide) in paragraph at lines 57--69
+Overfull \hbox (83.99927pt too wide) in paragraph at lines 56--68
 \OT1/cmtt/m/n/10 identifierstyle= 
  []
 
 ! Undefined control sequence.
-l.70 \lstnewenvironment
+l.69 \lstnewenvironment
                        {mylistingNoNumbers}[2]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -195,7 +195,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.70 \lstnewenvironment{m
+l.69 \lstnewenvironment{m
                          ylistingNoNumbers}[2]
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -222,7 +222,7 @@ Missing character: There is no [ in font nullfont!
 Missing character: There is no 2 in font nullfont!
 Missing character: There is no ] in font nullfont!
 ! Undefined control sequence.
-l.71 	{\lstset
+l.70 	{\lstset
               {float,basicstyle=\ttfamily\footnotesize,caption={#1},label={#...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -248,7 +248,7 @@ Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no = in font nullfont!
 ! Undefined control sequence.
-l.71 ...et{float,basicstyle=\ttfamily\footnotesize
+l.70 ...et{float,basicstyle=\ttfamily\footnotesize
                                                   ,caption={#1},label={#2}}}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -257,7 +257,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! You can't use `macro parameter character #' in horizontal mode.
-l.71 ...sicstyle=\ttfamily\footnotesize,caption={#
+l.70 ...sicstyle=\ttfamily\footnotesize,caption={#
                                                   1},label={#2}}}
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -265,12 +265,22 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! You can't use `macro parameter character #' in horizontal mode.
-l.71 ...tfamily\footnotesize,caption={#1},label={#
+l.70 ...tfamily\footnotesize,caption={#1},label={#
                                                   2}}}
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
 If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 69--72
+[]
+ []
+
+
+Overfull \hbox (94.49918pt too wide) in paragraph at lines 69--72
+\OT1/cmtt/m/n/10 ,caption=1,label=2
+ []
 
 ! Undefined control sequence.
 l.74 \lstnewenvironment
@@ -280,6 +290,18 @@ of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.74 \lstnewenvironment{m
+                         ylistingAppendix}[2]
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 Missing character: There is no m in font nullfont!
 Missing character: There is no y in font nullfont!
@@ -363,14 +385,36 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 74--78
+[]
+ []
+
+
+Overfull \hbox (299.24739pt too wide) in paragraph at lines 74--78
+\OT1/cmtt/m/n/10 ,caption=1,label=2,numbers=left,stepnumber=1,numberstyle=
+ []
+
 ! Undefined control sequence.
-l.78 \lstnewenvironment
+l.84 \lstnewenvironment
                        {myXmlLst}[2]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.84 \lstnewenvironment{m
+                         yXmlLst}[2]
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 Missing character: There is no m in font nullfont!
 Missing character: There is no y in font nullfont!
@@ -384,7 +428,7 @@ Missing character: There is no [ in font nullfont!
 Missing character: There is no 2 in font nullfont!
 Missing character: There is no ] in font nullfont!
 ! Undefined control sequence.
-l.79 	{\lstset
+l.85 	{\lstset
               {basicstyle=\ttfamily\scriptsize, caption={#1},label={#2}, key...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -404,7 +448,7 @@ Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no = in font nullfont!
 ! Undefined control sequence.
-l.79 	{\lstset{basicstyle=\ttfamily\scriptsize
+l.85 	{\lstset{basicstyle=\ttfamily\scriptsize
                                               , caption={#1},label={#2}, key...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -413,7 +457,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! You can't use `macro parameter character #' in horizontal mode.
-l.79 ...asicstyle=\ttfamily\scriptsize, caption={#
+l.85 ...asicstyle=\ttfamily\scriptsize, caption={#
                                                   1},label={#2}, keywordstyl...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -421,7 +465,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! You can't use `macro parameter character #' in horizontal mode.
-l.79 ...ttfamily\scriptsize, caption={#1},label={#
+l.85 ...ttfamily\scriptsize, caption={#1},label={#
                                                   2}, keywordstyle=\color{bl...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -429,7 +473,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! Undefined control sequence.
-l.79 ...ption={#1},label={#2}, keywordstyle=\color
+l.85 ...ption={#1},label={#2}, keywordstyle=\color
                                                   {blue}\bfseries, stringsty...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -438,9 +482,9 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 79.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 85.
 ! Undefined control sequence.
-l.79 ...=\color{blue}\bfseries, stringstyle=\color
+l.85 ...=\color{blue}\bfseries, stringstyle=\color
                                                   {blue}, commentstyle=\colo...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -449,7 +493,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.79 ...ingstyle=\color{blue}, commentstyle=\color
+l.85 ...ingstyle=\color{blue}, commentstyle=\color
                                                   {red}, captionpos=b, break...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -458,7 +502,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.79 ..., numbers=left, numberstyle=\ttfamily\tiny
+l.85 ..., numbers=left, numberstyle=\ttfamily\tiny
                                                   , numbersep=5pt, tabsize=4...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -474,11 +518,11 @@ and I'll forget about whatever was undefined.
 
  
 Here is how much of TeX's memory you used:
- 46 strings out of 495061
- 421 string characters out of 1182622
+ 49 strings out of 495061
+ 451 string characters out of 1182622
  45108 words of memory out of 3000000
- 3322 multiletter control sequences out of 15000+50000
+ 3325 multiletter control sequences out of 15000+50000
  3808 words of font info for 15 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 16i,1n,11p,391b,92s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 16i,1n,11p,385b,92s stack positions out of 5000i,500n,10000p,200000b,50000s
 !  ==> Fatal error occurred, no output PDF file produced!
