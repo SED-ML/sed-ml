@@ -149,7 +149,7 @@
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
 					<xs:sequence>
-						<xs:element ref="listOfCurves" />
+						<xs:element ref="listOfCurves" minOccurs="0" />
 					</xs:sequence>
 					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
@@ -161,7 +161,7 @@
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
 					<xs:sequence>
-						<xs:element ref="listOfSurfaces" />
+						<xs:element ref="listOfSurfaces" minOccurs="0"/>
 					</xs:sequence>
 					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
@@ -173,7 +173,7 @@
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
 					<xs:sequence>
-						<xs:element ref="listOfDataSets" />
+						<xs:element ref="listOfDataSets" minOccurs="0" />
 					</xs:sequence>
 					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
@@ -385,8 +385,8 @@
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
 					<xs:sequence>
-						<xs:element ref="listOfVariables" />
-						<xs:element ref="listOfParameters" />
+						<xs:element ref="listOfVariables" minOccurs="0" />
+						<xs:element ref="listOfParameters" minOccurs="0" />
 						<xs:element ref="math" />
 					</xs:sequence>
 					<xs:attribute name="target" use="required" type="xs:token" />
