@@ -18,9 +18,11 @@ The SED-ML description of the simulation experiment is given in listing \ref{lst
 <?xml version="1.0" encoding="utf-8"?>
 <sedML xmlns="http://www.biomodels.net/sed-ml">
   <listOfSimulations>
-    <uniformTimeCourse id="simulation1" algorithm="KISAO:0000019"
+    <uniformTimeCourse id="simulation1"
     initialTime="0" outputStartTime="0" outputEndTime="2500"
-    numberOfPoints="1000" />
+    numberOfPoints="1000">	
+	  <algorithm kisaoID="KISAO:0000019"/>	
+	</uniformTimeCourse>
   </listOfSimulations>
   <listOfModels>
     <model id="model1" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000140" />
