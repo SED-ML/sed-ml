@@ -41,6 +41,7 @@ A \code{variable} element must contain a \hyperref[sec:taskReference]{taskRefere
 
 %
 \lsttext{variable}{variable}
+
 %
 \begin{myXmlLst}{SED-ML \code{variable} definitions inside the \code{computeChange} element and inside the \code{dataGenerator} element}{lst:variable}
 <sedML>
@@ -89,22 +90,24 @@ XPath  unambiguously identifies an element or attribute in an XML file.
  <listOfChanges>
   <computeChange [..]>
    <listOfVariables>
-    <variable id="v1" name="TetR protein" target="/sbml:sbml/sbml:listOfSpecies/sbml:species[@id='PY']" />
+    <variable id="v1" name="TetR protein" 
+     target="/sbml:sbml/sbml:listOfSpecies/sbml:species[@id='PY']" />
    </listOfVariables>
   </computeChange>
  </listOfChanges>
 </model>
 \end{myXmlLst}
 %
-It should be noted that the identifier and names inside the SED-ML document do not have to comply with the identifiers and names that the model and its constituents carry in the model definition. In  example \ref{lst:target}, the variable with ID \code{v1} is defined. It is described as the \code{TetR protein}. The reference points to a species in the referenced SBML model. The particular species can be identified through its ID in the SBML model, namely \code{PY}. However, SED-ML does not forbid to use identical identifiers and names as in the referenced models neither. The following is the same valid SED-ML example for the specification of a variable as the above in listing \ref{lst:variable}, but with different naming:
+It should be noted that the identifier and names inside the SED-ML document do not have to comply with the identifiers and names that the model and its constituents carry in the model definition. In  listing \vref{lst:target}, the variable with ID \code{v1} is defined. It is described as the \code{TetR protein}. The reference points to a species in the referenced SBML model. The particular species can be identified through its ID in the SBML model, namely \code{PY}. However, SED-ML does not forbid to use identical identifiers and names as in the referenced models neither. The following listing \vref{lst:sedmlVariable} is another valid example for the specification of a variable, but uses different naming in the variable definition (as opposed to listing \ref{lst:variable}):
 %
-\begin{myXmlLst}{SED-ML variable definition using the original model identifier and name in SED-ML}{}
+\begin{myXmlLst}{SED-ML variable definition using the original model identifier and name in SED-ML}{lst:sedmlVariable}
 <model id="m0001" language="urn:sedml:language:sbml" 
  source="urn:miriam:biomodels.db:BIOMD0000000012">
  <listOfChanges>
   <computeChange [..] />
    <listOfVariables>
-    <variable id="PY" name="TetR protein" target="/sbml:sbml/sbml:listOfSpecies/sbml:species[@id='PY']" />
+    <variable id="PY" name="TetR protein" 
+     target="/sbml:sbml/sbml:listOfSpecies/sbml:species[@id='PY']" />
    </listOfVariables>
   </computeChange>
  </listOfChanges>
@@ -132,6 +135,7 @@ The XPath expression used in the \concept{\code{target}} attribute unambiguously
 \concept{Symbols} are predefined, implicit variables that can be called in a SED-ML file by referring to the defined URNs representing that variable's concept. The notion of implicit variables is explained in section \ref{sec:implicitVariable} on page \refpage{sec:implicitVariable}.
 
 \lsttext{symbol}{symbol}
+The example encodes a computed change of model \code{m001}. To specify that change, a symbol is defined (i.\,e.\  the SED-ML symbol for \code{time} is assigned to the variable \code{t1}). How to compute the change itself is explained in section \ref{class:computeChange}.
 %
 \begin{myXmlLst}{SED-ML \code{symbol} definition}{lst:symbol}
 <model id="m0001" language="urn:sedml:language:sbml" 
@@ -147,7 +151,7 @@ The XPath expression used in the \concept{\code{target}} attribute unambiguously
 </model>
 \end{myXmlLst}
 %
-The example shows a computed change of model \code{m001}. To specify that change, a symbol is first defined, namely the SED-ML symbol for \code{time} is assigned to the variable \code{t1}. How to compute the change itself is explained in section \ref{class:computeChange}.
+
 
 %%% Local Variables: 
 %%% mode: latex

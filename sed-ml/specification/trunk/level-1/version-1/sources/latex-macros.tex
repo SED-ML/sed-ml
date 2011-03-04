@@ -26,22 +26,19 @@ Attributes and nested elements for \concept{#1}. \emph{xy$^{o}$} denotes optiona
 }
 
 \newcommand{\tabtext}[2]{ % to create the introducing table text for each table reference
-\tab{#1} shows all attributes and sub-elements for the \concept{#2} element as defined by the SED-ML \LoneVone XML Schema.
+\tab{#1}~shows all attributes and sub-elements for the \concept{#2} element as defined by the SED-ML \LoneVone XML Schema.
 }
 
 \newcommand{\lsttext}[2]{ % to create the introducing listing text for each listing reference
-  Listing \ref{lst:#1} shows the use of the \element{#2} element in a SED-ML file as defined by the SED-ML \LoneVone XML Schema.
+  Listing~\vref{lst:#1} shows the use of the \element{#2} element in a SED-ML file as defined by the SED-ML \LoneVone XML Schema.
 }
 
-%figures:
-\newcommand{\sedfig}[4][]
-	{\begin{figure}[t]\begin{center}{\includegraphics[width=0.9\textwidth,#1]{#2}}\caption{#3}\label{#4}\end{center}\end{figure}}
 %
 \newcommand{\sect}[1]     {Section~\protect\ref{sec:#1}\xspace}
 \newcommand{\fig}[1]      {Figure~\protect\vref{fig:#1}\xspace}
 \newcommand{\tab}[1]      {Table~\protect\vref{tab:#1}\xspace}
-\newcommand{\eg}          {e.g.,\xspace}
-\newcommand{\ie}          {i.e.,\xspace}
+\newcommand{\eg}          {e.\,g.,\xspace}
+\newcommand{\ie}          {i.\,e.,\xspace}
 
 \newcommand{\tickYes}{\hspace{1pt}\ding{52}}
 \newcommand{\tickNo}{\hspace{1pt}\ding{56}}
@@ -52,35 +49,18 @@ Attributes and nested elements for \concept{#1}. \emph{xy$^{o}$} denotes optiona
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  environments
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% standard listings:
-\lstnewenvironment{mylisting}[2]
-	{\lstset{float,basicstyle=\ttfamily\scriptsize,caption={#1},label={#2},%
-	numbers=left,
-        stepnumber=1,
-        numberstyle=\tiny,
-        language=xml,
-        keywordstyle=\color[rgb]{0,0,1},
-        commentstyle=\color[rgb]{0.133,0.545,0.133}, 
-        stringstyle=\color[rgb]{0.627,0.126,0.941}, 
-        showspaces=false, 
-        showstringspaces=false, 
-        identifierstyle=\ttfamily}}{}
 
-\lstnewenvironment{mylistingNoNumbers}[2]
-	{\lstset{float,basicstyle=\ttfamily\footnotesize,caption={#1},label={#2}}}
+% standard figure layout
+\newcommand{\sedfig}[4][]
+	{\begin{figure}[h!]\begin{center}{\includegraphics[width=0.9\textwidth,#1]{#2}}\caption{#3}\label{#4}\end{center}\end{figure}}
+
+% standard XML listing layout
+\lstnewenvironment{myXmlLst}[2]
+	{\lstset{basicstyle=\ttfamily\scriptsize, caption={#1},label={#2}, keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue}, commentstyle=\color{red}, captionpos=b, breaklines=true, xleftmargin=1.5em, xrightmargin=1.5em, numbers=left, numberstyle=\ttfamily\tiny, numbersep=5pt, tabsize=4, showstringspaces=false, language=XML, float=h!}}
 	{}
 
 % listings in appendixes:
-\lstnewenvironment{mylistingAppendix}[2]
-	{\lstset{float=h,basicstyle=\ttfamily\footnotesize,caption={#1},label={#2},%
-	numbers=left,stepnumber=1,numberstyle=\tiny}}
-	{}
-
-% listings test in appendixes:
 \newcommand{\myXmlImport}[3]	{\lstinputlisting[basicstyle=\ttfamily\scriptsize,caption={#1},label={#2},%
 	keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue}, commentstyle=\color{red}, captionpos=b, breaklines=true, xleftmargin=1.5em, xrightmargin=1.5em, numbers=left, numberstyle=\ttfamily\tiny, numbersep=5pt, tabsize=4, showstringspaces=false, language=XML, stepnumber=1]{#3}} %float=h!
 
 
-\lstnewenvironment{myXmlLst}[2]
-	{\lstset{basicstyle=\ttfamily\scriptsize, caption={#1},label={#2}, keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue}, commentstyle=\color{red}, captionpos=b, breaklines=true, xleftmargin=1.5em, xrightmargin=1.5em, numbers=left, numberstyle=\ttfamily\tiny, numbersep=5pt, tabsize=4, showstringspaces=false, language=XML, float=h!}}
-	{}
