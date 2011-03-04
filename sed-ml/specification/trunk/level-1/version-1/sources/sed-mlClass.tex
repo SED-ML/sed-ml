@@ -1,11 +1,10 @@
 % sed-ml Class
 \label{class:sed-ml}
-Each SED-ML \LoneVone document has a main class called SED-ML which defines the document's structure and content (\fig{sed-ml}).
+Each SED-ML \LoneVone document has a main class called SED-ML which defines the document's structure and content (\fig{sed-mlMain}).
 %
-\sedfig[width=0.35\textwidth]{sed-mlClass}{The SED-ML class}{fig:sed-ml}
+%\sedfig[width=0.35\textwidth]{sed-mlClass}{The SED-ML class}{fig:sed-ml}
 %
-
-The SED-ML document consists of several parts which are all connected to the SED-ML class through aggregation: 
+It consists of several parts; the parts are all connected to the SED-ML class through aggregation: 
 the \hyperref[class:model]{Model} class (for model specification, see section \ref{class:model}), the \hyperref[class:simulation]{Simulation} class (for simulation setup specification, see section \ref{class:simulation}), the \hyperref[class:task]{Task} class (for the linkage of models and simulation setups, see section \ref{class:task}), the \hyperref[class:dataGenerator]{DataGenerator} class (for the definition of post-processing, see section \ref{class:dataGenerator}), and the \hyperref[class:output]{Output} class (for the output specification, see section \ref{class:output}). All of them are shown in \fig{sed-mlMain} and will be explained in more detail in the relevant sections of this document.
 %
 \sedfig[width=0.8\textwidth]{sed-mlMain}{The sub-classes of SED-ML}{fig:sed-mlMain}
@@ -43,7 +42,7 @@ listOfOutputs$^{o}$ & \refpage{sec:listOfOutputs} \\
 %
 A SED-ML document needs to have the SED-ML namespace defined through the mandatory \hyperref[sec:xmlns]{xmlns} attribute. In addition, the SED-ML \hyperref[sec:level]{level} and \hyperref[sec:version]{version} attributes are mandatory.
 
-The basic XML structure of a SED-ML file is shown in listing  \ref{lst:sedmlRoot}.
+The basic XML structure of a SED-ML file is shown in listing  \vref{lst:sedmlRoot}.
 %
 \begin{myXmlLst}{The SED-ML root element}{lst:sedmlRoot}
 <?xml version="1.0" encoding="utf-8"?>
@@ -72,19 +71,19 @@ In addition, SED-ML makes use of the \concept{MathML} namespace \url{http://www.
 
 SED-ML \concept{notes} use the XHTML namespace \url{http://www.w3.org/1999/xhtml}.  The \hyperref[class:notes]{Notes} class is described in section \ref{class:notes} on page \pageref{class:notes}.
 
-Additional external namespaces might be used in \hyperref[class:annotation]{Annotations}. 
+Additional external namespaces might be used in \hyperref[class:annotation]{annotations}. 
 
 
 \subsubsection{The \element{level} attribute}
 \label{sec:level}
 
-The current SED-ML \concept{level} is level \level. Major revisions containing substantial changes will lead to the definition of forthcoming levels.
+The current SED-ML \concept{level} is ``level \level''. Major revisions containing substantial changes will lead to the definition of forthcoming levels.
 
 The level attribute is \code{required} and its value is a \code{fixed} decimal. For SED-ML \LoneVone the value is set to \code{1}, as shown in the example in listing \ref{lst:sedmlRoot}.
 
 \subsubsection{The \element{version} attribute}
 \label{sec:version}
-The current SED-ML \concept{version} is version \version. Minor revisions containing corrections and refinements of SED-ML elements will lead to the definition of forthcoming versions.
+The current SED-ML \concept{version} is ``version \version''. Minor revisions containing corrections and refinements of SED-ML elements will lead to the definition of forthcoming versions.
 
 The version attribute is \code{required} and its value is a \code{fixed} decimal. For SED-ML \LoneVone the value is set to \code{1}, as shown in the example in listing \ref{lst:sedmlRoot}.
 
