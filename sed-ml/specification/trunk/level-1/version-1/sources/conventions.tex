@@ -87,15 +87,19 @@ An example for a complex type definition is given in listing \ref{lst:complexTyp
 %
 \begin{myXmlLst}{Complex Type definition of the SED-ML \code{computeChange} element}{lst:complexType}
 <xs:element name="computeChange">
- <xs:complexType>
-  <xs:sequence>
-   <xs:element ref="listOfVariables" />
-   <xs:element ref="listOfParameters" />
-   <xs:element ref="math:math" />
-  </xs:sequence>
-  <xs:attribute name="target" type="xs:token" />
- </xs:complexType>
-</xs:element>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="listOfVariables" minOccurs="0" />
+						<xs:element ref="listOfParameters" minOccurs="0" />
+						<xs:element ref="math" />
+					</xs:sequence>
+					<xs:attribute name="target" use="required" type="xs:token" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 \end{myXmlLst}
 %
 It shows the declaration of an element called \code{computeChange} that is used in SED-ML to change mathematical expressions. The element is defined using an \emph{unnamed} complex type which is build of further elements called \code{listOfVariables}, \code{listOfParameters}, and \code{math}. 
@@ -107,16 +111,20 @@ The nesting of elements in the schema can be expressed using the \code{xs:sequen
 The standard multiplicity for each defined \code{element} is 1. Explicit multiplicity is to be defined using the \code{minOccurs} and \code{maxOccurs} attributes inside the complex type definition, as shown in listing \ref{lst:multiplicity}.
 
 \begin{myXmlLst}{Multiplicity for complex types in XML Schema}{lst:multiplicity}
-<xs:element name=" dataGenerator ">
- <xs:complexType >
-  <xs:sequence >
-   <xs:element ref=" listOfVariables " minOccurs ="0" />
-   <xs:element ref=" listOfParameters " minOccurs ="0" />
-   <xs:element ref=" math:math " />
-  </xs:sequence >
-  [..]
- </xs:complexType >
-</xs:element >
+<xs:element name="dataGenerator">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="listOfVariables" minOccurs="0" />
+						<xs:element ref="listOfParameters" minOccurs="0" />
+						<xs:element ref="math" />
+					</xs:sequence>
+					<xs:attributeGroup ref="idGroup" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 \end{myXmlLst}
 %
 In this example, the \code{dataGenerator} type is build of a sequence of three elements: The \code{listOfVariables} element is not necessary for the definition of a valid \code{dataGenerator} XML structure (it may occur 0 times or once). The same is true for the \code{listOfParameters} element (it may as well occur 0 times or once). The \code{math} element, however, uses the implicit standard multiplicity -- it must occur exactly 1 time in the \code{dataGenerator} specification.
@@ -125,27 +133,29 @@ In this example, the \code{dataGenerator} type is build of a sequence of three e
 XML Schema offers mechanisms to restrict and extend previously defined complex types. Extensions add element or attribute declarations to existing types, while restrictions restrict the types by adding further characteristics and requirements (facets) to a type. An example for a type extension is given in listing \ref{lst:xmlExtension}.
 %
 \begin{myXmlLst}{Definition of the sedML type through extension of SEDBase in SED-ML}{lst:xmlExtension}
-<xs:element name="sedML">
- <xs:complexType>
-  <xs:complexContent>
-   <xs:extension base="SEDBase">
-    <xs:sequence>
-     <xs:element ref="listOfSimulations" />
-     <xs:element ref="listOfModels" />
-     <xs:element ref="listOfTasks" />
-     <xs:element ref="listOfDataGenerators" />
-     <xs:element ref="listOfOutputs" />
-    </xs:sequence>
-    <xs:attribute name="version" type="xs:decimal" use="required" fixed="1" />
-    <xs:attribute name="level" type="xs:decimal" use="required" fixed="1" />
-   </xs:extension>
-  </xs:complexContent>
- </xs:complexType>
-</xs:element>
+	<xs:element name="sedML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="listOfSimulations" minOccurs="0" />
+						<xs:element ref="listOfModels" minOccurs="0" />
+						<xs:element ref="listOfTasks" minOccurs="0" />
+						<xs:element ref="listOfDataGenerators" minOccurs="0" />
+						<xs:element ref="listOfOutputs" minOccurs="0" />
+					</xs:sequence>
+					<xs:attribute name="level" type="xs:decimal" use="required"
+						fixed="1" />
+					<xs:attribute name="version" type="xs:decimal" use="required"
+						fixed="1" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
 \end{myXmlLst}
 %
 %% Q: How about renaming sedML to sed-ml for the next version?
-The \code{sedML} element is an extension of the previously defined \code{SEDBase} type. It extends \code{SEDBase} by a sequence of five additional elements (\code{listOfSimulations}, \code{listOfModels}, \code{listOfTasks}, \code{listOfDataGenerators}, and \code{listOfOutputs}) and a new attribute \code{version}.
+The \code{sedML} element is an extension of the previously defined \code{SEDBase} type. It extends \code{SEDBase} by a sequence of five additional elements (\code{listOfSimulations}, \code{listOfModels}, \code{listOfTasks}, \code{listOfDataGenerators}, and \code{listOfOutputs}) and two new  attributes:  \code{level} and  \code{version}.
 
 %% MAPPINGS
 % \subsection{Mappings}
