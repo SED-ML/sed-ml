@@ -2,7 +2,7 @@
 \label{class:variable}
 \concept{Variables} are references to already existing entities, either existing in one of the defined \hyperref[class:model]{models} or externally defined \hyperref[sec:symbol]{symbols} (\fig{variable}). 
 %
-\sedfig[width=0.3\textwidth]{variableClass}{The Variable class}{fig:variable}
+\sedfig[width=0.4\textwidth]{variableClass}{The Variable class}{fig:variable}
 %
 If the variable is defined through a reference to a model constituent, such as an SBML species, then the reference is specified using the  \hyperref[sec:target]{target} attribute.
 If the variable is defined through a reference to an external entity, then the  \hyperref[sec:symbol]{symbol} attribute is used. It holds a SED-ML \hyperref[sec:uriScheme]{URI}. A \code{variable} is  always placed inside a \hyperref[class:listOfVariables]{listOfVariables}. \code{Symbol} and \code{target} must not be used together in a single instance of Variable.
