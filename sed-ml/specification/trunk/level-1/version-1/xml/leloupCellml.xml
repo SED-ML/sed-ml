@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sedML version="0.1" xmlns="http://www.biomodels.net/sed-ml" 
-       xmlns:math="http://www.w3.org/1998/Math/MathML">
+       xmlns:math="http://www.w3.org/1998/Math/MathML" level="1" version="1">
  <notes><p xmlns="http://www.w3.org/1999/xhtml">Comparing Limit Cycles and strange attractors for
         oscillation in Drosophila</p></notes> 
  <listOfSimulations>
