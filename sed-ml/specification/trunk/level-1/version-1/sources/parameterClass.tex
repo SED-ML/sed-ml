@@ -2,7 +2,7 @@
 \label{class:parameter}
 The SED-ML \concept{Parameter} class creates instances with a constant value (\fig{parameter}).
 %
-\sedfig[width=0.4\textwidth]{parameterClass}{The Parameter class}{fig:parameter}
+\sedfig[width=0.35\textwidth]{parameterClass}{The Parameter class}{fig:parameter}
 %
 SED-ML uses parameters in two ways: 
 Firstly, parameters may be defined in the \hyperref[class:computeChange]{ComputeChange} class for describing the mathematical computation of a change of a model's observable.
@@ -11,7 +11,7 @@ In both cases the parameter definitions are local to the particular class defini
 
 \tabtext{parameter}{parameter}
 %
-\begin{table}[h!]
+\begin{table}[ht!]
 \center
 \begin{tabular}{|l|l|}
 \hline
@@ -36,6 +36,7 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 %
 
 A parameter can unambiguously be identified through its given \hyperref[sec:id]{id}. It may additionally carry an optional \hyperref[sec:name]{name}. Each parameter has one associated \hyperref[sec:value]{value}. 
+
 
 \lsttext{parameter}{parameter}
 The listing shows the definition of a parameter \code{p1} with the \code{value="40"} assigned. 
