@@ -1,0 +1,16 @@
+\subsubsection{\element{language}}
+\label{sec:language}
+The evaluation of a SED-ML document is required in order for software to decide whether or not it can be used for a particular simulation environment. One crucial criterion is the particular model representation language used to encode the model. A simulation software usually only supports a small subset of the representation formats available to model biological systems computationally. 
+
+To help  software decide whether or not it supports a SED-ML description file, the information on the model encoding for each referenced model can be provided through the \concept{language} attribute, as the description of a language name and version through an unrestricted \code{String} is error-prone. 
+A prerequisite for a language to be fully supported by SED-ML is that a formalised language definition, e.\,g. an XML Schema, is provided online. SED-ML also defines a set of standard URIs to refer to particular language definitions. 
+The list of URNs for languages so far associated with SED-ML is available from the SED-ML web site on \url{http://sed-ml.org/}  (see again section \ref{sec:languageURI} on \refpage{sec:languageURI}). 
+To specify language and version, following the idea of MIRIAM URNs, the SED-ML URN scheme \code{urn:sedml:language:}\emph{language name} is used. A model's language being ``SBML Level 2 Version 2'' can be referred to, for example, through the URN \code{urn:sedml:language:sbml.level-2.version-2}.
+
+The \concept{language} attribute is optional in the XML representation of a SED-ML file. 
+If it is not explicitly defined in the SED-ML file, the default value for the \concept{language} attribute is \code{urn:sedml:language:xml}, referring to any XML based model representation. 
+
+However, the use of the \concept{language} attribute is strongly encouraged for two reasons. 
+Firstly, it helps a user decide whether or not he is able to run the simulation, that is to parse the model referenced in the SED-ML file. 
+Secondly, the language attribute is also needed to decide how to handle the implicit variables in the \hyperref[class:variable]{Variable} class, as the interpretation of implicit variables depends on the language of the representation format. The concept of implicit variables has been introduced in section \ref{sec:implicitVariable} on \refpage{sec:implicitVariable}.
+

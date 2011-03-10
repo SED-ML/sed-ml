@@ -1,4 +1,5 @@
 % The proposed URI scheme to use
+  \subsection{URI Scheme}  
 \label{sec:uriScheme}
 
 URIs are needed at different points in SED-ML \LoneVone: 
@@ -20,7 +21,7 @@ A sample BioModels Database ID is \code{BIOMD0000000048}. Together with the data
 %
 
 SED-ML recommends to follow the above scheme for model references, if possible. 
-SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offers web services to do so\footnote{\url{http://www.ebi.ac.uk/miriam}}. For the above example of the \code{urn:miriam:biomodels.db:BIOMD0000000048} model, the resolved URL may look like: 
+SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offers web services to do so\footnote{\url{http://www.ebi.ac.uk/miriam/}}. For the above example of the \code{urn:miriam:biomodels.db:BIOMD0000000048} model, the resolved URL may look like: 
 \begin{itemize}
  \item{\code{http://biomodels.caltech.edu/BIOMD0000000048} or}
  \item{\code{http://www.ebi.ac.uk/biomodels-main/BIOMD0000000048}}
@@ -37,7 +38,7 @@ The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{name
 SED-ML allows to specify a model representation format very generally as being \code{XML}, if no standardised representation format has been used to encode the model. On the other hand, one can be as specific as defining
 a model being in a particular version of a language, as ``SBML Level 2, Version 2, Revision 1''.
 
-The list of URNs is available from \url{http://sed-ml.org#sedmlLanguage}. 
+The list of URNs is available from \url{http://sed-ml.org/}. 
 Further information on the \hyperref[sec:language]{language} attribute is provided in section \ref{sec:language}.
 
 \subsubsection{Implicit variables}
@@ -50,7 +51,7 @@ To overcome this issue and allow SED-ML to refer to such variables in a common w
 Those variables are called \code{symbols} in SED-ML. They are defined following the idea of MIRIAM URNs and using the SED-ML URN scheme. The structure of the URNs is \element{urn:sedml:symbol:}\emph{implicit variable}.
 To refer from a SED-ML file to the definition of \emph{time}, for example, the URN is \element{urn:sedml:symbol:time}.
 
-The list of predefined symbols is available from the SED-ML site on \url{http://sed-ml.org}.
+The list of predefined symbols is available from the SED-ML site on \url{http://sed-ml.org/}.
 From that source, a mapping of SED-ML symbols on possibly existing concepts in the single languages supported by SED-ML is provided.
 
 \subsubsection{Annotations}

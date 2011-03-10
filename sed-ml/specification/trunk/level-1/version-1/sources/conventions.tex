@@ -1,10 +1,10 @@
-\subsection{Conventions used in this document}
+\section{Conventions used in this document}
 \label{sec:conventions}
 
 SED-ML is specified as an XML Schema \citep{xmls}. We also provide a UML Class diagram representation of that XML Schema (refer to appendix \ref{app:uml}). UML class diagrams are a subset of the \emph{Unified Markup Language} notation (UML, \citep{uml22}). Sample experiment descriptions are given as XML snippets that comply with the XML Schema.
 
 %% UML
-\subsubsection{UML Classes}
+\subsection{UML Classes}
 \label{sec:umlconventions}
 A SED-ML UML class (\fig{umlClass}) consists of a class name (\code{ClassName}) and a number of attributes (\code{attribute}) each of a specific data type (\code{type}). The SED-ML UML specification does not make use of UML \code{operations}.
 \begin{figure}[h]
@@ -16,9 +16,9 @@ A SED-ML UML class (\fig{umlClass}) consists of a class name (\code{ClassName}) 
 
 SED-ML class names always begin with upper case letters. If they are composed of different words, the camel case style is used, as in e.\,g.\ \code{DataGenerator}.
 
-\subsubsection{UML Relationships}
+\subsection{UML Relationships}
 %% RELATIONS
-\paragraph{UML Relation Types}
+\subsubsection{UML Relation Types}
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.5\textwidth]{images/uml/classRelation.png}
@@ -61,7 +61,7 @@ The \concept{generalisation} (\fig{umlGeneralisation}) allows to extend classes 
 \end{figure}
 %
 %% CARDINALITIES
-\paragraph{UML multiplicity}
+\subsubsection{UML multiplicity}
 UML multiplicity defines the number of objects in one class that can be related to one object in the other class (also known as \concept{cardinality}). Possible types of multiplicity include values (1), ranges (1$..$4), intervals (1,3,9), or combinations of ranges and intervals. The standard notation for ``many'' is the asterix (*). 
 
 Multiplicity can be defined for both sides of a relationship between classes. The default relationship is ``many to many''. 
@@ -74,7 +74,7 @@ The example in \fig{umlMulti} expresses that a class is given by a professor, an
 \end{figure}
 
 %% XML SCHEMA
-\subsubsection{XML Schema language elements}
+\subsection{XML Schema language elements}
 The main building blocks of an XML Schema specification are
 \begin{itemize}
 \item {simple and complex types}
@@ -107,7 +107,7 @@ Additionally, the element \code{computeChange} has an attribute \code{target} de
 
 The nesting of elements in the schema can be expressed using the \code{xs:sequence} (a sequence of elements), \code{xs:choice} (an alternative of elements to choose from), or \code{xs:all} (a set of elements that can occur in any order) concepts. The current SED-ML XML Schema only uses the \emph{sequence} of elements. 
 
-\paragraph{Multiplicities}
+\subsubsection{Multiplicities}
 The standard multiplicity for each defined \code{element} is 1. Explicit multiplicity is to be defined using the \code{minOccurs} and \code{maxOccurs} attributes inside the complex type definition, as shown in listing \ref{lst:multiplicity}.
 
 \begin{myXmlLst}{Multiplicity for complex types in XML Schema}{lst:multiplicity}
@@ -129,7 +129,7 @@ The standard multiplicity for each defined \code{element} is 1. Explicit multipl
 %
 In this example, the \code{dataGenerator} type is build of a sequence of three elements: The \code{listOfVariables} element is not necessary for the definition of a valid \code{dataGenerator} XML structure (it may occur 0 times or once). The same is true for the \code{listOfParameters} element (it may as well occur 0 times or once). The \code{math} element, however, uses the implicit standard multiplicity -- it must occur exactly 1 time in the \code{dataGenerator} specification.
 
-\paragraph{Type extensions}
+\subsection{Type extensions}
 XML Schema offers mechanisms to restrict and extend previously defined complex types. Extensions add element or attribute declarations to existing types, while restrictions restrict the types by adding further characteristics and requirements (facets) to a type. An example for a type extension is given in listing \ref{lst:xmlExtension}.
 %
 \begin{myXmlLst}{Definition of the sedML type through extension of SEDBase in SED-ML}{lst:xmlExtension}
@@ -155,7 +155,7 @@ XML Schema offers mechanisms to restrict and extend previously defined complex t
 \end{myXmlLst}
 %
 %% Q: How about renaming sedML to sed-ml for the next version?
-The \code{sedML} element is an extension of the previously defined \code{SEDBase} type. It extends \code{SEDBase} by a sequence of five additional elements (\code{listOfSimulations}, \code{listOfModels}, \code{listOfTasks}, \code{listOfDataGenerators}, and \code{listOfOutputs}) and two new  attributes:  \code{level} and  \code{version}.
+The \code{sedML} element is an extension of the previously defined \code{SEDBase} type. It extends \code{SEDBase} by a sequence of five additional elements (\code{listOfSimulations}, \code{listOfModels}, \code{listOfTasks}, \code{listOfDataGenerators}, and \code{listOfOutputs}) and a new attribute \code{version}.
 
 %% MAPPINGS
 % \subsection{Mappings}
