@@ -1,3 +1,4 @@
+\subsubsection{\element{DataSet}}
 \label{class:dataSet}
 The \concept{DataSet} class holds definitions of data to be used in the \hyperref[class:report]{Report} class (\fig{dataSet}).
 % 
@@ -32,11 +33,11 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \end{table}
 %
 
-\subsubsection{The \code{label} attribute}
+\paragraph{\element{label}}
 \label{sec:label}
 Each data set in a \hyperref[class:report]{Report} does have to carry an unambiguous \concept{label}. A label is a human readable descriptor of a data set for use in a  \hyperref[class:report]{report}. For example, for a tabular data set of time series results, the label could be the column heading. 
 
-\subsubsection{The \code{dataReference} attribute}
+\paragraph{\element{dataReference}}
 \label{sec:dataReference1}
 
 The \concept{dataReference} attribute contains the ID of a \concept{dataGenerator} element and as such represents a link to it. The data produced by that particular data generator fills the according data set in the \hyperref[class:report]{report}.
