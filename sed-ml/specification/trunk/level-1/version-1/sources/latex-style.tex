@@ -360,12 +360,18 @@
   \fi
 \fi
 
+\renewcommand{\@makechapterhead}[1]{%
+\vspace*{50 pt}%
+{\setlength{\parindent}{0pt} \raggedright% \normalfont
+\sffamily\bfseries\Huge\thechapter.\ #1
+\par\nobreak\vspace{40 pt}}}
+
+
 %% ----------------------------------------------------------------------------
 %% The end.
 %% ----------------------------------------------------------------------------
 
 \makeatother
-
 
 %%% Local Variables: 
 %%% mode: latex

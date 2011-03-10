@@ -1,4 +1,5 @@
 % Change Class
+  \subsection[Change]{\element{Change}}
 \label{class:change}
 SED-ML not only allows to use the sole model for simulation, but also enables the description of \concept{changes} to be made on the model before simulation  (\fig{sedChange}). Changes can be of three distinct types:
 \begin{enumerate}
@@ -47,6 +48,19 @@ computeChange$^{o}$ & \refpage{class:computeChange}\\
 Each Change has a \hyperref[sec:target]{target} attribute that holds a valid XPath expression pointing to the XML element or XML attribute that is to undergo the defined changes.
 
 %A typical example for a model update (or change) is the assignment of new parameter values to the model. 
+
+  \input{sources/newXmlClass}
+
+  \input{sources/addXmlClass}
+
+  \input{sources/changeXmlClass}
+
+  \input{sources/removeXmlClass}
+
+  \input{sources/changeAttributeClass}
+
+  \input{sources/computeChangeClass}
+
 
 %%% Local Variables: 
 %%% mode: latex

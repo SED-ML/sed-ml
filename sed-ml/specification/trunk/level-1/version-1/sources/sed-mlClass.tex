@@ -1,4 +1,5 @@
 % sed-ml Class
+\subsection{\element{SED-ML} top level element}
 \label{class:sed-ml}
 Each SED-ML \LoneVone document has a main class called SED-ML which defines the document's structure and content (\fig{sed-mlMain}).
 %
@@ -63,30 +64,11 @@ The basic XML structure of a SED-ML file is shown in listing  \vref{lst:sedmlRoo
 %
 The root element of each SED-ML XML file is the \code{sedML} element, encoding \hyperref[sec:version]{version} and \hyperref[sec:level]{level} of the file, and setting the necessary namespaces. Nested inside the \code{sedML} element are the five lists serving as containers for the encoded data (\concept{listOfModels} for all models, \concept{listOfSimulations} for all simulations, \concept{listOfTasks} for all tasks, \concept{listOfDataGenerators} for all post-processing definitions, and \concept{listOfOutputs} for all output definitions).
 
-\subsubsection{The \element{xmlns} attribute}
-\label{sec:xmlns}
-The \concept{xmlns} attribute declares the namespace for the SED-ML document. The pre-defined namespace for SED-ML documents is \url{http://sed-ml.org}. 
+\input{sources/xmlns}
 
-In addition, SED-ML makes use of the \concept{MathML} namespace \url{http://www.w3.org/1998/Math/MathML} to enable the encoding of mathematical expressions in MathML 2.0. SED-ML uses a subset of MathML as described in section \ref{sec:mathML} on page \pageref{sec:mathML}.
+\input{sources/level}
 
-SED-ML \concept{notes} use the XHTML namespace \url{http://www.w3.org/1999/xhtml}.  The \hyperref[class:notes]{Notes} class is described in section \ref{class:notes} on page \pageref{class:notes}.
-
-Additional external namespaces might be used in \hyperref[class:annotation]{annotations}. 
-
-
-\subsubsection{The \element{level} attribute}
-\label{sec:level}
-
-The current SED-ML \concept{level} is ``level \level''. Major revisions containing substantial changes will lead to the definition of forthcoming levels.
-
-The level attribute is \code{required} and its value is a \code{fixed} decimal. For SED-ML \LoneVone the value is set to \code{1}, as shown in the example in listing \ref{lst:sedmlRoot}.
-
-\subsubsection{The \element{version} attribute}
-\label{sec:version}
-The current SED-ML \concept{version} is ``version \version''. Minor revisions containing corrections and refinements of SED-ML elements will lead to the definition of forthcoming versions.
-
-The version attribute is \code{required} and its value is a \code{fixed} decimal. For SED-ML \LoneVone the value is set to \code{1}, as shown in the example in listing \ref{lst:sedmlRoot}.
-
+\input{sources/version}
 
 
 %%% Local Variables: 

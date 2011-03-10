@@ -2,7 +2,7 @@
 %% Master file SED-ML specification 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \listfiles
-\documentclass[pdftex,rgb,dvipsnames,svgnames,hyperref,table]{article}
+\documentclass[pdftex,rgb,dvipsnames,svgnames,hyperref,table]{report}
 
 % layout (initialy done for the SBGN project)
 \input{sources/latex-style}
@@ -15,100 +15,39 @@
 \tableofcontents
 \newpage
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-%% INTRODUCTION1
+%% INTRODUCTION
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \input{sources/introduction}
 
-%% EXAMPLE OF A SIMULATION EXPERIMENT DESCRIPTION (INFORMAL)
-  \input{sources/motivation}
-  \newpage
-%% NOTATION CONVENTIONS
-  \input{sources/conventions}
-  \newpage
-  \section{Concepts used in SED-ML}
-
-  %% MATHML SUBSET USED
-  \subsection{MathML subset}
-  \input{sources/mathML.tex}
-
-  %% THE SUGGESTED URI SCHEME
-  \subsection{URI Scheme}  
-  \input{sources/uriScheme.tex}
-  
-  %%XPATH
-    \subsection{XPath usage}  
-  \input{sources/xpath.tex}
-  
-  %% KISAO
-  \subsection{KiSAO}
-  \input{sources/kisao.tex}
-
-%% MIASE ARCHIVES
-  \subsection{SED-ML archives}
-  \input{sources/archive.tex}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% RESOURCES
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  \input{sources/resources.tex}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% CONTACT
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  \input{sources/contact.tex}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% GENERAL LANGUAGE ELEMENTS
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  \input{sources/generalElements.tex}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% SYNTAX
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  \input{sources/syntax}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% TECHNICAL SPECIFICATION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\input{sources/specification}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% ACKNOWLEDGMENTS
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\section*{Acknowledgements}
 \input{sources/acknowledgements}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % APPENDIX
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\begin{appendix}
-\newpage
-%% UML DIAGRAM
-\section{SED-ML UML Overview}
-\fig{sedML} shows the complete UML diagram of the SED-ML. It gives the full picture of all implemented classes (see the XML Schema definition in \pageref{lst:schema}).
-\label{app:uml}
-% SED-ML complete UML
-\sedfig[width=\textwidth]{sedML}{The SED-ML UML class diagram}{fig:sedML}
-%
+\appendix
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% OVERVIEW  (BPMN)
+% UML DIAGRAM
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  \input{sources/overview}
+\input{sources/UML}
 
-%% XML SCHEMA
-\section{XML Schema}
-Listing \ref{lst:schema} shows the full SED-ML XML Schema. The code is commented inline.
-\label{sec:xmlschema}
-\myXmlImport{The SED-ML XML Schema definition}{lst:schema}{../../../../schema/level1/version1/sed-ml-L1-V1.xsd}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% XML SCHEMA
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\input{sources/XMLschema}
 
-\newpage
-%% SAMPLE FILE
-\section{Examples}
-
-\subsection{Le Loup Model (CellML)}
-\input{xml/leloupCellml.tex}
-
-\newpage
-\subsection{The IkappaB-NF-kappaB signaling module (SBML)}
-\input{xml/IkBNFkB_Signaling.tex}
-
-\end{appendix}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% SAMPLE FILES
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\input{sources/examples}
 
 % REFERENCES
 \bibliographystyle{plainnat}

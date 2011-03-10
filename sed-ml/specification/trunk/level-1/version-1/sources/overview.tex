@@ -57,7 +57,7 @@ The process of defining a SED-ML simulation experiment starts by initialising th
 %
 All collapsed processes are described in the following. Examples in XML are provided in the more technical description.
 
-\subsubsection{Models}
+\subsection{Models}
 \label{overview:models}
 To define a simulation experiment, first of all a new SED-ML file is created. The models to be used in the experiment (zero or many) are referenced, using a link to a model description in some open, curated model base (such as Biomodels Database \cite{LDR+10}, CellML Repository \cite{BBC+09}, or alike). Changes that are necessary to simulate the model correctly are defined, e.\,g. assigning new parameter values or updating the mathematics of the model (Figure \ref{fig:workflowModel}).
 %
@@ -70,7 +70,7 @@ To define a simulation experiment, first of all a new SED-ML file is created. Th
 %
 The procedure is repeated until all models participating in the experiment have been described. Each model used gets an internal SED-ML ID and an optional name.
 
-\subsubsection{Simulation setup}
+\subsection{Simulation setup}
 \label{overview:simulation}
 Secondly, the simulation setups (zero or many) used throughout the simulation experiment are described (Figure \ref{fig:workflowSimulation}). 
 %
@@ -89,7 +89,7 @@ Each simulation setup gets its own internal ID and an optional name. For each of
 %
 The setup definition is repeated until all different simulations have been described.
 
-\subsubsection{Task}
+\subsection{Task}
 \label{overview:task}
 SED-ML allows to apply one defined simulation setting to one defined model at a time. However, any number of \concept{tasks} may be defined inside a simulation experiment description (Figure \ref{fig:workflowTask}). 
 %
@@ -105,7 +105,7 @@ To do so, each task refers to one of the formerly specified models and to one of
 
 The current SED-ML does not allow to nest or order tasks. However, these features are evaluated for future versions of SED-ML.
 
-\subsubsection{Output}
+\subsection{Output}
 \label{overview:output}
 The SED-ML finally consists of output definitions that describe what kind of output the experiment uses to present the simulation result to the user, i.\,e. a plot or a data table (Figure \ref{fig:workflowOutput}), and also which data is part of the output. 
 %
@@ -119,7 +119,7 @@ The SED-ML finally consists of output definitions that describe what kind of out
 Therefore, SED-ML first defines a set of \concept{data generators} (Figure \ref{fig:workflowDataGenerator}), which are then used to specify a particular result, i.\,e. output (see section \ref{overview:dataGen}). 
 
 The SED-ML specification comes with three pre-defined types of outputs: 2D- and 3D plots, and reports. All use the aforementioned data generators to specify the information to be plotted on the different axes, or in the table comlumns respectively.
-\subsubsection{Data Generator}
+\subsection{Data Generator}
 \label{overview:dataGen}
 %
 \begin{figure}[h]
