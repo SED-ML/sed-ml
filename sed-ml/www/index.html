@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="styles/sed-ml.css" type="text/css" />
+  <title>Simulation Experiment Description Markup Language</title>
+</head>
+<body>
+  <div id="container">
+  
+    <!-- head -->
+    <div id="head">
+      <table width="100%" style="border=0;padding=0;margin=0;">
+        <tr>
+          <td align="left" valign="top">
+            <a href="index.html" title="SED-ML home page"><img src="images/logoSEDML_H75.png" border="0" alt="SED-ML logo" height="75" /></a>
+          </td>
+        </tr>
+      </table>
+    </div>
+   
+    <!-- menu -->
+    <div id="menu">
+      <a class="activeTab" href="index.html" title="SED-ML home page">Home</a>  
+      <a class="tab" href="documents.html" title="SED-ML documents">Document</a> 
+      <a class="tab" href="contact.html" title="Contact us">Contact</a>
+    </div>
+    
+    
+    <!-- content -->
+    <div id="content">
+      
+      <!-- table of content -->
+      <div id="toc">
+        <div class="title">Table of content</div>
+        <ol class="items">
+          <li><a href="#sedmlMain" title="Overview">Overview</a></li>
+          <li><a href="#sedmlResources" title="Resources">Resources</a></li>
+           <li><a href="#sedmlLanguage" title="language URNs">Language URNs</a></li>
+          <li><a href="#sedmlExample" title="Example">Example</a></li>
+          <li><a href="#publications" title="Publications">Publications</a></li>
+          <li><a href="#acknowledgements" title="Acknowledgements">Acknowledgements</a></li>
+        </ol>
+      </div>
+      
+      <!-- main -->
+      <h1>Simulation Experiment Description Markup Language (SED-ML)</h1>
+      
+      <p>
+        The <b>Simulation Experiment Description Markup Language (SED-ML)</b> is an XML-based format for encoding simulation experiments, following the requirements defined in the <a href="http://biomodels.net/miase">MIASE guidelines</a>. SED-ML is described using UML, it's data model is an XML Schema representation.
+        SED-ML currently only covers part of MIASE compliant simulations. On the other hand, the formalisation of SED-ML forces the information to be more precise than the bare MIASE requirements.
+      </p>
+      <p>
+        SED-ML is a community effort, involving software developers from different simulation tools and model representation formats. We do very much appreciate your contribution; please subscribe to <a href="https://lists.sourceforge.net/lists/listinfo/sed-ml-discuss">sed-ml-discuss</a> on SourceForge.
+      </p> 
+      
+      <p>
+      The release cantidate for SED-ML Level 1 Version 1 is available.
+      <div style="width:400px;border:3px outset black;background-color:orange;height=40px;padding-top: 2px;padding-bottom: 2px;text-align:center">
+		<a href="http://sourceforge.net/projects/sed-ml/files/specifications/level%201%20version%201/sed-ml-L1V1-rc1.pdf/download">SED-ML Level 1 Version Release Candidate</a>
+	  </div>
+
+      
+      </p>
+
+
+      <h2 id="sedmlMain">SED-ML Overview</h2>
+      
+      <p>
+      	SED-ML is build of five main classes: the <a href="#modelClass" title="Model Class">Model Class</a>, the <a href="#simulationClass" title="Simulation Class">Simulation Class</a>, the <a href="#taskClass" title="Task Class">Task Class</a>, the <a href="#dataGeneratorClass" title="DataGenerator Class">DataGenerator Class</a>, and the <a href="#outputClass" title="Output Class">Output Class</a>.
+      </p>
+      
+<!-- 
+<div style="text-align:center;">
+        <img src="../images/SED-ML_Main.png" alt="SED-ML Main Classes" title="SED-ML Main Classes" />
+      </div>
+      -->
+      <h3 id="modelClass">The Model Class</h3>
+      <p>
+        The <b>Model</b> class is used to reference the models used in the simulation experiment. SED-ML itself is independent of the model encoding underlying the models. The only requirement is that the model needs to be referenced by using unambiguous identifier which allows for finding it, for example using a <a href="/miriam/#miriam_uris" title="MIRIAM URN">MIRIAM URN</a>.
+        To precise on the language the model is encoded, a set of predefined <a href="#sedmlLanguage">language URNs</a> is provided.
+      </p>
+      <p>
+        The SED-ML <b>Change</b> class allows to apply changes to the referenced models, including changes on the XML attributes, e.g. changing the value of an observable, computing the change of a value using mathematics, or general changes on any XML element of the model representation that is addressable by XPath expressions, e.g. substituting a piece of XML by an updated one.      </p>
+      
+      <h3 id="simulationClass">The Simulation Class</h3>
+      <p>
+        The <b> Simulation</b> class defines the simulation settings and the steps taken during simulation. These include the particular type of simulation and the algorithm used for the execution of the simulation; preferably an unambiguous reference to such an algorithm should be given, using controlled vocabulary, or ontologies. One example for an ontology of simulation algorithms is the <em>Kinetic Simulation Algorithm Ontology</em> <a href="http://www.ebi.ac.uk/compneur-srv/kisao/">KiSAO</a>. Further information encodable in the Simulation class includes the step size, simulation duration, and other simulation-type dependent information.
+      </p>
+      
+      <h3 id="taskClass">The Task Class</h3>
+      <p>
+        SED-ML makes use of the notion of a <b>Task</b> class to combine a defined model (from the Model class) and a defined simulation setting (from the Simulation class). A task always holds one reference each. To refer to a specific model and to a specific simulation, the according IDs are used.
+      </p>
+      
+      <h3 id="dataGeneratorClass">The DataGenerator Class</h3>
+      <p>
+        The raw simulation result sometimes does not correspond to the desired output of the simulation, e.g. one might want to normalise a plot before output, or apply post-processing like mean-value calculation. The <b>DataGenerator</b> class allows to encode such post-processings necessary to be applied to the simulation result before output. To define data generators, any addressable variable or parameter of any defined model (from instances of the Model class) may be referenced, and new entities might be specified using MathML definitions.
+      </p>
+
+      <h3 id="outputClass">The Output Class</h3>
+      <p>
+        The <b>Output</b> class defines the output of the simulation, in the sense that it specifies <em>what</em> shall be plotted in the output. To do so, an output type is defined, e.g. 2D-plot, 3D-plot or data table, and the according axes or columns are all assigned to one of the formerly specified instances of the DataGenerator class.
+      </p>
+      
+      <h2 id="sedmlResources">Available Resources</h2>
+      
+      <p>
+        If you are interested in using SED-ML, the following resources might be useful to you:
+      </p>
+      
+      <ul>
+        <li>SED-ML project home on SourceForge: <a href="http://sourceforge.net/projects/sed-ml/">SED-ML project</a></li>
+        <li>SED-ML draft specification available from SourceForge: <a href="http://sed-ml.svn.sourceforge.net/viewvc/sed-ml/sed-ml/specification/trunk/level-1/version-1/sed-ml-L1V1.pdf">SED-ML L1 V1 (Draft)</a></li>
+        <li>Full SED-ML XML Schema definition: <a href="http://sed-ml.svn.sourceforge.net/viewvc/sed-ml/sed-ml/documents/schema/level1/version1/sed-ml-L1-V1.xsd">SED-ML Schema</a></li>
+        <li>SED-ML Online Validator (developed and maintained by Richard Adams):  <a href="http://www.sbsi.ed.ac.uk/html/sedml/index.html" title="SED-ML Validator">SED-ML Validator</a></li>
+                <div class="pubjournal"><em>BMC Systems Biology</em>, 4:92</div>
+        <li>SED-ML Java Library (developed and maintained by Richard Adams): <a href="http://sourceforge.net/projects/jlibsedml/" title="">jlibsedml</a></li>
+        <li>SED-ML Library (developed and maintained by Frank Bergmann): <a href="http://libsedml.sourceforge.net" title="">libsedml</a></li>
+      </ul>
+      
+      <p>
+        <em>Please let us know if you want your tool listed here.</em>
+      </p>
+      
+      <h2 id="sedmlLanguage">Language URNs</h2>
+      <p>
+	The following languages have to our knowledge so far been used with SED-ML. To specify the language of a model in the Model class, please use the according URN given. The general scheme for a language URN in SED-ML is <code>urn:sedml:language:</code><i>language name and version</i>.
+      </p>
+	  
+      <table border="1" align="center" style="border-collapse: collapse; border: 1px solid #0066bb;">
+	<tr>   
+	  <th>Language</th>
+	  <th>URN</th>
+	  <th>Specification URL</th>
+	</tr>
+	<tr>
+	  <td>CellML (generic)</td>
+	  <td><code>urn:sedml:language:cellML</code></td>
+	  <td>none</td>
+	</tr>
+	<tr>
+	  <td>CellML 1.0</td>
+	  <td><code>urn:sedml:language:cellml.1_0</code></td>
+	  <td>http://www.cellml.org/specifications/cellml_1.0</td>
+	</tr>
+	<tr>
+	  <td>CellML 1.1</td>
+	  <td><code>urn:sedml:language:cellml.1_1</code></td>
+	  <td>http://www.cellml.org/specifications/cellml_1.1</td>
+	</tr>
+	<tr>
+	  <td>NeuroML (generic)</td>
+	  <td><code>urn:sedml:language:neuroml</code></td>
+	  <td>none</td>
+	</tr>
+	<tr>
+	  <td>NeuroML Version 1.8.1 Level 1</td>
+	  <td><code>urn:sedml:language:neuroml.version-1_8_1.level-1</code></td>
+	  <td>none</td>
+	</tr>
+	<tr>
+	  <td>NeuroML Version 1.8.1 Level 2</td>
+	  <td><code>urn:sedml:language:neuroml.version-1_8_1.level-2</code></td>
+	  <td>none</td>
+	</tr>
+	<tr>
+	  <td>SBML (generic)</td>
+	  <td><code>urn:sedml:language:sbml</code></td>
+	  <td>none</td>
+	</tr>
+	<tr>
+	  <td>SBML Level 1 Version 1</td>
+	  <td><code>urn:sedml:language:sbml.level-1.version-1</code></td>
+	  <td>http://sbml.org/Special/specifications/sbml-level-1/version-1/html/</td>
+	</tr>
+	<tr>
+	  <td>SBML Level 1 Version 2</td>
+	  <td><code>urn:sedml:language:sbml.level-1.version-2</code></td>
+	  <td>http://sbml.org/Special/specifications/sbml-level-1/version-2/html/</td>
+	</tr>
+	<tr>
+	  <td>SBML Level 2 Version 1</td>
+	  <td><code>urn:sedml:language:sbml.level-2.version-1</code></td>
+	  <td>http://www.sbml.org/specifications/sbml-level-2/version-1/html/</td>
+	</tr>
+	<tr>
+	  <td>SBML Level 2 Version 2</td>
+	  <td><code>urn:sedml:language:sbml.level-2.version-2</code></td>
+	  <td>http://www.sbml.org/specifications/sbml-level-2/version-2/revision-1/sbml-level-2-version-2-rev1.pdf</td>
+	</tr>
+	<tr>
+	  <td>SBML Level 2 Version 3</td>
+	  <td><code>urn:sedml:language:sbml.level-2.version-3</code></td>
+	  <td>http://www.sbml.org/specifications/sbml-level-2/version-3/release-1/sbml-level-2-version-3-rel-1.pdf</td>
+	</tr>
+	<tr>
+	  <td>SBML Level 2 Version 3 (Release 1)</td>
+	  <td><code>urn:sedml:language:sbml.level-2.version-3.release-1</code></td>
+	  <td>http://www.sbml.org/specifications/sbml-level-2/version-3/release-1/sbml-level-2-version-3-rel-1.pdf</td>
+	</tr>
+	<tr>
+	  <td>SBML Level 2 Version 3 (Release 2)</td>
+	  <td><code>urn:sedml:language:sbml.level-2.version-3.release-2</code></td>
+	  <td>http://precedings.nature.com/documents/58/version/2</td>
+	</tr>
+	<tr>
+	  <td>SBML Level 2 Version 4</td>
+	  <td><code>urn:sedml:language:sbml.level-2.version-4</code></td>
+	  <td>http://precedings.nature.com/documents/2715/version/1</td>
+	</tr>
+	<tr>
+	  <td>SBML Level 3 Version 1</td>
+	  <td><code>urn:sedml:language:sbml.level-3.version-1</code></td>
+	  <td>http://precedings.nature.com/documents/4123/version/1</td>
+	</tr>
+	<tr>
+	  <td>VCML (generic)</td>
+	  <td><code>urn:sedml:language:vcml</code></td>
+	  <td>none</td>
+	</tr>
+      </table>
+      
+      
+      <h2 id="sedmlExample">Example</h2>
+      <p>
+        A complete SED-ML sample file, including explanations, has been published in 2008 in the paper <a href="http://www.springerlink.com/content/n67n137071431xt7/" title="SED-ML publication">SED-ML – An XML Format for the Implementation of the MIASE Guidelines</a>.
+      </p>
+      
+      <h3>Further resources for SED-ML sample files</h3>
+      <ul>
+	<li>SED-ML <a href="http://sed-ml.svn.sourceforge.net/viewvc/sed-ml/sed-ml/examples/" title="SED-ML examples from  SED-ML SourceForge page">Examples from SED-ML SourceForge page</a>.</li>
+	<li><a href="http://libsedml.svn.sourceforge.net/viewvc/libsedml/trunk/Samples/" title="SED-ML examples from libSEDML SourceForge page">SED-ML examples from libSEDML SourceForge page</a>.</li>
+      </ul>
+      
+      
+      <h2 id="publications">Publications</h2>
+      
+      <ul>
+        <li>
+          <dl>
+            <dt>
+              <strong>Dagmar K&ouml;hn, Nicolas Le Novère</strong>
+            </dt>
+            <dd style="margin-left: 0pt;">
+              <div class="pubtitle">SED-ML – An XML Format for the Implementation of the MIASE Guidelines.</div> 
+            </dd>
+            <dd style="margin-left: 0pt;">
+              <div class="pubjournal"><em>Lecture Notes in Computer Science, Computational Methods in Systems Biology 2008</em></div>
+            </dd>
+            <dd style="margin-left: 0pt;">
+              [<a href="http://www.springerlink.com/content/n67n137071431xt7/" title="Publication on Springerlink">Springerlink</a>]
+            </dd>
+          </dl>
+        </li>
+      </ul>
+      
+      
+      <h2 id="acknowledgements">Acknowledgements</h2>
+      <p>
+	The following people contributed significantly to SED-ML development over the last years, including the discussions, language design and software support.
+      </p>
+      
+      <ul>
+        <li><b>Dagmar Waltemath</b> (<a href="http://www.biomodels.net/miase/" title="MIASE">MIASE</a>, <a href="http://www.biomodels.net/kisao/" title="KiSAO">KiSAO</a>)</li>
+        <li><b>Frank Bergmann</b> (<a href="http://roadrunner.sourceforge.net" title="roadrunner">roadrunner</a>, 
+                            <a href="http://libsedml.sourceforge.net" title="libsedml">libsedml</a>)</li>
+        <li><b>Richard Adams</b> (<a href="http://sourceforge.net/projects/jlibsedml/">jlibsedml</a>, <a href="http://www.sbsi.ed.ac.uk/html/sedml/index.html" title="SED-ML validator">SED-ML validator</a>)</li>
+        <li><b>Nicolas Le Novere</b> (<a href="http://biomodels.net/" title="biomodels.net">BioModels.net</a>)</li>
+<br />
+        <li>Mike Hucka (<a href="http://www.sbml.org" title="SBML">SBML</a>)</li>
+        <li>Fedor Kolpakov (<a href="http://www.biouml.org/" title="BioUML">BioUML</a>)</li>
+        <li>Ion Moraru (<a href="http://www.nrcam.uchc.edu/index.html" title="Virtual Cell">Virtual Cell</a>)</li>
+        <li>David Nickerson (<a href="http://www.cellml.org/" title="CellML">CellML</a>)</li>
+        <li>Sven Sahle (<a href="http://www.copasi.org" title="COPASI">COPASI</a>)</li>
+        <li>Henning Schmidt (<a href="http://www.sbtoolbox.org/" title="SB Toolbox">SB Toolbox</a>)</li>
+        <li>Jacky Snoep (<a href="http://jjj.biochem.sun.ac.za/" title="JWS Online Simulator">JWS Online Simulator</a>)</li>
+      </ul>
+      
+    </div>
+    
+    
+    <!-- footer -->
+    <div id="foot">&nbsp;</div>
+    
+  </div>
+</body>
+</html>
