@@ -52,13 +52,9 @@
         The <b>Simulation Experiment Description Markup Language (SED-ML)</b> is an XML-based format for encoding simulation experiments, following the requirements defined in the <a href="http://biomodels.net/miase">MIASE guidelines</a>. SED-ML is described using UML, it's data model is an XML Schema representation.
         SED-ML currently only covers part of MIASE compliant simulations. On the other hand, the formalisation of SED-ML forces the information to be more precise than the bare MIASE requirements.
       </p>
-      <p>
-        SED-ML is a community effort, involving software developers from different simulation tools and model representation formats. We do very much appreciate your contribution; please subscribe to <a href="https://lists.sourceforge.net/lists/listinfo/sed-ml-discuss">sed-ml-discuss</a> on SourceForge.
-      </p> 
       
       <p>
-      The release cantidate for SED-ML Level 1 Version 1 is available.
-      <div style="width:400px;border:3px outset black;background-color:orange;height=40px;padding-top: 2px;padding-bottom: 2px;text-align:center">
+       <div style="width:400px;border:3px outset black;background-color:orange;height=40px;padding-top: 2px;padding-bottom: 2px;text-align:center">
 		<a href="http://sourceforge.net/projects/sed-ml/files/specifications/level%201%20version%201/sed-ml-L1V1-rc1.pdf/download">SED-ML Level 1 Version Release Candidate</a>
 	  </div>
 
@@ -79,7 +75,7 @@
       -->
       <h3 id="modelClass">The Model Class</h3>
       <p>
-        The <b>Model</b> class is used to reference the models used in the simulation experiment. SED-ML itself is independent of the model encoding underlying the models. The only requirement is that the model needs to be referenced by using unambiguous identifier which allows for finding it, for example using a <a href="/miriam/#miriam_uris" title="MIRIAM URN">MIRIAM URN</a>.
+        The <b>Model</b> class is used to reference the models used in the simulation experiment. SED-ML itself is independent of the model encoding underlying the models. The only requirement is that the model needs to be referenced by using unambiguous identifier which allows for finding it, for example using a <a href="http://biomodels.net/miriam/#miriam_uris" title="MIRIAM URI">MIRIAM URI</a>.
         To precise on the language the model is encoded, a set of predefined <a href="#sedmlLanguage">language URNs</a> is provided.
       </p>
       <p>
@@ -87,7 +83,7 @@
       
       <h3 id="simulationClass">The Simulation Class</h3>
       <p>
-        The <b> Simulation</b> class defines the simulation settings and the steps taken during simulation. These include the particular type of simulation and the algorithm used for the execution of the simulation; preferably an unambiguous reference to such an algorithm should be given, using controlled vocabulary, or ontologies. One example for an ontology of simulation algorithms is the <em>Kinetic Simulation Algorithm Ontology</em> <a href="http://www.ebi.ac.uk/compneur-srv/kisao/">KiSAO</a>. Further information encodable in the Simulation class includes the step size, simulation duration, and other simulation-type dependent information.
+        The <b> Simulation</b> class defines the simulation settings and the steps taken during simulation. These include the particular type of simulation and the algorithm used for the execution of the simulation; preferably an unambiguous reference to such an algorithm should be given, using controlled vocabulary, or ontologies. One example for an ontology of simulation algorithms is the <em>Kinetic Simulation Algorithm Ontology</em> <a href="http://biomodels.net/kisao/">KiSAO</a>. Further information encodable in the Simulation class includes the step size, simulation duration, and other simulation-type dependent information.
       </p>
       
       <h3 id="taskClass">The Task Class</h3>
@@ -236,50 +232,9 @@
       </ul>
       
       
-      <h2 id="publications">Publications</h2>
+
       
-      <ul>
-        <li>
-          <dl>
-            <dt>
-              <strong>Dagmar K&ouml;hn, Nicolas Le Novère</strong>
-            </dt>
-            <dd style="margin-left: 0pt;">
-              <div class="pubtitle">SED-ML – An XML Format for the Implementation of the MIASE Guidelines.</div> 
-            </dd>
-            <dd style="margin-left: 0pt;">
-              <div class="pubjournal"><em>Lecture Notes in Computer Science, Computational Methods in Systems Biology 2008</em></div>
-            </dd>
-            <dd style="margin-left: 0pt;">
-              [<a href="http://www.springerlink.com/content/n67n137071431xt7/" title="Publication on Springerlink">Springerlink</a>]
-            </dd>
-          </dl>
-        </li>
-      </ul>
-      
-      
-      <h2 id="acknowledgements">Acknowledgements</h2>
-      <p>
-	The following people contributed significantly to SED-ML development over the last years, including the discussions, language design and software support.
-      </p>
-      
-      <ul>
-        <li><b>Dagmar Waltemath</b> (<a href="http://www.biomodels.net/miase/" title="MIASE">MIASE</a>, <a href="http://www.biomodels.net/kisao/" title="KiSAO">KiSAO</a>)</li>
-        <li><b>Frank Bergmann</b> (<a href="http://roadrunner.sourceforge.net" title="roadrunner">roadrunner</a>, 
-                            <a href="http://libsedml.sourceforge.net" title="libsedml">libsedml</a>)</li>
-        <li><b>Richard Adams</b> (<a href="http://sourceforge.net/projects/jlibsedml/">jlibsedml</a>, <a href="http://www.sbsi.ed.ac.uk/html/sedml/index.html" title="SED-ML validator">SED-ML validator</a>)</li>
-        <li><b>Nicolas Le Novere</b> (<a href="http://biomodels.net/" title="biomodels.net">BioModels.net</a>)</li>
-<br />
-        <li>Mike Hucka (<a href="http://www.sbml.org" title="SBML">SBML</a>)</li>
-        <li>Fedor Kolpakov (<a href="http://www.biouml.org/" title="BioUML">BioUML</a>)</li>
-        <li>Ion Moraru (<a href="http://www.nrcam.uchc.edu/index.html" title="Virtual Cell">Virtual Cell</a>)</li>
-        <li>David Nickerson (<a href="http://www.cellml.org/" title="CellML">CellML</a>)</li>
-        <li>Sven Sahle (<a href="http://www.copasi.org" title="COPASI">COPASI</a>)</li>
-        <li>Henning Schmidt (<a href="http://www.sbtoolbox.org/" title="SB Toolbox">SB Toolbox</a>)</li>
-        <li>Jacky Snoep (<a href="http://jjj.biochem.sun.ac.za/" title="JWS Online Simulator">JWS Online Simulator</a>)</li>
-      </ul>
-      
-    </div>
+ 
     
     
     <!-- footer -->
