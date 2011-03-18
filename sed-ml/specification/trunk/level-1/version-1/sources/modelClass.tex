@@ -17,7 +17,7 @@ The \concept{Model} class refers to the particular model of interest through the
  \item{To refer to a particular model in an external resource, an unambiguous reference must be given (\hyperref[sec:source]{source} attribute).}
 \end{itemize}
 
-A model might need to undergo pre-processings before simulation. Those pre-processings are specified in the SED-ML \hyperref[class:change]{Change} class.
+A model might need to undergo preprocessing before simulation. Those pre-processings are specified in the SED-ML \hyperref[class:change]{Change} class.
 
 \tabtext{model}{model}
 %
@@ -65,7 +65,7 @@ change$^{o}$ & \refpage{class:change}\\
    [MODEL PRE-PROCESSING]
   </listOfChange>
  </model>
- <model id="m0003" language="urn:sedml:language:cellml" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02">
+ <model id="m0003" language="urn:sedml:language:cellml" source="http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/d6613d7e1051b3eff2bb1d3d419a445bb8c754ad/leloup_gonze_goldbeter_1999_a.cellml">
   [MODEL PRE-PROCESSING]
  </model>
 </listOfModels>
@@ -75,7 +75,7 @@ change$^{o}$ & \refpage{class:change}\\
 The above \code{listOfModels} contains three models: 
 The first model \code{m0001} is the Repressilator model taken from \biom. 
 The original model is available from \url{urn:miriam:biomodels.db:BIOMD0000000012}. 
-For the SED-ML simulation, the model might undergo pre-processings, described in the \hyperref[class:change]{change} element (lines 5-7).
+For the SED-ML simulation, the model might undergo preprocessing, described in the \hyperref[class:change]{change} element (lines 5-7).
 Based on the description of the first model \code{m0001}, the second model is built. 
 It refers to the model \code{m001} in the \code{source} attribute, that is the modified version of the Repressilator model.
 \code{m0002} might then have even further changes applied to it on top of the changes defined in the pre-processing of \code{m0001}.
