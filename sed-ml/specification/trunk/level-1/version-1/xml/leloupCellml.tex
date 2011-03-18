@@ -9,7 +9,7 @@ A second model is defined in l. 25 of the example, using \code{model1} as a sour
 
 One simulation setup is defined in the \code{listOfSimulations}. It is a \code{uniformTimeCourse} over 180 time units, using 1000 simulation points. The algorithm used is the CVODE solver, as denoted by the KiSAO ID \code{KiSAO:0000019}.
 
-A number of \code{dataGenerator}s are defined in ll. 37-85. Those are the prerequisite for defining the output of the simulation. The first dataGenerator named \code{tim1} in l. 45 maps on the \code{Mt} entity in the model that is used in \code{task1} which here is the model with ID \code{model1}. The second dataGenerator named \code{per-tim} in l. 57 maps on the \code{CN} entity in \code{model1}. Finally  the third and fourth dataGenerators map on the \code{Mt} and \code{per-tim} entity respectively in the updated model with ID \code{model2}.
+A number of \code{dataGenerator}s are defined in ll. 37-85. Those are the prerequisite for defining the output of the simulation. The first dataGenerator named \code{tim1} in l. 38 maps on the \code{Mt} entity in the model that is used in \code{task1} which here is the model with ID \code{model1}. The second dataGenerator named \code{per-tim} in l. 57 maps on the \code{CN} entity in \code{model1}. Finally  the third and fourth dataGenerators map on the \code{Mt} and \code{per-tim} entity respectively in the updated model with ID \code{model2}.
 
 The \code{output} defined in the experiment consists of a 2D plot with two different curves (ll. 96-102). Both curves plot the \code{per-tim} concentration against the \code{tim} concentration. In the first curve the original parametrisation (as given in \code{model1}) is used, in the second curve the updated one is used (as given in \code{model2}).
 
