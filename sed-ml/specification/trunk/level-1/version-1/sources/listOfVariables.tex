@@ -12,8 +12,9 @@ SED-ML uses the \hyperref[class:variable]{variable} concept to refer to existing
 %
 \begin{myXmlLst}{SED-ML listOfVariables element}{lst:listOfVariables}
 <listOfVariables>
- <variable id="v1" name="maximum velocity" target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" />
- <variable id="v2" symbol="urn:sedml:symbol:time" />
+ <variable id="v1" name="maximum velocity" taskReference="task1" 
+     target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" />
+ <variable id="v2" taskReference="task2" symbol="urn:sedml:symbol:time" />
 </listOfVariables>
 \end{myXmlLst}
 %

@@ -8,7 +8,7 @@ XPath  unambiguously identifies an element or attribute in an XML file.
 %
 \begin{myXmlLst}{SED-ML \code{target} definition}{lst:target}
    <listOfVariables>
-    <variable id="v1" name="TetR protein" 
+    <variable id="v1" name="TetR protein" taskReference="task1" 
      target="/sbml:sbml/sbml:listOfSpecies/sbml:species[@id='PY']" />
    </listOfVariables>
 \end{myXmlLst}
@@ -17,7 +17,7 @@ It should be noted that the identifier and names inside the SED-ML document do n
 %
 \begin{myXmlLst}{SED-ML variable definition using the original model identifier and name in SED-ML}{lst:sedmlVariable}
    <listOfVariables>
-    <variable id="PY" name="TetR protein" 
+    <variable id="PY" name="TetR protein"  taskReference="task1" 
      target="/sbml:sbml/sbml:listOfSpecies/sbml:species[@id='PY']" />
    </listOfVariables>
 \end{myXmlLst}
