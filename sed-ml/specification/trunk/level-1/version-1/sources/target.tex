@@ -13,7 +13,7 @@ XPath  unambiguously identifies an element or attribute in an XML file.
    </listOfVariables>
 \end{myXmlLst}
 %
-It should be noted that the identifier and names inside the SED-ML document do not have to comply with the identifiers and names that the model and its constituents carry in the model definition. In  listing \vref{lst:target}, the variable with ID \code{v1} is defined. It is described as the \code{TetR protein}. The reference points to a species in the referenced SBML model. The particular species can be identified through its ID in the SBML model, namely \code{PY}. However, SED-ML does not forbid to use identical identifiers and names as in the referenced models neither. The following listing \vref{lst:sedmlVariable} is another valid example for the specification of a variable, but uses the sane naming in the variable definition as in the original model (as opposed to listing \ref{lst:target}):
+It should be noted that the identifier and names inside the SED-ML document do not have to comply with the identifiers and names that the model and its constituents carry in the model definition. In  listing \vref{lst:target}, the variable with ID \code{v1} is defined. It is described as the \code{TetR protein}. The reference points to a species in the referenced SBML model. The particular species can be identified through its ID in the SBML model, namely \code{PY}. However, SED-ML does not forbid to use identical identifiers and names as in the referenced models neither. The following Listing~\vref{lst:sedmlVariable} is another valid example for the specification of a variable, but uses the sane naming in the variable definition as in the original model (as opposed to Listing~\ref{lst:target}):
 %
 \begin{myXmlLst}{SED-ML variable definition using the original model identifier and name in SED-ML}{lst:sedmlVariable}
    <listOfVariables>
@@ -36,4 +36,4 @@ It should be noted that the identifier and names inside the SED-ML document do n
 \end{myXmlLst}
 %
 
-The XPath expression used in the \concept{\code{target}} attribute unambiguously leads to the particular place in the XML SBML model -- the species is to be found in the \emph{sbml} element, and there inside the \emph{listOfSpecies} (listing \vref{lst:sbmlModel}). 
+The XPath expression used in the \concept{\code{target}} attribute unambiguously leads to the particular place in the XML SBML model -- the species is to be found in the \emph{sbml} element, and there inside the \emph{listOfSpecies} (Listing~\vref{lst:sbmlModel}). 
