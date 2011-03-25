@@ -6,7 +6,7 @@ The \emph{Simulation Experiment Description Markup Language} (SED-ML) is an XML-
 %
 The Business Process Modeling Notation Version 1.2 (BPMN) was initially intended to describe internal business procedures (processes) in a graphical way. However, we will use BPMN to graphically describe the steps and processes of setting up a simulation experiment description. The major parts of BPMN that are used to specify SED-ML are activities, gateways, events, data, and documentation. 
 
-An \emph{activity} is ``work that is performed on a [..] process'', for example ``Specify the simulation settings''. Activities may be atomic or non-atomic. SED-ML in particular makes use of the \emph{task} activities, \ie specific work units that need to be performed. Non-atomic tasks might be collapsed or expanded in the graphical representation (see \fig{task}). Each collapsed subprocess has a corresponding expanded subprocess definition.
+An \emph{activity} is ``work that is performed on a [..] process'', for example ``Specify the simulation settings''. Activities may be atomic or non-atomic. SED-ML in particular makes use of the \emph{task} activities, \ie specific work units that need to be performed. Non-atomic tasks might be collapsed or expanded in the graphical representation (\fig{task}). Each collapsed subprocess has a corresponding expanded subprocess definition.
 
 \begin{figure}[h]
 \centering
@@ -24,7 +24,7 @@ An \emph{activity} is ``work that is performed on a [..] process'', for example 
 \label{fig:gateways}
 \end{figure}
 
-While there exist a number of different gateway types (see \citep{White:2004}, pp. 93), the SED-ML specification only uses the parallel and the exclusive gates  (see \fig{gateways}). 
+While there exist a number of different gateway types \citep[p.~93]{White:2004}, the SED-ML specification only uses the parallel and the exclusive gates  (\fig{gateways}). 
 
 \emph{Exclusive} gateways -- also denoted as decisions -- allow the sequence flow to take two or more alternative paths (\fig{gateways}, left hand side). However, \emph{only one} of the paths may be chosen (not more). Sometimes two alternative branches need to be merged together again, in which case the exclusive gate must be used as well: The sequence flow continues as soon as \emph{one} of the incoming processes send a signal. An exclusive gateways is marked by an \code{X} in the graphical notation.
 
@@ -41,7 +41,7 @@ While there exist a number of different gateway types (see \citep{White:2004}, p
 
 All events are graphically drawn as small circles. A \emph{start event} is drawn with a single thin line and mark the start of a process, it can not have any incoming sequence flow. Start events may be triggered by different mechanisms, for the case of SED-ML the untyped start event (no marker inside the circle) is used. The trigger to start the process is ``Create new simulation experiment''. The \emph{end event} is marked with a thick line. It indicates the end of a process. SED-ML specification makes use of the untyped end event (no marker inside the circle). The end event is used to show the end of sub-processes as well as processes. If the end of a sub-process is reached, the sequence flow returns to the according parent process.
 
-\emph{Connectors} are used to combine different BPMN objects with each other (\citep{White:2004} page 30 shows the full list of valid connections). SED-ML uses only a subset of available connectors, namely sequence flow, default flow, and unidirectional associations (\fig{connectorEvents}). \emph{Sequence flow} defines the execution order of activities. \emph{Default flow} marks the default branch to be chosen if other conditions leave various possibilities for further execution of the sequence flow. A \emph{unidirectional association} is used to indicate that a data object is modified, i.\,e. read and written during the execution of an activity \citep{bpmnPoster}.
+\emph{Connectors} are used to combine different BPMN objects with each other (\citet[p.~30]{White:2004} show the full list of valid connections). SED-ML uses only a subset of available connectors, namely sequence flow, default flow, and unidirectional associations (\fig{connectorEvents}). \emph{Sequence flow} defines the execution order of activities. \emph{Default flow} marks the default branch to be chosen if other conditions leave various possibilities for further execution of the sequence flow. A \emph{unidirectional association} is used to indicate that a data object is modified, i.\,e. read and written during the execution of an activity \citep{bpmnPoster}.
 
 %
 The rough SED-ML workflow is shown in Figure \ref{fig:sedmlWorkflow}.
@@ -53,13 +53,13 @@ The rough SED-ML workflow is shown in Figure \ref{fig:sedmlWorkflow}.
 \label{fig:sedmlWorkflow}
 \end{figure}
 %
-The process of defining a SED-ML simulation experiment starts by initialising the experiment and creating a new SED-ML file. Afterwards, the \concept{models} needed for the simulation are specified and stored into the existing SED-ML file (see section \ref{overview:models}). In a third step, the simulation experiment \concept{setups} are defined and stored into the same file (see section \ref{overview:simulation}). To assign a setup to a number of models used in the experiment, these connections have to be defined and recorded (see section \ref{overview:task}), called \concept{task} in SED-ML. After simulation, the \concept{output} should be defined, based on the specified tasks and performed simulation experiment. The information is added to the existing SED-ML file (see section \ref{overview:output}). In the end, the whole experiment is stored in the final SED-ML file.
+The process of defining a SED-ML simulation experiment starts by initialising the experiment and creating a new SED-ML file. Afterwards, the \concept{models} needed for the simulation are specified and stored into the existing SED-ML file (Section~\ref{overview:models}). In a third step, the simulation experiment \concept{setups} are defined and stored into the same file (Section~\ref{overview:simulation}). To assign a setup to a number of models used in the experiment, these connections have to be defined and recorded (Section~\ref{overview:task}), called \concept{task} in SED-ML. After simulation, the \concept{output} should be defined, based on the specified tasks and performed simulation experiment. The information is added to the existing SED-ML file (Section~\ref{overview:output}). In the end, the whole experiment is stored in the final SED-ML file.
 %
 All collapsed processes are described in the following sections. Examples in XML are provided in the more technical description.
 
 \subsection{Models}
 \label{overview:models}
-To define a simulation experiment, first of all a new SED-ML file is created. The models to be used in the experiment (zero or many) are referenced, using a link to a model description in some open, curated model database (such as Biomodels Database \citep{LDR+10}, CellML Repository \citep{BBC+09}, or alike). All necessary changes to correctly simulate the model are defined, e.\,g., assigning new parameter values or updating the mathematics of the model (Figure \ref{fig:workflowModel}).
+To define a simulation experiment, first of all a new SED-ML file is created. The models to be used in the experiment (zero or many) are referenced, using a link to a model description in some open, curated model database (e.\,g.\ Biomodels Database \citep{LDR+10} or CellML Repository \citep{BBC+09}). All necessary changes to correctly simulate the model are defined, e.\,g., assigning new parameter values or updating the mathematics of the model (Figure~\ref{fig:workflowModel}).
 %
 \begin{figure}[h]
 \centering
@@ -85,7 +85,7 @@ Secondly, the simulation setups (zero or many) used throughout the simulation ex
 Those may stem from various different types of simulation, e.\,g., steady state analysis or bifurcation.  Depending on the specific type of experiment, the information encoded for the simulation setup might differ. Thus, the definition of simulation settings is specific to the simulation experiment.
 
 In a simple case the experiment consists of one simulation, but it can get far more complex. For example, one might define a nested sequence of simulations, in which case every simulation has to be defined separately.
-Each simulation setup gets its own internal ID and an optional name. For each of the setups, the simulation algorithm to be used for that simulation is defined through a reference to a well-defined algorithm name, e.\,g. an ontology or controlled vocabulary. One approach to define such a controlled vocabulary of simulation algorihtms is the \emph{Kinetic Simulation Algorithm Ontology} (KiSAO, \cite{CWK+10}). 
+Each simulation setup gets its own internal ID and an optional name. For each of the setups, the simulation algorithm to be used for that simulation is defined through a reference to a well-defined algorithm name, e.\,g. an ontology or controlled vocabulary. One approach to define such a controlled vocabulary of simulation algorihtms is the \emph{Kinetic Simulation Algorithm Ontology} (Section~\ref{sec:kisao}). 
 %
 The setup definition is repeated until all different simulations have been described.
 
@@ -116,7 +116,7 @@ The SED-ML finally consists of output definitions that describe what kind of out
 \label{fig:workflowOutput}
 \end{figure}
 %
-Therefore, SED-ML first defines a set of \concept{data generators} (Figure \ref{fig:workflowDataGenerator}), which are then used to specify a particular result, i.\,e. output (see section \ref{overview:dataGen}). 
+Therefore, SED-ML first defines a set of \concept{data generators} (Figure \ref{fig:workflowDataGenerator}), which are then used to specify a particular result, i.\,e. output (Section~\ref{overview:dataGen}). 
 
 The SED-ML specification comes with three pre-defined types of outputs: 2D- and 3D plots, and reports. All use the aforementioned data generators to specify the information to be plotted on the different axes, or in the table comlumns respectively.
 \subsection{Data Generator}
