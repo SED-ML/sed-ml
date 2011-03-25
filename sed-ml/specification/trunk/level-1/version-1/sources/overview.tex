@@ -59,7 +59,7 @@ All collapsed processes are described in the following sections. Examples in XML
 
 \subsection{Models}
 \label{overview:models}
-To define a simulation experiment, first of all a new SED-ML file is created. The models to be used in the experiment (zero or many) are referenced, using a link to a model description in some open, curated model database (such as Biomodels Database \cite{LDR+10}, CellML Repository \cite{BBC+09}, or alike). Changes that are necessary to simulate the model correctly are defined, e.\,g., assigning new parameter values or updating the mathematics of the model (Figure \ref{fig:workflowModel}).
+To define a simulation experiment, first of all a new SED-ML file is created. The models to be used in the experiment (zero or many) are referenced, using a link to a model description in some open, curated model database (such as Biomodels Database \citep{LDR+10}, CellML Repository \citep{BBC+09}, or alike). All necessary changes to correctly simulate the model are defined, e.\,g., assigning new parameter values or updating the mathematics of the model (Figure \ref{fig:workflowModel}).
 %
 \begin{figure}[h]
 \centering
@@ -68,7 +68,7 @@ To define a simulation experiment, first of all a new SED-ML file is created. Th
 \label{fig:workflowModel}
 \end{figure}
 %
-The procedure is repeated until all models participating in the experiment have been described. Each model used gets an internal SED-ML ID and an optional name.
+The procedure is repeated until all models participating in the experiment have been described. Each such model gets an internal SED-ML ID and an optional name.
 
 \subsection{Simulation setup}
 \label{overview:simulation}
