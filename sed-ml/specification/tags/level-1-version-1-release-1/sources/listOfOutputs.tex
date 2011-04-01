@@ -1,0 +1,31 @@
+ \subsubsection{listOfOutputs: The output specification container}
+\label{sec:listOfOutputs}
+
+The \concept{listOfOutputs} container holds the output specifications for a simulation experiment. 
+%
+\sedfig[width=0.85\textwidth]{listOfOutputs}{The SED-ML listOfOutputs container}{fig:listOfOutputs}
+%
+
+The output can be defined as either a \hyperref[class:report]{report}, a \hyperref[class:2dPlot]{plot2D} or  as a \hyperref[class:plot3D]{plot3D}. 
+
+\newpage
+\lsttext{listOfOutputs}{listOfOutputs}
+The \code{listOfOutputs} is optional and may contain zero to many outputs. 
+%
+\begin{myXmlLst}{The \code{listOfOutput} element}{lst:listOfOutputs}
+<listOfOutputs>
+ <report id="report1">
+  [REPORT DEFINITION FOLLOWING]
+ </report>
+ <plot2D id="plot1">
+  [2D PLOT DEFINITION FOLLOWING] 
+ </plot2D>
+</listOfOutputs>
+\end{myXmlLst}
+%
+%The example shows the definition of two different outputs, one being a data table (report), the other one a 2D plot.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

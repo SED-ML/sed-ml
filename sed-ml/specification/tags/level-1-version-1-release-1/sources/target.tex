@@ -1,0 +1,39 @@
+\subsubsection{\element{target}}
+\label{sec:target}
+An instance of \concept{Variable} refers to a model constituent inside a particular \hyperref[class:model]{model} through an \concept{XPath} expression stored in the required \concept{target} attribute. 
+%
+XPath  unambiguously identifies an element or attribute in an XML file.
+
+\lsttext{target}{target}
+%
+\begin{myXmlLst}{SED-ML \code{target} definition}{lst:target}
+   <listOfVariables>
+    <variable id="v1" name="TetR protein" taskReference="task1" 
+     target="/sbml:sbml/sbml:listOfSpecies/sbml:species[@id='PY']" />
+   </listOfVariables>
+\end{myXmlLst}
+%
+It should be noted that the identifier and names inside the SED-ML document do not have to comply with the identifiers and names that the model and its constituents carry in the model definition. In  listing \vref{lst:target}, the variable with ID \code{v1} is defined. It is described as the \code{TetR protein}. The reference points to a species in the referenced SBML model. The particular species can be identified through its ID in the SBML model, namely \code{PY}. However, SED-ML does not forbid to use identical identifiers and names as in the referenced models neither. The following Listing~\vref{lst:sedmlVariable} is another valid example for the specification of a variable, but uses the sane naming in the variable definition as in the original model (as opposed to Listing~\ref{lst:target}):
+%
+\begin{myXmlLst}{SED-ML variable definition using the original model identifier and name in SED-ML}{lst:sedmlVariable}
+   <listOfVariables>
+    <variable id="PY" name="TetR protein"  taskReference="task1" 
+     target="/sbml:sbml/sbml:listOfSpecies/sbml:species[@id='PY']" />
+   </listOfVariables>
+\end{myXmlLst}
+%
+
+%
+\begin{myXmlLst}{Species definition in the referenced model (extracted from \url{urn:miriam:biomodels.db:BIOMD0000000012})}{lst:sbmlModel}
+<sbml [..]>
+ <listOfSpecies]
+  <species metaid="PY" id="PY" name="TetR protein" [..]>
+   [..]
+  </species>
+ </listOfSpecies>
+ [..]
+</sbml>
+\end{myXmlLst}
+%
+
+The XPath expression used in the \concept{\code{target}} attribute unambiguously leads to the particular place in the XML SBML model -- the species is to be found in the \emph{sbml} element, and there inside the \emph{listOfSpecies} (Listing~\vref{lst:sbmlModel}). 
