@@ -336,3 +336,13 @@ th.simpleElement {
   margin-left: 0;
   padding-left: 2em;
 }
+.infocolumn {
+  text-align: justify;
+  padding-right: 10px;
+}
+.bioname {
+  color: black;
+}
+.biotext {
+  color: #0066bb;
+}
