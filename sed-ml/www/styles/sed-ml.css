@@ -50,7 +50,12 @@ a.external:hover {
   background-position: center right;
   background-repeat: no-repeat; 
 }
-
+a.text {
+  padding-right: 0px;
+}
+a.text:hover {
+  padding-right: 0px;
+}
 h1, h2, h3, h4, h5, h6, th {
   font-family: Arial, helvetica, sans-serif;
   text-align: left;
