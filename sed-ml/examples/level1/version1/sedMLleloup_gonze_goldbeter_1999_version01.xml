@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sedML version="0.1" xmlns="http://sed-ml.org/" xmlns:math="http://www.w3.org/1998/Math/MathML">
-  <notes>Comparing Limit Cycles and strange attractors for oscillation in Drosophila</notes> 
+<sedML  level="1" version="1" xmlns="http://sed-ml.org/" xmlns:math="http://www.w3.org/1998/Math/MathML">
+  <notes><p xmlns="http://www.w3.org/1999/xhtml">Comparing Limit Cycles and strange attractors for oscillation in Drosophila</p></notes> 
   <listOfSimulations>
     <uniformTimeCourse id="simulation1"
      initialTime="0" outputStartTime="0" outputEndTime="180" numberOfPoints="1000" >
@@ -8,7 +8,7 @@
      </uniformTimeCourse>
   </listOfSimulations>
   <listOfModels>
-    <model id="model1" name="Circadian Oscillations" type="CellML" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02" >
+    <model id="model1" name="Circadian Oscillations" language="CellML" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02" >
       <listOfChanges>
         <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" newValue="1"/>
         <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vmP']/@initial_value" newValue="0.7"/>
@@ -19,7 +19,7 @@
         <changeAttribute target="/cellml:model/cellml:component[@name='parameters']/cellml:variable[@name='K4T']/@initial_value" newValue="1"/>
       </listOfChanges>
     </model>
-    <model id="model2" name="Circadian Chaos" type="CellML" source="model1">
+    <model id="model2" name="Circadian Chaos" language="CellML" source="model1">
       <listOfChanges>
         <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MT']/cellml:variable[@name='vmT']/@initial_value" newValue="0.28"/>
         <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='T2']/cellml:variable[@name='vdT']/@initial_value" newValue="4.8"/>        
