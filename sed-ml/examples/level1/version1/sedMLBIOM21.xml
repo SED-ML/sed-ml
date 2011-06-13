@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sedML version="0.1" xmlns="http://sed-ml.org/" xmlns:math="http://www.w3.org/1998/Math/MathML">
-  <notes>Changing a system from oscillation to chaos</notes> 
+<sedML xmlns="http://sed-ml.org/" xmlns:math="http://www.w3.org/1998/Math/MathML"  level="1" version="1">
+  <notes><p xmlns="http://www.w3.org/1999/xhtml"> Changing a system from oscillation to chaos</p></notes> 
   <listOfSimulations>
     <uniformTimeCourse id="simulation1" initialTime="0" outputStartTime="50" outputEndTime="1000" numberOfPoints="1000" >
    <algorithm kisaoID="KISAO:0000027"></algorithm>
