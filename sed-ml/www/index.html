@@ -368,6 +368,41 @@
                         </tr>
                     </table>
                 </div>
+                <h2 id="sedmlSymbols">
+                    <a href="#">Predefined Symbol / Implicit Variable URNs</a></h2>
+                <div>
+                    <p>
+                        As described in <a href="documents.html#publications">the SED-ML specification</a> some modeling
+						languages use predefined symbols or implicit variables. In order to allow these variables to be 
+						adressed the SED-ML language introduced symbol URNs.  The general scheme for a symbol URN in 
+						SED-ML is <code>urn:sedml:sybmol:</code><i>symbolName</i>.
+                    </p>
+                    <table border="1" align="center" style="border-collapse: collapse; border: 1px solid #0066bb;">
+                        <tr>
+                            <th>
+                                Language
+                            </th>
+                            <th>
+                                URN
+                            </th>
+                            <th>
+                                Definition
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                SBML
+                            </td>
+                            <td>
+                                <code>urn:sedml:symbol:time</code>
+                            </td>
+                            <td>
+                                Time in SBML is an intrinsic model variable that is addressable in model equations via a 
+								csymbol 'time'. 
+                            </td>
+                        </tr>
+                    </table>
+                </div>
                 <h2 id="sedmlExample">
                     <a href="#">Example</a></h2>
                 <div>
