@@ -19,22 +19,32 @@ body
 }
 
 
+a {
+  color: #0066bb;
+  font-weight: bold;
+  text-decoration: underline;
+  border:none;
+}
+
 a:link {
   color: #0066bb;
   font-weight: bold;
   text-decoration: underline;
+  border:none;
 }
 
 a:visited {
   color: #0066bb;
   font-weight: bold;
   text-decoration: underline;
+  border:none;
 }
 
 a:hover {
   color: #0066bb;
   font-weight: bold;
   text-decoration: none;
+  border:none;
 }
 
 a.external {

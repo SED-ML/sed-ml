@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="styles/sed-ml.css" type="text/css" />
+  <title>SED-ML Showcase</title>
+
+<!-- JavaScripts-->
+<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="js/s3Slider.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#slider1').s3Slider({
+            timeOut: 5000 
+        });
+    });
+</script>
+<style type="text/css" media="screen">
+#slider1 {
+    width: 720px; /* important to be same as image width */
+    height: 500px; /* important to be same as image height */
+    position: relative; /* important */
+	overflow: hidden; /* important */
+}
+
+#slider1Content {
+    width: 720px; /* important to be same as image width or wider */
+    position: absolute;
+	top: 0;
+	margin-left: 0;
+}
+.slider1Image {
+    float: left;
+    position: relative;
+	display: none;
+}
+.slider1Image span {
+    position: absolute;
+	font: 10px/15px Arial, Helvetica, sans-serif;
+    padding: 10px 13px;
+    width: 694px;
+    background-color: #000;
+    filter: alpha(opacity=70);
+    -moz-opacity: 0.7;
+	-khtml-opacity: 0.7;
+    opacity: 0.7;
+    color: #fff;
+    display: none;
+}
+.clear {
+	clear: both;
+}
+.slider1Image span strong {
+    font-size: 14px;
+}
+.left {
+	top: 0;
+    left: 0;
+	width: 110px !important;
+	height: 280px;
+}
+.right {
+	right: 0;
+	bottom: 0;
+	width: 90px !important;
+	height: 290px;
+}
+.top {
+	top: 0;
+	left: 0;
+}
+.bottom {
+	bottom: 0;
+    left: 0;
+	height: 100px;
+}
+
+
+ul { list-style-type: none;}
+</style>
+
+</head>
+<body>
+  <div id="container">
+  
+    <!-- head -->
+    <div id="head">
+      <table width="100%" style="border=0;padding=0;margin=0;">
+        <tr>
+          <td align="left" valign="top">
+            <a href="index.html" title="SED-ML home page"><img src="images/logoSEDML_H75.png" border="0" alt="SED-ML logo" height="75" /></a>
+          </td>
+		  <td>
+			<div id="pageTitle">Simulation Experiment Description<br/>Markup Language</div>
+		  </td>
+        </tr>
+      </table>
+    </div>
+   
+    <!-- menu -->
+    <div id="menu">
+      <a class="tab" href="index.html" title="SED-ML home page">Home</a>  
+      <a class="tab" href="documents.html" title="SED-ML documents">Document</a> 
+      <a class="activeTab" href="showcase.html" title="Showcase">Showcase</a>
+      <a class="tab" href="contact.html" title="Contact us">Contact</a>
+      <a class="tab" href="about.html" title="About us">About</a>
+    </div>
+    
+    
+    <!-- content -->
+    <div id="content">
+	
+    <h2>SED-ML Showcase</h2>
+    <p>On this page we present a number of tools created by the SED-ML 
+	   community. If you would like your software tool to be listed here
+	   please fill out the <a href="http://tinyurl.com/3mkoczr" title="SED-ML Tool Survey">survey</a>.
+	</p>
+    <div id="slider1">
+        <ul id="slider1Content">
+            <li class="slider1Image">
+                <a href="#"><img border="0" src="showcase_images/sedml-web-tools.png" alt="1" /></a>
+                <span class="bottom">
+				<strong>
+					<a style="color: white;" href="http://sysbioapps.dyndns.org/SED-ML Web Tools/">
+					SED-ML Web Tools
+					</a>
+				</strong><br />
+				The SED-ML Web Tools is an online application providing support 
+				to  edit, simulate and validate SED-ML files online. It supports 
+				SBML <br/>as well as CellML models.<br/>
+				<br/>
+				License: BSD
+				</span>
+			</li>
+            <li class="slider1Image">
+                <a href="#"><img border="0" src="showcase_images/libsedml.png" alt="2" /></a>
+                <span class="bottom">
+				<strong>
+					<a style="color: white;" href="http://libsedml.sf.net" title="libSedML">
+					libSedML
+					</a>
+				</strong><br />
+				libSedML is a set of .NET libraries for supporting SED-ML. The 
+				core library libSedML supports reading, validating and writing 
+				of SED-ML descriptions, along with all necessary utility functions 
+				for resolving models and XPath expressions. Two additional libraries 
+				are included: libSedMLRunner, which allows to schedule and execute
+				simulation experiments encoded in SED-ML. A third library,
+				libSedMLScript, provides a script based language for defining SED-ML
+				experiments. 
+				<br/>
+				License: BSD
+				</span>
+			</li>
+			<li class="slider1Image">
+                <a href="#"><img border="0" src="showcase_images/sedml-script.png" alt="3" /></a>
+                <span class="bottom">
+				<strong>
+					<a style="color: white;" style="color: white;" href="http://libsedml.sourceforge.net/libSedML/SedMLScript.html" title="SED-ML Script Editor">
+					SED-ML Script Editor
+					</a>
+				</strong><br />
+				The SED-ML Script Editor allows to construct SED-ML documents using a simplified script language. Starting out by directly importing SBML or CellML models an initial script is generated that can be simulated. From there it is easy to modify it to suite your needs. 
+				<br/>
+				License: BSD
+				</span>
+			</li>
+<!--
+			<li class="slider1Image">
+                <a  href="#"><img border="0" src="showcase_images/x.png" alt="4" /></a>
+                <span class="bottom">
+				<strong>
+					<a style="color: white;" href="http://" title="">
+					
+					</a>
+				</strong><br />
+				
+				<br/>
+				License: x
+				</span>
+			</li>			
+-->
+            <div class="clear slider1Image"></div>
+        </ul>
+    </div>
+  <!-- // slider -->
+
+</body>
+</html>
