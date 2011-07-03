@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sedML  level="1" version="1" xmlns="http://sed-ml.org/" xmlns:math="http://www.w3.org/1998/Math/MathML">
+<sedML  level="1" version="1" xmlns="http://sed-ml.org/" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:cellml="http://www.cellml.org/cellml/1.1#" xmlns:cmeta="http://www.cellml.org/metadata/1.1#">
   <notes><p xmlns="http://www.w3.org/1999/xhtml">Comparing Limit Cycles and strange attractors for oscillation in Drosophila</p></notes> 
   <listOfSimulations>
     <uniformTimeCourse id="simulation1"
@@ -8,7 +8,7 @@
      </uniformTimeCourse>
   </listOfSimulations>
   <listOfModels>
-    <model id="model1" name="Circadian Oscillations" language="CellML" source="http://www.cellml.org/models/leloup_gonze_goldbeter_1999_version02" >
+    <model id="model1" name="Circadian Oscillations" language="urn:sedml:language:cellml" source="http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/b18d5b5/leloup_1999_1.1model.cellml" >
       <listOfChanges>
         <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" newValue="1"/>
         <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vmP']/@initial_value" newValue="0.7"/>
@@ -19,7 +19,7 @@
         <changeAttribute target="/cellml:model/cellml:component[@name='parameters']/cellml:variable[@name='K4T']/@initial_value" newValue="1"/>
       </listOfChanges>
     </model>
-    <model id="model2" name="Circadian Chaos" language="CellML" source="model1">
+    <model id="model2" name="Circadian Chaos" language="urn:sedml:language:cellml" source="model1">
       <listOfChanges>
         <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='MT']/cellml:variable[@name='vmT']/@initial_value" newValue="0.28"/>
         <changeAttribute target="/cellml:model/cellml:component[@cmeta:id='T2']/cellml:variable[@name='vdT']/@initial_value" newValue="4.8"/>        
@@ -34,7 +34,7 @@
   <listOfDataGenerators>
     <dataGenerator id="tim1" name="tim mRNA">
       <listOfVariables>
-        <variable id="v4" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
+        <variable id="v4" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='MT']/cellml:variable[@cmeta:id='MT_MT']" />
       </listOfVariables>
        <math:math>
           <math:apply>
@@ -46,7 +46,7 @@
 
     <dataGenerator id="per_tim" name="nuclear PER-TIM complex">
       <listOfVariables>
-        <variable id="v1" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
+        <variable id="v1" taskReference="task1" target="/cellml:model/cellml:component[@cmeta:id='CN']/cellml:variable[@cmeta:id='CN_CN']" />
       </listOfVariables>
       <math:math>
         <math:apply>
@@ -58,7 +58,7 @@
     
     <dataGenerator id="tim2" name="tim mRNA (changed parameters)">
       <listOfVariables>
-        <variable id="v2" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='MT']" />
+        <variable id="v2" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='MT']/cellml:variable[@cmeta:id='MT_MT']" />
       </listOfVariables>  
         <math:math>
           <math:apply>
@@ -70,7 +70,7 @@
     
     <dataGenerator id="per_tim2" name="nuclear PER-TIM complex">
       <listOfVariables>
-        <variable id="v3" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='CN']" />
+        <variable id="v3" taskReference="task2" target="/cellml:model/cellml:component[@cmeta:id='CN']/cellml:variable[@cmeta:id='CN_CN']" />
       </listOfVariables>
       <math:math>
         <math:apply>
