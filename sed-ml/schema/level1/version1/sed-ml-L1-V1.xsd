@@ -209,8 +209,7 @@
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
-	<!-- math element, does not inherit from SEDBase -->
-	<xs:element name="math" type="math:Math" />
+	
 	<!-- listOf elements -->
 	<xs:element name="listOfVariables">
 		<xs:complexType>
@@ -405,7 +404,7 @@
 					<xs:sequence>
 						<xs:element ref="listOfVariables" minOccurs="0" />
 						<xs:element ref="listOfParameters" minOccurs="0" />
-						<xs:element ref="math" />
+						<xs:element ref="math:math" />
 					</xs:sequence>
 					<xs:attribute name="target" use="required" type="xs:token" />
 				</xs:extension>
@@ -420,7 +419,7 @@
 					<xs:sequence>
 						<xs:element ref="listOfVariables" minOccurs="0" />
 						<xs:element ref="listOfParameters" minOccurs="0" />
-						<xs:element ref="math" />
+						<xs:element ref="math:math" />
 					</xs:sequence>
 					<xs:attributeGroup ref="idGroup" />
 				</xs:extension>
