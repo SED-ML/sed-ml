@@ -114,13 +114,13 @@
                     <p>
                         The <b>Model</b> class is used to reference the models used in the simulation experiment.
                         SED-ML itself is independent of the model encoding underlying the models. The only
-                        requirement is that the model needs to be referenced by using unambiguous identifier
+                        requirement is that the model needs to be referenced by using an unambiguous identifier
                         which allows for finding it, for example using a <a href="http://biomodels.net/miriam/#miriam_uris"
-                            title="MIRIAM URI">MIRIAM URI</a>. To precise on the language the model is encoded,
+                            title="MIRIAM URI">MIRIAM URI</a>. To specify the language in which the model is encoded,
                         a set of predefined <a href="#sedmlLanguage">language URNs</a> is provided.
                     </p>
                     <p>
-                        The SED-ML <b>Change</b> class allows to apply changes to the referenced models,
+                        The SED-ML <b>Change</b> class allows the application of changes to the referenced models,
                         including changes on the XML attributes, e.g. changing the value of an observable,
                         computing the change of a value using mathematics, or general changes on any XML
                         element of the model representation that is addressable by XPath expressions, e.g.
@@ -132,7 +132,7 @@
                         The <b>Simulation</b> class defines the simulation settings and the steps taken
                         during simulation. These include the particular type of simulation and the algorithm
                         used for the execution of the simulation; preferably an unambiguous reference to
-                        such an algorithm should be given, using controlled vocabulary, or ontologies. One
+                        such an algorithm should be given, using a controlled vocabulary, or ontologies. One
                         example for an ontology of simulation algorithms is the <em>Kinetic Simulation Algorithm
                             Ontology</em> <a href="http://biomodels.net/kisao/">KiSAO</a>. Further information
                         encodable in the Simulation class includes the step size, simulation duration, and
@@ -144,15 +144,15 @@
                         SED-ML makes use of the notion of a <b>Task</b> class to combine a defined model
                         (from the Model class) and a defined simulation setting (from the Simulation class).
                         A task always holds one reference each. To refer to a specific model and to a specific
-                        simulation, the according IDs are used.
+                        simulation, the corresponding IDs are used.
                     </p>
                     <h3 id="dataGeneratorClass">
                         The DataGenerator Class</h3>
                     <p>
                         The raw simulation result sometimes does not correspond to the desired output of
                         the simulation, e.g. one might want to normalise a plot before output, or apply
-                        post-processing like mean-value calculation. The <b>DataGenerator</b> class allows
-                        to encode such post-processings necessary to be applied to the simulation result
+                        post-processing like mean-value calculation. The <b>DataGenerator</b> class allows 
+			for the encoding of such post-processings which need to be applied to the simulation result
                         before output. To define data generators, any addressable variable or parameter
                         of any defined model (from instances of the Model class) may be referenced, and
                         new entities might be specified using MathML definitions.
