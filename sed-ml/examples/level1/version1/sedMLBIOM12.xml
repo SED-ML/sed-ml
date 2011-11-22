@@ -177,12 +177,13 @@
 
 	</listOfDataGenerators>
 	<listOfOutputs>
-		<notes>
+		
+		<plot2D id="plot1_Basic" name="protein numbers per time point">
+			<notes>
 		<p xmlns="http://www.w3.org/1999/xhtml">
 		This is the basic time-series of the unmodified model described in section 1.1.1 of the L1V1 specification document.
 		</p>
 		</notes>
-		<plot2D id="plot1_Basic" name="protein numbers per time point">
 			<listOfCurves>
 				<curve id="c1" logX="false" logY="false" xDataReference="timeDG"
 					yDataReference="LaCI" />
