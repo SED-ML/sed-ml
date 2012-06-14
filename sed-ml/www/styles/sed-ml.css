@@ -10,7 +10,7 @@
 body
 {
   background-color: white;
-  color: #0066bb;
+  color: #000000;
   font-family: Tahoma, Arial, helvetica, sans-serif;
   font-size: 12px;
   border: none;
@@ -54,6 +54,14 @@ a.external {
   background-repeat: no-repeat;
 }
 
+dt {
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+dl {
+	text-indent: 13px;
+}
 a.external:hover {
   padding-right: 13px;
   background-image: url(img/external_link_light.gif);
@@ -98,6 +106,7 @@ h4 {
 
 p {
   padding-left: 1em;
+  font-size: 1em;
 }
 
 blockquote {
@@ -121,13 +130,13 @@ blockquote {
 
 #documentbox {
   width:400px;
-  background-color:#94cfff;
+  background-color: orange;
   border:1px outset black;
   padding-top: 10px;
   padding-left: 130px;
   margin-left: 60px;
   padding-bottom: 10px;
-  height: 50px;
+  height: 35px;
   text-align:left;
   vertical-align:middle;
   border-radius: 10px;
@@ -148,8 +157,7 @@ blockquote {
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   left:90px;
-  top:auto;
-  width:90px;
+  width:70px;
   text-align:left;
   position:absolute;
   display:block;
@@ -160,7 +168,7 @@ blockquote {
 }
 
 #documentbox a:link, span {
-    color: white;
+    color: #000000;
 }
 
 
@@ -228,7 +236,7 @@ blockquote {
 }
 
 #head a:hover {
-  color: #fff;
+  color: #ffffff;
 }
 
 #container {
@@ -238,7 +246,7 @@ blockquote {
 
 #menu {
   background-color: white;
-  color: #fff;
+  color: #ffffff;
   float: none;
   margin: 0px 100px 0px 0px;
   padding: 5px 0px 5px 0px;
@@ -249,7 +257,7 @@ blockquote {
 }
 
 #menu a {
-  color: #ddd;
+  color: #dddddd;
   text-decoration: none;
 }
 
@@ -270,6 +278,7 @@ blockquote {
   border: 1px solid #0066bb;
   position: relative;
   z-index: 0;
+  width: 90%;
 }
 
 #foot {
