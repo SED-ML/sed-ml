@@ -1,0 +1,114 @@
+% on the MathML subset used in SED-ML
+\subsection{MathML subset}
+\label{sec:mathML}
+The SED-ML specification allows for the encoding of pre-processing applied to the computational model,  as well as for the encoding of post processing applied to the raw simulation data before output. 
+The corresponding mathematical expressions are encoded using MathML 2.0 \citep{CIM+01}. MathML is an international standard for encoding mathematical expressions using XML. It is also used as a representation of mathematical expressions in other formats, such as SBML and CellML, two of the languages supported by SED-ML. 
+
+\subsubsection{MathML operations}
+In order to make the SED-ML format easier to adopt, at the beginning we restrict the MathML subset to the following operations: 
+
+\begin{itemize}\setlength{\parskip}{-0.1ex}
+
+\item \emph{token}: \token{cn}, \token{ci}, \token{csymbol},
+  \token{sep}
+  
+\item \emph{general}: \token{apply}, \token{piecewise},
+  \token{piece}, \token{otherwise}, \token{lambda} 
+
+\item \emph{relational operators}: \token{eq}, \token{neq},
+  \token{gt}, \token{lt}, \token{geq}, \token{leq}
+
+\item \emph{arithmetic operators}: \token{plus}, \token{minus},
+  \token{times}, \token{divide}, \token{power}, \token{root},
+  \token{abs}, \token{exp}, \token{ln}, \token{log},
+  \token{floor}, \token{ceiling}, \token{factorial}
+
+\item \emph{logical operators}: \token{and}, \token{or},
+  \token{xor}, \token{not}
+
+\item \emph{qualifiers}: \token{degree}, \token{bvar},
+  \token{logbase}
+
+\item \emph{trigonometric operators}: \token{sin}, \token{cos},
+  \token{tan}, \token{sec}, \token{csc}, \token{cot},
+  \token{sinh}, \token{cosh}, \token{tanh}, \token{sech},
+  \token{csch}, \token{coth}, \token{arcsin}, \token{arccos},
+  \token{arctan}, \token{arcsec}, \token{arccsc}, \token{arccot},
+  \token{arcsinh}, \token{arccosh}, \token{arctanh},
+  \token{arcsech}, \token{arccsch}, \token{arccoth}
+
+\item \emph{constants}: \token{true}, \token{false},
+  \token{notanumber}, \token{pi}, \token{infinity},
+  \token{exponentiale}
+
+\item \emph{MathML annotations}: \token{semantics},
+  \token{annotation}, \token{annotation-xml}
+\end{itemize}
+
+\subsubsection{MathML Symbols}
+All the operations listed above only operate on \emph{scalar} values. However, as one of SED-ML's aims is to provide post processing on the results of simulation experiments, we need to enhance this basic set of operations by some aggregate functions. 
+Therefore a defined set of MathML symbols that represent vector values are supported by SED-ML \LoneVtwo. 
+To simplify things for SED-ML L1V1 the only symbols to be used are the identifiers of variables defined in the listOfVariables of DataGenerators. These variables represent the data collected from the simulation experiment with the associated task. 
+
+\subsubsection{MathML functions}
+The following aggregate functions are available for use in SED-ML \LoneVtwo.
+
+\begin{itemize}\setlength{\parskip}{-0.1ex}
+
+\item \emph{min}: Where the minimum of a variable represents the smallest value 
+the simulation experiment yielded (Listing~\ref{lst:minFunction}). 
+%
+\begin{myXmlLst}{Example for the use of the MathML \code{min} function.}{lst:minFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#min">
+ 		min
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
+
+\item \emph{max}: Where the maximum of a variables represents the largest value 
+the simulation experiment yielded (listing \ref{lst:maxFunction}).
+%
+\begin{myXmlLst}{Example for the use of the MathML \code{max} function.}{lst:maxFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#max">
+ 		max
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
+
+\item \emph{sum}: All values of the variable returned by the simulation 
+experiment are summed (listing \ref{lst:sumFunction}).
+%
+\begin{myXmlLst}{Example for the use of the MathML \code{sum} function.}{lst:sumFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#sum">
+ 		sum
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
+
+
+\item \emph{product}: All values of the variable returned by the simulation 
+experiment are multiplied (listing \ref{lst:productFunction}).
+%
+\begin{myXmlLst}{Example for the use of the MathML \code{product} function.}{lst:productFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#product">
+ 		product
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
+
+\end{itemize}
+
+These represent the only exceptions. At this point SED-ML \LoneVtwo does not define a complete algebra of vector values. For more information see the description of the \hyperref[class:dataGenerator]{DataGenerator} class.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

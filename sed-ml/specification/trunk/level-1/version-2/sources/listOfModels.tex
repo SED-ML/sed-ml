@@ -1,0 +1,27 @@
+  \subsubsection{listOfModels: The model description container}
+\label{sec:listOfModels}
+In order to specify a simulation experiment, the participating models have to be defined. SED-ML uses the \concept{listOfModels} container for all necessary models (\fig{listOfModels}). 
+
+% Fig: sed model
+\sedfig[width=0.85\textwidth]{listOfModels}{The SED-ML listOfModels container}{fig:listOfModels}
+%
+
+\lsttext{listOfModels}{listOfModels}
+The \code{listOfModels} is optional and may contain zero to many models. However, if the \LoneVtwo document contains  one or more   \code{Task}  elements,  at least one  \code{Model} element must be defined to which  the   \code{Task} element refers (Section~\ref{sec:modelReference} on \refpage{sec:modelReference}).
+%
+\begin{myXmlLst}{SED-ML listOfModels element}{lst:listOfModels}
+<listOfModels>
+ <model id="m0001" language="urn:sedml:language:sbml" 
+  source="urn:miriam:biomodels.db:BIOMD0000000012" />
+ <model id="m0002" language="urn:sedml:language:cellml" 
+  source="http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/d6613d7e1051b3eff2bb1d3d419a445bb8c754ad/leloup_gonze_goldbeter_1999_a.cellml" />
+</listOfModels>
+\end{myXmlLst}
+%
+
+
+
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 
