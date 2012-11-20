@@ -17,6 +17,22 @@
 \usepackage{fancybox}
 \usepackage{xspace}
 \usepackage{ifpdf}
+
+% Hyperref, xcolor, graphicx and possibly others have a flag "pdftex"
+% that needs to be used if pdflatex is being used.  The following puts
+% these inside a conditional for that situation.
+
+\ifpdf
+  % Case: using pdflatex
+  \usepackage[pdftex,rgb,dvipsnames,svgnames,hyperref,table]{xcolor}
+
+\else
+  % Case: not using pdflatex
+  \usepackage[rgb,dvipsnames,svgnames,hyperref,table]{xcolor}
+
+\fi
+
+
 \usepackage{float}
 \usepackage[american]{varioref}
 \usepackage[normalem]{ulem}
