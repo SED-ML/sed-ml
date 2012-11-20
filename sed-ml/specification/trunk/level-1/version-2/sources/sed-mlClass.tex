@@ -1,0 +1,77 @@
+% sed-ml Class
+\subsection{\element{SED-ML} top level element}
+\label{class:sed-ml}
+Each SED-ML \LoneVtwo document has a main class called SED-ML which defines the document's structure and content (\fig{sed-mlMain}).
+%
+%\sedfig[width=0.35\textwidth]{sed-mlClass}{The SED-ML class}{fig:sed-ml}
+%
+It consists of several parts; the parts are all connected to the SED-ML class through aggregation: 
+the \hyperref[class:model]{Model} class (for model specification, see Section~\ref{class:model}), the \hyperref[class:simulation]{Simulation} class (for simulation setup specification, see Section~\ref{class:simulation}), the \hyperref[class:task]{Task} class (for the linkage of models and simulation setups, see Section~\ref{class:task}), the \hyperref[class:dataGenerator]{DataGenerator} class (for the definition of post-processing, see Section~\ref{class:dataGenerator}), and the \hyperref[class:output]{Output} class (for the output specification, see Section~\ref{class:output}). All of them are shown in \fig{sed-mlMain} and will be explained in more detail in the relevant sections of this document.
+%
+\sedfig[width=0.8\textwidth]{sed-mlMain}{The sub-classes of SED-ML}{fig:sed-mlMain}
+%
+
+\tabtext{sed-ml}{SED-ML}
+
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaID$^{o}$ & \refpage{sec:metaID}\\
+xmlns & \refpage{sec:xmlns}\\
+level & \refpage{sec:level}\\
+version & \refpage{sec:version}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+listOfModels$^{o}$ & \refpage{sec:listOfModels}\\
+listOfSimulations$^{o}$ & \refpage{sec:listOfSimulations} \\
+listOfTasks$^{o}$ & \refpage{sec:listOfTasks} \\
+listOfDataGenerators$^{o}$ & \refpage{sec:listOfDataGenerators} \\
+listOfOutputs$^{o}$ & \refpage{sec:listOfOutputs} \\
+\hline
+\end{tabular}
+\caption{\tabcap{SED-ML}}
+\label{tab:sed-ml}
+\end{table}
+%
+A SED-ML document needs to have the SED-ML namespace defined through the mandatory \hyperref[sec:xmlns]{xmlns} attribute. In addition, the SED-ML \hyperref[sec:level]{level} and \hyperref[sec:version]{version} attributes are mandatory.
+
+The basic XML structure of a SED-ML file is shown in listing  \vref{lst:sedmlRoot}.
+%
+\begin{myXmlLst}{The SED-ML root element}{lst:sedmlRoot}
+<?xml version="1.0" encoding="utf-8"?>
+<sedML xmlns:math="http://www.w3.org/1998/Math/MathML" 
+       xmlns="http://sed-ml.org/" level="1" version="1">
+ <listOfModels />
+  [MODEL REFERENCES AND APPLIED CHANGES]
+ <listOfSimulations />
+  [SIMULATION SETUPS]
+ <listOfTasks />
+  [MODELS LINKED TO SIMULATIONS]
+ <listOfDataGenerators />
+  [DEFINITION OF POST-PROCESSING]
+ <listOfOutputs />
+  [DEFINITION OF OUTPUT]
+</sedML>
+\end{myXmlLst}
+%
+The root element of each SED-ML XML file is the \code{sedML} element, encoding \hyperref[sec:version]{version} and \hyperref[sec:level]{level} of the file, and setting the necessary namespaces. Nested inside the \code{sedML} element are the five lists serving as containers for the encoded data (\concept{listOfModels} for all models, \concept{listOfSimulations} for all simulations, \concept{listOfTasks} for all tasks, \concept{listOfDataGenerators} for all post-processing definitions, and \concept{listOfOutputs} for all output definitions).
+
+\input{sources/xmlns}
+
+\input{sources/level}
+
+\input{sources/version}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 
