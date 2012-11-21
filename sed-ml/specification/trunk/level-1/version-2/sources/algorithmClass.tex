@@ -9,8 +9,9 @@ Each instance of the \hyperref[class:simulation]{Simulation} class must contain 
 \sedfig[width=0.35\textwidth]{algorithm}{The \code{Algorithm} class}{fig:algorithm}
 %
 
-Each instance of the \concept{Algorithm} class must contain a \hyperref[sec:kisao]{KiSAO} reference to a simulation algorithm. The reference should define the  simulation algorithm to be used in the simulation as precisely as possible, and should be defined in the correct syntax, as defined by the regular expression \code {KISAO:[0-9]\{7\}}.
+Each instance of the \concept{Algorithm} class must contain a \hyperref[sec:kisao]{KiSAO} reference to a simulation algorithm. The reference should define the  simulation algorithm to be used in the simulation as precisely as possible, and should be defined in the correct syntax, as defined by the regular expression \code{KISAO:[0-9]\{7\}}.
 
+The algorithm class contains an optional list of parameters (\code{listOfAlgorithmParameters})that can be set for the particular algorithm used in the simulation. 
 
 \tabtext{algorithm}{Algorithm}
 %
@@ -52,5 +53,5 @@ For both simulations, one algorithm is defined. In the first simulation \code{s1
 
 %%% Local Variables: 
 %%% mode: latex
-%%% TeX-master: "../sed-ml-L1V1"
+%%% TeX-master: "../sed-ml-L1V2"
 %%% End: 
