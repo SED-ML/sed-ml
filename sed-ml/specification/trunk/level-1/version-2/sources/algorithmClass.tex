@@ -11,7 +11,7 @@ Each instance of the \hyperref[class:simulation]{Simulation} class must contain 
 
 Each instance of the \concept{Algorithm} class must contain a \hyperref[sec:kisao]{KiSAO} reference to a simulation algorithm. The reference should define the  simulation algorithm to be used in the simulation as precisely as possible, and should be defined in the correct syntax, as defined by the regular expression \code{KISAO:[0-9]\{7\}}.
 
-The algorithm class contains an optional list of parameters (\code{listOfAlgorithmParameters})that can be set for the particular algorithm used in the simulation. 
+The \concept{Algorithm} class contains an optional list of parameters (\hyperref[class:algorithmParameter]{algorithmParameter}) that can be set for the particular algorithm used in the simulation. 
 
 \tabtext{algorithm}{Algorithm}
 %
@@ -23,6 +23,7 @@ The algorithm class contains an optional list of parameters (\code{listOfAlgorit
 \hline
 metaid$^{o}$ & \refpage{sec:metaID}\\
 kisaoID & \refpage{sec:kisao}\\
+listOfAlgorithmParameters & \refpage{sec:listOfAlgorithmParameters}\\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
