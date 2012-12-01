@@ -1,0 +1,57 @@
+ \subsubsection{\element{OneStep}}
+\label{class:oneStep}
+%
+\sedfig[width=0.75\textwidth]{oneStepSimulation}{The \code{OneStep} class}{fig:oneStepSimulation}
+%
+
+The SED-ML \code{oneStep} calculates one further output step for the model from its current state. Note that this does NOT necessarily equate to one integration step. The simulator is allowed to take as many steps as needed. However, after running oneStep, the desired output time is reached.
+
+\tabtext{oneStep}{oneStep}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{attribute} & \textbf{description}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+step$^{o}$ & \refpage{sec:step}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+algorithm & \refpage{class:algorithm}\\
+\hline
+\end{tabular}
+\caption{\tabcap{oneStep}}
+\label{tab:oneStep}
+\end{table}
+%
+
+\lsttext{oneStep}{oneStep}
+
+%
+\begin{myXmlLst}{The SED-ML \code{oneStep} element, specifying to apply the simulation algorithm for another step of size 0.1.}{lst:oneStep}
+<listOfSimulations> 
+  <oneStep id="s1" step="0.1"> 
+    <algorithm kisaoID="KISAO:0000019" />
+  </oneStep> 
+</listOfSimulations>
+
+\end{myXmlLst}
+
+\paragraph{\element{step}}
+\label{sec:step}
+The \element{oneStep} class has one required attribute \element{step} of type \code{double}. It defines the next output step that should be reached by the algorithm. Listing~\ref{lst:oneStep} shows an example. 
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V2"
+%%% End: 
