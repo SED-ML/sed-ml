@@ -1,0 +1,89 @@
+ \subsection{\element{Repeated Task}}
+\label{class:repeatedTask}
+
+Instead of redefining a large number of simulation types to suite various simulation tasks, the \concept{repeatedTask} breaks down complex tasks into separate steps. The \concept{repeatedTask} performs a specified simulation multiple times (where the exact number is specified through a \hyperref[class:range]{range} construct while allowing specific aspects of the model to change (in the simplest case that would be by advancing the simulation time). The \concept{repeatedTask} defines a list of subtasks to be carried out sequentially. 
+
+%
+\sedfig[width=0.35\textwidth]{repeatedTaskClass}{The SED-ML RepeatedTask class}{fig:sedTask}
+%
+
+\tabtext{repeatedTask}{repeatedTask}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+range$^{o}$ & \refpage{sec:rangeAttribute}\\
+resetModel$^{o}$ & \refpage{sec:resetModel}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+listOfRanges$^{o}$ & \refpage{class:ranges}\\
+listOfChanges$^{o}$ & \refpage{class:changes}\\
+listOfSubTasks$^{o}$ & \refpage{class:subTasks}\\
+\hline
+\hline
+\end{tabular}
+\caption{\tabcap{repeatedTask}}
+\label{tab:repeatedTask}
+\end{table}
+%
+
+
+\subsubsection{ The \element{range} attribute}
+\label{sec:rangeAttribute}
+The \element{repeatedTask} class has a required attribute \element{range} of type \code{SId}. It specifies which \hyperref[class:range]{range} defined in the \element{listOfRanges} that this repeated task iterates over. Listing~\ref{lst:repeatedTask} shows an example of a \element{repeatedTask} iterating over the values: \code{1}, \code{4} and \code{10}. 
+
+
+\subsubsection{ The \element{resetModel} attribute}
+\label{sec:resetModel}
+The \element{repeatedTask} class has a required attribute \element{resetModel} of type \code{boolean}. It specifies whether the model should be reset to the initial state before processing an iteration of the defined \hyperlink[sec:subTasks]{subTasks}. Here initial state refers to the state of the model as given in the \element{listOfModels}.  In the example in  Listing~\ref{lst:repeatedTask} the repeated task is not to be reset, so between the three executions of \code{task1}, the model is not to be reset. 
+
+
+\lsttext{repeatedTask}{repeatedTask}
+
+%
+\begin{myXmlLst}{The \code{repeatedTask} element}{lst:repeatedTask}
+<task id="task1" modelReference="model1" simulationReference="simulation1" />
+<repeatedTask id="task3" resetModel="false" range="current"> 
+  <listOfRanges>
+    <vectorRange id="current"> 
+        <value> 1 </value> 
+        <value> 4 </value> 
+        <value> 10 </value> 
+    </vectorRange> 
+  </listOfRanges>
+  <listofChanges>
+    <setValue target="/sbml/model/listOfParameters/parameter[@id='w']" modelReference="model1" > 
+     <listOfVariables> 
+         <variable id="val" name="current range value" target="#current" /> 
+     </listOfVariables> 
+     <math> 
+         <ci> val </ci> 
+     </math> 
+    </setValue> 
+</listOfChanges>
+<listOfSubTasks>
+  <subTask task="task1" />
+</listOfSubTasks>
+</repeatedTask>
+
+\end{myXmlLst}
+%
+In the example, \code{task1} is repeated three times, each time with a different value for a model parameter \code{w}. 
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V2"
+%%% End: 
