@@ -3,8 +3,10 @@
 
 Instead of redefining a large number of simulation types to suite various simulation tasks, the \concept{repeatedTask} breaks down complex tasks into separate steps. The \concept{repeatedTask} performs a specified simulation multiple times (where the exact number is specified through a \hyperref[class:range]{range} construct while allowing specific aspects of the model to change (in the simplest case that would be by advancing the simulation time). The \concept{repeatedTask} defines a list of subtasks to be carried out sequentially. 
 
+The \concept{RepeatedTask} inherits from \concept{AbstractTask}. Additionally it has two required attributes \hyperref[sec:rangeAttribute]{rangeAttribute} and \hyperref[sec:resetModel]{resetModel} as well as elements \hyperref[class:ranges]{listOfRanges}, \hyperref[class:changes]{listOfChanges} and \hyperref[class:subTasks]{listOfSubTasks}.
+
 %
-\sedfig[width=0.35\textwidth]{repeatedTaskClass}{The SED-ML RepeatedTask class}{fig:sedTask}
+\sedfig[width=.90\textwidth]{repeatedTaskClass}{The SED-ML RepeatedTask class}{fig:sedTask}
 %
 
 \tabtext{repeatedTask}{repeatedTask}
@@ -81,6 +83,121 @@ The \element{repeatedTask} class has a required attribute \element{resetModel} o
 \end{myXmlLst}
 %
 In the example, \code{task1} is repeated three times, each time with a different value for a model parameter \code{w}. 
+
+\subsubsection{ The \element{listOfRanges}}
+\label{class:ranges}
+Ranges represent the iterative element of the nested simulation experiment that provides the collection of values to iterate over. In order to be able to refer to the current value of a range element, we add an id attribute. When the value of the id attribute is used in a listOfVariables within the repeated task class it is to be extended with the current value.
+
+There are three different range types: 
+
+\paragraph{\element{UniformRange}}
+This range is defined through a start value, an end value and a number of points. An additional type attribute can take the values linear or log and determines whether to draw the values logarithmically or linearly. This is quite similar to what is used today in the UniformTimecourse simulation experiment. For example:
+\begin{myXmlLst}{The \code{UniformRange} element}{lst:uniformRange}
+    <uniformRange id="current" start="0.0" end="10.0" numberOfPoints="100" type="linear" /> 
+\end{myXmlLst}
+
+\paragraph{\element{VectorRange}}
+This range can be seen as simply a collection of values. For example:
+\begin{myXmlLst}{The \code{UniformRange} element}{lst:uniformRange}
+    <vectorRange id="current"> 
+        <value> 1 </value> 
+        <value> 4 </value> 
+        <value> 10 </value> 
+    </vectorRange> 
+\end{myXmlLst}
+
+\paragraph{\element{FunctionalRange}}
+This defines a function to be evaluated in order to determine the next value. Previously the functional range was simply stated as a MathML element. However, this will not allow us to reference model elements, and so it needs to look like the computeChange element. That is we need a listOfVariables, along with the Math description. Additionally we need another attribute that specifies an index variable “index” so that we can evaluate the function at different points. This variable can be used in the MathML expression. The value to be used for the index is provided by another range when the functionalRange is invoked. For example:
+\begin{myXmlLst}{The \code{FunctionalRange} element}{lst:functionalRange}
+    <functionalRange id="current" index="index"> 
+      <listOfVariables> 
+         <variable id="w" name="current parameter value"   
+                          target="/sbml/model/listOfParameters/parameter[@id='w']" /> 
+      </listOfVariables> 
+      <function>
+        <math> 
+           <apply>
+           <times/>
+           <ci> w </ci> 
+           <ci> index </ci> 
+           </apply>
+        </math>  
+      </function>
+    </functionalRange> 
+\end{myXmlLst}
+
+Here another example of using the values in a piecewise expression: 
+
+
+\begin{myXmlLst}{The \code{FunctionalRange} element}{lst:functionalRange2}
+        <uniformRange id="index" start="0" end="10" numberOfPoints="100" />
+        <functionalRange id="current" index="index">
+          <function>
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <piecewise>
+                <piece>
+                  <cn> 8 </cn>
+                  <apply>
+                    <lt />
+                    <ci> index </ci>
+                    <cn> 1 </cn>
+                  </apply>
+                </piece>
+                <piece>
+                  <cn> 0.1 </cn>
+                  <apply>
+                    <and />
+                    <apply>
+                      <geq />
+                      <ci> index </ci>
+                      <cn> 4 </cn>
+                    </apply>
+                    <apply>
+                      <lt />
+                      <ci> index </ci>
+                      <cn> 6 </cn>
+                    </apply>
+                  </apply>
+                </piece>
+                <otherwise>
+                  <cn> 8 </cn>
+                </otherwise>
+              </piecewise>
+            </math>
+          </function>
+        </functionalRange>
+\end{myXmlLst}
+
+
+
+\subsubsection{ The \element{listOfChanges}}
+\label{class:changes}
+Multiple changes to the model are allowed:
+\begin{myXmlLst}{The \code{setValue} element}{lst:setValue}
+
+  <listOfChanges>
+    <setValue target="/sbml/model/listOfParameters/parameter[@id='w']" range="current" modelReference="model1" > 
+     <math> 
+         <ci> current </ci> 
+     </math> 
+    </setValue> 
+  </listOfChanges>
+\end{myXmlLst}
+
+In order to specify the object that will receive the new value we use an xpath query in form of the target attribute. The setValue class inherits all properties from the SED-ML Variable class, and so instead of the \code{target} attribute it is also possible to refer to SED-ML implicit symbols. The additional attribute \code{range} describes the range object that provides the current value (see also the functionalRange examples).
+
+
+\subsubsection{ The \element{listOfSubTasks}}
+\label{class:subTasks}
+When not using the simulationReference all operations to be carried out are specified in the list of subtasks. The subTask itself has one required attribute task that references the id of another task defined in the listOfTasks. The subtasks in the list are un-ordered.  This allows the subTasks to be carried out in parallel. In order to establish that one subtask should be carried out before another it can contain a listOfDependTasks where the ids of other tasks can be referenced. 
+\begin{myXmlLst}{The \code{subTask} element. In the example above the task \code{task2} has to be carried out before \code{task1}.}{lst:subTask}
+  <listOfSubTasks>
+    <subTask task="task1" order="2"/> 
+    <subTask task="task2" order="1"/> 
+  </listOfSubTasks>
+\end{myXmlLst}
+
+ 
 
 
 %%% Local Variables: 
