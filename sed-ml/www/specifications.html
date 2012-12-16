@@ -1,6 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -9,111 +9,125 @@
 </head>
 <body>
   <div id="container">
-  
+
     <!-- head -->
     <div id="head">
-      <table width="100%" style="border=0;padding=0;margin=0;">
+      <table width="100%" style="border=0; padding=0; margin=0;">
         <tr>
           <td align="left" valign="top">
-            <a href="index.html" title="SED-ML home page"><img src="images/logoSEDML_H75.png" border="0" alt="SED-ML logo" height="75" /></a>
+            <a href="index.html" title="SED-ML home page">
+              <img src="images/logoSEDML_H75.png" border="0" alt="SED-ML logo" height="75" /></a>
           </td>
-		  <td>
-			<div id="pageTitle">Simulation Experiment Description Markup Language</div>
-		  </td>
+          <td>
+            <div id="pageTitle">Simulation Experiment Description Markup Language</div>
+          </td>
         </tr>
       </table>
     </div>
-   
+
     <!-- menu -->
     <div id="menu">
-      <a class="tab" href="index.html" title="SED-ML home page">Home</a>  
-		<a class="activeTab" href="specification.html" title="SED-ML specification">Specifications</a> 
-      <a class="tab" href="documents.html" title="SED-ML information">Information</a> 
-	  	<a class="tab" href="showcase.html" title="Showcase">Showcase</a>
+      <a class="tab" href="index.html" title="SED-ML home page">Home</a>
+      <a class="activeTab" href="specification.html" title="SED-ML specification">Specifications</a>
+      <a class="tab" href="documents.html" title="SED-ML information">Information</a>
+      <a class="tab" href="showcase.html" title="Showcase">Showcase</a>
       <a class="tab" href="contact.html" title="Contact us">Contact</a>
       <a class="tab" href="about.html" title="Editors">Editors</a>
     </div>
-    
-    
+
+
     <!-- content -->
     <div id="content">
-    <h2 id="specifications">Specifications</h2>
-      
+      <h2 id="specifications">Specifications</h2>
+
       <p>
-      <a href="documents/sed-ml-L1V1.pdf">Normative description of SED-ML Level 1 Version 1</a>
+        <a href="documents/sed-ml-L1V1.pdf">Normative description of SED-ML Level 1 Version 1</a>
       </p>
 
-<p>
-      <a href="http://sed-ml.svn.sourceforge.net/viewvc/sed-ml/sed-ml/specification/trunk/level-1/version-1/sed-ml-L1V1.pdf">Latest draft of the specification</a>
-</p>
+      <p>
+        <a href="http://sourceforge.net/p/sed-ml/code/447/tree/sed-ml/specification/trunk/level-1/version-2/sed-ml-L1V2.pdf?format=raw">Latest draft of the L1V2 specification</a>
+      </p>
 
-          <h2 id="sedmlProposals"> Guidelines for feature requests and proposals</h2>
-            <p> We would like to encourage you to follow the procedure below for contributing to SED-ML development. </p>
-<h3>Feature requests</h3>
-            <p>Feature requests are “wishes for support” by (potential)
+      <h2 id="proposals">Proposals</h2>
+      <p>Currently we are working on including the <a href="http://co.mbine.org/standards/sed-ml/proposal/nested-simulations/FB/version-3" title="Nested Simulation / Repeated Task proposal">
+        Nested Simulation / Repeated Task proposal</a> as well as the proposal for <a href="http://co.mbine.org/standards/sed-ml/proposal/kisao/RA/version-1" title="Algorithm parameters">
+       Algorithm parameters</a> into L1V2. </p>
+
+      <h2 id="sedmlProposals">Guidelines for feature requests and proposals</h2>
+      <p>We would like to encourage you to follow the procedure below for contributing to SED-ML development. </p>
+      <h3>Feature requests</h3>
+      <p>
+        Feature requests are “wishes for support” by (potential)
               SED-ML users. They are submitted and tracked using the
               SourceForge <a
-                href="http://sourceforge.net/tracker/?group_id=293618&amp;atid=1240598">feature request tracker</a>. The editors will revise these
+          href="http://sourceforge.net/tracker/?group_id=293618&amp;atid=1240598">feature request tracker</a>. The editors will revise these
               wishes at their regular meetings and start discussion on
               them on sed-ml-discuss if necessary. Solutions to feature
               requests can be provided (independently of a feature
               request) by starting a new proposal item on SF.
-              </p>
-              <h3>Proposals</h3>
-<p>              Proposals are welcome at all times via the sourceforge <a
-href="http://sourceforge.net/tracker/?atid=2532228&amp;group_id=293618">proposals
+             
+      </p>
+      <h3>Proposals</h3>
+      <p>
+        Proposals are welcome at all times via the sourceforge <a
+          href="http://sourceforge.net/tracker/?atid=2532228&amp;group_id=293618">proposals
                 tracker</a>. Proposals could be derived from a
               sed-ml-discuss discussion field (for example, in response
               to a feature request), or created de novo.
-              <ul>
-                <li> Together with your proposal you must provide a
+             
+        <ul>
+          <li>Together with your proposal you must provide a
                   sufficiently detailed description of your desired
                   feature, including XML examples, i.e. SED-ML files,
                   containing the proposed new elements in Annotation
                   elements. Final element and attribute names may be
                   decided on later (maybe even hierarchy).</li>
-                <li> The editors then collect vote on whether the
+          <li>The editors then collect vote on whether the
                   outlined proposal goes in to the right direction and
                   should become part of SED-ML.
-                  <ul>
-                    <li> The proposal will be voted on by sedml-discuss
+                 
+            <ul>
+              <li>The proposal will be voted on by sedml-discuss
                       members, </li>
-                    <li> requiring a majority in favour to be accepted.
+              <li>requiring a majority in favour to be accepted.
                       The vote includes yes-no-revise options.</li>
-                    <li> There will be no minimum requirement for the
+              <li>There will be no minimum requirement for the
                       the number of votes needed. </li>
-                    <li> The voting process will take place over a 3
+              <li>The voting process will take place over a 3
                       week period. </li>
-                  </ul>
-                </li>
-                <li> Proposals that are rejected will not be rejected
+            </ul>
+          </li>
+          <li>Proposals that are rejected will not be rejected
                   for all time, but would need to address the reasons
                   for their rejection before resubmission. Resubmission
                   therefore requires revision of the proposal.</li>
-                <li> Accepted proposals will be integrated with the
+          <li>Accepted proposals will be integrated with the
                   specification document by the SED-ML editors with the next release.
                   Prerequisites are:
-                  <ul>
-                    <li> at least two implementations in applications (
+                 
+            <ul>
+              <li>at least two implementations in applications (
                       to demonstrate interoperability) </li>
-                    <li> updated examples </li>
-                    <li> a written description of the proposal </li>
-                  </ul>
-                  and ideally would include:
-                  <ul>
-                    <li> an XML schema for the proposed extension </li>
-                    <li> UML diagrams illustrating any new class </li>
-                  </ul>
-                </li>
-              </ul>
-            </ol>
-</p>
+              <li>updated examples </li>
+              <li>a written description of the proposal </li>
+            </ul>
+            and ideally would include:
+                 
+            <ul>
+              <li>an XML schema for the proposed extension </li>
+              <li>UML diagrams illustrating any new class </li>
+            </ul>
+          </li>
+        </ul>
+      </p>
 
-<!--      <a href="http://precedings.nature.com/documents/4257/version/2">Proposal by Frank Bergmann on Nested Simulations, version 2.</a> -->   
+      <!--      <a href="http://precedings.nature.com/documents/4257/version/2">Proposal by Frank Bergmann on Nested Simulations, version 2.</a> -->
 
-    <!-- footer -->
-    <div id="foot">sed-ml.org</div>
-    
-  </div>
+      <!-- footer -->
+      <div id="foot">sed-ml.org</div>
+
+    </div>
+    </div>
+
 </body>
 </html>
