@@ -29,8 +29,8 @@ RepeatedTask
 [RepeatedTask]<--listOfRanges 0..*-[Range|+id:SId; ]
 [RepeatedTask]<--listOfChanges 0..*-[SetValue|+target:XPath;+modelReference:SIdRef|math:MathML]
 [RepeatedTask]<--listOfSubtasks 0..*-[SubTask|+task:SIdRef;+order:integer]
-[Range]<>--[UniformRange|+start:double;+end:double;+numberOfPonts:integer;+type:enum]
+[Range]<>--[UniformRange|+start:double;+end:double;+numberOfPoints:integer;+type:enum]
 [Range]<>--[VectorRange|value*:double]
 [Range]<>--[FunctionalRange|+index:SIdRef|listOfVariables;function]
 
-edit: http://yuml.me/edit/5bd55481
+edit: http://yuml.me/edit/e9630f81
