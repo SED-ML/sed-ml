@@ -5,8 +5,10 @@
 %
 \sedfig[width=0.4\textwidth]{variableClass}{The Variable class}{fig:variable}
 %
-If the variable is defined through a reference to a model constituent, such as an SBML species, then the reference is specified using the  \hyperref[sec:target]{target} attribute.
-If the variable is defined through a reference to an external entity, then the  \hyperref[sec:symbol]{symbol} attribute is used. It holds a SED-ML \hyperref[sec:uriScheme]{URI}. A \code{variable} is  always placed inside a \hyperref[class:listOfVariables]{listOfVariables}. \code{Symbol} and \code{target} must not be used together in a single instance of Variable.
+If the variable is defined through a reference to a model constituent, such as an SBML species, then the reference is specified using the \hyperref[sec:target]{target} attribute.
+If the variable is defined through a reference to an external entity, then the \hyperref[sec:symbol]{symbol} attribute is used, which holds a SED-ML \hyperref[sec:uriScheme]{URI}.
+A \code{variable} is  always placed inside a \hyperref[class:listOfVariables]{listOfVariables}.
+The \code{symbol} and \code{target} attributes must not be used together in a single instance of Variable, although at least one must be present.
 
 \tabtext{variable}{Variable}
 %
