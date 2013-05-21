@@ -19,9 +19,14 @@ is preferable to
 /sbml/model/listOfSpecies/species[@id=`X'] {\color{red} \tickNo -\emph{INCORRECT} }
 \end{alltt}
 
-which will only be interpretable by standard XML software tools  if the SBML file declares no namespaces. 
+which will only be interpretable by standard XML software tools if the SBML file declares no namespaces (and hence is invalid SBML).
 
-
+Following the convention of other XPath host languages such as XPointer and XSLT, the prefixes used within XPath expressions must be declared using namespace declarations within the SED-ML document, and be in-scope for the relevant expression.
+Thus for the correct example above, there must also be an ancestor element of the node containing the XPath expression that has an attribute like:
+\begin{alltt}
+xmlns:sbml=`http://www.sbml.org/sbml/level3/version1/core'
+\end{alltt}
+(a different namespace URI may be used; the key point is that the prefix `sbml' must match that used in the XPath expression).
 
 
 %%% Local Variables: 
