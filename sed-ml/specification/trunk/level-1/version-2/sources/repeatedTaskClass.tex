@@ -1,9 +1,11 @@
  \subsection{\element{Repeated Task}}
 \label{class:repeatedTask}
 
-Instead of redefining a large number of simulation types to suite various simulation tasks, the \concept{repeatedTask} breaks down complex tasks into separate steps. The \concept{repeatedTask} performs a specified simulation multiple times (where the exact number is specified through a \hyperref[class:range]{range} construct while allowing specific aspects of the model to change (in the simplest case that would be by advancing the simulation time). The \concept{repeatedTask} defines a list of subtasks to be carried out sequentially. 
+The \concept{repeatedTask} class provides a generic looping construct, allowing complex tasks to be represented by composing separate steps.
+It performs a specified task (or sequence of tasks) multiple times (where the exact number is specified through a \hyperref[class:range]{range} construct), while allowing specific quantities in the model to be altered at each iteration (as defined in the \hyperref[class:changes]{listOfChanges}).
 
-The \concept{RepeatedTask} inherits from \concept{AbstractTask}. Additionally it has two required attributes \hyperref[sec:rangeAttribute]{rangeAttribute} and \hyperref[sec:resetModel]{resetModel} as well as elements \hyperref[class:ranges]{listOfRanges}, \hyperref[class:changes]{listOfChanges} and \hyperref[class:subTasks]{listOfSubTasks}.
+The \concept{RepeatedTask} inherits from \concept{AbstractTask}.
+Additionally it has two required attributes \hyperref[sec:rangeAttribute]{range} and \hyperref[sec:resetModel]{resetModel} as well as child elements \hyperref[class:ranges]{listOfRanges}, \hyperref[class:changes]{listOfChanges} and \hyperref[class:subTasks]{listOfSubTasks}.
 
 % TODO: Somewhere, talk about what happens if you have no subTasks but instead a simulationReference.
 
@@ -23,8 +25,8 @@ metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 \hline
-range$^{o}$ & \refpage{sec:rangeAttribute}\\
-resetModel$^{o}$ & \refpage{sec:resetModel}\\
+range & \refpage{sec:rangeAttribute}\\
+resetModel & \refpage{sec:resetModel}\\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
@@ -43,7 +45,10 @@ listOfSubTasks$^{o}$ & \refpage{class:subTasks}\\
 \end{table}
 %
 
+% TODO: other tables don't mention the listOf* elements, but instead describe what's contained inside them.
+% TODO: should all the listOf* be optional or required?  I think you'd always need at least one range, but there are cases where the others aren't needed.  For other cases in the L1V1 schema we allow to omit the listOf container if it has no children.
 
+% TODO: inheriting or defining of modelReference and simulationReference, and explaining how these are to be interpreted.
 
 \lsttext{repeatedTask}{repeatedTask}
 
