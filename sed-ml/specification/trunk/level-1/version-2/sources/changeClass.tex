@@ -46,6 +46,7 @@ computeChange$^{o}$ & \refpage{class:computeChange}\\
 %
 
 Each Change has a \hyperref[sec:target]{target} attribute that holds a valid XPath expression pointing to the XML element or XML attribute that is to undergo the defined changes.
+Except for the cases of \hyperref[class:changeXml]{ChangeXML} and \hyperref[class:removeXml]{RemoveXML}, this XPath expression must always select a \emph{single} element or attribute within the relevant model.
 
 %A typical example for a model update (or change) is the assignment of new parameter values to the model. 
 

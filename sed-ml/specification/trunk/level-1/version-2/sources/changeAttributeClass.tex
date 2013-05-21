@@ -6,9 +6,10 @@ The \concept{ChangeAttribute} class allows to define updates on the XML attribut
 \sedfig[width=0.75\textwidth]{changeAttributeClass}{The \code{ChangeAttribute} class}{fig:changeAttribute}
 %
  
-The \concept{ChangeXML} class covers the possibilities provided by the \hyperref[class:changeAttribute]{ChangeAttribute} class. That is, everything that can be expressed by a \hyperref[class:changeAttribute]{ChangeAttribute} construct can also be expressed by a \concept{ChangeXML}. However, both concepts exist to allow for being very specific in defining changes. It is recommended to use the \concept{ChangeAttribute} for any changes of an XML attribute's value, and to use the more general \hyperref[class:changeXml]{ChangeXML} for all other cases.
+The \concept{ChangeXML} class covers the possibilities provided by the \hyperref[class:changeAttribute]{ChangeAttribute} class. That is, everything that can be expressed by a \hyperref[class:changeAttribute]{ChangeAttribute} construct can also be expressed by a \concept{ChangeXML}. However, for the common case of changing an attribute value \concept{ChangeAttribute} is easier to use, and so it is recommended to use the \concept{ChangeAttribute} for any changes of an XML attribute's value, and to use the more general \hyperref[class:changeXml]{ChangeXML} for other cases.
 
-\concept{ChangeAttribute} requires to specify the \hyperref[sec:target]{target} of change, i.\,e.\ the location of the addressed XML attribute, and also the \hyperref[sec:newValue]{new value} of that attribute.
+\concept{ChangeAttribute} requires to specify the \hyperref[sec:target]{target} of the change, i.\,e.\ the location of the addressed XML attribute, and also the \hyperref[sec:newValue]{new value} of that attribute.
+Note that the XPath expression in the \concept{target} attribute must select a single attribute within the corresponding model.
 
 
 \tabtext{changeAttribute}{changeAttribute}
