@@ -37,7 +37,7 @@ algorithm & \refpage{class:algorithm}\\
 \lsttext{oneStep}{oneStep}
 
 %
-\begin{myXmlLst}{The SED-ML \code{oneStep} element, specifying to apply the simulation algorithm for another step of size 0.1.}{lst:oneStep}
+\begin{myXmlLst}{The SED-ML \code{oneStep} element, specifying to apply the simulation algorithm for another output step of size 0.1.}{lst:oneStep}
 <listOfSimulations> 
   <oneStep id="s1" step="0.1"> 
     <algorithm kisaoID="KISAO:0000019" />
@@ -48,7 +48,9 @@ algorithm & \refpage{class:algorithm}\\
 
 \paragraph{\element{step}}
 \label{sec:step}
-The \element{oneStep} class has one required attribute \element{step} of type \code{double}. It defines the next output step that should be reached by the algorithm. Listing~\ref{lst:oneStep} shows an example. 
+The \element{oneStep} class has one required attribute \element{step} of type \code{double}.
+It defines the next output point that should be reached by the algorithm, by specifying the increment from the current output point.
+Listing~\ref{lst:oneStep} shows an example. 
 
 
 %%% Local Variables: 
