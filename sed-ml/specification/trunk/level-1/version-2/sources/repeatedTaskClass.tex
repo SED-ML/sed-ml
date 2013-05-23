@@ -13,6 +13,8 @@ Additionally it has two required attributes \hyperref[sec:rangeAttribute]{range}
 \sedfig[width=.90\textwidth]{repeatedTaskClass}{The SED-ML RepeatedTask class}{fig:sedTask}
 %
 
+% TODO: Add tables for the various child elements?
+
 \tabtext{repeatedTask}{repeatedTask}
 %
 \begin{table}[ht]
@@ -112,15 +114,20 @@ There are three different range types:
 
 \paragraph{\element{UniformRange}}
 \label{class:uniformRange}
-The \element{UniformRange} is quite similar to what is used in the \element{UniformTimecourse} simulation class. This range is defined through four attributes: \code{start}, the start value; \code{end}, the end value and \code{numberOfPoints} that contains the number of points the range contains. A fourth attribute \code{type} that can take the values \code{linear} or \code{log} determines whether to draw the values logarithmically or linearly.  For example:
+The \element{UniformRange} is quite similar to what is used in the \hyperref[class:uniformTimeCourse]{UniformTimeCourse} simulation class. This range is defined through four attributes: \code{start}, the start value; \code{end}, the end value and \code{numberOfPoints} that contains the number of points the range contains. A fourth attribute \code{type} that can take the values \code{linear} or \code{log} determines whether to draw the values logarithmically (with a base of $10$) or linearly.  For example:
 \begin{myXmlLst}{The \code{UniformRange} element}{lst:uniformRange}
     <uniformRange id="current" start="0.0" end="10.0" numberOfPoints="100" type="linear" /> 
 \end{myXmlLst}
-% TODO: Be explicit about which base is used for log.
+As for \hyperref[class:uniformTimeCourse]{UniformTimeCourse}, this range will actually produce 101 values uniformly spaced on the interval $[0, 10]$, in ascending order.
+
+The following logarithmic example generates the three values \code{1}, \code{10} and \code{100}.
+\begin{myXmlList}{The \code{UniformRange} element with a logarithmic range.}{lst:uniformRangeLog}
+    <uniformRange id="current" start="1.0" end="100.0" numberOfPoints="2" type="log" />
+\end{myXmlList}
 
 \paragraph{\element{VectorRange}}
 \label{class:vectorRange}
-A \element{VectorRange} describes a collection of real values. For example:
+A \element{VectorRange} describes an ordered collection of real values. For example:
 \begin{myXmlLst}{The \code{VectorRange} element}{lst:vectorRange}
     <vectorRange id="current"> 
         <value> 1 </value> 
