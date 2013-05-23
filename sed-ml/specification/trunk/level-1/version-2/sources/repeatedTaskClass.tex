@@ -138,11 +138,14 @@ A \element{VectorRange} describes an ordered collection of real values. For exam
 
 \paragraph{\element{FunctionalRange}}
 \label{class:functionalRange}
-A \element{FunctionalRange} constructs a range through evaluations that determine the next value. In this it is quite similar to the \hyperref[class:computeChange]{ComputeChange} element. It consists of a required attribute \code{index}, and the two elements \element{listOfVariables} and \element{function}.
+A \element{FunctionalRange} constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables.
+In this it is quite similar to the \hyperref[class:computeChange]{ComputeChange} element.
+It consists of a required attribute \code{index}, and the two elements \element{listOfVariables} and \element{function}.
 % TODO: Change index to range for consistency? (c.f. http://sourceforge.net/mailarchive/message.php?msg_id=29865720)
+% TODO: Could index not be required, and instead other ranges referenced as done in setValue (c.f. above email too)?
 
-The attribute \code{index} is used to specify the \code{id} of another Range. This makes it possible for the \element{FunctionalRange} to be evaluated at different points as specified by that range.
-% TODO: clarify that functionalRange needs a fixed size range as master (c.f. master range todo above).
+The required attribute \code{index} is used to specify the \code{id} of another \concept{Range}, which determines how many points are contained in this range.
+Values from the referenced range may also be used within the function defining this \element{FunctionalRange}.
 
 In the \element{listOfVariables}, analog to the \hyperref[class:computeChange]{ComputeChange} class,  additional symbols are defined from existing model references so that they can be later used in the function expression. 
 
