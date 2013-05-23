@@ -1,14 +1,21 @@
 % ChangeAttribute Class
   \subsubsection{\element{ComputeChange}}
 \label{class:computeChange}
-The \concept{ComputeChange} class permits to change, prior to the experiment, the value of any element or attribute of a model addressable by an XPath expression, based on a calculation (\fig{computeChange}). 
+The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any element or attribute of a model addressable by an XPath expression, based on a calculation (\fig{computeChange}).
 %
 \sedfig[width=\textwidth]{computeChangeClass}{The \code{ComputeChange} class}{fig:computeChange}
 %
-The changes are described by mathematical expressions using a \hyperref[sec:mathML]{subset of MathML} (see section \ref{sec:mathML} on \refpage{sec:mathML}). The computation can use the value of variables from any model defined in the simulation experiment. Those \hyperref[class:variable]{variables} need to be defined, and can then be addressed by their ID. A variable used in a \concept{ComputeChange} must carry a modelReference attribute (\refpage{sec:modelReference}) but no taskReference attribute (\refpage{sec:taskReference}). To carry out the calculation it may be necessary to introduce additional parameters, that are not defined in any of the model used by the experiment. This is done through the \hyperref[class:parameter]{parameter} class, thereafter refered to by their ID.  Finally, the change itself is specified using an instance of the \hyperref[sec:math]{Math} class.
+The computed new value is described by a mathematical expression using a \hyperref[sec:mathML]{subset of MathML} (see section \ref{sec:mathML} on \refpage{sec:mathML}).
+The computation can use the value of variables from any model defined in the simulation experiment.
+Those \hyperref[class:variable]{variables} need to be defined, and can then be addressed by their ID.
+A variable used in a \concept{ComputeChange} must carry a \hyperref[sec:modelReference]{modelReference} attribute (\refpage{sec:modelReference}) but no \hyperref[sec:taskReference]{taskReference} attribute (\refpage{sec:taskReference}).
+To carry out the calculation it may be necessary to introduce additional parameters, that are not defined in any of the models used by the experiment.
+This is done through the \hyperref[class:parameter]{parameter} class, and such parameters are thereafter refered to by their ID.
+Finally, the change itself is specified using an instance of the \hyperref[sec:math]{Math} class.
 
-% TODO: Clarify semantics: XPath needs to address something that has a numerical value, and we calculate a new value.
-% TODO (#70): what happens if there is a cyclic dependency between computations? If a ComputeChange uses a variable from another model, are we allowed to assume that changes to the referenced model are performed first (hence disallowing cycles)?
+Note that where a \concept{ComputeChange} refers to another model, that model is not allowed to be modified by \concept{ComputeChange}s which directly or indirectly refer to this model.
+In other words, cycles in the definitions of computed changes are prohibited, since then the new values would not be well defined.
+
 
 \tabtext{computeChange}{computeChange}
 %
