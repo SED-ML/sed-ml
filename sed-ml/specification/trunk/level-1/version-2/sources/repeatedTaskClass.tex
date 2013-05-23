@@ -220,9 +220,13 @@ Here another example of using the values in a piecewise expression:
 \label{class:changes}
 \label{class:setValue}
 
-The \element{listOfChanges} element, when present, has to contain one or more \element{setValue} elements. These elements allow to pre-condition the model that will be used for the next execution of the repeated task. % TODO: reword
+The \element{listOfChanges} element, when present, contains one or more \element{setValue} elements.
+These elements allow to modify values in the model prior to the next execution of the repeated task.
 
-A \element{setValue} element inherits from the SED-ML \hyperref[class:variable]{variable} class, which allows it to refer to a model element either directly using the attributes \code{modelReference} and \code{target}, or even implicit model elements using the \code{symbol} attribute. \element{setValue} has one additional atribute \code{range} an for refering to the range whose values the specified parameter will take. It also contains a child \element{math} that contains the expression for the value to set. When the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the refered range is to be inserted. 
+A \element{setValue} element inherits from the SED-ML \hyperref[class:variable]{variable} class, which allows it to refer to a model element directly using the attributes \code{modelReference} and \code{target}, or to an implicit model element using the \code{symbol} attribute.
+\element{setValue} has one additional atribute \code{range} for refering to the range whose values will be used to compute a value for the specified model element.
+It also contains a child \element{math} that contains the expression computing the value.
+When the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the refered range is to be inserted.
 
 \begin{myXmlLst}{A \code{setValue} element setting \code{w} to the values of the range with id \code{current}.}{lst:setValue}
   <listOfChanges>
