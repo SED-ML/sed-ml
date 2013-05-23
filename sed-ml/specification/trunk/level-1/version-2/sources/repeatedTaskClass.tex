@@ -50,8 +50,11 @@ listOfSubTasks$^{o}$ & \refpage{class:subTasks}\\
 
 % TODO: inheriting or defining of modelReference and simulationReference, and explaining how these are to be interpreted.
 
+% TODO: make sure all examples are consistent in referring to ranges etc.
+
 \lsttext{repeatedTask}{repeatedTask}
 
+% TODO: NS prefixes for XPath
 %
 \begin{myXmlLst}{The \code{repeatedTask} element}{lst:repeatedTask}
 <task id="task1" modelReference="model1" simulationReference="simulation1" />
@@ -64,18 +67,18 @@ listOfSubTasks$^{o}$ & \refpage{class:subTasks}\\
     </vectorRange> 
   </listOfRanges>
   <listOfChanges>
-     <setValue target="/sbml/model/listOfParameters/parameter[@id='w']" modelReference="model1" > 
-     <listOfVariables> 
+     <setValue target="/sbml/model/listOfParameters/parameter[@id='w']" modelReference="model1">
+       <listOfVariables> 
          <variable id="val" name="current range value" target="#current" /> 
-     </listOfVariables> 
-     <math xmlns="http://www.w3.org/1998/Math/MathML"> 
+       </listOfVariables> 
+       <math xmlns="http://www.w3.org/1998/Math/MathML"> 
          <ci> val </ci> 
-     </math> 
-    </setValue> 
-</listOfChanges>
-<listOfSubTasks>
-  <subTask task="task1" />
-</listOfSubTasks>
+       </math> 
+     </setValue> 
+  </listOfChanges>
+  <listOfSubTasks>
+    <subTask task="task1" />
+  </listOfSubTasks>
 </repeatedTask>
 
 \end{myXmlLst}
@@ -86,8 +89,11 @@ In the example, \code{task1} is repeated three times, each time with a different
 
 \subsubsection{The \element{range} attribute}
 \label{sec:rangeAttribute}
-The \element{repeatedTask} class has a required attribute \element{range} of type \code{SId}. It specifies which \hyperref[class:range]{range} defined in the \element{listOfRanges} that this repeated task iterates over. Listing~\ref{lst:repeatedTask} shows an example of a \element{repeatedTask} iterating over the values: \code{1}, \code{4} and \code{10}.
-% TODO: clarify concept of master range, and semantics of multiple ranges.
+The \element{repeatedTask} class has a required attribute \element{range} of type \code{SId}.
+It specifies which \hyperref[class:range]{range} defined in the \element{listOfRanges} this repeated task iterates over.
+Listing~\ref{lst:repeatedTask} shows an example of a \element{repeatedTask} iterating over a single range comprising the values: \code{1}, \code{4} and \code{10}.
+If there are multiple ranges in the \element{listOfRanges}, then only the \concept{master range} identified by this attribute determines how many iterations there will be in the \element{repeatedTask}.
+All other ranges must allow for at least as many iterations as the master range, and will be moved through in lock-step; their values can be used in \hyperref[class:setValue]{setValue} constructs.
 
 
 \subsubsection{The \element{resetModel} attribute}
@@ -155,6 +161,7 @@ For example:
       </function>
     </functionalRange> 
 \end{myXmlLst}
+% TODO: NS prefixes for XPath
 
 Here another example of using the values in a piecewise expression: 
 
@@ -219,7 +226,7 @@ A \element{setValue} element inherits from the SED-ML \hyperref[class:variable]{
     </setValue> 
   </listOfChanges>
 \end{myXmlLst}
-
+% TODO: Add ns prefixes to XPath
 
 \subsubsection{The \element{listOfSubTasks}}
 \label{class:subTasks}
