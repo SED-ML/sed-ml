@@ -56,11 +56,11 @@ listOfSubTasks$^{o}$ & \refpage{class:subTasks}\\
 
 \lsttext{repeatedTask}{repeatedTask}
 
-% TODO: NS prefixes for XPath
 %
 \begin{myXmlLst}{The \code{repeatedTask} element}{lst:repeatedTask}
 <task id="task1" modelReference="model1" simulationReference="simulation1" />
-<repeatedTask id="task3" resetModel="false" range="current"> 
+<repeatedTask id="task3" resetModel="false" range="current"
+    xmlns:s='http://www.sbml.org/sbml/level3/version1/core'>
   <listOfRanges>
     <vectorRange id="current"> 
         <value> 1 </value> 
@@ -69,7 +69,7 @@ listOfSubTasks$^{o}$ & \refpage{class:subTasks}\\
     </vectorRange> 
   </listOfRanges>
   <listOfChanges>
-     <setValue target="/sbml/model/listOfParameters/parameter[@id='w']" modelReference="model1">
+     <setValue target="/s:sbml/s:model/s:listOfParameters/s:parameter[@id='w']" modelReference="model1">
        <listOfVariables> 
          <variable id="val" name="current range value" target="#current" /> 
        </listOfVariables> 
@@ -82,7 +82,6 @@ listOfSubTasks$^{o}$ & \refpage{class:subTasks}\\
     <subTask task="task1" />
   </listOfSubTasks>
 </repeatedTask>
-
 \end{myXmlLst}
 %
 In the example, \code{task1} is repeated three times, each time with a different value for a model parameter \code{w}. 
@@ -154,24 +153,23 @@ The \element{function} encompasses the mathematical expression that is used to c
 For example:
 
 \begin{myXmlLst}{An example of a \code{FunctionalRange} where a parameter \code{w} of model \code{model2} is multiplied with \code{index} each time it is called. }{lst:functionalRange}
-    <functionalRange id="current" index="index"> 
-      <listOfVariables> 
-         <variable id="w" name="current parameter value"   
-				                  modelReference="model2"
-                          target="/sbml/model/listOfParameters/parameter[@id='w']" /> 
-      </listOfVariables> 
-      <function>
-        <math xmlns="http://www.w3.org/1998/Math/MathML"> 
-           <apply>
-           <times/>
-           <ci> w </ci> 
-           <ci> index </ci> 
-           </apply>
-        </math>  
-      </function>
-    </functionalRange> 
+  <functionalRange id="current" index="index"
+      xmlns:s='http://www.sbml.org/sbml/level3/version1/core'>
+    <listOfVariables>
+      <variable id="w" name="current parameter value" modelReference="model2"
+          target="/s:sbml/s:model/s:listOfParameters/s:parameter[@id='w']" />
+    </listOfVariables>
+    <function>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <times/>
+          <ci> w </ci>
+          <ci> index </ci>
+        </apply>
+      </math>
+    </function>
+  </functionalRange>
 \end{myXmlLst}
-% TODO: NS prefixes for XPath
 
 Here another example of using the values in a piecewise expression: 
 
@@ -227,16 +225,15 @@ The \element{listOfChanges} element, when present, has to contain one or more \e
 A \element{setValue} element inherits from the SED-ML \hyperref[class:variable]{variable} class, which allows it to refer to a model element either directly using the attributes \code{modelReference} and \code{target}, or even implicit model elements using the \code{symbol} attribute. \element{setValue} has one additional atribute \code{range} an for refering to the range whose values the specified parameter will take. It also contains a child \element{math} that contains the expression for the value to set. When the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the refered range is to be inserted. 
 
 \begin{myXmlLst}{A \code{setValue} element setting \code{w} to the values of the range with id \code{current}.}{lst:setValue}
-
   <listOfChanges>
-    <setValue target="/sbml/model/listOfParameters/parameter[@id='w']" range="current" modelReference="model1" > 
-      <math xmlns="http://www.w3.org/1998/Math/MathML"> 
-         <ci> current </ci> 
-      </math> 
-    </setValue> 
+    <setValue target="/s:sbml/s:model/s:listOfParameters/s:parameter[@id='w']"
+              range="current" modelReference="model1">
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> current </ci>
+      </math>
+    </setValue>
   </listOfChanges>
 \end{myXmlLst}
-% TODO: Add ns prefixes to XPath
 
 \subsubsection{The \element{listOfSubTasks}}
 \label{class:subTasks}
