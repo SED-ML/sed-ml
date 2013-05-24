@@ -10,7 +10,7 @@ Additionally it has two required attributes \hyperref[sec:rangeAttribute]{range}
 % TODO: Somewhere, talk about what happens if you have no subTasks but instead a simulationReference.
 
 %
-\sedfig[width=.90\textwidth]{repeatedTaskClass}{The SED-ML RepeatedTask class}{fig:sedTask}
+\sedfig[width=.90\textwidth]{repeatedTaskClass}{The SED-ML RepeatedTask class}{fig:sedRptTask}
 %
 
 % TODO: Add tables for the various child elements?
@@ -120,15 +120,15 @@ The \element{UniformRange} is quite similar to what is used in the \hyperref[cla
 As for \hyperref[class:uniformTimeCourse]{UniformTimeCourse}, this range will actually produce 101 values uniformly spaced on the interval $[0, 10]$, in ascending order.
 
 The following logarithmic example generates the three values \code{1}, \code{10} and \code{100}.
-\begin{myXmlList}{The \code{UniformRange} element with a logarithmic range.}{lst:uniformRangeLog}
+\begin{myXmlLst}{The \code{UniformRange} element with a logarithmic range.}{lst:uniformRangeLog}
     <uniformRange id="current" start="1.0" end="100.0" numberOfPoints="2" type="log" />
-\end{myXmlList}
+\end{myXmlLst}
 
 \paragraph{\element{VectorRange}}
 \label{class:vectorRange}
 A \element{VectorRange} describes an ordered collection of real values. For example:
 \begin{myXmlLst}{The \code{VectorRange} element}{lst:vectorRange}
-    <vectorRange id="current"> 
+    <vectorrange id="current"> 
         <value> 1 </value> 
         <value> 4 </value> 
         <value> 10 </value> 
@@ -173,9 +173,7 @@ For example:
 
 Here another example of using the values in a piecewise expression: 
 
-\begin{myXmlLst}{A \code{FunctionalRange} element that returns \code{8} if 
-  \code{index} is smaller than \code{1}, \code{0.1} if index is between 
-	\code{4} and \code{6} and returns \code{8} otherwise.}{lst:functionalRange2}
+\begin{myXmlLst}{A \code{FunctionalRange} element that returns \code{8} if \code{index} is smaller than \code{1}, \code{0.1} if index is between \code{4} and \code{6} and returns \code{8} otherwise.}{lst:functionalRange2}
         <uniformRange id="index" start="0" end="10" numberOfPoints="100" />
         <functionalRange id="current" index="index">
           <function>
