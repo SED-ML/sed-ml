@@ -59,6 +59,7 @@ listOfSubTasks$^{o}$ & \refpage{class:subTasks}\\
 %
 \begin{myXmlLst}{The \code{repeatedTask} element}{lst:repeatedTask}
 <task id="task1" modelReference="model1" simulationReference="simulation1" />
+
 <repeatedTask id="task3" resetModel="false" range="current"
     xmlns:s='http://www.sbml.org/sbml/level3/version1/core'>
   <listOfRanges>
@@ -85,7 +86,6 @@ listOfSubTasks$^{o}$ & \refpage{class:subTasks}\\
 \end{myXmlLst}
 %
 In the example, \code{task1} is repeated three times, each time with a different value for a model parameter \code{w}. 
-% TODO: Fix example - I think a subTask with simulationReference should be illegal?
 
 
 \subsubsection{The \element{range} attribute}
