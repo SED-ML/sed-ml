@@ -7,7 +7,9 @@ It performs a specified task (or sequence of tasks) multiple times (where the ex
 The \concept{RepeatedTask} inherits from \concept{AbstractTask}.
 Additionally it has two required attributes \hyperref[sec:rangeAttribute]{range} and \hyperref[sec:resetModel]{resetModel} as well as child elements \hyperref[class:ranges]{listOfRanges}, \hyperref[class:changes]{listOfChanges} and \hyperref[class:subTasks]{listOfSubTasks}.
 
-% TODO: Somewhere, talk about what happens if you have no subTasks but instead a simulationReference.
+The \concept{RepeatedTask} class may optionally carry \concept{modelReference} and \concept{simulationReference} attributes.
+If these are present it must have no \hyperref[class:subTasks]{subTask}s defined.
+The attributes provide a short-hand that is equivalent to providing a single \element{subTask} reference to a \hyperref[class:task]{task} with the given \concept{modelReference} and \concept{simulationReference}.
 
 %
 \sedfig[width=.90\textwidth]{repeatedTaskClass}{The SED-ML RepeatedTask class}{fig:sedRptTask}
