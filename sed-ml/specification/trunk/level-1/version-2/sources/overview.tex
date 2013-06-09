@@ -1,8 +1,8 @@
-\section{Overview of SED-ML}
+\chapter{Overview of SED-ML}
 \label{sec:overview}
 % overview
 The \emph{Simulation Experiment Description Markup Language} (SED-ML) is an XML-based format for the description of simulation experiments. It serves to store information about the simulation experiment performed on one or more models with a given set of outputs. Support for SED-ML compliant simulation descriptions will enable the exchange of simulation experiments across tools.
-\subsection{Conventions}
+\section{Conventions}
 %
 The Business Process Modeling Notation Version 1.2 (BPMN) was initially intended to describe internal business procedures (processes) in a graphical way. However, we will use BPMN to graphically describe the steps and processes of setting up a simulation experiment description. The major parts of BPMN that are used to specify SED-ML are activities, gateways, events, data, and documentation. 
 
@@ -57,7 +57,7 @@ The process of defining a SED-ML simulation experiment starts by initialising th
 %
 All collapsed processes are described in the following sections. Examples in XML are provided in the more technical description.
 
-\subsection{Models}
+\section{Models}
 \label{overview:models}
 To define a simulation experiment, first of all a new SED-ML file is created. The models to be used in the experiment (zero or many) are referenced, using a link to a model description in some open, curated model database (e.\,g.\ Biomodels Database \citep{LDR+10} or CellML Repository \citep{BBC+09}). All necessary changes to correctly simulate the model are defined, e.\,g., assigning new parameter values or updating the mathematics of the model (Figure~\ref{fig:workflowModel}).
 %
@@ -70,7 +70,7 @@ To define a simulation experiment, first of all a new SED-ML file is created. Th
 %
 The procedure is repeated until all models participating in the experiment have been described. Each such model gets an internal SED-ML ID and an optional name.
 
-\subsection{Simulation setup}
+\section{Simulation setup}
 \label{overview:simulation}
 Secondly, the simulation setups (zero or many) used throughout the simulation experiment are described (Figure \ref{fig:workflowSimulation}). 
 %
@@ -89,7 +89,7 @@ Each simulation setup gets its own internal ID and an optional name. For each of
 %
 The setup definition is repeated until all different simulations have been described.
 
-\subsection{Task}
+\section{Task}
 \label{overview:task}
 SED-ML allows to apply one defined simulation setting to one defined model at a time. However, any number of \concept{tasks} may be defined inside a simulation experiment description (Figure \ref{fig:workflowTask}). 
 %
@@ -105,7 +105,7 @@ To do so, each task refers to one of the formerly specified models and to one of
 
 The current SED-ML does not allow to nest or order tasks. However, these features are evaluated for future versions of SED-ML.
 
-\subsection{Output}
+\section{Output}
 \label{overview:output}
 The SED-ML finally consists of output definitions that describe what kind of output the experiment uses to present the simulation result to the user, i.\,e., a plot or a data table (Figure \ref{fig:workflowOutput}), and also which data is part of the output. 
 %
@@ -119,7 +119,7 @@ The SED-ML finally consists of output definitions that describe what kind of out
 Therefore, SED-ML first defines a set of \concept{data generators} (Figure \ref{fig:workflowDataGenerator}), which are then used to specify a particular result, i.\,e. output (Section~\ref{overview:dataGen}). 
 
 The SED-ML specification comes with three pre-defined types of outputs: 2D- and 3D plots, and reports. All use the aforementioned data generators to specify the information to be plotted on the different axes, or in the table comlumns respectively.
-\subsection{Data Generator}
+\section{Data Generator}
 \label{overview:dataGen}
 %
 \begin{figure}[h]

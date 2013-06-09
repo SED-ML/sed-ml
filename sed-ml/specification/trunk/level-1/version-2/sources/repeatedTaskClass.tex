@@ -1,4 +1,4 @@
- \subsection{\element{Repeated Task}}
+\subsection{\element{Repeated Task}}
 \label{class:repeatedTask}
 
 The \concept{repeatedTask} class provides a generic looping construct, allowing complex tasks to be represented by composing separate steps.
@@ -111,11 +111,14 @@ The \element{repeatedTask} class has a required attribute \element{resetModel} o
 \label{class:ranges}
 Ranges represent the iterative element of the nested simulation experiment that provides the collection of values to iterate over. In order to be able to refer to the current value of a range element, an \code{id} attribute is added. When the value of the \code{id} attribute is used in a \element{listOfVariables} within the repeated task class its value is to be replaced with the current value of the range.
 
-There are three different range types: 
+There are three different range types permitted in the \element{listOfRanges}.
 
 \paragraph{\element{UniformRange}}
 \label{class:uniformRange}
-The \element{UniformRange} is quite similar to what is used in the \hyperref[class:uniformTimeCourse]{UniformTimeCourse} simulation class. This range is defined through four attributes: \code{start}, the start value; \code{end}, the end value and \code{numberOfPoints} that contains the number of points the range contains. A fourth attribute \code{type} that can take the values \code{linear} or \code{log} determines whether to draw the values logarithmically (with a base of $10$) or linearly.  For example:
+The \element{UniformRange} is quite similar to what is used in the \hyperref[class:uniformTimeCourse]{UniformTimeCourse} simulation class. This range is defined through four attributes: \code{start}, the start value; \code{end}, the end value and \code{numberOfPoints} that contains the number of points the range contains. A fourth attribute \code{type} that can take the values \code{linear} or \code{log} determines whether to draw the values logarithmically (with a base of $10$) or linearly.  
+
+
+For example:
 \begin{myXmlLst}{The \code{UniformRange} element}{lst:uniformRange}
     <uniformRange id="current" start="0.0" end="10.0" numberOfPoints="100" type="linear" /> 
 \end{myXmlLst}
@@ -223,10 +226,12 @@ Here another example of using the values in a piecewise expression:
 The \element{listOfChanges} element, when present, contains one or more \element{setValue} elements.
 These elements allow to modify values in the model prior to the next execution of the repeated task.
 
-A \element{setValue} element inherits from the SED-ML \hyperref[class:variable]{variable} class, which allows it to refer to a model element directly using the attributes \code{modelReference} and \code{target}, or to an implicit model element using the \code{symbol} attribute.
-\element{setValue} has one additional atribute \code{range} for refering to the range whose values will be used to compute a value for the specified model element.
-It also contains a child \element{math} that contains the expression computing the value.
-When the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the refered range is to be inserted.
+A \element{setValue} element inherits from the SED-ML \hyperref[class:computeChange]{computeChange} class, which allows it to compute arbitrary expressions involving a number of variables, and parameters. The \element{setValue} adds two additional attributes: \code{range}, \code{symbol} and \code{modelReference}. 
+
+The value to be changed is identified via the attributes \code{modelReference} and \code{target}, or to an implicit model element using the \code{symbol} attribute.
+The atribute \code{range} is used for refering to the range whose values will be used to compute a value for the specified model element.
+
+The child \element{math} contains the expression computing the value by refering to optional parameters, variables or ranges. When the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the refered range is to be inserted.
 
 \begin{myXmlLst}{A \code{setValue} element setting \code{w} to the values of the range with id \code{current}.}{lst:setValue}
   <listOfChanges>
