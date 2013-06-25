@@ -101,11 +101,17 @@ All other ranges must allow for at least as many iterations as the master range,
 
 \subsubsection{The \element{resetModel} attribute}
 \label{sec:resetModel}
-The \element{repeatedTask} class has a required attribute \element{resetModel} of type \code{boolean}. It specifies whether the model should be reset to the initial state before processing an iteration of the defined \hyperref[class:subTasks]{subTasks}. Here initial state refers to the state of the model as given in the \element{listOfModels}.  In the example in  Listing~\ref{lst:repeatedTask} the repeated task is not to be reset, so \code{task1} is carried out, another change is being made, then \code{task1} continues from there, another change is applied, and \code{task1} is carried out a last time.
+The \element{repeatedTask} class has a required attribute \element{resetModel} of type \code{boolean}. It specifies whether the model should be reset to the initial state before processing an iteration of the defined \hyperref[class:subTasks]{subTasks}. Here initial state refers to the state of the model as given in the \element{listOfModels}.  In the example in  Listing~\ref{lst:repeatedTask} the repeated task is not to be reset, so a change is made, \code{task1} is carried out, another change is made, then \code{task1} continues from there, another change is applied, and \code{task1} is carried out a last time.
 % TODO: Consider if reset should instead be to the model state at start of task execution?
 % This is only relevant if you have a repeatedTask as a (non-first) subTask of another repeatedTask.
 % We discussed whether this would be better handled by a future extension that allows you to define a model that's the result of executing a task.
-% This supports some common cases, but doesn't easily handle when you have many possible different starting states (e.g. when the first subTask gives you a different starting point each time round the outer repeatedTask).
+% This supports some common cases, but doesn't easily handle when you have many possible different starting states. For instance, when the first subTask gives you a different starting point each time round the outer repeatedTask, i.e. you have a repeatedTask containing a sequence of tasks, the second of which is itself a repeatedTask.  This encodes the case where (say) your first subtask gets the model to steady state at some parameterisation, and the second subtask does some nested simulation from there.
+% This approach has the side benefit of making a repeatedTask less context-aware - it will give the same behaviour whether or not it is nested inside another repeatedTask.
+
+Note that the order of activities within each iteration of a \concept{repeatedTask} is as follows.
+Firstly the model is reset, if specified by the \element{resetModel} attribute.
+Secondly any changes to the model specified by \element{setValue} elements are made.
+Finally, the \element{subTasks} are executed once each in order.
 
 \subsubsection{The \element{listOfRanges}}
 \label{class:ranges}
@@ -117,12 +123,13 @@ There are three different range types permitted in the \element{listOfRanges}.
 \label{class:uniformRange}
 The \element{UniformRange} is quite similar to what is used in the \hyperref[class:uniformTimeCourse]{UniformTimeCourse} simulation class. This range is defined through four attributes: \code{start}, the start value; \code{end}, the end value and \code{numberOfPoints} that contains the number of points the range contains. A fourth attribute \code{type} that can take the values \code{linear} or \code{log} determines whether to draw the values logarithmically (with a base of $10$) or linearly.  
 
-
 For example:
 \begin{myXmlLst}{The \code{UniformRange} element}{lst:uniformRange}
     <uniformRange id="current" start="0.0" end="10.0" numberOfPoints="100" type="linear" /> 
 \end{myXmlLst}
 As for \hyperref[class:uniformTimeCourse]{UniformTimeCourse}, this range will actually produce 101 values uniformly spaced on the interval $[0, 10]$, in ascending order.
+% TODO: This is really counter-intuitive!  Could we either change the semantics or the name (numberOfSteps?)?
+% Also note that the semantics do differ from uniformTimeCourse: that does specify 100 steps, since the first value corresponds to the initial state of the model.  Here, we actually get 101 executions of the subTasks.
 
 The following logarithmic example generates the three values \code{1}, \code{10} and \code{100}.
 \begin{myXmlLst}{The \code{UniformRange} element with a logarithmic range.}{lst:uniformRangeLog}
@@ -146,18 +153,21 @@ A \element{FunctionalRange} constructs a range through calculations that determi
 In this it is quite similar to the \hyperref[class:computeChange]{ComputeChange} element.
 It consists of a required attribute \code{index}, and the two elements \element{listOfVariables} and \element{function}.
 % TODO: Change index to range for consistency? (c.f. http://sourceforge.net/mailarchive/message.php?msg_id=29865720)
-% TODO: Could index not be required, and instead other ranges referenced as done in setValue (c.f. above email too)?
+% TODO: Could index not be required, and instead other ranges referenced as done in setValue (c.f. above email too)?  I think this was agreed at a previous meeting?
 
 The required attribute \code{index} is used to specify the \code{id} of another \concept{Range}, which determines how many points are contained in this range.
 Values from the referenced range may also be used within the function defining this \element{FunctionalRange}.
 
-In the \element{listOfVariables}, analog to the \hyperref[class:computeChange]{ComputeChange} class,  additional symbols are defined from existing model references so that they can be later used in the function expression. 
+In the \element{listOfVariables}, identically to the \hyperref[class:computeChange]{ComputeChange} class,  additional symbols are defined from existing model references so that they can be later used in the function expression.
+% TODO: Is 'symbol' too loaded a term given we have the 'symbol' attribute?  Also, is 'existing model references' unclear?
+
+% TODO: Add listOfParameters - it's useful to be able to name values, annotate them, etc.
 
 The \element{function} encompasses the mathematical expression that is used to compute the values for the functional range at each of the points specified by the range referenced through the \code{index} attribute. 
 
 For example:
 
-\begin{myXmlLst}{An example of a \code{FunctionalRange} where a parameter \code{w} of model \code{model2} is multiplied with \code{index} each time it is called. }{lst:functionalRange}
+\begin{myXmlLst}{An example of a \code{FunctionalRange} where a parameter \code{w} of model \code{model2} is multiplied by \code{index} each time it is called. }{lst:functionalRange}
   <functionalRange id="current" index="index"
       xmlns:s='http://www.sbml.org/sbml/level3/version1/core'>
     <listOfVariables>
@@ -176,9 +186,9 @@ For example:
   </functionalRange>
 \end{myXmlLst}
 
-Here another example of using the values in a piecewise expression: 
+Here is another example, this time using the values in a piecewise expression: 
 
-\begin{myXmlLst}{A \code{FunctionalRange} element that returns \code{8} if \code{index} is smaller than \code{1}, \code{0.1} if index is between \code{4} and \code{6} and returns \code{8} otherwise.}{lst:functionalRange2}
+\begin{myXmlLst}{A \code{FunctionalRange} element that returns \code{8} if \code{index} is smaller than \code{1}, \code{0.1} if index is between \code{4} and \code{6} and \code{8} otherwise.}{lst:functionalRange2}
         <uniformRange id="index" start="0" end="10" numberOfPoints="100" />
         <functionalRange id="current" index="index">
           <function>
@@ -224,14 +234,20 @@ Here another example of using the values in a piecewise expression:
 \label{class:setValue}
 
 The \element{listOfChanges} element, when present, contains one or more \element{setValue} elements.
-These elements allow to modify values in the model prior to the next execution of the repeated task.
+These elements allow the modification of values in the model prior to the next execution of the \concept{subTasks}.
 
-A \element{setValue} element inherits from the SED-ML \hyperref[class:computeChange]{computeChange} class, which allows it to compute arbitrary expressions involving a number of variables, and parameters. The \element{setValue} adds two additional attributes: \code{range}, \code{symbol} and \code{modelReference}. 
+A \element{setValue} element inherits from the SED-ML \hyperref[class:computeChange]{computeChange} class, which allows it to compute arbitrary expressions involving a number of variables and parameters.
+The element \element{setValue} adds three additional attributes: \code{range}, \code{symbol} and \code{modelReference}. 
+% TODO: Consider semantics for what variables in the listOfVariables refer to.  Andrew Miller mentioned getting values from the previous timestep (i.e. iteration?), which could be quite complex - typically a modelReference means you get values from the initial state of the model, and taskReference is only used in a dataGenerator (it's not allowed in computeChange, so currently not allowed here implicitly).
+% TODO: State whether attributes are optional or required.
 
 The value to be changed is identified via the attributes \code{modelReference} and \code{target}, or to an implicit model element using the \code{symbol} attribute.
+% TODO: Think about use of modelReference here and/or on repeatedTask itself.  Do we need both?  There should only be one obvious way to do it...
 The atribute \code{range} is used for refering to the range whose values will be used to compute a value for the specified model element.
 
 The child \element{math} contains the expression computing the value by refering to optional parameters, variables or ranges. When the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the refered range is to be inserted.
+
+% TODO: Handle refering to multiple ranges (inter alia) by extending variable elements to refer to ranges, as in lst:repeatedTask.  This may need additional text in variableClass.tex.
 
 \begin{myXmlLst}{A \code{setValue} element setting \code{w} to the values of the range with id \code{current}.}{lst:setValue}
   <listOfChanges>
