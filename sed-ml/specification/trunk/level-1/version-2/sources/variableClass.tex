@@ -7,8 +7,10 @@
 %
 If the variable is defined through a reference to a model constituent, such as an SBML species, then the reference is specified using the \hyperref[sec:target]{target} attribute.
 If the variable is defined through a reference to an external entity, then the \hyperref[sec:symbol]{symbol} attribute is used, which holds a SED-ML \hyperref[sec:uriScheme]{URI}.
-A \code{variable} is  always placed inside a \hyperref[class:listOfVariables]{listOfVariables}.
+A \code{variable} is always placed inside a \hyperref[class:listOfVariables]{listOfVariables}.
 The \code{symbol} and \code{target} attributes must not be used together in a single instance of Variable, although at least one must be present.
+% TODO: describing symbols as 'external' implies referring to something not in a model.
+% TODO: support for referring to ranges in repeatedTask.
 
 \tabtext{variable}{Variable}
 %
@@ -40,7 +42,7 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \end{table}
 %
 
-A \code{variable} element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:dataGenerator]{dataGenerator} element. A \code{variable} element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:computeChange]{computeChange} element.
+A \code{variable} element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:dataGenerator]{dataGenerator} element. A \code{variable} element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:computeChange]{computeChange} element or a \hyperref[class:setValue]{setValue} element.
 
 %
 \lsttext{variable}{variable}
