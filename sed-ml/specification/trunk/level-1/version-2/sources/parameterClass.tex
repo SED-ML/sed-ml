@@ -5,10 +5,9 @@ The SED-ML \concept{Parameter} class creates instances with a constant value (\f
 %
 \sedfig[width=0.35\textwidth]{parameterClass}{The Parameter class}{fig:parameter}
 %
-SED-ML uses parameters in two ways: 
-Firstly, parameters may be defined in the \hyperref[class:computeChange]{ComputeChange} class for describing the mathematical computation of a change of a model's observable.
-Secondly, parameters may be part of a \hyperref[class:dataGenerator]{DataGenerator} specification. 
-In both cases the parameter definitions are local to the particular class defining them. 
+SED-ML allows the use of named parameters wherever a mathematical expression is defined to compute some value (e.g.\ in \hyperref[class:computeChange]{ComputeChange}, \hyperref[class:functionalRange]{FunctionalRange} or \hyperref[class:dataGenerator]{DataGenerator}).
+In all cases the parameter definitions are local to the particular class defining them.
+A benefit of naming parameters rather than including numbers directly within the mathematical expression is that \hyperref[class:notes]{notes} and \hyperref[class:annotation]{annotations} may be associated with them.
 
 \tabtext{parameter}{parameter}
 %
@@ -36,7 +35,9 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \end{table}
 %
 
-A parameter can unambiguously be identified through its given \hyperref[sec:id]{id}. It may additionally carry an optional \hyperref[sec:name]{name}. Each parameter has one associated \hyperref[sec:value]{value}. 
+A parameter can unambiguously be identified through its given \hyperref[sec:id]{id}.
+It may additionally carry an optional \hyperref[sec:name]{name}.
+Each parameter has one associated \hyperref[sec:value]{value}. 
 
 \lsttext{parameter}{parameter}
 The listing shows the definition of a parameter \code{p1} with the \code{value="40"} assigned. 
