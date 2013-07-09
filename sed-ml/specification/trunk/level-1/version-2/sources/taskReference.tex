@@ -1,9 +1,10 @@
 \subsubsection{taskReference}
 \label{sec:taskReference}
-\hyperref[class:dataGenerator]{DataGenerator} objects are created to apply post-processing to the simulation results before simulation output. 
+\hyperref[class:dataGenerator]{DataGenerator} objects are created to apply post-processing to the simulation results before final output. 
 
-For certain types of post-processing \hyperref[class:variable]{Variable} objects need to be created. These link to a defined \hyperref[class:task]{Task} from which the model that contains the variable of interest can be inferred. 
-A \concept{taskReference} association is used to realise that link from a \hyperref[class:variable]{Variable} object inside a \hyperref[class:dataGenerator]{DataGenerator} to a \hyperref[class:task]{Task} object. 
+For certain types of post-processing \hyperref[class:variable]{Variable} objects need to be created.
+These link to a \hyperref[class:abstractTask]{task} defined within the \hyperref[sec:listOfTasks]{listOfTasks} from which the model that contains the variable of interest can be inferred. 
+A \concept{taskReference} association is used to realise that link from a \hyperref[class:variable]{Variable} object inside a \hyperref[class:dataGenerator]{DataGenerator} to an \hyperref[class:abstractTask]{AbstractTask} object. 
 Listing \ref{lst:reference3} gives an example.
 %
 \begin{myXmlLst}{SED-ML \code{taskReference} definition inside a \element{dataGenerator} element}{lst:reference3}
