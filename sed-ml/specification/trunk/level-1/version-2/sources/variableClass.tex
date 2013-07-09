@@ -7,7 +7,7 @@
 %
 If the variable is defined through a reference to a model constituent, such as an SBML species, or to an entity within the SED-ML file itself, then the reference is specified using the \hyperref[sec:target]{target} attribute.
 If the variable is defined through a reference to an \hyperref[sec:implicitVariable]{implicit variable}, rather than one explicitly appearing in the model, then the \hyperref[sec:symbol]{symbol} attribute is used, which holds a SED-ML \hyperref[sec:uriScheme]{URI}.
-A \code{variable} is always placed inside a \hyperref[class:listOfVariables]{listOfVariables}.
+A \code{variable} is always placed inside a \hyperref[sec:listOfVariables]{listOfVariables}.
 The \code{symbol} and \code{target} attributes must not be used together in a single instance of Variable, although at least one must be present.
 
 \tabtext{variable}{Variable}
