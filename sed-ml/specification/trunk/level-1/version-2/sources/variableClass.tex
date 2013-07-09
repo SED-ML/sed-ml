@@ -1,16 +1,14 @@
 % variable class
 \subsection{\element{Variable}}
 \label{class:variable}
-\concept{Variables} are references to already existing entities, either existing in one of the defined \hyperref[class:model]{models} or externally defined \hyperref[sec:symbol]{symbols} (\fig{variable}). 
+\concept{Variables} are references to already existing entities, either existing in one of the defined \hyperref[class:model]{models} or implicitly defined \hyperref[sec:symbol]{symbols} (\fig{variable}). 
 %
 \sedfig[width=0.4\textwidth]{variableClass}{The Variable class}{fig:variable}
 %
-If the variable is defined through a reference to a model constituent, such as an SBML species, then the reference is specified using the \hyperref[sec:target]{target} attribute.
-If the variable is defined through a reference to an external entity, then the \hyperref[sec:symbol]{symbol} attribute is used, which holds a SED-ML \hyperref[sec:uriScheme]{URI}.
+If the variable is defined through a reference to a model constituent, such as an SBML species, or to an entity within the SED-ML file itself, then the reference is specified using the \hyperref[sec:target]{target} attribute.
+If the variable is defined through a reference to an \hyperref[sec:implicitVariable]{implicit variable}, rather than one explicitly appearing in the model, then the \hyperref[sec:symbol]{symbol} attribute is used, which holds a SED-ML \hyperref[sec:uriScheme]{URI}.
 A \code{variable} is always placed inside a \hyperref[class:listOfVariables]{listOfVariables}.
 The \code{symbol} and \code{target} attributes must not be used together in a single instance of Variable, although at least one must be present.
-% TODO: describing symbols as 'external' implies referring to something not in a model.
-% TODO: support for referring to ranges in repeatedTask.
 
 \tabtext{variable}{Variable}
 %
@@ -42,7 +40,9 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \end{table}
 %
 
-A \code{variable} element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:dataGenerator]{dataGenerator} element. A \code{variable} element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:computeChange]{computeChange} element or a \hyperref[class:setValue]{setValue} element.
+A \code{variable} element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:dataGenerator]{dataGenerator} element.
+A \code{variable} element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:computeChange]{computeChange} element.
+A \code{variable} element appearing within a \hyperref[class:functionalRange]{functionalRange} or \hyperref[class:setValue]{setValue} element must contain a \hyperref[sec:modelReference]{modelReference} if and only if it references a model variable.
 
 %
 \lsttext{variable}{variable}
@@ -78,8 +78,8 @@ A \code{variable} element must contain a \hyperref[sec:taskReference]{taskRefere
 </sedML>
 \end{myXmlLst}
 %
-Listing \ref{lst:variable} defines a variable \code{v1} (line 7) to compute a change on a model constituent (referenced by the \code{target} attribute on \element{computeChange} in line 5). The value of \code{v1} corresponds with the value of the targeted model constituent references by the \code{target} attribute in line 8. 
-The second variable, \code{v2} (line 21), is used inside a \code{dataGenerator}. As the variable is \concept{time} as used in  \code{task1}, the \code{symbol} attribute is used to refer to the SED-ML URI for time (line 21).
+Listing \ref{lst:variable} defines a variable \code{v1} (line 7) to compute a change on a model constituent (referenced by the \code{target} attribute on \element{computeChange} in line 5). The value of \code{v1} corresponds with the value of the targeted model constituent referenced by the \code{target} attribute in line 8. 
+The second variable, \code{v2} (line 21), is used inside a \code{dataGenerator}. As the variable is \concept{time} as used in \code{task1}, the \code{symbol} attribute is used to refer to the SED-ML URI for time (line 21).
 
 \input{sources/target.tex}
 
