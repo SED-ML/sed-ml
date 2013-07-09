@@ -31,6 +31,8 @@ name$^{o}$ & \refpage{sec:name}\\
 \hline
 range & \refpage{sec:rangeAttribute}\\
 resetModel & \refpage{sec:resetModel}\\
+modelReference$^{o}$ & \refpage{sec:modelReference}\\
+simulationReference$^{o}$ & \refpage{sec:simulationReference}\\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
@@ -38,9 +40,9 @@ resetModel & \refpage{sec:resetModel}\\
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
 \hline
-listOfRanges$^{o}$ & \refpage{class:ranges}\\
-listOfChanges$^{o}$ & \refpage{class:changes}\\
-listOfSubTasks$^{o}$ & \refpage{class:subTasks}\\
+range & \refpage{sec:ranges}\\
+change$^{o}$ & \refpage{sec:changes}\\
+subTask$^{o}$ & \refpage{class:subTask}\\
 \hline
 \hline
 \end{tabular}
@@ -48,11 +50,6 @@ listOfSubTasks$^{o}$ & \refpage{class:subTasks}\\
 \label{tab:repeatedTask}
 \end{table}
 %
-
-% TODO: other tables don't mention the listOf* elements, but instead describe what's contained inside them.
-% TODO: should all the listOf* be optional or required?  I think you'd always need at least one range, but there are cases where the others aren't needed.  For other cases in the L1V1 schema we allow to omit the listOf container if it has no children.
-
-% TODO: inheriting or defining of modelReference and simulationReference, and explaining how these are to be interpreted.
 
 % TODO: make sure all examples are consistent in referring to ranges etc.
 
