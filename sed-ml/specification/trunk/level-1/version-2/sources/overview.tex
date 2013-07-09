@@ -116,7 +116,7 @@ The SED-ML finally consists of output definitions that describe what kind of out
 %
 Therefore, SED-ML first defines a set of \concept{data generators} (Figure \ref{fig:workflowDataGenerator}), which are then used to specify a particular result, i.\,e. output (Section~\ref{overview:dataGen}). 
 
-The SED-ML specification comes with three pre-defined types of outputs: 2D- and 3D plots, and reports. All use the aforementioned data generators to specify the information to be plotted on the different axes, or in the table comlumns respectively.
+The SED-ML specification comes with three pre-defined types of outputs: 2D and 3D plots, and reports. All use the aforementioned data generators to specify the information to be plotted on the different axes, or in the table comlumns respectively.
 \section{Data Generator}
 \label{overview:dataGen}
 %
@@ -127,9 +127,8 @@ The SED-ML specification comes with three pre-defined types of outputs: 2D- and 
 \label{fig:workflowDataGenerator}
 \end{figure}
 %
-A data generator may use data elements, e.\,g., variables or parameters, that either (1) have been taken directly from the model, or (2) have been generated in a post-processing step. If post-processing needs to be applied, variables and parameters from the various, previously defined models may be used, but also existing global parameters, such as \emph{time}.
-If the variables are taken from existing models, a reference to the model and the particular variable needs to be given. 
-If post-processing is necessary, a reference to an existing variable or parameter, including other data generators, has to be provided. Additional mathematical rules to be applied on the referred variable or parameter must then  be specified. 
+A data generator may use as input data elements, e.\,g., variables or parameters, that have been taken directly from a model as simulated in a task.
+Within each data generator, either a single variable may be passed unchanged to the output definitions, or post-processing may be performed by applying mathematical functions to one or more variables or parameters.
 %
 In a SED-ML file, any number of data generators can be created for later re-use in the output definition.
 
