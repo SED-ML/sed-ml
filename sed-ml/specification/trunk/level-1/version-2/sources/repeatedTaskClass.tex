@@ -21,7 +21,7 @@ The attributes provide a short-hand that is equivalent to providing a single \el
 \sedfig[width=.90\textwidth]{repeatedTaskClass}{The SED-ML RepeatedTask class}{fig:sedRptTask}
 %
 
-% TODO: Add tables for the various child elements?
+% TODO: Add tables (and individual UML) for the various child elements?
 
 \tabtext{repeatedTask}{repeatedTask}
 %
@@ -56,8 +56,6 @@ subTask$^{o}$ & \refpage{class:subTask}\\
 \label{tab:repeatedTask}
 \end{table}
 %
-
-% TODO: make sure all examples are consistent in refering to ranges etc.
 
 \lsttext{repeatedTask}{repeatedTask}
 
@@ -112,10 +110,13 @@ The \element{repeatedTask} class has a required attribute \element{resetModel} o
 Ranges represent the iterative element of the nested simulation experiment that provides the collection of values to iterate over. In order to be able to refer to the current value of a range element, an \code{id} attribute is added. When the value of the \code{id} attribute is used in a \element{listOfVariables} within the repeated task class its value is to be replaced with the current value of the range.
 
 There are three different range types permitted in the \element{listOfRanges}: \hyperref[class:uniformRange]{UniformRange}, \hyperref[class:vectorRange]{VectorRange} and \hyperref[class:functionalRange]{FunctionalRange}.
-%They each inherit from an abstract \hyperref[class:range]{Range} class.
+They each inherit from an abstract \hyperref[class:range]{Range} class.
 
-%\paragraph{\element{Range}}
-%\label{class:range}
+\paragraph{\element{Range}}
+\label{class:range}
+
+The \concept{Range} class is abstract and exists solely as the base class for the different types of range.
+Therefore, a SED-ML document will only contain the derived classes listed below.
 
 \paragraph{\element{UniformRange}}
 \label{class:uniformRange}
