@@ -3,9 +3,65 @@ The \hyperref[class:repeatedTask]{repeatedTask} introduced in \LoneVtwo makes it
 \subsection{One dimensional steady state parameter scan}
 Here the repeated task calls out to a \hyperref[class:oneStep]{oneStep} task (performing a steady state computation). Each time a parameter is carried in order to collect different responses. 
 
-
 In the description below the range to be used in the \hyperref[class:setValue]{setValue} construct use of the \token{range} attribute.
 
+%
+\sedfigX[scale=0.6]{xml/v3-example1-repeated-steady-scan-oscli}{The simulation result gained from the simulation description given in listing \ref{lst:repeated1}}{fig:figrepeated1}
+%
+
+\myXmlImport{SED-ML document implementing the one dimensional steady state parameter scan}
+{lst:repeated1}
+{xml/v3-example1-repeated-steady-scan-oscli.xml}
+
+\subsection{Perturbing a Simulation}
+Often it is interesting to see how the dynamic behavior of a model changes when some perturbations are applied to the model. In this example we include one repeated task that makes repeated use of a oneStep task (that advances an ODE integration to the next output step). During the steps one parameter is modified effectively causing the oscillations of a model to stop. Once the value is reset the oscillations recover. 
+
+Note: In the example below we use a functionalRange, although the same result could also be achieved using the setValue element directly.
+
+%
+\sedfigX[scale=0.6]{xml/v3-example2-oscli-nested-pulse}{The simulation result gained from the simulation description given in listing \ref{lst:repeated2}}{fig:figrepeated2}
+%
+
+\myXmlImport{SED-ML document implementing the perturbation experiment}
+{lst:repeated2}
+{xml/v3-example2-oscli-nested-pulse.xml}
+
+\subsection{Repeated Stochastic Simulation}
+NOTE: This example produces three dimensional results (time, species concentration, multiple repeats). While \LoneVtwo does not include a way to post-processing these values. So it is left to the implementation on how to display them. One example would be to flatten the values by overlaying them onto the desired plot. 
+
+Running just one stochastic trace does not provide a complete picture of the behavior of a system. A large number of traces are needed to provide a result. This example demonstrates the basic use case of running ten traces of a simulation to. This is achieved by running on repeatedTask running ten uniform time course simulations (each of which performing a stochastic simulation run). 
+
+%
+\sedfigX[scale=0.6]{xml/v3-example3-repeated-stochastic-runs}{The simulation result gained from the simulation description given in listing \ref{lst:repeated3}}{fig:figrepeated3}
+%
+
+\myXmlImport{SED-ML document implementing repeated stochastic runs}
+{lst:repeated3}
+{xml/v3-example3-repeated-stochastic-runs.xml}
+
+\subsection{One dimensional time course parameter scan}
+NOTE: This example produces three dimensional results (time, species concentration, multiple repeats). While \LoneVtwo does not include a way to post-processing these values. So it is left to the implementation on how to display them. One example would be to flatten the values by overlaying them onto the desired plot. 
+
+Here one repeatedTask  runs repeated uniform time course simulations (performing a deterministic simulation run) after each run the parameter value is changed.
 
 
-\subsection{One dimensional steady state parameter scan}
+%
+\sedfigX[scale=0.6]{xml/v3-example4-repeated-scan-oscli}{The simulation result gained from the simulation description given in listing \ref{lst:repeated4}}{fig:figrepeated4}
+%
+
+\myXmlImport{SED-ML document implementing the one dimensional time course parameter scan}
+{lst:repeated4}
+{xml/v3-example4-repeated-scan-oscli.xml}
+
+\subsection{Two dimensional steady state parameter scan}
+NOTE: This example produces three dimensional results (time, species concentration, multiple repeats). While \LoneVtwo does not include a way to post-processing these values. So it is left to the implementation on how to display them. One example would be to flatten the values by overlaying them onto the desired plot. 
+
+Here a repeatedTask runs over another repeatedTask which runs over a oneStep task (performing a steady state computation). Each repeated simulation task modifies a different parameter.
+
+%
+\sedfigX[scale=0.6]{xml/v3-example5-boris-2d-scan}{The simulation result gained from the simulation description given in listing \ref{lst:repeated5}}{fig:figrepeated5}
+%
+
+\myXmlImport{SED-ML document implementing the one dimensional steady state parameter scan}
+{lst:repeated5}
+{xml/v3-example5-boris-2d-scan.xml}
