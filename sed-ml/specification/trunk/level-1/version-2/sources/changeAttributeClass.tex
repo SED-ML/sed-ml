@@ -3,7 +3,7 @@
 \label{class:changeAttribute}
 The \concept{ChangeAttribute} class allows to define updates on the XML attribute values of the corresponding model (\fig{changeAttribute}).
 %
-\sedfig[width=0.75\textwidth]{changeAttributeClass}{The \code{ChangeAttribute} class}{fig:changeAttribute}
+\sedfig[width=0.75\textwidth]{pdf/changeAttributeClass}{The \code{ChangeAttribute} class}{fig:changeAttribute}
 %
  
 The \concept{ChangeXML} class covers the possibilities provided by the \hyperref[class:changeAttribute]{ChangeAttribute} class. That is, everything that can be expressed by a \hyperref[class:changeAttribute]{ChangeAttribute} construct can also be expressed by a \concept{ChangeXML}. However, for the common case of changing an attribute value \concept{ChangeAttribute} is easier to use, and so it is recommended to use the \concept{ChangeAttribute} for any changes of an XML attribute's value, and to use the more general \hyperref[class:changeXml]{ChangeXML} for other cases.
