@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Written by libSedML v1.1.4543.18332 see http://libsedml.sf.net -->
+<!-- Written by libSedML v1.1.4992.38982 see http://libsedml.sf.net -->
 <sedML level="1" version="2" xmlns="http://sed-ml.org/">
   <listOfSimulations>
     <steadyState id="steady1">
@@ -7,10 +7,14 @@
     </steadyState>
   </listOfSimulations>
   <listOfModels>
-    <model id="model1" language="urn:sedml:language:sbml" source="http://libsedml.svn.sourceforge.net/viewvc/libsedml/trunk/Samples/models/oscli.xml" />
+    <model id="model1" language="urn:sedml:language:sbml" source="http://sourceforge.net/p/libsedml/code/119/tree/trunk/Samples/models/oscli.xml?format=raw" />
   </listOfModels>
   <listOfTasks>
-    <repeatedTask id="task1" modelReference="model1" simulationReference="steady1" resetModel="true" range="">
+    <task id="task0" modelReference="model1" simulationReference="steady1" />
+    <repeatedTask id="task1" resetModel="true" range="current">
+      <listOfRanges>
+        <uniformRange id="current" start="0" end="10" numberOfPoints="100" type="linear" />
+      </listOfRanges>
       <listOfChanges>
         <setValue target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='J0_v0']" range="current">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -18,9 +22,9 @@
           </math>
         </setValue>
       </listOfChanges>
-      <listOfRanges>
-        <uniformRange id="current" start="0" end="10" numberOfPoints="100" type="linear" />
-      </listOfRanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task0" />
+      </listOfSubTasks>
     </repeatedTask>
   </listOfTasks>
   <listOfDataGenerators>
