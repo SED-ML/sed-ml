@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Written by libSedML v1.1.4543.18332 see http://libsedml.sf.net -->
+<!-- Written by libSedML v1.1.4992.38982 see http://libsedml.sf.net -->
 <sedML level="1" version="2" xmlns="http://sed-ml.org/">
   <listOfSimulations>
     <steadyState id="steady1">
@@ -7,20 +7,11 @@
     </steadyState>
   </listOfSimulations>
   <listOfModels>
-    <model id="model1" language="urn:sedml:language:sbml" source="c:\users\fbergmann\documents\sbml models\boris.xml" />
+    <model id="model1" language="urn:sedml:language:sbml" source="E:\Users\fbergmann\Documents\sbml models\borisejb.xml" />
   </listOfModels>
   <listOfTasks>
-    <repeatedTask id="task1" modelReference="model1" simulationReference="" resetModel="false" range="current">
-      <listOfSubTasks>
-        <subTask order="1" task="task2" />
-      </listOfSubTasks>
-      <listOfChanges>
-        <setValue target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='J1_KK2']" range="current">
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> current </ci>
-          </math>
-        </setValue>
-      </listOfChanges>
+    <task id="task0" modelReference="model1" simulationReference="steady1" />
+    <repeatedTask id="task1" resetModel="false" range="current">
       <listOfRanges>
         <vectorRange id="current">
           <value>1</value>
@@ -34,8 +25,21 @@
           <value>100</value>
         </vectorRange>
       </listOfRanges>
+      <listOfChanges>
+        <setValue target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='J1_KK2']" range="current">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> current </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task2" />
+      </listOfSubTasks>
     </repeatedTask>
-    <repeatedTask id="task2" modelReference="model1" simulationReference="steady1" resetModel="false" range="current1">
+    <repeatedTask id="task2" resetModel="false" range="current1">
+      <listOfRanges>
+        <uniformRange id="current1" start="1" end="40" numberOfPoints="100" type="linear" />
+      </listOfRanges>
       <listOfChanges>
         <setValue target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='J4_KK5']" range="current1">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -43,9 +47,9 @@
           </math>
         </setValue>
       </listOfChanges>
-      <listOfRanges>
-        <uniformRange id="current1" start="1" end="40" numberOfPoints="100" type="linear" />
-      </listOfRanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task0" />
+      </listOfSubTasks>
     </repeatedTask>
   </listOfTasks>
   <listOfDataGenerators>
@@ -91,10 +95,10 @@
     </plot2D>
     <report id="report1" name="Steady State Values (Boris2D)">
       <listOfDataSets>
-        <dataSet id="col0" dataReference="J4_KK5_1" label="" />
-        <dataSet id="col1" dataReference="J1_KK2_1" label="" />
-        <dataSet id="col2" dataReference="MKK_1" label="" />
-        <dataSet id="col3" dataReference="MKK_P_1" label="" />
+        <dataSet id="col0" dataReference="J4_KK5_1" label="J4_KK5" />
+        <dataSet id="col1" dataReference="J1_KK2_1" label="J1_KK2" />
+        <dataSet id="col2" dataReference="MKK_1" label="MKK" />
+        <dataSet id="col3" dataReference="MKK_P_1" label="MKK_P" />
       </listOfDataSets>
     </report>
   </listOfOutputs>

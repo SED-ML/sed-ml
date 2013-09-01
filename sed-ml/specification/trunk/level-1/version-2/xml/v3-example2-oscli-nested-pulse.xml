@@ -1,29 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Written by libSedML v1.1.4543.18332 see http://libsedml.sf.net -->
-<sedML level="1" version="1" xmlns="http://sed-ml.org/">
+<!-- Written by libSedML v1.1.4992.38982 see http://libsedml.sf.net -->
+<sedML level="1" version="2" xmlns="http://sed-ml.org/">
   <listOfSimulations>
     <oneStep id="stepper" step="0.1">
       <algorithm kisaoID="KISAO:0000019" />
     </oneStep>
   </listOfSimulations>
   <listOfModels>
-    <model id="model1" language="urn:sedml:language:sbml" source="http://libsedml.svn.sourceforge.net/viewvc/libsedml/trunk/Samples/models/oscli.xml" />
+    <model id="model1" language="urn:sedml:language:sbml" source="http://sourceforge.net/p/libsedml/code/119/tree/trunk/Samples/models/oscli.xml?format=raw" />
   </listOfModels>
   <listOfTasks>
-    <repeatedTask id="task1" modelReference="model1" simulationReference="stepper" resetModel="false" range="index">
-      <listOfChanges>
-        <setValue target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='J0_v0']" range="current">
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <ci> current </ci>
-          </math>
-        </setValue>
-      </listOfChanges>
+    <task id="task0" modelReference="model1" simulationReference="stepper" />
+    <repeatedTask id="task1" resetModel="false" range="index">
       <listOfRanges>
         <uniformRange id="index" start="0" end="10" numberOfPoints="100" type="linear" />
         <functionalRange id="current" index="index">
-          <listOfVariables>
-            <variable id="val" name="current loop value" target="//*[@id='current']" />
-          </listOfVariables>
           <function>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
               <piecewise>
@@ -59,6 +50,16 @@
           </function>
         </functionalRange>
       </listOfRanges>
+      <listOfChanges>
+        <setValue target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='J0_v0']" range="current">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> current </ci>
+          </math>
+        </setValue>
+      </listOfChanges>
+      <listOfSubTasks>
+        <subTask order="1" task="task0" />
+      </listOfSubTasks>
     </repeatedTask>
   </listOfTasks>
   <listOfDataGenerators>
@@ -105,10 +106,10 @@
     </plot2D>
     <report id="report1" name="Species Concentration under v0  pulse (Oscli)">
       <listOfDataSets>
-        <dataSet id="col0" dataReference="time_1" label="" />
-        <dataSet id="col1" dataReference="J0_v0_1" label="" />
-        <dataSet id="col2" dataReference="S1_1" label="" />
-        <dataSet id="col3" dataReference="S2_1" label="" />
+        <dataSet id="col0" dataReference="time_1" label="time" />
+        <dataSet id="col1" dataReference="J0_v0_1" label="J0_v0" />
+        <dataSet id="col2" dataReference="S1_1" label="S1" />
+        <dataSet id="col3" dataReference="S2_1" label="S2" />
       </listOfDataSets>
     </report>
   </listOfOutputs>
