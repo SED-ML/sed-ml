@@ -1,7 +1,7 @@
 <xs:schema targetNamespace="http://sed-ml.org/" xmlns="http://sed-ml.org/"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML">
-	<xs:import namespace="http://www.w3.org/1998/Math/MathML"
-		schemaLocation="sedml-mathml.xsd" />
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML"
+	elementFormDefault="qualified">
+	<xs:import namespace="http://www.w3.org/1998/Math/MathML" schemaLocation="sedml-mathml.xsd" />
 
 
 	<xs:simpleType name="SId">
@@ -254,7 +254,7 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="Simulation">
-					<!-- There's actually no difference from the base type here -->
+					<!-- There is actually no difference from the base type here -->
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -517,9 +517,11 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
-					<xs:sequence>
-						<xs:element ref="uniformTimeCourse" minOccurs="0" maxOccurs="unbounded" />
-					</xs:sequence>
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="uniformTimeCourse"/>
+						<xs:element ref="oneStep"/>
+						<xs:element ref="steadyState"/>
+					</xs:choice>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
