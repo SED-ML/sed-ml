@@ -265,5 +265,5 @@
     called "Node".  It is called a node because it is a node of a tree 
     structure. -->
   </xs:complexType>
-  
+  <xs:element name="math" type="Math"/>
 </xs:schema>
