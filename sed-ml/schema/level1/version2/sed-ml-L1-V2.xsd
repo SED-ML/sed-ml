@@ -219,18 +219,42 @@
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
+	<xs:complexType name="Simulation">
+		<xs:complexContent>
+			<xs:extension base="SEDBase">
+				<xs:sequence>
+					<xs:element ref="algorithm" />
+				</xs:sequence>
+				<xs:attributeGroup ref="idGroup" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:element name="uniformTimeCourse">
 		<xs:complexType>
 			<xs:complexContent>
-				<xs:extension base="SEDBase">
-					<xs:sequence>
-						<xs:element ref="algorithm" />
-					</xs:sequence>
-					<xs:attributeGroup ref="idGroup" />
+				<xs:extension base="Simulation">
 					<xs:attribute name="outputStartTime" type="xs:double" use="required" />
 					<xs:attribute name="outputEndTime" type="xs:double" use="required" />
 					<xs:attribute name="numberOfPoints" type="xs:integer" use="required" />
 					<xs:attribute name="initialTime" type="xs:double" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="oneStep">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Simulation">
+					<xs:attribute name="step" type="xs:double" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="steadyState">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Simulation">
+					<!-- There's actually no difference from the base type here -->
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
