@@ -201,7 +201,20 @@
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="listOfAlgorithmParameters" minOccurs="0"/>
+					</xs:sequence>
 					<xs:attribute name="kisaoID" type="KisaoType" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="algorithmParameter">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:attribute name="kisaoID" type="KisaoType" use="required"/>
+					<xs:attribute name="value" type="xs:string" use="required"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -448,6 +461,17 @@
 				<xs:extension base="SEDBase">
 					<xs:sequence>
 						<xs:element ref="parameter" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="listOfAlgorithmParameters">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="algorithmParameter" minOccurs="0" maxOccurs="unbounded" />
 					</xs:sequence>
 				</xs:extension>
 			</xs:complexContent>
