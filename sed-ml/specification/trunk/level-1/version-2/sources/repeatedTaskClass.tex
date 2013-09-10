@@ -13,10 +13,6 @@ Firstly the model is reset, if specified by the \element{resetModel} attribute.
 Secondly any changes to the model specified by \element{setValue} elements are made.
 Finally, the \element{subTasks} are executed once each in order.
 
-The \concept{RepeatedTask} class may optionally carry \concept{modelReference} and \concept{simulationReference} attributes.
-If these are present it must have no \hyperref[class:subTask]{subTask}s defined.
-The attributes provide a short-hand that is equivalent to providing a single \element{subTask} reference to a \hyperref[class:task]{task} with the given \concept{modelReference} and \concept{simulationReference}.
-
 %
 \sedfig[width=.90\textwidth]{pdf/repeatedTaskClass}{The SED-ML RepeatedTask class}{fig:sedRptTask}
 %
@@ -37,8 +33,6 @@ name$^{o}$ & \refpage{sec:name}\\
 \hline
 range & \refpage{sec:rangeAttribute}\\
 resetModel & \refpage{sec:resetModel}\\
-modelReference$^{o}$ & \refpage{sec:modelReference}\\
-simulationReference$^{o}$ & \refpage{sec:simulationReference}\\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
@@ -187,7 +181,7 @@ For example:
 
 Here is another example, this time using the values in a piecewise expression: 
 
-\begin{myXmlLst}{A \code{functionalRange} element that returns \code{8} if \code{index} is smaller than \code{1}, \code{0.1} if index is between \code{4} and \code{6} and \code{8} otherwise.}{lst:functionalRange2}
+\begin{myXmlLst}{A \code{functionalRange} element that returns \code{8} if \code{index} is smaller than \code{1}, \code{0.1} if \code{index} is between \code{4} and \code{6}, and \code{8} otherwise.}{lst:functionalRange2}
         <uniformRange id="index" start="0" end="10" numberOfPoints="100" />
         <functionalRange id="current" range="index">
           <function>
