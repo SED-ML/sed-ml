@@ -3,17 +3,17 @@
 \subsubsection{listOfAlgorithmParameters: The container for algorithm parameters}
 \label{sec:listOfAlgorithmParameters}
 
-The \concept{listOfAlgorithmParameters} contains the the settings for the simulation algorithm used in a simulation experiment. It may list several instances of the \hyperref[class:algorithm]{Algorithm} class (\fig{sedListOfAlgorithmParameters}).
+The \concept{listOfAlgorithmParameters} contains the the settings for the simulation algorithm used in a simulation experiment. It may list several instances of the \hyperref[class:algorithmParameter]{AlgorithmParameter} class.
 
 % Fig: sed model
 %\sedfig[width=0.85\textwidth]{pdf/listOfModels}{The SED-ML listOfModels container}{fig:listOfModels}
 %
 \lsttext{listOfAlgorithmParameters}{listOfAlgorithmParameters}
-The \code{listOfAlgorithmParameters} is optional and may contain zero to many models. 
+The \code{listOfAlgorithmParameters} is optional and may contain zero to many parameters. 
 %
 \begin{myXmlLst}{SED-ML listOfAlgorithmParameters element}{lst:listOfAlgorithmParameters}
 <listOfAlgorithmParameters>
- <algorithmParameter kisaoID="KISAO:0000211" value="23"/> 
+  <algorithmParameter kisaoID="KISAO:0000211" value="23"/> 
 </listOfAlgorithmParameters>
 \end{myXmlLst}
 %
