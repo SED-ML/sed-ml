@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Written by libSedML v1.1.4992.38982 see http://libsedml.sf.net -->
-<sedML level="1" version="2" xmlns="http://sed-ml.org/">
+<sedML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://sed-ml.org/ sed-ml-L1-V2.xsd" xmlns="http://sed-ml.org/" level="1"
+ version="2">
   <listOfSimulations>
     <uniformTimeCourse id="timecourse1" initialTime="0" outputStartTime="0" outputEndTime="20" numberOfPoints="1000">
       <algorithm kisaoID="KISAO:0000019" />
@@ -11,7 +13,7 @@
   </listOfModels>
   <listOfTasks>
     <task id="task0" modelReference="model1" simulationReference="timecourse1" />
-    <repeatedTask id="task1" resetModel="true" range="">
+    <repeatedTask id="task1" resetModel="true" range="current">
       <listOfRanges>
         <vectorRange id="current">
           <value>8</value>
@@ -20,7 +22,8 @@
         </vectorRange>
       </listOfRanges>
       <listOfChanges>
-        <setValue target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='J0_v0']" range="current">
+        <setValue target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='J0_v0']"
+          range="current" modelReference="model1">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <ci> current </ci>
           </math>
