@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Written by libSedML v1.1.4092.21172 see http://libsedml.sf.net -->
 <sedML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://sed-ml.org/ sed-ml-L1-V1.xsd" xmlns="http://sed-ml.org/" level="1"
+ xsi:schemaLocation="http://sed-ml.org/ sed-ml-L1-V1.xsd" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1"
  version="1">
   <listOfSimulations>
     <uniformTimeCourse id="simulation1" initialTime="0" outputStartTime="0" outputEndTime="380" numberOfPoints="1000">
