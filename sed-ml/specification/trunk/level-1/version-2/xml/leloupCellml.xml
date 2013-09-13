@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sedML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://sed-ml.org/ sed-ml-L1-V1.xsd"
- xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://sed-ml.org/" level="1" version="1">
+ xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1" version="1">
  <notes><p xmlns="http://www.w3.org/1999/xhtml">Comparing Limit Cycles and strange attractors for
         oscillation in Drosophila</p></notes> 
  <listOfSimulations>

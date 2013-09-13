@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Written by libSedML v1.1.4992.38982 see http://libsedml.sf.net -->
 <sedML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://sed-ml.org/ sed-ml-L1-V2.xsd" xmlns="http://sed-ml.org/" level="1"
+ xsi:schemaLocation="http://sed-ml.org/ sed-ml-L1-V2.xsd" xmlns="http://sed-ml.org/sed-ml/level1/version2" level="1"
  version="2">
   <listOfSimulations>
     <oneStep id="stepper" step="0.1">

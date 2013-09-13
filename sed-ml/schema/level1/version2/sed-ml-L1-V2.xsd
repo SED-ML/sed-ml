@@ -1,4 +1,4 @@
-<xs:schema targetNamespace="http://sed-ml.org/" xmlns="http://sed-ml.org/"
+<xs:schema targetNamespace="http://sed-ml.org/sed-ml/level1/version2" xmlns="http://sed-ml.org/sed-ml/level1/version2"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML"
 	elementFormDefault="qualified">
 	<xs:import namespace="http://www.w3.org/1998/Math/MathML" schemaLocation="sedml-mathml.xsd" />
