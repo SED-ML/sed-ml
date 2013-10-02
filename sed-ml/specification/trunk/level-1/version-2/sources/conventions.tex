@@ -82,7 +82,7 @@ The main building blocks of an XML Schema specification are:
 \end{itemize}
 XML Schema \concept{definitions} create new types, \concept{declarations} define new elements and attributes.
 The definition of new (simple and complex) types can be based on a number of already existing, prefedined types (string, boolean, float). Simple types are restrictions or extensions of predefined types. Complex types describe how attribues can be assigned to elements and how elements can contain further elements. The current SED-ML XML Schema only makes use of \emph{complex type definitions}.
-An example for a complex type definition is given in listing \ref{lst:complexType}:
+An example for a complex type definition is given in \lst{complexType}:
 %
 \begin{myXmlLst}{Complex Type definition of the SED-ML \code{computeChange} element}{lst:complexType}
 <xs:element name="computeChange">
@@ -107,7 +107,7 @@ Additionally, the element \code{computeChange} has an attribute \code{target} de
 The nesting of elements in the schema can be expressed using the \code{xs:sequence} (a sequence of elements), \code{xs:choice} (an alternative of elements to choose from), or \code{xs:all} (a set of elements that can occur in any order) concepts. The current SED-ML XML Schema only uses the \emph{sequence} of elements. 
 
 \subsubsection{Multiplicities}
-The standard multiplicity for each defined \code{element} is 1. Explicit multiplicity is to be defined using the \code{minOccurs} and \code{maxOccurs} attributes inside the complex type definition, as shown in listing \ref{lst:multiplicity}.
+The standard multiplicity for each defined \code{element} is 1. Explicit multiplicity is to be defined using the \code{minOccurs} and \code{maxOccurs} attributes inside the complex type definition, as shown in \lst{multiplicity}.
 
 \begin{myXmlLst}{Multiplicity for complex types in XML Schema}{lst:multiplicity}
 <xs:element name="dataGenerator">
@@ -129,7 +129,7 @@ The standard multiplicity for each defined \code{element} is 1. Explicit multipl
 In this example, the \code{dataGenerator} type is build of a sequence of three elements: The \code{listOfVariables} element is not necessary for the definition of a valid \code{dataGenerator} XML structure (it may occur 0 times or once). The same is true for the \code{listOfParameters} element (it may as well occur 0 times or once). The \code{math} element, however, uses the implicit standard multiplicity -- it must occur exactly 1 time in the \code{dataGenerator} specification.
 
 \subsection{Type extensions}
-XML Schema offers mechanisms to restrict and extend previously defined complex types. Extensions add element or attribute declarations to existing types, while restrictions restrict the types by adding further characteristics and requirements (facets) to a type. An example for a type extension is given in listing \ref{lst:xmlExtension}.
+XML Schema offers mechanisms to restrict and extend previously defined complex types. Extensions add element or attribute declarations to existing types, while restrictions restrict the types by adding further characteristics and requirements (facets) to a type. An example for a type extension is given in \lst{xmlExtension}.
 %
 \begin{myXmlLst}{Definition of the sedML type through extension of SEDBase in SED-ML}{lst:xmlExtension}
 	<xs:element name="sedML">

@@ -1,6 +1,6 @@
 \label{sec:range}
 Most simulation types demand a range to be defined over which to perform the analysis. SED-ML defines three different types of ranges, i.\,e. \concept{uniform range}, \concept{vector range}, and \concept{functional range}.
-A \code{uniformRange} expects evenly distributed time steps from a certain \code{start} to a certain \code{end} time, with a defined \code{numberOfPoints} to measure. An example is given in listing \ref{lst:uniformRange}. %and Figure \ref{fig:uniformRange}.
+A \code{uniformRange} expects evenly distributed time steps from a certain \code{start} to a certain \code{end} time, with a defined \code{numberOfPoints} to measure. An example is given in \lst{uniformRange}. %and Figure \ref{fig:uniformRange}.
 \begin{myXmlLst}{The \code{uniformRange} element \alert{to be validated}}{lst:uniformRange}
 </listOfSimulations>
  <timeCourse id="s1" name="time course definition for concentration of p" algorithm="KiSAO:ID">
@@ -13,7 +13,7 @@ A \code{uniformRange} expects evenly distributed time steps from a certain \code
 % to be redone in gnuplot!
 
 A \code{vectorRange} defines a set of values, representing the time points at which the according entity shall be simulated. % can one say "simulated" here?
-The construction in a SED-ML file is shown in listing \ref{lst:functionalRange}. Each \code{value} element defines a time point in simulation at which the result of simulation shall be passed on for later use.
+The construction in a SED-ML file is shown in \lst{functionalRange}. Each \code{value} element defines a time point in simulation at which the result of simulation shall be passed on for later use.
 %
 \begin{myXmlLst}{The \code{vectorRange} element \alert{to be validated}}{lst:vectorRange}
 </listOfSimulations>
@@ -31,7 +31,7 @@ The construction in a SED-ML file is shown in listing \ref{lst:functionalRange}.
 \end{myXmlLst}
 % concrete example!
 
-If the time points can be described by a particular function, the \code{functionalRange} should be used. The construction in a SED-ML file is shown in listing \ref{lst:functionalRange}.
+If the time points can be described by a particular function, the \code{functionalRange} should be used. The construction in a SED-ML file is shown in \lst{functionalRange}.
 \begin{myXmlLst}{The \code{functionalRange} element \alert{to be validated}}{lst:functionalRange}
 </listOfSimulations>
  <timeCourse id="s1" name="time course definition for concentration of p" algorithm="KiSAO:ID">
