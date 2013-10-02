@@ -1,18 +1,18 @@
 \subsection{Reference relations}
 \label{sec:reference}
 
-The \concept{reference} concept is used to refer to a particular element inside the SED-ML document. It may occur in five different ways in the SED-ML document:
+The \concept{reference} concept is used to refer to a particular element inside the SED-ML document. It may occur in six different ways in the SED-ML document:
 %
 \begin{enumerate}
 \item{as an association between two \hyperref[class:model]{Model}s (\hyperref[sec:modelReference]{modelReference}),}
 \item{as an association between a \hyperref[class:variable]{Variable} and a \hyperref[class:model]{Model} (\hyperref[sec:modelReference]{modelReference}),}
 \item{as an association between a \hyperref[class:variable]{Variable} and an \hyperref[class:abstractTask]{AbstractTask} (\hyperref[sec:taskReference]{taskReference}),}
-\item{as an association between a \hyperref[class:task]{Task} and the simulated \hyperref[class:model]{Model} (\hyperref[sec:modelReference]{modelReference}) or}
-\item{as an association between a \hyperref[class:task]{Task} and the \hyperref[class:simulation]{Simulation} run (\hyperref[sec:simulationReference]{simulationReference}).}
-\item{as an association between an \hyperref[class:output]{Output} and a \hyperref[class:dataGenerator]{DataGenerator} (\hyperref[sec:dataReference]{dataReference}),}
+\item{as an association between a \hyperref[class:task]{Task} and the simulated \hyperref[class:model]{Model} (\hyperref[sec:modelReference]{modelReference}),}
+\item{as an association between a \hyperref[class:task]{Task} and the \hyperref[class:simulation]{Simulation} run (\hyperref[sec:simulationReference]{simulationReference}), or}
+\item{as an association between an \hyperref[class:output]{Output} and a \hyperref[class:dataGenerator]{DataGenerator} (\hyperref[sec:dataReference]{dataReference}).}
 \end{enumerate}
 %
-The definition of a \hyperref[class:task]{Task} object demands a reference to a particular Model object (\hyperref[sec:modelReference]{modelReference}, see Section~\ref{sec:modelReference} on page \pageref{sec:modelReference}); furthermore, the Task object must be associated with a particular Simulation object (\hyperref[sec:simulationReference]{simulationReference}, see Section~\ref{sec:simulationReference} on page \pageref{sec:simulationReference}).
+The definition of a \hyperref[class:task]{Task} object requires a reference to a particular Model object (\hyperref[sec:modelReference]{modelReference}, see Section~\ref{sec:modelReference} on page \pageref{sec:modelReference}); furthermore, the Task object must be associated with a particular Simulation object (\hyperref[sec:simulationReference]{simulationReference}, see Section~\ref{sec:simulationReference} on page \pageref{sec:simulationReference}).
 
 Depending on the use of the \concept{reference} relation in connection with a \hyperref[class:variable]{Variable} object, it may take different roles: 
 \begin{enumerate}

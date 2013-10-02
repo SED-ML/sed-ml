@@ -9,7 +9,7 @@ A SED-ML UML class (\fig{umlClass}) consists of a class name (\code{ClassName}) 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.2\textwidth]{images/uml/umlClass.png}
-\caption{SED-ML UML Class with class names and attributes}
+\caption{SED-ML UML class with class names and attributes}
 \label{fig:umlClass}
 \end{figure}
 
@@ -86,22 +86,22 @@ An example for a complex type definition is given in \lst{complexType}:
 %
 \begin{myXmlLst}{Complex Type definition of the SED-ML \code{computeChange} element}{lst:complexType}
 <xs:element name="computeChange">
-		<xs:complexType>
-			<xs:complexContent>
-				<xs:extension base="SEDBase">
-					<xs:sequence>
-						<xs:element ref="listOfVariables" minOccurs="0" />
-						<xs:element ref="listOfParameters" minOccurs="0" />
-						<xs:element ref="math" />
-					</xs:sequence>
-					<xs:attribute name="target" use="required" type="xs:token" />
-				</xs:extension>
-			</xs:complexContent>
-		</xs:complexType>
-	</xs:element>
+	<xs:complexType>
+		<xs:complexContent>
+			<xs:extension base="SEDBase">
+				<xs:sequence>
+					<xs:element ref="listOfVariables" minOccurs="0" />
+					<xs:element ref="listOfParameters" minOccurs="0" />
+					<xs:element ref="math" />
+				</xs:sequence>
+				<xs:attribute name="target" use="required" type="xs:token" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:element>
 \end{myXmlLst}
 %
-It shows the declaration of an element called \code{computeChange} that is used in SED-ML to change mathematical expressions. The element is defined using an \emph{unnamed} complex type which is build of further elements called \code{listOfVariables}, \code{listOfParameters}, and \code{math}. 
+It shows the declaration of an element called \code{computeChange} that is used in SED-ML to change mathematical expressions. The element is defined using an \emph{unnamed} complex type which is built of further elements called \code{listOfVariables}, \code{listOfParameters}, and \code{math}. 
 Additionally, the element \code{computeChange} has an attribute \code{target} declared. Please note that the definition of the elements inside the complex type are only referred to and will be found elsewhere in the schema.
 
 The nesting of elements in the schema can be expressed using the \code{xs:sequence} (a sequence of elements), \code{xs:choice} (an alternative of elements to choose from), or \code{xs:all} (a set of elements that can occur in any order) concepts. The current SED-ML XML Schema only uses the \emph{sequence} of elements. 
@@ -111,19 +111,19 @@ The standard multiplicity for each defined \code{element} is 1. Explicit multipl
 
 \begin{myXmlLst}{Multiplicity for complex types in XML Schema}{lst:multiplicity}
 <xs:element name="dataGenerator">
-		<xs:complexType>
-			<xs:complexContent>
-				<xs:extension base="SEDBase">
-					<xs:sequence>
-						<xs:element ref="listOfVariables" minOccurs="0" />
-						<xs:element ref="listOfParameters" minOccurs="0" />
-						<xs:element ref="math" />
-					</xs:sequence>
-					<xs:attributeGroup ref="idGroup" />
-				</xs:extension>
-			</xs:complexContent>
-		</xs:complexType>
-	</xs:element>
+	<xs:complexType>
+		<xs:complexContent>
+			<xs:extension base="SEDBase">
+				<xs:sequence>
+					<xs:element ref="listOfVariables" minOccurs="0" />
+					<xs:element ref="listOfParameters" minOccurs="0" />
+					<xs:element ref="math" />
+				</xs:sequence>
+				<xs:attributeGroup ref="idGroup" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:element>
 \end{myXmlLst}
 %
 In this example, the \code{dataGenerator} type is build of a sequence of three elements: The \code{listOfVariables} element is not necessary for the definition of a valid \code{dataGenerator} XML structure (it may occur 0 times or once). The same is true for the \code{listOfParameters} element (it may as well occur 0 times or once). The \code{math} element, however, uses the implicit standard multiplicity -- it must occur exactly 1 time in the \code{dataGenerator} specification.
