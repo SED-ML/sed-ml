@@ -6,7 +6,7 @@ Here the repeated task calls out to a \hyperref[class:oneStep]{oneStep} task (pe
 In the description below the range to be used in the \hyperref[class:setValue]{setValue} construct use of the \token{range} attribute.
 
 %
-\sedfigX[scale=0.6]{xml/v3-example1-repeated-steady-scan-oscli}{The simulation result gained from the simulation description given in listing \ref{lst:repeated1}}{fig:figrepeated1}
+\sedfigX[scale=0.6]{xml/v3-example1-repeated-steady-scan-oscli}{The simulation result gained from the simulation description given in \lst{repeated1}}{fig:figrepeated1}
 %
 
 \myXmlImport{SED-ML document implementing the one dimensional steady state parameter scan}
@@ -19,7 +19,7 @@ Often it is interesting to see how the dynamic behavior of a model changes when 
 Note: In the example below we use a functionalRange, although the same result could also be achieved using the setValue element directly.
 
 %
-\sedfigX[scale=0.6]{xml/v3-example2-oscli-nested-pulse}{The simulation result gained from the simulation description given in listing \ref{lst:repeated2}}{fig:figrepeated2}
+\sedfigX[scale=0.6]{xml/v3-example2-oscli-nested-pulse}{The simulation result gained from the simulation description given in \lst{repeated2}}{fig:figrepeated2}
 %
 
 \myXmlImport{SED-ML document implementing the perturbation experiment}
@@ -32,7 +32,7 @@ NOTE: This example produces three dimensional results (time, species concentrati
 Running just one stochastic trace does not provide a complete picture of the behavior of a system. A large number of traces are needed to provide a result. This example demonstrates the basic use case of running ten traces of a simulation to. This is achieved by running on repeatedTask running ten uniform time course simulations (each of which performing a stochastic simulation run). 
 
 %
-\sedfigX[scale=0.6]{xml/v3-example3-repeated-stochastic-runs}{The simulation result gained from the simulation description given in listing \ref{lst:repeated3}}{fig:figrepeated3}
+\sedfigX[scale=0.6]{xml/v3-example3-repeated-stochastic-runs}{The simulation result gained from the simulation description given in \lst{repeated3}}{fig:figrepeated3}
 %
 
 \myXmlImport{SED-ML document implementing repeated stochastic runs}
@@ -46,7 +46,7 @@ Here one repeatedTask  runs repeated uniform time course simulations (performing
 
 
 %
-\sedfigX[scale=0.6]{xml/v3-example4-repeated-scan-oscli}{The simulation result gained from the simulation description given in listing \ref{lst:repeated4}}{fig:figrepeated4}
+\sedfigX[scale=0.6]{xml/v3-example4-repeated-scan-oscli}{The simulation result gained from the simulation description given in \lst{repeated4}}{fig:figrepeated4}
 %
 
 \myXmlImport{SED-ML document implementing the one dimensional time course parameter scan}
@@ -59,7 +59,7 @@ NOTE: This example produces three dimensional results (time, species concentrati
 Here a repeatedTask runs over another repeatedTask which runs over a oneStep task (performing a steady state computation). Each repeated simulation task modifies a different parameter.
 
 %
-\sedfigX[scale=0.6]{xml/v3-example5-boris-2d-scan}{The simulation result gained from the simulation description given in listing \ref{lst:repeated5}}{fig:figrepeated5}
+\sedfigX[scale=0.6]{xml/v3-example5-boris-2d-scan}{The simulation result gained from the simulation description given in \lst{repeated5}}{fig:figrepeated5}
 %
 
 \myXmlImport{SED-ML document implementing the one dimensional steady state parameter scan}
