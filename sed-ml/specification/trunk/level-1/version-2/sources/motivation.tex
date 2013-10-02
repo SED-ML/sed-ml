@@ -1,13 +1,13 @@
 % motivation
 \section{Motivation: A sample experiment}
 \label{motivation:example}
-To demonstrate how a simulation experiment can be described simply and effectively, we make use of a rather simple, though famous, model that may yet display rich and variable behaviors. The simulation example is taken from \citet{Waltemath:2011}. 
+To demonstrate how a simulation experiment can be described simply and effectively, we make use of a rather simple, though famous, model that displays rich and variable behaviors. The simulation example is taken from \citet{Waltemath:2011}. 
 
 The \emph{repressilator} is a synthetic oscillating network of transcription regulators in Escherichia coli \citep{Elowitz:2000}. The network is composed of the three repressor genes Lactose Operon Repressor (lacI), Tetracycline Repressor (tetR) and Repressor CI (cI), which code for proteins binding to the promoter of the other, blocking their transcription. The three inhibitions together in tandem, form a cyclic negative-feedback loop. To describe the interactions of the molecular species involved in the network, the authors built a simple mathematical model of coupled first-order differential equations. All six molecular species included in the network (three mRNAs, three repressor proteins) participated in creation (transcription/translation) and degradation processes. The model was used to determine the influence of the various parameters on the dynamic behavior of the system. In particular, parameter values were sought which induce stable oscillations in the concentrations of the system components. Oscillations in the levels of the three repressor proteins are obtained by numerical integration. 
 
 \subsection{A simple time-course simulation}
  \label{sec:intro1}
- The first experiment we intend to run on the model is the simulation that will lead to the oscillation shown in Figure 1c of the reference publication \citep{Elowitz:2000}. The according simulation experiment can be described as:
+ The first experiment we intend to run on the model is the simulation that will lead to the oscillation shown in Figure 1c of the reference publication \citep{Elowitz:2000}. This simulation experiment can be described as:
 
 \begin{enumerate}
  	\item{Import the model identified by the Unified Resource Identifier (URI) \citep{Berners-Lee:2005} \url{urn:miriam:biomodels.db:BIOMD0000000012}.}
