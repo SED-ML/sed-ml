@@ -17,39 +17,37 @@
       <listOfRanges>
         <uniformRange id="index" start="0" end="10" numberOfPoints="100" type="linear" />
         <functionalRange id="current" range="index">
-          <function>
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-              <piecewise>
-                <piece>
-                  <cn> 8 </cn>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <piecewise>
+              <piece>
+                <cn> 8 </cn>
+                <apply>
+                  <lt />
+                  <ci> index </ci>
+                  <cn> 1 </cn>
+                </apply>
+              </piece>
+              <piece>
+                <cn> 0.1 </cn>
+                <apply>
+                  <and />
+                  <apply>
+                    <geq />
+                    <ci> index </ci>
+                    <cn> 4 </cn>
+                  </apply>
                   <apply>
                     <lt />
                     <ci> index </ci>
-                    <cn> 1 </cn>
+                    <cn> 6 </cn>
                   </apply>
-                </piece>
-                <piece>
-                  <cn> 0.1 </cn>
-                  <apply>
-                    <and />
-                    <apply>
-                      <geq />
-                      <ci> index </ci>
-                      <cn> 4 </cn>
-                    </apply>
-                    <apply>
-                      <lt />
-                      <ci> index </ci>
-                      <cn> 6 </cn>
-                    </apply>
-                  </apply>
-                </piece>
-                <otherwise>
-                  <cn> 8 </cn>
-                </otherwise>
-              </piecewise>
-            </math>
-          </function>
+                </apply>
+              </piece>
+              <otherwise>
+                <cn> 8 </cn>
+              </otherwise>
+            </piecewise>
+          </math>
         </functionalRange>
       </listOfRanges>
       <listOfChanges>

@@ -338,13 +338,7 @@
 					<xs:sequence>
 						<xs:element ref="listOfVariables" minOccurs="0" />
 						<xs:element ref="listOfParameters" minOccurs="0" />
-						<xs:element name="function">
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element ref="math:math" />
-								</xs:sequence>
-							</xs:complexType>
-						</xs:element>
+						<xs:element ref="math:math" />
 					</xs:sequence>
 					<xs:attribute name="range" type="SId" use="optional"/>
 				</xs:extension>
