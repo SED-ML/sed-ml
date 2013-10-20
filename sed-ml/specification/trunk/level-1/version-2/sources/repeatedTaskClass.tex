@@ -114,6 +114,9 @@ Therefore, a SED-ML document will only contain the derived classes listed below.
 
 \paragraph{\element{UniformRange}}
 \label{class:uniformRange}
+%
+\sedfig[width=.3\textwidth]{pdf/uniformRange}{The SED-ML UniformRange class}{fig:sedUniformRange}
+%
 The \element{UniformRange} is quite similar to what is used in the \hyperref[class:uniformTimeCourse]{UniformTimeCourse} simulation class.
 This range is defined through four mandatory attributes: \code{start}, the start value; \code{end}, the end value and \code{numberOfPoints} that contains the number of points the range contains.
 A fourth attribute \code{type} that can take the values \code{linear} or \code{log} determines whether to draw the values logarithmically (with a base of $10$) or linearly.
@@ -131,6 +134,9 @@ The following logarithmic example generates the three values \code{1}, \code{10}
 
 \paragraph{\element{VectorRange}}
 \label{class:vectorRange}
+%
+\sedfig[width=.3\textwidth]{pdf/vectorRangeClass}{The SED-ML VectorRangeClass class}{fig:sedVectorRangeClass}
+%
 A \element{VectorRange} describes an ordered collection of real values, listing them explicitly within child \element{value} elements.
 For example, the range below iterates over the values $1$, $4$ and $10$ in that order.
 \begin{myXmlLst}{The \code{VectorRange} element}{lst:vectorRange}
@@ -143,15 +149,18 @@ For example, the range below iterates over the values $1$, $4$ and $10$ in that 
 
 \paragraph{\element{FunctionalRange}}
 \label{class:functionalRange}
+%
+\sedfig[width=.9\textwidth]{pdf/functionalRangeClass}{The SED-ML FunctionalRange class}{fig:sedFunctionalRangeClass}
+%
 A \element{FunctionalRange} constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables.
 In this it is quite similar to the \hyperref[class:computeChange]{ComputeChange} element, and shares some of the same child elements.
-It consists of an optional attribute \code{range}, two optional elements \hyperref[sec:listOfVariables]{listOfVariables} and \hyperref[sec:listOfParameters]{listOfParameters}, and a required element \element{function}.
+It consists of an optional attribute \code{range}, two optional elements \hyperref[sec:listOfVariables]{listOfVariables} and \hyperref[sec:listOfParameters]{listOfParameters}, and a required element \element{math}.
 
 The optional attribute \code{range} may be used as a shorthand to specify the \code{id} of another \concept{Range}.
 The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \code{id} of the range is used directly.
 In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
 
-In the \element{listOfVariables}, \hyperref[class:variable]{variable} elements define identifiers refering to model variables or range values, which may then be used within the \element{function} expression.
+In the \element{listOfVariables}, \hyperref[class:variable]{variable} elements define identifiers refering to model variables or range values, which may then be used within the \element{math} expression.
 These references always retrieve the \concept{current value} of the model variable or range at the current iteration of the enclosing \element{repeatedTask}.
 For a model not being simulated by any \element{subTask}, the initial state of the model is used.
 
@@ -166,15 +175,13 @@ For example:
       <variable id="w" name="current parameter value" modelReference="model2"
           target="/s:sbml/s:model/s:listOfParameters/s:parameter[@id='w']" />
     </listOfVariables>
-    <function>
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <apply>
-          <times/>
-          <ci> w </ci>
-          <ci> index </ci>
-        </apply>
-      </math>
-    </function>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <times/>
+        <ci> w </ci>
+        <ci> index </ci>
+      </apply>
+    </math>
   </functionalRange>
 \end{myXmlLst}
 
@@ -183,39 +190,37 @@ Here is another example, this time using the values in a piecewise expression:
 \begin{myXmlLst}{A \code{functionalRange} element that returns \code{8} if \code{index} is smaller than \code{1}, \code{0.1} if \code{index} is between \code{4} and \code{6}, and \code{8} otherwise.}{lst:functionalRange2}
         <uniformRange id="index" start="0" end="10" numberOfPoints="100" />
         <functionalRange id="current" range="index">
-          <function>
-            <math xmlns="http://www.w3.org/1998/Math/MathML">
-              <piecewise>
-                <piece>
-                  <cn> 8 </cn>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <piecewise>
+              <piece>
+                <cn> 8 </cn>
+                <apply>
+                  <lt />
+                  <ci> index </ci>
+                  <cn> 1 </cn>
+                </apply>
+              </piece>
+              <piece>
+                <cn> 0.1 </cn>
+                <apply>
+                  <and />
+                  <apply>
+                    <geq />
+                    <ci> index </ci>
+                    <cn> 4 </cn>
+                  </apply>
                   <apply>
                     <lt />
                     <ci> index </ci>
-                    <cn> 1 </cn>
+                    <cn> 6 </cn>
                   </apply>
-                </piece>
-                <piece>
-                  <cn> 0.1 </cn>
-                  <apply>
-                    <and />
-                    <apply>
-                      <geq />
-                      <ci> index </ci>
-                      <cn> 4 </cn>
-                    </apply>
-                    <apply>
-                      <lt />
-                      <ci> index </ci>
-                      <cn> 6 </cn>
-                    </apply>
-                  </apply>
-                </piece>
-                <otherwise>
-                  <cn> 8 </cn>
-                </otherwise>
-              </piecewise>
-            </math>
-          </function>
+                </apply>
+              </piece>
+              <otherwise>
+                <cn> 8 </cn>
+              </otherwise>
+            </piecewise>
+          </math>
         </functionalRange>
 \end{myXmlLst}
 
