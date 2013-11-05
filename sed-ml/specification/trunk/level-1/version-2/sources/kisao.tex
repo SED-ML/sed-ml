@@ -2,18 +2,29 @@
 \subsection{KiSAO}
 \label{sec:kisao}
 
-In SED-ML, simulations are characterized by their type (e.\,g., time course simulations). 
-Moreover, the reproducibility of a particular experiment is dependent on the algorithm used to analyze the system. 
-The SED-ML \hyperref[class:algorithm]{Algorithm} class describes algorithms and their settings. 
-The sole reference of a simulation algorithm through its name in form of a string is error prone and ambiguous. 
-Firstly, typing mistakes or language differences may make the identification of the intended algorithm difficult. 
-Secondly, many algorithms exist with more than one name, having synonyms or various abbreviations that are commonly used.
+The Kinetic Simulation Algorithm Ontology (KiSAO, [Courtot et al., 2011]) is used in SED-ML to specify simulation algorithms and uniquely identify algorithm parameters. 
+KiSAO is a community-driven approach of classifying and structuring simulation approaches by model characteristics and numerical characteristics. 
+The ontology is available in OWL format from BioPortal at http://purl.bioontology.org/ontology/KiSAO. 
+SED-ML refers to terms from KiSAO as referencing a simulation algorithm, or its parameters, solely through a name is error prone and ambiguous. 
+After all, typing mistakes or language differences complicate the identification of the correct algorithm. 
+Additionally, many algorithms exist under multiple names or abbreviation. 
+The identification of a simulation algorithm through KISAO not only identifies the simulation algorithm to be used in the SED-ML simulation, it also enables software to find a related algorithm, if the specific implementation is not available. 
+For example, software could decide to use the CVODE integration library for an analysis instead of a specific Runge Kutta 4,5 implementation. 
+Should a particular simulation algorithm not exist within KISAO, please request one from the project homepage at http://www.biomodels.net/kisao/.
 
-To enable reproducibility of results, algorithms in SED-ML are specified as terms from a controlled vocabulary of simulation algorithms. 
-The \emph{Kinetic Simulation Algorithm Ontology} (KiSAO, \citep{CWK+10}) is a community-driven approach of classifying and structuring simulation approaches by model characteristics and numerical characteristics.  Model characteristics include, for instance, the type of variables used for the simulation (such as discrete or continuous variables) and the spatial resolution (spatial or non-spatial descriptions). Numerical characteristics specify whether the system's behavior can be described as deterministic or stochastic, and whether the algorithms use fixed or adaptive time steps.  
-Related algorithms are grouped together, producing classes of algorithms.
-KiSAO is available in OWL format from \concept{BioPortal} at \url{http://purl.bioontology.org/ontology/KiSAO}. 
-The project homepage is at \url{http://www.biomodels.net/kisao/}.
+
+%In SED-ML, simulations are characterized by their type (e.\,g., time course simulations). 
+%Moreover, the reproducibility of a particular experiment is dependent on the algorithm used to analyze the system. 
+%The SED-ML \hyperref[class:algorithm]{Algorithm} class describes algorithms and their settings. 
+%The sole reference of a simulation algorithm through its name in form of a string is error prone and ambiguous. 
+%Firstly, typing mistakes or language differences may make the identification of the intended algorithm difficult. 
+%Secondly, many algorithms exist with more than one name, having synonyms or various abbreviations that are commonly used.
+
+%To enable reproducibility of results, algorithms in SED-ML are specified as terms from a controlled vocabulary of simulation algorithms. 
+%The \emph{Kinetic Simulation Algorithm Ontology} (KiSAO, \citep{CWK+10}) is a community-driven approach of classifying and structuring simulation approaches by model characteristics and numerical characteristics.  Model characteristics include, for instance, the type of variables used for the simulation (such as discrete or continuous variables) and the spatial resolution (spatial or non-spatial descriptions). Numerical characteristics specify whether the system's behavior can be described as deterministic or stochastic, and whether the algorithms use fixed or adaptive time steps.  
+%Related algorithms are grouped together, producing classes of algorithms.
+%KiSAO is available in OWL format from \concept{BioPortal} at \url{http://purl.bioontology.org/ontology/KiSAO}. 
+%The project homepage is at \url{http://www.biomodels.net/kisao/}.
 
 
 %A sample categorisation for the Gillespie's Direct Method (\code{KISAO:0000029}) is given in Figure \ref{fig:kisao}.
