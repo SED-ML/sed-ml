@@ -2,15 +2,32 @@
 \subsection{KiSAO}
 \label{sec:kisao}
 
-The Kinetic Simulation Algorithm Ontology (KiSAO, [Courtot et al., 2011]) is used in SED-ML to specify simulation algorithms and uniquely identify algorithm parameters. 
-KiSAO is a community-driven approach of classifying and structuring simulation approaches by model characteristics and numerical characteristics. 
-The ontology is available in OWL format from BioPortal at http://purl.bioontology.org/ontology/KiSAO. 
-SED-ML refers to terms from KiSAO as referencing a simulation algorithm, or its parameters, solely through a name is error prone and ambiguous. 
-After all, typing mistakes or language differences complicate the identification of the correct algorithm. 
-Additionally, many algorithms exist under multiple names or abbreviation. 
-The identification of a simulation algorithm through KISAO not only identifies the simulation algorithm to be used in the SED-ML simulation, it also enables software to find a related algorithm, if the specific implementation is not available. 
-For example, software could decide to use the CVODE integration library for an analysis instead of a specific Runge Kutta 4,5 implementation. 
-Should a particular simulation algorithm not exist within KISAO, please request one from the project homepage at http://www.biomodels.net/kisao/.
+The Kinetic Simulation Algorithm Ontology (KiSAO, \citep{CWK+10}) is 
+used in SED-ML to specify simulation algorithms and uniquely identify 
+algorithm parameters. KiSAO is a community-driven approach of 
+classifying and structuring simulation approaches by model 
+characteristics and numerical characteristics. The ontology is available 
+in OWL format from \concept{BioPortal} at 
+\url{http://purl.bioontology.org/ontology/KiSAO}. 
+
+SED-ML refers to terms from KiSAO as referencing a simulation algorithm, 
+or its parameters, solely through a name is error prone and ambiguous. 
+After all, typing mistakes or language differences complicate the 
+identification of the correct algorithm. Additionally, many algorithms 
+exist under multiple names or abbreviation. 
+
+The identification of a simulation algorithm through KISAO not only 
+identifies the simulation algorithm to be used in the SED-ML simulation, 
+it also enables software to find a related algorithm, if the specific 
+implementation is not available. For example, software could decide to 
+use the CVODE integration library for an analysis instead of a specific 
+Runge Kutta 4,5 implementation. 
+
+Should a particular simulation algorithm not exist within KISAO, please 
+request one from the project homepage at 
+\url{http://www.biomodels.net/kisao/}. 
+
+
 
 
 %In SED-ML, simulations are characterized by their type (e.\,g., time course simulations). 
