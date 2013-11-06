@@ -6,7 +6,7 @@ Version=4
 MainFile=sed-ml-L1V2.tex
 UseBibTeX=1
 UseMakeIndex=1
-ActiveProfile=LaTeX ⇨ PDF
+ActiveProfile=LaTeX => DVI
 ProjectLanguage=en
 ProjectDialect=US
 
