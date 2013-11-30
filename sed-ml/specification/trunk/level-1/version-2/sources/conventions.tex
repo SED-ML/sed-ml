@@ -28,7 +28,7 @@ SED-ML class names always begin with upper case letters. If they are composed of
 Links between classes specify the connection of objects with each other (\fig{umlConnectors}). The different relation types used in the SED-ML specification include aggregation, composite aggregation, and generalisation. The label on the line is called symbol (\code{label}) and describes the relation of the objects of both classes. 
 
 %% Association
-The \concept{association} (\fig{umlAssociation}) indicates the existence of a connection between the objects of the participating classes. Often associations are directed to show how the label should be read (in which direction). Associations can be uni-directional (one arrowhead), or bidirectional (zero or two arrowheads). 
+The \concept{association} (\fig{umlAssociation}) indicates the existence of a connection between the objects of the participating classes. Often associations are directed to show how the label should be read (in which direction). Associations can be uni-directional (one arrowhead), or bidirectional (zero or two arrowheads).  
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.5\textwidth]{images/pdf/umlAssociation}
@@ -50,7 +50,7 @@ The \concept{aggregation} (\fig{umlAggregation}, top) indicates that the objects
 The \concept{composite aggregation} (\fig{umlAggregation}, bottom) indicates that the objects of the participating classes are connected in a way that one class (\code{Whole}) consists of several parts (\code{Part}). In contrast to the aggregation, the subelements (\code{Part}) are dependent on the parent class (\code{Whole}). An example is that a university (\code{Whole}) consists of a number of departments (\code{Part}) which have a so-called ``lifetime responsibility'' with the university, e.\,g.\ if the university vanishes,  the departments will vanish with it \citep{Bel03}.
 
 %% Inheritance
-The \concept{generalisation} (\fig{umlGeneralisation}) allows to extend classes (\code{BaseClass}) by additional properties. The derived class (\code{DerivedClass}) inherites all properties of the base class and defines additional ones. In the given example, an instance of \code{DerivedClass} has two attributes \code{attribute1} and \code{attribute2}.
+The \concept{generalisation} (\fig{umlGeneralisation}) allows to extend classes (\code{BaseClass}) by additional properties. The derived class (\code{DerivedClass}) inherits all properties of the base class and defines additional ones. In the given example, an instance of \code{DerivedClass} has two attributes \code{attribute1} and \code{attribute2}.
 %
 \begin{figure}[h]
 \centering
@@ -61,7 +61,7 @@ The \concept{generalisation} (\fig{umlGeneralisation}) allows to extend classes 
 %
 %% CARDINALITIES
 \subsubsection{UML multiplicity}
-UML multiplicity defines the number of objects in one class that can be related to one object in the other class (also known as \concept{cardinality}). Possible types of multiplicity include values (1), ranges (1$..$4), intervals (1,3,9), or combinations of ranges and intervals. The standard notation for ``many'' is the asterix (*). 
+UML multiplicity defines the number of objects in one class that can be related to one object in the other class (also known as \concept{cardinality}). Possible types of multiplicity include values (1), ranges (1$..$4), intervals (1,3,9), or combinations of ranges and intervals. The standard notation for ``many'' is the asterisk (*). 
 
 Multiplicity can be defined for both sides of a relationship between classes. The default relationship is ``many to many''. 
 The example in \fig{umlMulti} expresses that a class is given by a professor, and a professor might give one to many classes.
@@ -81,7 +81,7 @@ The main building blocks of an XML Schema specification are:
 \item {attribute specifications}
 \end{itemize}
 XML Schema \concept{definitions} create new types, \concept{declarations} define new elements and attributes.
-The definition of new (simple and complex) types can be based on a number of already existing, prefedined types (string, boolean, float). Simple types are restrictions or extensions of predefined types. Complex types describe how attribues can be assigned to elements and how elements can contain further elements. The current SED-ML XML Schema only makes use of \emph{complex type definitions}.
+The definition of new (simple and complex) types can be based on a number of already existing, predefined types (string, boolean, float). Simple types are restrictions or extensions of predefined types. Complex types describe how attribues can be assigned to elements and how elements can contain further elements. The current SED-ML XML Schema only makes use of \emph{complex type definitions}.
 An example for a complex type definition is given in \lst{complexType}:
 %
 \begin{myXmlLst}{Complex Type definition of the SED-ML \code{computeChange} element}{lst:complexType}
@@ -129,7 +129,9 @@ The standard multiplicity for each defined \code{element} is 1. Explicit multipl
 In this example, the \code{dataGenerator} type is build of a sequence of three elements: The \code{listOfVariables} element is not necessary for the definition of a valid \code{dataGenerator} XML structure (it may occur 0 times or once). The same is true for the \code{listOfParameters} element (it may as well occur 0 times or once). The \code{math} element, however, uses the implicit standard multiplicity -- it must occur exactly 1 time in the \code{dataGenerator} specification.
 
 \subsection{Type extensions}
-XML Schema offers mechanisms to restrict and extend previously defined complex types. Extensions add element or attribute declarations to existing types, while restrictions restrict the types by adding further characteristics and requirements (facets) to a type. An example for a type extension is given in \lst{xmlExtension}.
+XML Schema offers mechanisms to restrict and extend previously defined complex types. 
+Extensions add element or attribute declarations to existing types, while restrictions restrict the types by adding further characteristics and requirements (facets) to a type. 
+An example for a type extension is given in \lst{xmlExtension}.
 %
 \begin{myXmlLst}{Definition of the sedML type through extension of SEDBase in SED-ML}{lst:xmlExtension}
 	<xs:element name="sedML">
@@ -146,7 +148,7 @@ XML Schema offers mechanisms to restrict and extend previously defined complex t
 					<xs:attribute name="level" type="xs:decimal" use="required"
 						fixed="1" />
 					<xs:attribute name="version" type="xs:decimal" use="required"
-						fixed="1" />
+						fixed="2" />
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
@@ -154,7 +156,7 @@ XML Schema offers mechanisms to restrict and extend previously defined complex t
 \end{myXmlLst}
 %
 %% Q: How about renaming sedML to sed-ml for the next version?
-The \code{sedML} element is an extension of the previously defined \code{SEDBase} type. It extends \code{SEDBase} by a sequence of five additional elements (\code{listOfSimulations}, \code{listOfModels}, \code{listOfTasks}, \code{listOfDataGenerators}, and \code{listOfOutputs}) and a new attribute \code{version}.
+The \code{sedML} element is an extension of the previously defined \code{SEDBase} type. It extends \code{SEDBase} by a sequence of five additional elements (\code{listOfSimulations}, \code{listOfModels}, \code{listOfTasks}, \code{listOfDataGenerators}, and \code{listOfOutputs}) and two new attributes \code{version} and \code{level}.
 
 %% MAPPINGS
 % \subsection{Mappings}
