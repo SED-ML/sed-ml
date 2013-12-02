@@ -1,0 +1,48 @@
+\subsubsection{\element{Notes}}
+\label{class:notes}
+
+A \concept{note} is considered a  human-readable description of the element it is assigned to. It serves to display information to the user. 
+Instances of the \concept{Notes} class may contain any valid XHTML \citep{P+02}, ranging from short comments to whole HTML pages for display in a Web browser. 
+The namespace URL for \code{XHTML} content inside the \hyperref[class:notes]{Notes} class is \url{http://www.w3.org/1999/xhtml}. It may either be declared in the \hyperref[class:sed-ml]{\code{sedML} XML element}, or directly used in top level XHTML elements contained within the  \code{notes} element. For further options of how to set the namespace and detailed examples, please refer to \citep[p. 14]{HBH+10}.
+
+\tabtext{notes}{Notes}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+xmlns:string & \refpage{sec:xmlns} \\
+ {``http://www.w3.org/1999/xhtml" } & \\
+\hline
+\hline
+\textbf{\subelements} & \textbf{ }\\
+\hline
+\emph{well-formed content permitted in XHTML} & \\
+\hline
+\end{tabular}
+\caption{\tabcap{Notes}}
+\label{tab:notes}
+\end{table}
+%
+\code{Notes}  does not have any further sub-elements defined in SED-ML, nor attributes associated with it.
+%
+
+\lsttext{notes}{notes}
+%
+\begin{myXmlLst}{The \element{notes} element}{lst:notes}
+<sedML [..]>
+ <notes >
+  <p xmlns="http://www.w3.org/1999/xhtml">The enclosed simulation description shows the oscillating behaviour of 
+     the Repressilator model using deterministic and stochastic simulators.</p>
+ </notes>
+</sedML>
+\end{myXmlLst}
+%
+In this example, the namespace declaration is inside the \element{notes} element and the note is related to the \element{sedML} root element of the SED-ML file. A note may, however, occur inside \emph{any} SED-ML XML element, except \code{note} itself and \hyperref[class:annotation]{\code{annotation}}.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V2"
+%%% End: 

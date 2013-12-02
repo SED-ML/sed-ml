@@ -1,0 +1,30 @@
+ \subsubsection{listOfDataGenerators: The post-processing container}
+\label{sec:listOfDataGenerators}
+
+In SED-ML, all variable- and parameter values that shall be used in the \hyperref[class:output]{Output} class need to be defined as a \hyperref[class:dataGenerator]{dataGenerator} beforehand. The container for those data generators is the \concept{listOfDataGenerators} (\fig{listOfDataGenerators}). 
+% Fig: DG
+\sedfig[width=0.85\textwidth]{pdf/listOfDataGenerators}{The SED-ML listOfDataGenerators container}{fig:listOfDataGenerators}
+%
+
+\lsttext{listOfDataGenerators}{listOfDataGenerators}
+%
+\begin{myXmlLst}{The \code{listOfDataGenerators} element, defining two data generators \emph{time} and \emph{LaCI repressor}}{lst:listOfDataGenerators}
+<listOfDataGenerators>
+ <dataGenerator id="d1" name="time">
+  [DATA GENERATOR DEFINITION FOLLOWING]
+ </dataGenerator>
+ <dataGenerator id="LaCI" name="LaCI repressor">
+  [DATA GENERATOR DEFINITION FOLLOWING]
+ </dataGenerator>
+</listOfDataGenerators>
+\end{myXmlLst}
+
+The \code{listOfDataGenerators} is optional and in general may contain zero to many DataGenerators. However, if the \LoneVtwo document contains  an  \code{Output}  element, at least one  \code{DataGenerator} must be defined to which the \code{Output} element refers -  see  section \ref{sec:dataReference} on \refpage{sec:dataReference}.
+%
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V2"
+%%% End: 
