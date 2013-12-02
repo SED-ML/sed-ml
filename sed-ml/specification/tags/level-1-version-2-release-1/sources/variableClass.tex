@@ -1,0 +1,95 @@
+% variable class
+\subsection{\element{Variable}}
+\label{class:variable}
+\concept{Variables} are references to already existing entities, either existing in one of the defined \hyperref[class:model]{models} or implicitly defined \hyperref[sec:symbol]{symbols} (\fig{variable}). 
+%
+\sedfig[width=0.35\textwidth]{pdf/variable}{The Variable class}{fig:variable}
+%
+If the variable is defined through a reference to a model constituent, such as an SBML species, or to an entity within the SED-ML file itself, then the reference is specified using the \hyperref[sec:target]{target} attribute.
+If the variable is defined through a reference to an \hyperref[sec:implicitVariable]{implicit variable}, rather than one explicitly appearing in the model, then the \hyperref[sec:symbol]{symbol} attribute is used, which holds a SED-ML \hyperref[sec:uriScheme]{URI}.
+A \code{variable} is always placed inside a \hyperref[sec:listOfVariables]{listOfVariables}.
+The \code{symbol} and \code{target} attributes must not be used together in a single instance of Variable, although at least one must be present.
+
+\tabtext{variable}{Variable}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+target & \refpage{sec:target}\\
+symbol & \refpage{sec:symbol}\\
+\hline
+taskReference & \refpage{sec:taskReference}\\
+modelReference & \refpage{sec:modelReference}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\caption{\tabcap{Variable}}
+\label{tab:variable}
+\end{table}
+%
+
+A \code{variable} element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:dataGenerator]{dataGenerator} element.
+A \code{variable} element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:computeChange]{computeChange} element.
+A \code{variable} element appearing within a \hyperref[class:functionalRange]{functionalRange} or \hyperref[class:setValue]{setValue} element must contain a \hyperref[sec:modelReference]{modelReference} if and only if it references a model variable.
+
+%
+\lsttext{variable}{variable}
+
+%
+\begin{myXmlLst}{SED-ML \code{variable} definitions inside the \code{computeChange} element and inside the \code{dataGenerator} element}{lst:variable}
+<sedML>
+ <listOfModels>
+  <model [..]>
+   <listOfChanges>
+    <computeChange target="TARGET ELEMENT OR ATTRIBUTE">
+     <listOfVariables>
+       <variable id="v1" name="maximum velocity" 
+        target="XPath TO A MODEL ELEMENT OR ATTRIBUTE IN ANY SPECIFIED MODEL" />
+      [FURTHER VARIABLE DEFINITIONS]
+     </listOfVariables>
+     [..]
+    </computeChange>
+   </listOfChanges>
+   [..]
+  </model>
+  [..]
+ </listOfModels>
+ <listOfDataGenerators>
+  <dataGenerator [..]>
+   <listOfVariables>
+    <variable id="v2" name="time" taskReference="task1" symbol="urn:sedml:symbol:time" />
+      [FURTHER VARIABLE DEFINITIONS]
+   </listOfVariables>
+  </dataGenerator>
+ </listOfDataGenerators>
+ [..]
+</sedML>
+\end{myXmlLst}
+%
+Listing \ref{lst:variable} defines a variable \code{v1} (line 7) to compute a change on a model constituent (referenced by the \code{target} attribute on \element{computeChange} in line 5). The value of \code{v1} corresponds with the value of the targeted model constituent referenced by the \code{target} attribute in line 8. 
+The second variable, \code{v2} (line 21), is used inside a \code{dataGenerator}. As the variable is \concept{time} as used in \code{task1}, the \code{symbol} attribute is used to refer to the SED-ML URI for time (line 21).
+
+\input{sources/target.tex}
+
+\input{sources/symbol.tex}
+
+
+%
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V2"
+%%% End: 

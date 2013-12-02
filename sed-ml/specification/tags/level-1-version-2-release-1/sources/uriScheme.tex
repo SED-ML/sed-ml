@@ -1,0 +1,65 @@
+% The proposed URI scheme to use
+  \subsection{URI Scheme}  
+\label{sec:uriScheme}
+
+URIs are needed at different points in SED-ML \LoneVtwo. 
+Firstly, they are the preferred mechanism to refer to model encodings. 
+Secondly, they are used to specify the language of the referenced model.
+Thirdly, they enable addressing implicit model variables.
+Finally, annotations of SED-ML elements should be provided with a standardised annotation scheme.
+
+The use of a standardised URI Scheme ensures long-time availability  of particular information that can unambiguously be identified. 
+
+\subsubsection{Model references}
+\label{sec:modelURI}
+The preferred way for referencing a model from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}.
+MIRIAM enables identification of a data resource (in this case a model resource) by a predefined URN. A data entry inside that resource is identified by an ID. 
+That way each single  model  in a particular model repository can be unambiguously referenced. To become part of MIRIAM resources, a model repository must ensure permanent and consistent model references, that is stable IDs.
+
+One model repository that is part of MIRIAM resources is the \concept{BioModels Database} \citep{LDR+10}. Its data resource name in MIRIAM is \code{urn:miriam:biomodels.db}. To refer to a particular model, a standardised identifier scheme is defined in \concept{MIRIAM Resources}\footnote{\url{http://www.ebi.ac.uk/miriam/}}. The ID entry maps to a particular model in the model repository. That model is never deleted. 
+A sample BioModels Database ID is \code{BIOMD0000000048}. Together with the data resource name it becomes unambiguously identifiable by the URN \code{urn:miriam:biomodels.db:BIOMD0000000048} (in this case referring to the 1999 Kholodenko model on EGFR signaling). 
+%
+
+SED-ML recommends to follow the above scheme for model references, if possible. 
+SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offers web services to do so\footnote{\url{http://www.ebi.ac.uk/miriam/}}. For the above example of the \code{urn:miriam:biomodels.db:BIOMD0000000048} model, the resolved URL may look like: 
+\begin{itemize}
+ \item{\code{http://biomodels.caltech.edu/BIOMD0000000048} or}
+ \item{\code{http://www.ebi.ac.uk/biomodels-main/BIOMD0000000048}}
+\end{itemize}
+depending on the physical location of the resource chosen to resolve the URN.
+
+An alternative means to obtain a model may be to provide a single resource containing necessary models and a SED-ML file. Although a specification of such a resource is beyond the scope of this document,  one proposal  --  COMBINE archive format -- is  described in Appendix~\ref{app:archive}.
+Further information on the \hyperref[sec:source]{source} attribute referencing the model location is provided in Section~\ref{sec:source}.
+
+\subsubsection{Language references}
+\label{sec:languageURI}
+To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used. 
+The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{name.version}. 
+SED-ML allows to specify a model representation format very generally as being \code{XML}, if no standardised representation format has been used to encode the model. On the other hand, one can be as specific as defining
+a model being in a particular version of a language, as ``SBML Level 2, Version 2, Revision 1''.
+
+The list of URNs is available from \url{http://sed-ml.org/}. 
+Further information on the \hyperref[sec:language]{language} attribute is provided in Section~\ref{sec:language}.
+
+\subsubsection{Implicit variables}
+\label{sec:implicitVariable}
+
+Some variables used in an experiment are not explicitly defined in the model, but may be implicitly contained in it. 
+For example, to plot a variable's behaviour over time, that variable is defined in an SBML model, while \emph{time} is not explicitly defined. 
+
+To overcome this issue and allow SED-ML to refer to such variables in a common way, the notion of \emph{implicit variables} is used.
+Those variables are called \code{symbols} in SED-ML. They are defined following the idea of MIRIAM URNs and using the SED-ML URN scheme. The structure of the URNs is \element{urn:sedml:symbol:}\emph{implicit variable}.
+To refer from a SED-ML file to the definition of \emph{time}, for example, the URN is \element{urn:sedml:symbol:time}.
+
+The list of predefined symbols is available from the SED-ML site on \url{http://sed-ml.org/}.
+From that source, a mapping of SED-ML symbols on existing concepts in the languages supported by SED-ML is provided.
+
+\subsubsection{Annotations}
+\label{sec:annotations}
+When annotating SED-ML elements with semantic \hyperref[class:annotation]{annotation}s, the \concept{MIRIAM URI Scheme} should be used. In addition to providing the data type (e.\,g.\ PubMed) and the particular data entry inside that data type (e.\,g.\ \code{10415827}), the relation of the annotation to the annotated element should be described using the standardised \concept{biomodels.net qualifier}. The list of qualifiers, as well as further information about their usage, is available from \url{http://www.biomodels.net/qualifiers/}.
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V2"
+%%% End: 

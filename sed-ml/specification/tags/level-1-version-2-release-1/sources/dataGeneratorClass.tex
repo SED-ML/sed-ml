@@ -1,0 +1,79 @@
+\subsection{\element{DataGenerator}}
+\label{class:dataGenerator}
+
+The \concept{DataGenerator} class prepares the raw simulation results for later output (\fig{sedDG}). It encodes the post-processing  to be applied to the simulation data. The post-processing steps could be anything, from simple normalisations of data to mathematical calculations. 
+%
+\sedfig[width=0.3\textwidth]{pdf/dataGeneratorClass}{The SED-ML DataGenerator class}{fig:sedDG}
+%
+Each instance of the \concept{DataGenerator} class is identifiable within the experiment by its unambiguous \concept{id}. It can be further characterised by an optional \concept{name}. The related \hyperref[sec:math]{Math} class contains a mathML expression for the calculation of the data generator. Mathematical functions available for the specification of data generators are given in Section~\ref{sec:mathML} on \refpage{sec:mathML}. \hyperref[class:variable]{Variable} and \hyperref[class:parameter]{Parameter} instances can be used to encode the mathematical expression.
+
+\tabtext{dataGenerator}{dataGenerator}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+%listOfVariables$^{o}$ & \refpage{sec:listOfVariables}\\
+%listOfParameters$^{o}$ & \refpage{sec:listOfParameters}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+math & \refpage{sec:math}\\
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+variable$^{o}$ & \refpage{class:variable}\\
+parameter$^{o}$ & \refpage{class:parameter}\\
+\hline
+\end{tabular}
+\caption{\tabcap{dataGenerator}}
+\label{tab:dataGenerator}
+\end{table}
+%
+
+\lsttext{dataGenerator}{dataGenerator}
+%
+\begin{myXmlLst}{Definition of two \code{dataGenerator} elements, \emph{time} and \emph{LaCI repressor}}{lst:dataGenerator}
+<listOfDataGenerators>
+ <dataGenerator id="d1" name="time">
+  <listOfVariables>
+   <variable id="time" taskReference="task1" symbol="urn:sedml:symbol:time" />
+  </listOfVariables >
+  <listOfParameters />
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+   <ci> time </ci>
+  </math>
+ </dataGenerator>
+ <dataGenerator id="d2" name="LaCI repressor">
+  <listOfVariables>
+   <variable id="v1" taskReference="task1" 
+    target="/sbml:sbml/sbml:model/sbml:listOfSpecies/
+            sbml:species[@id='PX']" />
+  </listOfVariables>
+  <math:math>
+   <math:ci>v1</math:ci>
+  </math:math>
+ </dataGenerator>
+</listOfDataGenerators>
+\end{myXmlLst}
+%
+The \code{listOfDataGenerator} contains two \code{dataGenerator} elements. 
+The first one, \code{d1}, refers to the task definition \code{t1} (which itself refers to a particular model), and from the corresponding model it reuses the symbol \code{time}.
+The second one, \code{d2}, references a particular species defined in the same model (and referred to via the \code{taskReference="t1"}). The model species with ID \code{PX} is reused for the data generator \code{d2} without further post-processing.
+
+%% Change in schema: The math attribute in the UML would become an attribuet in the XMLS -> maybe better to define a Math class (for consistent conversion and reuse of the Math class)
+
+%% Comment: listOfVariables and listOfParameters should be global lists which are then referred to from inside the listOfDataGenerator/listOfChanges and so on -> propose a change in the XML schema
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V2"
+%%% End: 
