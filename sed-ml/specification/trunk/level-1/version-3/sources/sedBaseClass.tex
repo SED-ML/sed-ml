@@ -1,0 +1,43 @@
+% SED-Base class
+\subsection{\element{SEDBase}}
+\label{class:sedBase}
+\concept{SEDBase} is the base class  of SED-ML \currentLV. All other classes are derived from it. As such it provides means to attach additional information on all other classes  (\fig{sedBase}). That information can be specified by human readable \hyperref[class:notes]{Notes} or custom \hyperref[class:annotation]{Annotations}. 
+%
+\sedfig[width=0.9\textwidth]{pdf/sedBaseClass}{The SEDBase class}{fig:sedBase}
+%
+
+%SEDBase has one optional attribute \hyperref[sec:metaID]{metaID}. 
+
+\tabtext{sedbase}{SEDBase}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID} \\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\caption{\tabcap{SEDBase}}
+\label{tab:sedbase}
+\end{table}
+%
+
+\input{sources/metaid}
+
+\input{sources/notesClass}
+
+\input{sources/annotationClass}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 

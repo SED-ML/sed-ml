@@ -1,0 +1,62 @@
+% Change Class
+  \subsection[Change]{\element{Change}}
+\label{class:change}
+SED-ML not only allows to use the sole model for simulation, but also enables the description of \concept{changes} to be made on the model before simulation  (\fig{sedChange}). Changes can be of three distinct types:
+\begin{enumerate}
+ \item{Changes on attributes of the model's XML representation (\hyperref[class:changeAttribute]{ChangeAttribute})}
+ \item{Changes on any XML snippet of the model's XML representation (\hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML})}
+ \item{Changes based on mathematical calculations (\hyperref[class:computeChange]{ComputeChange})} 
+ \end{enumerate}
+
+The \concept{Change} class is abstract and serves as the base class for different types of changes.
+Therefore, a SED-ML document will only contain the derived classes, i.e.\ \hyperref[class:changeAttribute]{ChangeAttribute}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML}, or \hyperref[class:computeChange]{ComputeChange}.
+%
+\sedfig[width=\textwidth]{pdf/changeClass}{The SED-ML Change class}{fig:sedChange}
+%
+
+\tabtext{change}{change}
+%
+\begin{table}[h!]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+target & \refpage{sec:target}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\caption{\tabcap{change}}
+\label{tab:change}
+\end{table}
+%
+
+Each Change has a \hyperref[sec:target]{target} attribute that holds a valid XPath expression pointing to the XML element or XML attribute that is to undergo the defined changes.
+Except for the cases of \hyperref[class:changeXml]{ChangeXML} and \hyperref[class:removeXml]{RemoveXML}, this XPath expression must always select a \emph{single} element or attribute within the relevant model.
+
+  \input{sources/newXmlClass}
+
+  \input{sources/addXmlClass}
+
+  \input{sources/changeXmlClass}
+
+  \input{sources/removeXmlClass}
+
+  \input{sources/changeAttributeClass}
+
+  \input{sources/computeChangeClass}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 

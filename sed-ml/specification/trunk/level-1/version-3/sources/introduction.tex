@@ -1,0 +1,22 @@
+% introduction
+\chapter{Introduction}
+
+The number of available computational models of biological systems is growing at an ever increasing pace. 
+At the same time, their size and complexity are also increasing. The need to build on existing studies by reusing models therefore becomes more imperative. 
+It is now generally accepted that one needs to be able to exchange the biochemical and mathematical structure of models. 
+The efforts to standardise the representation of computational models in various areas of biology, such as the \emph{Systems Biology Markup Language} (SBML, \citep{Hucka:2003}), \emph{CellML} \citep{cuellar:2003} or \emph{NeuroML} \citep{Goddard:2001}, resulted in such an increase of the exchange and re-use of models. 
+However, the description of the structure of models is not sufficient to enable the reproduction of simulation results.  
+One also needs to describe the procedures the models are subjected to, as described by the \emph{Minimum Information About a Simulation Experiment (MIASE)} \citep{Waltemath:2011}. 
+
+This document presents  \currentLV of the \emph{Simulation Experiment Description Markup Language} (SED-ML), a computer-readable format for encoding simulation experiments. 
+SED-ML files are encoded in the \emph{Extensible Markup Language} (XML) \citep{Bray:2006}. The SED-ML format is defined by an XML Schema \citep{Fallside:2001}. 
+\currentLV is the successor of \previousLV and \LoneVone, which is described in \citep{WAB+11}.
+
+%% EXAMPLE OF A SIMULATION EXPERIMENT DESCRIPTION (INFORMAL)
+\input{sources/motivation}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 

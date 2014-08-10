@@ -1,0 +1,42 @@
+\subsection{\element{id}}
+\label{sec:id}
+%
+
+Most objects in SED-ML carry an \concept{id} attribute. 
+The \hyperref[sec:id]{id} attribute, if it exists for an object, is always required and identifies SED-ML constituents unambiguously.   
+The data type for \code{id} is \code{SId} which is a datatype derived from the basic XML type \code{string}, but with restrictions about the characters permitted and the sequences in which those characters may appear. The definition is shown in
+Figure~\vref{fig:sid}.
+
+\begin{figure}[hbt]
+  \ttfamily
+  \small
+  \centering
+  \begin{tabular}{lll}
+    letter & ::= & 'a'..'z','A'..'Z'\\
+    digit  & ::= & '0'..'9'\\
+    idChar & ::= & letter | digit | '\_'\\
+    SId    & ::= & ( letter | '\_' ) idChar*\\
+  \end{tabular}
+  \vspace*{-1ex}
+  \caption{The definition of the type \code{SId}}
+  \label{fig:sid}
+\end{figure}
+
+For a detailed description see also the SBML specification on the ``Type SId'' \citep[p. 11]{HBH+10}.
+
+All \code{id}s have a global scope, i.\,e.\ the \code{id} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
+
+An example for a defined \concept{id} is given in Listing~\ref{lst:id}.
+%
+\begin{myXmlLst}{SED-ML identifier definition, e.\,g.\ for a model}{lst:id}
+<model id="m00001" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000012">
+ [MODEL DEFINITION]
+</model>
+\end{myXmlLst}
+%
+The defined model carries the  \code{id} \code{m00001}. If the model is referenced elsewhere in the SED-ML document, it is referred to by that  \code{id}.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 
