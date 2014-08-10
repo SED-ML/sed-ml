@@ -1,0 +1,90 @@
+\subsection{\element{DataDescription}}
+% datadescription class
+\label{class:dataDescription}
+The \concept{DataDescription} class (\fig{sedDataDescription}) references a file containing data points, along with a description on how to access that file, and what information to extract from it. 
+
+The \concept{DataDescription} class introduces three attributes: the required attribute \token{id} and \token{source} and the optional attribute \token{name}. Additionally two elements are defined: \concept{dimensionDescription} and \concept{listOfDataSources}. 
+
+% Fig: sed model
+\sedfig[width=0.5\textwidth]{pdf/sedDataDescription}{The SED-ML DataDescription class}{fig:sedDataDescription}
+%
+
+\tabtext{dataDescription}{dataDescription}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+source & \refpage{sec:sedsource}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+dimensionDescription$^{o}$ & \refpage{class:dimensionDescription}\\
+listOfDataSources$^{o}$ & \refpage{class:listOfDataSources}\\
+\hline
+\end{tabular}
+\caption{\tabcap{dataDescription}}
+\label{tab:dataDescription}
+\end{table}
+%
+
+\subsubsection{The \token{id} and \token{name} attributes}
+The attribute \token{id} of type \token{SId} is meant to uniquely identify the \token{dataDescription} element, while the optional \token{name} attribute of type \token{string}, is there to provide a human readable representation if desired.
+
+\subsubsection{The \token{source} attribute}
+\label{sec:sedsource}
+Analog to how the \token{source} attribute on the \SedModel is handled, this attribute provides a location of a data file. In order to resolve the \token{source} attribute, the same mechanisms are allowed as for \SedModel element: be it a local file system, a relative link or an online resource.
+
+\note{The community decided, that the file will always be encoded in the NuML format.}
+
+\lsttext{dataDescription}{dataDescription}
+%
+\begin{myXmlLst}{SED-ML \code{dataDescription} element}{lst:dataDescription}
+   <dataDescription id="Data1" name="Oscli Time Course Data" 
+     source="http://svn.code.sf.net/p/libsedml/code/trunk/Samples/data/oscli.numl" >
+     ...
+    </dataDescription>
+\end{myXmlLst} 
+%
+
+\subsubsection{\element{dimensionDescription}}
+\label{class:dimensionDescription}
+
+The \concept{dimensionDescription} element is the data description from an NuML file. Consider for example:
+
+%
+\begin{myXmlLst}{SED-ML \code{dimensionDescription} element}{lst:dataDescription}
+    <dimensionDescription>
+        <compositeDescription indexType="double" id="time" name="time" 
+          xmlns="http://www.numl.org/numl/level1/version1">
+        <compositeDescription indexType="string" id="SpeciesIds" name="SpeciesIds">
+            <atomicDescription valueType="double" name="Concentration" />
+        </compositeDescription>
+        </compositeDescription>
+    </dimensionDescription>
+\end{myXmlLst} 
+%
+
+Here a nested NuML \token{componentDescription} with \token{time} spanning one dimension and \token{SpeciesIds} another. This two dimensional space is then filled with \token{double} values representing concentrations.
+
+\subsubsection{\element{listOfDataSources}}
+\label{class:listOfDataSources}
+The \concept{listOfDataSources} contains one or more \SedDataSource elements that are then used in the remainder of the SED-ML document.
+
+
+\include{sources/dataSourceClass}
+
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 

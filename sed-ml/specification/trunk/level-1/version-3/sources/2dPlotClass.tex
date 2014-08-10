@@ -1,0 +1,51 @@
+\subsubsection{\element{Plot2D}}
+\label{class:plot2D}
+A \concept{2 dimensional plot} (\fig{plot2D}) contains a number of \hyperref[class:curve]{curve} definitions. 
+% Fig: 2DPlot
+\sedfig[width=0.75\textwidth]{pdf/plot2DClass}{The SED-ML Plot2D class}{fig:plot2D}
+%
+
+\tabtext{plot2D}{plot2D}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+curve & \refpage{class:curve}\\
+\hline
+\end{tabular}
+\caption{\tabcap{plot2D}}
+\label{tab:plot2D}
+\end{table}
+%
+
+\lsttext{listOfCurves}{listOfCurves}
+%
+\begin{myXmlLst}{The \code{plot2D} element with the nested \code{listOfCurves} element}{lst:listOfCurves}
+<plot2D>
+ <listOfCurves>
+  <curve>
+    [CURVE DEFINITION]
+  </curve>
+  [FURTHER CURVE DEFINITIONS]
+ </listOfCurves>
+</plot2D>
+\end{myXmlLst}
+%
+The listing shows the definition of a 2 dimensional plot containing one \hyperref[class:curve]{curve} element inside the \code{listOfCurves}. The curve definition follows in Section~\ref{class:curve} on \refpage{class:curve}.
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 

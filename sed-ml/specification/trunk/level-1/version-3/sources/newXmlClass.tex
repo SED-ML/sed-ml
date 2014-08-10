@@ -1,0 +1,46 @@
+  \subsubsection{\element{NewXML}}
+\label{sec:newXml}
+
+The \code{newXML} element provides a piece of XML code (\fig{sedChange}). 
+\code{NewXML} must hold a valid piece of XML which after insertion into the original model must lead to a valid model file, according to the model language specification (as given by the \hyperref[sec:language]{language} attribute).
+
+%\sedfig[width=0.35\textwidth]{pdf/newXmlClass}{The \code{NewXML} class}{fig:newXml}
+
+\tabtext{newXML}{newXML}
+
+%
+\begin{table}[h!]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+\emph{none} & \\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+\emph{anyXML} & \\
+\hline
+\end{tabular}
+\caption{\tabcap{newXML}}
+\label{tab:newXML}
+\end{table}
+%
+
+
+The \code{newXML} element is used at two different places inside SED-ML \currentLV:
+%
+\begin{enumerate}
+\item{If it is used as a sub-element of the \hyperref[class:addXml]{addXML} element, then the XML it contains  it is to be \emph{inserted as a child} of the XML element addressed by the XPath.}
+\item{If it is used as a sub-element of the \hyperref[class:changeXml]{changeXML} element, then the XML it contains is to \emph{replace} the XML element addressed by the XPath.}
+\end{enumerate}
+%
+Examples are given in the relevant change class definitions.
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 
