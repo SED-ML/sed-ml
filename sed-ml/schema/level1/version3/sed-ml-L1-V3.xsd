@@ -593,7 +593,7 @@
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
 					<xs:sequence>						
-						<xs:element ref="listOfSlices" minOccurs="0" maxOccurs="unbounded" //>
+						<xs:element ref="listOfSlices" minOccurs="0" maxOccurs="unbounded" />
 					</xs:sequence>
 					<xs:attribute name="indexSet" type="SId" use="optional" />
 					<xs:attributeGroup ref="idGroup" />
