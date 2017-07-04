@@ -3,613 +3,689 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" href="styles/sed-ml.css" type="text/css" />
-  <title>SED-ML Showcase</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="styles/sed-ml.css" type="text/css"/>
+    <title>SED-ML Showcase</title>
 
-  <!-- JavaScripts-->
-  <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
-  <script type="text/javascript" src="js/jquery.history.js"></script>
-  <script type="text/javascript" src="js/jquery.galleriffic.js"></script>
-  <script type="text/javascript" src="js/jquery.opacityrollover.js"></script>
+    <!-- JavaScripts-->
+    <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.history.js"></script>
+    <script type="text/javascript" src="js/jquery.galleriffic.js"></script>
+    <script type="text/javascript" src="js/jquery.opacityrollover.js"></script>
 
-  <style type="text/css" media="screen">
-    div.content a, div.navigation a {
-      text-decoration: none;
-    }
+    <style type="text/css" media="screen">
+        div.content a, div.navigation a {
+            text-decoration: none;
+        }
 
-      div.content a:hover, div.content a:active {
-        text-decoration: underline;
-      }
+        div.content a:hover, div.content a:active {
+            text-decoration: underline;
+        }
 
-      div.navigation a.pageLink {
-        height: 77px;
-        line-height: 77px;
-      }
+        div.navigation a.pageLink {
+            height: 77px;
+            line-height: 77px;
+        }
 
-    div.controls {
-      margin-top: 5px;
-      height: 23px;
-    }
+        div.controls {
+            margin-top: 5px;
+            height: 23px;
+        }
 
-      div.controls a {
-        padding: 5px;
-      }
+        div.controls a {
+            padding: 5px;
+        }
 
-    div.ss-controls {
-      float: left;
-    }
+        div.ss-controls {
+            float: left;
+        }
 
-    div.nav-controls {
-      float: right;
-    }
+        div.nav-controls {
+            float: right;
+        }
 
-    div.slideshow-container,
-    div.loader,
-    div.slideshow a.advance-link {
-      width: 450px; /* This should be set to be at least the width of the largest image in the slideshow with padding */
-    }
+        div.slideshow-container,
+        div.loader,
+        div.slideshow a.advance-link {
+            width: 450px; /* This should be set to be at least the width of the largest image in the slideshow with padding */
+        }
 
-    div.loader,
-    div.slideshow a.advance-link,
-    div.caption-container {
-      height: 400px; /* This should be set to be at least the height of the largest image in the slideshow with padding */
-    }
+        div.loader,
+        div.slideshow a.advance-link,
+        div.caption-container {
+            height: 400px; /* This should be set to be at least the height of the largest image in the slideshow with padding */
+        }
 
-    div.slideshow-container {
-      position: relative;
-      clear: both;
-      float: left;
-      height: 420px;
-    }
+        div.slideshow-container {
+            position: relative;
+            clear: both;
+            float: left;
+            height: 420px;
+        }
 
-    div.loader {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-image: url('images/loader.gif');
-      background-repeat: no-repeat;
-      background-position: center;
-    }
+        div.loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-image: url('images/loader.gif');
+            background-repeat: no-repeat;
+            background-position: center;
+        }
 
-    div.slideshow span.image-wrapper {
-      display: block;
-      position: absolute;
-      top: 30px;
-      left: 0;
-    }
+        div.slideshow span.image-wrapper {
+            display: block;
+            position: absolute;
+            top: 30px;
+            left: 0;
+        }
 
-    div.slideshow a.advance-link {
-      display: block;
-      line-height: 410px; /* This should be set to be at least the height of the largest image in the slideshow with padding */
-      text-align: center;
-      vertical-align: top;
-    }
+        div.slideshow a.advance-link {
+            display: block;
+            line-height: 410px; /* This should be set to be at least the height of the largest image in the slideshow with padding */
+            text-align: center;
+            vertical-align: top;
+        }
 
-      div.slideshow a.advance-link:hover,
-      div.slideshow a.advance-link:active,
-      div.slideshow a.advance-link:visited {
-        text-decoration: none;
-      }
+        div.slideshow a.advance-link:hover,
+        div.slideshow a.advance-link:active,
+        div.slideshow a.advance-link:visited {
+            text-decoration: none;
+        }
 
-      div.slideshow a.advance-link:focus {
-        outline: none;
-      }
+        div.slideshow a.advance-link:focus {
+            outline: none;
+        }
 
-      div.slideshow a.advance-link img {
-        border: none;
-      }
+        div.slideshow a.advance-link img {
+            border: none;
+        }
 
-    div.slideshow img {
-      border-style: solid;
-      border-width: 1px;
-    }
+        div.slideshow img {
+            border-style: solid;
+            border-width: 1px;
+        }
 
-    div.caption-container {
-      float: right;
-      position: relative;
-      margin-top: 2px;
-    }
+        div.caption-container {
+            float: right;
+            position: relative;
+            margin-top: 2px;
+        }
 
-    span.image-caption {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
+        span.image-caption {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
 
-    div.caption-container, span.image-caption {
-      width: 240px;
-    }
+        div.caption-container, span.image-caption {
+            width: 240px;
+        }
 
-    div.caption {
-      padding: 0 12px;
-    }
+        div.caption {
+            padding: 0 12px;
+        }
 
-    div.image-title {
-      font-weight: bold;
-      font-size: 1.4em;
-    }
+        div.image-title {
+            font-weight: bold;
+            font-size: 1.4em;
+        }
 
-    div.image-desc {
-      line-height: 1.3em;
-      padding-top: 12px;
-    }
+        div.image-desc {
+            line-height: 1.3em;
+            padding-top: 12px;
+        }
 
-    div.download {
-      margin-top: 8px;
-    }
+        div.download {
+            margin-top: 8px;
+        }
 
-    div.photo-index {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 0 12px;
-    }
+        div.photo-index {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 0 12px;
+        }
 
-    div.navigation-container {
-      float: left;
-      position: relative;
-      width: 720px;
-    }
+        div.navigation-container {
+            float: left;
+            position: relative;
+            width: 720px;
+        }
 
-    div.navigation {
-      float: left;
-      position: relative;
-    }
+        div.navigation {
+            float: left;
+            position: relative;
+        }
 
-      div.navigation a.pageLink {
-        display: block;
-        position: relative;
-        float: left;
-        margin: 2px;
-        width: 16px;
-        background-position: center center;
-        background-repeat: no-repeat;
-      }
+        div.navigation a.pageLink {
+            display: block;
+            position: relative;
+            float: left;
+            margin: 2px;
+            width: 16px;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
 
         div.navigation a.pageLink:focus {
-          outline: none;
+            outline: none;
         }
 
-    ul.thumbs {
-      position: relative;
-      float: left;
-      margin: 0;
-      padding: 0;
-    }
+        ul.thumbs {
+            position: relative;
+            float: left;
+            margin: 0;
+            padding: 0;
+        }
 
-      ul.thumbs li {
-        float: left;
-        padding: 0;
-        margin: 2px;
-        list-style: none;
-      }
+        ul.thumbs li {
+            float: left;
+            padding: 0;
+            margin: 2px;
+            list-style: none;
+        }
 
-    a.thumb {
-      padding: 1px;
-      display: block;
-    }
+        a.thumb {
+            padding: 1px;
+            display: block;
+        }
 
-      a.thumb:focus {
-        outline: none;
-      }
+        a.thumb:focus {
+            outline: none;
+        }
 
-    ul.thumbs img {
-      border: none;
-      display: block;
-    }
+        ul.thumbs img {
+            border: none;
+            display: block;
+        }
 
-    div.pagination {
-      clear: both;
-      position: relative;
-      left: -50%;
-    }
+        div.pagination {
+            clear: both;
+            position: relative;
+            left: -50%;
+        }
 
-      div.pagination a, div.pagination span.current, div.pagination span.ellipsis {
-        position: relative;
-        display: block;
-        float: left;
-        margin-right: 2px;
-        padding: 4px 7px 2px 7px;
-        border: 1px solid #ccc;
-      }
+        div.pagination a, div.pagination span.current, div.pagination span.ellipsis {
+            position: relative;
+            display: block;
+            float: left;
+            margin-right: 2px;
+            padding: 4px 7px 2px 7px;
+            border: 1px solid #ccc;
+        }
 
         div.pagination a:hover {
-          text-decoration: none;
+            text-decoration: none;
         }
 
-      div.pagination span.current {
-        font-weight: bold;
-      }
+        div.pagination span.current {
+            font-weight: bold;
+        }
 
-      div.pagination span.ellipsis {
-        border: none;
-        padding: 5px 0 3px 2px;
-      }
+        div.pagination span.ellipsis {
+            border: none;
+            padding: 5px 0 3px 2px;
+        }
 
-    div.gallery-gutter {
-      clear: both;
-      padding-bottom: 20px;
-    }
+        div.gallery-gutter {
+            clear: both;
+            padding-bottom: 20px;
+        }
 
-    div.image-title {
-      text-align: left;
-      font-weight: bold;
-      font-size: 1.4em;
-    }
+        div.image-title {
+            text-align: left;
+            font-weight: bold;
+            font-size: 1.4em;
+        }
 
-    div.image-desc {
-      text-align: justify;
-      line-height: 1.3em;
-      padding-top: 12px;
-      font-size: 10px;
-    }
+        div.image-desc {
+            text-align: justify;
+            line-height: 1.3em;
+            padding-top: 12px;
+            font-size: 10px;
+        }
 
-    div.download {
-      text-align: left;
-      margin-top: 8px;
-    }
+        div.download {
+            text-align: left;
+            margin-top: 8px;
+        }
 
-    div.photo-index {
-      color: #777;
-    }
+        div.photo-index {
+            color: #777;
+        }
 
-    div.navigation a.prev {
-      background-image: url(images/prevPageArrow.gif);
-    }
+        div.navigation a.prev {
+            background-image: url(images/prevPageArrow.gif);
+        }
 
-    div.navigation a.next {
-      background-image: url(images/nextPageArrow.gif);
-    }
+        div.navigation a.next {
+            background-image: url(images/nextPageArrow.gif);
+        }
 
-    div.loader {
-      background-image: url(images/loader.gif);
-    }
+        div.loader {
+            background-image: url(images/loader.gif);
+        }
 
-    div.slideshow img {
-      border-color: #ccc;
-    }
+        div.slideshow img {
+            border-color: #ccc;
+        }
 
-    ul.thumbs li.selected a.thumb {
-      background: #000;
-    }
+        ul.thumbs li.selected a.thumb {
+            background: #000;
+        }
 
-    div.pagination a:hover {
-      background-color: #eee;
-    }
+        div.pagination a:hover {
+            background-color: #eee;
+        }
 
-    div.pagination span.current {
-      background-color: #000;
-      border-color: #000;
-      color: #fff;
-    }
-  </style>
+        div.pagination span.current {
+            background-color: #000;
+            border-color: #000;
+            color: #fff;
+        }
+    </style>
 
 </head>
 <body>
 
-  <div id="container">
+<div id="container">
 
     <!-- head -->
     <div id="head">
-      <table width="100%" style="border=0; padding=0; margin=0;">
-        <tr>
-          <td align="left" valign="top">
-            <a href="index.html" title="SED-ML home page">
-              <img src="images/logoSEDML_H75.png" border="0" alt="SED-ML logo" height="75" /></a>
-          </td>
-          <td>
-            <div id="pageTitle">Simulation Experiment Description Markup Language</div>
-          </td>
-        </tr>
-      </table>
+        <table width="100%" style="border=0; padding=0; margin=0;">
+            <tr>
+                <td align="left" valign="top">
+                    <a href="index.html" title="SED-ML home page">
+                        <img src="images/logoSEDML_H75.png" border="0" alt="SED-ML logo" height="75"/></a>
+                </td>
+                <td>
+                    <div id="pageTitle">Simulation Experiment Description Markup Language</div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <!-- menu -->
     <div id="menu">
-      <a class="tab" href="index.html" title="SED-ML home page">Home</a>
-      <a class="tab" href="specifications.html" title="SED-ML specifications">Specifications</a>
-      <a class="tab" href="documents.html" title="SED-ML information">Information</a>
-      <a class="activeTab" href="showcase.html" title="Showcase">Showcase</a>
-      <a class="tab" href="contact.html" title="Contact us">Contact</a>
-      <a class="tab" href="about.html" title="Editors">Editors</a>
+        <a class="tab" href="index.html" title="SED-ML home page">Home</a>
+        <a class="tab" href="specifications.html" title="SED-ML specifications">Specifications</a>
+        <a class="tab" href="documents.html" title="SED-ML information">Information</a>
+        <a class="activeTab" href="showcase.html" title="Showcase">Showcase</a>
+        <a class="tab" href="contact.html" title="Contact us">Contact</a>
+        <a class="tab" href="about.html" title="Editors">Editors</a>
     </div>
 
 
     <!-- content -->
     <div id="content">
 
-      <h2>SED-ML Showcase</h2>
-      <p>
-        On this page we present a number of tools created by the SED-ML 
-	   community. You will find libraries as well as end user applciations. 
-	   If you would like your software tool to be listed here
-	   please fill out the <a href="http://tinyurl.com/3mkoczr" title="SED-ML Tool Survey">survey</a>.
-      </p>
+        <h2>SED-ML Showcase</h2>
+        <p>
+            On this page we present a number of tools created by the SED-ML
+            community. You will find libraries as well as end user applciations.
+            If you would like your software tool to be listed here
+            please fill out the <a href="http://tinyurl.com/3mkoczr" title="SED-ML Tool Survey">survey</a>.
+        </p>
 
-      <div class="slideshow-container">
-        <div id="controls" class="controls"></div>
-        <div id="loading" class="loader"></div>
-        <div id="slideshow" class="slideshow"></div>
-      </div>
-      <div id="caption" class="caption-container">
-        <div class="photo-index"></div>
-      </div>
-
-
-      <!-- End Gallery Html Containers -->
-      <div style="clear: both;"></div>
-      <div class="navigation-container">
-        <div id="thumbs" class="navigation">
-          <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
-          <ul class="thumbs noscript">
-
-
-            <li>
-              <a class='thumb' name='CellDesigner' href='showcase_images/CellDesigner.png' title='CellDesigner'>
-                <img src='showcase_images/CellDesigner_s.png' alt='CellDesigner' />
-              </a>
-              <div class='caption'>
-                <div class='image-title'><a href='http://celldesigner.org' target='_blank'>CellDesigner</a></div>
-                <div class='image-desc'>CellDesigner is software for modeling and simulation of biochemical and gene regulatory networks, originally developed by the Systems Biology Institute in Japan. While CellDesigner itself is a sophisticated structured diagram editor, it enables users to directly integrate various tools, such as built-in SBML ODE Solver, COPASI, SBMLSimulator and SBW-powered simulation/analysis modules. CellDesigner runs on various platforms such as Windows, MacOS X and Linux, and is freely available from http://celldesigner.org/.</div>
-              </div>
-            </li>
-            <li>
-              <a class='thumb' name='SED-ML Script Editor' href='showcase_images/SED-ML_Script_Editor.png' title='SED-ML Script Editor'>
-                <img src='showcase_images/SED-ML_Script_Editor_s.png' alt='SED-ML Script Editor' />
-              </a>
-              <div class='caption'>
-                <div class='image-title'><a href='http://libsedml.sourceforge.net/libSedML/SedMLScript.html' target='_blank'>SED-ML Script Editor</a></div>
-                <div class='image-desc'>The SED-ML Script Editor allows to construct SED-ML documents using a simplified script language. Starting out by directly importing SBML or CellML models an initial script is generated that can be simulated. From there it is easy to modify it to suite your needs. </div>
-              </div>
-            </li>
-            <li>
-              <a class='thumb' name='SED-ML Web Tools' href='showcase_images/SED-ML_Web_Tools.png' title='SED-ML Web Tools'>
-                <img src='showcase_images/SED-ML_Web_Tools_s.png' alt='SED-ML Web Tools' />
-              </a>
-              <div class='caption'>
-                <div class='image-title'><a href='http://sysbioapps.dyndns.org/SED-ML_Web_Tools' target='_blank'>SED-ML Web Tools</a></div>
-                <div class='image-desc'>The SED-ML Web Tools is an online application providing support to edit, simulate and validate SED-ML files online. It supports SBML as well as CellML models.</div>
-              </div>
-            </li>
-            <li>
-              <a class='thumb' name='SED-ED' href='showcase_images/SED-ED.png' title='SED-ED'>
-                <img src='showcase_images/SED-ED_s.png' alt='SED-ED' />
-              </a>
-              <div class='caption'>
-                <div class='image-title'><a href='http://sourceforge.net/projects/jlibsedml/files' target='_blank'>SED-ED</a></div>
-                <div class='image-desc'>
-                  SED-ED is a visual editor for viewing, editing and validating SED-ML documents 
-using a graphical workflow notation. SED-ED
-                  <ul>
-                    <li>previews model changes for any XML based model.
-                    </li>
-                    <li>generates XPath expressions for targetting model elements.
-                    </li>
-                    <li>displays and edits notes in an embedded browser.
-                    </li>
-                    <li>works with SEDX archives as well as plain SEDML files.
-                    </li>
-                    <li>retrieves models from Biomodels using Miriam URNs.
-                    </li>
-                    <li>provides standard undo/redo/copy/paste/align functionality for editing.
-                    </li>
-                  </ul>
-                  SED-ED is available either as a standalone application, an Eclipse plugin (update site http://www.sbsi.ed.ac.uk/update) or an SBSIVisual plugin. If installed in the latter environment, SEDML files may also be simulated using a range of 3rd party tools such as Copasi,Dizzy,Fern or CVODE.
-                </div>
-              </div>
-            </li>
-            <li>
-              <a class='thumb' name='SBW Simulation Tool' href='showcase_images/SBW_Simulation_Tool.png' title='SBW Simulation Tool'>
-                <img src='showcase_images/SBW_Simulation_Tool_s.png' alt='SBW Simulation Tool' />
-              </a>
-              <div class='caption'>
-                <div class='image-title'><a href='https://sourceforge.net/p/sbwsimtool/wiki/Home/' target='_blank'>SBW Simulation Tool</a></div>
-                <div class='image-desc'>This project hosts the 'Simulation Tool', an extensible, interactive environment for carrying out simulation experiments of SBML models. This project can use RoadRunner or SBW enabled simulators to carry out simulations.The simulation tool directly supports SED-ML L1V1, and allows you to execute the simulations directly, with support for remote models (even in BioModels.net) and the SED-ML archive.</div>
-              </div>
-            </li>
-            <li>
-              <a class='thumb' name='clibsedml' href='showcase_images/clibsedml.png' title='clibsedml'>
-                <img src='showcase_images/clibsedml_s.png' alt='clibsedml' />
-              </a>
-              <div class='caption'>
-                <div class='image-title'><a href='http://sourceforge.net/projects/clibsedml/' target='_blank'>clibsedml</a></div>
-                <div class='image-desc'>clibsedml is aimed at being a portable C library for SED-ML.</div>
-              </div>
-            </li>
-            <li>
-              <a class='thumb' name='jlibsedml' href='showcase_images/jlibsedml.png' title='jlibsedml'>
-                <img src='showcase_images/jlibsedml_s.png' alt='jlibsedml' />
-              </a>
-              <div class='caption'>
-                <div class='image-title'><a href='http://sourceforge.net/projects/jlibsedml/' target='_blank'>jlibsedml</a></div>
-                <div class='image-desc'>An extensible open source Java library to create, manipulate, validate and store SED-ML files. jlibsedml also  provides XPath support and an execution framework for running simulations and post-processing the results - clients provide the simulation implementation.</div>
-              </div>
-            </li>
-            <li>
-              <a class='thumb' name='libSedML' href='showcase_images/libSedML.png' title='libSedML'>
-                <img src='showcase_images/libSedML_s.png' alt='libSedML' />
-              </a>
-              <div class='caption'>
-                <div class='image-title'><a href='http://libsedml.sf.net' target='_blank'>libSedML</a></div>
-                <div class='image-desc'>libSedML is a set of .NET libraries for supporting SED-ML. The core library libSedML supports reading, validating and writing of SED-ML descriptions, along with all necessary utility functions for resolving models and XPath expressions. Two additional libraries are included: libSedMLRunner, which allows to schedule and execute simulation experiments encoded in SED-ML files using either RoadRunner# (Bergmann et al., 2006) or a variety of simulators exposed through the Systems Biology Workbench (SBW, Bergmann et al., 2006a) like iBioSim (Myers et al., 2009) and COPASI (Hoops et al., 2006). A third library, libSedMLScript, provides a script based language for defining SED-ML experiments. </div>
-              </div>
-            </li>
-            <li>
-              <a class='thumb' name='Systems Biology Simulation Core Library' href='showcase_images/Systems_Biology_Simulation_Core_Library.png' title='Systems Biology Simulation Core Library'>
-                <img src='showcase_images/Systems_Biology_Simulation_Core_Library_s.png' alt='Systems Biology Simulation Core Library' />
-              </a>
-              <div class='caption'>
-                <div class='image-title'><a href='http://sourceforge.net/projects/simulation-core/' target='_blank'>Systems Biology Simulation Core Library</a></div>
-                <div class='image-desc'>The Systems Biology Simulation Core Library provides an efficient and exhaustive Java implementation of methods to interpret the content of models encoded in the Systems Biology Markup Language (SBML) and its numerical solution. This library is based on the JSBML project and can be used on every operating system for which a Java Virtual Machine is available. Please note that this project does not contain any user interface, neither a command-line interface, nor a graphical user interface. This project has been developed as a pure programming library. To support the MIASE effort, it understands SED-ML files. Its abstract type and interface hierarchy facilitates the implementation of further community standards, such as CellML.</div>
-              </div>
-            </li>
-<li>
-<a class='thumb' name='Copasi2SedML' href='showcase_images/Copasi2SedML.png' title='Copasi2SedML'>
-<img src='showcase_images/Copasi2SedML_s.png' alt='Copasi2SedML'/>
-</a>
-<div class='caption'>
-<div class='image-title'><a href='http://fbergmann.github.com/Copasi2SedML/' target='_blank'>Copasi2SedML</a></div>
-<div class='image-desc'>Copasi2SBML contains a library and tools that allow to convert a COPASI file containing a time course task to SED-ML L1V1. 
-
-This work is based on the COPASI C# bindings and libSedML. 
-</div>
-</div>
-</li>
-            <li>
-              <a class='thumb' name='SBML Testsuite' href='showcase_images/SBML_Testsuite.png' title='SBML Testsuite'>
-                <img src='showcase_images/SBML_Testsuite_s.png' alt='SBML Testsuite' />
-              </a>
-              <div class='caption'>
-                <div class='image-title'><a href='http://sbml.org/Software/SBML_Test_Suite' target='_blank'>SBML Testsuite</a></div>
-                <div class='image-desc'>The SBML Test Suite is a conformance testing system for SBML. It allows developers and users to test the degree and correctness of SBML support provided in an SBML-compatible software package. All tests are available also as SED-ML files. </div>
-              </div>
-            </li>
-            <li>
-              <a class='thumb' name='Repose' href='showcase_images/Repose.png' title='Repose'>
-                <img src='showcase_images/Repose_s.png' alt='Repose' />
-              </a>
-              <div class='caption'>
-                <div class='image-title'><a href='http://sed.project.cwi.nl' target='_blank'>Repose</a></div>
-                <div class='image-desc'>Repose is a web-based repository that lets modellers develop, curate, and archive simulation-experiment descriptions written in XML, e.g. SBML, or in imperative programming languages, e.g. C++. Repose encourages modellers to annotate their simulation-experiments with text and images, experimental data and domain meta-information. These informal annotations aid organisation and classification of the simulation-experiments, and complement SED-ML's formal precision to produce simulation-experiments that can be understood by both men and machines. </div>
-              </div>
-            </li>
-          </ul>
-          <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
+        <div class="slideshow-container">
+            <div id="controls" class="controls"></div>
+            <div id="loading" class="loader"></div>
+            <div id="slideshow" class="slideshow"></div>
         </div>
-      </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+        <div id="caption" class="caption-container">
+            <div class="photo-index"></div>
+        </div>
 
-      <div id="foot">sed-ml.org</div>
+
+        <!-- End Gallery Html Containers -->
+        <div style="clear: both;"></div>
+        <div class="navigation-container">
+            <div id="thumbs" class="navigation">
+                <a class="pageLink prev" style="visibility: hidden;" href="#" title="Previous Page"></a>
+                <ul class="thumbs noscript">
+
+
+                    <li>
+                        <a class='thumb' name='CellDesigner' href='showcase_images/CellDesigner.png'
+                           title='CellDesigner'>
+                            <img src='showcase_images/CellDesigner_s.png' alt='CellDesigner'/>
+                        </a>
+                        <div class='caption'>
+                            <div class='image-title'><a href='http://celldesigner.org' target='_blank'>CellDesigner</a>
+                            </div>
+                            <div class='image-desc'>CellDesigner is software for modeling and simulation of biochemical
+                                and gene regulatory networks, originally developed by the Systems Biology Institute in
+                                Japan. While CellDesigner itself is a sophisticated structured diagram editor, it
+                                enables users to directly integrate various tools, such as built-in SBML ODE Solver,
+                                COPASI, SBMLSimulator and SBW-powered simulation/analysis modules. CellDesigner runs on
+                                various platforms such as Windows, MacOS X and Linux, and is freely available from
+                                http://celldesigner.org/.
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class='thumb' name='SED-ML Script Editor' href='showcase_images/SED-ML_Script_Editor.png'
+                           title='SED-ML Script Editor'>
+                            <img src='showcase_images/SED-ML_Script_Editor_s.png' alt='SED-ML Script Editor'/>
+                        </a>
+                        <div class='caption'>
+                            <div class='image-title'><a href='http://libsedml.sourceforge.net/libSedML/SedMLScript.html'
+                                                        target='_blank'>SED-ML Script Editor</a></div>
+                            <div class='image-desc'>The SED-ML Script Editor allows to construct SED-ML documents using
+                                a simplified script language. Starting out by directly importing SBML or CellML models
+                                an initial script is generated that can be simulated. From there it is easy to modify it
+                                to suite your needs.
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class='thumb' name='SED-ML Web Tools' href='showcase_images/SED-ML_Web_Tools.png'
+                           title='SED-ML Web Tools'>
+                            <img src='showcase_images/SED-ML_Web_Tools_s.png' alt='SED-ML Web Tools'/>
+                        </a>
+                        <div class='caption'>
+                            <div class='image-title'><a href='http://sysbioapps.dyndns.org/SED-ML_Web_Tools'
+                                                        target='_blank'>SED-ML Web Tools</a></div>
+                            <div class='image-desc'>The SED-ML Web Tools is an online application providing support to
+                                edit, simulate and validate SED-ML files online. It supports SBML as well as CellML
+                                models.
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class='thumb' name='SED-ED' href='showcase_images/SED-ED.png' title='SED-ED'>
+                            <img src='showcase_images/SED-ED_s.png' alt='SED-ED'/>
+                        </a>
+                        <div class='caption'>
+                            <div class='image-title'><a href='http://sourceforge.net/projects/jlibsedml/files'
+                                                        target='_blank'>SED-ED</a></div>
+                            <div class='image-desc'>
+                                SED-ED is a visual editor for viewing, editing and validating SED-ML documents
+                                using a graphical workflow notation. SED-ED
+                                <ul>
+                                    <li>previews model changes for any XML based model.
+                                    </li>
+                                    <li>generates XPath expressions for targetting model elements.
+                                    </li>
+                                    <li>displays and edits notes in an embedded browser.
+                                    </li>
+                                    <li>works with SEDX archives as well as plain SEDML files.
+                                    </li>
+                                    <li>retrieves models from Biomodels using Miriam URNs.
+                                    </li>
+                                    <li>provides standard undo/redo/copy/paste/align functionality for editing.
+                                    </li>
+                                </ul>
+                                SED-ED is available either as a standalone application, an Eclipse plugin (update site
+                                http://www.sbsi.ed.ac.uk/update) or an SBSIVisual plugin. If installed in the latter
+                                environment, SEDML files may also be simulated using a range of 3rd party tools such as
+                                Copasi,Dizzy,Fern or CVODE.
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class='thumb' name='SBW Simulation Tool' href='showcase_images/SBW_Simulation_Tool.png'
+                           title='SBW Simulation Tool'>
+                            <img src='showcase_images/SBW_Simulation_Tool_s.png' alt='SBW Simulation Tool'/>
+                        </a>
+                        <div class='caption'>
+                            <div class='image-title'><a href='https://sourceforge.net/p/sbwsimtool/wiki/Home/'
+                                                        target='_blank'>SBW Simulation Tool</a></div>
+                            <div class='image-desc'>This project hosts the 'Simulation Tool', an extensible, interactive
+                                environment for carrying out simulation experiments of SBML models. This project can use
+                                RoadRunner or SBW enabled simulators to carry out simulations.The simulation tool
+                                directly supports SED-ML L1V1, and allows you to execute the simulations directly, with
+                                support for remote models (even in BioModels.net) and the SED-ML archive.
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class='thumb' name='clibsedml' href='showcase_images/clibsedml.png' title='clibsedml'>
+                            <img src='showcase_images/clibsedml_s.png' alt='clibsedml'/>
+                        </a>
+                        <div class='caption'>
+                            <div class='image-title'><a href='http://sourceforge.net/projects/clibsedml/'
+                                                        target='_blank'>clibsedml</a></div>
+                            <div class='image-desc'>clibsedml is aimed at being a portable C library for SED-ML.</div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class='thumb' name='jlibsedml' href='showcase_images/jlibsedml.png' title='jlibsedml'>
+                            <img src='showcase_images/jlibsedml_s.png' alt='jlibsedml'/>
+                        </a>
+                        <div class='caption'>
+                            <div class='image-title'><a href='http://sourceforge.net/projects/jlibsedml/'
+                                                        target='_blank'>jlibsedml</a></div>
+                            <div class='image-desc'>An extensible open source Java library to create, manipulate,
+                                validate and store SED-ML files. jlibsedml also provides XPath support and an execution
+                                framework for running simulations and post-processing the results - clients provide the
+                                simulation implementation.
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class='thumb' name='libSedML' href='showcase_images/libSedML.png' title='libSedML'>
+                            <img src='showcase_images/libSedML_s.png' alt='libSedML'/>
+                        </a>
+                        <div class='caption'>
+                            <div class='image-title'><a href='http://libsedml.sf.net' target='_blank'>libSedML</a></div>
+                            <div class='image-desc'>libSedML is a set of .NET libraries for supporting SED-ML. The core
+                                library libSedML supports reading, validating and writing of SED-ML descriptions, along
+                                with all necessary utility functions for resolving models and XPath expressions. Two
+                                additional libraries are included: libSedMLRunner, which allows to schedule and execute
+                                simulation experiments encoded in SED-ML files using either RoadRunner# (Bergmann et
+                                al., 2006) or a variety of simulators exposed through the Systems Biology Workbench
+                                (SBW, Bergmann et al., 2006a) like iBioSim (Myers et al., 2009) and COPASI (Hoops et
+                                al., 2006). A third library, libSedMLScript, provides a script based language for
+                                defining SED-ML experiments.
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class='thumb' name='Systems Biology Simulation Core Library'
+                           href='showcase_images/Systems_Biology_Simulation_Core_Library.png'
+                           title='Systems Biology Simulation Core Library'>
+                            <img src='showcase_images/Systems_Biology_Simulation_Core_Library_s.png'
+                                 alt='Systems Biology Simulation Core Library'/>
+                        </a>
+                        <div class='caption'>
+                            <div class='image-title'><a href='http://sourceforge.net/projects/simulation-core/'
+                                                        target='_blank'>Systems Biology Simulation Core Library</a>
+                            </div>
+                            <div class='image-desc'>The Systems Biology Simulation Core Library provides an efficient
+                                and exhaustive Java implementation of methods to interpret the content of models encoded
+                                in the Systems Biology Markup Language (SBML) and its numerical solution. This library
+                                is based on the JSBML project and can be used on every operating system for which a Java
+                                Virtual Machine is available. Please note that this project does not contain any user
+                                interface, neither a command-line interface, nor a graphical user interface. This
+                                project has been developed as a pure programming library. To support the MIASE effort,
+                                it understands SED-ML files. Its abstract type and interface hierarchy facilitates the
+                                implementation of further community standards, such as CellML.
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class='thumb' name='Copasi2SedML' href='showcase_images/Copasi2SedML.png'
+                           title='Copasi2SedML'>
+                            <img src='showcase_images/Copasi2SedML_s.png' alt='Copasi2SedML'/>
+                        </a>
+                        <div class='caption'>
+                            <div class='image-title'><a href='http://fbergmann.github.com/Copasi2SedML/'
+                                                        target='_blank'>Copasi2SedML</a></div>
+                            <div class='image-desc'>Copasi2SBML contains a library and tools that allow to convert a
+                                COPASI file containing a time course task to SED-ML L1V1.
+
+                                This work is based on the COPASI C# bindings and libSedML.
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class='thumb' name='SBML Testsuite' href='showcase_images/SBML_Testsuite.png'
+                           title='SBML Testsuite'>
+                            <img src='showcase_images/SBML_Testsuite_s.png' alt='SBML Testsuite'/>
+                        </a>
+                        <div class='caption'>
+                            <div class='image-title'><a href='http://sbml.org/Software/SBML_Test_Suite' target='_blank'>SBML
+                                Testsuite</a></div>
+                            <div class='image-desc'>The SBML Test Suite is a conformance testing system for SBML. It
+                                allows developers and users to test the degree and correctness of SBML support provided
+                                in an SBML-compatible software package. All tests are available also as SED-ML files.
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class='thumb' name='Repose' href='showcase_images/Repose.png' title='Repose'>
+                            <img src='showcase_images/Repose_s.png' alt='Repose'/>
+                        </a>
+                        <div class='caption'>
+                            <div class='image-title'><a href='http://sed.project.cwi.nl' target='_blank'>Repose</a>
+                            </div>
+                            <div class='image-desc'>Repose is a web-based repository that lets modellers develop,
+                                curate, and archive simulation-experiment descriptions written in XML, e.g. SBML, or in
+                                imperative programming languages, e.g. C++. Repose encourages modellers to annotate
+                                their simulation-experiments with text and images, experimental data and domain
+                                meta-information. These informal annotations aid organisation and classification of the
+                                simulation-experiments, and complement SED-ML's formal precision to produce
+                                simulation-experiments that can be understood by both men and machines.
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <a class="pageLink next" style="visibility: hidden;" href="#" title="Next Page"></a>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+        <div id="foot">sed-ml.org</div>
     </div>
-  </div>
-  <script type="text/javascript">
+</div>
+<script type="text/javascript">
     jQuery(document).ready(function ($) {
-      // We only want these styles applied when javascript is enabled
-      $('div.content').css('display', 'block');
+        // We only want these styles applied when javascript is enabled
+        $('div.content').css('display', 'block');
 
-      // Initially set opacity on thumbs and add
-      // additional styling for hover effect on thumbs
-      var onMouseOutOpacity = 0.67;
-      $('#thumbs ul.thumbs li, div.navigation a.pageLink').opacityrollover({
-        mouseOutOpacity: onMouseOutOpacity,
-        mouseOverOpacity: 1.0,
-        fadeSpeed: 'fast',
-        exemptionSelector: '.selected'
-      });
+        // Initially set opacity on thumbs and add
+        // additional styling for hover effect on thumbs
+        var onMouseOutOpacity = 0.67;
+        $('#thumbs ul.thumbs li, div.navigation a.pageLink').opacityrollover({
+            mouseOutOpacity: onMouseOutOpacity,
+            mouseOverOpacity: 1.0,
+            fadeSpeed: 'fast',
+            exemptionSelector: '.selected'
+        });
 
-      // Initialize Advanced Galleriffic Gallery
-      var gallery = $('#thumbs').galleriffic({
-        delay: 2500,
-        numThumbs: 7,
-        preloadAhead: 10,
-        enableTopPager: false,
-        enableBottomPager: false,
-        imageContainerSel: '#slideshow',
-        controlsContainerSel: '#controls',
-        captionContainerSel: '#caption',
-        loadingContainerSel: '#loading',
-        renderSSControls: true,
-        renderNavControls: true,
-        playLinkText: 'Play Slideshow',
-        pauseLinkText: 'Pause Slideshow',
-        prevLinkText: '&larr; Previous',
-        nextLinkText: 'Next &rarr;',
-        nextPageLinkText: 'Next &larr;',
-        prevPageLinkText: '&larr; Prev',
-        enableHistory: true,
-        autoStart: false,
-        syncTransitions: true,
-        defaultTransitionDuration: 900,
-        onSlideChange: function (prevIndex, nextIndex) {
-          // 'this' refers to the gallery, which is an extension of $('#thumbs')
-          this.find('ul.thumbs').children()
-    .eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
-    .eq(nextIndex).fadeTo('fast', 1.0);
+        // Initialize Advanced Galleriffic Gallery
+        var gallery = $('#thumbs').galleriffic({
+            delay: 2500,
+            numThumbs: 7,
+            preloadAhead: 10,
+            enableTopPager: false,
+            enableBottomPager: false,
+            imageContainerSel: '#slideshow',
+            controlsContainerSel: '#controls',
+            captionContainerSel: '#caption',
+            loadingContainerSel: '#loading',
+            renderSSControls: true,
+            renderNavControls: true,
+            playLinkText: 'Play Slideshow',
+            pauseLinkText: 'Pause Slideshow',
+            prevLinkText: '&larr; Previous',
+            nextLinkText: 'Next &rarr;',
+            nextPageLinkText: 'Next &larr;',
+            prevPageLinkText: '&larr; Prev',
+            enableHistory: true,
+            autoStart: false,
+            syncTransitions: true,
+            defaultTransitionDuration: 900,
+            onSlideChange: function (prevIndex, nextIndex) {
+                // 'this' refers to the gallery, which is an extension of $('#thumbs')
+                this.find('ul.thumbs').children()
+                    .eq(prevIndex).fadeTo('fast', onMouseOutOpacity).end()
+                    .eq(nextIndex).fadeTo('fast', 1.0);
 
-          // Update the photo index display
-          this.$captionContainer.find('div.photo-index')
-    .html('Tool ' + (nextIndex + 1) + ' of ' + this.data.length);
-        },
-        onPageTransitionOut: function (callback) {
-          this.fadeTo('fast', 0.0, callback);
-        },
-        onPageTransitionIn: function () {
-          var prevPageLink = this.find('a.prev').css('visibility', 'hidden');
-          var nextPageLink = this.find('a.next').css('visibility', 'hidden');
+                // Update the photo index display
+                this.$captionContainer.find('div.photo-index')
+                    .html('Tool ' + (nextIndex + 1) + ' of ' + this.data.length);
+            },
+            onPageTransitionOut: function (callback) {
+                this.fadeTo('fast', 0.0, callback);
+            },
+            onPageTransitionIn: function () {
+                var prevPageLink = this.find('a.prev').css('visibility', 'hidden');
+                var nextPageLink = this.find('a.next').css('visibility', 'hidden');
 
-          // Show appropriate next / prev page links
-          if (this.displayedPage > 0)
-            prevPageLink.css('visibility', 'visible');
+                // Show appropriate next / prev page links
+                if (this.displayedPage > 0)
+                    prevPageLink.css('visibility', 'visible');
 
-          var lastPage = this.getNumPages() - 1;
-          if (this.displayedPage < lastPage)
-            nextPageLink.css('visibility', 'visible');
+                var lastPage = this.getNumPages() - 1;
+                if (this.displayedPage < lastPage)
+                    nextPageLink.css('visibility', 'visible');
 
-          this.fadeTo('fast', 1.0);
+                this.fadeTo('fast', 1.0);
+            }
+        });
+
+        /**************** Event handlers for custom next / prev page links **********************/
+
+        gallery.find('a.prev').click(function (e) {
+            gallery.previousPage();
+            e.preventDefault();
+        });
+
+        gallery.find('a.next').click(function (e) {
+            gallery.nextPage();
+            e.preventDefault();
+        });
+
+        /****************************************************************************************/
+
+        /**** Functions to support integration of galleriffic with the jquery.history plugin ****/
+
+        // PageLoad function
+        // This function is called when:
+        // 1. after calling $.historyInit();
+        // 2. after calling $.historyLoad();
+        // 3. after pushing "Go Back" button of a browser
+        function pageload(hash) {
+            // alert("pageload: " + hash);
+            // hash doesn't contain the first # character.
+            if (hash) {
+                $.galleriffic.gotoImage(hash);
+            } else {
+                gallery.gotoIndex(0);
+            }
         }
-      });
 
-      /**************** Event handlers for custom next / prev page links **********************/
+        // Initialize history plugin.
+        // The callback is called at once by present location.hash.
+        $.historyInit(pageload, "advanced.html");
 
-      gallery.find('a.prev').click(function (e) {
-        gallery.previousPage();
-        e.preventDefault();
-      });
+        // set onlick event for buttons using the jQuery 1.3 live method
+        $("a[rel='history']").live('click', function (e) {
+            if (e.button != 0) return true;
 
-      gallery.find('a.next').click(function (e) {
-        gallery.nextPage();
-        e.preventDefault();
-      });
+            var hash = this.href;
+            hash = hash.replace(/^.*#/, '');
 
-      /****************************************************************************************/
+            // moves to a new page.
+            // pageload is called at once.
+            // hash don't contain "#", "?"
+            $.historyLoad(hash);
 
-      /**** Functions to support integration of galleriffic with the jquery.history plugin ****/
+            return false;
+        });
 
-      // PageLoad function
-      // This function is called when:
-      // 1. after calling $.historyInit();
-      // 2. after calling $.historyLoad();
-      // 3. after pushing "Go Back" button of a browser
-      function pageload(hash) {
-        // alert("pageload: " + hash);
-        // hash doesn't contain the first # character.
-        if (hash) {
-          $.galleriffic.gotoImage(hash);
-        } else {
-          gallery.gotoIndex(0);
-        }
-      }
-
-      // Initialize history plugin.
-      // The callback is called at once by present location.hash. 
-      $.historyInit(pageload, "advanced.html");
-
-      // set onlick event for buttons using the jQuery 1.3 live method
-      $("a[rel='history']").live('click', function (e) {
-        if (e.button != 0) return true;
-
-        var hash = this.href;
-        hash = hash.replace(/^.*#/, '');
-
-        // moves to a new page. 
-        // pageload is called at once. 
-        // hash don't contain "#", "?"
-        $.historyLoad(hash);
-
-        return false;
-      });
-
-      /****************************************************************************************/
+        /****************************************************************************************/
     });
-  </script>
+</script>
 </body>
 </html>
