@@ -1,0 +1,81 @@
+% =============================================================================
+% front-page
+% =============================================================================
+
+\begin{titlepage}
+
+\vspace*{0.75in}
+
+\begin{center}
+
+  \textbf{\sffamily\bfseries\huge
+    Simulation Experiment Description Markup Language (SED-ML) :\\[0.3em]
+    Level 1 Version 1}
+
+\vspace*{0.5in}
+
+\large
+%Draft of %\sbgndate\\[0.25in]
+\today\\[0.25in]
+
+%\cornersize{0.3}\ovalbox{\begin{minipage}{4.9in}\color{DarkRed}
+%Disclaimer: This is a working draft of the SBGN Entity Relationship
+%Level~1 specification.  It is not a normative document.
+%\end{minipage}}
+
+\vspace{0.5in}
+
+\textbf{\sffamily Editors}\\[7pt]
+\begin{tabular}{l>{\hspace*{15pt}}r}
+Dagmar Waltemath    & \emph{University of Rostock, Germany}\\
+Frank T. Bergmann & \emph{University of Washington, Seattle, USA}\\
+Richard Adams & \emph{University of Edinburgh, UK}\\
+Nicolas Le Nov{\`e}re & \emph{European Bioinformatics Institute, UK}\\
+\end{tabular}
+ 
+\vspace{1.2in}
+
+\normalsize
+\begin{minipage}{5in}
+\begin{center}
+  The latest release of the \LoneVone specification is available at
+  \url{http://sed-ml.org/}
+  \paragraph*{}
+  To discuss any aspect of the current SED-ML specification as well as language details, please send your messages
+    to the mailing list \mailto{sed-ml-discuss@lists.sourceforge.net}.
+  \paragraph*{}
+  To get subscribed to the mailing list, please write to the same address \mailto{sed-ml-discuss@lists.sourceforge.net}. 
+  \paragraph*{}
+  To contact the authors of the SED-ML specification, please write to \mailto{sed-ml-editors@lists.sourceforge.net}
+%Bug reports and specific comments about the specification should be entered in the issue tracker \url{https://sourceforge.net/tracker/admin/?atid=1170625&group_id=178553}.
+\end{center}
+\end{minipage}
+\vfill
+
+
+\centerline{\includegraphics[width=2in]{images/logoSedml.png}}
+
+
+\end{center}
+
+\end{titlepage}
+
+% The title page is considered unnumbered and the next page after this
+% starts with the page number 1 (actually, i), but the duplication of page
+% number 1 confuses hyperref and leads to the following latex warning:
+%
+%   "pdfTeX warning (ext4): destination with the same identifier
+%   (name{page.1}) has been already used, duplicate ignored"
+%
+% The following change makes the title page have page number 1 and the next
+% page after that it becomes page ii.  This is unorthodox, but seems not
+% completely unreasonable, and it avoids the confusing warning above.
+
+\setcounter{page}{2}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

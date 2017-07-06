@@ -1,0 +1,58 @@
+% simulation class
+ \subsection{\element{Simulation}}
+\label{class:simulation}
+
+A simulation is the execution of some defined algorithm(s). 
+Simulations are described differently depending on the type of simulation experiment to be performed (\fig{sedSimulation}). 
+%
+\sedfig[width=0.85\textwidth]{pdf/simulationClass}{The SED-ML Simulation class}{fig:sedSimulation}
+%
+\concept{Simulation} is an abstract class and serves as the container for the different types of simulation experiments.
+SED-ML \LoneVtwo offers the predefined simulation classes \hyperref[class:uniformTimeCourse]{UniformTimeCourse}, \hyperref[class:oneStep]{OneStep} and \hyperref[class:steadyState]{SteadyState}.
+Further simulation classes are planned for future versions of SED-ML, including simulation classes for bifurcation analysis.
+Simulation algorithms used for the execution of a simulation setup are defined in the \hyperref[class:algorithm]{Algorithm} class.
+
+\tabtext{simulation}{simulation}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+algorithm & \refpage{class:algorithm}\\
+\hline
+\end{tabular}
+\caption{\tabcap{simulation}}
+\label{tab:simulation}
+\end{table}
+%
+
+\lsttext{simulation}{simulation}
+%
+\begin{myXmlLst}{The SED-ML \code{listOfSimulations} element, defining two different simulations}{lst:simulation}
+<listOfSimulations>
+  <uniformTimeCourse [..]>
+    [SIMULATION SPECIFICATION]
+  </uniformTimeCourse>
+  <uniformTimeCourse [..]>
+    [SIMULATION SPECIFICATION]
+  </uniformTimeCourse>
+</listOfSimulations>
+\end{myXmlLst}
+%
+Two timecourses with uniform range are defined.
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "../sed-ml-L1V2"
+%%% End: 

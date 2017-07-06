@@ -1,0 +1,36 @@
+Diagrams
+========
+Not having a nice UML tool, I use yuml to create my diagrams for now: 
+http://yuml.me/diagram/class/draw
+
+OneStep
+-------
+[Simulation|+id:SId;+name:String]<>--[OneStep|+step:double]
+
+edit: http://yuml.me/diagram/plain;/class/edit/[Simulation|+id:SId;+name:String]<>--[OneStep|+step:double]
+
+SteadyState
+-----------
+[Simulation|+id:SId;+name:String]<>--[SteadyState]
+
+edit: http://yuml.me/diagram/plain;/class/edit/[Simulation|+id:SId;+name:String]<>--[SteadyState]
+
+
+AbstractTask
+------------
+[AbstractTask|+id:SId;+name:String]<>--[Task|+modelReference:SIdRef;+simulationReference:SIdRef]
+[AbstractTask]<>--[RepeatedTask|+range:SIdRef;+resetModel:bool]
+
+edit: http://yuml.me/diagram/plain;/class/edit/[AbstractTask|+id:SId;+name:String]<>--[Task|+modelReference:SIdRef;+simulationReference:SIdRef], [AbstractTask]<>--[RepeatedTask|+range:SIdRef;+resetModel:bool]
+
+RepeatedTask
+-------------
+[AbstractTask|+id:SId;+name:String]<>--[RepeatedTask|+range:SIdRef;+resetModel:bool]
+[RepeatedTask]<--listOfRanges 0..*-[Range|+id:SId; ]
+[RepeatedTask]<--listOfChanges 0..*-[SetValue|+target:XPath;+modelReference:SIdRef|math:MathML]
+[RepeatedTask]<--listOfSubtasks 0..*-[SubTask|+task:SIdRef;+order:integer]
+[Range]<>--[UniformRange|+start:double;+end:double;+numberOfPoints:integer;+type:enum]
+[Range]<>--[VectorRange|value*:double]
+[Range]<>--[FunctionalRange|+index:SIdRef|listOfVariables;function]
+
+edit: http://yuml.me/edit/e9630f81

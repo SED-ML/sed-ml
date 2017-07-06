@@ -1,0 +1,56 @@
+% parameter class
+\subsection{\element{Parameter}}
+\label{class:parameter}
+The SED-ML \concept{Parameter} class creates instances with a constant value (\fig{parameter}).
+%
+\sedfig[width=0.35\textwidth]{parameterClass}{The Parameter class}{fig:parameter}
+%
+SED-ML uses parameters in two ways: 
+Firstly, parameters may be defined in the \hyperref[class:computeChange]{ComputeChange} class for describing the mathematical computation of a change of a model's observable.
+Secondly, parameters may be part of a \hyperref[class:dataGenerator]{DataGenerator} specification. 
+In both cases the parameter definitions are local to the particular class defining them. 
+
+\tabtext{parameter}{parameter}
+%
+\begin{table}[ht!]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaID$^{o}$ & \refpage{sec:metaID} \\
+id & \refpage{sec:id}\\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+value & \refpage{sec:value}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\caption{\tabcap{parameter}}
+\label{tab:parameter}
+\end{table}
+%
+
+A parameter can unambiguously be identified through its given \hyperref[sec:id]{id}. It may additionally carry an optional \hyperref[sec:name]{name}. Each parameter has one associated \hyperref[sec:value]{value}. 
+
+\lsttext{parameter}{parameter}
+The listing shows the definition of a parameter \code{p1} with the \code{value="40"} assigned. 
+%
+\begin{myXmlLst}{The definition of a parameter in SED-ML}{lst:parameter}
+<listOfParameters>
+ <parameter id="p1" name="KM" value="40" />
+</listOfParameters>
+\end{myXmlLst}
+%
+
+\input{sources/value}
+
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

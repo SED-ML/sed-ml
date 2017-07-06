@@ -1,0 +1,55 @@
+\label{class:report}
+The \concept{Report} class defines a data table consisting of several single instances of the \hyperref[class:dataSet]{DataSet} class (\fig{report}).
+Its output returns the simulation result in actual \emph{numbers}. The particular columns of the report table are defined by creating an instance of the \hyperref[class:dataSet]{DataSet} class for each column. 
+% 
+\sedfig[width=0.75\textwidth]{pdf/report}{The SED-ML Report class}{fig:report}
+%
+
+
+\tabtext{report}{report}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+dataSet & \refpage{class:dataSet}\\
+\hline
+\end{tabular}
+\caption{\tabcap{report}}
+\label{tab:report}
+\end{table}
+%
+
+\lsttext{listOfDataSets}{listOfDataSets}
+%
+\begin{myXmlLst}{The \code{report} element with the nested \code{listOfDataSets} element}{lst:listOfDataSets}
+<report>
+ <listOfDataSets>
+  <dataSet>
+   [DATA REFERENCE]
+  </dataSet>
+ </listOfDataSets>
+</report>
+\end{myXmlLst}
+%
+
+The simulation result itself, i.\,e. concrete result numbers, are not stored in SED-ML, but the directive how to \emph{calculate} them from the output of the simulator is provided through the \concept{dataGenerator}.
+
+The encoding of simulation results is outside the scope of SED-ML, but other efforts exist, for example the \emph{Systems Biology Result Markup Language} (SBRML, \citep{DSM10}).
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 

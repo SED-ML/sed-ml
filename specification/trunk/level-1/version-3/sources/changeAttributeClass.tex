@@ -1,0 +1,63 @@
+% ChangeAttribute Class
+  \subsubsection{\element{ChangeAttribute}}
+\label{class:changeAttribute}
+The \concept{ChangeAttribute} class allows to define updates on the XML attribute values of the corresponding model (\fig{changeAttribute}).
+%
+\sedfig[width=0.75\textwidth]{pdf/changeAttributeClass}{The \code{ChangeAttribute} class}{fig:changeAttribute}
+%
+ 
+The \concept{ChangeXML} class covers the possibilities provided by the \hyperref[class:changeAttribute]{ChangeAttribute} class. That is, everything that can be expressed by a \hyperref[class:changeAttribute]{ChangeAttribute} construct can also be expressed by a \concept{ChangeXML}. However, for the common case of changing an attribute value \concept{ChangeAttribute} is easier to use, and so it is recommended to use the \concept{ChangeAttribute} for any changes of an XML attribute's value, and to use the more general \hyperref[class:changeXml]{ChangeXML} for other cases.
+
+\concept{ChangeAttribute} requires to specify the \hyperref[sec:target]{target} of the change, i.\,e.\ the location of the addressed XML attribute, and also the \hyperref[sec:newValue]{new value} of that attribute.
+Note that the XPath expression in the \concept{target} attribute must select a single attribute within the corresponding model.
+
+
+\tabtext{changeAttribute}{changeAttribute}
+%
+\begin{table}[h!]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+target & \refpage{sec:target}\\
+newValue & \refpage{sec:newValue}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\caption{\tabcap{ChangeAttribute}}
+\label{tab:changeAttribute}
+\end{table}
+%
+
+
+\paragraph{\element{newValue}}
+\label{sec:newValue}
+The mandatory \code{newValue} attribute assignes a new value to the targeted XML attribute. 
+
+The example in Listing~\ref{lst:changeAttribute} shows the update of the initial concentration of two parameters inside an SBML model.
+%
+\begin{myXmlLst}{The \code{changeAttribute} element and its \code{newValue} attribute}{lst:changeAttribute}
+<model id="model1" name="Circadian Chaos" language="urn:sedml:language:sbml" 
+       source="urn:miriam:biomodels.db:BIOMD0000000021">
+ <listOfChanges>
+  <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_mT']/@value" newValue="0.28"/>
+  <changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_dT']/@value" newValue="4.8"/>
+ </listOfChanges>
+</model>
+\end{myXmlLst}
+%
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 

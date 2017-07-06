@@ -1,0 +1,64 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Master file SED-ML specification 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\listfiles
+\documentclass[pdftex,rgb,dvipsnames,svgnames,hyperref,table]{report}
+\usepackage{tocvsec2} 
+% layout (initialy done for the SBGN project)
+\input{sources/latex-style}
+
+% packages and commands
+\input{sources/latex-macros}
+
+\begin{document}
+\input{sources/front-page}
+\tableofcontents
+\newpage
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% INTRODUCTION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\input{sources/introduction}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% TECHNICAL SPECIFICATION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\input{sources/specification}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% ACKNOWLEDGMENTS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\input{sources/acknowledgements}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% APPENDIX
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\appendix
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% UML DIAGRAM -- SED-ML UML OVERVIEW
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\input{sources/UML}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% XML SCHEMA
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\input{sources/XMLschema}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% SAMPLE FILES
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\input{sources/examples}
+
+%% MIASE ARCHIVES
+  \input{sources/archive}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% OVERVIEW  (BPMN)
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% We've agreed not to use the overview in the L1V2 spec
+% \input{sources/overview}
+
+% REFERENCES
+\bibliographystyle{plainnat}
+\bibliography{sed-ml-L1V3}
+\end{document}
