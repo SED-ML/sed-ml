@@ -8,8 +8,8 @@ This folder and document contains all information related to the SED-ML specific
 
 
 ## Online working versions
-* `level-1-version-3`: data
-* `level-1-version-4`: additional plotting
+* `level-1-version-3`: data 
+* `level-1-version-4`: https://www.overleaf.com/10141340wptfdtmtcmgp#/37446255/
 
 ## Figures
 Latest version of figures is available from
