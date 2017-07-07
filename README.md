@@ -1,8 +1,7 @@
 # sed-ml
-Main repository for sed-ml specifications and content.
+SED-ML repository containing specifications, schema, figures and presentations.
 
-Additional information is available from
+Additional information is available from the webpage [http://sed-ml.org/](http://sed-ml.org/). 
 
-* http://sed-ml.org/
-* https://en.wikipedia.org/wiki/SED-ML
-* 
+&copy; 2017 sed-ml.org
+

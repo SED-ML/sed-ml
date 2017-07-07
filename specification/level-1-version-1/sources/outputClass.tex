@@ -1,0 +1,69 @@
+% Output 
+\subsection{\element{Output}}
+\label{class:output}
+
+The \concept{Ouput} class describes how the results of a simulation should be presented to the user (\fig{sedOutput}). 
+%
+\sedfig{outputClass}{The SED-ML Output class}{fig:sedOutput}
+%
+It does not contain the data itself, but the type of output and the \hyperref[class:dataGenerator]{data generators} used to produce a particular output.
+
+The types of output pre-defined in SED-ML \LoneVone are plots and \hyperref[class:report]{reports}. The output can be defined as a \hyperref[class:plot2D]{2D plot} or alternatively as a \hyperref[class:plot3D]{3D plot}. 
+
+Note that even though the terms ``2D plot" and ``3D plot" are used, the exact type of plot is not specified. In other words, whether the 3D plot represents a surface plot, or three dimensional lines in space, cannot be distinguished by SED-ML alone. It is expected that applications use \hyperref[class:annotation]{annotations} for this purpose.
+
+\tabtext{output}{output}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{description}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+\hline
+\textbf{sub-elements} & \textbf{description}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+plot2D$^{o}$ & \refpage{class:plot2D}\\
+plot3D$^{o}$ & \refpage{class:plot3D}\\
+report$^{o}$ & \refpage{class:report}\\
+\hline
+\end{tabular}
+\caption{\tabcap{output}}
+\label{tab:output}
+\end{table}
+%
+
+\input{sources/2dPlotClass}
+
+\input{sources/3dPlotClass}
+
+\subsubsection[Report]{The Report class}
+\input{sources/reportClass}
+
+
+
+%An example for a 2D plot and a report defined in one output is given in listing \ref{lst:listOfOutputs}.
+%
+%\begin{myXmlLst}{The listOfOutput element}{lst:listOfOutputs}
+%<listOfOutputs>
+% <plot2D id="plot1" name="sample 2D plot">
+%  <listOfCurves> 
+%   \alert{[..]}
+%  </listOfCurves>
+% </plot2D>
+%</listOfOutputs>
+%\end{myXmlLst}
+%
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

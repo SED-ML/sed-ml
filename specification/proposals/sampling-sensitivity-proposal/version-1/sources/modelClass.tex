@@ -1,0 +1,92 @@
+  \subsection{\element{Model}}
+% model class
+\label{class:model}
+The \concept{Model} class defines the models to be used in the simulation experiment (\fig{sedModel}).
+% Fig: sed model
+\sedfig[width=0.85\textwidth]{listOfChanges}{The SED-ML Model class}{fig:sedModel}
+%
+
+Each instance of the Model class has an unambiguous and mandatory \hyperref[sec:id]{id}. An additional, optional \hyperref[sec:name]{name} may be given to the model. 
+
+The \hyperref[sec:language]{language} may be specified, defining the format the model is encoded in, if such a format exists. Example formats are SBML or CellML.
+
+The \concept{Model} class refers to the particular model of interest through the \hyperref[sec:source]{source} attribute. The restrictions on the model reference are
+\begin{itemize}
+ \item{The model must be encoded in an XML format.}
+ \item{To refer to the model encoding language, a reference to a valid definition of that XML format must be given (\hyperref[sec:language]{language} attribute).}
+ \item{To refer to a particular model in an external resource, an unambiguous reference must be given (\hyperref[sec:source]{source} attribute).}
+\end{itemize}
+
+A model might need to undergo preprocessing before simulation. Those pre-processings are specified in the SED-ML \hyperref[class:change]{Change} class.
+
+\tabtext{model}{model}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+language$^{o}$ & \refpage{sec:language}\\
+source & \refpage{sec:source}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+change$^{o}$ & \refpage{class:change}\\
+\hline
+\end{tabular}
+\caption{\tabcap{model}}
+\label{tab:model}
+\end{table}
+%
+
+\lsttext{model}{model}
+%
+\begin{myXmlLst}{SED-ML \code{model} element}{lst:model}
+<listOfModels>
+ <model id="m0001" language="urn:sedml:language:sbml" 
+  source="urn:miriam:biomodels.db:BIOMD0000000012">
+  <listOfChanges>
+   <change>
+    [MODEL PRE-PROCESSING]
+   </change>
+   </listOfChanges> 
+ </model>
+ <model id="m0002" language="urn:sedml:language:sbml" source="m0001">
+  <listOfChanges>
+   [MODEL PRE-PROCESSING]
+  </listOfChange>
+ </model>
+ <model id="m0003" language="urn:sedml:language:cellml" source="http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/d6613d7e1051b3eff2bb1d3d419a445bb8c754ad/leloup_gonze_goldbeter_1999_a.cellml">
+  [MODEL PRE-PROCESSING]
+ </model>
+</listOfModels>
+\end{myXmlLst} 
+%
+
+The above \code{listOfModels} contains three models: 
+The first model \code{m0001} is the Repressilator model taken from \biom. 
+The original model is available from \url{urn:miriam:biomodels.db:BIOMD0000000012}. 
+For the SED-ML simulation, the model might undergo preprocessing, described in the \hyperref[class:change]{change} element (lines 5-7).
+Based on the description of the first model \code{m0001}, the second model is built. 
+It refers to the model \code{m001} in the \code{source} attribute, that is the modified version of the Repressilator model.
+\code{m0002} might then have even further changes applied to it on top of the changes defined in the pre-processing of \code{m0001}.
+The third model in the code example above (lines 13-15) is a different model in CellML representation. \code{m0003} is the model available from the given URL in the \code{source} attribute. Again, it might have additional pre-processing applied to it before used in the simulation.
+
+  \input{sources/language}
+
+  \input{sources/source}
+
+
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

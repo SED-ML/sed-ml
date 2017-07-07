@@ -1,0 +1,16 @@
+Diagrams
+========
+Not having a nice UML tool, I use yuml to create my diagrams for now: 
+http://yuml.me/diagram/class/draw
+
+
+
+[sedML]<--listOfExperimentalData 0..*-[dataDescription|+id:SId;+name:String;+source:URI;+type:String (optional)]
+[dataDescription]<--[dimensionDescription|NuML container]
+[dataDescription]<--listOfDataSources 0..*-[DataSource|+id:SId;+name:String;+indexSet:NuMLSIdRef]
+[DataSource]<-- 0..*-[Slice|+reference:NuMLSIdRef;+value:String]
+
+[SedML]<--listOfDataDescriptions 0..*-[DataDescription|+id:SId;+name:String (optional);+source:URI;]
+[DataDescription]<--[dimensionDescription|NuML container]
+[DataDescription]<--listOfDataSources 0..*-[DataSource|+id:SId;+name:String;+indexSet:NuMLSIdRef]
+[DataSource]<-- 0..*-[Slice|+reference:NuMLSIdRef;+value:String]

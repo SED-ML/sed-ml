@@ -1,0 +1,64 @@
+\subsubsection{\element{Annotation}}
+\label{class:annotation}
+
+An \concept{annotation} is considered a computer-processible piece of information.
+Annotations may contain any valid XML content. 
+%No additional namespace declaration is needed for use of the annotation element. However, for the type of XML inside annotation, the according namespaces should be declared, if necessary.
+For further guidelines on how to use annotations, we would like to encourage the reading of the corresponding section in the SBML specification \citep[pp. 14-16]{HBH+10}. The style of annotations in SED-ML is briefly described in Section~\ref{sec:annotations} on page \pageref{sec:annotations}.
+
+%\concept{Annotation} does not define any further attributes, nor does it have classes associated to it. 
+
+\tabtext{annotation}{Annotation}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+\emph{none} & \\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+\emph{none in the SED-ML namespace} & \\
+\hline
+\end{tabular}
+\caption{\tabcap{Annotation}}
+\label{tab:annotation}
+\end{table}
+%
+
+\lsttext{annotation}{annotation}
+%
+\begin{myXmlLst}{The annotation element}{lst:annotation}
+<sedML>
+  [..]
+  <model id="model1" metaID="001" language="urn:sedml:language:cellml" 
+   source="http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/d6613d7e1051b3eff2bb1d3d419a445bb8c754ad/leloup_gonze_goldbeter_1999_a.cellml" >
+   <annotation>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+             xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+     <rdf:Description rdf:about="#001">
+      <bqmodel:isDescribedBy>
+       <rdf:Bag>
+        <rdf:li rdf:resource="urn:miriam:pubmed:10415827"/>
+       </rdf:Bag>
+      </bqmodel:isDescribedBy>
+     </rdf:Description>
+    </rdf:RDF>
+   </annotation>
+  </model>
+  [..]
+</sedML>
+\end{myXmlLst}
+%
+In that example, a SED-ML \hyperref[class:model]{model} element is annotated with a reference to the original publication. The \element{model} contains an \element{annotation} that uses the \concept{biomodels.net model-qualifier} \element{isDescribedBy} to link to the external resource \element{urn:miriam:pubmed:10415827}. 
+In natural language the annotation content could be interpreted as ``The model \emph{is described by} the published article available from \emph{pubmed} under ID \emph{10643740}''. 
+The example annotation follows the proposed \hyperref[sec:uriScheme]{URI Scheme} suggested by the MIRIAM reference standard. The MIRIAM URN can be resolved to the PubMED (\url{http://pubmed.gov}) publication with ID 10415827, namely the article ``Alternating oscillations and chaos in a model of two coupled biochemical oscillators driving successive phases of the cell cycle.'' published by Romond et al. in  1999.   
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 

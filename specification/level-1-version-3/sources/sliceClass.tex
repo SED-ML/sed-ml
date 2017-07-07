@@ -1,0 +1,71 @@
+\subsection{\element{Slice}}
+% datasource class
+\label{class:slice}
+If a \SedDataSource does not define the \token{indexSet} attribute, it will contain \SedSlice elements. Each slice removes one dimension from the data hypercube.
+
+The \concept{Slice} class introduces two required attributes: \token{reference} and \token{value}. 
+
+% Fig: sed model
+\sedfig[width=0.5\textwidth]{pdf/sliceClass}{The SED-ML Slice class}{fig:sedSlice}
+%
+
+\tabtext{slice}{slice}
+%
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+\hline
+reference & \refpage{sec:sliceReference}\\
+value & \refpage{sec:sliceValue}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\caption{\tabcap{slice}}
+\label{tab:slice}
+\end{table}
+%
+
+\subsubsection{The \token{reference} attribute}
+\label{sec:sliceReference}
+The \token{reference} attribute references one of the indices described in the \token{dimensionDescription}. In the example above, valid values would be: \token{time} and \token{SpeciesIds}.
+
+\subsubsection{The \token{value} attribute}
+\label{sec:sliceValue}
+The \token{value} attribute takes the value of a specific index in the referenced set of indices. For example:
+
+%
+\begin{myXmlLst}{}{lst:sliceValue1}
+        <dataSource id="dataS1">
+          <listOfSlices>
+            <slice reference="SpeciesIds" value="S1" />
+          </listOfSlices>
+        </dataSource>
+\end{myXmlLst} 
+%
+
+would isolate the index set of all species ids specified, to only the single entry for \token{S1}, however over the full range of the \token{time} index set. As stated before, there could be multiple slice elements present, so it would be feasible to slice the data again, to obtain a single time point, for example the initial one:
+
+%
+\begin{myXmlLst}{}{lst:sliceValue2}
+        <dataSource id="dataS1">
+          <listOfSlices>
+            <slice reference="time" value="0" />
+            <slice reference="SpeciesIds" value="S1" />
+          </listOfSlices>
+        </dataSource>
+\end{myXmlLst} 
+%
+
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 
