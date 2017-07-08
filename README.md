@@ -1,15 +1,16 @@
-<img alt="SED-ML logo" src="./figures/SEDML_logo.png" />
+<img alt="SED-ML logo" src="./figures/SEDML_logo.png" height="60" />
 
-# Simulation Experiment Description Markup Language (SED-ML)
+# Simulation Experiment Description
 SED-ML is an XML-based format for encoding simulation setups, to ensure exchangeability and reproducibility of simulation experiments.
 
 This repository contains the SED-ML specifications, schema, figures and presentations.
 
-Home page: [http://sed-ml.org/](http://sed-ml.org/)  
-SED-ML discussion group: https://groups.google.com/forum/#!forum/sedml-discuss  
-Editors' email: sedml-editors@googlegroups.com  
-Repository: https://github.com/sed-ml/sed-ml  
-Pivotal tracker: https://www.pivotaltracker.com/projects/2074517
+**Homepage**: [http://sed-ml.org/](http://sed-ml.org/)  
+**Discussion group**: https://groups.google.com/forum/#!forum/sedml-discuss  
+**Editors' email**: sedml-editors@googlegroups.com  
+**Pivotal tracker**: https://www.pivotaltracker.com/projects/2074517
+**Repository**: https://github.com/sed-ml/sed-ml  
+**Test suite**: https://github.com/SED-ML/sedml-test-suite 
 
 &copy; 2017 sed-ml.org
 
