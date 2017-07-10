@@ -31,5 +31,8 @@ Latest version of figures is available from
 https://drive.google.com/drive/folders/0B71r5kLs3FlibnZMUEpIU1RKR1k
 Snapshots of latest figures in `/figures/`
 
+## Editor meetings
+* `HARMONY 2017`: https://docs.google.com/document/d/19piJW-KLd9h4q7L_vZbNz-3JsfXtTQG1N7ZblVQIcLo/edit#
+
 &copy; 2017 sed-ml.org
 
