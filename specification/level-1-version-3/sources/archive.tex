@@ -1,21 +1,13 @@
 % The SED-ML archive from L1V1 has been merged/migrated into the COMBINE/OMEX
 % archive.
-\chapter{The COMBINE archive}
+\chapter{COMBINE archive}
 \label{app:archive}
-A \concept{COMBINE archive} is a single file containing the various documents
-(and in the future, references to documents), necessary for the description of
-a model and all associated data and procedures. This includes for instance, but
-not limited to, simulation experiment descriptions in SED-ML, all models needed
-to run the simulations in SBML and their graphical representations in SBGN-ML.
-It is a convenient alternative if a model source URI cannot be resolved,  or if
-an end-user is offline.
+A \concept{COMBINE archive} \citep{Bergmann2014} is a single file that supports the exchange of all the information necessary for a modeling and simulation experiment in biology. A COMBINE archive file is a ZIP container that includes a manifest file, listing the content of the archive, an optional metadata file adding information about the archive and its content, and the files describing the model. The content of a COMBINE Archive consists of files encoded in COMBINE standards whenever possible, but may include additional files defined by an Internet Media Type. Several tools that support the COMBINE Archive are available, either as independent libraries or embedded in modeling software.
 
-The SED-ML archive described in appendix D of the SED-ML Level $1$ Version $1$
-specification formed the basis for the COMBINE archive with contributions from
-the SED-ML and COMBINE communities.
+The COMBINE archive is described at \url{http://co.mbine.org/documents/archive} and 
+in \citep{Bergmann2014}.
 
-The COMBINE archive is described at: \url{http://co.mbine.org/documents/archive}
-
+COMBINE archives are the recommended means for distributing simulation experiment descriptions in SED-ML, the respective data and model files, and the simulation results (figures and reports).
 
 %%% Local Variables: 
 %%% mode: latex
