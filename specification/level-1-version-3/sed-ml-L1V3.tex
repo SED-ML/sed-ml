@@ -4,6 +4,7 @@
 \listfiles
 \documentclass[pdftex,rgb,dvipsnames,svgnames,hyperref,table]{report}
 \usepackage{tocvsec2} 
+
 % layout (initialy done for the SBGN project)
 \input{sources/latex-style}
 
@@ -22,37 +23,90 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% TECHNICAL SPECIFICATION
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\input{sources/specification}
+\chapter{SED-ML technical specification}
+\label{chp:specification}
+
+This document represents the technical specification of SED-ML. We also provide an XML Schema \citep{xmls} and a UML class diagram representation of that XML Schema (Appendix~\ref{app:uml}). UML class diagrams are a subset of the \emph{Unified Markup Language} notation (UML, \citep{uml22}). Sample experiment descriptions are given as XML snippets that comply with the XML Schema.
+
+It should however be noted that some of the concepts of SED-ML cannot be captured using XML Schema alone. In these cases it is this specification that is considered the normative document. 
+
+%% ~~~ NOTATION CONVENTIONS ~~~
+\input{sources/conventions}
+
+%% ~~~ CONCEPTS ~~~
+\input{sources/concepts}
+
+%% ~~~ GENERAL LANGUAGE ELEMENTS ~~~
+\input{sources/generalElements}
+
+%% ~~~ COMPONENTS ~~~
+\input{sources/components}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% COMBINE ARCHIVE
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\input{sources/archive}
+\chapter{COMBINE archive}
+\label{app:archive}
+
+A \concept{COMBINE archive} \citep{Bergmann2014} is a single file that supports the exchange of all the information necessary for a modeling and simulation experiment in biology. A COMBINE archive file is a ZIP container that includes a manifest file, listing the content of the archive, an optional metadata file adding information about the archive and its content, and the files describing the model. The content of a COMBINE Archive consists of files encoded in COMBINE standards whenever possible, but may include additional files defined by an Internet Media Type. Several tools that support the COMBINE Archive are available, either as independent libraries or embedded in modeling software.
+
+The COMBINE archive is described at \url{http://co.mbine.org/documents/archive} and 
+in \citep{Bergmann2014}.
+
+COMBINE archives are the recommended means for distributing simulation experiment descriptions in SED-ML, the respective data and model files, and the simulation results (figures and reports).
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% ACKNOWLEDGMENTS
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\input{sources/acknowledgements}
+\chapter{Acknowledgements}
+\label{sec:acknowledgments}
+The SED-ML specification is developed with the input of many people. The following individuals served as past SED-ML Editors and contributed to SED-ML specifications. Their efforts helped shape what SED-ML is today.
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% APPENDIX
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{itemize}
+\item Richard Adams (editor, 2011-2012)
+\item Frank Bergmann (editor, 2011-2014)
+\item Jonathan Cooper (editor, 2012-2015)
+\item Nicolas Le Novère (editorial advisor, 2011-2012, 2013)
+\item Andrew Miller (editor, 2011-2012)
+\item Ion Moraru (editor, 2014-2016)
+\item Sven Sahle (editor, 2014-2016)
+\item Herbert Sauro
+\end{itemize}
+
+Moreover, we would like to thank all the participants of the meetings where SED-ML has been discussed as well as the members of the SED-ML community.
+
+
 \appendix
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% UML DIAGRAM -- SED-ML UML OVERVIEW
+% UML DIAGRAM
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\input{sources/UML}
+\chapter{SED-ML UML Overview}
+\fig{sedML} shows the complete UML diagram of the SED-ML. It gives the full picture of all implemented classes (see the XML Schema definition on page \pageref{lst:schema}).
+\label{app:uml}
+% SED-ML complete UML
+\sedfig[width=\textwidth]{pdf/sedML}{The SED-ML UML class diagram}{fig:sedML}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % XML SCHEMA
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\input{sources/XMLschema}
+\chapter{XML Schema}
+Listing \ref{lst:schema} shows the full SED-ML XML Schema. The code is commented inline.
+\label{sec:xmlschema}
+\myXmlImport{The SED-ML XML Schema definition}{lst:schema}{../../schema/level1/version3/sed-ml-L1-V3.xsd}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% SAMPLE FILES
+% EXAMPLES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\input{sources/examples}
+\chapter{Examples}
+This appendix presents selected SED-ML examples. These examples are only illustrative and do not intend to demonstrate the full capabilities of SED-ML. For a more comprehensive view of the SED-ML features refer to the specification (Chapter~\ref{chp:specification}) and to additional SED-ML examples are available from \url{http://sed-ml.org/}.
+
+The presented examples use models encoded in SBML and CellML. SED-ML is not restricted to those formats, but can be used with models encoded in formats serialized in XML. A list of formats known to have been used with SED-ML is available on \url{http://sed-ml.org/}.
+
+\input{examples/leloupSbml.tex}
+\input{examples/leloupCellml.tex}
+\input{examples/IkBNFkB_Signaling.tex}
+\input{examples/repeatedTaskExamples.tex}
+\input{examples/dataExamples.tex}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% OVERVIEW  (BPMN)

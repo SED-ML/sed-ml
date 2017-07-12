@@ -1,0 +1,22 @@
+\section{Le Loup Model (CellML)}
+The following example provides a SED-ML description for the simulation of the model based on the publication by Leloup, Gonze and Goldbeter ``Limit Cycle Models for Circadian Rhythms Based on Transcriptional Regulation in Drosophila and Neurospora'' (PubMed ID: 10643740). Whereas the previous example used SBML to encode the simulation experiment, here the model is taken from the CellML Model Repository \citep{LLH+08}. 
+
+The original model used in the simulation experiment is referred to using a URL (\url{http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/7606a47e222bc3b3d9117baa08d2e7246d67eedd/leloup_gonze_goldbeter_1999_a.cellml}, ll. 14).
+
+A second model is defined in l. 15 of the example, using \code{model1} as a source and applying even further changes to it, in this case updating two model parameters.
+
+One simulation setup is defined in the \code{listOfSimulations}. It is a \code{uniformTimeCourse} over 380 time units, using 1000 simulation points. The algorithm used is the CVODE solver, as denoted by the KiSAO ID \code{KiSAO:0000019}.
+
+A number of \code{dataGenerator}s are defined in ll. 27-73. Those are the prerequisite for defining the output of the simulation. The dataGenerator named \code{tim1} in l. 37 maps on the \code{Mt} entity in the model that is used in \code{task1}, which here is the model with ID \code{model1}. The dataGenerator named \code{per-tim} in l. 46 maps on the \code{CN} entity in \code{model1}. Finally  the fourth and fifth dataGenerators map on the \code{Mt} and \code{per-tim} entity respectively in the updated model with ID \code{model2}.
+
+The \code{output} defined in the experiment consists of three 2D plots (ll. 74-91). They reproduce the same output as the previous example. 
+
+\sedfigX[scale=0.6]{examples/leloupCellml}{The simulation result gained from the simulation description given in \lst{leloup}}{fig:leloupExample2}
+
+\myXmlImport{LeLoup Model Simulation Description in SED-ML}{lst:leloup}{examples/leloupCellml.xml}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V1"
+%%% End: 
