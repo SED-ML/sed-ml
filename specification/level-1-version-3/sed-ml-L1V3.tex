@@ -22,7 +22,32 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% TECHNICAL SPECIFICATION
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\input{sources/specification}
+\chapter{SED-ML technical specification}
+\label{chp:specification}
+
+This document represents the technical specification of SED-ML. We also provide an
+XML Schema \citep{xmls} and a UML class diagram representation of that XML Schema (Appendix~\ref{app:uml}). UML class diagrams are a subset of the \emph{Unified Markup Language} notation (UML, \citep{uml22}). Sample experiment descriptions are given as XML snippets that comply with the XML Schema.
+
+It should however be noted that some of the concepts of SED-ML cannot be captured using XML Schema alone. In these cases it is this specification that is considered the normative document. 
+
+
+%% NOTATION CONVENTIONS
+\input{sources/conventions}
+
+%% CONCEPTS
+\input{sources/concepts}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% GENERAL LANGUAGE ELEMENTS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  \input{sources/generalElements.tex}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% SYNTAX
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  \input{sources/syntax}
+
+
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% COMBINE ARCHIVE
