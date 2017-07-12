@@ -6,19 +6,19 @@
 \usepackage{tocvsec2} 
 
 % layout (initialy done for the SBGN project)
-\input{sources/latex-style}
+\input{sources/styles/latex-style}
 
 % packages and commands
-\input{sources/latex-macros}
+\input{sources/styles/latex-macros}
 
 \begin{document}
-\input{sources/front-page}
+\input{sources/A_frontpage}
 \tableofcontents
 \newpage
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% INTRODUCTION
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\input{sources/introduction}
+\input{sources/B_introduction}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% TECHNICAL SPECIFICATION
@@ -31,16 +31,33 @@ This document represents the technical specification of SED-ML. We also provide 
 It should however be noted that some of the concepts of SED-ML cannot be captured using XML Schema alone. In these cases it is this specification that is considered the normative document. 
 
 %% ~~~ NOTATION CONVENTIONS ~~~
-\input{sources/conventions}
+\input{sources/C1_conventions}
 
 %% ~~~ CONCEPTS ~~~
-\input{sources/concepts}
+\input{sources/C2_concepts}
 
 %% ~~~ GENERAL LANGUAGE ELEMENTS ~~~
-\input{sources/generalElements}
+\input{sources/C3_generalElements}
 
 %% ~~~ COMPONENTS ~~~
-\input{sources/components}
+\settocdepth{subsubsection}
+
+\section{SED-ML Components}
+In this section we describe the major components of SED-ML. We use the UML notation presented in section \ref{sec:umlconventions}, and we show the use of SED-ML with XML examples. In addition, we provide an XML Schema in Appendix~\ref{sec:xmlschema}.
+
+%% DATA
+\input{sources/01_data}
+%% MODEL
+\input{sources/02_model}
+%% SIMULATION
+\input{sources/03_simulation}
+%% TASK
+\input{sources/04_task}
+%% DATA GENERATOR
+\input{sources/05_dataGenerator}
+%% OUTPUT
+\input{sources/06_output}
+
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% COMBINE ARCHIVE

@@ -1,0 +1,86 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\token}[1]{\texttt{#1}}
+\newcommand{\concept}[1]{\textcolor{blue}{#1}}
+\newcommand{\element}[1]{\texttt{#1}}
+\newcommand{\alert}[1]{\textcolor{red}{#1}}
+\newcommand{\note}[1]{\paragraph*{} \emph{\scshape{\alert{Please Note}}: #1} \newline}
+\newcommand{\mailto}[1]   {\link{mailto:#1}{#1}}
+\newcommand{\link}[2]     {\literalFont{\href{#1}{#2}}}
+\newcommand{\literalFont}[1]{\textup{\texttt{#1}}}
+\newcommand{\version}{2\xspace}
+\newcommand{\level}{1\xspace}
+\newcommand{\LoneVone}{Level~1 Version~1\xspace}
+\newcommand{\LoneVtwo}{Level~1 Version~2\xspace}
+\newcommand{\LoneVthree}{Level~1 Version~3\xspace}
+\newcommand{\currentLV}{Level~1 Version~3\xspace}
+\newcommand{\previousLV}{Level~1 Version~2\xspace}
+\newcommand{\biom}{BioModels Database\xspace}
+% attribute table layout
+\newcommand{\attribute}{attribute\xspace}
+\newcommand{\desc}{description\xspace}
+\newcommand{\subelements}{sub-elements\xspace}
+
+\newcommand{\SedModel}{\hyperref[class:model]{Model}\xspace}
+\newcommand{\SedDataSource}{\hyperref[class:dataSource]{DataSource}\xspace}
+\newcommand{\SedDataDescription}{\hyperref[class:dataDescription]{DataDescription}\xspace}
+\newcommand{\SedSlice}{\hyperref[class:slice]{Slice}\xspace}
+
+\newcommand{\refpage}[1]{\hyperref[#1]{page \pageref{#1}}} % to hyperref to a particular page in the spec
+\newcommand{\tabcap}[1]{  % to create table captions for overview tables for each SED-ML class
+Attributes and nested elements for \concept{#1}. \emph{xy$^{o}$} denotes optional elements and attributes.
+}
+
+\newcommand{\tabtext}[2]{ % to create the introducing table text for each table reference
+\tab{#1}~shows all attributes and sub-elements for the \concept{#2} element as defined by the SED-ML \currentLV XML Schema.
+}
+
+\newcommand{\lsttext}[2]{ % to create the introducing listing text for each listing reference
+  Listing~\vref{lst:#1} shows the use of the \element{#2} element in a SED-ML file as defined by the SED-ML \currentLV XML Schema.
+}
+
+\newcommand{\lsttexta}[2]{ % to create the introducing listing text for each listing reference
+  Listing~\vref{lst:#1} shows the use of the \element{#2} attribute in a SED-ML file as defined by the SED-ML \currentLV XML Schema.
+}
+
+%
+\newcommand{\chap}[1]     {Chapter~\protect\ref{chap:#1}\xspace}
+\newcommand{\sect}[1]     {Section~\protect\ref{sec:#1}\xspace}
+\newcommand{\fig}[1]      {Figure~\protect\vref{fig:#1}\xspace}
+\newcommand{\tab}[1]      {Table~\protect\vref{tab:#1}\xspace}
+\newcommand{\lst}[1]      {Listing~\protect\ref{lst:#1}\xspace}
+\newcommand{\eg}          {e.\,g.,\xspace}
+\newcommand{\ie}          {i.\,e.,\xspace}
+
+\newcommand{\tickYes}{\hspace{1pt}\ding{52}}
+\newcommand{\tickNo}{\hspace{1pt}\ding{56}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  environments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% standard figure layout
+\newcommand{\sedfig}[4][]
+	{\begin{figure}[H]\begin{center}{\includegraphics[width=0.9\textwidth,#1]{#2}}\caption{#3}\label{#4}\end{center}\end{figure}}
+
+\newcommand{\sedfigX}[4][]
+	{\begin{figure}[H]\begin{center}{\includegraphics[#1]{#2}}\caption{#3}\label{#4}\end{center}\end{figure}}
+
+% standard XML listing layout
+\lstnewenvironment{myXmlLst}[2]
+	{\lstset{basicstyle=\ttfamily\scriptsize, caption={#1},label={#2}, keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue}, commentstyle=\color{red}, captionpos=b, breaklines=true, xleftmargin=1.5em, xrightmargin=1.5em, numbers=left, numberstyle=\ttfamily\tiny, numbersep=5pt, tabsize=4, showstringspaces=false, language=XML}} %, float=!h
+	{}
+
+% listings in appendixes:
+\newcommand{\myXmlImport}[3]	{\lstinputlisting[basicstyle=\ttfamily\scriptsize,caption={#1},label={#2},%
+	keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue}, commentstyle=\color{red}, captionpos=b, breaklines=true, xleftmargin=1.5em, xrightmargin=1.5em, numbers=left, numberstyle=\ttfamily\tiny, numbersep=5pt, tabsize=4, showstringspaces=false, language=XML, stepnumber=1]{#3}} %float=h!
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 
+
+

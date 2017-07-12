@@ -1,0 +1,246 @@
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% DATA DESCRIPTION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{DataDescription}}
+\label{class:dataDescription}
+
+The \concept{DataDescription} class (\fig{sedDataDescription}) references a file containing data points, along with a description on how to access that file, and what information to extract from it. 
+
+The \concept{DataDescription} class introduces three attributes: the required attributes \token{id} and \token{source} and the optional attribute \token{name}. Additionally two elements are defined: \concept{dimensionDescription} and \concept{listOfDataSources}. 
+
+\sedfig[width=1.0\textwidth]{pdf/dataDescriptionClass}{The SED-ML DataDescription class}{fig:sedDataDescription}
+
+\tabtext{dataDescription}{dataDescription}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+source & \refpage{sec:sedsource}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+dimensionDescription$^{o}$ & \refpage{class:dimensionDescription}\\
+listOfDataSources$^{o}$ & \refpage{class:listOfDataSources}\\
+\hline
+\end{tabular}
+\caption{\tabcap{dataDescription}}
+\label{tab:dataDescription}
+\end{table}
+
+
+%% ~~~ ID & NAME ~~~
+\subsubsection{The \token{id} and \token{name} attributes}
+The attribute \token{id} of type \token{SId} is meant to uniquely identify the \token{dataDescription} element, while the optional \token{name} attribute of type \token{string}, is there to provide a human readable representation if desired.
+
+
+%% ~~~ SOURCE ~~~
+\subsubsection{The \token{source} attribute}
+\label{sec:sedsource}
+Analog to how the \token{source} attribute on the \SedModel is handled, this attribute provides a location of a data file. In order to resolve the \token{source} attribute, the same mechanisms are allowed as for \SedModel element: be it a local file system, a relative link or an online resource.
+
+\hl{TODO: document the CSV option, the following is not correct}
+\note{The community decided, that the file will always be encoded in the NuML format.}
+
+\lsttext{dataDescription}{dataDescription}
+\begin{myXmlLst}{SED-ML \code{dataDescription} element}{lst:dataDescription}
+   <dataDescription id="Data1" name="Oscli Time Course Data" 
+     source="http://svn.code.sf.net/p/libsedml/code/trunk/Samples/data/oscli.numl" >
+     ...
+    </dataDescription>
+\end{myXmlLst} 
+
+
+%% ~~~ DIMENSION DESCRIPTION ~~~
+\subsubsection{\element{dimensionDescription}}
+\label{class:dimensionDescription}
+
+The \concept{dimensionDescription} element is the data description from an NuML file. Consider for example:
+
+\begin{myXmlLst}{SED-ML \code{dimensionDescription} element}{lst:dataDescription}
+    <dimensionDescription>
+        <compositeDescription indexType="double" id="time" name="time" 
+          xmlns="http://www.numl.org/numl/level1/version1">
+        <compositeDescription indexType="string" id="SpeciesIds" name="SpeciesIds">
+            <atomicDescription valueType="double" name="Concentration" />
+        </compositeDescription>
+        </compositeDescription>
+    </dimensionDescription>
+\end{myXmlLst} 
+
+Here a nested NuML \token{componentDescription} with \token{time} spanning one dimension and \token{SpeciesIds} another. This two dimensional space is then filled with \token{double} values representing concentrations.
+
+
+%% ~~~ LIST OF DATA SOURCES ~~~
+\subsubsection{\element{listOfDataSources}}
+\label{class:listOfDataSources}
+The \concept{listOfDataSources} contains one or more \SedDataSource elements that are then used in the remainder of the SED-ML document.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% DATA SOURCE
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{DataSource}}
+\label{class:dataSource}
+The \concept{DataSource} class (\fig{sedDataSource}) extracts chunks out of the data file provided by the outer \SedDataDescription element. 
+
+The \concept{DataSource} class introduces three attributes: the required attribute \token{id} and the optional attribute \token{indexSet} and \token{name}. Additionally the \concept{listOfSlices} element is defined. 
+
+\sedfig[width=0.9\textwidth]{pdf/dataSourceClass}{The SED-ML DataSource class}{fig:sedDataSource}
+
+\tabtext{dataSource}{dataSource}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\hline
+indexSet & \refpage{sec:indexSet}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+listOfSlices$^{o}$ & \refpage{class:listOfSlices}\\
+\hline
+\end{tabular}
+\caption{\tabcap{dataSource}}
+\label{tab:dataSource}
+\end{table}
+
+
+%% ~~~ ID & NAME ~~~
+\subsubsection{The \token{id} and \token{name} attributes}
+The attribute \token{id} of type \token{SId} is meant to uniquely identify the \token{dataSource} element, while the optional \token{name} attribute of type \token{string}, is there to provide a human readable representation if desired.
+
+
+%% ~~~ INDEX SET ~~~
+\subsubsection{The \token{indexSet} attribute}
+\label{sec:indexSet}
+Since data elements in NuML are either values, or indices, the \SedDataSource element needs two ways of addressing those elements. The \token{indexSet} attribute allows to address all indices privided by NuML elements with \token{indexType}. For example in for the \token{time} \element{componentDescription} above, a \token{dataSource}:
+
+\begin{myXmlLst}{}{lst:indexSet}
+        <dataSource id="dataTime" indexSet="time" />
+\end{myXmlLst} 
+
+would extract the set of all timepoints stored in the index. Similarly: 
+
+\begin{myXmlLst}{}{lst:indexSet2}
+        <dataSource id="allIds" indexSet="SpeciesIds" />
+\end{myXmlLst} 
+
+would extract all the species id strings stored in that index set. Valid values for \token{indexSet} are all NuML Id elements declared in the \token{dimensionDescription}. If the \token{indexSet} attribute is specified the corresponding \token{dataSource} may not define any \token{slice} elements.
+
+
+%% ~~~ LIST OF SLICES ~~~
+\subsubsection{\element{listOfSlices}}
+\label{class:listOfSlices}
+The \concept{listOfSlices} contains one or more \SedSlice elements that are then used in the remainder of the SED-ML document.
+
+
+%% ~~~ USING DATA SOURCE ~~~
+\subsubsection{Using the \token{dataSource} elements}
+Once the \SedDataSource elements are defined, they can be reused anywhere in the SED-ML Description. Specifically their \token{id} attribute can be referenced within the \element{listOfVariables} of \element{DataGenerators}, \element{computeChange} or \element{setValue} objects. Here an example that re-uses the data source \token{dataS1}:
+
+\begin{myXmlLst}{}{lst:indexSet2}
+   <dataGenerator id="dgDataS1" name="S1 (data)">
+     <listOfVariables>
+       <variable id="varS1" modelReference="model1" target="#dataS1" />
+     </listOfVariables>
+     <math xmlns="http://www.w3.org/1998/Math/MathML">
+       <ci> varS1 </ci>
+     </math>
+   </dataGenerator>
+\end{myXmlLst} 
+
+This represents a change from \LoneVone and \LoneVtwo, in which a \token{taskReference} was always present for a \token{variable} in a data generator.
+
+To indicate that the target is an entity defined within the current SED-ML description the hashtag (\#) with the reference to an \token{id} was used. Additionally, this example uses the \token{modelReference}, in order to facilitate a mapping of the data encoded in the NuML document with a given model. 
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% SLICE
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{Slice}}
+\label{class:slice}
+If a \SedDataSource does not define the \token{indexSet} attribute, it will contain \SedSlice elements. Each slice removes one dimension from the data hypercube.
+
+The \concept{Slice} class introduces two required attributes: \token{reference} and \token{value}. 
+
+\sedfig[width=0.5\textwidth]{pdf/sliceClass}{The SED-ML Slice class}{fig:sedSlice}
+
+\tabtext{slice}{slice}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{|l|l|}
+\hline
+\textbf{\attribute} & \textbf{\desc}\\
+\hline
+metaid$^{o}$ & \refpage{sec:metaID}\\
+\hline
+reference & \refpage{sec:sliceReference}\\
+value & \refpage{sec:sliceValue}\\
+\hline
+\hline
+\textbf{\subelements} & \textbf{\desc}\\
+\hline
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\hline
+\end{tabular}
+\caption{\tabcap{slice}}
+\label{tab:slice}
+\end{table}
+
+%% ~~~ SLICE:REFERENCE ~~~
+\subsubsection{The \token{reference} attribute}
+\label{sec:sliceReference}
+The \token{reference} attribute references one of the indices described in the \token{dimensionDescription}. In the example above, valid values would be: \token{time} and \token{SpeciesIds}.
+
+%% ~~~ SLICE:VALUE ~~~
+\subsubsection{The \token{value} attribute}
+\label{sec:sliceValue}
+The \token{value} attribute takes the value of a specific index in the referenced set of indices. For example:
+
+\begin{myXmlLst}{}{lst:sliceValue1}
+        <dataSource id="dataS1">
+          <listOfSlices>
+            <slice reference="SpeciesIds" value="S1" />
+          </listOfSlices>
+        </dataSource>
+\end{myXmlLst} 
+
+would isolate the index set of all species ids specified, to only the single entry for \token{S1}, however over the full range of the \token{time} index set. As stated before, there could be multiple slice elements present, so it would be feasible to slice the data again, to obtain a single time point, for example the initial one:
+
+\begin{myXmlLst}{}{lst:sliceValue2}
+        <dataSource id="dataS1">
+          <listOfSlices>
+            <slice reference="time" value="0" />
+            <slice reference="SpeciesIds" value="S1" />
+          </listOfSlices>
+        </dataSource>
+\end{myXmlLst} 
+
+
+%%% Local Variables: 
+%%% mode: plain-tex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 
