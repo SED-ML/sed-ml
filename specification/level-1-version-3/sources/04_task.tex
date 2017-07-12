@@ -311,7 +311,7 @@ A \element{setValue} element inherits from the \hyperref[class:computeChange]{co
 
 The value to be changed is identified via the combination of the attributes \code{modelReference} and either \code{symbol} or \code{target}, in order to select an implicit or explicit variable within the referenced model.
 
-As in \hyperref[class:functionalRange]{functionalRange}, the atribute \code{range} may be used as a shorthand for refering to the range whose values will be used to compute a value for the specified model element.
+As in \hyperref[class:functionalRange]{functionalRange}, the attribute \code{range} may be used as a shorthand for refering to the range whose values will be used to compute a value for the specified model element.
 
 The child \element{math} contains the expression computing the value by refering to optional parameters, variables or ranges.
 Again as for \hyperref[class:functionalRange]{functionalRange}, variable references always retrieve the \concept{current value} of the model variable or range at the current iteration of the enclosing \element{repeatedTask}. For a model not being simulated by any \element{subTask}, the initial state of the model is used.
