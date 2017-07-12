@@ -1,26 +1,61 @@
 \chapter{SED-ML technical specification}
 \label{chp:specification}
 
-This document represents the technical specification of SED-ML. We also provide an
-XML Schema \citep{xmls} and a UML class diagram representation of that XML Schema (Appendix~\ref{app:uml}). UML class diagrams are a subset of the \emph{Unified Markup Language} notation (UML, \citep{uml22}). Sample experiment descriptions are given as XML snippets that comply with the XML Schema.
+This document represents the technical specification of SED-ML. We also provide an XML Schema \citep{xmls} and a UML class diagram representation of that XML Schema (Appendix~\ref{app:uml}). UML class diagrams are a subset of the \emph{Unified Markup Language} notation (UML, \citep{uml22}). Sample experiment descriptions are given as XML snippets that comply with the XML Schema.
 
 It should however be noted that some of the concepts of SED-ML cannot be captured using XML Schema alone. In these cases it is this specification that is considered the normative document. 
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% NOTATION CONVENTIONS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \input{sources/conventions}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% CONCEPTS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \input{sources/concepts}
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% GENERAL LANGUAGE ELEMENTS
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \input{sources/generalElements}
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% SYNTAX
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  \input{sources/syntax}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% COMPONENTS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\settocdepth{subsubsection}
+
+\section{SED-ML Components}
+% the sed-ml elements
+In this section we describe the major components of SED-ML. We use the UML notation presented in section \ref{sec:umlconventions}, and we show the use of SED-ML with XML examples. In addition, we provide an XML Schema in Appendix~\ref{sec:xmlschema}.
+
+%% DATA
+\input{sources/dataDescriptionClass}
+  
+%% MODEL
+\input{sources/modelClass}
+\input{sources/changeClass}
+
+%% SIMULATION
+\input{sources/simulationClass}
+\input{sources/algorithmClass.tex}
+\input{sources/algorithmParameterClass.tex}
+\input{sources/timeCourseSimulationClass}
+\input{sources/oneStepSimulationClass}
+\input{sources/steadyStateSimulationClass}
+
+%% TASK
+\input{sources/abstractTaskClass.tex}
+\input{sources/taskClass.tex}
+\input{sources/repeatedTaskClass.tex}
+
+%% DATA GENERATOR
+\input{sources/dataGeneratorClass.tex}
+
+%% OUTPUT
+\input{sources/outputClass}
+\input{sources/outputComponents}
+
 
 %%% Local Variables: 
 %%% mode: latex

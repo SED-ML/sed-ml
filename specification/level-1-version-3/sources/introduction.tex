@@ -1,18 +1,12 @@
-% introduction
 \chapter{Introduction}
 
 The number of available computational models of biological systems is growing at an ever increasing pace. 
-At the same time, their size and complexity are also increasing. The need to build on existing studies by reusing models therefore becomes more imperative. 
-It is now generally accepted that one needs to be able to exchange the biochemical and mathematical structure of models. 
-The efforts to standardise the representation of computational models in various areas of biology, such as the \emph{Systems Biology Markup Language} (SBML, \citep{Hucka:2003}), \emph{CellML} \citep{cuellar:2003} or \emph{NeuroML} \citep{Goddard:2001}, resulted in such an increase of the exchange and re-use of models. 
+At the same time, their size and complexity are also increasing. The need to build on existing studies by reusing models therefore becomes more imperative. It is now generally accepted that one needs to be able to exchange the biochemical and mathematical structure of models. The efforts to standardise the representation of computational models in various areas of biology, such as the \emph{Systems Biology Markup Language} (SBML, \citep{Hucka:2003}), \emph{CellML} \citep{cuellar:2003} or \emph{NeuroML} \citep{Goddard:2001}, resulted in such an increase of the exchange and re-use of models. 
 However, the description of the structure of models is not sufficient to enable the reproduction of simulation results.  
 One also needs to describe the procedures the models are subjected to, as described by the \emph{Minimum Information About a Simulation Experiment (MIASE)} \citep{Waltemath:2011}. 
 
-This document presents  \currentLV of the \emph{Simulation Experiment Description Markup Language} (SED-ML), a computer-readable format for encoding simulation experiments. 
-SED-ML files are encoded in the \emph{Extensible Markup Language} (XML) \citep{Bray:2006}. The SED-ML format is defined by an XML Schema \citep{Fallside:2001}. 
-\currentLV is the successor of \previousLV and \LoneVone, which is described in \citep{WAB+11}.
+This document presents  \currentLV of the \emph{Simulation Experiment Description Markup Language} (SED-ML), a computer-readable format for encoding simulation experiments. SED-ML files are encoded in the \emph{Extensible Markup Language} (XML) \citep{Bray:2006}. The SED-ML format is defined by an XML Schema \citep{Fallside:2001}. \currentLV is the successor of \previousLV and \LoneVone, which is described in \citep{WAB+11}.
 
-%% EXAMPLE OF A SIMULATION EXPERIMENT DESCRIPTION (INFORMAL)
 \section{Motivation: A sample experiment}
 \label{motivation:example}
 
@@ -21,8 +15,8 @@ The \emph{repressilator} is a rather small, though famous, model that is capable
 The \emph{repressilator} is a synthetic oscillating network of transcription regulators in Escherichia coli \citep{Elowitz:2000}. The network is composed of the three repressor genes Lactose Operon Repressor (lacI), Tetracycline Repressor (tetR) and Repressor CI (cI), which code for proteins binding to the promoter of the other, blocking their transcription. The three inhibitions together in tandem, form a cyclic negative-feedback loop. To describe the interactions of the molecular species involved in the network, the authors built a simple mathematical model of coupled first-order differential equations. All six molecular species included in the network (three mRNAs, three repressor proteins) participated in creation (transcription/translation) and degradation processes. The model was used to determine the influence of the various parameters on the dynamic behavior of the system. In particular, parameter values were sought which induce stable oscillations in the concentrations of the system components. Oscillations in the levels of the three repressor proteins are obtained by numerical integration. 
 
 \subsection{A time-course simulation}
- \label{sec:intro1}
- The first experiment we intend to run on the model is the simulation that will lead to the oscillation shown in Figure 1c of the reference publication \citep{Elowitz:2000}. This simulation experiment can be described as:
+\label{sec:intro1}
+The first experiment we intend to run on the model is the simulation that will lead to the oscillation shown in Figure 1c of the reference publication \citep{Elowitz:2000}. This simulation experiment can be described as:
 
 \begin{enumerate}
  	\item{Import the model identified by the Unified Resource Identifier (URI) \citep{Berners-Lee:2005} \url{urn:miriam:biomodels.db:BIOMD0000000012}.}
@@ -54,7 +48,7 @@ The fine-tuning of the model can be shown by adjusting parameters before simulat
 \end{enumerate}
 
 \fig{simEx3} shows the result of the simulation.
-%
+
 \begin{figure}
 \centering
 \includegraphics[width=0.7\textwidth]{images/simEx3.png}
@@ -72,6 +66,7 @@ The raw numerical output of the simulation steps may be subjected to data post-p
 \item[7.]{Normalize the data for each of the repressor proteins by dividing each time point by the maximum value, i.\,e.\ lacI(t)/max(lacI(t) ), tetR(t)/max(tetR(t)) , and cI(t)/max(cI(t)).}
 \item[8.]{Plot the normalized \code{lacI} protein as a function of the normalized \code{cI}, the normalized \code{cI}  as a function of the normalized \code{tetR} protein, and the normalized \code{tetR} protein against the normalized \code{lacI} protein in a 2D plot.}
 \end{enumerate}
+
 \fig{simEx2} illustrates the result of the simulation after post-processing of the output data. 
 \begin{figure}
 \centering
