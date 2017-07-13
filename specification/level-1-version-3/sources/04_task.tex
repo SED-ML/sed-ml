@@ -94,7 +94,7 @@ The value to be changed is identified via the combination of the attributes \cod
 
 As in \hyperref[class:functionalRange]{functionalRange}, the attribute \code{range} may be used as a shorthand to specify the \code{id} of another \concept{Range}. The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \code{id} of the range is used directly. In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
 
-The child \element{math} contains the expression computing the value by refering to optional parameters, variables or ranges.
+The child \element{math} contains the expression computing the value by referring to optional parameters, variables or ranges.
 Again as for \hyperref[class:functionalRange]{functionalRange}, variable references always retrieve the \concept{current value} of the model variable or range at the current iteration of the enclosing \element{repeatedTask}. For a model not being simulated by any \element{subTask}, the initial state of the model is used.
 
 \begin{myXmlLst}{A \code{setValue} element setting \code{w} to the values of the range with id \code{current}.}{lst:setValue}
@@ -258,7 +258,7 @@ It consists of an optional attribute \code{range}, two optional elements \hyperr
 The optional attribute \code{range} may be used as a shorthand to specify the \code{id} of another \concept{Range}. The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \code{id} of the range is used directly.
 In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
 
-In the \element{listOfVariables}, \hyperref[class:variable]{variable} elements define identifiers refering to model variables or range values, which may then be used within the \element{math} expression.
+In the \element{listOfVariables}, \hyperref[class:variable]{variable} elements define identifiers referring to model variables or range values, which may then be used within the \element{math} expression.
 These references always retrieve the \concept{current value} of the model variable or range at the current iteration of the enclosing \element{repeatedTask}.
 For a model not being simulated by any \element{subTask}, the initial state of the model is used.
 
