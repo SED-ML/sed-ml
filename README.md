@@ -8,7 +8,7 @@ This repository contains the SED-ML specifications, schema, figures and presenta
 **Homepage**: [http://sed-ml.org/](http://sed-ml.org/)  
 **Discussion group**: https://groups.google.com/forum/#!forum/sedml-discuss  
 **Editors' email**: sedml-editors@googlegroups.com  
-**Issue tracker**: https://www.pivotaltracker.com/projects/2074517  
+**Issue tracker**: https://github.com/SED-ML/sed-ml/issues
 **Repository**: https://github.com/sed-ml/sed-ml  
 **Test suite**: https://github.com/SED-ML/sedml-test-suite 
 
