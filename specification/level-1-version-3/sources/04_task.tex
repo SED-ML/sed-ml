@@ -252,7 +252,7 @@ For example, the range below iterates over the values $1$, $4$ and $10$ in that 
 
 \sedfig[width=.9\textwidth]{pdf/functionalRangeClass}{The SED-ML FunctionalRange class}{fig:sedFunctionalRangeClass}
 
-A \element{FunctionalRange} constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables. In this it is quite similar to the \hyperref[class:computeChange]{ComputeChange} element, and shares some of the same child elements.
+A \element{FunctionalRange} constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables. In this it is similar to the \hyperref[class:computeChange]{ComputeChange} element, and shares some of the same child elements (but is no subclass of \hyperref[class:computeChange]{ComputeChange}).
 It consists of an optional attribute \code{range}, two optional elements \hyperref[sec:listOfVariables]{listOfVariables} and \hyperref[sec:listOfParameters]{listOfParameters}, and a required element \element{math}.
 
 The optional attribute \code{range} may be used as a shorthand to specify the \code{id} of another \concept{Range}. The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \code{id} of the range is used directly.
