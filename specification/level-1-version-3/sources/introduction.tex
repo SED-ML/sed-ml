@@ -32,24 +32,24 @@ A SED-ML document specifies for a given simulation experiment
 
 SED-ML containts the following main objects to describe this information: \code{DataDescription} (\ref{class:dataDescription}), \code{Model} (\ref{class:model}), \code{Simulation} (\ref{class:simulation}), \code{Task} (\ref{class:task}), \code{DataGenerator} (\ref{class:dataGenerator}), and \code{Output} (\ref{class:output}).
 
-\paragraph*{\concept{DataDescription}}
+\paragraph*{\hyperref[class:dataDescription]{DataDescription}}
 The \code{DataDescription} (\ref{class:dataDescription}) allows to specify data sets used in a simulation experiment. Such data can be used for instance for parametrization of model simulations or to plot data with simulation results.
 
-\paragraph*{\concept{Model}}
+\paragraph*{\hyperref[class:model]{Model}}
 The \code{Model} (\ref{class:model}) is used to reference the models used in the simulation experiment. SED-ML itself is independent of the model encoding underlying the models. The only requirement is that the model is referenced by an unambiguous identifier, for example using a MIRIAM URI. To specify the language in which the model is encoded, a set of predefined language URNs is provided.
 
 The SED-ML \code{Change} (\ref{class:change}) allows the application of changes to the referenced models, including changes on the XML attributes, e.g. changing the value of an observable, computing the change of a value using mathematics, or general changes on any XML element of the model representation that is addressable by XPath expressions, e.g. substituting a piece of XML by an updated one.
 
-\paragraph*{\concept{Simulation}}
+\paragraph*{\hyperref[class:simulation]{Simulation}}
 The \code{Simulation} (\ref{class:simulation}) defines the simulation settings and the steps taken during simulation. These include the particular type of simulation and the algorithm used for the execution of the simulation.
 
-\paragraph*{\concept{Task}}
+\paragraph*{\hyperref[class:task]{Task}}
 SED-ML makes uses the \code{Task} (\ref{class:task}) to combine a defined model (from \code{Model}) and a defined simulation setting (from \code{Simulation}).
 
-\paragraph*{\concept{DataGenerator}}
+\paragraph*{\hyperref[class:dataGenerator]{DataGenerator}}
 The \code{DataGenerator} class (\ref{class:dataGenerator}) allows to encode post-processing of simulation results before output, e.g. one might want to normalise a plot before output, or apply post-processing like mean-value calculation. In the definition of a \code{DataGenerator}, any addressable variable or parameter of any defined model may be referenced, and new entities might be specified using MathML.
 
-\paragraph*{\concept{Output}}
+\paragraph*{\hyperref[class:output]{Output}}
 The \code{Output} (\ref{class:output}) defines the output of the simulation, which can be either a two dimensional plot \code{Plot2D} (\ref{class:plot2D}), a three dimensional plot \code{Plot3D} (\ref{class:plot3D}), or data table \code{Report} (\ref{class:report}). The \code{Output} is based on the \code{DataGenerator}s.
 
 This section provided a high level overview over the content of a SED-ML file. For the detailed technical specification see Chapter~\ref{chp:specification}. 
