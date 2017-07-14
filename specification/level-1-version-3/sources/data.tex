@@ -67,7 +67,7 @@ Analog to how the \token{source} attribute on the \SedModel is handled, this att
 
 The \concept{dimensionDescription} element is the data description from an NuML file. Consider for example:
 
-\begin{myXmlLst}{SED-ML \code{dimensionDescription} element}{lst:dataDescription}
+\begin{myXmlLst}{SED-ML \code{dimensionDescription} element}{lst:dimensionDescription}
     <dimensionDescription>
         <compositeDescription indexType="double" id="time" name="time" 
           xmlns="http://www.numl.org/numl/level1/version1">
@@ -159,7 +159,7 @@ The \concept{listOfSlices} contains one or more \SedSlice elements that are then
 \subsubsection{Using the \token{dataSource} elements}
 Once the \SedDataSource elements are defined, they can be reused anywhere in the SED-ML Description. Specifically their \token{id} attribute can be referenced within the \element{listOfVariables} of \element{DataGenerators}, \element{computeChange} or \element{setValue} objects. Here an example that re-uses the data source \token{dataS1}:
 
-\begin{myXmlLst}{}{lst:indexSet2}
+\begin{myXmlLst}{}{lst:indexSource}
    <dataGenerator id="dgDataS1" name="S1 (data)">
      <listOfVariables>
        <variable id="varS1" modelReference="model1" target="#dataS1" />

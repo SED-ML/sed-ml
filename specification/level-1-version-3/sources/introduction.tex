@@ -50,7 +50,7 @@ SED-ML makes uses the \code{Task} (\ref{class:task}) to combine a defined model 
 The \code{DataGenerator} class (\ref{class:dataGenerator}) allows to encode post-processing of simulation results before output, e.g. one might want to normalise a plot before output, or apply post-processing like mean-value calculation. In the definition of a \code{DataGenerator}, any addressable variable or parameter of any defined model may be referenced, and new entities might be specified using MathML.
 
 \paragraph*{\concept{Output}}
-The \code{Output} (\ref{class:output}) defines the output of the simulation. It can be either a two dimensional plot \code{Plot2D} (\ref{class:plot2D}, a three dimensional plot \code{Plot3D} (\ref{class:plot3D}), or data table \code{Report} (\ref{class:report}). In the plot or report the data from the \code{DataGenerator}s is used.
+The \code{Output} (\ref{class:output}) defines the output of the simulation, which can be either a two dimensional plot \code{Plot2D} (\ref{class:plot2D}), a three dimensional plot \code{Plot3D} (\ref{class:plot3D}), or data table \code{Report} (\ref{class:report}). The \code{Output} is based on the \code{DataGenerator}s.
 
 This section provided a high level overview over the content of a SED-ML file. For the detailed technical specification see Chapter~\ref{chp:specification}. 
 
@@ -59,14 +59,12 @@ This section provided a high level overview over the content of a SED-ML file. F
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{A simulation experiment}
 \label{motivation:example}
+In this section an introductory example is given how simulation experiments can be described with SED-ML. The example experiment uses the \emph{repressilator} \citep{Elowitz:2000} a famous model capable of displaying rich and variable behaviors.
+
+The \emph{repressilator} is a synthetic oscillating network of transcription regulators in Escherichia coli. The network is composed of the three repressor genes Lactose Operon Repressor (lacI), Tetracycline Repressor (tetR) and Repressor CI (cI), which code for proteins binding to the promoter of the other, blocking their transcription. The three inhibitions together in tandem, form a cyclic negative-feedback loop. To describe the interactions of the molecular species involved in the network, the authors built a simple mathematical model of coupled first-order differential equations. All six molecular species included in the network (three mRNAs, three repressor proteins) participated in creation (transcription/translation) and degradation processes. The model was used to determine the influence of the various parameters on the dynamic behavior of the system. In particular, parameter values were sought which induce stable oscillations in the concentrations of the system components. Oscillations in the levels of the three repressor proteins can be obtained by numerical integration. 
 
 \hl{TODO MK: add sample experiment to examples in appendix}
-\hl{TODO MK: create simulation results with tellurium and Copasi to demonstrate reproducibility}
-
-The \emph{repressilator} \citep{Elowitz:2000} is a rather small, though famous, model that is capable of displaying rich and variable behaviors. We will use this model to demonstrate how simulation experiments with this model can be described with SED-ML. 
-
-The \emph{repressilator} is a synthetic oscillating network of transcription regulators in Escherichia coli. The network is composed of the three repressor genes Lactose Operon Repressor (lacI), Tetracycline Repressor (tetR) and Repressor CI (cI), which code for proteins binding to the promoter of the other, blocking their transcription. The three inhibitions together in tandem, form a cyclic negative-feedback loop. To describe the interactions of the molecular species involved in the network, the authors built a simple mathematical model of coupled first-order differential equations. All six molecular species included in the network (three mRNAs, three repressor proteins) participated in creation (transcription/translation) and degradation processes. The model was used to determine the influence of the various parameters on the dynamic behavior of the system. In particular, parameter values were sought which induce stable oscillations in the concentrations of the system components. Oscillations in the levels of the three repressor proteins are obtained by numerical integration. 
-
+\hl{TODO MK: create simulation results with tellurium and SED-ML webtools to show reproducibility}
 
 %% ~~ TIMECOURSE ~~
 \subsection{A time-course simulation}
@@ -82,60 +80,54 @@ The first simulation experiment we run with the model reproduces the oscillation
 
 Following those steps and performing the simulation in the simulation tools supporting SED-ML results in the output depicted in \fig{rep_tc}. \hl{TODO: legend and xaxis label missing, rerun with tellurium and SED-ML webtools.}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{examples/rep_tc.png}
-\caption{Time-course simulation of the repressilator model, imported from BioModels Database and simulated in COPASI. The number of repressor proteins lacI, tetR and cI is depicted.}
-\label{fig:rep_tc}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.6\textwidth]{examples/rep_tc.png}
+	\caption{Time-course simulation of the repressilator model, imported from BioModels Database and simulated in COPASI. The number of repressor proteins lacI, tetR and cI is depicted.}
+	\label{fig:rep_tc}
 \end{figure}
 
 
 %% ~~ PRE-PROCESSING ~~
 \subsection{Applying pre-processing}
 \label{sec:preprocessing}
-The fine-tuning of the model can be shown by adjusting parameters before simulation. When changing the initial values of the parameters \emph{protein copies per promoter} and \emph{leakiness in protein copies per promoter} the system's behavior switches from sustained oscillation to asymptotic steady-state. The adjustments leading to that behavior may be described as: 
+Before simulation model parameters can be adjusted. When changing the parameter values \emph{protein copies per promoter} \code{tps$\_$repr} and \emph{leakiness in protein copies per promoter} \code{tps$\_$active} like depicted below, the system's behavior switches from sustained oscillations to damped oscillations towards an asymptotic steady-state. The model changes leading to that behavior are described as: 
 
 \begin{enumerate}
-\item{Import the model as above.}
-\item{Change the value of the parameter \code{tps$\_$repr} from “0.0005” to “1.3e-05”.}
-\item{Change the value of the parameter \code{tps$\_$active} from “0.5 “ to “ 0.013“.}
-\item{Select a deterministic method.}
-\item{Run a uniform time course for the duration of 1000~min with an output interval of 1~min.}
-\item Plot the amount of lacI, tetR and cI against time in a 2D Plot.
+	\item{Import the model as above.}
+	\item{Change the value of the parameter \code{tps$\_$repr} from “0.0005” to “1.3e-05”.}
+	\item{Change the value of the parameter \code{tps$\_$active} from “0.5 “ to “0.013“.}
+	\item{Select a deterministic method.}
+	\item{Run a uniform time course for the duration of 1000~min with an output interval of 1~min.}
+	\item Plot the amount of lacI, tetR and cI against time in a 2D Plot.
 \end{enumerate}
 
 \fig{rep_pre} shows the result of the simulation.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{examples/rep_pre.png}
-\caption{Time-course simulation of the repressilator model, imported from BioModels Database and simulated in COPASI after modification of the initial values of the \emph{protein copies per promoter} and the \emph{leakiness in protein copies per promoter}. The number of repressor proteins lacI, tetR and cI is shown}
-\label{fig:rep_pre}
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.7\textwidth]{examples/rep_pre.png}
+	\caption{Time-course simulation of the repressilator model, imported from BioModels Database and simulated after modification of the initial parameter values of the \emph{protein copies per promoter} and the \emph{leakiness in protein copies per promoter}. The number of repressor proteins lacI, tetR and cI are depicted.}
+	\label{fig:rep_pre}
 \end{figure}
 
 %% ~~ POST-PROCESSING ~~
 \subsection{Applying post-processing}
 \label{sec:postprocessing}
-The raw numerical output of the simulation steps may be subjected to data post-processing before plotting or reporting.  In order to describe the production of a normalized plot of the time-course in the first example (section \ref{sec:timecourse}), depicting the influence of one variable on another (in phase-planes), one could define the following further steps:
+The raw numerical output of the simulation steps may be subjected to data post-processing before plotting or reporting. In order to describe the production of a normalized plot of the time-course in the first example (section \ref{sec:timecourse}), depicting the influence of one variable on another (in phase-planes), one performes the additional steps:
 
 (Please note that the description steps 1 - 4 remain as given in section \ref{sec:timecourse} above.)
 \begin{enumerate}
-\item[5.]{Collect lacI(t) , tetR(t) and cI(t).}
-\item[6.]{Compute the highest value for each of the repressor proteins,  max(lacI(t)), max(tetR(t)), max(cI(t)).}
-\item[7.]{Normalize the data for each of the repressor proteins by dividing each time point by the maximum value, i.\,e.\ lacI(t)/max(lacI(t) ), tetR(t)/max(tetR(t)) , and cI(t)/max(cI(t)).}
-\item[8.]{Plot the normalized \code{lacI} protein as a function of the normalized \code{cI}, the normalized \code{cI}  as a function of the normalized \code{tetR} protein, and the normalized \code{tetR} protein against the normalized \code{lacI} protein in a 2D plot.}
+	\item[5.]{Collect lacI(t) , tetR(t) and cI(t).}
+	\item[6.]{Compute the highest value for each of the repressor proteins, max(lacI(t)), max(tetR(t)), max(cI(t)).}
+	\item[7.]{Normalize the data for each of the repressor proteins by dividing each time point by the maximum value, i.\,e.\ lacI(t)/max(lacI(t) ), tetR(t)/max(tetR(t)) , and cI(t)/max(cI(t)).}
+	\item[8.]{Plot the normalized \code{lacI} protein as a function of the normalized \code{cI}, the normalized \code{cI}  as a function of the normalized \code{tetR} protein, and the normalized \code{tetR} protein against the normalized \code{lacI} protein in a 2D plot.}
 \end{enumerate}
 
 \fig{rep_post} illustrates the result of the simulation after post-processing of the output data. 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{examples/rep_post.png}
-\caption{Time-course simulation of the repressilator model imported from BioModels Database and simulated with COPASI. Depicted is the normalized temporal evolution of lacI, tetR and cI in phase-plane.}
-\label{fig:rep_post}
+	\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.7\textwidth]{examples/rep_post.png}
+	\caption{Time-course simulation of the repressilator model imported from BioModels Database and simulated with COPASI. Depicted is the normalized temporal evolution of lacI, tetR and cI in phase-plane.}
+	\label{fig:rep_post}
 \end{figure}
-
-
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "../sed-ml-L1V3"
-%%% End: 

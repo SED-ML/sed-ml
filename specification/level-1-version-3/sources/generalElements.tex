@@ -639,13 +639,6 @@ Each \concept{parameter} has exactly one fixed \concept{value}. The \code{value}
 SED-ML \concept{listOf*} elements serve as containers  for a collection of objects of the same type. For example, the \code{listOfModels} contains all \hyperref[class:model]{Model} objects of a SED-ML document. Lists do not carry any further semantics nor do they add additional attributes to the language. They might, however, be annotated with \hyperref[class:notes]{Notes} and \hyperref[class:annotation]{Annotations} as they are derived from \hyperref[class:sedBase]{SEDBase}. All \concept{listOf*} elements are optional in a SED-ML document. 
 
 
-%% ~~~ LIST OF DATA DESCRIPTIONS ~~
-\subsubsection{listOfDataDescriptions: The dataDescription definition container}
-\label{sec:listOfDataDescription}
-
-\hl{TODO: WRITE, see issue \url{https://github.com/SED-ML/sed-ml/issues/9}}
-
-
 %% ~~~ LIST OF VARIABLES ~~
 \subsubsection{listOfVariables: The variable definition container}
 \label{sec:listOfVariables}
@@ -683,6 +676,40 @@ The element is optional and may contain zero to many parameters.
  <parameter id="p1" value="1" />
  <parameter id="p2" name="Kadp_2" value="0.23" />
 </listOfParameters>
+\end{myXmlLst}
+
+
+%% ~~~ LIST OF DATA DESCRIPTIONS ~~
+\subsubsection{listOfDataDescriptions: The dataDescription definition container}
+\label{sec:listOfDataDescriptions}
+
+In order to reference data in a simulation experiment, the data files along with a description on how to access such files and what information to extract from it have to be defined. SED-ML uses the \concept{listOfDataDescriptions} container for all necessary data (\fig{listOfDataDescriptions}). The \code{listOfDataDescriptions} is optional and may contain zero to many data files.
+
+\hl{TODO: add listOfDataDescriptions UML}
+% \sedfig[width=0.85\textwidth]{pdf/listOfDataDescriptions}{The SED-ML listOfDataDescriptions container}{fig:listOfDataDescriptions}
+
+\lsttext{listOfDataDescriptions}{listOfDataDescriptions}
+
+\begin{myXmlLst}{SED-ML listOfDataDescriptions element}{lst:listOfDataDescriptions}
+  <listOfDataDescriptions>
+	<dataDescription id="Data1" name="Oscli Time Course Data" source="http://svn.code.sf.net/p/libsedml/code/trunk/Samples/data/oscli.numl">
+      <dimensionDescription>
+        <compositeDescription indexType="double" id="time" name="time" xmlns="http://www.numl.org/numl/level1/version1">
+          <compositeDescription indexType="string" id="SpeciesIds" name="SpeciesIds">
+            <atomicDescription valueType="double" name="Concentrations" />
+          </compositeDescription>
+        </compositeDescription>
+      </dimensionDescription>
+      <listOfDataSources>
+        <dataSource id="dataS1">
+          <listOfSlices>
+            <slice reference="SpeciesIds" value="S1" />
+          </listOfSlices>
+        </dataSource>
+        <dataSource id="dataTime" indexSet="time" />
+      </listOfDataSources>
+    </dataDescription>
+  </listOfDataDescriptions>
 \end{myXmlLst}
 
 
