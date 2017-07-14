@@ -4,16 +4,16 @@
 \chapter{Introduction}
 The Simulation Experiment Description Markup Language (SED-ML) is an XML-based format for the description of simulation experiments.
 
-The number of available computational models of biological systems is growing at an ever increasing pace. 
-At the same time, their size and complexity are also increasing. The need to build on existing studies by reusing models therefore becomes more imperative. It is now generally accepted that one needs to be able to exchange the biochemical and mathematical structure of models. The efforts to standardise the representation of computational models in various areas of biology, such as the Systems Biology Markup Language (SBML \citep{Hucka:2003}), CellML \citep{cuellar:2003} or NeuroML \citep{Goddard:2001}, resulted in such an increase of the exchange and re-use of models. 
+The number of computational models of biological systems is growing at an ever increasing pace. 
+At the same time, their size and complexity are also increasing. It is now generally accepted that one must be able to exchange the mathematical structure of such models, for instance to build on existing studies by reusing models or for the reproduction of model results. The efforts to standardise the representation of computational models in various areas of biology, such as the Systems Biology Markup Language (SBML) \citep{Hucka:2003}, CellML \citep{cuellar:2003} or NeuroML \citep{Goddard:2001}, resulted in an increase of the exchange and re-use of models. 
 
-However, the description of the structure of models is not sufficient for the reproduction of simulation results. One also needs to describe the procedures the models are subjected to, as described by the Minimum Information About a Simulation Experiment (MIASE) \citep{Waltemath:2011} which proposes a minimal set of information that should be provided to allow the reproduction of simulation experiments among users and software tools. The increasing use of computational simulation experiments to inform modern biological research creates new challenges to annotate, archive, share and reproduce such experiments. 
+However, the description of the structure of models is not sufficient for the reproduction of simulation results. One also needs to describe the procedures the models are subjected to, i.e. the minimal set of information that should be provided to allow the reproduction of simulation experiments among users and software tools as described by the Minimum Information About a Simulation Experiment (MIASE \citep{Waltemath:2011}). The increasing use of computational simulation experiments to inform modern biological research creates new challenges to reproduce, annotate, archive, and share such experiments. 
 
-SED-ML encodes in a computer-readable exchange format the information required by MIASE to enable reproduction of simulation experiments. It has been developed as a community project and it is defined in this detailed technical specification and in the corresponding XML schema. SED-ML files are encoded in the Extensible Markup Language (XML) \citep{Bray:2006} with the SED-ML format being defined by an XML Schema \citep{Fallside:2001}. 
+SED-ML describes in a computer-readable exchange format the information to enable the reproduction of simulation experiments. SED-ML is a software-independent format encoded in the Extensible Markup Language (XML) \citep{Bray:2006} not specific to particular simulation tools and independent of the underlying model implementation.
 
-SED-ML descriptions are independent of the underlying model implementation. SED-ML is a software-independent format for encoding the description of simulation experiments; it is not specific to particular simulation tools.
+SED-ML is developed as a community project and defined via a detailed technical specification and a corresponding XML Schema. 
 
-This document presents \currentLV of SED-ML which is the successor of \previousLV and \LoneVone (described in \citep{WAB+11}).
+This document describes \currentLV of SED-ML which is the successor of \previousLV and \LoneVone (described in \citep{WAB+11}).
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% OVERVIEW
@@ -24,37 +24,35 @@ A SED-ML document specifies for a given simulation experiment
 \begin{itemize}
 \item what datasets to use
 \item which models to use in an simulation experiment
-\item which modifications to apply to models before simulation,
-\item which simulation procedures to run on each model,
-\item what analysis results to plot or report,
+\item which modifications to apply to models before simulation
+\item which simulation procedures to run on each model
+\item what analysis results to plot or report
 \item and how these results should be presented
 \end{itemize}
 
-SED-ML containts the following main objects to describe this information: \concept{DataDescription} (added in \LoneVthree), \concept{Model}, \concept{Simulation}, \concept{Task}, the \concept{DataGenerator}, and \concept{Output}.
+SED-ML containts the following main objects to describe this information: \code{DataDescription} (\ref{class:dataDescription}), \code{Model} (\ref{class:model}), \code{Simulation} (\ref{class:simulation}), \code{Task} (\ref{class:task}), \code{DataGenerator} (\ref{class:dataGenerator}), and \code{Output} (\ref{class:output}).
 
 \paragraph*{\concept{DataDescription}}
-\hl{TODO: fill in description}
+The \code{DataDescription} (\ref{class:dataDescription}) allows to specify data sets used in a simulation experiment. Such data can be used for instance for parametrization of model simulations or to plot data with simulation results.
 
 \paragraph*{\concept{Model}}
-The Model class is used to reference the models used in the simulation experiment. SED-ML itself is independent of the model encoding underlying the models. The only requirement is that the model needs to be referenced by using an unambiguous identifier which allows for finding it, for example using a MIRIAM URI. To specify the language in which the model is encoded, a set of predefined language URNs is provided.
+The \code{Model} (\ref{class:model}) is used to reference the models used in the simulation experiment. SED-ML itself is independent of the model encoding underlying the models. The only requirement is that the model is referenced by an unambiguous identifier, for example using a MIRIAM URI. To specify the language in which the model is encoded, a set of predefined language URNs is provided.
 
-The SED-ML \concept{Change} class allows the application of changes to the referenced models, including changes on the XML attributes, e.g. changing the value of an observable, computing the change of a value using mathematics, or general changes on any XML element of the model representation that is addressable by XPath expressions, e.g. substituting a piece of XML by an updated one.
+The SED-ML \code{Change} (\ref{class:change}) allows the application of changes to the referenced models, including changes on the XML attributes, e.g. changing the value of an observable, computing the change of a value using mathematics, or general changes on any XML element of the model representation that is addressable by XPath expressions, e.g. substituting a piece of XML by an updated one.
 
 \paragraph*{\concept{Simulation}}
-The Simulation class defines the simulation settings and the steps taken during simulation. These include the particular type of simulation and the algorithm used for the execution of the simulation; preferably an unambiguous reference to such an algorithm should be given, using a controlled vocabulary, or ontologies. One example for an ontology of simulation algorithms is the Kinetic Simulation Algorithm Ontology KiSAO. Further information encodable in the Simulation class includes the step size, simulation duration, and other simulation-type dependent information.
+The \code{Simulation} (\ref{class:simulation}) defines the simulation settings and the steps taken during simulation. These include the particular type of simulation and the algorithm used for the execution of the simulation.
 
 \paragraph*{\concept{Task}}
-SED-ML makes use of the notion of a Task class to combine a defined model (from the Model class) and a defined simulation setting (from the Simulation class). A task always holds one reference each. To refer to a specific model and to a specific simulation, the corresponding IDs are used.
+SED-ML makes uses the \code{Task} (\ref{class:task}) to combine a defined model (from \code{Model}) and a defined simulation setting (from \code{Simulation}).
 
 \paragraph*{\concept{DataGenerator}}
-The raw simulation result sometimes does not correspond to the desired output of the simulation, e.g. one might want to normalise a plot before output, or apply post-processing like mean-value calculation. The DataGenerator class allows for the encoding of such post-processings which need to be applied to the simulation result before output. To define data generators, any addressable variable or parameter of any defined model (from instances of the Model class) may be referenced, and new entities might be specified using MathML definitions.
+The \code{DataGenerator} class (\ref{class:dataGenerator}) allows to encode post-processing of simulation results before output, e.g. one might want to normalise a plot before output, or apply post-processing like mean-value calculation. In the definition of a \code{DataGenerator}, any addressable variable or parameter of any defined model may be referenced, and new entities might be specified using MathML.
 
 \paragraph*{\concept{Output}}
-The Output class defines the output of the simulation, in the sense that it specifies what shall be plotted in the output. To do so, an output type is defined, e.g. 2D-plot, 3D-plot or data table, and the according axes or columns are all assigned to one of the formerly specified instances of the DataGenerator class.
+The \code{Output} (\ref{class:output}) defines the output of the simulation. It can be either a two dimensional plot \code{Plot2D} (\ref{class:plot2D}, a three dimensional plot \code{Plot3D} (\ref{class:plot3D}), or data table \code{Report} (\ref{class:report}). In the plot or report the data from the \code{DataGenerator}s is used.
 
-This section provided a high level overview over the content of a SED-ML file. For the detailed technical specification see \hl{??}. 
-
-
+This section provided a high level overview over the content of a SED-ML file. For the detailed technical specification see Chapter~\ref{chp:specification}. 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% EXAMPLE SIMULATION
@@ -118,7 +116,7 @@ The fine-tuning of the model can be shown by adjusting parameters before simulat
 %% ~~ POST-PROCESSING ~~
 \subsection{Applying post-processing}
 \label{sec:postprocessing}
-The raw numerical output of the simulation steps may be subjected to data post-processing before plotting or reporting.  In order to describe the production of a normalized plot of the time-course in the first example (section \ref{sec:intro1}), depicting the influence of one variable on another (in phase-planes), one could define the following further steps:
+The raw numerical output of the simulation steps may be subjected to data post-processing before plotting or reporting.  In order to describe the production of a normalized plot of the time-course in the first example (section \ref{sec:timecourse}), depicting the influence of one variable on another (in phase-planes), one could define the following further steps:
 
 (Please note that the description steps 1 - 4 remain as given in section \ref{sec:timecourse} above.)
 \begin{enumerate}
