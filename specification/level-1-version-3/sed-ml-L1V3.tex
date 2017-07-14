@@ -12,13 +12,13 @@
 \input{sources/styles/latex-macros}
 
 \begin{document}
-\input{sources/A_frontpage}
+\input{sources/frontpage}
 \tableofcontents
 \newpage
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% INTRODUCTION
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\input{sources/B_introduction}
+\input{sources/introduction}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% TECHNICAL SPECIFICATION
@@ -26,37 +26,37 @@
 \chapter{SED-ML technical specification}
 \label{chp:specification}
 
-This document represents the technical specification of SED-ML. We also provide an XML Schema \citep{xmls} and a UML class diagram representation of that XML Schema (Appendix~\ref{app:uml}). UML class diagrams are a subset of the \emph{Unified Markup Language} notation (UML, \citep{uml22}). Sample experiment descriptions are given as XML snippets that comply with the XML Schema.
+This document represents the technical specification of SED-ML \currentLV. The corresponding UML class diagram is given in Appendix~\ref{app:uml}, the XML Schema in Appendix~\ref{app:schema}, example simulation experiments in Appendix~\ref{app:examples}.
 
-It should however be noted that some of the concepts of SED-ML cannot be captured using XML Schema alone. In these cases it is this specification that is considered the normative document. 
+Sample experiment descriptions are given as XML snippets. However, not all concepts of SED-ML can be captured using XML Schema alone. In these cases it is this specification that is considered the normative document. 
 
 %% ~~~ NOTATION CONVENTIONS ~~~
-\input{sources/C1_conventions}
+\input{sources/conventions}
 
 %% ~~~ CONCEPTS ~~~
-\input{sources/C2_concepts}
+\input{sources/concepts}
 
 %% ~~~ GENERAL LANGUAGE ELEMENTS ~~~
-\input{sources/C3_generalElements}
+\input{sources/generalElements}
 
 %% ~~~ COMPONENTS ~~~
 \settocdepth{subsubsection}
 
 \section{SED-ML Components}
-In this section we describe the major components of SED-ML. We use the UML notation presented in section \ref{sec:umlconventions}, and we show the use of SED-ML with XML examples. In addition, we provide an XML Schema in Appendix~\ref{sec:xmlschema}.
+In this section the major components of SED-ML are described. We use the UML notation presented in section \ref{sec:umlconventions}. The use of SED-ML is shown based on XML listings. The corresponding UML class diagram is given in Appendix~\ref{app:uml}, the XML Schema in Appendix~\ref{app:schema}, example simulation experiments in Appendix~\ref{app:examples}.
 
 %% DATA
-\input{sources/01_data}
+\input{sources/data}
 %% MODEL
-\input{sources/02_model}
+\input{sources/model}
 %% SIMULATION
-\input{sources/03_simulation}
+\input{sources/simulation}
 %% TASK
-\input{sources/04_task}
+\input{sources/task}
 %% DATA GENERATOR
-\input{sources/05_dataGenerator}
+\input{sources/dataGenerator}
 %% OUTPUT
-\input{sources/06_output}
+\input{sources/output}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -97,25 +97,26 @@ Moreover, we would like to thank all the participants of the meetings where SED-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % UML DIAGRAM
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\chapter{SED-ML UML Overview}
-\fig{sedML} shows the complete UML diagram of the SED-ML. It gives the full picture of all implemented classes (see the XML Schema definition on page \pageref{lst:schema}).
+\chapter{SED-ML UML overview}
 \label{app:uml}
-% SED-ML complete UML
+\fig{sedML} shows the complete UML diagram of the SED-ML. It gives the full picture of all implemented classes (see the XML Schema definition on page \pageref{lst:schema}).
+
 \sedfig[width=\textwidth]{pdf/sedML}{The SED-ML UML class diagram}{fig:sedML}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % XML SCHEMA
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \chapter{XML Schema}
-Listing \ref{lst:schema} shows the full SED-ML XML Schema. The code is commented inline.
-\label{sec:xmlschema}
+\label{app:schema}
+Listing \ref{lst:schema} shows the full SED-ML XML Schema.
 \myXmlImport{The SED-ML XML Schema definition}{lst:schema}{../../schema/level1/version3/sed-ml-L1-V3.xsd}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % EXAMPLES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \chapter{Examples}
-This appendix presents selected SED-ML examples. These examples are only illustrative and do not intend to demonstrate the full capabilities of SED-ML. For a more comprehensive view of the SED-ML features refer to the specification (Chapter~\ref{chp:specification}) and to additional SED-ML examples are available from \url{http://sed-ml.org/}.
+\label{app:examples}
+This appendix presents selected SED-ML examples. These examples are only illustrative and do not intend to demonstrate the full capabilities of SED-ML. For a more comprehensive view of the SED-ML features refer to the specification (Chapter~\ref{chp:specification}). Additional SED-ML examples are available from \url{http://sed-ml.org/}.
 
 The presented examples use models encoded in SBML and CellML. SED-ML is not restricted to those formats, but can be used with models encoded in formats serialized in XML. A list of formats known to have been used with SED-ML is available on \url{http://sed-ml.org/}.
 
@@ -125,7 +126,9 @@ The presented examples use models encoded in SBML and CellML. SED-ML is not rest
 \input{examples/repeatedTaskExamples}
 \input{examples/dataExamples}
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % REFERENCES
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \bibliographystyle{abbrv}
 \bibliography{sed-ml-L1V3}
 \end{document}
