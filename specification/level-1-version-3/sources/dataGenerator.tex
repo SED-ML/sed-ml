@@ -3,7 +3,7 @@
 
 The \concept{DataGenerator} class prepares the raw simulation results for later output (\fig{sedDG}). It encodes the post-processing  to be applied to the simulation data. The post-processing steps could be anything, from simple normalisations of data to mathematical calculations. 
 
-\sedfig[width=0.3\textwidth]{pdf/dataGeneratorClass}{The SED-ML DataGenerator class}{fig:sedDG}
+\sedfig[width=0.3\textwidth]{images/uml/dataGenerator}{The SED-ML DataGenerator class}{fig:sedDG}
 
 Each instance of the \concept{DataGenerator} class is identifiable within the experiment by its unambiguous \concept{id}. It can be further characterised by an optional \concept{name}. The related \hyperref[sec:math]{Math} class contains a mathML expression for the calculation of the data generator. Mathematical functions available for the specification of data generators are given in Section~\ref{sec:mathML} on \refpage{sec:mathML}. \hyperref[class:variable]{Variable} and \hyperref[class:parameter]{Parameter} instances can be used to encode the mathematical expression.
 
@@ -18,9 +18,6 @@ Each instance of the \concept{DataGenerator} class is identifiable within the ex
 metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
-\hline
-%listOfVariables$^{o}$ & \refpage{sec:listOfVariables}\\
-%listOfParameters$^{o}$ & \refpage{sec:listOfParameters}\\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
@@ -66,12 +63,3 @@ parameter$^{o}$ & \refpage{class:parameter}\\
 The \code{listOfDataGenerator} contains two \code{dataGenerator} elements. 
 The first one, \code{d1}, refers to the task definition \code{t1} (which itself refers to a particular model), and from the corresponding model it reuses the symbol \code{time}.
 The second one, \code{d2}, references a particular species defined in the same model (and referred to via the \code{taskReference="t1"}). The model species with ID \code{PX} is reused for the data generator \code{d2} without further post-processing.
-
-%% Change in schema: The math attribute in the UML would become an attribuet in the XMLS -> maybe better to define a Math class (for consistent conversion and reuse of the Math class)
-%% Comment: listOfVariables and listOfParameters should be global lists which are then referred to from inside the listOfDataGenerator/listOfChanges and so on -> propose a change in the XML schema
-
-
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "../sed-ml-L1V3"
-%%% End: 

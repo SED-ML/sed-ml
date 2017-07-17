@@ -8,11 +8,11 @@ In this section we introduce attributes and concepts used repeatedly throughout 
 % PRIMITIVE DATA TYPES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Primitive data types}
-Most primitive types in SED-ML are taken from the data types defined in XML Schema 1.0. A few other primitive types are defined by SED-ML itself. What follows are the definitions of the SED-ML-specific types.
+Most primitive types in SED-ML are taken from the data types defined in XML Schema 1.0, including \code{string}, \code{boolean}, \code{int}, and \code{double}. A few other primitive types are defined by SED-ML itself: 
 
 \subsubsection{Type ID}
 \label{type:id}
-The XML Schema 1.0 type ID is identical to the XML 1.0 type ID. The literal representation of this type consists of strings of characters restricted as summarized in Figure~\vref{fig:id}.
+The XML Schema 1.0 type ID is identical to the XML 1.0 type ID. The literal representation of this type consists of strings of characters restricted as summarized in Figure~\vref{fig:id}. For a detailed description see the SBML specification on the type \code{ID} \citep{HBH+10}.
 
 \begin{figure}[hbt]
   \ttfamily
@@ -27,12 +27,9 @@ The XML Schema 1.0 type ID is identical to the XML 1.0 type ID. The literal repr
   \label{fig:id}
 \end{figure}
 
-For a detailed description see also the SBML specification on the ``Type ID'' \citep{HBH+10}.
-
-
 \subsubsection{Type SId}
 \label{type:sid}
-The type \code{SId} is the type of the id attribute found on the majority of SED-ML coponents. \code{SId} is a datatype derived from the basic XML type \code{string}, but with restrictions about the characters permitted and the sequences in which those characters may appear. The definition is shown in Figure~\vref{fig:sid}.
+The type \code{SId} is the type of the id attribute found on the majority of SED-ML coponents. \code{SId} is a datatype derived from the basic XML type \code{string}, but with restrictions about the characters permitted and the sequences in which those characters may appear. The definition is shown in Figure~\vref{fig:sid}. For a detailed description see the SBML specification on the type \code{SId} \citep{HBH+10}.
 
 \begin{figure}[hbt]
   \ttfamily
@@ -49,14 +46,26 @@ The type \code{SId} is the type of the id attribute found on the majority of SED
   \label{fig:sid}
 \end{figure}
 
-For a detailed description see also the SBML specification on the ``Type SId'' \citep{HBH+10}.
+
+\subsubsection{Type SIdRef}
+\label{type:sidref}
+Type \code{SIdRef} is used for all attributes that refer to identifiers of type \code{SId} in a model. This type is derived from \code{\hyperref[type:sid]{SId}}, but with the restriction that the value of an attribute having type \code{SIdRef} must equal the value of some \code{SId} attribute in the model where it appears. In other words, a \code{SIdRef} value must be an existing idetifier in a model. 
+
+As with \code{SId}, the equality of SIdRef values is determined by exact character sequence match; i.e., comparisons of these identifiers must be performed in a case-sensitive manner.
+
+\subsubsection{Type XPath}
+\label{type:xpath}
+Type \code{XPath} is used to identify nodes and attributes within an XML representation of a biological model. \code{XPath} is hereby a XPath version 1 expression which can be used to unambiguously identify an element or attribute in an XML file.
+
+\subsubsection{Type MathML}
+\label{type:mathml}
+Type \code{MathML} is used to describe mathematical expression. For a description of the allowed subset of \code{MathML} see Section~\ref{sec:mathML}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % ID
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{id}}
 \label{sec:id}
-
 Most objects in SED-ML carry an \concept{id} attribute of data type \code{\hyperref[type:sid]{SId}}. The \hyperref[sec:id]{id} attribute, if it exists for an object, is required and identifies SED-ML constituents unambiguously. All \code{id}s have a global scope, i.\,e.\ the \code{id} must be unambiguous throughout a whole SED-ML document.
 
 An example for a defined \concept{id} is given in Listing~\ref{lst:id}.
@@ -75,7 +84,6 @@ The defined model carries the  \code{id} \code{m00001}. If the model is referenc
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{name}}
 \label{sec:name}
-
 SED-ML constituent may have an optional \concept{name} of data type \code{String}. Names do not have identifying character, i.\,e.\ several SED-ML constituents may carry the same name. The purpose of the \code{name} attribute is to keep a human-readable name of the constituent, e.\,g.\ for display to the user.
 
 Listing \ref{lst:name} extends the model definition in \lst{id} by a model name.
@@ -92,7 +100,6 @@ Listing \ref{lst:name} extends the model definition in \lst{id} by a model name.
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{SEDBase}}
 \label{class:sedBase}
-
 \concept{SEDBase} is the base class of SED-ML \currentLV. All other classes are derived from it. As such it provides means to attach additional information on all other classes (\fig{sedBase}). That information can be specified by human readable \hyperref[class:notes]{Notes} or custom \hyperref[class:annotation]{Annotations}.
 
 \sedfig[width=0.7\textwidth]{images/uml/sedBase}{The SEDBase class}{fig:sedBase}
@@ -124,20 +131,16 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsubsection{\element{metaid}}
 \label{sec:metaID}
-
-The main purpose of the \element{metaid} attribute is to attach semantic annotations in form of the \hyperref[class:annotation]{Annotation} class to SED-ML elements. The type of \code{metaid} is XML ID and as such the \code{metaid} attribute is globally unique throughout the whole SED-ML document. 
+The main purpose of the \element{metaid} attribute of data type \code{\hyperref[type:id]{ID}} is to attach semantic annotations in form of the \hyperref[class:annotation]{Annotation} class to SED-ML elements. The \code{metaid} attribute is globally unique throughout the SED-ML document, i.\,e.\ the \code{metaid} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
 
 An example showing how to link a semantic annotation to a SED-ML object via the \element{metaid} is given in the \hyperref[class:annotation]{Annotation} class description.
-
-All \code{metaid}s have a global scope, i.\,e.\ the \code{metaid} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % NOTES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsubsection{\element{Notes}}
 \label{class:notes}
-
-A \concept{note} is considered a  human-readable description of the element it is assigned to. It serves to display information to the user. Instances of the \concept{Notes} class may contain any valid XHTML \citep{P+02}, ranging from short comments to whole HTML pages for display in a Web browser. The namespace URL for \code{XHTML} content inside the \hyperref[class:notes]{Notes} class is \url{http://www.w3.org/1999/xhtml}. It may either be declared in the \hyperref[class:sed-ml]{\code{sedML} XML element}, or directly used in top level XHTML elements contained within the  \code{notes} element. For further options of how to set the namespace and detailed examples, please refer to \citep[p. 14]{HBH+10}.
+A \concept{note} is considered a human-readable description of the element it is assigned to. It serves to display information to the user. Instances of the \concept{Notes} class may contain any valid XHTML \citep{P+02}, ranging from short comments to whole HTML pages for display in a Web browser. The namespace URL for \code{XHTML} content inside the \hyperref[class:notes]{Notes} class is \url{http://www.w3.org/1999/xhtml}. It may either be declared in the \hyperref[class:sed-ml]{\code{sedML} XML element}, or directly used in top level XHTML elements contained within the  \code{notes} element. For further options of how to set the namespace and detailed examples, please refer to \citep[p. 14]{HBH+10}.
 
 \tabtext{notes}{Notes}
 
@@ -228,7 +231,7 @@ An \concept{annotation} is considered a computer-processible piece of informatio
 </sedML>
 \end{myXmlLst}
 
-In that example, a SED-ML \hyperref[class:model]{model} element is annotated with a reference to the original publication. The \element{model} contains an \element{annotation} that uses the \concept{biomodels.net model-qualifier} \element{isDescribedBy} to link to the external resource \element{urn:miriam:pubmed:10415827}. In natural language the annotation content could be interpreted as ``The model \emph{is described by} the published article available from \emph{pubmed} under ID \emph{10643740}''. The example annotation follows the proposed \hyperref[sec:uriScheme]{URI Scheme} suggested by the MIRIAM reference standard. The MIRIAM URN can be resolved to the PubMED (\url{http://pubmed.gov}) publication with ID 10415827, namely the article ``Alternating oscillations and chaos in a model of two coupled biochemical oscillators driving successive phases of the cell cycle.'' published by Romond et al. in  1999.
+In that example, a SED-ML \hyperref[class:model]{model} element is annotated with a reference to the original publication. The \element{model} contains an \element{annotation} that uses the \concept{biomodels.net model-qualifier} \element{isDescribedBy} to link to the external resource \element{urn:miriam:pubmed:10415827}. In natural language the annotation content could be interpreted as ``The model is described by the published article available from pubmed under ID 10643740''. The example annotation follows the proposed \hyperref[sec:uriScheme]{URI Scheme} suggested by the MIRIAM reference standard. The MIRIAM URN can be resolved to the PubMED publication with ID 10415827, namely the article ``Alternating oscillations and chaos in a model of two coupled biochemical oscillators driving successive phases of the cell cycle.'' published by Romond et al. in  1999.
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -237,19 +240,20 @@ In that example, a SED-ML \hyperref[class:model]{model} element is annotated wit
 \subsection{\element{SED-ML} top level element}
 \label{class:sed-ml}
 Each SED-ML \currentLV document has a main class called SED-ML which defines the document's structure and content (\fig{sed-mlMain}).
-%
-%\sedfig[width=0.35\textwidth]{pdf/sed-mlClass}{The SED-ML class}{fig:sed-ml}
-%
+
 It consists of several parts; the parts are all connected to the SED-ML class through aggregation: 
-the \hyperref[class:dataDescription]{DataDescription} class (for resolving external data, see Section~\ref{class:dataDescription}),
-the \hyperref[class:model]{Model} class (for model specification, see Section~\ref{class:model}),
-the \hyperref[class:simulation]{Simulation} class (for simulation setup specification, see Section~\ref{class:simulation}),
-the \hyperref[class:abstractTask]{AbstractTask} class (for the linkage of models and simulation setups, see Section~\ref{class:abstractTask}),
-the \hyperref[class:dataGenerator]{DataGenerator} class (for the definition of post-processing, see Section~\ref{class:dataGenerator}),
-and the \hyperref[class:output]{Output} class (for the output specification, see Section~\ref{class:output}).
+\begin{itemize}
+	\item the \hyperref[class:dataDescription]{DataDescription} class (for resolving external data, see Section~\ref{class:dataDescription}), 
+	\item the \hyperref[class:model]{Model} class (for model specification, see Section~\ref{class:model}), 
+	\item the \hyperref[class:simulation]{Simulation} class (for simulation setup specification, see Section~\ref{class:simulation}), 
+	\item the \hyperref[class:abstractTask]{AbstractTask} class (for the linkage of models and simulation setups, see Section~\ref{class:abstractTask}), 
+	\item the \hyperref[class:dataGenerator]{DataGenerator} class (for the definition of post-processing, see Section~\ref{class:dataGenerator}),
+	\item and the \hyperref[class:output]{Output} class (for the output specification, see Section~\ref{class:output}).
+\end{itemize}
+
 All of them are shown in \fig{sed-mlMain} and will be explained in more detail in the relevant sections of this document.
 
-\sedfig[width=0.8\textwidth]{pdf/sed-mlMain}{The sub-classes of SED-ML}{fig:sed-mlMain}
+\sedfig[width=0.8\textwidth]{images/uml/sed-ml}{The SED-ML class}{fig:sed-mlMain}
 
 \tabtext{sed-ml}{SED-ML}
 
@@ -329,7 +333,7 @@ The level attribute is \code{required} and its value is a \code{fixed} decimal. 
 \label{sec:version}
 The current SED-ML \concept{version} is ``version \version''. Minor revisions containing corrections and refinements of SED-ML elements, or new constructs which do not affect backwards compatibility, will lead to the definition of forthcoming versions.
 
-The version attribute is \code{required} and its value is a \code{fixed} decimal. For SED-ML \currentLV the value is set to \code{2}, as shown in the example in Listing~\ref{lst:sedmlRoot}.
+The version attribute is \code{required} and its value is a \code{fixed} decimal. For SED-ML \currentLV the value is set to \code{\version}, as shown in the example in Listing~\ref{lst:sedmlRoot}.
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -338,16 +342,18 @@ The version attribute is \code{required} and its value is a \code{fixed} decimal
 \subsection{Reference relations}
 \label{sec:reference}
 
-The \concept{reference} concept is used to refer to a particular element inside the SED-ML document. It may occur in six different ways in the SED-ML document:
+The \concept{reference} concept is used to refer to a particular element inside the SED-ML document. It may occur in different ways in the SED-ML document:
 
-\begin{enumerate}
+\hl{TODO: check if there is a dataReference in the new data classes}
+
+\begin{itemize}
 \item{as an association between two \hyperref[class:model]{Model}s (\hyperref[sec:modelReference]{modelReference}),}
 \item{as an association between a \hyperref[class:variable]{Variable} and a \hyperref[class:model]{Model} (\hyperref[sec:modelReference]{modelReference}),}
 \item{as an association between a \hyperref[class:variable]{Variable} and an \hyperref[class:abstractTask]{AbstractTask} (\hyperref[sec:taskReference]{taskReference}),}
 \item{as an association between a \hyperref[class:task]{Task} and the simulated \hyperref[class:model]{Model} (\hyperref[sec:modelReference]{modelReference}),}
 \item{as an association between a \hyperref[class:task]{Task} and the \hyperref[class:simulation]{Simulation} run (\hyperref[sec:simulationReference]{simulationReference}), or}
 \item{as an association between an \hyperref[class:output]{Output} and a \hyperref[class:dataGenerator]{DataGenerator} (\hyperref[sec:dataReference]{dataReference}).}
-\end{enumerate}
+\end{itemize}
 
 The definition of a \hyperref[class:task]{Task} object requires a reference to a particular Model object (\hyperref[sec:modelReference]{modelReference}, see Section~\ref{sec:modelReference} on page \pageref{sec:modelReference}); furthermore, the Task object must be associated with a particular Simulation object (\hyperref[sec:simulationReference]{simulationReference}, see Section~\ref{sec:simulationReference} on page \pageref{sec:simulationReference}).
 
@@ -468,7 +474,7 @@ In the example, the output type is a 2D plot, which defines one curve with id \c
 \label{class:variable}
 \concept{Variables} are references to already existing entities, either existing in one of the defined \hyperref[class:model]{models} or implicitly defined \hyperref[sec:symbol]{symbols} (\fig{variable}). 
 
-\sedfig[width=0.35\textwidth]{pdf/variable}{The Variable class}{fig:variable}
+\sedfig[width=0.35\textwidth]{images/uml/variable}{The Variable class}{fig:variable}
 
 If the variable is defined through a reference to a model constituent, such as an SBML species, or to an entity within the SED-ML file itself, then the reference is specified using the \hyperref[sec:target]{target} attribute.
 If the variable is defined through a reference to an \hyperref[sec:implicitVariable]{implicit variable}, rather than one explicitly appearing in the model, then the \hyperref[sec:symbol]{symbol} attribute is used, which holds a SED-ML \hyperref[sec:uriScheme]{URI}.
@@ -511,7 +517,6 @@ A \code{variable} element appearing within a \hyperref[class:functionalRange]{fu
 
 \lsttext{variable}{variable}
 
-%
 \begin{myXmlLst}{SED-ML \code{variable} definitions inside the \code{computeChange} element and inside the \code{dataGenerator} element}{lst:variable}
 <sedML>
  <listOfModels>
@@ -541,7 +546,7 @@ A \code{variable} element appearing within a \hyperref[class:functionalRange]{fu
  [..]
 </sedML>
 \end{myXmlLst}
-%
+
 Listing \ref{lst:variable} defines a variable \code{v1} (line 7) to compute a change on a model constituent (referenced by the \code{target} attribute on \element{computeChange} in line 5). The value of \code{v1} corresponds with the value of the targeted model constituent referenced by the \code{target} attribute in line 8. 
 The second variable, \code{v2} (line 21), is used inside a \code{dataGenerator}. As the variable is \concept{time} as used in \code{task1}, the \code{symbol} attribute is used to refer to the SED-ML URI for time (line 21).
 
@@ -549,14 +554,12 @@ The second variable, \code{v2} (line 21), is used inside a \code{dataGenerator}.
 %% ~~ TARGET ~~
 \subsubsection{\element{target}}
 \label{sec:target}
-An instance of \concept{Variable} can refer to a model constituent inside a particular \hyperref[class:model]{model} through an \concept{XPath} expression stored in the \concept{target} attribute. 
-
-XPath can be used to unambiguously identify an element or attribute in an XML file.
+An instance of \concept{Variable} can refer to a model constituent inside a particular \hyperref[class:model]{model} through an \code{\hyperref[type:xpath]{XPath}} expression stored in the \concept{target} attribute. 
 
 The \concept{target} attribute may also be used to reference an entity within the SED-ML file itself, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \concept{id} of the desired element. As of SED-ML \currentLV this is only used to refer to \hyperref[sec:ranges]{ranges} within a \hyperref[class:repeatedTask]{repeatedTask} (see Listing~\ref{lst:repeatedTask} for an example).
 
 \lsttexta{target}{target}
-%
+
 \begin{myXmlLst}{SED-ML \code{target} definition}{lst:target}
   <listOfVariables>
     <variable id="v1" name="TetR protein" taskReference="task1" 
@@ -599,10 +602,9 @@ The XPath expression used in the \concept{\code{target}} attribute unambiguously
 The example encodes a computed change of model \code{m001}. To specify that change, a symbol is defined (i.\,e.\  the SED-ML symbol for \code{time} is assigned to the variable \code{t1}). How to compute the change itself is explained in Section~\ref{class:computeChange}.
 %
 \begin{myXmlLst}{SED-ML \code{symbol} definition}{lst:symbol}
-  <listOfVariables>
-    <variable id="t1" name="time" taskReference="task1" 
-      symbol="urn:sedml:symbol:time" />
-  </listOfVariables>
+<listOfVariables>
+	<variable id="t1" name="time" taskReference="task1" symbol="urn:sedml:symbol:time" />
+</listOfVariables>
 \end{myXmlLst}
 
 
@@ -613,7 +615,7 @@ The example encodes a computed change of model \code{m001}. To specify that chan
 \label{class:parameter}
 The SED-ML \concept{Parameter} class creates instances with a constant value (\fig{parameter}).
 
-\sedfig[width=0.3\textwidth]{pdf/parameterClass}{The Parameter class}{fig:parameter}
+\sedfig[width=0.3\textwidth]{images/uml/parameter}{The Parameter class}{fig:parameter}
 
 SED-ML allows the use of named parameters wherever a mathematical expression is defined to compute some value (e.g.\ in \hyperref[class:computeChange]{ComputeChange}, \hyperref[class:functionalRange]{FunctionalRange} or \hyperref[class:dataGenerator]{DataGenerator}). In all cases the parameter definitions are local to the particular class defining them. A benefit of naming parameters rather than including numbers directly within the mathematical expression is that \hyperref[class:notes]{notes} and \hyperref[class:annotation]{annotations} may be associated with them.
 
@@ -649,7 +651,7 @@ The listing shows the definition of a parameter \code{p1} with the \code{value="
 
 \begin{myXmlLst}{The definition of a parameter in SED-ML}{lst:parameter}
 <listOfParameters>
- <parameter id="p1" name="KM" value="40" />
+	<parameter id="p1" name="KM" value="40" />
 </listOfParameters>
 \end{myXmlLst}
 
@@ -657,7 +659,7 @@ The listing shows the definition of a parameter \code{p1} with the \code{value="
 %% ~~~ VALUE ~~
 \subsubsection{\element{value}}
 \label{sec:value}
-Each \concept{parameter} has exactly one fixed \concept{value}. The \code{value} attribute of XML data type \code{Double} is required for each \code{parameter} element. 
+Each \concept{parameter} has exactly one fixed \concept{value}. The \code{value} attribute of data type \code{double} is required for each \code{parameter} element. 
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -672,7 +674,7 @@ SED-ML \concept{listOf*} elements serve as containers  for a collection of objec
 \subsubsection{listOfVariables: The variable definition container}
 \label{sec:listOfVariables}
 
-SED-ML uses the \hyperref[class:variable]{variable} concept to refer to existing entities inside a model. The container for all variables is  \concept{listOfVariables} (\fig{listOfVariables}). It includes all variables that need to be defined to either describe a change in the model by means of mathematical equations (\hyperref[class:computeChange]{ComputeChange}) or to set up a \hyperref[class:dataGenerator]{dataGenerator}.
+SED-ML uses the \hyperref[class:variable]{variable} concept to refer to existing entities inside a model. The container for all variables is  \concept{listOfVariables} (\fig{listOfVariables}). It includes all variables that need to be defined to either describe a change in the model by means of mathematical equations (\hyperref[class:computeChange]{ComputeChange}) or to set up a \hyperref[class:dataGenerator]{DataGenerator}.
 
 % Fig: sed model
 \sedfig[width=0.85\textwidth]{pdf/listOfVariables}{The SED-ML listOfVariables container}{fig:listOfVariables}
