@@ -149,18 +149,17 @@ A \concept{note} is considered a human-readable description of the element it is
 
 \begin{table}[ht]
 \center
-\begin{tabular}{|l|l|}
-\hline
+\begin{tabular}{ll}
+\toprule
 \textbf{\attribute} & \textbf{\desc}\\
-\hline
+\midrule
 xmlns:string & \refpage{sec:xmlns} \\
  {``http://www.w3.org/1999/xhtml" } & \\
-\hline
-\hline
+\midrule
 \textbf{\subelements} & \textbf{ }\\
-\hline
+\midrule
 \emph{well-formed content permitted in XHTML} & \\
-\hline
+\bottomrule
 \end{tabular}
 \caption{\tabcap{Notes}}
 \label{tab:notes}
@@ -172,10 +171,9 @@ xmlns:string & \refpage{sec:xmlns} \\
 
 \begin{myXmlLst}{The \element{notes} element}{lst:notes}
 <sedML [..]>
- <notes >
-  <p xmlns="http://www.w3.org/1999/xhtml">The enclosed simulation description shows the oscillating behaviour of 
-     the Repressilator model using deterministic and stochastic simulators.</p>
- </notes>
+	<notes >
+  		<p xmlns="http://www.w3.org/1999/xhtml">The enclosed simulation description shows the oscillating behaviour of the Repressilator model using deterministic and stochastic simulators.</p>
+	</notes>
 </sedML>
 \end{myXmlLst}
 
@@ -194,17 +192,16 @@ An \concept{annotation} is considered a computer-processible piece of informatio
 
 \begin{table}[ht]
 \center
-\begin{tabular}{|l|l|}
-\hline
+\begin{tabular}{ll}
+\toprule
 \textbf{\attribute} & \textbf{\desc}\\
-\hline
+\midrule
 \emph{none} & \\
-\hline
-\hline
+\midrule
 \textbf{\subelements} & \textbf{\desc}\\
-\hline
+\midrule
 \emph{none in the SED-ML namespace} & \\
-\hline
+\bottomrule
 \end{tabular}
 \caption{\tabcap{Annotation}}
 \label{tab:annotation}
@@ -214,23 +211,21 @@ An \concept{annotation} is considered a computer-processible piece of informatio
 
 \begin{myXmlLst}{The annotation element}{lst:annotation}
 <sedML>
-  [..]
-  <model id="model1" metaid="_001" language="urn:sedml:language:cellml" 
-   source="http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/d6613d7e1051b3eff2bb1d3d419a445bb8c754ad/leloup_gonze_goldbeter_1999_a.cellml" >
-   <annotation>
-    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
-             xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
-     <rdf:Description rdf:about="#_001">
-      <bqmodel:isDescribedBy>
-       <rdf:Bag>
-        <rdf:li rdf:resource="urn:miriam:pubmed:10415827"/>
-       </rdf:Bag>
-      </bqmodel:isDescribedBy>
-     </rdf:Description>
-    </rdf:RDF>
-   </annotation>
-  </model>
-  [..]
+	[..]
+	<model id="model1" metaid="_001" language="urn:sedml:language:cellml" source="http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/d6613d7e1051b3eff2bb1d3d419a445bb8c754ad/leloup_gonze_goldbeter_1999_a.cellml" >
+		<annotation>
+    		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+				<rdf:Description rdf:about="#_001">
+				<bqmodel:isDescribedBy>
+				<rdf:Bag>
+					<rdf:li rdf:resource="urn:miriam:pubmed:10415827"/>
+				</rdf:Bag>
+				</bqmodel:isDescribedBy>
+    			</rdf:Description>
+			</rdf:RDF>
+		</annotation>
+	</model>
+	[..]
 </sedML>
 \end{myXmlLst}
 
