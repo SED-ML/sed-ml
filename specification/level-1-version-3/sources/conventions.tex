@@ -113,25 +113,25 @@ In this example, the \code{dataGenerator} type is build of a sequence of three e
 XML Schema offers mechanisms to restrict and extend previously defined complex types. Extensions add element or attribute declarations to existing types, while restrictions restrict the types by adding further characteristics and requirements (facets) to a type. An example for a type extension is given in \lst{xmlExtension}.
 
 \begin{myXmlLst}{Definition of the sedML type through extension of SEDBase in SED-ML}{lst:xmlExtension}
-	<xs:element name="sedML">
-		<xs:complexType>
-			<xs:complexContent>
-				<xs:extension base="SEDBase">
-					<xs:sequence>
-						<xs:element ref="listOfSimulations" minOccurs="0" />
-						<xs:element ref="listOfModels" minOccurs="0" />
-						<xs:element ref="listOfTasks" minOccurs="0" />
-						<xs:element ref="listOfDataGenerators" minOccurs="0" />
-						<xs:element ref="listOfOutputs" minOccurs="0" />
-					</xs:sequence>
-					<xs:attribute name="level" type="xs:decimal" use="required"
-						fixed="1" />
-					<xs:attribute name="version" type="xs:decimal" use="required"
-						fixed="2" />
-				</xs:extension>
-			</xs:complexContent>
-		</xs:complexType>
-	</xs:element>
+<xs:element name="sedML">
+	<xs:complexType>
+		<xs:complexContent>
+			<xs:extension base="SEDBase">
+				<xs:sequence>
+					<xs:element ref="listOfSimulations" minOccurs="0" />
+					<xs:element ref="listOfModels" minOccurs="0" />
+					<xs:element ref="listOfTasks" minOccurs="0" />
+					<xs:element ref="listOfDataGenerators" minOccurs="0" />
+					<xs:element ref="listOfOutputs" minOccurs="0" />
+				</xs:sequence>
+				<xs:attribute name="level" type="xs:decimal" use="required"
+					fixed="1" />
+				<xs:attribute name="version" type="xs:decimal" use="required"
+					fixed="2" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:element>
 \end{myXmlLst}
 
 The \code{sedML} element is an extension of the previously defined \code{SEDBase} type. It extends \code{SEDBase} by a sequence of five additional elements (\code{listOfSimulations}, \code{listOfModels}, \code{listOfTasks}, \code{listOfDataGenerators}, and \code{listOfOutputs}) and two new attributes \code{version} and \code{level}.

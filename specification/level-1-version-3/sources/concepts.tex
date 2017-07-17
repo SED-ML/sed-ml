@@ -191,11 +191,11 @@ XPath is a language for finding information in an XML document \citep{xpath:1999
 
 For proper application, XPath expressions should contain prefixes that allow their resolution to the correct XML namespace within an XML document. For example, the XPath expression referring to a species \emph{X} in an SBML model:
 \begin{alltt}
-/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=`X'] {\color{green} \tickYes -\emph{CORRECT}}
+/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=`X'] {\tickYes -\emph{CORRECT}}
 \end{alltt}
 is preferable to 
 \begin{alltt}
-/sbml/model/listOfSpecies/species[@id=`X'] {\color{red} \tickNo -\emph{INCORRECT} }
+/sbml/model/listOfSpecies/species[@id=`X'] {\tickNo -\emph{INCORRECT} }
 \end{alltt}
 
 which will only be interpretable by standard XML software tools if the SBML file declares no namespaces (and hence is invalid SBML).

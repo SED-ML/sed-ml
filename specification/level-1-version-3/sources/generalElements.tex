@@ -8,7 +8,7 @@ In this section we introduce attributes and concepts used repeatedly throughout 
 % PRIMITIVE DATA TYPES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{Primitive data types}
-Most primitive types in SED-ML are taken from the data types defined in XML Schema 1.0, including \code{string}, \code{boolean}, \code{int}, and \code{double}. A few other primitive types are defined by SED-ML itself: 
+Most primitive types in SED-ML are taken from the data types defined in XML Schema 1.0, including \code{string}, \code{boolean}, \code{int}, \code{positiveInteger} and \code{double}. A few other primitive types are defined by SED-ML itself: 
 
 \subsubsection{Type ID}
 \label{type:id}
@@ -61,6 +61,10 @@ Type \code{XPath} is used to identify nodes and attributes within an XML represe
 \label{type:mathml}
 Type \code{MathML} is used to describe mathematical expression. For a description of the allowed subset of \code{MathML} see Section~\ref{sec:mathML}.
 
+\subsubsection{Type anyURI}
+\label{type:anyURI}
+Type \code{anyURI} is used to reference models, reference data files, specify the language of referenced models, for referencing implicit model variables and in annotations. For a description of the uses of \code{anyURI} see Section~\ref{sec:uriScheme}.
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % ID
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -72,7 +76,7 @@ An example for a defined \concept{id} is given in Listing~\ref{lst:id}.
 
 \begin{myXmlLst}{SED-ML identifier definition, e.\,g.\ for a model}{lst:id}
 <model id="m00001" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000012">
- [MODEL DEFINITION]
+	[MODEL DEFINITION]
 </model>
 \end{myXmlLst}
 
@@ -90,7 +94,7 @@ Listing \ref{lst:name} extends the model definition in \lst{id} by a model name.
 
 \begin{myXmlLst}{SED-ML name definition, e.\,g.\ for a model}{lst:name}
 <model id="m00001" name="Circadian oscillator" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000012">
- [MODEL DEFINITION]
+	[MODEL DEFINITION]
 </model>
 \end{myXmlLst}
 
@@ -105,21 +109,20 @@ Listing \ref{lst:name} extends the model definition in \lst{id} by a model name.
 \sedfig[width=0.7\textwidth]{images/uml/sedBase}{The SEDBase class}{fig:sedBase}
 
 \tabtext{sedbase}{SEDBase}
-
 \begin{table}[ht]
 \center
-\begin{tabular}{|l|l|}
-\hline
+\begin{tabular}{ll}
+
+\toprule
 \textbf{\attribute} & \textbf{\desc}\\
-\hline
+\midrule
 metaid$^{o}$ & \refpage{sec:metaID} \\
-\hline
-\hline
+\midrule
 \textbf{\subelements} & \textbf{\desc}\\
-\hline
+\midrule
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
-\hline
+\bottomrule
 \end{tabular}
 \caption{\tabcap{SEDBase}}
 \label{tab:sedbase}
@@ -259,18 +262,17 @@ All of them are shown in \fig{sed-mlMain} and will be explained in more detail i
 
 \begin{table}[ht]
 \center
-\begin{tabular}{|l|l|}
-\hline
+\begin{tabular}{ll}
+\toprule
 \textbf{\attribute} & \textbf{\desc}\\
-\hline
+\toprule
 metaid$^{o}$ & \refpage{sec:metaID}\\
 xmlns & \refpage{sec:xmlns}\\
 level & \refpage{sec:level}\\
 version & \refpage{sec:version}\\
-\hline
-\hline
+\midrule
 \textbf{\subelements} & \textbf{\desc}\\
-\hline
+\midrule
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
 listOfDataDescriptions$^{o}$ & \refpage{sec:listOfDataDescriptions}\\
@@ -279,7 +281,7 @@ listOfSimulations$^{o}$ & \refpage{sec:listOfSimulations} \\
 listOfTasks$^{o}$ & \refpage{sec:listOfTasks} \\
 listOfDataGenerators$^{o}$ & \refpage{sec:listOfDataGenerators} \\
 listOfOutputs$^{o}$ & \refpage{sec:listOfOutputs} \\
-\hline
+\bottomrule
 \end{tabular}
 \caption{\tabcap{SED-ML}}
 \label{tab:sed-ml}
@@ -676,18 +678,16 @@ SED-ML \concept{listOf*} elements serve as containers  for a collection of objec
 
 SED-ML uses the \hyperref[class:variable]{variable} concept to refer to existing entities inside a model. The container for all variables is  \concept{listOfVariables} (\fig{listOfVariables}). It includes all variables that need to be defined to either describe a change in the model by means of mathematical equations (\hyperref[class:computeChange]{ComputeChange}) or to set up a \hyperref[class:dataGenerator]{DataGenerator}.
 
-% Fig: sed model
-\sedfig[width=0.85\textwidth]{pdf/listOfVariables}{The SED-ML listOfVariables container}{fig:listOfVariables}
-%
+\sedfig[width=0.7\textwidth]{images/uml/listOfVariables}{The SED-ML listOfVariables container on the ComputeChange and DataGenerator elements}{fig:listOfVariables}
 
 \lsttext{listOfVariables}{listOfVariables}  
  The \code{listOfVariables} is optional and may contain zero to many variables. 
-%
+
 \begin{myXmlLst}{SED-ML listOfVariables element}{lst:listOfVariables}
 <listOfVariables>
- <variable id="v1" name="maximum velocity" taskReference="task1" 
-     target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" />
- <variable id="v2" taskReference="task2" symbol="urn:sedml:symbol:time" />
+	<variable id="v1" name="maximum velocity" taskReference="task1" 
+		target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" />
+	<variable id="v2" taskReference="task2" symbol="urn:sedml:symbol:time" />
 </listOfVariables>
 \end{myXmlLst}
 
@@ -697,7 +697,7 @@ SED-ML uses the \hyperref[class:variable]{variable} concept to refer to existing
 \label{sec:listOfParameters}
 All \hyperref[class:parameter]{parameters} needed throughout the simulation experiment, whether to compute a change on a model prior to or during simulation (\hyperref[class:computeChange]{ComputeChange} and \hyperref[class:setValue]{SetValue}), to compute values in a \hyperref[class:functionalRange]{FunctionalRange}, or to set up a \hyperref[class:dataGenerator]{DataGenerator}, are defined inside a \concept{listOfParameters} (\fig{listOfParameters}).
 
-\sedfig[width=0.85\textwidth]{pdf/listOfParameters}{The SED-ML \code{listOfParameters} container}{fig:listOfParameters}
+\sedfig[width=0.7\textwidth]{images/uml/listOfParameters}{The SED-ML \code{listOfParameters} container}{fig:listOfParameters}
 
 \lsttext{listOfParameters}{listOfParameters}
 The element is optional and may contain zero to many parameters.
@@ -716,8 +716,7 @@ The element is optional and may contain zero to many parameters.
 
 In order to reference data in a simulation experiment, the data files along with a description on how to access such files and what information to extract from it have to be defined. SED-ML uses the \concept{listOfDataDescriptions} container for all necessary data (\fig{listOfDataDescriptions}). The \code{listOfDataDescriptions} is optional and may contain zero to many data files.
 
-\hl{TODO: add listOfDataDescriptions UML}
-% \sedfig[width=0.85\textwidth]{pdf/listOfDataDescriptions}{The SED-ML listOfDataDescriptions container}{fig:listOfDataDescriptions}
+\sedfig[width=0.7\textwidth]{images/uml/listOfDataDescriptions}{The SED-ML listOfDataDescriptions container}{fig:listOfDataDescriptions}
 
 \lsttext{listOfDataDescriptions}{listOfDataDescriptions}
 
@@ -749,7 +748,7 @@ In order to reference data in a simulation experiment, the data files along with
 \label{sec:listOfModels}
 In order to specify a simulation experiment, the participating models have to be defined. SED-ML uses the \concept{listOfModels} container for all necessary models (\fig{listOfModels}). 
 
-\sedfig[width=0.85\textwidth]{pdf/listOfModels}{The SED-ML listOfModels container}{fig:listOfModels}
+\sedfig[width=0.7\textwidth]{images/uml/listOfModels}{The SED-ML listOfModels container}{fig:listOfModels}
 
 \lsttext{listOfModels}{listOfModels}
 The \code{listOfModels} is optional and may contain zero to many models. However, if the \currentLV document contains  one or more \code{Task} elements, at least one \code{Model} element must be defined to which the \code{Task} element refers (c.f.\ Section~\ref{sec:modelReference} on \refpage{sec:modelReference}).
@@ -767,14 +766,11 @@ The \code{listOfModels} is optional and may contain zero to many models. However
 %% ~~~ LIST OF CHANGES ~~
 \subsubsection{listOfChanges: The change definition container}
 \label{sec:listOfChanges}
-The \concept{listOfChanges} contains the defined changes to be applied to a particular \hyperref[class:model]{model} (\fig{listOfChanges}). 
+The \concept{listOfChanges} contains the defined changes to be applied to a particular \hyperref[class:model]{model} (\fig{listOfChanges}). It always occurs as an optional subelement of the \element{model} element. The \code{listOfChanges} is nested inside the \code{model} element.
 
-\sedfig[width=0.85\textwidth]{pdf/listOfChanges}{The SED-ML listOfChanges container}{fig:listOfChanges}
-
-It always occurs as an optional subelement of the \element{model} element. 
+\sedfig[width=0.7\textwidth]{images/uml/listOfChanges}{The SED-ML listOfChanges container}{fig:listOfChanges}
 
 \lsttext{listOfChanges}{listOfChanges}
-The \code{listOfChanges} is nested inside the \code{model} element.
 
 \begin{myXmlLst}{The SED-ML \element{listOfChanges} element, defining a change on a model}{lst:listOfChanges}
 <model id="m0001" [..]>
@@ -788,38 +784,36 @@ The \code{listOfChanges} is nested inside the \code{model} element.
 %% ~~~ LIST OF SIMULATIONS ~~
 \subsubsection{listOfSimulations: The simulation description container}
 \label{sec:listOfSimulations}
-The \concept{listOfSimulations} element is the container for \concept{simulation} descriptions (\fig{sedListOfSimulations}).
+The \concept{listOfSimulations} element is the container for \hyperref[class:simulation]{simulation} descriptions (\fig{sedListOfSimulations}).
 
-\sedfig[width=0.851\textwidth]{pdf/listOfSimulations}{The listOfSimulations container}{fig:sedListOfSimulations}
+\sedfig[width=0.7\textwidth]{images/uml/listOfSimulations}{The listOfSimulations container}{fig:sedListOfSimulations}
 
 
 \lsttext{listOfSimulations}{listOfSimulation}
-%
+
 \begin{myXmlLst}{The SED-ML \element{listOfSimulations} element, containing two simulation setups}{lst:listOfSimulations}
- <listOfSimulations>
-  <simulation id="s1" [..]>
-   [UNIFORM TIMECOURSE DEFINITION]
-  </simulation>
-  <simulation id="s2" [..]>
-   [UNIFORM TIMECOURSE DEFINITION]
-  </simulation>
- </listOfSimulations>
+<listOfSimulations>
+	<simulation id="s1" [..]>
+		[UNIFORM TIMECOURSE DEFINITION]
+	</simulation>
+	<simulation id="s2" [..]>
+   		[UNIFORM TIMECOURSE DEFINITION]
+	</simulation>
+</listOfSimulations>
 \end{myXmlLst}
 
-The \code{listOfSimulations} is optional and may contain zero to many simulations. However, if the \currentLV document contains one or more \code{Task} elements, at least one \code{Simulation} element must be defined to which  the \code{Task} element refers --- see section \ref{sec:simulationReference} on \refpage{sec:simulationReference}.
+The \code{listOfSimulations} is optional and may contain zero to many simulations. However, if the \currentLV document contains one or more \code{Task} elements, at least one \code{Simulation} element must be defined to which  the \code{Task} element refers --- see section \ref{sec:simulationReference}.
 
 
 %% ~~~ LIST OF ALGORITHM PARAMETERS ~~
 \subsubsection{listOfAlgorithmParameters: The container for algorithm parameters}
 \label{sec:listOfAlgorithmParameters}
-The \concept{listOfAlgorithmParameters} contains the the settings for the simulation algorithm used in a simulation experiment. It may list several instances of the \hyperref[class:algorithmParameter]{AlgorithmParameter} class.
+The \concept{listOfAlgorithmParameters} contains the the settings for the simulation algorithm used in a simulation experiment. It may list several instances of the \hyperref[class:algorithmParameter]{AlgorithmParameter} class. The \code{listOfAlgorithmParameters} is optional and may contain zero to many parameters.
 
 \lsttext{listOfAlgorithmParameters}{listOfAlgorithmParameters}
-The \code{listOfAlgorithmParameters} is optional and may contain zero to many parameters. 
-
 \begin{myXmlLst}{SED-ML listOfAlgorithmParameters element}{lst:listOfAlgorithmParameters}
 <listOfAlgorithmParameters>
-  <algorithmParameter kisaoID="KISAO:0000211" value="23"/> 
+	<algorithmParameter kisaoID="KISAO:0000211" value="23"/> 
 </listOfAlgorithmParameters>
 \end{myXmlLst}
 
