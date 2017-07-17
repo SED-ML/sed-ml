@@ -1,15 +1,38 @@
 \pagebreak
+
 \section{General attributes and classes}
 In this section we introduce attributes and concepts used repeatedly throughout the SED-ML specification. 
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% ID
+% PRIMITIVE DATA TYPES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{\element{id}}
-\label{sec:id}
+\subsection{Primitive data types}
+Most primitive types in SED-ML are taken from the data types defined in XML Schema 1.0. A few other primitive types are defined by SED-ML itself. What follows are the definitions of the SED-ML-specific types.
 
-Most objects in SED-ML carry an \concept{id} attribute. The \hyperref[sec:id]{id} attribute, if it exists for an object, is always required and identifies SED-ML constituents unambiguously. The data type for \code{id} is \code{SId} which is a datatype derived from the basic XML type \code{string}, but with restrictions about the characters permitted and the sequences in which those characters may appear. The definition is shown in Figure~\vref{fig:sid}.
+\subsubsection{Type ID}
+\label{type:id}
+The XML Schema 1.0 type ID is identical to the XML 1.0 type ID. The literal representation of this type consists of strings of characters restricted as summarized in Figure~\vref{fig:id}.
+
+\begin{figure}[hbt]
+  \ttfamily
+  \small
+  \centering
+  \begin{tabular}{lll}
+    NameChar & ::= & letter | digit | '.' | '-' | ' ' | ':' | CombiningChar | Extender\\
+    ID    & ::= & ( letter | ' ' | ':' ) NameChar*\\
+  \end{tabular}
+  \vspace*{-1ex}
+  \caption{The definition of the type \code{ID}. The characters ( and ) are used for grouping, the character * indicates "zero or more times", and the character | indicates "or". Please consult the XML 1.0 specification for the complete definitions of letter, digit, CombiningChar, and Extender.}
+  \label{fig:id}
+\end{figure}
+
+For a detailed description see also the SBML specification on the ``Type ID'' \citep{HBH+10}.
+
+
+\subsubsection{Type SId}
+\label{type:sid}
+The type \code{SId} is the type of the id attribute found on the majority of SED-ML coponents. \code{SId} is a datatype derived from the basic XML type \code{string}, but with restrictions about the characters permitted and the sequences in which those characters may appear. The definition is shown in Figure~\vref{fig:sid}.
 
 \begin{figure}[hbt]
   \ttfamily
@@ -26,9 +49,15 @@ Most objects in SED-ML carry an \concept{id} attribute. The \hyperref[sec:id]{id
   \label{fig:sid}
 \end{figure}
 
-For a detailed description see also the SBML specification on the ``Type SId'' \citep[p. 11]{HBH+10}.
+For a detailed description see also the SBML specification on the ``Type SId'' \citep{HBH+10}.
 
-All \code{id}s have a global scope, i.\,e.\ the \code{id} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ID
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{id}}
+\label{sec:id}
+
+Most objects in SED-ML carry an \concept{id} attribute of data type \code{\hyperref[type:sid]{SId}}. The \hyperref[sec:id]{id} attribute, if it exists for an object, is required and identifies SED-ML constituents unambiguously. All \code{id}s have a global scope, i.\,e.\ the \code{id} must be unambiguous throughout a whole SED-ML document.
 
 An example for a defined \concept{id} is given in Listing~\ref{lst:id}.
 
@@ -47,7 +76,7 @@ The defined model carries the  \code{id} \code{m00001}. If the model is referenc
 \subsection{\element{name}}
 \label{sec:name}
 
-Besides an \hyperref[sec:id]{id}, a SED-ML constituent may carry an optional \concept{name}. However, names do not have identifying character;  several SED-ML constituents may carry the same name. The purpose of the \code{name} attribute is to keep a human-readable name of the constituent, e.\,g.\ for display to the user. In the XML Schema representation, names are of the data type \code{String}.
+SED-ML constituent may have an optional \concept{name} of data type \code{String}. Names do not have identifying character, i.\,e.\ several SED-ML constituents may carry the same name. The purpose of the \code{name} attribute is to keep a human-readable name of the constituent, e.\,g.\ for display to the user.
 
 Listing \ref{lst:name} extends the model definition in \lst{id} by a model name.
 
@@ -64,9 +93,9 @@ Listing \ref{lst:name} extends the model definition in \lst{id} by a model name.
 \subsection{\element{SEDBase}}
 \label{class:sedBase}
 
-\concept{SEDBase} is the base class  of SED-ML \currentLV. All other classes are derived from it. As such it provides means to attach additional information on all other classes  (\fig{sedBase}). That information can be specified by human readable \hyperref[class:notes]{Notes} or custom \hyperref[class:annotation]{Annotations}. 
+\concept{SEDBase} is the base class of SED-ML \currentLV. All other classes are derived from it. As such it provides means to attach additional information on all other classes (\fig{sedBase}). That information can be specified by human readable \hyperref[class:notes]{Notes} or custom \hyperref[class:annotation]{Annotations}.
 
-\sedfig[width=0.9\textwidth]{pdf/sedBaseClass}{The SEDBase class}{fig:sedBase}
+\sedfig[width=0.7\textwidth]{images/uml/sedBase}{The SEDBase class}{fig:sedBase}
 
 \tabtext{sedbase}{SEDBase}
 
