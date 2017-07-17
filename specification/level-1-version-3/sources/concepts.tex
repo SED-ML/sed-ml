@@ -128,7 +128,7 @@ Finally, annotations (\ref{sec:annotations}) of SED-ML elements should be provid
 
 \subsubsection{Model references}
 \label{sec:modelURI}
-The preferred way for referencing a model from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}. MIRIAM enables identification of a data resource (in this case a model resource) by a predefined URN. A data entry inside that resource is identified by an ID. That way each single  model  in a particular model repository can be unambiguously referenced. To become part of MIRIAM resources, a model repository must ensure permanent and consistent model references, that is stable IDs.
+One way for referencing a model from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}. MIRIAM enables identification of a data resource (in this case a model resource) by a predefined URN. A data entry inside that resource is identified by an ID. That way each single  model  in a particular model repository can be unambiguously referenced. To become part of MIRIAM resources, a model repository must ensure permanent and consistent model references, that is stable IDs.
 
 One model repository that is part of MIRIAM resources is the \concept{BioModels Database} \citep{LDR+10}. Its data resource name in MIRIAM is \code{urn:miriam:biomodels.db}. To refer to a particular model, a standardised identifier scheme is defined in \concept{MIRIAM Resources}\footnote{\url{http://www.ebi.ac.uk/miriam/}}. The ID entry maps to a particular model in the model repository. That model is never deleted. A sample BioModels Database ID is \code{BIOMD0000000048}. Together with the data resource name it becomes unambiguously identifiable by the URN \code{urn:miriam:biomodels.db:BIOMD0000000048} (in this case referring to the 1999 Kholodenko model on EGFR signaling). 
 
@@ -140,12 +140,14 @@ SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offer
 \end{itemize}
 depending on the physical location of the resource chosen to resolve the URN.
 
-An alternative means to obtain a model may be to provide a single resource containing necessary models and a SED-ML file. Although a specification of such a resource is beyond the scope of this document,  one proposal  --  COMBINE archive format -- is  described in Appendix~\ref{chp:archive}.
-Further information on the \hyperref[sec:source]{source} attribute referencing the model location is provided in Section~\ref{sec:source}.
+An alternative means to obtain a model may be to provide a single resource containing necessary models and a SED-ML file. Although a specification of such a resource is beyond the scope of this document,  one proposal  --  COMBINE archive format -- is described in Chapter~\ref{chp:archive}.
+Further information on the \hyperref[sec:model_source]{source} attribute referencing the model location is provided in Section~\ref{sec:model_source}.
 
 \subsubsection{Data references}
 \label{sec:dataURI}
-\hl{TODO: write section data references, see https://github.com/SED-ML/sed-ml/issues/32}
+One way for referencing a data file from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}. MIRIAM enables identification of a data resource by a predefined URN.
+
+An alternative means to obtain a data file may be to provide a single resource containing necessary data files and the SED-ML file (see COMBINE archive format -- is described in Chapter~\ref{chp:archive}). Further information on the \hyperref[sec:data_source]{source} attribute referencing the data file location is provided in Section~\ref{sec:data_source}.
 
 \subsubsection{Language references}
 \label{sec:languageURI}

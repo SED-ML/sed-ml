@@ -12,11 +12,11 @@ Each instance of the Model class has an unambiguous and mandatory \hyperref[sec:
 
 The \hyperref[sec:language]{language} may be specified, defining the format the model is encoded in, if such a format exists. Example formats are SBML or CellML.
 
-The \concept{Model} class refers to the particular model of interest through the \hyperref[sec:source]{source} attribute. The restrictions on the model reference are
+The \concept{Model} class refers to the particular model of interest through the \hyperref[sec:model_source]{source} attribute. The restrictions on the model reference are
 \begin{itemize}
  \item{The model must be encoded in an XML format.}
  \item{To refer to the model encoding language, a reference to a valid definition of that XML format must be given (\hyperref[sec:language]{language} attribute).}
- \item{To refer to a particular model in an external resource, an unambiguous reference must be given (\hyperref[sec:source]{source} attribute).}
+ \item{To refer to a particular model in an external resource, an unambiguous reference must be given (\hyperref[sec:model_source]{source} attribute).}
 \end{itemize}
 
 A model might need to undergo preprocessing before simulation. Those pre-processing steps are specified in the SED-ML \hyperref[class:change]{Change} class.
@@ -34,7 +34,7 @@ id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 \hline
 language$^{o}$ & \refpage{sec:language}\\
-source & \refpage{sec:source}\\
+source & \refpage{sec:model_source}\\
 \hline
 \hline
 \textbf{\subelements} & \textbf{\desc}\\
@@ -95,7 +95,7 @@ Secondly, the language attribute is also needed to decide how to handle the impl
 
 %% ~~ MODEL:SOURCE ~~~
 \subsubsection{\element{source}}
-\label{sec:source}
+\label{sec:model_source}
 To make a model available for the execution of a SED-ML file, the model \element{source} must be specified through either a URI or a reference to an \code{SId} of an existing Model. 
 
 The URI should preferably point to a public, consistent location that provides the model description file and follows the proposed \hyperref[sec:uriScheme]{URI Scheme}. References to curated, open model bases are recommended, such as the BioModels Database. However, any resource registered with MIRIAM resources\footnote{\url{http://www.ebi.ac.uk/miriam/main/}} can easily be referenced. Even without a MIRIAM URN, SED-ML can be used (Section~\ref{sec:modelURI} on \refpage{sec:modelURI}).
