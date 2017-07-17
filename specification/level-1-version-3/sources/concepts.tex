@@ -207,12 +207,19 @@ xmlns:sbml=`http://www.sbml.org/sbml/level3/version1/core'
 \end{alltt}
 (a different namespace URI may be used; the key point is that the prefix `sbml' must match that used in the XPath expression).
 
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% NUML
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{NuML}
+\label{sec:numl}
+\hl{TODO: explain what is NuML and how used to reference external datasets.}
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% KISAO
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{KiSAO}
 \label{sec:kisao}
-
 The Kinetic Simulation Algorithm Ontology (KiSAO \citep{CWK+10}) is used in SED-ML to specify simulation algorithms and algorithm parameters. KiSAO is a community-driven approach of classifying and structuring simulation approaches by model characteristics and numerical characteristics. The ontology is available  in OWL format from \concept{BioPortal} at \url{http://purl.bioontology.org/ontology/KiSAO}. 
 
 Defining simulation algorithms through KISAO terms not only identifies the simulation algorithm used for the SED-ML simulation, it also enables software to find related algorithms, if the specific implementation is not available. For example, software could decide to use the CVODE integration library for an analysis instead of a specific Runge Kutta 4,5 implementation. 
