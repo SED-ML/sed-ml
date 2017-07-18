@@ -5,7 +5,7 @@
 \label{class:model}
 The \concept{Model} class defines the models used in a simulation experiment (\fig{sedModel}).
 
-\sedfig[width=0.85\textwidth]{pdf/listOfChanges}{The SED-ML Model class}{fig:sedModel}
+\sedfig[width=0.7\textwidth]{images/uml/model}{The SED-ML Model class}{fig:sedModel}
 
 Each instance of the Model class has an unambiguous and mandatory \hyperref[sec:id]{\code{id}}. An additional, optional \hyperref[sec:name]{\code{name}} may be given to the model.
 
@@ -138,7 +138,7 @@ SED-ML not only allows to use the sole model for simulation, but also enables th
 The \concept{Change} class is abstract and serves as the base class for different types of changes.
 Therefore, a SED-ML document will only contain the derived classes, i.e.\ \hyperref[class:changeAttribute]{ChangeAttribute}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML}, or \hyperref[class:computeChange]{ComputeChange}.
 
-\sedfig[width=\textwidth]{pdf/changeClass}{The SED-ML Change class}{fig:sedChange}
+\sedfig[width=\textwidth]{images/uml/change}{The SED-ML Change class}{fig:sedChange}
 
 \tabtext{change}{change}
 
@@ -205,10 +205,8 @@ Examples are given in the relevant change class definitions.
 % ~~~ AddXML ~~~
 \subsubsection{\element{AddXML}}
 \label{class:addXml}
-The \concept{AddXML} class specifies a snippet of XML that is to be added as a child of the element selected by the XPath expression in the \hyperref[sec:target]{target} attribute (\fig{addXMLClass}).
+The \concept{AddXML} class specifies a snippet of XML that is to be added as a child of the element selected by the XPath expression in the \hyperref[sec:target]{target} attribute (\fig{sedChange}).
 The new piece of XML code is provided by the \hyperref[sec:newXml]{NewXML} class.
-
-\sedfig[width=0.85\textwidth]{pdf/addXMLClass}{The SED-ML \code{AddXML} class}{fig:addXMLClass}
 
 \tabtext{addXml}{addXml}
 
@@ -255,9 +253,7 @@ The code of the model is changed so that a parameter with ID \code{V\_mT} is add
 % ~~~ ChangeXML ~~~
 \subsubsection{\element{ChangeXML}}
 \label{class:changeXml}
-The \concept{ChangeXML} class allows you to replace any XML element(s) in the model that can be addressed by a valid XPath expression (\fig{changeXml}).
-
-\sedfig[width=0.75\textwidth]{pdf/changeXmlClass}{The \code{ChangeXML} class}{fig:changeXml}
+The \concept{ChangeXML} class allows you to replace any XML element(s) in the model that can be addressed by a valid XPath expression (\fig{sedChange}).
 
 The XPath expression is specified in the required \hyperref[sec:target]{target} attribute (Section~\ref{sec:target} on \refpage{sec:target}).
 The replacement XML content is specified in the \hyperref[sec:newXml]{NewXML} class.
@@ -308,9 +304,7 @@ The code of the model is changed in the way that its parameter with ID \code{V\_
 %% ~~~ RemoveXML ~~~
 \subsubsection{\element{RemoveXML}}
 \label{class:removeXml}
-The \concept{RemoveXML} class can be used to delete XML elements or attributes in the model that are addressed by the XPath expression (\fig{removeXml}).
-
-\sedfig[width=0.3\textwidth]{pdf/removeXmlClass}{The \code{RemoveXML} class}{fig:removeXml}
+The \concept{RemoveXML} class can be used to delete XML elements or attributes in the model that are addressed by the XPath expression (\fig{sedChange}).
 
 The XPath is specified in the required \hyperref[sec:target]{target} attribute.
 
@@ -354,8 +348,6 @@ The code of the model is changed by deleting the reaction with ID \code{V\_mT} f
 \subsubsection{\element{ChangeAttribute}}
 \label{class:changeAttribute}
 The \concept{ChangeAttribute} class allows to define updates on the XML attribute values of the corresponding model (\fig{changeAttribute}).
-
-\sedfig[width=0.75\textwidth]{pdf/changeAttributeClass}{The \code{ChangeAttribute} class}{fig:changeAttribute}
 
 The \concept{ChangeXML} class covers the possibilities provided by the \hyperref[class:changeAttribute]{ChangeAttribute} class. That is, everything that can be expressed by a \hyperref[class:changeAttribute]{ChangeAttribute} construct can also be expressed by a \concept{ChangeXML}. However, for the common case of changing an attribute value \concept{ChangeAttribute} is easier to use, and so it is recommended to use the \concept{ChangeAttribute} for any changes of an XML attribute's value, and to use the more general \hyperref[class:changeXml]{ChangeXML} for other cases.
 
@@ -409,15 +401,15 @@ The example in Listing~\ref{lst:changeAttribute} shows the update of the initial
 \label{class:computeChange}
 The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any element or attribute of a model addressable by an XPath expression, based on a calculation (\fig{computeChange}).
 
-\sedfig[width=0.85\textwidth]{pdf/computeChangeClass}{The \code{ComputeChange} class}{fig:computeChange}
+\sedfig[width=0.85\textwidth]{images/uml/computeChange}{The \code{ComputeChange} class}{fig:computeChange}
 
-The computed new value is described by a mathematical expression using a \hyperref[sec:mathML]{subset of MathML} (see section \ref{sec:mathML} on \refpage{sec:mathML}). The computation can use the value of variables from any model defined in the simulation experiment.
-Those \hyperref[class:variable]{variables} need to be defined, and can then be addressed by their ID.
+The computed new value is described by a mathematical expression using a \hyperref[sec:mathML]{subset of MathML} (see section \ref{sec:mathML} on \refpage{sec:mathML}). The computation can use the value of variables from any model defined in the simulation experiment. Those \hyperref[class:variable]{variables} need to be defined, and can then be addressed by their \code{id}.
+
 A variable used in a \concept{ComputeChange} must carry a \hyperref[sec:modelReference]{modelReference} attribute (\refpage{sec:modelReference}) but no \hyperref[sec:taskReference]{taskReference} attribute (\refpage{sec:taskReference}).
-To carry out the calculation it may be necessary to introduce additional parameters, that are not defined in any of the models used by the experiment. This is done through the \hyperref[class:parameter]{parameter} class, and such parameters are thereafter refered to by their ID. Finally, the change itself is specified using an instance of the \hyperref[sec:math]{Math} class.
 
-Note that where a \concept{ComputeChange} refers to another model, that model is not allowed to be modified by \concept{ComputeChange}s which directly or indirectly refer to this model.
-In other words, cycles in the definitions of computed changes are prohibited, since then the new values would not be well defined.
+To carry out the calculation it may be necessary to introduce additional parameters, that are not defined in any of the models used by the experiment. This is done through the \hyperref[class:parameter]{parameter} class, and such parameters are thereafter refered to by their \code{id}. Finally, the change itself is specified using an instance of the \hyperref[sec:math]{Math} class.
+
+Note that where a \concept{ComputeChange} refers to another model, that model is not allowed to be modified by \concept{ComputeChange}s which directly or indirectly refer to this model. In other words, cycles in the definitions of computed changes are prohibited, since then the new values would not be well defined.
 
 \tabtext{computeChange}{computeChange}
 
@@ -450,9 +442,7 @@ math &\refpage{sec:math}\\
 \paragraph{\element{Math}}
 \label{sec:math}
 
-The \element{Math} element encodes mathematical functions. 
-If used as an element of the \concept{ComputeChange} class, it computes the change of the element or attribute addressed by the \hyperref[sec:target]{target} attribute.
-\currentLV supports the subset of MathML 2.0 shown in section \ref{sec:mathML}.
+The \element{Math} element encodes mathematical functions. If used as an element of the \concept{ComputeChange} class, it computes the change of the element or attribute addressed by the \hyperref[sec:target]{target} attribute. \currentLV supports the subset of MathML 2.0 shown in section \ref{sec:mathML}.
 
 \lsttext{computeChange}{computeChange}
 
