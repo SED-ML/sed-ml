@@ -1,29 +1,29 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% ABSTRACT TASK
+% ABSTRACT TASK
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Abstract Task}}
 \label{class:abstractTask}
-An abstract task in SED-ML represents the base class for all SED-ML tasks. It is not meant to be instantiated directly.
+An \concept{abstractTask} in SED-ML represents the base class for all SED-ML tasks, i.e. \hyperref[class:task]{Task} and \hyperref[class:repeatedTask]{RepeatedTask}. 
 
-\sedfig[width=0.80\textwidth]{pdf/abstractTask}{The SED-ML Abstract Task class}{fig:abstractTask}
+\sedfig[width=0.50\textwidth]{images/uml/abstractTask}{The SED-ML Abstract Task class}{fig:abstractTask}
 
 \tabtext{abstractTask}{abstractTask}
 
 \begin{table}[ht]
 \center
-\begin{tabular}{|l|l|}
-\hline
+\begin{tabular}{ll}
+\toprule
 \textbf{\attribute} & \textbf{\desc}\\
-\hline
+\midrule
 metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
-\hline
+\midrule
 \textbf{\subelements} & \textbf{\desc}\\
-\hline
+\midrule
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
-\hline
+\bottomrule
 \end{tabular}
 \caption{\tabcap{abstractTask}}
 \label{tab:abstractTask}
@@ -31,14 +31,14 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% TASK
+% TASK
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Task}}
 \label{class:task}
 
-A task in SED-ML links a \hyperref[class:model]{model} to a certain \hyperref[class:simulation]{simulation} description via their respective identifiers (\fig{sedTask}), using the \hyperref[sec:modelReference]{modelReference} and the \hyperref[sec:simulationReference]{simulationReference}. The task class receives the id and name attributes from the \hyperref[class:abstractTask]{AbstractTask}.
+A task in SED-ML links a \hyperref[class:model]{model} to a certain \hyperref[class:simulation]{simulation} description via their respective identifiers (\fig{sedTask}), using the \hyperref[sec:modelReference]{modelReference} and the \hyperref[sec:simulationReference]{simulationReference}. The task class receives the \code{id} and \code{name} attributes from the \hyperref[class:abstractTask]{AbstractTask}.
 
-\sedfig[width=0.75\textwidth]{pdf/taskClass}{The SED-ML Task class}{fig:sedTask}
+\sedfig[width=0.75\textwidth]{images/uml/task}{The SED-ML Task class}{fig:sedTask}
 
 In SED-ML \currentLV it is only possible to link one simulation description to one model at a time. However, one can define as many tasks as needed within one experiment description. Please note that the tasks may be executed in any order, as determined by the implementation.
 
@@ -46,23 +46,22 @@ In SED-ML \currentLV it is only possible to link one simulation description to o
 
 \begin{table}[ht]
 \center
-\begin{tabular}{|l|l|}
-\hline
+\begin{tabular}{ll}
+\toprule
 \textbf{\attribute} & \textbf{\desc}\\
-\hline
+\midrule
 metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
-\hline
+\midrule
 modelReference & \refpage{sec:modelReference}\\
 simulationReference & \refpage{sec:simulationReference}\\
-\hline
-\hline
+\midrule
 \textbf{\subelements} & \textbf{\desc}\\
-\hline
+\midrule
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
-\hline
+\bottomrule
 \end{tabular}
 \caption{\tabcap{task}}
 \label{tab:task}
@@ -72,17 +71,17 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 
 \begin{myXmlLst}{The \code{task} element}{lst:task}
 <listOfTasks>
-  <task id="t1" name="task definition" modelReference="model1" 
-        simulationReference="simulation 1" />
-  <task id="t2" name="another task definition" modelReference="model2" 
-        simulationReference="simulation 1" />
+	<task id="t1" name="task definition" modelReference="model1" 
+		simulationReference="simulation1" />
+	<task id="t2" name="another task definition" modelReference="model2" 
+		simulationReference="simulation1" />
 </listOfTasks>
 \end{myXmlLst}
 
-In the example, a simulation setting \emph{simulation1} is applied first to \emph{model1} and then is applied to \emph{model2}.
+In the example, a simulation setting \code{simulation1} is applied first to \code{model1} and then is applied to \code{model2}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% SET VALUE
+% SET VALUE
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{SetValue}}
 \label{class:setValue}
@@ -98,57 +97,54 @@ The child \element{math} contains the expression computing the value by referrin
 Again as for \hyperref[class:functionalRange]{functionalRange}, variable references always retrieve the \concept{current value} of the model variable or range at the current iteration of the enclosing \element{repeatedTask}. For a model not being simulated by any \element{subTask}, the initial state of the model is used.
 
 \begin{myXmlLst}{A \code{setValue} element setting \code{w} to the values of the range with id \code{current}.}{lst:setValue}
-  <listOfChanges>
-    <setValue target="/s:sbml/s:model/s:listOfParameters/s:parameter[@id='w']"
-              range="current" modelReference="model1">
-      <math xmlns="http://www.w3.org/1998/Math/MathML">
-        <ci> current </ci>
-      </math>
-    </setValue>
-  </listOfChanges>
+<listOfChanges>
+	<setValue target="/s:sbml/s:model/s:listOfParameters/s:parameter[@id='w']"
+		range="current" modelReference="model1">
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<ci> current </ci>
+		</math>
+	</setValue>
+</listOfChanges>
 \end{myXmlLst}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% REPEATED TASK
+% REPEATED TASK
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Repeated Task}}
 \label{class:repeatedTask}
-
 The \concept{repeatedTask} class provides a generic looping construct, allowing complex tasks to be represented by composing separate steps. It performs a specified task (or sequence of tasks) multiple times (where the exact number is specified through a \hyperref[sec:ranges]{range} construct), while allowing specific quantities in the model to be altered at each iteration (as defined in the \hyperref[sec:changes]{listOfChanges}).
 
 The \concept{RepeatedTask} inherits from \concept{AbstractTask}. Additionally it has two required attributes \hyperref[sec:rangeAttribute]{range} and \hyperref[sec:resetModel]{resetModel} as well as child elements \hyperref[sec:ranges]{listOfRanges}, \hyperref[sec:changes]{listOfChanges} and \hyperref[class:subTask]{listOfSubTasks}. Of these only \hyperref[sec:changes]{listOfChanges} is optional.
 
 Note that the order of activities within each iteration of a \concept{repeatedTask} is as follows. Firstly the model is reset, if specified by the \element{resetModel} attribute. Secondly any changes to the model specified by \element{setValue} elements are made. Finally, the \element{subTasks} are executed once each in order.
 
-\sedfig[width=.90\textwidth]{pdf/repeatedTaskClass}{The SED-ML RepeatedTask class}{fig:sedRptTask}
+\sedfig[width=.8\textwidth]{images/uml/repeatedTask}{The SED-ML RepeatedTask class}{fig:sedRptTask}
 
 \tabtext{repeatedTask}{repeatedTask}
 
 \begin{table}[ht]
 \center
-\begin{tabular}{|l|l|}
-\hline
+\begin{tabular}{ll}
+\toprule
 \textbf{\attribute} & \textbf{\desc}\\
-\hline
+\midrule
 metaid$^{o}$ & \refpage{sec:metaID}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
-\hline
+\midrule
 range & \refpage{sec:rangeAttribute}\\
 resetModel & \refpage{sec:resetModel}\\
-\hline
-\hline
+\midrule
 \textbf{\subelements} & \textbf{\desc}\\
-\hline
+\midrule
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
-\hline
+\midrule
 range & \refpage{sec:ranges}\\
 change$^{o}$ & \refpage{sec:changes}\\
 subTask$^{o}$ & \refpage{class:subTask}\\
-\hline
-\hline
+\bottomrule
 \end{tabular}
 \caption{\tabcap{repeatedTask}}
 \label{tab:repeatedTask}
@@ -186,7 +182,7 @@ subTask$^{o}$ & \refpage{class:subTask}\\
 
 In the example, \code{task1} is repeated three times, each time with a different value for a model parameter \code{w}. 
 
-%% ~~~ REPEATED TASK : RANGE ~~~
+% ~~~ REPEATED TASK : RANGE ~~~
 \subsubsection{The \element{range} attribute}
 \label{sec:rangeAttribute}
 The \element{repeatedTask} class has a required attribute \element{range} of type \code{SId}.
@@ -195,12 +191,12 @@ Listing~\ref{lst:repeatedTask} shows an example of a \element{repeatedTask} iter
 If there are multiple ranges in the \element{listOfRanges}, then only the \concept{master range} identified by this attribute determines how many iterations there will be in the \element{repeatedTask}.
 All other ranges must allow for at least as many iterations as the master range, and will be moved through in lock-step; their values can be used in \hyperref[class:setValue]{setValue} constructs.
 
-%% ~~~ REPEATED TASK : RESET MODEL ~~~
+% ~~~ REPEATED TASK : RESET MODEL ~~~
 \subsubsection{The \element{resetModel} attribute}
 \label{sec:resetModel}
 The \element{repeatedTask} class has a required attribute \element{resetModel} of type \code{boolean}. It specifies whether the model should be reset to the initial state before processing an iteration of the defined \hyperref[class:subTask]{subTasks}. Here initial state refers to the state of the model as given in the \element{listOfModels}.  In the example in  Listing~\ref{lst:repeatedTask} the repeated task is not to be reset, so a change is made, \code{task1} is carried out, another change is made, then \code{task1} continues from there, another change is applied, and \code{task1} is carried out a last time.
 
-%% ~~~ REPEATED TASK : LIST OF RANGES ~~~
+% ~~~ REPEATED TASK : LIST OF RANGES ~~~
 \subsubsection{The \element{listOfRanges}}
 \label{sec:ranges}
 Ranges represent the iterative element of the nested simulation experiment that provides the collection of values to iterate over. In order to be able to refer to the current value of a range element, an \code{id} attribute is added. When the value of the \code{id} attribute is used in a \element{listOfVariables} within the repeated task class its value is to be replaced with the current value of the range.
@@ -210,116 +206,106 @@ They each inherit from an abstract \hyperref[class:range]{Range} class.
 
 \paragraph{\element{Range}}
 \label{class:range}
-The \concept{Range} class is abstract and exists solely as the base class for the different types of range. Therefore, a SED-ML document will only contain the derived classes listed below.
+The \concept{Range} class is abstract and exists solely as the base class for the different types of range, i.e. \hyperref[class:uniformRange]{UniformRange}, \hyperref[class:vectorRange]{VectorRange}, and\hyperref[class:functionalRange]{FunctionalRange} (\fig{range}). 
+
+\sedfig[width=1.0\textwidth]{images/uml/range}{The SED-ML Range class}{fig:range}
 
 \paragraph{\element{UniformRange}}
 \label{class:uniformRange}
-
-\sedfig[width=.3\textwidth]{pdf/uniformRange}{The SED-ML UniformRange class}{fig:sedUniformRange}
-
-The \element{UniformRange} is quite similar to what is used in the \hyperref[class:uniformTimeCourse]{UniformTimeCourse} simulation class.
-This range is defined through four mandatory attributes: \code{start}, the start value; \code{end}, the end value and \code{numberOfPoints} that contains the number of points the range contains.
-A fourth attribute \code{type} that can take the values \code{linear} or \code{log} determines whether to draw the values logarithmically (with a base of $10$) or linearly.
+The \element{UniformRange} is quite similar to what is used in the \hyperref[class:uniformTimeCourse]{UniformTimeCourse} simulation class. This range is defined through four mandatory attributes: \code{start}, the start value; \code{end}, the end value and \code{numberOfPoints} that contains the number of points the range contains. A fourth attribute \code{type} that can take the values \code{linear} or \code{log} determines whether to draw the values logarithmically (with a base of $10$) or linearly.
 
 For example:
 \begin{myXmlLst}{The \code{UniformRange} element}{lst:uniformRange}
-    <uniformRange id="current" start="0.0" end="10.0" numberOfPoints="100" type="linear" /> 
+<uniformRange id="current" start="0.0" end="10.0" numberOfPoints="100" type="linear" /> 
 \end{myXmlLst}
 As for \hyperref[class:uniformTimeCourse]{UniformTimeCourse}, this range will actually produce 101 values uniformly spaced on the interval $[0, 10]$, in ascending order.
 
 The following logarithmic example generates the three values \code{1}, \code{10} and \code{100}.
 \begin{myXmlLst}{The \code{UniformRange} element with a logarithmic range.}{lst:uniformRangeLog}
-    <uniformRange id="current" start="1.0" end="100.0" numberOfPoints="2" type="log" />
+<uniformRange id="current" start="1.0" end="100.0" numberOfPoints="2" type="log" />
 \end{myXmlLst}
 
 \paragraph{\element{VectorRange}}
 \label{class:vectorRange}
 
-\sedfig[width=.3\textwidth]{pdf/vectorRangeClass}{The SED-ML VectorRangeClass class}{fig:sedVectorRangeClass}
+A \element{VectorRange} describes an ordered collection of real values, listing them explicitly within child \element{value} elements (\fig{range}).
 
-A \element{VectorRange} describes an ordered collection of real values, listing them explicitly within child \element{value} elements.
 For example, the range below iterates over the values $1$, $4$ and $10$ in that order.
 \begin{myXmlLst}{The \code{VectorRange} element}{lst:vectorRange}
-    <vectorRange id="current"> 
-        <value> 1 </value> 
-        <value> 4 </value> 
-        <value> 10 </value> 
-    </vectorRange> 
+<vectorRange id="current"> 
+	<value> 1 </value> 
+	<value> 4 </value> 
+	<value> 10 </value> 
+</vectorRange> 
 \end{myXmlLst}
 
 \paragraph{\element{FunctionalRange}}
 \label{class:functionalRange}
+A \element{FunctionalRange} constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables (\fig{range}). In this it is similar to the \hyperref[class:computeChange]{ComputeChange} element, and shares some of the same child elements (but is no subclass of \hyperref[class:computeChange]{ComputeChange}). It consists of an optional attribute \code{range}, two optional elements \hyperref[sec:listOfVariables]{listOfVariables} and \hyperref[sec:listOfParameters]{listOfParameters}, and a required element \element{math}.
 
-\sedfig[width=.9\textwidth]{pdf/functionalRangeClass}{The SED-ML FunctionalRange class}{fig:sedFunctionalRangeClass}
-
-A \element{FunctionalRange} constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables. In this it is similar to the \hyperref[class:computeChange]{ComputeChange} element, and shares some of the same child elements (but is no subclass of \hyperref[class:computeChange]{ComputeChange}).
-It consists of an optional attribute \code{range}, two optional elements \hyperref[sec:listOfVariables]{listOfVariables} and \hyperref[sec:listOfParameters]{listOfParameters}, and a required element \element{math}.
-
-The optional attribute \code{range} may be used as a shorthand to specify the \code{id} of another \concept{Range}. The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \code{id} of the range is used directly.
-In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
+The optional attribute \code{range} may be used as a shorthand to specify the \code{id} of another \concept{Range}. The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \code{id} of the range is used directly. In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
 
 In the \element{listOfVariables}, \hyperref[class:variable]{variable} elements define identifiers referring to model variables or range values, which may then be used within the \element{math} expression.
-These references always retrieve the \concept{current value} of the model variable or range at the current iteration of the enclosing \element{repeatedTask}.
-For a model not being simulated by any \element{subTask}, the initial state of the model is used.
+These references always retrieve the \concept{current value} of the model variable or range at the current iteration of the enclosing \element{repeatedTask}. For a model not being simulated by any \element{subTask}, the initial state of the model is used.
 
 The \element{function} encompasses the mathematical expression that is used to compute the value for the functional range at each iteration of the enclosing \element{repeatedTask}.
 
 For example:
 
 \begin{myXmlLst}{An example of a \code{functionalRange} where a parameter \code{w} of model \code{model2} is multiplied by \code{index} each time it is called.}{lst:functionalRange}
-  <functionalRange id="current" range="index"
-      xmlns:s='http://www.sbml.org/sbml/level3/version1/core'>
-    <listOfVariables>
-      <variable id="w" name="current parameter value" modelReference="model2"
-          target="/s:sbml/s:model/s:listOfParameters/s:parameter[@id='w']" />
-    </listOfVariables>
-    <math xmlns="http://www.w3.org/1998/Math/MathML">
-      <apply>
-        <times/>
-        <ci> w </ci>
-        <ci> index </ci>
+<functionalRange id="current" range="index"
+	xmlns:s='http://www.sbml.org/sbml/level3/version1/core'>
+	<listOfVariables>
+		<variable id="w" name="current parameter value" modelReference="model2"
+			target="/s:sbml/s:model/s:listOfParameters/s:parameter[@id='w']" />
+	</listOfVariables>
+	<math xmlns="http://www.w3.org/1998/Math/MathML">
+	  <apply>
+	    <times/>
+		  <ci> w </ci>
+          <ci> index </ci>
       </apply>
-    </math>
-  </functionalRange>
+	</math>
+</functionalRange>
 \end{myXmlLst}
 
 Here is another example, this time using the values in a piecewise expression: 
 
 \begin{myXmlLst}{A \code{functionalRange} element that returns \code{8} if \code{index} is smaller than \code{1}, \code{0.1} if \code{index} is between \code{4} and \code{6}, and \code{8} otherwise.}{lst:functionalRange2}
-        <uniformRange id="index" start="0" end="10" numberOfPoints="100" />
-        <functionalRange id="current" range="index">
-          <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <piecewise>
-              <piece>
-                <cn> 8 </cn>
-                <apply>
-                  <lt />
-                  <ci> index </ci>
-                  <cn> 1 </cn>
-                </apply>
-              </piece>
-              <piece>
-                <cn> 0.1 </cn>
-                <apply>
-                  <and />
-                  <apply>
-                    <geq />
-                    <ci> index </ci>
-                    <cn> 4 </cn>
-                  </apply>
-                  <apply>
-                    <lt />
-                    <ci> index </ci>
-                    <cn> 6 </cn>
-                  </apply>
-                </apply>
-              </piece>
-              <otherwise>
-                <cn> 8 </cn>
-              </otherwise>
-            </piecewise>
-          </math>
-        </functionalRange>
+<uniformRange id="index" start="0" end="10" numberOfPoints="100" />
+<functionalRange id="current" range="index">
+	<math xmlns="http://www.w3.org/1998/Math/MathML">
+		<piecewise>
+			<piece>
+				<cn> 8 </cn>
+				<apply>
+					<lt />
+					<ci> index </ci>
+					<cn> 1 </cn>
+				</apply>
+			</piece>
+			<piece>
+				<cn> 0.1 </cn>
+				<apply>
+					<and />
+					<apply>
+						<geq />
+                    	<ci> index </ci>
+                    	<cn> 4 </cn>
+					</apply>
+					<apply>
+						<lt />
+						<ci> index </ci>
+						<cn> 6 </cn>
+					</apply>
+				</apply>
+			</piece>
+			<otherwise>
+				<cn> 8 </cn>
+			</otherwise>
+		</piecewise>
+	</math>
+</functionalRange>
 \end{myXmlLst}
 
 
@@ -331,21 +317,15 @@ The \element{listOfChanges} element, when present, contains one or more \element
 %% ~~~ REPEATED TASK : LIST OF SUBTASKS ~~~
 \subsubsection{The \element{listOfSubTasks}}
 \label{class:subTask}
-
 The \element{listOfSubTasks} contains one or more \element{subTask} elements that specify what simulations are to be performed by the \element{RepeatedTask}.
-All \element{subTask}s have to be carried out sequentially, each continuing from the current model state (i.e.\ as at the end of the previous \code{subTask}, assuming it simulates the same model), and with their results concatenated (thus appearing identical to a single complex simulation).
-The \code{subTask} itself has one required attribute \code{task} that references the \code{id} of another task defined in the \code{listOfTasks}.
+All \element{subTask}s have to be carried out sequentially, each continuing from the current model state (i.e.\ as at the end of the previous \code{subTask}, assuming it simulates the same model), and with their results concatenated (thus appearing identical to a single complex simulation). The \code{subTask} itself has one required attribute \code{task} that references the \code{id} of another task defined in the \code{listOfTasks}.
+
 The order in which to run multiple \code{subTask}s should be specified using \code{order} attributes on the \code{subTask} elements; if these are omitted the ordering is given by the order of the subTask elements.
 In order to establish that one \code{subTask} should be carried out before another its \code{order} attribute has to have a lower number (c.f.\ Listing~\ref{lst:subTask}).
 
 \begin{myXmlLst}{The \code{subTask} element. In this example the task \code{task2} has to be carried out before \code{task1}.}{lst:subTask}
-  <listOfSubTasks>
-    <subTask task="task1" order="2"/> 
-    <subTask task="task2" order="1"/> 
-  </listOfSubTasks>
+<listOfSubTasks>
+	<subTask task="task1" order="2"/> 
+	<subTask task="task2" order="1"/> 
+</listOfSubTasks>
 \end{myXmlLst}
-
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "../sed-ml-L1V3"
-%%% End: 
