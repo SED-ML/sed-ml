@@ -156,7 +156,7 @@ would extract all the species id strings stored in that index set. Valid values 
 % ~~~ LIST OF SLICES ~~~
 \subsubsection{\element{listOfSlices}}
 \label{sec:listOfSlices}
-The \concept{listOfSlices} contains one or more \hyperref[class:Slice]{Slice} elements.
+The \concept{listOfSlices} contains one or more \hyperref[class:slice]{Slice} elements.
 
 
 % ~~~ USING DATA SOURCE ~~~
@@ -186,7 +186,7 @@ To indicate that the target is an entity defined within the current SED-ML descr
 \label{class:slice}
 If a \SedDataSource does not define the \token{indexSet} attribute, it will contain \SedSlice elements. Each slice removes one dimension from the data hypercube.
 
-The \concept{Slice} class introduces two required attributes: \hyperref[sliceReference]{\token{reference}} and \hyperref[sliceValue]{\token{value}}.
+The \concept{Slice} class introduces two required attributes: \hyperref[sec:sliceReference]{\token{reference}} and \hyperref[sec:sliceValue]{\token{value}}.
 
 \sedfig[width=0.4\textwidth]{images/uml/slice}{The SED-ML Slice class}{fig:sedSlice}
 
