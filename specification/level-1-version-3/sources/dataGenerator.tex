@@ -3,7 +3,8 @@
 
 The \concept{DataGenerator} class prepares the raw simulation results for later output (\fig{sedDG}). It encodes the post-processing  to be applied to the simulation data. The post-processing steps could be anything, from simple normalisations of data to mathematical calculations. 
 
-\sedfig[width=0.6\textwidth]{images/uml/dataGenerator}{The SED-ML DataGenerator class}{fig:sedDG}
+\sedfig[width=0.6\textwidth]{images/uml/dataGenerator}{The SED-ML DataGenerator class. 
+Note that \element{Parameter} and \element{Variable} are subclasses of \emph{SEDBase}; the respective inheritance connections are not shown in the figure.}{fig:sedDG}
 
 Each instance of the \concept{DataGenerator} class is identifiable within the experiment by its unambiguous \concept{id}. It can be further characterised by an optional \concept{name}. The related \hyperref[sec:math]{Math} class contains a mathML expression for the calculation of the data generator. Mathematical functions available for the specification of data generators are given in Section~\ref{sec:mathML} on \refpage{sec:mathML}. \hyperref[class:variable]{Variable} and \hyperref[class:parameter]{Parameter} instances can be used to encode the mathematical expression.
 
@@ -25,8 +26,8 @@ math & \refpage{sec:math}\\
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
 \midrule
-variable$^{o}$ & \refpage{class:variable}\\
-parameter$^{o}$ & \refpage{class:parameter}\\
+listOfVariables$^{o}$ & \refpage{class:variable}\\
+listOfParameters$^{o}$ & \refpage{class:parameter}\\
 \bottomrule
 \end{tabular}
 \caption{\tabcap{dataGenerator}}
@@ -34,7 +35,8 @@ parameter$^{o}$ & \refpage{class:parameter}\\
 \end{table}
 
 \lsttext{dataGenerator}{dataGenerator}
-
+In the example the \code{listOfDataGenerator} contains two \code{dataGenerator} elements. 
+The first one, \code{d1}, refers to the task definition \code{task1} (which itself refers to a particular model), and from the corresponding model it reuses the symbol \code{time}. The second one, \code{d2}, references a particular species defined in the same model (and referred to via the \code{taskReference="task1"}). The model species with \code{id} \code{PX} is reused for the data generator \code{d2} without further post-processing.
 \begin{myXmlLst}{Definition of two \code{dataGenerator} elements, \emph{time} and \emph{LaCI repressor}}{lst:dataGenerator}
 <listOfDataGenerators>
 	<dataGenerator id="d1" name="time">
@@ -58,6 +60,4 @@ parameter$^{o}$ & \refpage{class:parameter}\\
 </listOfDataGenerators>
 \end{myXmlLst}
 
-The \code{listOfDataGenerator} contains two \code{dataGenerator} elements. 
-The first one, \code{d1}, refers to the task definition \code{t1} (which itself refers to a particular model), and from the corresponding model it reuses the symbol \code{time}.
-The second one, \code{d2}, references a particular species defined in the same model (and referred to via the \code{taskReference="t1"}). The model species with ID \code{PX} is reused for the data generator \code{d2} without further post-processing.
+
