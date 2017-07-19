@@ -4,11 +4,11 @@
 \subsection{\element{DataDescription}}
 \label{class:dataDescription}
 
-The \concept{DataDescription} class (\fig{sedDataDescription}) references a file containing data points, along with a description on how to access that file, and what information to extract from it. 
+The \concept{DataDescription} class (\fig{dataDescription}) references a file containing data points, along with a description on how to access that file, and what information to extract from it. 
 
 The \concept{DataDescription} class introduces three attributes: the required attributes \token{id} and  \hyperref[sec:data_source]{\code{source}} and the optional attribute \token{name}. Additionally two elements are defined: \hyperref[sec:dimensionDescription]{\code{dimensionDescription}} and \hyperref[sec:listOfDataSources]{\code{listOfDataSources}}. 
 
-\sedfig[width=1.0\textwidth]{images/uml/dataDescription}{The SED-ML DataDescription class}{fig:sedDataDescription}
+\sedfig[width=0.8\textwidth]{images/uml/dataDescription}{The SED-ML DataDescription class}{fig:dataDescription}
 
 \tabtext{dataDescription}{dataDescription}
 
@@ -97,11 +97,9 @@ The \concept{listOfDataSources} contains one or more \SedDataSource elements tha
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{DataSource}}
 \label{class:dataSource}
-The \concept{DataSource} class (\fig{sedDataSource}) extracts chunks out of the data file provided by the outer \SedDataDescription element. 
+The \concept{DataSource} class (\fig{dataDescription}) extracts chunks out of the data file provided by the outer \SedDataDescription element. 
 
-The \concept{DataSource} class introduces three attributes: the required attribute \token{id} and the optional attributes \hyperref[sec:indexSet]{\code{indexSet}} and \token{name}. Additionally the \hyperref[sec:listOfSlices]{\code{listOfSlices}} element is defined. 
-
-\sedfig[width=0.8\textwidth]{images/uml/dataSource}{The SED-ML DataSource class}{fig:sedDataSource}
+The \concept{DataSource} class introduces three attributes: the required attribute \token{id} and the optional attributes \hyperref[sec:indexSet]{\code{indexSet}} and \token{name}. Additionally the \hyperref[sec:listOfSlices]{\code{listOfSlices}} element is defined (\fig{dataDescription}). 
 
 \tabtext{dataSource}{dataSource}
 
@@ -157,7 +155,7 @@ would extract all the species id strings stored in that index set. Valid values 
 \subsubsection{\element{listOfSlices}}
 \label{sec:listOfSlices}
 The \concept{listOfSlices} contains one or more \hyperref[class:slice]{Slice} elements.
-
+The \concept{listOfSlices} container holds the \hyperref[class:slice]{slice} definitions of a \hyperref[class:dataSource]{dataSource} (\fig{dataDescription}). The \concept{listOfSlices} is optional and may contain zero to many outputs.
 
 % ~~~ USING DATA SOURCE ~~~
 \subsubsection{Using the \token{dataSource} elements}
@@ -186,9 +184,9 @@ To indicate that the target is an entity defined within the current SED-ML descr
 \label{class:slice}
 If a \SedDataSource does not define the \token{indexSet} attribute, it will contain \SedSlice elements. Each slice removes one dimension from the data hypercube.
 
-The \concept{Slice} class introduces two required attributes: \hyperref[sec:sliceReference]{\token{reference}} and \hyperref[sec:sliceValue]{\token{value}}.
+The \concept{Slice} class introduces two required attributes: \hyperref[sec:sliceReference]{\token{reference}} and \hyperref[sec:sliceValue]{\token{value}} (\fig{dataDescription}).
 
-\sedfig[width=0.4\textwidth]{images/uml/slice}{The SED-ML Slice class}{fig:sedSlice}
+% \sedfig[width=0.4\textwidth]{images/uml/slice}{The SED-ML Slice class}{fig:sedSlice}
 
 \tabtext{slice}{slice}
 

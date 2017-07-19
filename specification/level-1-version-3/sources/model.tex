@@ -3,9 +3,9 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Model}}
 \label{class:model}
-The \concept{Model} class defines the models used in a simulation experiment (\fig{sedModel}).
+The \concept{Model} class defines the models used in a simulation experiment (\fig{model}).
 
-\sedfig[width=0.7\textwidth]{images/uml/model}{The SED-ML Model class}{fig:sedModel}
+\sedfig[width=0.7\textwidth]{images/uml/model}{The SED-ML Model class}{fig:model}
 
 Each instance of the Model class has an unambiguous and mandatory \hyperref[sec:id]{\code{id}}. An additional, optional \hyperref[sec:name]{\code{name}} may be given to the model.
 
@@ -205,35 +205,34 @@ Examples are given in the relevant change class definitions.
 % ~~~ AddXML ~~~
 \subsubsection{\element{AddXML}}
 \label{class:addXml}
-The \concept{AddXML} class specifies a snippet of XML that is to be added as a child of the element selected by the XPath expression in the \hyperref[sec:target]{target} attribute (\fig{sedChange}).
-The new piece of XML code is provided by the \hyperref[sec:newXml]{NewXML} class.
+The \concept{AddXML} class specifies a snippet of XML that is to be added as a child of the element selected by the XPath expression in the \hyperref[sec:target]{target} attribute (\fig{sedChange}). The new piece of XML code is provided by the \hyperref[sec:newXml]{NewXML} class.
 
-\tabtext{addXml}{addXml}
+% NO ADDITIONAL VALUE TO UML
+%\tabtext{addXml}{addXml}
+%\begin{table}[ht]
+%\center
+%\begin{tabular}{ll}
+%\toprule
+%\textbf{\attribute} & \textbf{\desc}\\
+%\midrule
+%metaid$^{o}$ & \refpage{sec:metaID}\\
+%id & \refpage{sec:id} \\
+%name$^{o}$ & \refpage{sec:name}\\
+%target & \refpage{sec:target}\\
+%\midrule
+%\textbf{\subelements} & \textbf{\desc}\\
+%\midrule
+%notes$^{o}$ & \refpage{class:notes}\\
+%annotation$^{o}$ & \refpage{class:annotation}\\
+%\midrule
+%newXML & \refpage{sec:newXml}\\
+%\bottomrule
+%\end{tabular}
+%\caption{\tabcap{addXML}}
+%\label{tab:addXml}
+%\end{table}
 
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaID}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-target & \refpage{sec:target}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-newXML & \refpage{sec:newXml}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{addXML}}
-\label{tab:addXml}
-\end{table}
-
-An example for a change that adds an additional parameter to a model is given in \lst{addXML}.
+An example for a change that adds an additional parameter to a model is given in \lst{addXML}. In the example the model is changed so that a parameter with ID \code{V\_mT} is added to its list of parameters. The \code{newXML} element adds an additional XML element to the original model. The element's name is \code{parameter} and it is added to the existing parent element \code{listOfParameters} that is addressed by the XPath expression in the \code{target} attribute.
 
 \begin{myXmlLst}{The \code{addXML} element with its \code{newXML} sub-element}{lst:addXML}
 <model language="urn:sedml:language:sbml" [..]>
@@ -247,43 +246,40 @@ An example for a change that adds an additional parameter to a model is given in
 </model>
 \end{myXmlLst}
 
-The code of the model is changed so that a parameter with ID \code{V\_mT} is added to its list of parameters. The \code{newXML} element adds an additional XML element to the original model. The element's name is \code{parameter} and it is added to the existing parent element \code{listOfParameters} that is addressed by the XPath expression in the \code{target} attribute.
-
 
 % ~~~ ChangeXML ~~~
 \subsubsection{\element{ChangeXML}}
 \label{class:changeXml}
 The \concept{ChangeXML} class allows you to replace any XML element(s) in the model that can be addressed by a valid XPath expression (\fig{sedChange}).
 
-The XPath expression is specified in the required \hyperref[sec:target]{target} attribute (Section~\ref{sec:target} on \refpage{sec:target}).
-The replacement XML content is specified in the \hyperref[sec:newXml]{NewXML} class.
+The XPath expression is specified in the required \hyperref[sec:target]{target} attribute (Section~\ref{sec:target} on \refpage{sec:target}). The replacement XML content is specified in the \hyperref[sec:newXml]{NewXML} class.
 
-\tabtext{changeXml}{changeXml}
+% NO ADDITIONAL VALUE TO UML
+%\tabtext{changeXml}{changeXml}
+%\begin{table}[ht]
+%\center
+%\begin{tabular}{ll}
+%\toprule
+%\textbf{\attribute} & \textbf{\desc}\\
+%\midrule
+%metaid$^{o}$ & \refpage{sec:metaID}\\
+%id & \refpage{sec:id} \\
+%name$^{o}$ & \refpage{sec:name}\\
+%target & \refpage{sec:target}\\
+%\midrule
+%\textbf{\subelements} & \textbf{\desc}\\
+%\midrule
+%notes$^{o}$ & \refpage{class:notes}\\
+%annotation$^{o}$ & \refpage{class:annotation}\\
+%\midrule
+%newXML & \refpage{sec:newXml}\\
+%\bottomrule
+%\end{tabular}
+%\caption{\tabcap{changeXML}}
+%\label{tab:changeXml}
+%\end{table}
 
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaID}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-target & \refpage{sec:target}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-newXML & \refpage{sec:newXml}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{changeXML}}
-\label{tab:changeXml}
-\end{table}
-
-An example for a change that adds an additional parameter to a model is given in \lst{changeXML}.
+An example for a change that adds an additional parameter to a model is given in \lst{changeXML}. In the example the model is changed in the way that its parameter with ID \code{V\_mT} is substituted by two other parameters \code{V\_mT\_1} and \code{V\_mT\_2}. The \code{target} attribute defines that the parameter with ID \code{V\_mT} is to be changed. The \code{newXML} element then specifies the XML that is to be exchanged for that parameter.
 
 \begin{myXmlLst}{The \code{changeXML} element}{lst:changeXML}
 <model [..]>
@@ -298,40 +294,36 @@ An example for a change that adds an additional parameter to a model is given in
 </model>
 \end{myXmlLst}
 
-The code of the model is changed in the way that its parameter with ID \code{V\_mT} is substituted by two other parameters \code{V\_mT\_1} and \code{V\_mT\_2}. The \code{target} attribute defines that the parameter with ID \code{V\_mT} is to be changed. The \code{newXML} element then specifies the XML that is to be exchanged for that parameter.
-
 
 %% ~~~ RemoveXML ~~~
 \subsubsection{\element{RemoveXML}}
 \label{class:removeXml}
-The \concept{RemoveXML} class can be used to delete XML elements or attributes in the model that are addressed by the XPath expression (\fig{sedChange}).
+The \concept{RemoveXML} class can be used to delete XML elements or attributes in the model that are addressed by the XPath expression (\fig{sedChange}). The XPath is specified in the required \hyperref[sec:target]{target} attribute.
 
-The XPath is specified in the required \hyperref[sec:target]{target} attribute.
+% NO ADDITIONAL VALUE TO UML
+%\tabtext{removeXml}{removeXml}
+%\begin{table}[ht]
+%\center
+%\begin{tabular}{ll}
+%\toprule
+%\textbf{\attribute} & \textbf{\desc}\\
+%\midrule
+%metaid$^{o}$ & \refpage{sec:metaID}\\
+%id & \refpage{sec:id} \\
+%name$^{o}$ & \refpage{sec:name}\\
+%target & \refpage{sec:target}\\
+%\midrule
+%\textbf{\subelements} & \textbf{\desc}\\
+%\midrule
+%notes$^{o}$ & \refpage{class:notes}\\
+%annotation$^{o}$ & \refpage{class:annotation}\\
+%\hline
+%\end{tabular}
+%\caption{\tabcap{removeXML}}
+%\label{tab:removeXml}
+%\end{table}
 
-\tabtext{removeXml}{removeXml}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaID}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-target & \refpage{sec:target}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\hline
-\end{tabular}
-\caption{\tabcap{removeXML}}
-\label{tab:removeXml}
-\end{table}
-
-An example for the removal of an XML element from a model is given in Listing~\ref{lst:removeXML}.
+An example for the removal of an XML element from a model is given in Listing~\ref{lst:removeXML}. In the example the model is changed by deleting the reaction with ID \code{V\_mT} from the model's list of reactions.
 
 \begin{myXmlLst}{The \code{removeXML} element}{lst:removeXML}
 <model [..]>
@@ -340,9 +332,6 @@ An example for the removal of an XML element from a model is given in Listing~\r
 	</listOfChanges>
 </model>
 \end{myXmlLst}
-
-The code of the model is changed by deleting the reaction with ID \code{V\_mT} from the model's list of reactions.
-
 
 % ~~~ ChangeAttribute ~~~
 \subsubsection{\element{ChangeAttribute}}
