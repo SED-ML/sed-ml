@@ -1,9 +1,9 @@
-\pagebreak
+%\pagebreak
 \section{Concepts used in SED-ML}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% MATHML SUBSET USED
+% MATHML
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{MathML subset}
+\subsection{MathML}
 \label{sec:mathML}
 SED-ML files may encode pre-processing steps applied to the computational model, as well as post processing applied to the raw simulation data before output. The corresponding mathematical expressions are encoded using MathML 2.0 \citep{CIM+01}. MathML is an international standard for encoding mathematical expressions using XML. It is also used as a representation of mathematical expressions in other formats, such as SBML and CellML, two of the model languages supported by SED-ML. 
 
@@ -142,15 +142,17 @@ One model repository that is part of MIRIAM resources is the \concept{BioModels 
 SED-ML recommends to follow the above scheme for model references, if possible. 
 SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offers web services to do so\footnote{\url{http://www.ebi.ac.uk/miriam/}}. For the above example of the \code{urn:miriam:biomodels.db:BIOMD0000000048} model, the resolved URL may look like \code{http://www.ebi.ac.uk/biomodels-main/BIOMD0000000048}.
 
-An alternative means to obtain a model may be to provide a single resource containing necessary models and a SED-ML file. Although a specification of such a resource is beyond the scope of this document,  one proposal  --  COMBINE archive format -- is described in Chapter~\ref{chp:archive}.
-Further information on the \hyperref[sec:model_source]{source} attribute referencing the model location is provided in Section~\ref{sec:model_source}.
+Additional information on the \hyperref[sec:model_source]{source} attribute referencing the model location is provided in Section~\ref{sec:model_source}.
+
+An alternative means to obtain a model may be to provide a single resource containing necessary models and a SED-ML file. Although a specification of such a resource is beyond the scope of this document, the recommended means is the \hyperref[sec:archive]{COMBINE archive}.
+
 
 % ~~~ DATA REFERENCES ~~~
 \subsubsection{Data references}
 \label{sec:dataURI}
-One way for referencing a data file from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}. MIRIAM enables identification of a data resource by a predefined URN.
+One way for referencing a data file from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}. MIRIAM enables identification of a data resource by a predefined URN. Additional information on the \hyperref[sec:data_source]{source} attribute referencing the data file location is provided in Section~\ref{sec:data_source}.
 
-An alternative means to obtain a data file may be to provide a single resource containing necessary data files and the SED-ML file (see COMBINE archive format -- is described in Chapter~\ref{chp:archive}). Further information on the \hyperref[sec:data_source]{source} attribute referencing the data file location is provided in Section~\ref{sec:data_source}.
+An alternative means to obtain a data file may be to provide a single resource containing necessary data files and the SED-ML file is the \hyperref[sec:archive]{COMBINE archive}. 
 
 
 % ~~~ LANGUAGE REFERENCES ~~~
@@ -226,6 +228,19 @@ Defining simulation algorithms through KISAO terms not only identifies the simul
 
 Should a particular simulation algorithm or algorithm parameter not exist in KISAO, please 
 request one via \url{http://www.biomodels.net/kisao/}.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% COMBINE ARCHIVE
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{COMBINE archive}
+\label{sec:archive}
+
+A \concept{COMBINE archive} \citep{Bergmann2014} is a single file that supports the exchange of all the information necessary for a modeling and simulation experiment in biology. A COMBINE archive file is a ZIP container that includes a manifest file, listing the content of the archive, an optional metadata file adding information about the archive and its content, and the files describing the model. The content of a COMBINE Archive consists of files encoded in COMBINE standards whenever possible, but may include additional files defined by an Internet Media Type. Several tools that support the COMBINE Archive are available, either as independent libraries or embedded in modeling software.
+
+The COMBINE archive is described at \url{http://co.mbine.org/documents/archive} and 
+in \citep{Bergmann2014}.
+
+COMBINE archives are the recommended means for distributing simulation experiment descriptions in SED-ML, the respective data and model files, and the simulation results (figures and reports).
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% RESOURCES

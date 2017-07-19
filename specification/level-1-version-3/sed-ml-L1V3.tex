@@ -25,13 +25,13 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \chapter{SED-ML technical specification}
 \label{chp:specification}
-
-This document represents the technical specification of SED-ML \currentLV. The corresponding UML class diagram is given in Appendix~\ref{app:uml}, the XML Schema in Appendix~\ref{app:schema}, example simulation experiments in Appendix~\ref{app:examples}.
+This document represents the technical specification of SED-ML \currentLV. The corresponding UML class diagram is given in Chapter~\ref{chp:uml}, example simulation experiments in Appendix~\ref{app:examples}, the XML Schema in Appendix~\ref{app:schema}.
 
 Sample experiment descriptions are given as XML snippets. However, not all concepts of SED-ML can be captured using XML Schema alone. In such cases this specification is the normative document. 
 
 %% ~~~ NOTATION CONVENTIONS ~~~
-\input{sources/conventions}
+%% THIS PROVIDES NO INFORMATION AT ALL, ON THE CONTRARY IT CONFUSES READER 
+%% \input{sources/conventions}
 
 %% ~~~ CONCEPTS ~~~
 \input{sources/concepts}
@@ -41,10 +41,11 @@ Sample experiment descriptions are given as XML snippets. However, not all conce
 
 %% ~~~ COMPONENTS ~~~
 \settocdepth{subsubsection}
-
+\pagebreak
 \section{SED-ML Components}
 \label{sec:components}
-In this section the major components of SED-ML are described. We use the UML notation presented in section \ref{sec:conventions}. The use of SED-ML is shown based on XML listings. The corresponding UML class diagram is given in Appendix~\ref{app:uml}, the XML Schema in Appendix~\ref{app:schema}, example simulation experiments in Appendix~\ref{app:examples}.
+In this section the major components of SED-ML are described. The use of SED-ML is shown based on XML listings. The complete UML class diagram is given in Chapter~\ref{chp:uml}, example simulation experiments in Appendix~\ref{app:examples}, the XML Schema in Appendix~\ref{app:schema}.
+% We use the UML notation presented in section \ref{sec:conventions}.
 
 %% DATA
 \input{sources/data}
@@ -59,19 +60,18 @@ In this section the major components of SED-ML are described. We use the UML not
 %% OUTPUT
 \input{sources/output}
 
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%% COMBINE ARCHIVE
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\chapter{COMBINE archive}
-\label{chp:archive}
-
-A \concept{COMBINE archive} \citep{Bergmann2014} is a single file that supports the exchange of all the information necessary for a modeling and simulation experiment in biology. A COMBINE archive file is a ZIP container that includes a manifest file, listing the content of the archive, an optional metadata file adding information about the archive and its content, and the files describing the model. The content of a COMBINE Archive consists of files encoded in COMBINE standards whenever possible, but may include additional files defined by an Internet Media Type. Several tools that support the COMBINE Archive are available, either as independent libraries or embedded in modeling software.
-
-The COMBINE archive is described at \url{http://co.mbine.org/documents/archive} and 
-in \citep{Bergmann2014}.
-
-COMBINE archives are the recommended means for distributing simulation experiment descriptions in SED-ML, the respective data and model files, and the simulation results (figures and reports).
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% UML DIAGRAM
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\chapter{UML Diagramm}
+\label{chp:uml}
+% \sedfig[width=\textwidth]{pdf/sedML}{The SED-ML UML class diagram}{fig:sedML}
+%\sedfig[width=\textwidth]{images/uml/all}{The SED-ML \currentLV UML class diagram (see the XML Schema definition on page %\pageref{lst:schema}).}{fig:sedML}
+\begin{sidewaysfigure}[ht]
+    \includegraphics[width=0.9\textwidth]{images/uml/all}
+    \caption{The SED-ML \currentLV UML class diagram (see the XML Schema definition on page \pageref{lst:schema}).}
+    \label{fig:sedML}
+\end{sidewaysfigure}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% ACKNOWLEDGMENTS
@@ -95,23 +95,6 @@ Moreover, we would like to thank all the participants of the meetings where SED-
 
 
 \appendix
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% UML DIAGRAM
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\chapter{SED-ML UML overview}
-\label{app:uml}
-\fig{sedML} shows the complete UML diagram of the SED-ML. It gives the full picture of all implemented classes (see the XML Schema definition on page \pageref{lst:schema}).
-
-% \sedfig[width=\textwidth]{pdf/sedML}{The SED-ML UML class diagram}{fig:sedML}
-\sedfig[width=\textwidth]{images/uml/all}{The SED-ML UML class diagram}{fig:sedML}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% XML SCHEMA
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\chapter{XML Schema}
-\label{app:schema}
-Listing \ref{lst:schema} shows the full SED-ML XML Schema.
-\myXmlImport{The SED-ML XML Schema definition}{lst:schema}{../../schema/level1/version3/sed-ml-L1-V3.xsd}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % EXAMPLES
@@ -127,6 +110,14 @@ The presented examples use models encoded in SBML and CellML. SED-ML is not rest
 \input{examples/IkBNFkB_Signaling}
 \input{examples/repeatedTaskExamples}
 \input{examples/dataExamples}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% XML SCHEMA
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\chapter{XML Schema}
+\label{app:schema}
+Listing \ref{lst:schema} shows the full SED-ML XML Schema.
+\myXmlImport{The SED-ML XML Schema definition}{lst:schema}{../../schema/level1/version3/sed-ml-L1-V3.xsd}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % REFERENCES
