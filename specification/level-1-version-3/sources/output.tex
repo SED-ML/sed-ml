@@ -4,52 +4,19 @@
 \subsection{\element{Output}}
 \label{class:output}
 
-The \concept{Ouput} class describes how the results of a simulation should be presented to the user (\fig{sedOutput}). 
+The abstract \concept{Ouput} class describes how the results of a simulation are presented. (\fig{output}). The available output classes are plots (\hyperref[class:plot2D]{2D plot} or \hyperref[class:plot3D]{3D plot}) and \hyperref[class:report]{reports}. The data used in the output plots or report is provided via \hyperref[class:dataGenerator]{dataGenerators}.
 
-\sedfig{pdf/outputClass}{The SED-ML Output class}{fig:sedOutput}
+\sedfig{images/uml/output}{The SED-ML Output class. Note that ListOfCurves, Curve, ListOfSurfaces, Surface, ListOfDataSets, DataSet and DataGenerator are subclasses of \emph{SEDBase}. The respective inheritance connections are not shown in the figure.}{fig:output}
 
-It does not contain the data itself, but the type of output and the \hyperref[class:dataGenerator]{data generators} used to produce a particular output.
-
-The types of output pre-defined in SED-ML \currentLV are plots and \hyperref[class:report]{reports}. The output can be defined as a \hyperref[class:plot2D]{2D plot} or alternatively as a \hyperref[class:plot3D]{3D plot}. 
-
-Note that even though the terms ``2D plot" and ``3D plot" are used, the exact type of plot is not specified. In other words, whether the 3D plot represents a surface plot, or three dimensional lines in space, cannot be distinguished by SED-ML alone. It is expected that applications use \hyperref[class:annotation]{annotations} for this purpose.
-
-\tabtext{output}{output}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{description}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaID}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-\textbf{sub-elements} & \textbf{description}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-plot2D$^{o}$ & \refpage{class:plot2D}\\
-plot3D$^{o}$ & \refpage{class:plot3D}\\
-report$^{o}$ & \refpage{class:report}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{output}}
-\label{tab:output}
-\end{table}
+Note that even though the terms \code{Plot2D} and \code{Plot3D} are used, the exact type of plot is not specified. In other words, whether the 3D plot represents a surface plot, or three dimensional lines in space, cannot be distinguished by SED-ML SED-ML \currentLV alone.
 
 
 % ~~~ PLOT2D ~~~
 \subsubsection{\element{Plot2D}}
 \label{class:plot2D}
-A \concept{2 dimensional plot} (\fig{plot2D}) contains a number of \hyperref[class:curve]{curve} definitions. 
-
-\sedfig[width=0.75\textwidth]{pdf/plot2DClass}{The SED-ML Plot2D class}{fig:plot2D}
-
+The \concept{Plot2D} class is used for two dimensional plot outputs (\fig{output}). The \concept{Plot2D} contains a number of \hyperref[class:curve]{\code{Curve}} definitions, which define the curves which should be plotted in the the 2D plot.
+%
 \tabtext{plot2D}{plot2D}
-
 \begin{table}[ht]
 \center
 \begin{tabular}{ll}
@@ -65,7 +32,7 @@ name$^{o}$ & \refpage{sec:name}\\
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
 \midrule
-curve & \refpage{class:curve}\\
+listOfCurves$^{o}$ & \refpage{class:curve}\\
 \bottomrule
 \end{tabular}
 \caption{\tabcap{plot2D}}
@@ -73,30 +40,24 @@ curve & \refpage{class:curve}\\
 \end{table}
 
 \lsttext{listOfCurves}{listOfCurves}
-
-\begin{myXmlLst}{The \code{plot2D} element with the nested \code{listOfCurves} element}{lst:listOfCurves}
+The example shows the definition of a \element{Plot2D} containing one \hyperref[class:curve]{\code{Curve}} inside the \code{listOfCurves}.
+\begin{myXmlLst}{The \code{plot2D} element with the nested \code{listOfCurves} element.}{lst:listOfCurves}
 <plot2D>
 	<listOfCurves>
 		<curve>
 			[CURVE DEFINITION]
 		</curve>
-			[FURTHER CURVE DEFINITIONS]
 	</listOfCurves>
 </plot2D>
 \end{myXmlLst}
-
-The listing shows the definition of a 2 dimensional plot containing one \hyperref[class:curve]{curve} element inside the \code{listOfCurves}. The curve definition follows in Section~\ref{class:curve} on \refpage{class:curve}.
 
 
 % ~~~ PLOT3D ~~~
 \subsubsection{\element{Plot3D}}
 \label{class:plot3D}
-A \concept{3 dimensional plot} (\fig{plot3D}) contains a number of \hyperref[class:surface]{surface} definitions.
-
-\sedfig[width=0.75\textwidth]{pdf/plot3DClass}{The SED-ML Plot3D class}{fig:plot3D}
-
+The \code{Plot3D} class is used for three dimensional plot outputs (\fig{output}). The \code{Plot3D} contains a number of \hyperref[class:surface]{\code{Surface}} definitions. 
+%
 \tabtext{plot3D}{plot3D}
-
 \begin{table}[ht]
 \center
 \begin{tabular}{ll}
@@ -112,7 +73,7 @@ name$^{o}$ & \refpage{sec:name}\\
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
 \midrule
-surface & \refpage{class:surface}\\
+listOfSurfaces$^{o}$ & \refpage{class:surface}\\
 \bottomrule
 \end{tabular}
 \caption{\tabcap{plot3D}}
@@ -120,8 +81,8 @@ surface & \refpage{class:surface}\\
 \end{table}
 
 \lsttext{plot3D}{plot3D}
-
-\begin{myXmlLst}{The \code{plot3D} element with the nested \code{listOfSurfaces} element}{lst:plot3D}
+The example shows the definition of a \hyperref[class:surface]{\element{Surface}} for the three dimensional plot inside the \code{listOfSurfaces}.
+\begin{myXmlLst}{The \code{plot3D} element with the nested \element{listOfSurfaces} element}{lst:plot3D}
 <plot3D>
 	<listOfSurfaces>
 		<surface> 
@@ -132,19 +93,13 @@ surface & \refpage{class:surface}\\
 </plot3D>
 \end{myXmlLst}
 
-The example defines a \hyperref[class:surface]{surface} for the 3 dimensional plot. The surface definition follows in Section~\ref{class:surface} on \refpage{class:surface}.
-
 
 % ~~~ REPORT ~~~
-\subsubsection[Report]{The Report class}
+\subsubsection[Report]{\element{Report}}
 \label{class:report}
-The \concept{Report} class defines a data table consisting of several single instances of the \hyperref[class:dataSet]{DataSet} class (\fig{report}).
-Its output returns the simulation result in actual \emph{numbers}. The particular columns of the report table are defined by creating an instance of the \hyperref[class:dataSet]{DataSet} class for each column. 
-
-\sedfig[width=0.75\textwidth]{pdf/report}{The SED-ML Report class}{fig:report}
-
+The \concept{Report} class defines a data table consisting of several single instances of the \hyperref[class:dataSet]{\element{DataSet}} class (\fig{output}). Its output returns the simulation result processed via \element{DataGenerators} in actual \emph{numbers}. The columns of the report table are defined by creating an instance of the \hyperref[class:dataSet]{DataSet} class for each column. 
+%
 \tabtext{report}{report}
-
 \begin{table}[ht]
 \center
 \begin{tabular}{ll}
@@ -160,7 +115,7 @@ name$^{o}$ & \refpage{sec:name}\\
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
 \midrule
-dataSet & \refpage{class:dataSet}\\
+listOfDataSets$^{o}$ & \refpage{class:dataSet}\\
 \bottomrule
 \end{tabular}
 \caption{\tabcap{report}}
@@ -181,7 +136,7 @@ dataSet & \refpage{class:dataSet}\\
 
 The simulation result itself, i.\,e. concrete result numbers, are not stored in SED-ML, but the directive how to \emph{calculate} them from the output of the simulator is provided through the \concept{dataGenerator}.
 
-The encoding of simulation results is outside the scope of SED-ML, but other efforts exist, for example the \emph{Systems Biology Result Markup Language} (SBRML, \citep{DSM10}).
+The encoding of simulation results is not part of SED-ML \currentLV.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % OUTPUT COMPONENTS
@@ -191,12 +146,9 @@ The encoding of simulation results is outside the scope of SED-ML, but other eff
 % ~~~ CURVE ~~~
 \subsubsection{\element{Curve}}
 \label{class:curve}
-One or more instances of the \concept{Curve} class define a 2D plot. A \concept{curve} needs a data generator reference to refer to the data that will be plotted on the x-axis, using the \concept{xDataReference}. A second data generator reference is needed to refer to the data that will be plotted on the y-axis, using the \concept{yDataReference}. 
-
-\sedfig[width=0.75\textwidth]{pdf/curveClass}{The SED-ML Curve class}{fig:curve}
-
+One or more instances of the \concept{Curve} class define a 2D plot. A \concept{curve} needs a data generator reference to refer to the data that will be plotted on the x-axis, using the \concept{xDataReference}. A second data generator reference is needed to refer to the data that will be plotted on the y-axis, using the \concept{yDataReference} (\fig{output}). 
+%
 \tabtext{curve}{curve}
-
 \begin{table}[ht]
 \center
 \begin{tabular}{ll}
@@ -223,13 +175,12 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \end{table}
 
 \lsttext{curve}{curve}
-
+In the example a single curve is created. Results for the x-axis are generated by the dataGenerator \code{dg1}, results for the y-axis are generated by the dataGenerator \code{dg2}. Both \code{dg1} and \code{dg2} need to be defined in the \hyperref[sec:listOfDataGenerators]{listOfDataGenerators}. The x-axis is plotted logarithmically.
 \begin{myXmlLst}{The SED-ML \code{curve} element, defining the output curve showing the result of simulation for the referenced dataGenerators}{lst:curve}
 <listOfCurves>
 	<curve id="c1" name="v1 / time" xDataReference="dg1" yDataReference="dg2" logX="true" logY="false" />
 </listOfCurves>
 \end{myXmlLst}
-Here, only one curve is created, results shown on the x-axis are generated by the data generator \code{dg1}, results shown on the y-axis are generated by the data generator \code{dg2}. Both \code{dg1} and \code{dg2} need to be already defined in the \hyperref[sec:listOfDataGenerators]{listOfDataGenerators}. The x-axis is plotted logarithmically.
 
 \paragraph{\element{logX}}
 \label{sec:logX}
