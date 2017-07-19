@@ -36,9 +36,7 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \subsection{\element{Task}}
 \label{class:task}
 
-A task in SED-ML links a \hyperref[class:model]{model} to a certain \hyperref[class:simulation]{simulation} description via their respective identifiers (\fig{sedTask}), using the \hyperref[sec:modelReference]{modelReference} and the \hyperref[sec:simulationReference]{simulationReference}. The task class receives the \code{id} and \code{name} attributes from the \hyperref[class:abstractTask]{AbstractTask}.
-
-\sedfig[width=0.75\textwidth]{images/uml/task}{The SED-ML Task class}{fig:sedTask}
+A task in SED-ML links a \hyperref[class:model]{model} to a certain \hyperref[class:simulation]{simulation} description via their respective identifiers (\fig{abstractTask}), using the \hyperref[sec:modelReference]{modelReference} and the \hyperref[sec:simulationReference]{simulationReference}. The task class receives the \code{id} and \code{name} attributes from the \hyperref[class:abstractTask]{AbstractTask}.
 
 In SED-ML \currentLV it is only possible to link one simulation description to one model at a time. However, one can define as many tasks as needed within one experiment description. Please note that the tasks may be executed in any order, as determined by the implementation.
 
