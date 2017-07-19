@@ -113,15 +113,15 @@ Again as for \hyperref[class:functionalRange]{functionalRange}, variable referen
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Repeated Task}}
 \label{class:repeatedTask}
-The \concept{repeatedTask} class provides a generic looping construct, allowing complex tasks to be represented by composing separate steps. It performs a specified task (or sequence of tasks) multiple times (where the exact number is specified through a \hyperref[sec:ranges]{range} construct), while allowing specific quantities in the model to be altered at each iteration (as defined in the \hyperref[sec:changes]{listOfChanges}).
+The \concept{repeatedTask} class (\fig{repeatedTask}) provides a generic looping construct, allowing complex tasks to be represented by composing separate steps. It performs a specified task (or sequence of tasks) multiple times (where the exact number is specified through a \hyperref[sec:ranges]{range} construct), while allowing specific quantities in the model to be altered at each iteration (as defined in the \hyperref[sec:changes]{listOfChanges}).
 
-The \concept{RepeatedTask} inherits from \concept{AbstractTask}. Additionally it has two required attributes \hyperref[sec:rangeAttribute]{range} and \hyperref[sec:resetModel]{resetModel} as well as child elements \hyperref[sec:ranges]{listOfRanges}, \hyperref[sec:changes]{listOfChanges} and \hyperref[class:subTask]{listOfSubTasks}. Of these only \hyperref[sec:changes]{listOfChanges} is optional.
+The \concept{RepeatedTask} inherits from \concept{AbstractTask}. Additionally it has two required attributes \hyperref[sec:rangeAttribute]{range} and \hyperref[sec:resetModel]{resetModel} as well as child elements \hyperref[sec:ranges]{listOfRanges}, \hyperref[sec:changes]{listOfChanges} and \hyperref[class:subTask]{listOfSubTasks}. Of these only \hyperref[sec:changes]{listOfChanges} is optional. 
+\tabtext{repeatedTask}{repeatedTask}
 
 Note that the order of activities within each iteration of a \concept{repeatedTask} is as follows. Firstly the model is reset, if specified by the \element{resetModel} attribute. Secondly any changes to the model specified by \element{setValue} elements are made. Finally, the \element{subTasks} are executed once each in order.
 
-\sedfig[width=.8\textwidth]{images/uml/repeatedTask}{The SED-ML RepeatedTask class}{fig:sedRptTask}
+\sedfig[width=.8\textwidth]{images/uml/repeatedTask}{The SED-ML RepeatedTask class}{fig:repeatedTask}
 
-\tabtext{repeatedTask}{repeatedTask}
 
 \begin{table}[ht]
 \center
@@ -151,10 +151,9 @@ subTask$^{o}$ & \refpage{class:subTask}\\
 \end{table}
 
 \lsttext{repeatedTask}{repeatedTask}
-
+In the example, \code{task1} is repeated three times, each time with a different value for a model parameter \code{w}.
 \begin{myXmlLst}{The \code{repeatedTask} element}{lst:repeatedTask}
 <task id="task1" modelReference="model1" simulationReference="simulation1" />
-
 <repeatedTask id="task3" resetModel="false" range="current"
     xmlns:s='http://www.sbml.org/sbml/level3/version1/core'>
   <listOfRanges>
@@ -180,7 +179,7 @@ subTask$^{o}$ & \refpage{class:subTask}\\
 </repeatedTask>
 \end{myXmlLst}
 
-In the example, \code{task1} is repeated three times, each time with a different value for a model parameter \code{w}. 
+ 
 
 % ~~~ REPEATED TASK : RANGE ~~~
 \subsubsection{The \element{range} attribute}

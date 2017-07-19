@@ -669,13 +669,13 @@ Each \concept{parameter} has exactly one fixed \concept{value}. The \code{value}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % LIST OF ELEMENTS
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{ListOf* containers}
+\subsection{\element{ListOf*} containers}
 \label{listOfElements}
 SED-ML \concept{listOf*} elements serve as containers  for a collection of objects of the same type. For example, the \code{listOfModels} contains all \hyperref[class:model]{Model} objects of a SED-ML document. Lists do not carry any further semantics nor do they add additional attributes to the language. They might, however, be annotated with \hyperref[class:notes]{Notes} and \hyperref[class:annotation]{Annotations} as they are derived from \hyperref[class:sedBase]{SEDBase}. All \concept{listOf*} elements are optional in a SED-ML document. 
 
 
 % ~~~ LIST OF VARIABLES ~~~
-\subsubsection{listOfVariables: The variable definition container}
+\subsubsection{\element{listOfVariables}}
 \label{sec:listOfVariables}
 
 SED-ML uses the \hyperref[class:variable]{variable} concept to refer to existing entities inside a model. The container for all variables is  \concept{listOfVariables} (\fig{listOfVariables}). It includes all variables that need to be defined to either describe a change in the model by means of mathematical equations (\hyperref[class:computeChange]{ComputeChange}) or to set up a \hyperref[class:dataGenerator]{DataGenerator}.
@@ -695,7 +695,7 @@ SED-ML uses the \hyperref[class:variable]{variable} concept to refer to existing
 
 
 % ~~~ LIST OF PARAMETERS ~~~
-\subsubsection{listOfParameters: The parameter definition container}
+\subsubsection{\element{listOfParameters}}
 \label{sec:listOfParameters}
 All \hyperref[class:parameter]{parameters} needed throughout the simulation experiment, whether to compute a change on a model prior to or during simulation (\hyperref[class:computeChange]{ComputeChange} and \hyperref[class:setValue]{SetValue}), to compute values in a \hyperref[class:functionalRange]{FunctionalRange}, or to set up a \hyperref[class:dataGenerator]{DataGenerator}, are defined inside a \concept{listOfParameters} (\fig{listOfParameters}).
 
@@ -713,7 +713,7 @@ The element is optional and may contain zero to many parameters.
 
 
 % ~~~ LIST OF DATA DESCRIPTIONS ~~~
-\subsubsection{listOfDataDescriptions: The dataDescription definition container}
+\subsubsection{\element{listOfDataDescriptions}}
 \label{sec:listOfDataDescriptions}
 
 In order to reference data in a simulation experiment, the data files along with a description on how to access such files and what information to extract from it have to be defined. SED-ML uses the \concept{listOfDataDescriptions} container for all necessary data (\fig{listOfDataDescriptions}). The \code{listOfDataDescriptions} is optional and may contain zero to many data files.
@@ -746,7 +746,7 @@ In order to reference data in a simulation experiment, the data files along with
 
 
 % ~~~ LIST OF MODELS ~~
-\subsubsection{listOfModels: The model description container}
+\subsubsection{\element{listOfModels}}
 \label{sec:listOfModels}
 In order to specify a simulation experiment, the participating models have to be defined. SED-ML uses the \concept{listOfModels} container for all necessary models (\fig{listOfModels}). 
 
@@ -766,7 +766,7 @@ The \code{listOfModels} is optional and may contain zero to many models. However
 
 
 % ~~~ LIST OF CHANGES ~~
-\subsubsection{listOfChanges: The change definition container}
+\subsubsection{\element{listOfChanges}}
 \label{sec:listOfChanges}
 The \concept{listOfChanges} contains the defined changes to be applied to a particular \hyperref[class:model]{model} (\fig{listOfChanges}). It always occurs as an optional subelement of the \element{model} element. The \code{listOfChanges} is nested inside the \code{model} element.
 
@@ -784,7 +784,7 @@ The \concept{listOfChanges} contains the defined changes to be applied to a part
 
 
 %% ~~~ LIST OF SIMULATIONS ~~
-\subsubsection{listOfSimulations: The simulation description container}
+\subsubsection{\element{listOfSimulations}}
 \label{sec:listOfSimulations}
 The \concept{listOfSimulations} element is the container for \hyperref[class:simulation]{simulation} descriptions (\fig{sedListOfSimulations}).
 
@@ -807,7 +807,7 @@ The \code{listOfSimulations} is optional and may contain zero to many simulation
 
 
 % ~~~ LIST OF ALGORITHM PARAMETERS ~~~
-\subsubsection{listOfAlgorithmParameters: The container for algorithm parameters}
+\subsubsection{\element{listOfAlgorithmParameters}}
 \label{sec:listOfAlgorithmParameters}
 The \concept{listOfAlgorithmParameters} contains the the settings for the simulation algorithm used in a simulation experiment. It may list several instances of the \hyperref[class:algorithmParameter]{AlgorithmParameter} class. The \code{listOfAlgorithmParameters} is optional and may contain zero to many parameters.
 
@@ -820,7 +820,7 @@ The \concept{listOfAlgorithmParameters} contains the the settings for the simula
 
  
 % ~~~ LIST OF TASKS ~~~
-\subsubsection{listOfTasks: The task specification container}
+\subsubsection{\element{listOfTasks}}
 \label{sec:listOfTasks}
 The \concept{listOfTasks} element contains the defined tasks for the simulation experiment (\fig{listOfTasks}).
 
@@ -839,7 +839,7 @@ The \code{listOfTasks} is optional and may contain zero to many tasks, each of w
 
 
 % ~~~ LIST OF DATA GENERATORS ~~~
-\subsubsection{listOfDataGenerators: The post-processing container}
+\subsubsection{\element{listOfDataGenerators}}
 \label{sec:listOfDataGenerators}
 In SED-ML, all variable and parameter values that are used in the \hyperref[class:output]{Output} class need to be defined as a \hyperref[class:dataGenerator]{dataGenerator} beforehand. The container for those data generators is the \concept{listOfDataGenerators} (\fig{listOfDataGenerators}).
 
@@ -862,7 +862,7 @@ The \code{listOfDataGenerators} is optional and in general may contain zero to m
 
 
 % ~~ LIST OF OUTPUTS ~~~
-\subsubsection{listOfOutputs: The output specification container}
+\subsubsection{\element{listOfOutputs}}
 \label{sec:listOfOutputs}
 The \concept{listOfOutputs} container holds the output specifications for a simulation experiment. 
 
