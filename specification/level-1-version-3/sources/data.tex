@@ -6,7 +6,8 @@
 
 The \concept{DataDescription} class (\fig{dataDescription}) references a file containing data points, along with a description on how to access that file, and what information to extract from it. 
 
-The \concept{DataDescription} class introduces three attributes: the required attributes \token{id} and  \hyperref[sec:data_source]{\code{source}} and the optional attribute \token{name}. Additionally two elements are defined: \hyperref[sec:dimensionDescription]{\code{dimensionDescription}} and \hyperref[sec:listOfDataSources]{\code{listOfDataSources}}. 
+The \concept{DataDescription} class introduces three attributes: the required attributes \hyperref[sec:id]{\element{id}} and  \hyperref[sec:data_source]{\code{source}} and the optional attribute \hyperref[sec:name]{\element{name}}. 
+Additionally two elements are defined: \hyperref[sec:dimensionDescription]{\code{dimensionDescription}} and \hyperref[sec:listOfDataSources]{\code{listOfDataSources}}. 
 
 \sedfig[width=0.8\textwidth]{images/uml/dataDescription}{The SED-ML DataDescription class}{fig:dataDescription}
 
@@ -37,16 +38,10 @@ listOfDataSources$^{o}$ & \refpage{sec:listOfDataSources}\\
 \label{tab:dataDescription}
 \end{table}
 
-
-% ~~~ ID & NAME ~~~
-\subsubsection{id and name}
-The attribute \token{id} of type \token{SId} is meant to uniquely identify the \token{dataDescription} element, while the optional \token{name} attribute of type \token{string}, is there to provide a human readable representation if desired.
-
-
 % ~~~ SOURCE ~~~
-\subsubsection{source}
+\subsubsection{\element{source}}
 \label{sec:data_source}
-Analog to how the \token{source} attribute on the \SedModel is handled, this attribute provides a location of a data file. In order to resolve the \token{source} attribute, the same mechanisms are allowed as for \SedModel element: be it a local file system, a relative link or an online resource. In the \currentLV only source files encoded in either NuML or CSV are allowed, with NuML being the recommended data format.
+Analog to how the \hyperref[sec:model_source]{\element{source}} attribute on the \SedModel is handled, this attribute provides a location of a data file. In order to resolve the \token{source} attribute, the same mechanisms are allowed as for \SedModel element: be it a local file system, a relative link or an online resource. In the \currentLV only source files encoded in either NuML or CSV are allowed, with NuML being the recommended data format.
 
 In case of CSV as source encoding the file
 \begin{itemize}
@@ -99,7 +94,7 @@ The \concept{listOfDataSources} contains one or more \SedDataSource elements tha
 \label{class:dataSource}
 The \concept{DataSource} class (\fig{dataDescription}) extracts chunks out of the data file provided by the outer \SedDataDescription element. 
 
-The \concept{DataSource} class introduces three attributes: the required attribute \token{id} and the optional attributes \hyperref[sec:indexSet]{\code{indexSet}} and \token{name}. Additionally the \hyperref[sec:listOfSlices]{\code{listOfSlices}} element is defined (\fig{dataDescription}). 
+The \concept{DataSource} class introduces three attributes: the required attribute \hyperref[sec:id]{\element{id}} and the optional attributes \hyperref[sec:name]{\element{name}} and \hyperref[sec:indexSet]{\element{indexSet}}. Additionally the \hyperref[sec:listOfSlices]{\code{listOfSlices}} element is defined (\fig{dataDescription}). 
 
 \tabtext{dataSource}{dataSource}
 
@@ -127,38 +122,6 @@ listOfSlices$^{o}$ & \refpage{sec:listOfSlices}\\
 \label{tab:dataSource}
 \end{table}
 
-
-% ~~~ ID & NAME ~~~
-\subsubsection{id and name}
-The attribute \token{id} of type \token{SId} is meant to uniquely identify the \token{dataSource} element, while the optional \token{name} attribute of type \token{string}, is there to provide a human readable representation if desired.
-
-
-%% ~~~ INDEX SET ~~~
-\subsubsection{indexSet}
-\label{sec:indexSet}
-Since data elements in NuML are either values, or indices, the \SedDataSource element needs two ways of addressing those elements. The \token{indexSet} attribute allows to address all indices provided by NuML elements with \token{indexType}. For example in for the \token{time} \element{componentDescription} above, a \token{dataSource}:
-
-\begin{myXmlLst}{}{lst:indexSet}
-<dataSource id="dataTime" indexSet="time" />
-\end{myXmlLst} 
-
-would extract the set of all timepoints stored in the index. Similarly: 
-
-\begin{myXmlLst}{}{lst:indexSet2}
-<dataSource id="allIds" indexSet="SpeciesIds" />
-\end{myXmlLst} 
-
-would extract all the species id strings stored in that index set. Valid values for \token{indexSet} are all NuML Id elements declared in the \token{dimensionDescription}. If the \token{indexSet} attribute is specified the corresponding \token{dataSource} may not define any \token{slice} elements.
-
-
-% ~~~ LIST OF SLICES ~~~
-\subsubsection{\element{listOfSlices}}
-\label{sec:listOfSlices}
-The \concept{listOfSlices} contains one or more \hyperref[class:slice]{Slice} elements.
-The \concept{listOfSlices} container holds the \hyperref[class:slice]{slice} definitions of a \hyperref[class:dataSource]{dataSource} (\fig{dataDescription}). The \concept{listOfSlices} is optional and may contain zero to many outputs.
-
-% ~~~ USING DATA SOURCE ~~~
-\subsubsection{Using the \token{dataSource} elements}
 Once the \SedDataSource elements are defined, they can be reused anywhere in the SED-ML Description. Specifically their \token{id} attribute can be referenced within the \element{listOfVariables} of \element{DataGenerators}, \element{computeChange} or \element{setValue} objects. Here an example that re-uses the data source \token{dataS1}:
 
 \begin{myXmlLst}{}{lst:indexSource}
@@ -176,6 +139,36 @@ This represents a change from \LoneVone and \LoneVtwo, in which a \token{taskRef
 
 To indicate that the target is an entity defined within the current SED-ML description the hashtag (\#) with the reference to an \token{id} was used. Additionally, this example uses the \token{modelReference}, in order to facilitate a mapping of the data encoded in the NuML document with a given model. 
 
+Since data elements in NuML can be either values or indices, the \SedDataSource element provides two ways of addressing those elements. The \token{indexSet} attribute allows to address all indices provided by NuML elements with \token{indexType}. 
+
+
+%% ~~~ INDEX SET ~~~
+\subsubsection{\element{indexSet}}
+\label{sec:indexSet}
+Since data elements in NuML can be either values or indices, the \SedDataSource element provides two ways of addressing those elements. The \token{indexSet} attribute allows to address all indices provided by NuML elements with \token{indexType}. 
+
+For example for the \element{indexSet} \token{time} below, a \hyperref[class:dataSource]{dataSource} would extract the set of all timepoints stored in the index.
+
+\begin{myXmlLst}{}{lst:indexSet}
+<dataSource id="dataTime" indexSet="time" />
+\end{myXmlLst} 
+
+Similarly: 
+
+\begin{myXmlLst}{}{lst:indexSet2}
+<dataSource id="allIds" indexSet="SpeciesIds" />
+\end{myXmlLst} 
+
+would extract all the species id strings stored in that index set. Valid values for \token{indexSet} are all NuML Id elements declared in the \token{dimensionDescription}. 
+
+If the \token{indexSet} attribute is specified the corresponding \token{dataSource} may not define any \token{slice} elements.
+
+
+% ~~~ LIST OF SLICES ~~~
+\subsubsection{\element{listOfSlices}}
+\label{sec:listOfSlices}
+The \concept{listOfSlices} contains one or more \hyperref[class:slice]{Slice} elements.
+The \concept{listOfSlices} container holds the \hyperref[class:slice]{Slice} definitions of a \hyperref[class:dataSource]{DataSource} (\fig{dataDescription}). The \concept{listOfSlices} is optional and may contain zero to many \hyperref[class:slice]{Slices}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% SLICE
@@ -212,12 +205,12 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \end{table}
 
 %% ~~~ SLICE:REFERENCE ~~~
-\subsubsection{The \token{reference} attribute}
+\subsubsection{\element{reference}}
 \label{sec:sliceReference}
 The \token{reference} attribute references one of the indices described in the \token{dimensionDescription}. In the example above, valid values would be: \token{time} and \token{SpeciesIds}.
 
 %% ~~~ SLICE:VALUE ~~~
-\subsubsection{The \token{value} attribute}
+\subsubsection{\token{value}}
 \label{sec:sliceValue}
 The \token{value} attribute takes the value of a specific index in the referenced set of indices. For example:
 
