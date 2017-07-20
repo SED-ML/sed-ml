@@ -1,4 +1,0 @@
-Note that the schema files (*.xsd) in this folder are *copies* of the
-authoritative versions found under path /sed-ml/schema in this repository.
-Make sure that both versions are kept synchronised!  In the future we will
-probably use Subversion file externals to do this automatically.
