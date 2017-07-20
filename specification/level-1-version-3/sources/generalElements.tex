@@ -86,7 +86,7 @@ Most objects in SED-ML carry an \concept{\element{id}} attribute of data type \h
 
 An example for a defined \concept{\element{id}} is given in Listing~\ref{lst:id}. In the example the model has the \concept{\element{id}} \code{m00001}.
 
-\begin{myXmlLst}{SED-ML \element{id} definition, e.\,g.\ for a model}{lst:id}
+\begin{myXmlLst}{SED-ML \element{id} definition, e.g.\ for a model}{lst:id}
 <model id="m00001" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000012">
 	[MODEL DEFINITION]
 </model>
@@ -101,7 +101,7 @@ SED-ML classes may have an optional element \concept{\element{name}} of data typ
 
 Listing \ref{lst:name} extends the model definition in \lst{id} by a model \concept{\element{name}}.
 
-\begin{myXmlLst}{SED-ML \element{name} definition, e.\,g.\ for a model}{lst:name}
+\begin{myXmlLst}{SED-ML \element{name} definition, e.g.\ for a model}{lst:name}
 <model id="m00001" name="Circadian oscillator" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000012">
 	[MODEL DEFINITION]
 </model>
@@ -145,7 +145,7 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsubsection{\element{metaid}}
 \label{sec:metaid}
-The main purpose of the \concept{\element{metaid}} attribute of data type \code{\hyperref[type:id]{ID}} is to attach semantic annotations in form of the \hyperref[class:annotation]{Annotation} class to SED-ML elements. The \concept{\element{metaid}} attribute is globally unique throughout the SED-ML document, i.\,e.\ the \element{metaid} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
+The main purpose of the \concept{\element{metaid}} attribute of data type \code{\hyperref[type:id]{ID}} is to attach semantic annotations in form of the \hyperref[class:annotation]{Annotation} class to SED-ML elements. The \concept{\element{metaid}} attribute is globally unique throughout the SED-ML document, i.e.\ the \element{metaid} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
 
 In order to set either \hyperref[class:notes]{Notes} or \hyperref[class:annotation]{Annotation} on a SED-ML class the \concept{\element{metaid}} is required, i.e. the \concept{\element{metaid}} must be set.
 
@@ -154,7 +154,7 @@ In order to set either \hyperref[class:notes]{Notes} or \hyperref[class:annotati
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsubsection{\element{Notes}}
 \label{class:notes}
-A \concept{note} is considered a human-readable description of the element it is assigned to. It serves to display information to the user. Instances of the \concept{Notes} class may contain any valid XHTML \citep{P+02}, ranging from short comments to whole HTML pages for display in a Web browser. The namespace URL for \code{XHTML} content inside the \hyperref[class:notes]{Notes} class is \url{http://www.w3.org/1999/xhtml}. It may either be declared in the \hyperref[class:sed-ml]{\code{sedML} XML element}, or directly used in top level XHTML elements contained within the  \code{notes} element. For further options of how to set the namespace and detailed examples, please refer to \citep[p. 14]{HBH+10}.
+A \concept{Notes} is considered a human-readable description of the element it is assigned to. It serves to display information to the user. Instances of the \concept{Notes} class may contain any valid XHTML \citep{P+02}. The namespace URL for \code{XHTML} content inside the \hyperref[class:notes]{Notes} class is \url{http://www.w3.org/1999/xhtml}, which may be declared either in the \hyperref[class:sed-ml]{\element{sedML}} element, or directly in the top level XHTML elements contained within the  \code{notes} element. For further options of how to set the namespace and detailed examples, please refer to \citep[p. 14]{HBH+10}.
 
 \tabtext{notes}{Notes}
 
@@ -182,7 +182,7 @@ xmlns:string & \refpage{sec:xmlns} \\
 
 \begin{myXmlLst}{The \element{notes} element}{lst:notes}
 <sedML [..]>
-	<notes >
+	<notes>
   		<p xmlns="http://www.w3.org/1999/xhtml">The enclosed simulation description shows the oscillating behaviour of the Repressilator model using deterministic and stochastic simulators.</p>
 	</notes>
 </sedML>
@@ -197,28 +197,9 @@ In this example, the namespace declaration is inside the \element{notes} element
 \subsubsection{\element{Annotation}}
 \label{class:annotation}
 
-An \concept{annotation} is considered a computer-processible piece of information. Annotations may contain any valid XML content. For further guidelines on how to use annotations, we would like to encourage the reading of the corresponding section in the SBML specification \citep[pp. 14-16]{HBH+10}. The style of annotations in SED-ML is briefly described in Section~\ref{sec:annotations} on page \pageref{sec:annotations}.
+An \concept{Annotation} is considered a computer-processible piece of information. Annotations may contain any valid XML content. For further guidelines on how to use annotations, we would like to encourage the reading of the corresponding section in the SBML specification \citep[pp. 14-16]{HBH+10}. The style of annotations in SED-ML is briefly described in Section~\ref{sec:annotations} on page \pageref{sec:annotations}.
 
-% NO INFORMATION IN TABLE
-%\tabtext{annotation}{Annotation}
-%\begin{table}[ht]
-%\center
-%\begin{tabular}{ll}
-%\toprule
-%\textbf{\attribute} & \textbf{\desc}\\
-%\midrule
-%\emph{none} & \\
-%\midrule
-%\textbf{\subelements} & \textbf{\desc}\\
-%\midrule
-%\emph{none in the SED-ML namespace} & \\
-%\bottomrule
-%\end{tabular}
-%\caption{\tabcap{Annotation}}
-%\label{tab:annotation}
-%\end{table}
-
-\lsttext{annotation}{annotation}
+\lsttext{annotation}{annotation} In that example, a SED-ML \hyperref[class:model]{\element{model}} element is annotated with a reference to the original publication. The \element{model} contains an \concept{\element{annotation}} that uses the biomodels.net model-qualifier \element{isDescribedBy} to link to the external resource \element{http://identifiers.org/pubmed/10415827}. In natural language the annotation content could be interpreted as ``The model is described by the published article available from pubmed under the identifier 10415827''.
 
 \begin{myXmlLst}{The annotation element}{lst:annotation}
 <sedML>
@@ -229,7 +210,7 @@ An \concept{annotation} is considered a computer-processible piece of informatio
 				<rdf:Description rdf:about="#_001">
 				<bqmodel:isDescribedBy>
 				<rdf:Bag>
-					<rdf:li rdf:resource="urn:miriam:pubmed:10415827"/>
+					<rdf:li rdf:resource="http://identifiers.org/pubmed/10415827"/>
 				</rdf:Bag>
 				</bqmodel:isDescribedBy>
     			</rdf:Description>
@@ -240,27 +221,22 @@ An \concept{annotation} is considered a computer-processible piece of informatio
 </sedML>
 \end{myXmlLst}
 
-In that example, a SED-ML \hyperref[class:model]{model} element is annotated with a reference to the original publication. The \element{model} contains an \element{annotation} that uses the \concept{biomodels.net model-qualifier} \element{isDescribedBy} to link to the external resource \element{urn:miriam:pubmed:10415827}. In natural language the annotation content could be interpreted as ``The model is described by the published article available from pubmed under ID 10643740''. The example annotation follows the proposed \hyperref[sec:uriScheme]{URI Scheme} suggested by the MIRIAM reference standard. The MIRIAM URN can be resolved to the PubMED publication with ID 10415827, namely the article ``Alternating oscillations and chaos in a model of two coupled biochemical oscillators driving successive phases of the cell cycle.'' published by Romond et al. in  1999.
-
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % SED-ML
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{SED-ML} top level element}
 \label{class:sed-ml}
-Each SED-ML \currentLV document has a main class called SED-ML which defines the document's structure and content (\fig{sed-mlMain}).
-
-It consists of several parts; the parts are all connected to the SED-ML class through aggregation: 
+Each SED-ML \currentLV document has a main class called \concept{SED-ML} which defines the document's structure and content (\fig{sed-mlMain}). It consists of several parts connected to the \concept{SED-ML} class via \hyperref[sec:listOfElements]{\element{listOf*}} constructs through aggregation: 
 \begin{itemize}
-	\item the \hyperref[class:dataDescription]{DataDescription} class (for resolving external data, see Section~\ref{class:dataDescription}), 
-	\item the \hyperref[class:model]{Model} class (for model specification, see Section~\ref{class:model}), 
-	\item the \hyperref[class:simulation]{Simulation} class (for simulation setup specification, see Section~\ref{class:simulation}), 
-	\item the \hyperref[class:abstractTask]{AbstractTask} class (for the linkage of models and simulation setups, see Section~\ref{class:abstractTask}), 
-	\item the \hyperref[class:dataGenerator]{DataGenerator} class (for the definition of post-processing, see Section~\ref{class:dataGenerator}),
-	\item and the \hyperref[class:output]{Output} class (for the output specification, see Section~\ref{class:output}).
+	\item \hyperref[class:dataDescription]{DataDescription} (for resolving external data), 
+	\item \hyperref[class:model]{Model} (for models specifications),
+	\item \hyperref[class:simulation]{Simulation} (for simulation setup specification, see Section~\ref{class:simulation}), 
+	\item \hyperref[class:abstractTask]{AbstractTask} (for the linkage of models and simulation setups), 
+	\item \hyperref[class:dataGenerator]{DataGenerator} (for the definition of post-processing),
+	\item \hyperref[class:output]{Output} (for the specification of plots and reports).
 \end{itemize}
-
-All of them are shown in \fig{sed-mlMain} and will be explained in more detail in the relevant sections of this document.
+These parts will be explained in more detail in the relevant sections of this document.
 
 \sedfig[width=0.8\textwidth]{images/uml/sed-ml}{The SED-ML class}{fig:sed-mlMain}
 
@@ -293,9 +269,9 @@ listOfOutputs$^{o}$ & \refpage{sec:listOfOutputs} \\
 \label{tab:sed-ml}
 \end{table}
 
-A SED-ML document needs to have the SED-ML namespace defined through the mandatory \hyperref[sec:xmlns]{xmlns} attribute. In addition, the SED-ML \hyperref[sec:level]{level} and \hyperref[sec:version]{version} attributes are mandatory.
+A SED-ML document needs to have the SED-ML namespace defined through the mandatory \hyperref[sec:xmlns]{xmlns} attribute. In addition, the SED-ML \hyperref[sec:level]{level} and \hyperref[sec:version]{version} attributes are required.
 
-The basic XML structure of a SED-ML file is shown in listing  \vref{lst:sedmlRoot}.
+The basic XML structure of a SED-ML file is shown in listing \vref{lst:sedmlRoot}.
 
 \begin{myXmlLst}{The SED-ML root element}{lst:sedmlRoot}
 <?xml version="1.0" encoding="utf-8"?>
@@ -322,7 +298,7 @@ The basic XML structure of a SED-ML file is shown in listing  \vref{lst:sedmlRoo
 </sedML>
 \end{myXmlLst}
 
-The root element of each SED-ML XML file is the \code{sedML} element, encoding \hyperref[sec:version]{version} and \hyperref[sec:level]{level} of the file, and setting the necessary namespaces. Nested inside the \code{sedML} element are the six lists serving as containers for the encoded data (\concept{listOfDataDescriptions} for all external data sources, \concept{listOfModels} for all models, \concept{listOfSimulations} for all simulations, \concept{listOfTasks} for all tasks, \concept{listOfDataGenerators} for all post-processing definitions, and \concept{listOfOutputs} for all output definitions).
+The root element of each SED-ML XML file is the \code{sedML} element, encoding \hyperref[sec:level]{\element{level}} and \hyperref[sec:version]{\element{version}} of the file, and setting the necessary namespaces. Nested inside the \code{sedML} element are the six lists serving as containers for the encoded information: \hyperref[sec:listOfDataGenerators]{\concept{listOfDataDescriptions}} for all external data sources, \hyperref[sec:listOfModels]{\concept{listOfModels}} for all models, \hyperref[sec:listOfSimulations]{\concept{listOfSimulations}} for all simulations, \hyperref[sec:listOfTasks]{\concept{listOfTasks}} for all tasks, \hyperref[sec:listOfDataGenerators]{\concept{listOfDataGenerators}} for all post-processing definitions, and \hyperref[sec:listOfOutputs]{\concept{listOfOutputs}} for all output definitions.
 
 % ~~~ XMLNS ~~~
 \subsubsection{\element{xmlns}}
@@ -542,7 +518,7 @@ Each \concept{parameter} has exactly one fixed \concept{value}. The \code{value}
 % LIST OF ELEMENTS
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{ListOf*} containers}
-\label{listOfElements}
+\label{sec:listOfElements}
 SED-ML \concept{listOf*} elements serve as containers  for a collection of objects of the same type. For example, the \code{listOfModels} contains all \hyperref[class:model]{Model} objects of a SED-ML document. Lists do not carry any further semantics nor do they add additional attributes to the language. They might, however, be annotated with \hyperref[class:notes]{Notes} and \hyperref[class:annotation]{Annotations} as they are derived from \hyperref[class:sedBase]{SEDBase}. All \concept{listOf*} elements are optional in a SED-ML document. 
 
 

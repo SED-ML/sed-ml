@@ -11,11 +11,11 @@ Each instance of the Model class has an unambiguous and mandatory \hyperref[sec:
 
 The \hyperref[sec:language]{\code{language}} may be specified, defining the format the model is encoded in, if such a format exists. Example formats are SBML or CellML.
 
-The \concept{Model} class refers to the particular model of interest through the \hyperref[sec:model_source]{source} attribute. The restrictions on the model reference are
+The \concept{Model} class refers to the particular model of interest through the \hyperref[sec:model_source]{\element{source}} attribute. The restrictions on the model reference are
 \begin{itemize}
  \item{the model must be encoded in an XML format}
- \item{To refer to the model encoding language, a reference to a valid definition of that XML format must be given (\hyperref[sec:language]{language} attribute).}
- \item{To refer to a particular model in an external resource, an unambiguous reference must be given (\hyperref[sec:model_source]{source} attribute).}
+ \item{To refer to the model encoding language, a reference to a valid definition of that XML format must be given (\hyperref[sec:language]{\element{language}} attribute).}
+ \item{To refer to a particular model in an external resource, an unambiguous reference must be given (\hyperref[sec:model_source]{\element{source}} attribute).}
 \end{itemize}
 
 A model might need to undergo preprocessing before simulation. Those pre-processing steps are specified in the SED-ML \hyperref[class:change]{Change} class.

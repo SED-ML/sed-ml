@@ -65,7 +65,23 @@ CSVs are always two dimensional data files with the headers being of data type \
 % ~~~ DIMENSION DESCRIPTION ~~~
 \subsubsection{\element{dimensionDescription}}
 \label{sec:dimensionDescription}
-The \concept{dimensionDescription} element is the data description from an NuML file. Consider for example:
+The \concept{dimensionDescription} contains a \hyperref[class:dimensionDescription]{DimensionDescription} object providing the dimension description of the source data file of the \hyperref{class:dataDescription}[DataDescription].
+
+
+% ~~~ LIST OF DATA SOURCES ~~~
+\subsubsection{\element{listOfDataSources}}
+\label{sec:listOfDataSources}
+The \concept{\element{listOfDataSources}} contains one or more \SedDataSource elements that are then used in the remainder of the SED-ML document.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% DIMENSION DESCRIPTION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{DimensionDescription}}
+\label{class:dimensionDescription}
+The \concept{DimensionDescription} class (\fig{dataDescription}) defines the dimension of the data file provided by the outer \SedDataDescription element. The \concept{DimensionDescription} is a \hyperref[sec:numl]{NuML} container containing the NuML dimension description. The \concept{dimensionDescription} element is the data description from an NuML file. 
+
+In the following example nested NuML \element{compositeDescription} with \token{time} spanning one dimension and \token{SpeciesIds} another dimension. This two dimensional space is then filled with \token{double} values representing concentrations.
 
 \begin{myXmlLst}{SED-ML \code{dimensionDescription} element}{lst:dimensionDescription}
 <dimensionDescription>
@@ -78,14 +94,7 @@ The \concept{dimensionDescription} element is the data description from an NuML 
 </dimensionDescription>
 \end{myXmlLst} 
 
-Here a nested NuML \token{compositeDescription} with \token{time} spanning one dimension and \token{SpeciesIds} another dimension. This two dimensional space is then filled with \token{double} values representing concentrations.
-
-
-% ~~~ LIST OF DATA SOURCES ~~~
-\subsubsection{\element{listOfDataSources}}
-\label{sec:listOfDataSources}
-The \concept{listOfDataSources} contains one or more \SedDataSource elements that are then used in the remainder of the SED-ML document.
-
+% ? unclear how to write this down correctly, i.e. what is the data type / content of DimensionDescription.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % DATA SOURCE
