@@ -5,8 +5,11 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{MathML}
 \label{sec:mathML}
-SED-ML files may encode pre-processing steps applied to the computational model, as well as post processing applied to the raw simulation data before output. The corresponding mathematical expressions are encoded using MathML 2.0 \citep{CIM+01}. MathML is an international standard for encoding mathematical expressions using XML. It is also used as a representation of mathematical expressions in other formats, such as SBML and CellML, two of the model languages supported by SED-ML. 
+SED-ML encodes mathematical expressions using a subset of MathML 2.0 \citep{CIM+01}. MathML is an international standard for encoding mathematical expressions using XML. It is also used as a representation of mathematical expressions in other formats, such as SBML and CellML, two of the model languages supported by SED-ML. 
 
+SED-ML files can use mathematical expressions to encode for example pre-processing steps applied to the computational model (see \hyperref[class:computeChange]{ComputeChange}), or post processing steps applied to the raw simulation data before output (see \hyperref[class:dataGenerator]{DataGenerator}). 
+
+SED-ML classes reference MathML expressions via attributes of data type \hyperref[type:mathml]{MathML}.
 
 % ~~~ MATHML ELEMENTS ~~~
 \subsubsection{MathML elements}

@@ -28,7 +28,7 @@ A model might need to undergo preprocessing before simulation. Those pre-process
 \toprule
 \textbf{\attribute} & \textbf{\desc}\\
 \midrule
-metaid$^{o}$ & \refpage{sec:metaID}\\
+metaid$^{o}$ & \refpage{sec:metaid}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 \midrule
@@ -126,7 +126,7 @@ In the example one model is defined. The \element{language} of the model is \ele
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % CHANGE
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection[Change]{\element{Change}}
+\subsection{\element{Change}}
 \label{class:change}
 SED-ML not only allows to use the sole model for simulation, but also enables the description of \concept{changes} to be made on the model before simulation  (\fig{sedChange}). Changes can be of the following types:
 \begin{itemize}
@@ -148,7 +148,7 @@ Therefore, a SED-ML document will only contain the derived classes, i.e.\ \hyper
 \toprule
 \textbf{\attribute} & \textbf{\desc}\\
 \midrule
-metaid$^{o}$ & \refpage{sec:metaID}\\
+metaid$^{o}$ & \refpage{sec:metaid}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 \midrule
@@ -215,7 +215,7 @@ The \concept{AddXML} class specifies a snippet of XML that is to be added as a c
 %\toprule
 %\textbf{\attribute} & \textbf{\desc}\\
 %\midrule
-%metaid$^{o}$ & \refpage{sec:metaID}\\
+%metaid$^{o}$ & \refpage{sec:metaid}\\
 %id & \refpage{sec:id} \\
 %name$^{o}$ & \refpage{sec:name}\\
 %target & \refpage{sec:target}\\
@@ -254,31 +254,6 @@ The \concept{ChangeXML} class allows you to replace any XML element(s) in the mo
 
 The XPath expression is specified in the required \hyperref[sec:target]{target} attribute (Section~\ref{sec:target} on \refpage{sec:target}). The replacement XML content is specified in the \hyperref[sec:newXml]{NewXML} class.
 
-% NO ADDITIONAL VALUE TO UML
-%\tabtext{changeXml}{changeXml}
-%\begin{table}[ht]
-%\center
-%\begin{tabular}{ll}
-%\toprule
-%\textbf{\attribute} & \textbf{\desc}\\
-%\midrule
-%metaid$^{o}$ & \refpage{sec:metaID}\\
-%id & \refpage{sec:id} \\
-%name$^{o}$ & \refpage{sec:name}\\
-%target & \refpage{sec:target}\\
-%\midrule
-%\textbf{\subelements} & \textbf{\desc}\\
-%\midrule
-%notes$^{o}$ & \refpage{class:notes}\\
-%annotation$^{o}$ & \refpage{class:annotation}\\
-%\midrule
-%newXML & \refpage{sec:newXml}\\
-%\bottomrule
-%\end{tabular}
-%\caption{\tabcap{changeXML}}
-%\label{tab:changeXml}
-%\end{table}
-
 An example for a change that adds an additional parameter to a model is given in \lst{changeXML}. In the example the model is changed in the way that its parameter with ID \code{V\_mT} is substituted by two other parameters \code{V\_mT\_1} and \code{V\_mT\_2}. The \code{target} attribute defines that the parameter with ID \code{V\_mT} is to be changed. The \code{newXML} element then specifies the XML that is to be exchanged for that parameter.
 
 \begin{myXmlLst}{The \code{changeXML} element}{lst:changeXML}
@@ -295,33 +270,10 @@ An example for a change that adds an additional parameter to a model is given in
 \end{myXmlLst}
 
 
-%% ~~~ RemoveXML ~~~
+% ~~~ RemoveXML ~~~
 \subsubsection{\element{RemoveXML}}
 \label{class:removeXml}
 The \concept{RemoveXML} class can be used to delete XML elements or attributes in the model that are addressed by the XPath expression (\fig{sedChange}). The XPath is specified in the required \hyperref[sec:target]{target} attribute.
-
-% NO ADDITIONAL VALUE TO UML
-%\tabtext{removeXml}{removeXml}
-%\begin{table}[ht]
-%\center
-%\begin{tabular}{ll}
-%\toprule
-%\textbf{\attribute} & \textbf{\desc}\\
-%\midrule
-%metaid$^{o}$ & \refpage{sec:metaID}\\
-%id & \refpage{sec:id} \\
-%name$^{o}$ & \refpage{sec:name}\\
-%target & \refpage{sec:target}\\
-%\midrule
-%\textbf{\subelements} & \textbf{\desc}\\
-%\midrule
-%notes$^{o}$ & \refpage{class:notes}\\
-%annotation$^{o}$ & \refpage{class:annotation}\\
-%\hline
-%\end{tabular}
-%\caption{\tabcap{removeXML}}
-%\label{tab:removeXml}
-%\end{table}
 
 An example for the removal of an XML element from a model is given in Listing~\ref{lst:removeXML}. In the example the model is changed by deleting the reaction with ID \code{V\_mT} from the model's list of reactions.
 
@@ -332,6 +284,7 @@ An example for the removal of an XML element from a model is given in Listing~\r
 	</listOfChanges>
 </model>
 \end{myXmlLst}
+
 
 % ~~~ ChangeAttribute ~~~
 \subsubsection{\element{ChangeAttribute}}
@@ -351,7 +304,7 @@ Note that the XPath expression in the \concept{target} attribute must select a s
 \toprule
 \textbf{\attribute} & \textbf{\desc}\\
 \midrule
-metaid$^{o}$ & \refpage{sec:metaID}\\
+metaid$^{o}$ & \refpage{sec:metaid}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 \midrule
@@ -408,7 +361,7 @@ Note that where a \concept{ComputeChange} refers to another model, that model is
 \toprule
 \textbf{\attribute} & \textbf{\desc}\\
 \midrule
-metaid$^{o}$ & \refpage{sec:metaID}\\
+metaid$^{o}$ & \refpage{sec:metaid}\\
 id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 \midrule
