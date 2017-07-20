@@ -46,12 +46,12 @@ Analog to how the \hyperref[sec:model_source]{\element{source}} attribute on the
 In case of CSV as source encoding the file
 \begin{itemize}
 	\item must contain a header row which defines the ids
-	\item must only contain numerical values 
 	\item must use the comma "," as field separator
 	\item must use the dot "." as separator in numbers
 	\item may contain comment rows which start with "\#"
 	\item the dimensionDescription of the CSV dataDescription must be two dimensional and correspond to the content of the CSV file 
 \end{itemize}
+CSVs are always two dimensional data files with the headers being of data type \hyperref[type:numlsid]{\element{NuMLSId}}. Only CSV columns containing numerical data can be used in \hyperref[class:dataSource]{DataSource}.
 
 \lsttext{dataDescription}{dataDescription}
 \begin{myXmlLst}{SED-ML \code{dataDescription} element}{lst:dataDescription}
