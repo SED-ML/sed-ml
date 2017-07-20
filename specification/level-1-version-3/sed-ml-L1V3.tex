@@ -25,9 +25,9 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \chapter{SED-ML technical specification}
 \label{chp:specification}
-This document represents the technical specification of SED-ML \currentLV. The corresponding UML class diagram is given in Chapter~\ref{chp:uml}, example simulation experiments in Appendix~\ref{app:examples}, the XML Schema in Appendix~\ref{app:schema}.
+This document represents the technical specification of SED-ML \currentLV. The corresponding UML class diagram is shown in \fig{sedML}. Example simulation experiments in SED-ML are provided in Appendix~\ref{app:examples}. The XML Schema is provided in Appendix~\ref{app:schema}. However, not all concepts of SED-ML can be captured using XML Schema alone. In such cases this specification is the normative document. 
 
-Sample experiment descriptions are given as XML snippets. However, not all concepts of SED-ML can be captured using XML Schema alone. In such cases this specification is the normative document. 
+\sedfig[width=\textwidth]{images/uml/all}{The SED-ML \currentLV UML class diagram}{fig:sedML}
 
 %% ~~~ NOTATION CONVENTIONS ~~~
 %% THIS PROVIDES NO INFORMATION AT ALL, ON THE CONTRARY IT CONFUSES READER 
@@ -44,8 +44,7 @@ Sample experiment descriptions are given as XML snippets. However, not all conce
 \pagebreak
 \section{SED-ML Components}
 \label{sec:components}
-In this section the major components of SED-ML are described. The use of SED-ML is shown based on XML listings. The complete UML class diagram is given in Chapter~\ref{chp:uml}, example simulation experiments in Appendix~\ref{app:examples}, the XML Schema in Appendix~\ref{app:schema}.
-% We use the UML notation presented in section \ref{sec:conventions}.
+In this section the major components of SED-ML are described. The complete UML class diagram is given in \fig{sedML}, example simulation experiments in Appendix~\ref{app:examples}, the XML Schema in Appendix~\ref{app:schema}.
 
 %% DATA
 \input{sources/data}
@@ -60,18 +59,6 @@ In this section the major components of SED-ML are described. The use of SED-ML 
 %% OUTPUT
 \input{sources/output}
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% UML DIAGRAM
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\chapter{UML Diagramm}
-\label{chp:uml}
-% \sedfig[width=\textwidth]{pdf/sedML}{The SED-ML UML class diagram}{fig:sedML}
-%\sedfig[width=\textwidth]{images/uml/all}{The SED-ML \currentLV UML class diagram (see the XML Schema definition on page %\pageref{lst:schema}).}{fig:sedML}
-\begin{sidewaysfigure}[ht]
-    \includegraphics[width=0.9\textwidth]{images/uml/all}
-    \caption{The SED-ML \currentLV UML class diagram (see the XML Schema definition on page \pageref{lst:schema}).}
-    \label{fig:sedML}
-\end{sidewaysfigure}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% ACKNOWLEDGMENTS
