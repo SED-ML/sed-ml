@@ -83,11 +83,11 @@ In the example, a simulation setting \code{simulation1} is applied first to \cod
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Repeated Task}}
 \label{class:repeatedTask}
-The \concept{repeatedTask} class (\fig{repeatedTask}) provides a generic looping construct, allowing complex tasks to be represented by composing separate steps. It performs a specified task (or sequence of tasks) multiple times (where the exact number is specified through a \hyperref[sec:ranges]{range} construct), while allowing specific quantities in the model to be altered at each iteration (as defined in the \hyperref[sec:changes]{listOfChanges}).
+The \concept{repeatedTask} class (\fig{repeatedTask}) provides a generic looping construct, allowing complex tasks to be represented by composing separate steps. It performs a specified task (or sequence of tasks) multiple times (where the exact number is specified through a \hyperref[sec:listOfRanges]{range} construct), while allowing specific quantities in the model to be altered at each iteration (as defined in the \hyperref[sec:changes]{listOfChanges}).
 
 \sedfig[width=.8\textwidth]{images/uml/repeatedTask}{The SED-ML RepeatedTask class}{fig:repeatedTask}
 
-The \concept{RepeatedTask} inherits from \hyperref[class:abstractTask]{AbstractTask}. Additionally it has two required attributes \hyperref[sec:rangeAttribute]{range} and \hyperref[sec:resetModel]{resetModel} as well as child elements \hyperref[sec:ranges]{listOfRanges}, \hyperref[sec:changes]{listOfChanges} and \hyperref[class:subTask]{listOfSubTasks}. Of these only \hyperref[sec:changes]{listOfChanges} is optional.
+The \concept{RepeatedTask} inherits from \hyperref[class:abstractTask]{AbstractTask}. Additionally it has two required attributes \hyperref[sec:rangeAttribute]{range} and \hyperref[sec:resetModel]{resetModel} as well as child elements \hyperref[sec:listOfRanges]{\element{sec:listOfRanges}}, \hyperref[sec:changes]{\element{listOfChanges}} and \hyperref[class:subTask]{\element{listOfSubTasks}}. Of these only \hyperref[sec:changes]{\element{listOfChanges}} is optional.
 
 Note that the order of activities within each iteration of a \concept{repeatedTask} is as follows:
 \begin{itemize} 
@@ -116,7 +116,7 @@ notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
 \midrule
 listOfChanges$^{o}$ & \refpage{sec:changes}\\
-listOfRanges & \refpage{sec:ranges}\\
+listOfRanges & \refpage{sec:listOfRanges}\\
 listOfSubTask & \refpage{class:subTask}\\
 \bottomrule
 \end{tabular}
@@ -157,7 +157,7 @@ In the example, \code{task1} is repeated three times, each time with a different
 \subsubsection{\element{range}}
 \label{sec:rangeAttribute}
 The \element{repeatedTask} class has a required attribute \element{range} of type \code{SIdRef}.
-It specifies which \hyperref[sec:ranges]{range} defined in the \element{listOfRanges} this repeated task iterates over.
+It specifies which \hyperref[sec:listOfRanges]{range} defined in the \element{listOfRanges} this repeated task iterates over.
 Listing~\ref{lst:repeatedTask} shows an example of a \element{repeatedTask} iterating over a single range comprising the values: \code{1}, \code{4} and \code{10}.
 If there are multiple ranges in the \element{listOfRanges}, then only the \concept{master range} identified by this attribute determines how many iterations there will be in the \element{repeatedTask}.
 All other ranges must allow for at least as many iterations as the master range, and will be moved through in lock-step; their values can be used in \hyperref[class:setValue]{setValue} constructs.
@@ -168,15 +168,6 @@ All other ranges must allow for at least as many iterations as the master range,
 The \element{repeatedTask} class has a required attribute \element{resetModel} of type \code{boolean}. It specifies whether the model should be reset to the initial state before processing an iteration of the defined \hyperref[class:subTask]{subTasks}. Here initial state refers to the state of the model as given in the \element{listOfModels}.
 
 In the example in  Listing~\ref{lst:repeatedTask} the repeated task is not to be reset, so a change is made, \code{task1} is carried out, another change is made, then \code{task1} continues from there, another change is applied, and \code{task1} is carried out a last time.
-
-% ~~~ LIST OF RANGES ~~~
-\subsubsection{\element{listOfRanges}}
-\label{sec:ranges}
-The \concept{listOfRanges} defines the \hyperref[class:range]{ranges} used in the \hyperref[class:repeatedTask]{repeatedTask}. The \element{listOfRanges} contains one or more \hyperref[class:range]{range} elements. Three different range types are permitted in the \concept{listOfRanges}: \hyperref[class:uniformRange]{UniformRange}, \hyperref[class:vectorRange]{VectorRange}, and \hyperref[class:functionalRange]{FunctionalRange}.
-
-\hyperref[class:range]{Ranges} are the iterative element of the repeated simulation experiment. Each \hyperref[class:range]{range} defines a collection of values to iterate over. The \code{id} attribute of the ranges can be used to refer to the current value of a range. When the \code{id} attribute is used in a \element{listOfVariables} within the repeated task class its value is to be replaced with the current value of the range.
-%% ? IS THIS CORRECT ? I.e. is it necessary to define a variable with the range id, or is it 
-% sufficient to use math with the id.
 
 %% ~~~ LIST OF CHANGES ~~~
 \subsubsection{\element{listOfChanges}}
@@ -197,6 +188,22 @@ The order in which to run multiple \code{subTask}s must be specified using the \
 	<subTask task="task2" order="1"/> 
 </listOfSubTasks>
 \end{myXmlLst}
+
+% ~~~ LIST OF RANGES ~~~
+\subsubsection{\element{listOfRanges}}
+\label{sec:listOfRanges}
+The \concept{listOfRanges} defines the \hyperref[class:range]{ranges} used in the \hyperref[class:repeatedTask]{repeatedTask}. The \element{listOfRanges} contains one or more \hyperref[class:range]{range} elements. Three different range types are permitted in the \concept{listOfRanges}: \hyperref[class:uniformRange]{UniformRange}, \hyperref[class:vectorRange]{VectorRange}, and \hyperref[class:functionalRange]{FunctionalRange}.
+
+\hyperref[class:range]{Ranges} are the iterative element of the repeated simulation experiment. Each \hyperref[class:range]{range} defines a collection of values to iterate over. The \code{id} attribute of the ranges can be used to refer to the current value of a range. When the \code{id} attribute is used in a \element{listOfVariables} within the repeated task class its value is to be replaced with the current value of the range.
+%% ? IS THIS CORRECT ? I.e. is it necessary to define a variable with the range id, or is it 
+% sufficient to use math with the id.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% SUBTASK
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{SubTask}}
+\label{class:subtask}
+\hl{TODO: write and clear up}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % RANGE

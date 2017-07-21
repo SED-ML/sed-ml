@@ -97,6 +97,18 @@ The example given in Listing~\ref{lst:simulation}, completed by algorithm defini
 
 For both simulations, one algorithm is defined. In the first simulation \code{s1} a deterministic approach has been chosen (Euler forward method), in the second simulation \code{s2} a stochastic approach is used (Stochsim nearest neighbor).
 
+% ~~~ LIST OF ALGORITHM PARAMETERS ~~~
+\subsubsection{\element{listOfAlgorithmParameters}}
+\label{sec:listOfAlgorithmParameters}
+The \concept{listOfAlgorithmParameters} contains the settings for the simulation algorithm used in a \hyperref[class:simulation]{simulation} (\fig{simulation}). It may list several instances of the \hyperref[class:algorithmParameter]{AlgorithmParameter} class. The \code{listOfAlgorithmParameters} is optional and may contain zero to many parameters.
+
+\lsttext{listOfAlgorithmParameters}{listOfAlgorithmParameters}
+\begin{myXmlLst}{SED-ML listOfAlgorithmParameters element}{lst:listOfAlgorithmParameters}
+<listOfAlgorithmParameters>
+	<algorithmParameter kisaoID="KISAO:0000211" value="23"/> 
+</listOfAlgorithmParameters>
+\end{myXmlLst}
+
 
 % ~~~ ALGORITHM PARAMETER ~~~
 \subsubsection{\element{AlgorithmParameter}}
