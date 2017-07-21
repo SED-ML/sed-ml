@@ -123,27 +123,25 @@ These represent the only exceptions. At this point SED-ML \currentLV does not de
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{URI scheme}  
 \label{sec:uriScheme}
-
-URIs are used at various points in SED-ML \currentLV. They are used 
+URIs are used in SED-ML as a mechanism
 \begin{itemize}
-	\item as a mechanism to reference models (\ref{sec:modelURI})
-	\item as a mechanism to reference data files (\ref{sec:dataURI})
-	\item to specify the language of the referenced model (\ref{sec:languageURI})
-	\item to enable addressing implicit model variables (\ref{sec:implicitVariable})
+	\item to reference models (\hyperref[sec:modelURI]{Model references})
+	\item to reference data files (\hyperref[sec:dataURI]{Data references})
+	\item to specify the language of the referenced model (\hyperref[sec:languageURI]{Language references})
+	\item to enable addressing implicit model variables (\hyperref[sec:implicitVariable]{Symbols})
 \end{itemize}
 
-Finally, annotations (\ref{sec:annotations}) of SED-ML elements should be provided with a standardised annotation scheme. The use of a standardised URI Scheme ensures long-time availability of particular information that can unambiguously be identified. 
+In addition, annotation of SED-ML elements should use a standardised URI \hyperref[sec:annotations]{Annotations Scheme} to ensure long-time availability of information that can unambiguously be identified.
 
 
 % ~~~ MODEL REFERENCES ~~~
 \subsubsection{Model references}
 \label{sec:modelURI}
-One way for referencing a model from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}. MIRIAM enables identification of a data resource (in this case a model resource) by a predefined URN. A data entry inside that resource is identified by an ID. That way each single  model  in a particular model repository can be unambiguously referenced. To become part of MIRIAM resources, a model repository must ensure permanent and consistent model references, that is stable IDs.
+The URI of a \hyperref[class:model]{model} should preferably point to a public, consistent location that provides the model description file. References to curated, open model bases are recommended, such as the BioModels Database. However, any resource registered with MIRIAM resources\footnote{\url{http://www.ebi.ac.uk/miriam/main/}} can easily be referenced.
 
-One model repository that is part of MIRIAM resources is the \concept{BioModels Database} \citep{LDR+10}. Its data resource name in MIRIAM is \code{urn:miriam:biomodels.db}. To refer to a particular model, a standardised identifier scheme is defined in \concept{MIRIAM Resources}\footnote{\url{http://www.ebi.ac.uk/miriam/}}. The ID entry maps to a particular model in the model repository. That model is never deleted. A sample BioModels Database ID is \code{BIOMD0000000048}. Together with the data resource name it becomes unambiguously identifiable by the URN \code{urn:miriam:biomodels.db:BIOMD0000000048}. 
+One way for referencing a model from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}. MIRIAM enables identification of a data resource (in this case a model resource) by a predefined URN. A data entry inside that resource is identified by an ID. That way each single  model in a particular model repository can be unambiguously referenced. One model repository that is part of MIRIAM resources is the \concept{BioModels Database} \citep{LDR+10}. Its data resource name in MIRIAM is \code{urn:miriam:biomodels.db}. To refer to a particular model, a standardised identifier scheme is defined in \concept{MIRIAM Resources}\footnote{\url{http://www.ebi.ac.uk/miriam/}}. The ID entry maps to a particular model in the model repository. That model is never deleted. A sample BioModels Database ID is \code{BIOMD0000000048}. Together with the data resource name it becomes unambiguously identifiable by the URN \code{urn:miriam:biomodels.db:BIOMD0000000048}. 
 
-SED-ML recommends to follow the above scheme for model references, if possible. 
-SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offers web services to do so\footnote{\url{http://www.ebi.ac.uk/miriam/}}. For the above example of the \code{urn:miriam:biomodels.db:BIOMD0000000048} model, the resolved URL may look like \code{http://www.ebi.ac.uk/biomodels-main/BIOMD0000000048}.
+SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offers web services to do so\footnote{\url{http://www.ebi.ac.uk/miriam/}}. For the above example of the \code{urn:miriam:biomodels.db:BIOMD0000000048} model, the resolved URL may look like \code{\url{http://www.ebi.ac.uk/biomodels-main/BIOMD0000000048}}.
 
 For additional information see the \hyperref[sec:model_source]{\element{source}} attribute on \hyperref[class:model]{Model}.
 
@@ -163,7 +161,12 @@ An alternative means to obtain a data file may be to provide a single resource c
 % ~~~ LANGUAGE REFERENCES ~~~
 \subsubsection{Language references}
 \label{sec:languageURI}
-To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used (\tab{symbols}). The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{\element{name.version}}. SED-ML allows to specify a model representation format very generally as being \code{XML}, if no standardised representation format has been used to encode the model. On the other hand, one can be as specific as defining a model being in a particular version of a language, as ``SBML Level 3, Version 1, Revision 1''.
+The evaluation of a SED-ML document is required in order for software to decide whether or not it can be used in a particular simulation environment. One crucial criterion is the particular model representation language used to encode the \hyperref[class:model]{model}. A simulation software usually only supports a small subset of the representation formats available to model biological systems computationally. 
+
+To help  software decide whether or not it supports a SED-ML description file, the information on the \hyperref[class:model]{model} encoding for each referenced \hyperref[class:model]{model} can be provided through the \hyperref[sec:language]{\element{language}} attribute, as the description of a language name and version through an unrestricted \code{String} is error-prone. 
+A prerequisite for a language to be fully supported by SED-ML is that a formalised language definition, e.\,g. an XML Schema, is provided online. SED-ML also defines a set of standard URIs to refer to particular language definitions. 
+
+To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used (\tab{symbols}). The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{\element{name.version}}. SED-ML allows to specify a model representation format very generally as being \code{XML}, if no standardised representation format has been used to encode the model. On the other hand, one can be as specific as defining a model being in a particular version of a language, as ``SBML Level 3 Version 1'' (\code{urn:sedml:language:sbml.level-3.version-1}).
 
 For additional information see the \hyperref[sec:language]{\element{language}} attribute on \hyperref[class:model]{Model}.
 
@@ -221,7 +224,7 @@ SBML & \code{urn:sedml:symbol:time} & Time in SBML is an intrinsic model variabl
 
 
 % ~~~ ANNOTATIONS ~~~
-\subsubsection{Annotations}
+\subsubsection{Annotation Scheme}
 \label{sec:annotations}
 When annotating SED-ML elements with semantic \hyperref[class:annotation]{annotation}s, the \concept{MIRIAM URI Scheme} should be used. In addition to providing the data type (e.\,g.\ PubMed) and the particular data entry inside that data type (e.\,g.\ \code{10415827}), the relation of the annotation to the annotated element should be described using the standardised \concept{biomodels.net qualifier}. The list of qualifiers, as well as further information about their usage, is available from \url{http://www.biomodels.net/qualifiers/}.
 
@@ -273,9 +276,9 @@ Additional information including the specification is available from the project
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{KiSAO}
 \label{sec:kisao}
-The Kinetic Simulation Algorithm Ontology (KiSAO \citep{CWK+10}) is used in SED-ML to specify simulation algorithms and algorithm parameters. KiSAO is a community-driven approach of classifying and structuring simulation approaches by model characteristics and numerical characteristics. The ontology is available  in OWL format from \concept{BioPortal} at \url{http://purl.bioontology.org/ontology/KiSAO}. 
+The Kinetic Simulation Algorithm Ontology (KiSAO \citep{CWK+10}) is used in SED-ML to specify simulation \hyperref[class:algorithm]{algorithms} and \hyperref[class:algorithmParameter]{algorithmParameters}. KiSAO is a community-driven approach of classifying and structuring simulation approaches by model characteristics and numerical characteristics. The ontology is available in OWL format from \concept{BioPortal} at \url{http://purl.bioontology.org/ontology/KiSAO}. 
 
-Defining simulation algorithms through KISAO terms not only identifies the simulation algorithm used for the SED-ML simulation, it also enables software to find related algorithms, if the specific implementation is not available. For example, software could decide to use the CVODE integration library for an analysis instead of a specific Runge Kutta 4,5 implementation. 
+Defining simulation \hyperref[class:algorithm]{algorithms} through KISAO terms not only identifies the simulation algorithm used for the SED-ML simulation, it also enables software to find related algorithms, if the specific implementation is not available. For example, software could decide to use the CVODE integration library for an analysis instead of a specific Runge Kutta 4,5 implementation. 
 
 Should a particular simulation algorithm or algorithm parameter not exist in KISAO, please 
 request one via \url{http://www.biomodels.net/kisao/}.

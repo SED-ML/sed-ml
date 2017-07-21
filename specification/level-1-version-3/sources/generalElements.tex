@@ -269,7 +269,6 @@ If the variable is defined through a reference to a model constituent, such as a
 \end{itemize}
 
 \tabtext{variable}{Variable}
-
 \begin{table}[ht]
 \center
 \begin{tabular}{ll}
@@ -297,7 +296,7 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \end{table}
 
 \lsttext{variable}{variable}
-In the example a variable \code{v1} is defined to compute a change on a model constituent (referenced by the \hyperref[sec:target]{\element{target}} attribute on \hyperref[class:computeChange]{\element{computeChange}}). The value of \code{v1} corresponds with the value of the targeted model constituent referenced by the \code{target} attribute. The second variable \code{v2} is used inside a \hyperref[class:DataGenerator]{\element{dataGenerator}}. As the variable is \concept{time} as used in \code{task1}, the \hyperref[sec:symbol]{\element{symbol}} attribute is used to refer to the SED-ML URI for time.
+In the example a variable \code{v1} is defined to compute a change on a model constituent (referenced by the \hyperref[sec:target]{\element{target}} attribute on \hyperref[class:computeChange]{\element{computeChange}}). The value of \code{v1} corresponds with the value of the targeted model constituent referenced by the \code{target} attribute. The second variable \code{v2} is used inside a \hyperref[class:dataGenerator]{\element{dataGenerator}}. As the variable is \concept{time} as used in \code{task1}, the \hyperref[sec:symbol]{\element{symbol}} attribute is used to refer to the SED-ML URI for time.
 
 \begin{myXmlLst}{SED-ML \code{variable} definitions inside the \code{computeChange} element and inside the \code{dataGenerator} element}{lst:variable}
 <sedML>
@@ -373,7 +372,7 @@ The XPath expression used in the \concept{\code{target}} attribute unambiguously
 % ~~~ SYMBOL ~~~
 \subsubsection{\element{symbol}}
 \label{sec:symbol}
-\concept{Symbols} are predefined, implicit variables that can be called in a SED-ML file by referring to the defined URNs representing that variable's concept. The notion of implicit variables is explained in Section~\ref{sec:implicitVariable} on \refpage{sec:implicitVariable}.
+\concept{Symbols} are predefined, implicit variables. \concept{Symbols} can be used in a SED-ML file by referring to the defined URNs representing that variable's concept. The notion of implicit variables is explained in Section~\ref{sec:implicitVariable} on \refpage{sec:implicitVariable}.
 
 \lsttexta{symbol}{symbol}
 The example encodes a computed change of model \code{m001}. To specify that change, a symbol is defined (i.\,e.\  the SED-ML symbol for \code{time} is assigned to the variable \code{t1}). How to compute the change itself is explained in Section~\ref{class:computeChange}.
@@ -417,6 +416,12 @@ Listing \ref{lst:name} extends the model definition in \lst{id} by a model \conc
 	[MODEL DEFINITION]
 </model>
 \end{myXmlLst}
+
+
+% ~~~ KISAOID ~~~
+\subsubsection{\element{kisaoID}}
+\label{sec:kisaoid}
+Some classes in SED-ML, e.g.\ \hyperref[class:algorithm]{Algorithm} and \hyperref[class:algorithmParameter]{AlgorithmParameter}, have a mandatory element \concept{\element{kisaoID}} which references a term from the \hyperref[sec:kisao]{KiSAO} ontology. The referenced \hyperref[sec:kisao]{KiSAO} term  should define the simulation \hyperref[class:algorithm]{Algorithm} or \hyperref[class:algorithmParameter]{AlgorithmParameter} as precisely as possible. The referenced term must be defined in the correct syntax, as defined by the regular expression \code{KISAO:[0-9]\{7\}}.
 
 
 % ~~~ LISTOF ~~~
