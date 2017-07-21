@@ -165,16 +165,29 @@ To specify the language a model is encoded in, a set of pre-defined SED-ML URNs 
 
 The list of URNs is available from \url{http://sed-ml.org/}. Further information on the \hyperref[sec:language]{language} attribute is provided in Section~\ref{sec:language}.
 
-% ~~~ IMPLICIT VARIABLES ~~~
-\subsubsection{Implicit variables (symbols)}
-\label{sec:implicitVariable}
+% ~~~ SYMBOLS ~~~
+\subsubsection{Symbols}
+\label{sec:symbol}
+Some variables used in a simulation experiment are not explicitly defined in the model, but may be implicitly contained in it. For example, to plot a variable's behaviour over time, that variable is defined in an SBML model, whereas \emph{time} is not explicitly defined. 
 
-Some variables used in an experiment are not explicitly defined in the model, but may be implicitly contained in it. For example, to plot a variable's behaviour over time, that variable is defined in an SBML model, while \emph{time} is not explicitly defined. 
+SED-ML can refer to such implicit variables via the concept \concept{Symbol}. Such implicit variables are defined using the SED-ML URN scheme \element{urn:sedml:symbol:}\emph{implicit variable}. For example, to refer in a SED-ML file to the definition of \emph{time}, the URN \element{urn:sedml:symbol:time} is used.
 
-To overcome this issue and allow SED-ML to refer to such variables in a common way, the notion of \emph{implicit variables} is used. Those variables are called \code{symbols} in SED-ML. They are defined following the idea of MIRIAM URNs and using the SED-ML URN scheme. The structure of the URNs is \element{urn:sedml:symbol:}\emph{implicit variable}. To refer from a SED-ML file to the definition of \emph{time}, for example, the URN is \element{urn:sedml:symbol:time}.
+\tab{symbols}~lists the predefined symbols in SED-ML.
 
-The list of predefined symbols is available from the SED-ML site on \url{http://sed-ml.org/}.
-From that source, a mapping of SED-ML symbols on existing concepts in the languages supported by SED-ML is provided.
+\begin{table}[ht]
+\center
+\begin{tabular}{p{2cm}p{4cm}p{7cm}}
+\toprule
+\textbf{Language} & \textbf{URN} & \textbf{Definition}\\
+\midrule
+SBML & \code{urn:sedml:symbol:time} & Time in SBML is an intrinsic model variable that is addressable in model equations via a csymbol \code{time}. \\
+\bottomrule
+\end{tabular}
+\caption{Predefined symbols in SED-ML}
+\label{tab:symbols}
+\end{table}
+
+The latest list of predefined symbols is available from \url{http://sed-ml.org/}.
 
 % ~~~ ANNOTATIONS ~~~
 \subsubsection{Annotations}

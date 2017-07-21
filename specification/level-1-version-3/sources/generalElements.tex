@@ -201,12 +201,12 @@ An \concept{Annotation} is considered a computer-processible piece of informatio
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Parameter}}
 \label{class:parameter}
-The SED-ML \concept{Parameter} class creates named parameters with a constant value (\fig{parameter}).
-The \concept{Parameter} class introduces the following attributes: the required attribute \hyperref[sec:id]{\element{id}} and \hyperref[sec:value]{\element{value}}, and the optional attribute \hyperref[sec:name]{\element{name}}.
+The SED-ML \concept{Parameter} (\fig{parameter}) creates named parameters with a constant value.
+The \concept{Parameter} class introduces the required attributes \hyperref[sec:id]{\element{id}} and \hyperref[sec:value]{\element{value}}, and the optional attribute \hyperref[sec:name]{\element{name}}.
 
 \sedfig[width=0.3\textwidth]{images/uml/parameter}{The Parameter class}{fig:parameter}
 
-SED-ML allows the use of \concept{Parameters} wherever a mathematical expression is defined to compute a value (e.g.\ in \hyperref[class:computeChange]{ComputeChange}, \hyperref[class:functionalRange]{FunctionalRange} or \hyperref[class:dataGenerator]{DataGenerator}). Hereby, the parameter definitions are local to the particular class defining them. 
+SED-ML allows the use of \concept{Parameters} wherever a mathematical expression is defined to compute a value (e.g.\ in \hyperref[class:computeChange]{ComputeChange}, \hyperref[class:functionalRange]{FunctionalRange} or \hyperref[class:dataGenerator]{DataGenerator}). The parameter definitions are local to the particular class defining them.
 
 A benefit of naming parameters rather than including numbers directly within the mathematical expression is that \hyperref[class:notes]{notes} and \hyperref[class:annotation]{annotations} can be associated with them.
 
@@ -254,7 +254,7 @@ The \code{value} attribute of data type \code{double} is required for each \conc
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Variable}}
 \label{class:variable}
-\concept{Variables} are references to already existing entities, either to existing objects in one of the defined \hyperref[class:model]{models} or to implicitly defined \hyperref[sec:symbol]{symbols} (\fig{variable}). The \concept{Variable} class introduces the following attributes: the required attribute \hyperref[sec:id]{\element{id}}, the optional attribute \hyperref[sec:name]{\element{name}}, and the context dependent attributes \hyperref[sec:target]{\element{target}}, \hyperref[sec:symbol]{\element{symbol}}, \hyperref[sec:taskReference]{\element{taskReference}}, and \hyperref[sec:modelReference]{\element{modelReference}}.
+\concept{Variables} (\fig{variable}) are references to already existing entities, either to existing objects in one of the defined \hyperref[class:model]{Models} or to implicitly defined \hyperref[sec:symbol]{Symbols} . The \concept{Variable} class introduces the required attribute \hyperref[sec:id]{\element{id}}, the optional attribute \hyperref[sec:name]{\element{name}}, and the context dependent attributes \hyperref[sec:target]{\element{target}}, \hyperref[sec:symbol]{\element{symbol}}, \hyperref[sec:taskReference]{\element{taskReference}}, and \hyperref[sec:modelReference]{\element{modelReference}}.
 
 \sedfig[width=0.35\textwidth]{images/uml/variable}{The Variable class}{fig:variable}
 
@@ -331,12 +331,14 @@ The second variable, \code{v2} (line 21), is used inside a \code{dataGenerator}.
 % ~~~ TARGET ~~~
 \subsubsection{\element{target}}
 \label{sec:target}
-An instance of \concept{Variable} can refer to a model constituent inside a particular \hyperref[class:model]{model} through an \code{\hyperref[type:xpath]{XPath}} expression stored in the \concept{target} attribute. 
+An instance of \hyperref[class:variable]{Variable} can refer to a model constituent inside a particular \hyperref[class:model]{model} through an \code{\hyperref[type:xpath]{XPath}} expression stored in the \concept{\element{target}} attribute. 
 
-The \concept{target} attribute may also be used to reference an entity within the SED-ML file itself, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \concept{id} of the desired element. As of SED-ML \currentLV this is only used to refer to \hyperref[sec:listOfRanges]{ranges} within a \hyperref[class:repeatedTask]{repeatedTask} (see Listing~\ref{lst:repeatedTask} for an example).
+The \concept{\element{target}} attribute may also be used to reference an entity within the SED-ML file itself, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \hyperref[type:sid]{\element{SId}} of the desired element. As of SED-ML \currentLV this is only used to refer to \hyperref[sec:listOfRanges]{ranges} within a \hyperref[class:repeatedTask]{repeatedTask} (see Listing~\ref{lst:repeatedTask} for an example).
+
+Note that while it is possible to write \code{\hyperref[type:xpath]{XPath}} expressions that select multiple nodes within a referenced model, when used within a \concept{target} attribute a single element or attribute \emph{must} be selected by the expression.
 
 \lsttexta{target}{target}
-
+In the example the \concept{\element{target}} is used to reference a species with \element{id='PY'} in an SBML model.
 \begin{myXmlLst}{SED-ML \code{target} definition}{lst:target}
 <listOfVariables>
 	<variable id="v1" name="TetR protein" taskReference="task1" 
@@ -344,8 +346,7 @@ The \concept{target} attribute may also be used to reference an entity within th
 </listOfVariables>
 \end{myXmlLst}
 
-It should be noted that the identifier and names inside the SED-ML document do not \emph{have} to match the identifiers and names that the model and its constituents carry in the model definition.
-In listing \vref{lst:target}, the variable with ID \code{v1} is defined. It is described as the \code{TetR protein}. The reference points to a species in the referenced SBML model. The particular species can be identified through its ID in the SBML model, namely \code{PY}.
+It should be noted that the identifier and names inside the SED-ML document do not have to match the identifiers and names that the model and its constituents have in the model definition. In listing \vref{lst:target}, the variable with ID \code{v1} is defined. It is described as the \code{TetR protein}. The reference points to a species in the referenced SBML model. The particular species can be identified through its ID in the SBML model, namely \code{PY}.
 However, SED-ML also permits using identical identifiers and names as in the referenced models. The following Listing~\vref{lst:sedmlVariable} is another valid example for the specification of a variable, but uses the same naming in the variable definition as in the original model (as opposed to Listing~\ref{lst:target}):
 
 \begin{myXmlLst}{SED-ML variable definition using the original model identifier and name in SED-ML}{lst:sedmlVariable}
@@ -366,8 +367,7 @@ However, SED-ML also permits using identical identifiers and names as in the ref
 </sbml>
 \end{myXmlLst}
 
-The XPath expression used in the \concept{\code{target}} attribute unambiguously leads to the particular place in the XML SBML model -- the species is to be found in the \emph{sbml} element, and there inside the \emph{listOfSpecies} (Listing~\vref{lst:sbmlModel}). Note that while it is possible to write XPath expressions that select multiple nodes within a referenced model, when used within a \concept{target} attribute a single element or attribute \emph{must} be selected by the expression.
-
+The XPath expression used in the \concept{\code{target}} attribute unambiguously leads to the particular place in the XML SBML model -- the species is to be found in the \emph{sbml} element, and there inside the \emph{listOfSpecies} (Listing~\vref{lst:sbmlModel}). 
 
 % ~~~ SYMBOL ~~~
 \subsubsection{\element{symbol}}
