@@ -145,7 +145,7 @@ One model repository that is part of MIRIAM resources is the \concept{BioModels 
 SED-ML recommends to follow the above scheme for model references, if possible. 
 SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offers web services to do so\footnote{\url{http://www.ebi.ac.uk/miriam/}}. For the above example of the \code{urn:miriam:biomodels.db:BIOMD0000000048} model, the resolved URL may look like \code{http://www.ebi.ac.uk/biomodels-main/BIOMD0000000048}.
 
-Additional information on the \hyperref[sec:model_source]{source} attribute referencing the model location is provided in Section~\ref{sec:model_source}.
+For additional information see the \hyperref[sec:model_source]{\element{source}} attribute on \hyperref[class:model]{Model}.
 
 An alternative means to obtain a model may be to provide a single resource containing necessary models and a SED-ML file. Although a specification of such a resource is beyond the scope of this document, the recommended means is the \hyperref[sec:archive]{COMBINE archive}.
 
@@ -153,7 +153,9 @@ An alternative means to obtain a model may be to provide a single resource conta
 % ~~~ DATA REFERENCES ~~~
 \subsubsection{Data references}
 \label{sec:dataURI}
-One way for referencing a data file from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}. MIRIAM enables identification of a data resource by a predefined URN. Additional information on the \hyperref[sec:data_source]{source} attribute referencing the data file location is provided in Section~\ref{sec:data_source}.
+One way for referencing a data file from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}. MIRIAM enables identification of a data resource by a predefined URN. 
+
+For additional information see the \hyperref[sec:data_source]{\element{source}} attribute on \hyperref[class:dataDescription]{DataDescription}.
 
 An alternative means to obtain a data file may be to provide a single resource containing necessary data files and the SED-ML file is the \hyperref[sec:archive]{COMBINE archive}. 
 
@@ -161,19 +163,49 @@ An alternative means to obtain a data file may be to provide a single resource c
 % ~~~ LANGUAGE REFERENCES ~~~
 \subsubsection{Language references}
 \label{sec:languageURI}
-To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used. The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{name.version}. SED-ML allows to specify a model representation format very generally as being \code{XML}, if no standardised representation format has been used to encode the model. On the other hand, one can be as specific as defining a model being in a particular version of a language, as ``SBML Level 3, Version 1, Revision 1''.
+To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used (\tab{symbols}). The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{\element{name.version}}. SED-ML allows to specify a model representation format very generally as being \code{XML}, if no standardised representation format has been used to encode the model. On the other hand, one can be as specific as defining a model being in a particular version of a language, as ``SBML Level 3, Version 1, Revision 1''.
 
-The list of URNs is available from \url{http://sed-ml.org/}. Further information on the \hyperref[sec:language]{language} attribute is provided in Section~\ref{sec:language}.
+For additional information see the \hyperref[sec:language]{\element{language}} attribute on \hyperref[class:model]{Model}.
+
+\begin{table}[ht]
+\center
+\begin{tabular}{p{5cm}p{10cm}}
+\toprule
+\textbf{Language} & \textbf{URN}\\
+\midrule
+CellML (generic) & \code{urn:sedml:language:cellml} \\
+CellML 1.0 & \code{urn:sedml:language:cellml.1\_0} \\
+CellML 1.1 & \code{urn:sedml:language:cellml.1\_1} \\
+NeuroML (generic) & \code{urn:sedml:language:neuroml} \\
+NeuroML Version 1.8.1 Level 1 &	\code{urn:sedml:language:neuroml.version-1\_8\_1.level-1} \\
+NeuroML Version 1.8.1 Level 2 &	\code{urn:sedml:language:neuroml.version-1\_8\_1.level-2} \\
+SBML (generic) & \code{urn:sedml:language:sbml} \\
+SBML Level 1 Version 1 & \code{urn:sedml:language:sbml.level-1.version-1} \\
+SBML Level 1 Version 2 & \code{urn:sedml:language:sbml.level-1.version-2} \\
+SBML Level 2 Version 1 & \code{urn:sedml:language:sbml.level-2.version-1} \\
+SBML Level 2 Version 2 & \code{urn:sedml:language:sbml.level-2.version-2} \\
+SBML Level 2 Version 3 & \code{urn:sedml:language:sbml.level-2.version-3} \\
+SBML Level 2 Version 4 & \code{urn:sedml:language:sbml.level-2.version-4} \\
+SBML Level 3 Version 1 & \code{urn:sedml:language:sbml.level-3.version-1} \\
+SBML Level 3 Version 2 & \code{urn:sedml:language:sbml.level-3.version-2} \\
+VCML (generic) & \code{urn:sedml:language:vcml} \\
+\bottomrule
+\end{tabular}
+\caption{Predefined model language URNs. The latest list of language URNs is available from \url{http://sed-ml.org/}.}
+\label{tab:languageURI}
+\end{table}
+
 
 % ~~~ SYMBOLS ~~~
 \subsubsection{Symbols}
 \label{sec:symbol}
-Some variables used in a simulation experiment are not explicitly defined in the model, but may be implicitly contained in it. For example, to plot a variable's behaviour over time, that variable is defined in an SBML model, whereas \emph{time} is not explicitly defined. 
+Some variables used in a simulation experiment are not explicitly defined in the model, but may be implicitly contained in it. For example, to plot a variable's behaviour over time, that variable is defined in an SBML model, whereas time is not explicitly defined. 
 
-SED-ML can refer to such implicit variables via the concept \concept{Symbol}. Such implicit variables are defined using the SED-ML URN scheme \element{urn:sedml:symbol:}\emph{implicit variable}. For example, to refer in a SED-ML file to the definition of \emph{time}, the URN \element{urn:sedml:symbol:time} is used.
+SED-ML can refer to such implicit variables via the \concept{Symbol} concept. Such implicit variables are defined using the SED-ML URN scheme \element{urn:sedml:symbol:}\emph{\element{implicitVariable}}. 
+
+For example, to refer in a SED-ML file to the definition of time, the URN \element{urn:sedml:symbol:time} is used.
 
 \tab{symbols}~lists the predefined symbols in SED-ML.
-
 \begin{table}[ht]
 \center
 \begin{tabular}{p{2cm}p{4cm}p{7cm}}
@@ -183,11 +215,10 @@ SED-ML can refer to such implicit variables via the concept \concept{Symbol}. Su
 SBML & \code{urn:sedml:symbol:time} & Time in SBML is an intrinsic model variable that is addressable in model equations via a csymbol \code{time}. \\
 \bottomrule
 \end{tabular}
-\caption{Predefined symbols in SED-ML}
+\caption{Predefined symbols in SED-ML. The latest list of symbols is available from \url{http://sed-ml.org/}.}
 \label{tab:symbols}
 \end{table}
 
-The latest list of predefined symbols is available from \url{http://sed-ml.org/}.
 
 % ~~~ ANNOTATIONS ~~~
 \subsubsection{Annotations}
