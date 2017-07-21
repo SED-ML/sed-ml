@@ -254,11 +254,19 @@ The \code{value} attribute of data type \code{double} is required for each \conc
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Variable}}
 \label{class:variable}
-\concept{Variables} (\fig{variable}) are references to already existing entities, either to existing objects in one of the defined \hyperref[class:model]{Models} or to implicitly defined \hyperref[sec:symbol]{Symbols} . The \concept{Variable} class introduces the required attribute \hyperref[sec:id]{\element{id}}, the optional attribute \hyperref[sec:name]{\element{name}}, and the context dependent attributes \hyperref[sec:target]{\element{target}}, \hyperref[sec:symbol]{\element{symbol}}, \hyperref[sec:taskReference]{\element{taskReference}}, and \hyperref[sec:modelReference]{\element{modelReference}}.
+A \concept{Variable} (\fig{variable}) is a reference to an already existing entity, either to an existing object in one of the \hyperref[class:model]{Models} or to implicitly defined \hyperref[sec:symbol]{Symbols}. The \concept{Variable} class introduces the required attribute \hyperref[sec:id]{\element{id}}, the optional attribute \hyperref[sec:name]{\element{name}}, and the context dependent attributes \hyperref[sec:target]{\element{target}}, \hyperref[sec:symbol]{\element{symbol}}, \hyperref[sec:taskReference]{\element{taskReference}}, and \hyperref[sec:modelReference]{\element{modelReference}}.
 
 \sedfig[width=0.35\textwidth]{images/uml/variable}{The Variable class}{fig:variable}
 
-If the variable is defined through a reference to a model constituent, such as an SBML species, or to an entity within the SED-ML file itself, then the reference is specified using the \hyperref[sec:target]{target} attribute. If the variable is defined through a reference to an \hyperref[sec:implicitVariable]{implicit variable}, rather than one explicitly appearing in the model, then the \hyperref[sec:symbol]{symbol} attribute is used, which holds a SED-ML \hyperref[sec:uriScheme]{URI}. A \code{variable} is always placed inside a \hyperref[sec:listOfVariables]{listOfVariables}. The \code{symbol} and \code{target} attributes must not be used together in a single instance of Variable, although at least one must be present.
+If the variable is defined through a reference to a model constituent, such as an SBML species, or to an entity within the SED-ML file itself, then the reference is specified using the \hyperref[sec:target]{\element{target}} attribute. If the variable is defined through a reference to a \hyperref[sec:implicitVariable]{Symbol}, rather than one explicitly appearing in the model, then the \hyperref[sec:symbol]{\element{symbol}} attribute is used. 
+
+\begin{itemize}
+	\item A \code{variable} is always placed inside a \hyperref[sec:listOfVariables]{listOfVariables}. 
+	\item The \hyperref[sec:symbol]{\element{symbol}} and \hyperref[sec:target]{\element{target}} attributes must not be used together in a single instance of Variable, although at least one must be present.
+	\item A \code{variable} element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:dataGenerator]{dataGenerator} element.
+	\item A \code{variable} element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:computeChange]{computeChange} element.
+	\item A \code{variable} element appearing within a \hyperref[class:functionalRange]{functionalRange} or \hyperref[class:setValue]{setValue} element must contain a \hyperref[sec:modelReference]{modelReference} if and only if it references a model variable.
+\end{itemize}
 
 \tabtext{variable}{Variable}
 
@@ -288,12 +296,8 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \label{tab:variable}
 \end{table}
 
-
-A \code{variable} element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:dataGenerator]{dataGenerator} element.
-A \code{variable} element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:computeChange]{computeChange} element.
-A \code{variable} element appearing within a \hyperref[class:functionalRange]{functionalRange} or \hyperref[class:setValue]{setValue} element must contain a \hyperref[sec:modelReference]{modelReference} if and only if it references a model variable.
-
 \lsttext{variable}{variable}
+In the example a variable \code{v1} is defined to compute a change on a model constituent (referenced by the \hyperref[sec:target]{\element{target}} attribute on \hyperref[class:computeChange]{\element{computeChange}}). The value of \code{v1} corresponds with the value of the targeted model constituent referenced by the \code{target} attribute. The second variable \code{v2} is used inside a \hyperref[class:DataGenerator]{\element{dataGenerator}}. As the variable is \concept{time} as used in \code{task1}, the \hyperref[sec:symbol]{\element{symbol}} attribute is used to refer to the SED-ML URI for time.
 
 \begin{myXmlLst}{SED-ML \code{variable} definitions inside the \code{computeChange} element and inside the \code{dataGenerator} element}{lst:variable}
 <sedML>
@@ -324,9 +328,6 @@ A \code{variable} element appearing within a \hyperref[class:functionalRange]{fu
 </sedML>
 \end{myXmlLst}
 
-Listing \ref{lst:variable} defines a variable \code{v1} (line 7) to compute a change on a model constituent (referenced by the \code{target} attribute on \element{computeChange} in line 5). The value of \code{v1} corresponds with the value of the targeted model constituent referenced by the \code{target} attribute in line 8. 
-The second variable, \code{v2} (line 21), is used inside a \code{dataGenerator}. As the variable is \concept{time} as used in \code{task1}, the \code{symbol} attribute is used to refer to the SED-ML URI for time (line 21).
-
 
 % ~~~ TARGET ~~~
 \subsubsection{\element{target}}
@@ -335,7 +336,7 @@ An instance of \hyperref[class:variable]{Variable} can refer to a model constitu
 
 The \concept{\element{target}} attribute may also be used to reference an entity within the SED-ML file itself, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \hyperref[type:sid]{\element{SId}} of the desired element. As of SED-ML \currentLV this is only used to refer to \hyperref[sec:listOfRanges]{ranges} within a \hyperref[class:repeatedTask]{repeatedTask} (see Listing~\ref{lst:repeatedTask} for an example).
 
-Note that while it is possible to write \code{\hyperref[type:xpath]{XPath}} expressions that select multiple nodes within a referenced model, when used within a \concept{target} attribute a single element or attribute \emph{must} be selected by the expression.
+Note that while it is possible to write \code{\hyperref[type:xpath]{XPath}} expressions that select multiple nodes within a referenced model, when used within a \concept{\element{target}} attribute a single element or attribute \emph{must} be selected by the expression.
 
 \lsttexta{target}{target}
 In the example the \concept{\element{target}} is used to reference a species with \element{id='PY'} in an SBML model.
@@ -421,7 +422,7 @@ Listing \ref{lst:name} extends the model definition in \lst{id} by a model \conc
 % ~~~ LISTOF ~~~
 \subsubsection{\element{ListOf*} containers}
 \label{sec:listOf}
-SED-ML \concept{listOf*} elements serve as containers  for a collection of objects of the same type. For example, the \code{listOfModels} contains all \hyperref[class:model]{Model} objects of a SED-ML document. Lists do not carry any further semantics nor do they add additional attributes to the language. They might, however, be annotated with \hyperref[class:notes]{Notes} and \hyperref[class:annotation]{Annotations} as they are derived from \hyperref[class:sedBase]{SEDBase}. All \concept{listOf*} elements are optional in a SED-ML document (with exception of \hyperref[sec:listOfRanges]{\element{listOfRanges}} and \hyperref[class:subTask]{\element{listOfSubTasks}} in \hyperref[class:repeatedTask]{RepeatedTask} which are mandatory).
+SED-ML \concept{\element{listOf*}} elements serve as containers for a collection of objects of the same type. For example, the \hyperref[sec:listOfModels]{\element{listOfModels}} contains all \hyperref[class:model]{Model} objects of a SED-ML document. Lists do not carry any further semantics nor do they add additional attributes to the language. They might, however, be annotated with \hyperref[class:notes]{Notes} and \hyperref[class:annotation]{Annotations} as they are derived from \hyperref[class:sedBase]{SEDBase}. All \concept{\element{listOf*}} elements are optional in a SED-ML document (with exception of \hyperref[sec:listOfRanges]{\element{listOfRanges}} and \hyperref[class:subTask]{\element{listOfSubTasks}} in \hyperref[class:repeatedTask]{RepeatedTask} which are mandatory).
 
 
 % ~~~ LIST OF PARAMETERS ~~~
@@ -481,13 +482,11 @@ In that case the \code{variable} element contains a \hyperref[sec:modelReference
 \item[b.]{If the \concept{reference} is used as an association between a Variable object and an AbstractTask object inside the \hyperref[class:dataGenerator]{dataGenerator} class, then the \code{variable} element contains a \hyperref[sec:taskReference]{taskReference} to unambiguously refer to an observable in a given task (see Section~\ref{sec:taskReference} on page \pageref{sec:taskReference}).}
 \end{enumerate}
 
-Four different types of \concept{data references} exist in SED-ML \currentLV. They are used depending on the \emph{type} of output for the simulation. A 2d plot has an \hyperref[sec:xDataReference]{xDataReference} and a \hyperref[sec:yDataReference]{yDataReference} assigned. A 3D plot has in addition a \hyperref[sec:zDataReference]{zDataReference} assigned. To define a report, each data column has a \hyperref[sec:dataReference1]{dataReference} assigned.
-
 
 % ~~~ MODEL REFERENCE ~~~
 \subsubsection{modelReference}
 \label{sec:modelReference}
-The \concept{modelReference} is used to refer to a particular \hyperref[class:model]{Model} via a \hyperref[type:sidref]{\element{SIdRef}}. The \concept{modelReference} either represents a relation between two \hyperref[class:model]{Model} objects, a \hyperref[class:variable]{Variable} object and a \hyperref[class:model]{Model} object, or a relation between a \hyperref[class:task]{Task} object and a \hyperref[class:model]{Model} object.
+The \concept{modelReference} is a \hyperref[sec:reference]{reference} used to refer to a particular \hyperref[class:model]{Model} via a \hyperref[type:sidref]{\element{SIdRef}}. The \concept{modelReference} either represents a relation between two \hyperref[class:model]{Model} objects, a \hyperref[class:variable]{Variable} object and a \hyperref[class:model]{Model} object, or a relation between a \hyperref[class:task]{Task} object and a \hyperref[class:model]{Model} object.
 
 The \code{source} attribute of a \hyperref[class:model]{Model} is allowed to reference either a URI or an \code{SId} to a second \hyperref[class:model]{Model}. Constructs where a model \code{A} refers to a model \code{B} and \code{B} to \code{A} (directly or indirectly) are invalid.
 
@@ -515,8 +514,6 @@ In the example, a change is  applied on model \code{m0001}. In the \code{compute
 </model>
 \end{myXmlLst}
 
-
-
 The \concept{modelReference} is also used to indicate that a \hyperref[class:model]{Model} object is used in a particular  \hyperref[class:task]{Task}. Listing \ref{lst:modelReference2} shows how this can be done for a sample SED-ML document.
 
 \begin{myXmlLst}{SED-ML \code{modelReference} definition inside a \element{task} element}{lst:modelReference2}
@@ -540,7 +537,7 @@ Listing \ref{lst:modelReference2} shows the reference to a defined simulation fo
 % ~~~ TASK REFERENCE ~~~
 \subsubsection{taskReference}
 \label{sec:taskReference}
-The \concept{taskReference} is used to refer to a particular \hyperref[class:abstractTask]{AbstractTask} via a \hyperref[type:sidref]{\element{SIdRef}}. The \concept{taskReference} is used in \hyperref[class:subTask]{SubTask} to reference the respective subtask, or in \hyperref[class:variable]{Variable} within a \hyperref[class:dataGenerator]{DataGenerator}.
+The \concept{taskReference} is a \hyperref[sec:reference]{reference} used to refer to a particular \hyperref[class:abstractTask]{AbstractTask} via a \hyperref[type:sidref]{\element{SIdRef}}. The \concept{taskReference} is used in \hyperref[class:subTask]{SubTask} to reference the respective subtask, or in \hyperref[class:variable]{Variable} within a \hyperref[class:dataGenerator]{DataGenerator}.
 
 \hyperref[class:dataGenerator]{DataGenerator} objects are created to apply post-processing to the simulation results before final output. 
 For certain types of post-processing \hyperref[class:variable]{Variable} objects need to be created.
@@ -570,8 +567,10 @@ Task \code{t1} references the model \code{model1}. Therefore we can conclude tha
 % ~~~ DATA(GENERATOR) REFERENCE ~~~
 \subsubsection{dataReference}
 \label{sec:dataReference}
-The \concept{dataReference} is used to refer to a particular \hyperref[class:dataGenerator]{DataGenerator}
+The \concept{dataReference} is a \hyperref[sec:reference]{reference} used to refer to a particular \hyperref[class:dataGenerator]{DataGenerator}
 via a \hyperref[type:sidref]{\element{SIdRef}}, e.g from an \hyperref[class:output]{Output} instance.
+
+Four different types of \concept{dataReference} exist in SED-ML \currentLV. They are used depending on the type of output for the simulation. A 2d plot has an \hyperref[sec:xDataReference]{\element{xDataReference}} and a \hyperref[sec:yDataReference]{\element{yDataReference}} assigned. A 3D plot has in addition a \hyperref[sec:zDataReference]{\element{zDataReference}} assigned. To define a report, each data column has a \hyperref[sec:dataReference1]{\element{dataReference}} assigned.
 
 Listing \ref{lst:dataReference} shows the reference to a defined data set for a sample SED-ML document. In the example, the output type is a 2D plot, which defines one curve with id \code{c1}. A curve must refer to two different data generators which describe how to procure the data that is to be plotted on the x-axis and y-axis respectively. 
 

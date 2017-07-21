@@ -65,7 +65,7 @@ CSVs are always two dimensional data files with the headers being of data type \
 % ~~~ DIMENSION DESCRIPTION ~~~
 \subsubsection{\element{dimensionDescription}}
 \label{sec:dimensionDescription}
-The \concept{dimensionDescription} contains a \hyperref[class:dimensionDescription]{DimensionDescription} object providing the dimension description of the source data file of the \hyperref{class:dataDescription}[DataDescription].
+The \concept{\element{dimensionDescription}} contains a \hyperref[class:dimensionDescription]{DimensionDescription} object providing the dimension description of the source data file of the \hyperref[class:dataDescription]{DataDescription}.
 
 
 % ~~~ LIST OF DATA SOURCES ~~~
@@ -79,7 +79,7 @@ The \concept{\element{listOfDataSources}} contains one or more \SedDataSource el
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{DimensionDescription}}
 \label{class:dimensionDescription}
-The \concept{DimensionDescription} class (\fig{dataDescription}) defines the dimension of the data file provided by the outer \SedDataDescription element. The \concept{DimensionDescription} is a \hyperref[sec:numl]{NuML} container containing the NuML dimension description. The \concept{dimensionDescription} element is the data description from an NuML file. 
+The \concept{DimensionDescription} class (\fig{dataDescription}) defines the dimension of the data file provided by the outer \SedDataDescription element. The \concept{DimensionDescription} is a \hyperref[sec:numl]{NuML} container containing the NuML dimension description. The \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} element is the data description from an NuML file. 
 
 In the following example nested NuML \element{compositeDescription} with \token{time} spanning one dimension and \token{SpeciesIds} another dimension. This two dimensional space is then filled with \token{double} values representing concentrations.
 
@@ -103,7 +103,7 @@ In the following example nested NuML \element{compositeDescription} with \token{
 \label{class:dataSource}
 The \concept{DataSource} class (\fig{dataDescription}) extracts chunks out of the data file provided by the outer \SedDataDescription element. 
 
-The \concept{DataSource} class introduces three attributes: the required attribute \hyperref[sec:id]{\element{id}} and the optional attributes \hyperref[sec:name]{\element{name}} and \hyperref[sec:indexSet]{\element{indexSet}}. Additionally the \hyperref[sec:listOfSlices]{\code{listOfSlices}} element is defined (\fig{dataDescription}). 
+The \concept{DataSource} class introduces three attributes: the required attribute \hyperref[sec:id]{\element{id}} and the optional attributes \hyperref[sec:name]{\element{name}}, \hyperref[sec:indexSet]{\element{indexSet}}, and \hyperref[sec:listOfSlices]{\code{listOfSlices}} (\fig{dataDescription}). 
 
 \tabtext{dataSource}{dataSource}
 
@@ -148,15 +148,15 @@ This represents a change from \LoneVone and \LoneVtwo, in which a \token{taskRef
 
 To indicate that the target is an entity defined within the current SED-ML description the hashtag (\#) with the reference to an \token{id} was used. Additionally, this example uses the \token{modelReference}, in order to facilitate a mapping of the data encoded in the NuML document with a given model. 
 
-Since data elements in NuML can be either values or indices, the \SedDataSource element provides two ways of addressing those elements. The \token{indexSet} attribute allows to address all indices provided by NuML elements with \token{indexType}. 
+Since data elements in NuML can be either values or indices, the \SedDataSource element provides two ways of addressing those elements. The \hyperref[sec:indexSet]{\element{indexSet}} attribute allows to address all indices provided by NuML elements with \token{indexType}. 
 
 
 %% ~~~ INDEX SET ~~~
 \subsubsection{\element{indexSet}}
 \label{sec:indexSet}
-Since data elements in NuML can be either values or indices, the \SedDataSource element provides two ways of addressing those elements. The \token{indexSet} attribute allows to address all indices provided by NuML elements with \token{indexType}. 
+Since data elements in NuML can be either values or indices, the \SedDataSource element provides two ways of addressing those elements. The \concept{\element{indexSet}} attribute allows to address all indices provided by NuML elements with \token{indexType}. 
 
-For example for the \element{indexSet} \token{time} below, a \hyperref[class:dataSource]{dataSource} would extract the set of all timepoints stored in the index.
+For example for the \concept{\element{indexSet}} \token{time} below, a \hyperref[class:dataSource]{dataSource} would extract the set of all timepoints stored in the index.
 
 \begin{myXmlLst}{}{lst:indexSet}
 <dataSource id="dataTime" indexSet="time" />
@@ -170,23 +170,23 @@ Similarly:
 
 would extract all the species id strings stored in that index set. Valid values for \token{indexSet} are all NuML Id elements declared in the \token{dimensionDescription}. 
 
-If the \token{indexSet} attribute is specified the corresponding \token{dataSource} may not define any \token{slice} elements.
+If the \concept{\element{indexSet}} attribute is specified the corresponding \token{dataSource} may not define any \token{slice} elements.
 
 
 % ~~~ LIST OF SLICES ~~~
 \subsubsection{\element{listOfSlices}}
 \label{sec:listOfSlices}
-The \concept{listOfSlices} contains one or more \hyperref[class:slice]{Slice} elements.
-The \concept{listOfSlices} container holds the \hyperref[class:slice]{Slice} definitions of a \hyperref[class:dataSource]{DataSource} (\fig{dataDescription}). The \concept{listOfSlices} is optional and may contain zero to many \hyperref[class:slice]{Slices}.
+The \concept{\element{listOfSlices}} contains one or more \hyperref[class:slice]{Slice} elements.
+The \concept{\element{listOfSlices}} container holds the \hyperref[class:slice]{Slice} definitions of a \hyperref[class:dataSource]{DataSource} (\fig{dataDescription}). The \concept{\element{listOfSlices}} is optional and may contain zero to many \hyperref[class:slice]{Slices}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% SLICE
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Slice}}
 \label{class:slice}
-If a \SedDataSource does not define the \token{indexSet} attribute, it will contain \SedSlice elements. Each slice removes one dimension from the data hypercube.
+If a \SedDataSource does not define the \hyperref[sec:indexSet]{\element{indexSet}} attribute, it will contain \concept{Slice} elements. Each slice removes one dimension from the data hypercube.
 
-The \concept{Slice} class introduces two required attributes: \hyperref[sec:sliceReference]{\token{reference}} and \hyperref[sec:sliceValue]{\token{value}} (\fig{dataDescription}).
+The \concept{Slice} class introduces two required attributes: \hyperref[sec:sliceReference]{\element{reference}} and \hyperref[sec:sliceValue]{\element{value}} (\fig{dataDescription}).
 
 % \sedfig[width=0.4\textwidth]{images/uml/slice}{The SED-ML Slice class}{fig:sedSlice}
 
@@ -216,12 +216,12 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 %% ~~~ SLICE:REFERENCE ~~~
 \subsubsection{\element{reference}}
 \label{sec:sliceReference}
-The \token{reference} attribute references one of the indices described in the \token{dimensionDescription}. In the example above, valid values would be: \token{time} and \token{SpeciesIds}.
+The \concept{\element{reference}} attribute references one of the indices described in the \hyperref[sec:dimensionDescription]{\element{dimensionDescription}}. In the example above, valid values would be: \token{time} and \token{SpeciesIds}.
 
 %% ~~~ SLICE:VALUE ~~~
 \subsubsection{\token{value}}
 \label{sec:sliceValue}
-The \token{value} attribute takes the value of a specific index in the referenced set of indices. For example:
+The \concept{\element{value}} attribute takes the value of a specific index in the referenced set of indices. For example:
 
 \begin{myXmlLst}{}{lst:sliceValue1}
 <dataSource id="dataS1">
