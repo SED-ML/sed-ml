@@ -7,7 +7,7 @@ The \concept{Model} class defines the models used in a simulation experiment (\f
 
 \sedfig[width=0.7\textwidth]{images/uml/model}{The SED-ML Model class}{fig:model}
 
-Each instance of the \concept{Model} class has the mandatory attributes \hyperref[sec:id]{\element{id}} and \hyperref[sec:model_source]{\code{source}}, and the optional attributes \hyperref[sec:name]{\element{name}}, \hyperref[sec:language]{\element{language}}, and \hyperref[sec:listOfChanges]{\element{listOfChanges}}.
+Each instance of the \concept{Model} class has the mandatory attributes \hyperref[sec:id]{\element{id}} and \hyperref[sec:model_source]{\code{source}}, and the optional attributes \hyperref[sec:name]{\element{name}}, \hyperref[sec:language]{\element{language}}, and \hyperref[sec:listOfChanges]{\element{changesModel}}.
 
 The \hyperref[sec:language]{\code{language}} may be specified, defining the format the model is encoded in. 
 
@@ -18,7 +18,7 @@ The \concept{Model} class refers to the particular model of interest through the
  \item{To refer to a particular model in an external resource, an unambiguous reference must be given (\hyperref[sec:model_source]{\element{source}} attribute).}
 \end{itemize}
 
-A model might need to undergo pre-processing before simulation. Those pre-processing steps are specified in the \hyperref[sec:listOfChanges]{\element{listOfChanges}} via the \hyperref[class:change]{Change} class.
+A model might need to undergo pre-processing before simulation. Those pre-processing steps are specified in the \hyperref[sec:changesModel]{\element{listOfChanges}} via the \hyperref[class:change]{Change} class.
 
 \tabtext{model}{model}
 
@@ -40,7 +40,7 @@ source & \refpage{sec:model_source}\\
 notes$^{o}$ & \refpage{class:notes}\\
 annotation$^{o}$ & \refpage{class:annotation}\\
 \midrule
-listOfChanges$^{o}$ & \refpage{sec:listOfChanges}\\
+listOfChanges$^{o}$ & \refpage{sec:changesModel}\\
 \bottomrule
 \end{tabular}
 \caption{\tabcap{model}}
@@ -48,7 +48,7 @@ listOfChanges$^{o}$ & \refpage{sec:listOfChanges}\\
 \end{table}
 
 \lsttext{model}{model}
-In the example the \hyperref[sec:listOfModels]{\element{listOfModels}} contains three models: The first model \code{m0001} is the Repressilator model from \biom available from \url{urn:miriam:biomodels.db:BIOMD0000000012}. For the SED-ML simulation the model might undergo preprocessing steps described in the \hyperref[sec:listOfChanges]{\element{listOfChanges}}. Based on the description of the first model \code{m0001}, the second model \code{m00012} is built, which is a modified version of the Repressilator model. \code{m0002} refers to the model \code{m001} in its \hyperref[sec:model_source]{\code{source}} attribute. \code{m0002} might then have additional changes applied to it on top of the changes defined in the pre-processing of \code{m0001}. The third model in the code example above is a different model in CellML representation. The model \code{m0003} is available from the given URL in the \hyperref[sec:model_source]{\code{source}} attribute. Again, it might have pre-processing steps applied before used in a simulation.
+In the example the \hyperref[sec:listOfModels]{\element{listOfModels}} contains three models: The first model \code{m0001} is the Repressilator model from \biom available from \url{urn:miriam:biomodels.db:BIOMD0000000012}. For the SED-ML simulation the model might undergo preprocessing steps described in the \hyperref[sec:changesModel]{\element{listOfChanges}}. Based on the description of the first model \code{m0001}, the second model \code{m00012} is built, which is a modified version of the Repressilator model. \code{m0002} refers to the model \code{m001} in its \hyperref[sec:model_source]{\code{source}} attribute. \code{m0002} might then have additional changes applied to it on top of the changes defined in the pre-processing of \code{m0001}. The third model in the code example above is a different model in CellML representation. The model \code{m0003} is available from the given URL in the \hyperref[sec:model_source]{\code{source}} attribute. Again, it might have pre-processing steps applied before used in a simulation.
 
 \begin{myXmlLst}{SED-ML \code{model} element}{lst:model}
 <listOfModels>
@@ -72,7 +72,7 @@ In the example the \hyperref[sec:listOfModels]{\element{listOfModels}} contains 
 \end{myXmlLst} 
 
 % ~~~ MODEL:LANGUAGE ~~~
-\subsubsection*{\element{language}}
+\paragraph*{\element{language}}
 \label{sec:language}
 The optional \concept{\element{language}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the format of the \hyperref[class:model]{model}. Example formats are SBML (\code{urn:sedml:language:sbml}) or CellML (\code{urn:sedml:language:cellml}). The supported languages are defined in the \hyperref[sec:languageURI]{language references}.
 
@@ -80,7 +80,7 @@ If it is not explicitly defined the default value for \concept{\element{language
 
 
 % ~~~ MODEL:SOURCE ~~~
-\subsubsection*{\element{source}}
+\paragraph*{\element{source}}
 \label{sec:model_source}
 To make a \hyperref[class:model]{model} available for the execution of a SED-ML file, the \concept{\element{source}} must be specified through either an URI or a reference to an \code{SId} of an existing \hyperref[class:model]{Model}. The URI should follow the proposed \hyperref[sec:uriScheme]{URI Scheme} for \hyperref[sec:modelURI]{Model references}.
 
@@ -107,9 +107,9 @@ An example for the definition of a model using an URL is given in Listing~\ref{l
 
 
 % ~~~ LIST OF CHANGES ~~
-\subsubsection*{\element{listOfChanges}}
-\label{sec:listOfChanges}
-The \concept{\element{listOfChanges}} (\fig{model}) contains the \hyperref[class:change]{changes} to be applied to a particular \hyperref[class:model]{model}. The \concept{listOfChanges} is optional and may contain zero to many \hyperref[class:change]{changes}.
+\paragraph*{\element{listOfChanges}}
+\label{sec:changesModel}
+The \concept{\element{listOfChanges}} (\fig{model}) contains the \hyperref[class:change]{Changes} to be applied to a particular \hyperref[class:model]{Model}. The \concept{\element{listOfChanges}} is optional and may contain zero to many \hyperref[class:change]{Changes}.
 
 \lsttext{listOfChanges}{listOfChanges}
 \begin{myXmlLst}{The SED-ML \element{listOfChanges} element, defining a change on a model}{lst:listOfChanges}
@@ -125,7 +125,7 @@ The \concept{\element{listOfChanges}} (\fig{model}) contains the \hyperref[class
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Change}}
 \label{class:change}
-The \concept{Change} class allows to describe changes applied to a \hyperref[class:model]{model} before simulation(\fig{sedChange}). \concept{Changes} can be of the following types:
+The \concept{Change} class allows to describe changes applied to a \hyperref[class:model]{model} before simulation (\fig{sedChange}). \concept{Changes} can be of the following types:
 \begin{itemize}
 	\item{Changes on attributes of the model's XML representation (\hyperref[class:changeAttribute]{ChangeAttribute})}
 	\item{Changes on any XML snippet of the model's XML representation (\hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML})}
@@ -166,7 +166,7 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 
 
 % ~~~ target ~~~
-\subsubsection*{\element{target}}
+\paragraph*{\element{target}}
 \label{sec:changeTarget}
 The \concept{\element{target}} attribute holds a valid \hyperref[sec:xpath]{XPath} expression of data type \hyperref[type:xpath]{\element{xpath}} pointing to the XML element or XML attribute that is to undergo the defined changes.
 
@@ -296,7 +296,7 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \label{tab:changeAttribute}
 \end{table}
 
-\paragraph{\element{newValue}}
+\paragraph*{\element{newValue}}
 \label{sec:newValue}
 The mandatory \concept{\element{newValue}} attribute of data type \code{string} assignes a new value to the targeted XML attribute.
 

@@ -48,7 +48,7 @@ algorithm & \refpage{class:algorithm}\\
 </listOfSimulations>
 \end{myXmlLst}
 
-\subsubsection*{\element{algorithm}}
+\paragraph*{\element{algorithm}}
 \label{sec:algorithm}
 The mandatory attribute \concept{\element{algorithm}} defines the simulation algorithms used for the execution of the \hyperref[class:simulation]{simulation}. The algorithms are defined via the \hyperref[class:algorithm]{Algorithm} class.
 
@@ -98,21 +98,21 @@ algorithm & \refpage{class:algorithm}\\
 </listOfSimulations>
 \end{myXmlLst}
 
-\paragraph{\element{initialTime}}
+\paragraph*{\element{initialTime}}
 \label{sec:initialTime}
 The attribute \concept{\element{initialTime}} of type \code{double} represents the time from which to start the simulation. Usually this will be \code{0.0}. Listing~\ref{lst:timecourse} shows an example. 
 
-\paragraph{\element{outputStartTime}}
+\paragraph*{\element{outputStartTime}}
 \label{sec:outputStartTime}
 Sometimes a researcher is not interested in simulation results at the start of the simulation (i.e. the initial time). The \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} class uses the attribute \concept{\element{outputStartTime}} of type \code{double} to describe this simulation experiment. To be valid the \concept{\element{outputStartTime}} cannot be before \hyperref[sec:initialTime]{\element{initialTime}}. For an example, see Listing~\ref{lst:timecourse}. 
 
-\paragraph{\element{outputEndTime}}
+\paragraph*{\element{outputEndTime}}
 \label{sec:outputEndTime}
 The attribute \concept{\element{outputEndTime}} of type \code{double} marks the end time of the simulation. See Listing~\ref{lst:timecourse} for an example. 
 
-\paragraph{\element{numberOfPoints}}
+\paragraph*{\element{numberOfPoints}}
 \label{sec:numberOfPoints}
-When executed, the \hyperref[class:uniformTimecourse]{\element{UniformTimeCourse}} simulation produces an output on a regular grid starting with \hyperref[sec:outputStartTime]{\element{outputStartTime}} and ending with \hyperref[sec:outputEndTime]{\element{outputEndTime}}. The attribute \concept{\element{numberOfPoints}} of type \code{integer} describes the number of points expected in the result. Software interpreting the \hyperref[class:uniformaTimecourse]{\element{UniformTimeCourse}} is expected to produce a first outputPoint at time \hyperref[sec:outputStartTime]{\element{outputStartTime}} and then \concept{\element{numberOfPoints}} output points with the results of the simulation. Thus a total of \code{numberOfPoints + 1} output points will be produced.
+When executed, the \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} simulation produces an output on a regular grid starting with \hyperref[sec:outputStartTime]{\element{outputStartTime}} and ending with \hyperref[sec:outputEndTime]{\element{outputEndTime}}. The attribute \concept{\element{numberOfPoints}} of type \code{integer} describes the number of points expected in the result. Software interpreting the \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} is expected to produce a first outputPoint at time \hyperref[sec:outputStartTime]{\element{outputStartTime}} and then \concept{\element{numberOfPoints}} output points with the results of the simulation. Thus a total of \code{numberOfPoints + 1} output points will be produced.
 
 Just because the output points lie on the regular grid described above, does not mean that the simulation algorithm has to work with the same step size. Usually the step size the simulator chooses will be adaptive and much smaller than the required output step size. On the other hand a stochastic simulator might not have any new events occurring between two grid points. Nevertheless the simulator has to produce data on this regular grid. For an example, see Listing~\ref{lst:timecourse}. 
 
@@ -159,7 +159,7 @@ algorithm & \refpage{class:algorithm}\\
 </listOfSimulations>
 \end{myXmlLst}
 
-\paragraph{\element{step}}
+\paragraph*{\element{step}}
 \label{sec:step}
 The \hyperref[class:oneStep]{OneStep} class has one required attribute \concept{\element{step}} of type \code{double}. It defines the next output point that should be reached by the algorithm, by specifying the increment from the current output point. Listing~\ref{lst:oneStep} shows an example. 
 
@@ -254,7 +254,7 @@ The example given in Listing~\ref{lst:simulation}, completed by algorithm defini
 
 
 % ~~~ LIST OF ALGORITHM PARAMETERS ~~~
-\paragraph{\element{listOfAlgorithmParameters}}
+\paragraph*{\element{listOfAlgorithmParameters}}
 \label{sec:listOfAlgorithmParameters}
 The \concept{\element{listOfAlgorithmParameters}} contains the settings for the simulation algorithm used in a \hyperref[class:simulation]{simulation} (\fig{simulation}). It may list several instances of the \hyperref[class:algorithmParameter]{AlgorithmParameter} class. The \concept{\element{listOfAlgorithmParameters}} is optional and may contain zero to many parameters.
 
@@ -280,7 +280,7 @@ The \concept{AlgorithmParameter} class allows to parameterize a particular simul
 \end{myXmlLst}
 
 
-\paragraph{\element{value}}
+\paragraph*{\element{value}}
 \label{sec:algorithmParameterValue}
 The \concept{\element{value}} sets the value of the \hyperref[class:algorithmParameter]{AlgorithmParameter}.
 

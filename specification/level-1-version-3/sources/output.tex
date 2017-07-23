@@ -4,7 +4,7 @@
 \subsection{\element{Output}}
 \label{class:output}
 
-The abstract \concept{Ouput} class describes how the results of a simulation are presented. (\fig{output}). The available output classes are plots (\hyperref[class:plot2D]{2D plot} or \hyperref[class:plot3D]{3D plot}) and \hyperref[class:report]{reports}. The data used in the output plots or report is provided via \hyperref[class:dataGenerator]{dataGenerators}.
+The abstract \concept{Output} class describes how the results of a simulation are presented. (\fig{output}). The available output classes are plots (\hyperref[class:plot2D]{Plot2D} and \hyperref[class:plot3D]{Plot3D}) and reports (\hyperref[class:report]{Report}). The data used in \concept{Outputs} is provided via \hyperref[class:dataGenerator]{DataGenerators}.
 
 \sedfig{images/uml/output}{The SED-ML Output class. Note that ListOfCurves, Curve, ListOfSurfaces, Surface, ListOfDataSets, DataSet and DataGenerator are subclasses of \emph{SEDBase}; the respective inheritance connections are not shown in the figure.}{fig:output}
 
@@ -183,22 +183,22 @@ In the example a single curve is created. Results for the x-axis are generated b
 </listOfCurves>
 \end{myXmlLst}
 
-\paragraph{\element{logX}}
+\paragraph*{\element{logX}}
 \label{sec:logX}
 \concept{logX} is a required attribute of the \hyperref[class:curve]{Curve} class and defines whether or not the data output on the x-axis is logarithmic. The data type of \concept{logX} is \code{boolean}. 
 To make the output on the x-axis of a plot logarithmic, \concept{logX} must be set to ``true'', as shown in the sample Listing~\ref{lst:curve}.
 
-\paragraph{\element{logY}}
-\label{sec:logY}
-\concept{logY} is a required attribute of the \hyperref[class:curve]{Curve} class and defines whether or not the data output on the y-axis is logarithmic. The data type of \concept{logY} is \code{boolean}. 
-To make the output on the y-axis of a plot logarithmic, \concept{logY} must be set to ``true'', as shown in the sample Listing~\ref{lst:curve}. 
-
-\paragraph{\element{xDataReference}}
+\paragraph*{\element{xDataReference}}
 \label{sec:xDataReference}
 The \concept{xDataReference} is a mandatory attribute of the \hyperref[class:curve]{Curve} object. Its content refers to a dataGenerator ID which denotes the \hyperref[class:dataGenerator]{DataGenerator} object that is used to generate the output on the x-axis of a \hyperref[class:curve]{Curve} in a \hyperref[class:plot2D]{2D Plot}. 
 The \concept{xDataReference} data type is \code{SIdRef}. However, the valid values for the \concept{xDataReference} are restricted to the IDs of already defined \hyperref[class:dataGenerator]{DataGenerator objects}.
 
-\paragraph{\element{yDataReference}}
+\paragraph*{\element{logY}}
+\label{sec:logY}
+\concept{logY} is a required attribute of the \hyperref[class:curve]{Curve} class and defines whether or not the data output on the y-axis is logarithmic. The data type of \concept{logY} is \code{boolean}. 
+To make the output on the y-axis of a plot logarithmic, \concept{logY} must be set to ``true'', as shown in the sample Listing~\ref{lst:curve}. 
+
+\paragraph*{\element{yDataReference}}
 \label{sec:yDataReference}
 The \concept{yDataReference} is a mandatory attribute of the \hyperref[class:curve]{Curve} object. Its content refers to a dataGenerator ID which denotes the \hyperref[class:dataGenerator]{DataGenerator} object that is used to generate the output on the y-axis of a \hyperref[class:curve]{Curve} in a \hyperref[class:plot2D]{2D Plot}.
 The \concept{yDataReference} data type is \code{SIdRef}. However, the valid values for the \concept{yDataReference} are restricted to the IDs of already defined \hyperref[class:dataGenerator]{DataGenerator objects}.
@@ -250,12 +250,12 @@ In the example a single surface is created. Results shown on the x-axis are gene
 </listOfSurfaces>
 \end{myXmlLst}
 
-\paragraph{\element{logZ}}
+\paragraph*{\element{logZ}}
 \label{sec:logZ}
 \concept{logZ} is a required attribute of the \hyperref[class:surface]{Surface} class and defines whether or not the data output on the z-axis is logarithmic. The data type of \concept{logZ} is \code{boolean}.
 To make the output on the z-axis of a surface plot logarithmic, \concept{logZ} must be set to ``true'', as shown in the sample Listing~\ref{lst:surface}.
 
-\paragraph{\element{zDataReference}}
+\paragraph*{\element{zDataReference}}
 \label{sec:zDataReference}
 The \concept{zDataReference} is a mandatory attribute of the \hyperref[class:surface]{Surface} object. Its content refers to a dataGenerator ID which denotes the \hyperref[class:dataGenerator]{DataGenerator} object that is used to generate the output on the z-axis of a \hyperref[class:plot3D]{3D Plot}.
 The \concept{zDataReference} data type is \code{SIdRef}. However, the valid values for the \concept{zDataReference} are restricted to the IDs of already defined \hyperref[class:dataGenerator]{DataGenerator objects}.
@@ -290,11 +290,11 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \label{tab:dataSet}
 \end{table}
 
-\paragraph{\element{label}}
+\paragraph*{\element{label}}
 \label{sec:label}
 Each data set in a \hyperref[class:report]{Report} must have an unambiguous \concept{label}. A label is a human readable descriptor of a data set for use in a \hyperref[class:report]{report}. For example, for a tabular data set of time series results, the label could be the column heading. 
 
-\paragraph{\element{dataReference}}
+\paragraph*{\element{dataReference}}
 \label{sec:dataReference1}
 The \concept{dataReference} attribute contains the ID of a \concept{dataGenerator} element and as such represents a link to it. The data produced by that particular data generator fills the according dataSet in the \hyperref[class:report]{report}.
 

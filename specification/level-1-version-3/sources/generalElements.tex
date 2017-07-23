@@ -109,17 +109,17 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \end{table}
 
 % ~~~ META ID ~~~
-\subsubsection*{\element{metaid}}
+\paragraph*{\element{metaid}}
 \label{sec:metaid}
 The main purpose of the \concept{\element{metaid}} attribute of data type \code{\hyperref[type:id]{ID}} is to attach semantic annotations in form of the \hyperref[class:annotation]{Annotation} class to SED-ML elements. The \concept{\element{metaid}} attribute is globally unique throughout the SED-ML document, i.e.\ the \element{metaid} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
 
 In order to set either \hyperref[class:notes]{Notes} or \hyperref[class:annotation]{Annotation} on a SED-ML class the \concept{\element{metaid}} is required.
 
-\subsubsection*{\element{notes}}
+\paragraph*{\element{notes}}
 \label{sec:notesElement}
 The optional \concept{\element{notes}} element stores \hyperref[class:notes]{Notes} on \hyperref[class:sedBase]{SedBase}.
 
-\subsubsection*{\element{annotation}}
+\paragraph*{\element{annotation}}
 \label{sec:annotationElement}
 The optional \concept{\element{annotation}} element stores \hyperref[class:annotation]{Annotation} on \hyperref[class:sedBase]{SedBase}.
 
@@ -244,7 +244,7 @@ In the example a \concept{parameter} \code{p1} with the value \code{40} is defin
 
 
 % ~~~ VALUE ~~
-\subsubsection*{\element{value}}
+\paragraph*{\element{value}}
 \label{sec:value}
 The \code{value} attribute of data type \code{double} is required for each \concept{Parameter}. Each \hyperref[class:parameter]{parameter} has exactly one fixed \concept{\element{value}}. 
 
@@ -254,18 +254,18 @@ The \code{value} attribute of data type \code{double} is required for each \conc
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Variable}}
 \label{class:variable}
-A \concept{Variable} (\fig{variable}) is a reference to an already existing entity, either to an existing object in one of the \hyperref[class:model]{Models} or to implicitly defined \hyperref[sec:symbol]{Symbols}. The \concept{Variable} class introduces the required attribute \hyperref[sec:id]{\element{id}}, the optional attribute \hyperref[sec:name]{\element{name}}, and the context dependent attributes \hyperref[sec:target]{\element{target}}, \hyperref[sec:symbol]{\element{symbol}}, \hyperref[sec:taskReference]{\element{taskReference}}, and \hyperref[sec:modelReference]{\element{modelReference}}.
+A \concept{Variable} (\fig{variable}) is a reference to an already existing entity, either to an existing object in one of the \hyperref[class:model]{Models} or to implicitly defined \hyperref[sec:symbol]{Symbols}. The \concept{Variable} class introduces the required attribute \hyperref[sec:id]{\element{id}}, the optional attribute \hyperref[sec:name]{\element{name}}, and the context dependent attributes \hyperref[sec:target]{\element{target}}, \hyperref[sec:symbol]{\element{symbol}}, \hyperref[sec:taskReferenceAttribute]{\element{taskReference}}, and \hyperref[sec:modelReferenceAttribute]{\element{modelReference}}.
 
 \sedfig[width=0.35\textwidth]{images/uml/variable}{The Variable class}{fig:variable}
 
 If the variable is defined through a reference to a model constituent, such as an SBML species, or to an entity within the SED-ML file itself, then the reference is specified using the \hyperref[sec:target]{\element{target}} attribute. If the variable is defined through a reference to a \hyperref[sec:implicitVariable]{Symbol}, rather than one explicitly appearing in the model, then the \hyperref[sec:symbol]{\element{symbol}} attribute is used. 
 
 \begin{itemize}
-	\item A \code{variable} is always placed inside a \hyperref[sec:listOfVariables]{listOfVariables}. 
+	\item A \concept{Variable} is always placed inside a \hyperref[sec:listOfVariables]{listOfVariables}. 
 	\item The \hyperref[sec:symbol]{\element{symbol}} and \hyperref[sec:target]{\element{target}} attributes must not be used together in a single instance of Variable, although at least one must be present.
-	\item A \code{variable} element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:dataGenerator]{dataGenerator} element.
-	\item A \code{variable} element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \code{listOfVariables} inside a \hyperref[class:computeChange]{computeChange} element.
-	\item A \code{variable} element appearing within a \hyperref[class:functionalRange]{functionalRange} or \hyperref[class:setValue]{setValue} element must contain a \hyperref[sec:modelReference]{modelReference} if and only if it references a model variable.
+	\item A \concept{Variable} element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \hyperref[sec:listOfVariables]{\element{listOfVariables}} inside a \hyperref[class:dataGenerator]{dataGenerator} element.
+	\item A \concept{Variable} element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \hyperref[sec:listOfVariables]{\element{listOfVariables}} inside a \hyperref[class:computeChange]{computeChange} element.
+	\item A \concept{Variable} element appearing within a \hyperref[class:functionalRange]{functionalRange} or \hyperref[class:setValue]{setValue} element must contain a \hyperref[sec:modelReference]{modelReference} if and only if it references a model variable.
 \end{itemize}
 
 \tabtext{variable}{Variable}
@@ -329,7 +329,7 @@ In the example a variable \code{v1} is defined to compute a change on a model co
 
 
 % ~~~ TARGET ~~~
-\subsubsection*{\element{target}}
+\paragraph*{\element{target}}
 \label{sec:target}
 An instance of \hyperref[class:variable]{Variable} can refer to a model constituent inside a particular \hyperref[class:model]{model} through an \code{\hyperref[type:xpath]{XPath}} expression stored in the \concept{\element{target}} attribute. 
 
@@ -346,8 +346,7 @@ In the example the \concept{\element{target}} is used to reference a species wit
 </listOfVariables>
 \end{myXmlLst}
 
-It should be noted that the identifier and names inside the SED-ML document do not have to match the identifiers and names that the model and its constituents have in the model definition. In listing \vref{lst:target}, the variable with ID \code{v1} is defined. It is described as the \code{TetR protein}. The reference points to a species in the referenced SBML model. The particular species can be identified through its ID in the SBML model, namely \code{PY}.
-However, SED-ML also permits using identical identifiers and names as in the referenced models. The following Listing~\vref{lst:sedmlVariable} is another valid example for the specification of a variable, but uses the same naming in the variable definition as in the original model (as opposed to Listing~\ref{lst:target}):
+It should be noted that the identifier and names inside the SED-ML document do not have to match the identifiers and names that the model and its constituents have in the model definition. In Listing \ref{lst:target}, the variable with ID \code{v1} is defined. It is described as the \code{TetR protein}. The reference points to a species in the referenced SBML model. The particular species can be identified through its ID in the SBML model, namely \code{PY}. However, SED-ML also permits using identical identifiers and names as in the referenced models. The following Listing~\vref{lst:sedmlVariable} is another valid example for the specification of a variable, but uses the same naming in the variable definition as in the original model (as opposed to Listing~\ref{lst:target}):
 
 \begin{myXmlLst}{SED-ML variable definition using the original model identifier and name in SED-ML}{lst:sedmlVariable}
 <listOfVariables>
@@ -367,10 +366,10 @@ However, SED-ML also permits using identical identifiers and names as in the ref
 </sbml>
 \end{myXmlLst}
 
-The XPath expression used in the \concept{\code{target}} attribute unambiguously leads to the particular place in the XML SBML model -- the species is to be found in the \emph{sbml} element, and there inside the \emph{listOfSpecies} (Listing~\vref{lst:sbmlModel}). 
+The \hyperref[sec:xpath]{XPath} expression used in the \concept{\code{target}} attribute unambiguously leads to the particular place in the XML SBML model -- the species is to be found in the \emph{sbml} element, and there inside the \emph{listOfSpecies} (Listing~\href{lst:sbmlModel}). 
 
 % ~~~ SYMBOL ~~~
-\subsubsection*{\element{symbol}}
+\paragraph*{\element{symbol}}
 \label{sec:symbol}
 \concept{Symbols} are predefined, implicit variables. \concept{Symbols} can be used in a SED-ML file by referring to the defined URNs representing that variable's concept. The notion of implicit variables is explained in Section~\ref{sec:implicitVariable} on \refpage{sec:implicitVariable}.
 
@@ -383,11 +382,23 @@ The example encodes a computed change of model \code{m001}. To specify that chan
 </listOfVariables>
 \end{myXmlLst}
 
+% ~~~ TASK REFERENCE ~~~
+The taskReference and modelReference should be explained once on the variable class.
+\paragraph*{\element{taskReference}}
+\label{sec:taskReferenceAttribute}
+The \concept{\element{taskReference}} element of data type \hyperref[type:sidref]{\element{SIdRef}} is used to reference a \hyperref[class:task]{Task} via a \hyperref[sec:taskReference]{taskReference}. The usage depends on the context the \hyperref[class:variable]{Variable} is used in.
+
+% ~~~ MODEL REFERENCE ~~~
+\paragraph*{\element{modelReference}}
+\label{sec:modelReferenceAttribute}
+The \concept{\element{modelReference}} element of data type \hyperref[type:sidref]{\element{SIdRef}} is used to reference a \hyperref[class:model]{Model} via a \hyperref[sec:modelReference]{modelReference}. The usage depends on the context the \hyperref[class:variable]{Variable} is used in.
+
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % GENERAL ATTRIBUTES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{General attributes}
+This section describes attributes which occur on multiple SED-ML classes, e.g.\ \hyperref[sec:id]{\element{id}}, \hyperref[sec:name]{\element{name}}, \hyperref[sec:math]{\element{math}}, \hyperref[sec:kisaoid]{\element{kisaoID}}, or \hyperref[sec:listOf]{\element{listOf*}} constructs.
 \label{sec:generalAttributes}
 
 % ~~~ ID ~~~
@@ -439,7 +450,7 @@ SED-ML \concept{\element{listOf*}} elements serve as containers for a collection
 % ~~~ LIST OF PARAMETERS ~~~
 \subsubsection{\element{listOfParameters}}
 \label{sec:listOfParameters}
-All \hyperref[class:parameter]{parameters} needed throughout the simulation experiment, whether to compute a change on a model prior to or during simulation (\hyperref[class:computeChange]{ComputeChange} and \hyperref[class:setValue]{SetValue}), to compute values in a \hyperref[class:functionalRange]{FunctionalRange}, or to set up a \hyperref[class:dataGenerator]{DataGenerator}, are defined inside a \concept{listOfParameters}. See \fig{computeChange} or \fig{dataGenerator}.
+All \hyperref[class:parameter]{Parameters} needed throughout the simulation experiment, whether to compute a change on a model prior to or during simulation (\hyperref[class:computeChange]{ComputeChange} and \hyperref[class:setValue]{SetValue}), to compute values in a \hyperref[class:functionalRange]{FunctionalRange}, or to set up a \hyperref[class:dataGenerator]{DataGenerator}, are defined inside a \concept{\element{listOfParameters}}. See \fig{computeChange} or \fig{dataGenerator}.
 
 \lsttext{listOfParameters}{listOfParameters}
 The element is optional and may contain zero to many parameters.
@@ -455,7 +466,7 @@ The element is optional and may contain zero to many parameters.
 % ~~~ LIST OF VARIABLES ~~~
 \subsubsection{\element{listOfVariables}}
 \label{sec:listOfVariables}
-SED-ML uses the \hyperref[class:variable]{variable} concept to refer to existing entities inside a model. The container for all variables is  \concept{listOfVariables}. It includes all variables that need to be defined to either describe a change in the model by means of mathematical equations via \hyperref[class:computeChange]{ComputeChange} (\fig{computeChange} or to set up a \hyperref[class:dataGenerator]{DataGenerator} (\fig{dataGenerator}). The \code{listOfVariables} is optional and may contain zero to many variables. 
+SED-ML uses the \hyperref[class:variable]{Variable} concept to refer to existing entities inside a model. The container for all variables is  \concept{\element{listOfVariables}}. It includes all variables that need to be defined to either describe a change in the model by means of mathematical equations via \hyperref[class:computeChange]{ComputeChange} (\fig{computeChange} or to set up a \hyperref[class:dataGenerator]{DataGenerator} (\fig{dataGenerator}). The \concept{\element{listOfVariables}} is optional and may contain zero to many variables. 
 
 \lsttext{listOfVariables}{listOfVariables}
 \begin{myXmlLst}{SED-ML listOfVariables element}{lst:listOfVariables}
