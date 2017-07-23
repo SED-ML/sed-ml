@@ -6,7 +6,7 @@ The \concept{DataGenerator} class prepares the raw simulation results for later 
 \sedfig[width=0.6\textwidth]{images/uml/dataGenerator}{The SED-ML DataGenerator class. 
 Note that \element{Parameter} and \element{Variable} are subclasses of \emph{SEDBase}; the respective inheritance connections are not shown in the figure.}{fig:dataGenerator}
 
-Each instance of the \concept{DataGenerator} class is identifiable within the experiment by its unambiguous \hyperref[sec:id]{\element{id}}. It can be further characterised by an optional \hyperref[sec:name]{\element{name}}. The required \hyperref[sec:math]{\element{math}} element contains a \hyperref[sec:mathML]{mathML} expression for the calculation of the \concept{DataGenerator}. The available subset of mathematical functions available for the specification of \concept{DataGenerators} is given in Section~\ref{sec:mathML}. \hyperref[class:variable]{Variable} and \hyperref[class:parameter]{Parameter} instances can be used to encode the mathematical expression.
+Each instance of the \concept{DataGenerator} class is identifiable within the experiment by its unambiguous \hyperref[sec:id]{\element{id}}. It can be further characterised by an optional \hyperref[sec:name]{\element{name}}. The required \hyperref[sec:math]{\element{math}} element contains a \hyperref[sec:mathML]{mathML} expression for the calculation of the \concept{DataGenerator}. \hyperref[class:variable]{Variable} and \hyperref[class:parameter]{Parameter} instances can be used to encode the mathematical expression.
 
 \tabtext{dataGenerator}{dataGenerator}
 

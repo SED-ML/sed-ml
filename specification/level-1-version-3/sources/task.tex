@@ -217,13 +217,13 @@ The required attribute \concept{\element{order}} of data type \element{integer} 
 \label{class:setValue}
 The \concept{SetValue} class (\fig{repeatedTask}) allows the modification of the \hyperref[class:model]{model} prior to the next execution of the \hyperref[class:subTask]{subTasks}. The changes to the model are defined in the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} of the \hyperref[class:repeatedTask]{RepeatedTask}.
 
-\concept{SetValue} inherits from the \hyperref[class:computeChange]{ComputeChange} class, which allows it to compute arbitrary expressions involving a number of \hyperref[class:variable]{variables} and \hyperref[class:parameters]{parameters}. \concept{SetValue} has a mandatory \element{modelReference} attribute, and the optional attributes \element{range} and \element{symbol}.
+\concept{SetValue} inherits from the \hyperref[class:computeChange]{ComputeChange} class, which allows it to compute arbitrary expressions involving a number of \hyperref[class:variable]{variables} and \hyperref[class:parameter]{parameters}. \concept{SetValue} has a mandatory \element{modelReference} attribute, and the optional attributes \element{range} and \element{symbol}.
 
 The value to be changed is identified via the combination of the attributes \code{modelReference} and either \code{symbol} or \code{target}, in order to select an implicit or explicit variable within the referenced model.
 
 As in \hyperref[class:functionalRange]{functionalRange}, the attribute \code{range} may be used as a shorthand to specify the \code{id} of another \concept{Range}. The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \code{id} of the range is used directly. In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
 
-The \hyperref[sec:math]{\element{math}} contains the expression computing the value by referring to optional \hyperref[sec:parameter]{parameters}, \hyperref[sec:variable]{variables} or \hyperref[sec:range]{ranges}.
+The \hyperref[sec:math]{\element{math}} contains the expression computing the value by referring to optional \hyperref[class:parameter]{parameters}, \hyperref[class:variable]{variables} or \hyperref[class:range]{ranges}.
 Again as for \hyperref[class:functionalRange]{functionalRange}, variable references retrieve always the current value of the model variable or range at the current iteration of the enclosing \hyperref[class:repeatedTask]{repeatedTask}.
 
 \begin{myXmlLst}{A \code{setValue} element setting \code{w} to the values of the range with id \code{current}.}{lst:setValue}

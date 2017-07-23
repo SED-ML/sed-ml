@@ -4,7 +4,7 @@
 \subsection{\element{Output}}
 \label{class:output}
 
-The abstract \concept{Output} class describes how the results of a simulation are presented. (\fig{output}). The available output classes are plots (\hyperref[class:plot2D]{Plot2D} and \hyperref[class:plot3D]{Plot3D}) and reports (\hyperref[class:report]{Report}). The data used in \concept{Outputs} is provided via \hyperref[class:dataGenerator]{DataGenerators}.
+The abstract \concept{Output} class describes how the results of a simulation are presented (\fig{output}). The available output classes are plots (\hyperref[class:plot2D]{Plot2D} and \hyperref[class:plot3D]{Plot3D}) and reports (\hyperref[class:report]{Report}). The data used in \concept{Outputs} is provided via \hyperref[class:dataGenerator]{DataGenerators}.
 
 \sedfig{images/uml/output}{The SED-ML Output class. Note that ListOfCurves, Curve, ListOfSurfaces, Surface, ListOfDataSets, DataSet and DataGenerator are subclasses of \emph{SEDBase}; the respective inheritance connections are not shown in the figure.}{fig:output}
 
@@ -14,7 +14,7 @@ Note that even though the terms \code{Plot2D} and \code{Plot3D} are used, the ex
 % ~~~ PLOT2D ~~~
 \subsubsection{\element{Plot2D}}
 \label{class:plot2D}
-The \concept{Plot2D} class is used for two dimensional plot outputs (\fig{output}). The \concept{Plot2D} contains a number of \hyperref[class:curve]{\code{Curve}} definitions, which define the curves which should be plotted in the the 2D plot.
+The \concept{Plot2D} class is used for two dimensional plot outputs (\fig{output}). The \concept{Plot2D} contains a number of \hyperref[class:curve]{Curve} definitions in the \element{listOfCurves}, defining the \hyperref[class:curve]{curves} to be plotted in the the 2D plot.
 %
 \tabtext{plot2D}{plot2D}
 \begin{table}[ht]
@@ -40,7 +40,7 @@ listOfCurves$^{o}$ & \refpage{class:curve}\\
 \end{table}
 
 \lsttext{listOfCurves}{listOfCurves}
-The example shows the definition of a \element{Plot2D} containing one \hyperref[class:curve]{\code{Curve}} inside the \code{listOfCurves}.
+The example shows the definition of a \element{Plot2D} containing one \hyperref[class:curve]{Curve} inside the \element{listOfCurves}.
 \begin{myXmlLst}{The \code{plot2D} element with the nested \code{listOfCurves} element.}{lst:listOfCurves}
 <plot2D>
 	<listOfCurves>
@@ -55,7 +55,7 @@ The example shows the definition of a \element{Plot2D} containing one \hyperref[
 % ~~~ PLOT3D ~~~
 \subsubsection{\element{Plot3D}}
 \label{class:plot3D}
-The \code{Plot3D} class is used for three dimensional plot outputs (\fig{output}). The \code{Plot3D} contains a number of \hyperref[class:surface]{\code{Surface}} definitions. 
+The \concept{Plot3D} class is used for three dimensional plot outputs (\fig{output}). The \concept{Plot3D} contains a number of \hyperref[class:surface]{Surface} definitions in the \element{listOfSurfaces}. 
 %
 \tabtext{plot3D}{plot3D}
 \begin{table}[ht]
@@ -97,8 +97,8 @@ The example shows the definition of a \hyperref[class:surface]{\element{Surface}
 % ~~~ REPORT ~~~
 \subsubsection{\element{Report}}
 \label{class:report}
-The \concept{Report} class defines a data table consisting of several single instances of the \hyperref[class:dataSet]{\element{DataSet}} class (\fig{output}). Its output returns the simulation result processed via \element{DataGenerators} in actual \emph{numbers}. The columns of the report table are defined by creating an instance of the \hyperref[class:dataSet]{DataSet} class for each column. 
-%
+The \concept{Report} class defines a data table consisting of several single instances of the \hyperref[class:dataSet]{\element{DataSet}} in the \element{listOfDataSets} (\fig{output}). Its output returns the simulation result processed via \hyperref[class:dataGenerator]{DataGenerators} in actual numbers. The columns of the report table are defined by creating an instance of the \hyperref[class:dataSet]{DataSet} for each column. 
+
 \tabtext{report}{report}
 \begin{table}[ht]
 \center
@@ -134,9 +134,7 @@ listOfDataSets$^{o}$ & \refpage{class:dataSet}\\
 </report>
 \end{myXmlLst}
 
-The simulation result itself, i.\,e. concrete result numbers, are not stored in SED-ML, but the directive how to \emph{calculate} them from the output of the simulator is provided through the \concept{dataGenerator}.
-
-The encoding of simulation results is not part of SED-ML \currentLV.
+The simulation result itself, i.e.\ concrete result numbers, are not stored in SED-ML, but the directive how to calculate them from the output of the simulator is provided through the \hyperref[class:dataGenerator]{dataGenerator}. The encoding of simulation results is not part of SED-ML \currentLV.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % OUTPUT COMPONENTS
@@ -147,7 +145,7 @@ In this section the \hyperref[class:output]{Output} components \hyperref[class:c
 % ~~~ CURVE ~~~
 \subsubsection{\element{Curve}}
 \label{class:curve}
-One or more instances of the \concept{Curve} class define a 2D plot. A \concept{curve} needs a data generator reference to refer to the data that will be plotted on the x-axis, using the \concept{xDataReference}. A second data generator reference is needed to refer to the data that will be plotted on the y-axis, using the \concept{yDataReference} (\fig{output}). 
+One or more instances of the \concept{Curve} class define a \hyperref[class:plot2D]{plot2D} (\fig{output}). A \concept{curve} needs a \hyperref[class:dataGenerator]{dataGenerator} reference to refer to the data that will be plotted on the x-axis, using the \hyperref[sec:xDataReference]{\element{xDataReference}}. A second \hyperref[class:dataGenerator]{dataGenerator} reference is needed to refer to the data that will be plotted on the y-axis, using the \hyperref[sec:yDataReference]{\element{yDataReference}}. 
 %
 \tabtext{curve}{curve}
 \begin{table}[ht]
@@ -176,7 +174,7 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \end{table}
 
 \lsttext{curve}{curve}
-In the example a single curve is created. Results for the x-axis are generated by the dataGenerator \code{dg1}, results for the y-axis are generated by the dataGenerator \code{dg2}. Both \code{dg1} and \code{dg2} need to be defined in the \hyperref[sec:listOfDataGenerators]{listOfDataGenerators}. The x-axis is plotted logarithmically.
+In the example a single curve is created. Results for the x-axis are generated by the dataGenerator \code{dg1}, results for the y-axis are generated by the \hyperref[class:dataGenerator]{dataGenerator} \code{dg2}. Both \code{dg1} and \code{dg2} need to be defined in the \hyperref[sec:listOfDataGenerators]{\element{listOfDataGenerators}}. The x-axis is plotted logarithmically.
 \begin{myXmlLst}{The SED-ML \code{curve} element, defining the output curve showing the result of simulation for the referenced dataGenerators}{lst:curve}
 <listOfCurves>
 	<curve id="c1" name="v1 / time" xDataReference="dg1" yDataReference="dg2" logX="true" logY="false" />
@@ -185,31 +183,29 @@ In the example a single curve is created. Results for the x-axis are generated b
 
 \paragraph*{\element{logX}}
 \label{sec:logX}
-\concept{logX} is a required attribute of the \hyperref[class:curve]{Curve} class and defines whether or not the data output on the x-axis is logarithmic. The data type of \concept{logX} is \code{boolean}. 
-To make the output on the x-axis of a plot logarithmic, \concept{logX} must be set to ``true'', as shown in the sample Listing~\ref{lst:curve}.
+\concept{\element{logX}} is a required attribute of the \hyperref[class:curve]{Curve} class and defines whether or not the data output on the x-axis is logarithmic. The data type of \concept{\element{logX}} is \code{boolean}. To make the output on the x-axis of a plot logarithmic, \concept{\element{logX}} must be set to \code{true}, as shown in the sample Listing~\ref{lst:curve}.
 
 \paragraph*{\element{xDataReference}}
 \label{sec:xDataReference}
-The \concept{xDataReference} is a mandatory attribute of the \hyperref[class:curve]{Curve} object. Its content refers to a dataGenerator ID which denotes the \hyperref[class:dataGenerator]{DataGenerator} object that is used to generate the output on the x-axis of a \hyperref[class:curve]{Curve} in a \hyperref[class:plot2D]{2D Plot}. 
-The \concept{xDataReference} data type is \code{SIdRef}. However, the valid values for the \concept{xDataReference} are restricted to the IDs of already defined \hyperref[class:dataGenerator]{DataGenerator objects}.
+The \concept{\element{xDataReference}} is a mandatory attribute of the \hyperref[class:curve]{Curve} object. Its content refers to a \hyperref[class:dataGenerator]{dataGenerator} which denotes the \hyperref[class:dataGenerator]{DataGenerator} object that is used to generate the output on the x-axis of a \hyperref[class:curve]{Curve} in a \hyperref[class:plot2D]{plot2D}. 
+The \concept{\element{xDataReference}} data type is \hyperref[type:sidref]{\element{SIdRef}}. However, the valid values for the \concept{\element{xDataReference}} are restricted to the \hyperref[sec:id]{\element{id}} of already defined \hyperref[class:dataGenerator]{DataGenerators}.
 
 \paragraph*{\element{logY}}
 \label{sec:logY}
-\concept{logY} is a required attribute of the \hyperref[class:curve]{Curve} class and defines whether or not the data output on the y-axis is logarithmic. The data type of \concept{logY} is \code{boolean}. 
-To make the output on the y-axis of a plot logarithmic, \concept{logY} must be set to ``true'', as shown in the sample Listing~\ref{lst:curve}. 
+\concept{\element{logY}} is a required attribute of the \hyperref[class:curve]{Curve} class and defines whether or not the data output on the y-axis is logarithmic. The data type of \concept{\element{logY}} is \code{boolean}. To make the output on the y-axis of a plot logarithmic, \concept{\element{logY}} must be set to \code{true}, as shown in the sample Listing~\ref{lst:curve}. 
 
 \paragraph*{\element{yDataReference}}
 \label{sec:yDataReference}
-The \concept{yDataReference} is a mandatory attribute of the \hyperref[class:curve]{Curve} object. Its content refers to a dataGenerator ID which denotes the \hyperref[class:dataGenerator]{DataGenerator} object that is used to generate the output on the y-axis of a \hyperref[class:curve]{Curve} in a \hyperref[class:plot2D]{2D Plot}.
-The \concept{yDataReference} data type is \code{SIdRef}. However, the valid values for the \concept{yDataReference} are restricted to the IDs of already defined \hyperref[class:dataGenerator]{DataGenerator objects}.
+The \concept{\element{yDataReference}} is a mandatory attribute of the \hyperref[class:curve]{Curve} object. Its content refers to a \hyperref[class:dataGenerator]{dataGenerator} which denotes the \hyperref[class:dataGenerator]{DataGenerator} object that is used to generate the output on the y-axis of a \hyperref[class:curve]{Curve} in a \hyperref[class:plot2D]{plot2D}.
+The \concept{\element{yDataReference}} data type is \code{SIdRef}. However, the valid values for the \concept{\element{yDataReference}} are restricted to the \hyperref[sec:id]{\element{id}} of already defined \hyperref[class:dataGenerator]{DataGenerators}.
 
 
 % ~~~ SURFACE ~~~
 \subsubsection{\element{Surface}}
 \label{class:surface}
-A \concept{surface} is a three-dimensional figure representing a (processed) simulation result (\fig{output}). \element{Surface} is a subclass of \hyperref[class:curve]{\element{Curve}} inheriting among others the elements \hyperref[sec:xDataReference]{\element{xDataReference}}, \hyperref[sec:yDataReference]{\element{yDataReference}}, \hyperref[sec:logX]{\element{logX}}, and \hyperref[sec:logY]{\element{logY}}.
+A \concept{Surface} is a three-dimensional figure representing a (processed) simulation result (\fig{output}). \concept{Surface} is a subclass of \hyperref[class:curve]{\element{Curve}} inheriting among others the elements \hyperref[sec:xDataReference]{\element{xDataReference}}, \hyperref[sec:yDataReference]{\element{yDataReference}}, \hyperref[sec:logX]{\element{logX}}, and \hyperref[sec:logY]{\element{logY}}.
  
-Creating an instance of the \concept{Surface} class requires the definition of data on three different axis. The aforementioned \hyperref[sec:xDataReference]{\element{xDataReference}} and \hyperref[sec:yDataReference]{\element{yDataReference}} attributes define the \hyperref[class:dataGenerator]{dataGenerators} for the x- and y-axis of a surface. In addition, the \hyperref[sec:zDataReference]{zDataReference} attribute defines the output for the z-axis. All axes might be logarithmic or not. This can be specified through the \hyperref[sec:logX]{logX}, \hyperref[sec:logY]{logY}, and the \hyperref[sec:logZ]{logZ} attributes in the according dataReference elements.
+Creating an instance of the \concept{Surface} class requires the definition of data on three different axis. The aforementioned \hyperref[sec:xDataReference]{\element{xDataReference}} and \hyperref[sec:yDataReference]{\element{yDataReference}} attributes define the \hyperref[class:dataGenerator]{dataGenerators} for the x- and y-axis of a surface. In addition, the \hyperref[sec:zDataReference]{\element{zDataReference}} attribute defines the output for the z-axis. All axes might be logarithmic or not. This can be specified through the \hyperref[sec:logX]{\element{logX}}, \hyperref[sec:logY]{\element{logY}}, and the \hyperref[sec:logZ]{\element{logZ}} attributes in the according dataReference elements.
 
 \tabtext{surface}{surface}
 
@@ -241,7 +237,7 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \end{table}
 
 \lsttext{surface}{surface}
-In the example a single surface is created. Results shown on the x-axis are generated by the data generator \code{dg1}, results on the y-axis by dataGenerator \code{dg2}, results on the z-axis by dataGenerator \code{dg3}. All used dataGenerators, i.e. \code{dg1}, \code{dg2} and \code{dg3}, must be defined in the \hyperref[sec:listOfDataGenerators]{listOfDataGenerators}.
+In the example a single surface is created. Results shown on the x-axis are generated by the data generator \code{dg1}, results on the y-axis by dataGenerator \code{dg2}, results on the z-axis by dataGenerator \code{dg3}. All used \hyperref[class:dataGenerator]{dataGenerators}, i.e. \code{dg1}, \code{dg2} and \code{dg3}, must be defined in the \hyperref[sec:listOfDataGenerators]{\element{listOfDataGenerators}}.
 \begin{myXmlLst}{The SED-ML \code{surface} element, defining the output showing the result of the referenced task}{lst:surface}
 <listOfSurfaces>
 	<surface id="s1" name="surface" xDataReference="dg1" yDataReference="dg2" zDataReference="dg3" 
@@ -252,13 +248,11 @@ In the example a single surface is created. Results shown on the x-axis are gene
 
 \paragraph*{\element{logZ}}
 \label{sec:logZ}
-\concept{logZ} is a required attribute of the \hyperref[class:surface]{Surface} class and defines whether or not the data output on the z-axis is logarithmic. The data type of \concept{logZ} is \code{boolean}.
-To make the output on the z-axis of a surface plot logarithmic, \concept{logZ} must be set to ``true'', as shown in the sample Listing~\ref{lst:surface}.
+\concept{\element{logZ}} is a required attribute of the \hyperref[class:surface]{Surface} class and defines whether or not the data output on the z-axis is logarithmic. The data type of \concept{\element{logZ}} is \code{boolean}. To make the output on the z-axis of a surface plot logarithmic, \concept{\element{logZ}} must be set to \code{true}, as shown in the sample Listing~\ref{lst:surface}.
 
 \paragraph*{\element{zDataReference}}
 \label{sec:zDataReference}
-The \concept{zDataReference} is a mandatory attribute of the \hyperref[class:surface]{Surface} object. Its content refers to a dataGenerator ID which denotes the \hyperref[class:dataGenerator]{DataGenerator} object that is used to generate the output on the z-axis of a \hyperref[class:plot3D]{3D Plot}.
-The \concept{zDataReference} data type is \code{SIdRef}. However, the valid values for the \concept{zDataReference} are restricted to the IDs of already defined \hyperref[class:dataGenerator]{DataGenerator objects}.
+The \concept{\element{zDataReference}} is a mandatory attribute of the \hyperref[class:surface]{Surface} object. Its content refers to a \hyperref[class:dataGenerator]{dataGenerator} which denotes the \hyperref[class:dataGenerator]{DataGenerator} object that is used to generate the output on the z-axis of a \hyperref[class:plot3D]{plot3D}. The \concept{\element{zDataReference}} data type is \hyperref[type:sidref]{\element{SIdRef}}. However, the valid values for the \concept{\element{zDataReference}} are restricted to the \hyperref[sec:id]{\element{id}} of already defined \hyperref[class:dataGenerator]{DataGenerators}.
 
 %% ~~~ DATASET ~~~
 \subsubsection{\element{DataSet}}
@@ -292,14 +286,14 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 
 \paragraph*{\element{label}}
 \label{sec:label}
-Each data set in a \hyperref[class:report]{Report} must have an unambiguous \concept{label}. A label is a human readable descriptor of a data set for use in a \hyperref[class:report]{report}. For example, for a tabular data set of time series results, the label could be the column heading. 
+Each data set in a \hyperref[class:report]{Report} must have an unambiguous \concept{\element{label}}. A \concept{\element{label}} is a human readable descriptor of a data set for use in a \hyperref[class:report]{report}. For example, for a tabular data set of time series results, the \concept{\element{label}} could be the column heading. 
 
 \paragraph*{\element{dataReference}}
 \label{sec:dataReference1}
-The \concept{dataReference} attribute contains the ID of a \concept{dataGenerator} element and as such represents a link to it. The data produced by that particular data generator fills the according dataSet in the \hyperref[class:report]{report}.
+The \concept{\element{dataReference}} attribute contains the ID of a \concept{dataGenerator} element and as such represents a link to it. The data produced by that particular \hyperref[class:dataGenerator]{dataGenerator} fills the according \hyperref[class:dataSet]{dataSet} in the \hyperref[class:report]{report}.
 
 \lsttext{dataSet}{dataSet}
-The example shows the definition of a dataSet. The referenced dataGenerator \element{dg1} must be defined in the listOfDataGenerators.
+The example shows the definition of a dataSet. The referenced dataGenerator \element{dg1} must be defined in the \hyperref[sec:listOfDataGenerators]{\element{listOfDataGenerators}}.
 \begin{myXmlLst}{The SED-ML \code{dataSet} element, defining a data set containing the result of the referenced task}{lst:dataSet}
 <listOfDataSets>
 	<dataSet id="d1" name="v1 over time" dataReference="dg1" label="_1">
