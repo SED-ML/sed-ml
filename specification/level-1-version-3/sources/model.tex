@@ -316,15 +316,15 @@ The example in Listing~\ref{lst:changeAttribute} shows the update of the value o
 % ~~~ ComputeChange ~~~
 \subsubsection{\element{ComputeChange}}
 \label{class:computeChange}
-The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any element or attribute of a model addressable by an XPath expression, based on a calculation (\fig{computeChange}).
+The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any element or attribute of a \hyperref[class:model]{Model} addressable by an \hyperref[sec:xpath]{XPath} expression, based on a calculation (\fig{computeChange}).
 
 \sedfig[width=0.85\textwidth]{images/uml/computeChange}{The \code{ComputeChange} class}{fig:computeChange}
 
-The computation can use the value of \hyperref[class:variable]{variables} from any model defined in the simulation experiment. Those \hyperref[class:variable]{variables} need to be defined, and can then be addressed by their \hyperref[sec:id]{\element{id}}. A \hyperref[class:variable]{variable} used in a \concept{ComputeChange} must carry a \hyperref[sec:modelReference]{\element{modelReference}} attribute but no \hyperref[sec:taskReference]{\element{taskReference}} attribute (\fig{computeChange}).
+The mathematical expression for the change is specified using the required \hyperref[sec:math]{\element{math}} attribute data type \hyperref[type:mathml]{\element{MathML}}. If used as an element of the \concept{ComputeChange} class, it computes the change of the element or attribute addressed by the \hyperref[sec:changeTarget]{target} attribute.
 
-To carry out the calculation it may be necessary to introduce additional parameters, that are not defined in any of the models used by the experiment. This is done through the \hyperref[class:parameter]{parameter} class, and such parameters are thereafter refered to by their \hyperref[sec:id]{\element{id}}. 
+The computation can use the value of \hyperref[class:variable]{Variables} from any model defined in the simulation experiment via the optional element \hyperref[sec:listOfVariables]{\element{listOfVariables}}. Those \hyperref[class:variable]{variables} need to be defined, and can then be addressed by their respective \hyperref[sec:id]{\element{id}}. A \hyperref[class:variable]{Variable} used in a \concept{ComputeChange} must carry a \hyperref[sec:modelReference]{\element{modelReference}} attribute but no \hyperref[sec:taskReference]{\element{taskReference}} attribute (\fig{computeChange}).
 
-The mathematical expression for the change is specified using the \hyperref[sec:math]{\element{math}} attribute. The computed new value is hereby described by a mathematical expression using \hyperref[sec:mathML]{MathML}.
+To carry out the calculation it may be necessary to introduce additional \hyperref[class:parameter]{Parameters} via the optional element \hyperref[sec:listOfParameters]{\element{listOfParameters}}, that are not defined in any of the \hyperref{class:model}[Models] used in the simulation experiment. Such \hyperref[class:parameter]{Parameters} are thereafter refered to by their \hyperref[sec:id]{\element{id}}. 
 
 Note that where a \concept{ComputeChange} refers to another model, that model is not allowed to be modified by \concept{ComputeChange}s which directly or indirectly refer to this model. In other words, cycles in the definitions of computed changes are prohibited, since then the new values would not be well defined.
 
@@ -355,10 +355,6 @@ math &\refpage{sec:math}\\
 \caption{\tabcap{computeChange}}
 \label{tab:computeChange}
 \end{table}
-
-\paragraph{\element{math}}
-\label{sec:math}
-The \concept{\element{math}} element of data type \hyperref[type:mathml]{\element{MathML}} encodes mathematical expressions. If used as an element of the \concept{ComputeChange} class, it computes the change of the element or attribute addressed by the \hyperref[sec:changeTarget]{target} attribute.
 
 \lsttext{computeChange}{computeChange}
 

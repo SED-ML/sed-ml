@@ -12,7 +12,7 @@ Primitive data types comprise the set of data types used in SED-ML classes. Most
 
 A few additional primitive types are defined by SED-ML itself: \hyperref[type:id]{\element{ID}}, \hyperref[type:sid]{\element{SId}}, \hyperref[type:sidref]{\element{SIdRef}}, \hyperref[type:xpath]{\element{XPath}}, \hyperref[type:mathml]{\element{MathML}}, \hyperref[type:anyURI]{\element{anyURI}}, \hyperref[type:numlsid]{\element{NuMLSId}}, and \hyperref[type:numlsidref]{\element{NuMLSIdRef}}.
 
-\subsubsection{Type ID}
+\subsubsection[\element{ID}]{Type \element{ID}}
 \label{type:id}
 The XML Schema 1.0 type \concept{\element{ID}} is identical to the XML 1.0 type \element{ID}. The literal representation of this type consists of strings of characters restricted as summarized in Figure~\vref{fig:id}. For a detailed description see the SBML specification on type \concept{\element{ID}} \citep{HBH+10}.
 
@@ -29,7 +29,7 @@ The XML Schema 1.0 type \concept{\element{ID}} is identical to the XML 1.0 type 
   \label{fig:id}
 \end{figure}
 
-\subsubsection{Type SId}
+\subsubsection[\element{SId}]{Type \element{SId}}
 \label{type:sid}
 The type \concept{\element{SId}} is the type of the id attribute found on the majority of SED-ML components. \concept{\element{SId}} is a data type derived from \element{string}, but with restrictions about the characters permitted and the sequences in which those characters may appear. The definition is shown in Figure~\vref{fig:sid}. For a detailed description see the SBML specification on type \concept{\element{SId}} \citep{HBH+10}.
 
@@ -48,29 +48,29 @@ The type \concept{\element{SId}} is the type of the id attribute found on the ma
   \label{fig:sid}
 \end{figure}
 
-\subsubsection{Type SIdRef}
+\subsubsection[\element{SIdRef}]{Type \element{SIdRef}}
 \label{type:sidref}
 Type \concept{\element{SIdRef}} is used for all attributes that refer to identifiers of type \hyperref[type:sid]{\element{SId}} in a model. This type is derived from \hyperref[type:sid]{\element{SId}}, but with the restriction that the value of an attribute having type \concept{\element{SIdRef}} must equal the value of some \hyperref[type:sid]{\element{SId}} attribute. In other words, a \concept{\element{SIdRef}} value must be an existing identifier.
 
 As with \hyperref[type:sid]{\element{SId}}, the equality of \concept{\element{SIdRef}} values is determined by exact character sequence match; i.e., comparisons of these identifiers must be performed in a case-sensitive manner.
 
-\subsubsection{Type XPath}
+\subsubsection[\element{XPath}]{Type \element{XPath}}
 \label{type:xpath}
 Type \concept{\element{XPath}} is used to identify nodes and attributes within an XML representation. \concept{\element{XPath}} in SED-ML is a XPath version 1 expression which can be used to unambiguously identify an element or attribute in an XML file.
 
-\subsubsection{Type MathML}
+\subsubsection[\element{MathML}]{Type \element{MathML}}
 \label{type:mathml}
 Type \concept{\element{MathML}} is used to describe mathematical expression in MathML. The concept of MathML and the allowed subset of MathML on a \concept{\element{MathML}} attribute is described in Section~\ref{sec:mathML}.
 
-\subsubsection{Type anyURI}
+\subsubsection[\element{anyURI}]{Type \element{anyURI}}
 \label{type:anyURI}
 Type \code{anyURI} is used to reference models, reference data files, specify the language of referenced models, for referencing implicit model variables and in annotations. For a description of the uses of \code{anyURI} see Section~\ref{sec:uriScheme}.
 
-\subsubsection{Type NuMLSId}
+\subsubsection[\element{NuMLSId}]{Type \element{NuMLSId}}
 \label{type:numlsid}
 The type \concept{\element{NuMLSId}} is the type of the \element{id} attribute found on NuML components. \concept{\element{NuMLSId}} is a data type derived from \element{string}, with the same restrictions about the characters permitted and the sequences in which those characters may appear as \hyperref[type:sid]{SId}. The concept of NuML is described in Section~\ref{sec:numl}.
 
-\subsubsection{Type NuMLSIdRef}
+\subsubsection[\element{NuMLSIdRef}]{Type \element{NuMLSIdRef}}
 \label{type:numlsidref}
 Type \concept{\element{NuMLSIdRef}} is used for all attributes that refer to identifiers of type \hyperref[type:numlsid]{\element{NuMLSId}} in a model. This type is derived from \hyperref[type:numlsid]{\element{NuMLSId}}, but with the restriction that the value of an attribute having type \concept{\element{NuMLSIdRef}} must equal the value of some \hyperref[type:numlsid]{\element{NuMLSId}} attribute. In other words, a \concept{\element{NuMLSIdRef}} value must be an existing NuML identifier.
 
@@ -109,17 +109,17 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \end{table}
 
 % ~~~ META ID ~~~
-\subsubsection{\element{metaid}}
+\subsubsection*{\element{metaid}}
 \label{sec:metaid}
 The main purpose of the \concept{\element{metaid}} attribute of data type \code{\hyperref[type:id]{ID}} is to attach semantic annotations in form of the \hyperref[class:annotation]{Annotation} class to SED-ML elements. The \concept{\element{metaid}} attribute is globally unique throughout the SED-ML document, i.e.\ the \element{metaid} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
 
 In order to set either \hyperref[class:notes]{Notes} or \hyperref[class:annotation]{Annotation} on a SED-ML class the \concept{\element{metaid}} is required.
 
-\subsubsection{\element{notes}}
+\subsubsection*{\element{notes}}
 \label{sec:notesElement}
 The optional \concept{\element{notes}} element stores \hyperref[class:notes]{Notes} on \hyperref[class:sedBase]{SedBase}.
 
-\subsubsection{\element{annotation}}
+\subsubsection*{\element{annotation}}
 \label{sec:annotationElement}
 The optional \concept{\element{annotation}} element stores \hyperref[class:annotation]{Annotation} on \hyperref[class:sedBase]{SedBase}.
 
@@ -244,7 +244,7 @@ In the example a \concept{parameter} \code{p1} with the value \code{40} is defin
 
 
 % ~~~ VALUE ~~
-\subsubsection{\element{value}}
+\subsubsection*{\element{value}}
 \label{sec:value}
 The \code{value} attribute of data type \code{double} is required for each \concept{Parameter}. Each \hyperref[class:parameter]{parameter} has exactly one fixed \concept{\element{value}}. 
 
@@ -329,7 +329,7 @@ In the example a variable \code{v1} is defined to compute a change on a model co
 
 
 % ~~~ TARGET ~~~
-\subsubsection{\element{target}}
+\subsubsection*{\element{target}}
 \label{sec:target}
 An instance of \hyperref[class:variable]{Variable} can refer to a model constituent inside a particular \hyperref[class:model]{model} through an \code{\hyperref[type:xpath]{XPath}} expression stored in the \concept{\element{target}} attribute. 
 
@@ -370,7 +370,7 @@ However, SED-ML also permits using identical identifiers and names as in the ref
 The XPath expression used in the \concept{\code{target}} attribute unambiguously leads to the particular place in the XML SBML model -- the species is to be found in the \emph{sbml} element, and there inside the \emph{listOfSpecies} (Listing~\vref{lst:sbmlModel}). 
 
 % ~~~ SYMBOL ~~~
-\subsubsection{\element{symbol}}
+\subsubsection*{\element{symbol}}
 \label{sec:symbol}
 \concept{Symbols} are predefined, implicit variables. \concept{Symbols} can be used in a SED-ML file by referring to the defined URNs representing that variable's concept. The notion of implicit variables is explained in Section~\ref{sec:implicitVariable} on \refpage{sec:implicitVariable}.
 
@@ -417,6 +417,12 @@ Listing \ref{lst:name} extends the model definition in \lst{id} by a model \conc
 </model>
 \end{myXmlLst}
 
+
+% ~~~ MATH ~~~
+\subsubsection{\element{math}}
+\label{sec:math}
+Some classes in SED-ML have a mandatory element \concept{\element{math}} of data type \hyperref[type:mathml]{\element{MathML}} to encode mathematical expressions. Examples are the \hyperref[class:computeChange]{ComputeChange} for pre-processing of \hyperref[class:model]{Models} or \hyperref[class:dataGenerator]{DataGenerator} for post-processing of \hyperref[class:task]{Task} results.
+The available subset of mathematical functions and elements which can be used in the \concept{\element{math}} in SED-ML are listed in Section~\hyperref[sec:mathML]{MathML}.
 
 % ~~~ KISAOID ~~~
 \subsubsection{\element{kisaoID}}
