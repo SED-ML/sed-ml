@@ -72,7 +72,7 @@ In the example the \hyperref[sec:listOfModels]{\element{listOfModels}} contains 
 \end{myXmlLst} 
 
 % ~~~ MODEL:LANGUAGE ~~~
-\subsubsection{\element{language}}
+\subsubsection*{\element{language}}
 \label{sec:language}
 The optional \concept{\element{language}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the format of the \hyperref[class:model]{model}. Example formats are SBML (\code{urn:sedml:language:sbml}) or CellML (\code{urn:sedml:language:cellml}). The supported languages are defined in the \hyperref[sec:languageURI]{language references}.
 
@@ -80,7 +80,7 @@ If it is not explicitly defined the default value for \concept{\element{language
 
 
 % ~~~ MODEL:SOURCE ~~~
-\subsubsection{\element{source}}
+\subsubsection*{\element{source}}
 \label{sec:model_source}
 To make a \hyperref[class:model]{model} available for the execution of a SED-ML file, the \concept{\element{source}} must be specified through either an URI or a reference to an \code{SId} of an existing \hyperref[class:model]{Model}. The URI should follow the proposed \hyperref[sec:uriScheme]{URI Scheme} for \hyperref[sec:modelURI]{Model references}.
 
@@ -107,7 +107,7 @@ An example for the definition of a model using an URL is given in Listing~\ref{l
 
 
 % ~~~ LIST OF CHANGES ~~
-\subsubsection{\element{listOfChanges}}
+\subsubsection*{\element{listOfChanges}}
 \label{sec:listOfChanges}
 The \concept{\element{listOfChanges}} (\fig{model}) contains the \hyperref[class:change]{changes} to be applied to a particular \hyperref[class:model]{model}. The \concept{listOfChanges} is optional and may contain zero to many \hyperref[class:change]{changes}.
 
@@ -166,15 +166,10 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 
 
 % ~~~ target ~~~
-\subsubsection{\element{target}}
+\subsubsection*{\element{target}}
 \label{sec:changeTarget}
 The \concept{\element{target}} attribute holds a valid \hyperref[sec:xpath]{XPath} expression of data type \hyperref[type:xpath]{\element{xpath}} pointing to the XML element or XML attribute that is to undergo the defined changes.
 
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% CHANGE SUBCLASSES
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{\element{Change} subclasses}
-\label{class:changeSubClasses}
 
 % ~~~ NewXML ~~~
 \subsubsection{\element{NewXML}}

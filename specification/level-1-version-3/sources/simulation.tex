@@ -48,94 +48,9 @@ algorithm & \refpage{class:algorithm}\\
 </listOfSimulations>
 \end{myXmlLst}
 
-\subsubsection{\element{algorithm}}
+\subsubsection*{\element{algorithm}}
 \label{sec:algorithm}
 The mandatory attribute \concept{\element{algorithm}} defines the simulation algorithms used for the execution of the \hyperref[class:simulation]{simulation}. The algorithms are defined via the \hyperref[class:algorithm]{Algorithm} class.
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% SIMULATION COMPONENTS
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{\element{Simulation} components}
-\label{class:simulationComponents}
-
-% ~~~ ALGORITHM ~~~
-\subsubsection{\element{Algorithm}}
-\label{class:algorithm}
-The \concept{Algorithm} class has a mandatory element \hyperref[sec:kisaoid]{\element{kisaoID}} which contains a \hyperref[sec:kisao]{KiSAO} reference to the particular simulation algorithm used in the \hyperref[class:simulation]{simulation}. In addition, the \concept{Algorithm} has an optional \hyperref[sec:listOfAlgorithmParameters]{\element{listOfAlgorithmParameters}}, a collection of \hyperref[class:algorithmParameter]{algorithmParameter}, which are used to parameterize the \concept{algorithm}.
-
-\tabtext{algorithm}{Algorithm}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{attribute} & \textbf{description}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-kisaoID & \refpage{sec:kisao}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-listOfAlgorithmParameters$^{o}$ & \refpage{class:algorithmParameter}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{algorithm}}
-\label{tab:algorithm}
-\end{table}
-
-The example given in Listing~\ref{lst:simulation}, completed by algorithm definitions results in the code given in Listing \ref{lst:algorithm}. In the example, for both simulations a algorithm is defined. In the first simulation \code{s1} a deterministic approach is used (Euler forward method), in the second simulation \code{s2} a stochastic approach is used (Stochsim nearest neighbor).
-
-\begin{myXmlLst}{The SED-ML \code{algorithm} element for two different time course simulations, defining two different algorithms. KISAO:0000030 refers to the \emph{Euler forward method} ; KISAO:0000021 refers to the \emph{StochSim nearest neighbor algorithm}.}{lst:algorithm}
-<listOfSimulations>
-	<uniformTimeCourse id="s1" name="time course simulation over 100 minutes" [..]>
-		<algorithm kisaoID="KISAO:0000030" />
-	</uniformTimeCourse>
-	<uniformTimeCourse id="s2" name="time course definition for concentration of p" [..]>
-		<algorithm kisaoID="KISAO:0000021" />
-	</uniformTimeCourse>
-</listOfSimulations>
-\end{myXmlLst}
-
-
-% ~~~ LIST OF ALGORITHM PARAMETERS ~~~
-\paragraph{\element{listOfAlgorithmParameters}}
-\label{sec:listOfAlgorithmParameters}
-The \concept{\element{listOfAlgorithmParameters}} contains the settings for the simulation algorithm used in a \hyperref[class:simulation]{simulation} (\fig{simulation}). It may list several instances of the \hyperref[class:algorithmParameter]{AlgorithmParameter} class. The \concept{\element{listOfAlgorithmParameters}} is optional and may contain zero to many parameters.
-
-\lsttext{listOfAlgorithmParameters}{listOfAlgorithmParameters}
-\begin{myXmlLst}{SED-ML listOfAlgorithmParameters element}{lst:listOfAlgorithmParameters}
-<listOfAlgorithmParameters>
-	<algorithmParameter kisaoID="KISAO:0000211" value="23"/> 
-</listOfAlgorithmParameters>
-\end{myXmlLst}
-
-
-% ~~~ ALGORITHM PARAMETER ~~~
-\subsubsection{\element{AlgorithmParameter}}
-\label{class:algorithmParameter}
-The \concept{AlgorithmParameter} class allows to parameterize a particular simulation \hyperref[class:algorithm]{algorithm}. The set of possible parameters for a particular instance is determined by the algorithm that is referenced by the \element{kisaoID} of the enclosing \hyperref[class:algorithm]{algorithm} element (\fig{simulation}). Parameters of simulation algorithms are unambiguously referenced by the mandatory \hyperref[sec:kisaoid]{\element{kisaoID}} attribute. Their value is set in the mandatory \hyperref[sec:algorithmParameterValue]{\element{value}} attribute.
-
-\begin{myXmlLst}{The SED-ML \concept{\code{algorithmParameter}} element setting the parameter value for the simulation algorithm. \code{KISAO:0000032} refers to the \emph{explicit fourth-order Runge-Kutta method}; \code{KISAO:00000211} refers to the \emph{absolute tolerance}.}{lst:algorithmParameter}
-<algorithm kisaoID="KISAO:0000032"> 
-	<listOfAlgorithmParameters> 
-		<algorithmParameter kisaoID="KISAO:0000211" value="23"/> 
-	</listOfAlgorithmParameters> 
-</algorithm>
-\end{myXmlLst}
-
-
-\paragraph{\element{value}}
-\label{sec:algorithmParameterValue}
-The \concept{\element{value}} sets the value of the \hyperref[class:algorithmParameter]{AlgorithmParameter}.
-
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% SIMULATION SUBCLASSES
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{\element{Simulation} subclasses}
-\label{class:simulationSubClasses}
 
 
 %% ~~~ UNIFORM TIMECOURSE SIMULATION ~~~
@@ -289,3 +204,83 @@ algorithm & \refpage{class:algorithm}\\
 	</steadyState > 
 </listOfSimulations>
 \end{myXmlLst}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% SIMULATION COMPONENTS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{Simulation} components}
+\label{class:simulationComponents}
+
+% ~~~ ALGORITHM ~~~
+\subsubsection{\element{Algorithm}}
+\label{class:algorithm}
+The \concept{Algorithm} class has a mandatory element \hyperref[sec:kisaoid]{\element{kisaoID}} which contains a \hyperref[sec:kisao]{KiSAO} reference to the particular simulation algorithm used in the \hyperref[class:simulation]{simulation}. In addition, the \concept{Algorithm} has an optional \hyperref[sec:listOfAlgorithmParameters]{\element{listOfAlgorithmParameters}}, a collection of \hyperref[class:algorithmParameter]{algorithmParameter}, which are used to parameterize the \concept{algorithm}.
+
+\tabtext{algorithm}{Algorithm}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{attribute} & \textbf{description}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+kisaoID & \refpage{sec:kisao}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+listOfAlgorithmParameters$^{o}$ & \refpage{class:algorithmParameter}\\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{algorithm}}
+\label{tab:algorithm}
+\end{table}
+
+The example given in Listing~\ref{lst:simulation}, completed by algorithm definitions results in the code given in Listing \ref{lst:algorithm}. In the example, for both simulations a algorithm is defined. In the first simulation \code{s1} a deterministic approach is used (Euler forward method), in the second simulation \code{s2} a stochastic approach is used (Stochsim nearest neighbor).
+
+\begin{myXmlLst}{The SED-ML \code{algorithm} element for two different time course simulations, defining two different algorithms. KISAO:0000030 refers to the \emph{Euler forward method} ; KISAO:0000021 refers to the \emph{StochSim nearest neighbor algorithm}.}{lst:algorithm}
+<listOfSimulations>
+	<uniformTimeCourse id="s1" name="time course simulation over 100 minutes" [..]>
+		<algorithm kisaoID="KISAO:0000030" />
+	</uniformTimeCourse>
+	<uniformTimeCourse id="s2" name="time course definition for concentration of p" [..]>
+		<algorithm kisaoID="KISAO:0000021" />
+	</uniformTimeCourse>
+</listOfSimulations>
+\end{myXmlLst}
+
+
+% ~~~ LIST OF ALGORITHM PARAMETERS ~~~
+\paragraph{\element{listOfAlgorithmParameters}}
+\label{sec:listOfAlgorithmParameters}
+The \concept{\element{listOfAlgorithmParameters}} contains the settings for the simulation algorithm used in a \hyperref[class:simulation]{simulation} (\fig{simulation}). It may list several instances of the \hyperref[class:algorithmParameter]{AlgorithmParameter} class. The \concept{\element{listOfAlgorithmParameters}} is optional and may contain zero to many parameters.
+
+\lsttext{listOfAlgorithmParameters}{listOfAlgorithmParameters}
+\begin{myXmlLst}{SED-ML listOfAlgorithmParameters element}{lst:listOfAlgorithmParameters}
+<listOfAlgorithmParameters>
+	<algorithmParameter kisaoID="KISAO:0000211" value="23"/> 
+</listOfAlgorithmParameters>
+\end{myXmlLst}
+
+
+% ~~~ ALGORITHM PARAMETER ~~~
+\subsubsection{\element{AlgorithmParameter}}
+\label{class:algorithmParameter}
+The \concept{AlgorithmParameter} class allows to parameterize a particular simulation \hyperref[class:algorithm]{algorithm}. The set of possible parameters for a particular instance is determined by the algorithm that is referenced by the \element{kisaoID} of the enclosing \hyperref[class:algorithm]{algorithm} element (\fig{simulation}). Parameters of simulation algorithms are unambiguously referenced by the mandatory \hyperref[sec:kisaoid]{\element{kisaoID}} attribute. Their value is set in the mandatory \hyperref[sec:algorithmParameterValue]{\element{value}} attribute.
+
+\begin{myXmlLst}{The SED-ML \concept{\code{algorithmParameter}} element setting the parameter value for the simulation algorithm. \code{KISAO:0000032} refers to the \emph{explicit fourth-order Runge-Kutta method}; \code{KISAO:00000211} refers to the \emph{absolute tolerance}.}{lst:algorithmParameter}
+<algorithm kisaoID="KISAO:0000032"> 
+	<listOfAlgorithmParameters> 
+		<algorithmParameter kisaoID="KISAO:0000211" value="23"/> 
+	</listOfAlgorithmParameters> 
+</algorithm>
+\end{myXmlLst}
+
+
+\paragraph{\element{value}}
+\label{sec:algorithmParameterValue}
+The \concept{\element{value}} sets the value of the \hyperref[class:algorithmParameter]{AlgorithmParameter}.
+

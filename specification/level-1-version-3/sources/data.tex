@@ -39,7 +39,7 @@ listOfDataSources$^{o}$ & \refpage{sec:listOfDataSources}\\
 \end{table}
 
 % ~~~ SOURCE ~~~
-\subsubsection{\element{source}}
+\subsubsection*{\element{source}}
 \label{sec:data_source}
 Analog to how the \hyperref[sec:model_source]{\element{source}} attribute on the \SedModel is handled, this attribute provides a location of a data file. In order to resolve the \token{source} attribute, the same mechanisms are allowed as for \SedModel element: be it a local file system, a relative link or an online resource. In the \currentLV only source files encoded in either NuML or CSV are allowed, with NuML being the recommended data format.
 
@@ -63,13 +63,13 @@ CSVs are always two dimensional data files with the headers being of data type \
 
 
 % ~~~ DIMENSION DESCRIPTION ~~~
-\subsubsection{\element{dimensionDescription}}
+\subsubsection*{\element{dimensionDescription}}
 \label{sec:dimensionDescription}
 The \concept{\element{dimensionDescription}} contains a \hyperref[class:dimensionDescription]{DimensionDescription} object providing the dimension description of the source data file of the \hyperref[class:dataDescription]{DataDescription}.
 
 
 % ~~~ LIST OF DATA SOURCES ~~~
-\subsubsection{\element{listOfDataSources}}
+\subsubsection*{\element{listOfDataSources}}
 \label{sec:listOfDataSources}
 The \concept{\element{listOfDataSources}} contains one or more \SedDataSource elements that are then used in the remainder of the SED-ML document.
 

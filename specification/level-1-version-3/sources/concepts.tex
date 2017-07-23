@@ -1,9 +1,10 @@
 \pagebreak
-\section{Concepts used in SED-ML}
+\chapter{Concepts used in SED-ML}
+\label{chp:concepts}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % MATHML
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{MathML}
+\section{MathML}
 \label{sec:mathML}
 SED-ML encodes mathematical expressions using a subset of MathML 2.0 \citep{CIM+01}. MathML is an international standard for encoding mathematical expressions using XML. It is also used as a representation of mathematical expressions in other formats, such as SBML and CellML, two of the model languages supported by SED-ML. 
 
@@ -12,7 +13,7 @@ SED-ML files can use mathematical expressions to encode for example pre-processi
 SED-ML classes reference MathML expressions via attributes of data type \hyperref[type:mathml]{MathML}.
 
 % ~~~ MATHML ELEMENTS ~~~
-\subsubsection{MathML elements}
+\subsection{MathML elements}
 The allowed MathML in SED-ML is restricted to the following subset: 
 
 \begin{itemize}\setlength{\parskip}{-0.1ex}
@@ -55,12 +56,12 @@ The allowed MathML in SED-ML is restricted to the following subset:
 
 
 % ~~~ MATHML SYMBOLS ~~~
-\subsubsection{MathML symbols}
+\subsection{MathML symbols}
 All the operations listed above only operate on \emph{scalar} values. However, as one of SED-ML's aims is to provide post processing on the results of simulation experiments, this basic set needs to be extended by some aggregate functions. Therefore a defined set of MathML symbols that represent vector values are supported by SED-ML \currentLV. The only allowed symbols to be used in aggregate functions are the identifiers of variables defined in the listOfVariables of DataGenerators. These variables represent the data collected from the simulation experiment in the associated task. 
 
 
 % ~~~ MATHML FUNCTIONS ~~~
-\subsubsection{MathML functions}
+\subsection{MathML functions}
 The only aggregate functions available in SED-ML \currentLV are:
 
 \begin{itemize}\setlength{\parskip}{-0.1ex}
@@ -121,7 +122,7 @@ These represent the only exceptions. At this point SED-ML \currentLV does not de
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % URI SCHEME
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{URI scheme}  
+\section{URI scheme}  
 \label{sec:uriScheme}
 URIs are used in SED-ML as a mechanism
 \begin{itemize}
@@ -135,7 +136,7 @@ In addition, annotation of SED-ML elements should use a standardised URI \hyperr
 
 
 % ~~~ MODEL REFERENCES ~~~
-\subsubsection{Model references}
+\subsection{Model references}
 \label{sec:modelURI}
 The URI of a \hyperref[class:model]{model} should preferably point to a public, consistent location that provides the model description file. References to curated, open model bases are recommended, such as the BioModels Database. However, any resource registered with MIRIAM resources\footnote{\url{http://www.ebi.ac.uk/miriam/main/}} can easily be referenced.
 
@@ -149,7 +150,7 @@ An alternative means to obtain a model may be to provide a single resource conta
 
 
 % ~~~ DATA REFERENCES ~~~
-\subsubsection{Data references}
+\subsection{Data references}
 \label{sec:dataURI}
 One way for referencing a data file from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}. MIRIAM enables identification of a data resource by a predefined URN. 
 
@@ -159,7 +160,7 @@ An alternative means to obtain a data file may be to provide a single resource c
 
 
 % ~~~ LANGUAGE REFERENCES ~~~
-\subsubsection{Language references}
+\subsection{Language references}
 \label{sec:languageURI}
 The evaluation of a SED-ML document is required in order for software to decide whether or not it can be used in a particular simulation environment. One crucial criterion is the particular model representation language used to encode the \hyperref[class:model]{model}. A simulation software usually only supports a small subset of the representation formats available to model biological systems computationally. 
 
@@ -200,7 +201,7 @@ VCML (generic) & \code{urn:sedml:language:vcml} \\
 
 
 % ~~~ SYMBOLS ~~~
-\subsubsection{Symbols}
+\subsection{Symbols}
 \label{sec:implicitVariable}
 Some variables used in a simulation experiment are not explicitly defined in the model, but may be implicitly contained in it. For example, to plot a variable's behaviour over time, that variable is defined in an SBML model, whereas time is not explicitly defined. 
 
@@ -224,7 +225,7 @@ SBML & \code{urn:sedml:symbol:time} & Time in SBML is an intrinsic model variabl
 
 
 % ~~~ ANNOTATIONS ~~~
-\subsubsection{Annotation Scheme}
+\subsection{Annotation Scheme}
 \label{sec:annotations}
 When annotating SED-ML elements with semantic \hyperref[class:annotation]{annotation}s, the \concept{MIRIAM URI Scheme} should be used. In addition to providing the data type (e.\,g.\ PubMed) and the particular data entry inside that data type (e.\,g.\ \code{10415827}), the relation of the annotation to the annotated element should be described using the standardised \concept{biomodels.net qualifier}. The list of qualifiers, as well as further information about their usage, is available from \url{http://www.biomodels.net/qualifiers/}.
 
@@ -232,7 +233,7 @@ When annotating SED-ML elements with semantic \hyperref[class:annotation]{annota
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % XPATH
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{XPath}  
+\section{XPath}  
 \label{sec:xpath}
 XPath is a language for finding information in an XML document \citep{xpath:1999}. Within SED-ML \currentLV, XPath version 1 expressions are used to identify nodes and attributes within an XML representation of a biological model in the following ways:
 
@@ -263,7 +264,7 @@ xmlns:sbml=`http://www.sbml.org/sbml/level3/version1/core'
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% NUML
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{NuML}
+\section{NuML}
 \label{sec:numl}
 The Numerical Markup Language (NuML) aims to standardize the exchange and archiving of numerical results. NuML originates from the numerical aspects of the Systems Biology Results Markup Language (SBRML) with the aim of re-using it in multiple other standardization efforts.
 
@@ -274,7 +275,7 @@ Additional information including the specification is available from the project
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% KISAO
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{KiSAO}
+\section{KiSAO}
 \label{sec:kisao}
 The Kinetic Simulation Algorithm Ontology (KiSAO \citep{CWK+10}) is used in SED-ML to specify simulation \hyperref[class:algorithm]{algorithms} and \hyperref[class:algorithmParameter]{algorithmParameters}. KiSAO is a community-driven approach of classifying and structuring simulation approaches by model characteristics and numerical characteristics. The ontology is available in OWL format from \concept{BioPortal} at \url{http://purl.bioontology.org/ontology/KiSAO}. 
 
@@ -286,7 +287,7 @@ request one via \url{http://www.biomodels.net/kisao/}.
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% COMBINE ARCHIVE
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{COMBINE archive}
+\section{COMBINE archive}
 \label{sec:archive}
 
 A \concept{COMBINE archive} \citep{Bergmann2014} is a single file that supports the exchange of all the information necessary for a modeling and simulation experiment in biology. A COMBINE archive file is a ZIP container that includes a manifest file, listing the content of the archive, an optional metadata file adding information about the archive and its content, and the files describing the model. The content of a COMBINE Archive consists of files encoded in COMBINE standards whenever possible, but may include additional files defined by an Internet Media Type. Several tools that support the COMBINE Archive are available, either as independent libraries or embedded in modeling software.
@@ -299,7 +300,7 @@ COMBINE archives are the recommended means for distributing simulation experimen
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% RESOURCES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{SED-ML resources}
+\section{SED-ML resources}
 \label{sec:resources}
 
 Information on SED-ML can be found on \url{http://sed-ml.org}. The SED-ML XML Schema, the UML schema, SED-ML examples and additional information is available from the SED-ML github project at \url{https://github.com/sed-ml}.
