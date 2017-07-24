@@ -105,7 +105,10 @@ In this example a \hyperref[class:repeatedTask]{repeatedTask} which runs over an
 
 NOTE: This example produces three dimensional results (time, species concentration, multiple repeats). While SED-ML \currentLV does not include a way to post-processing these values. So it is left to the implementation on how to display them. One example would be to flatten the values by overlaying them onto the desired plot. 
 
-\sedfigX[scale=0.6]{examples/2d-parameter-scan/2d-parameter-scan}{The simulation result gained from the simulation description given in \lst{2d-parameter-scan}}{fig:2d-parameter-scan}
+\sedfigX[width=0.7\textwidth]{examples/2d-parameter-scan/results/2d-parameter-scan}{The simulation result gained from the simulation description given in \lst{2d-parameter-scan}}{fig:2d-parameter-scan}
+
+\sedfigX[width=0.7\textwidth]{examples/2d-parameter-scan/results/2d-parameter-scan_SEDMLWebTools}{The simulation result gained from the simulation description given in \lst{2d-parameter-scan}}{fig:2d-parameter-scan}
+
 
 \myXmlImport{SED-ML document implementing the one dimensional steady state parameter scan}
 {lst:2d-parameter-scan}
@@ -141,7 +144,6 @@ The \hyperref[class:output]{output} defined in the experiment consists of three 
 \label{example:leloup_cellml}
 The following example provides a SED-ML description for the simulation of the model based on the publication \citep{LeLoup1999}. Whereas the \hyperref[example:leloup_sbml]{previous example} used SBML to encode the simulation experiment, here the model is taken from the CellML Model Repository \citep{LLH+08}.
 
-The original model used in the simulation experiment is referred to using a URL (\url{http://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/@@rawfile/7606a47e222bc3b3d9117baa08d2e7246d67eedd/leloup_gonze_goldbeter_1999_a.cellml}).
 
 \sedfigX[scale=0.6]{examples/leloupCellML/leloupCellML}{The simulation result gained from the simulation description given in \lst{leloupCellML}}{fig:leloupCellML}
 
