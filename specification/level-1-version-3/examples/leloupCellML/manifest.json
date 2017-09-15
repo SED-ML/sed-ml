@@ -1,0 +1,26 @@
+{ "entries": [
+
+  { "location" : ".",
+    "format" : "http://identifiers.org/combine.specifications/omex",
+    "description" : "SED-ML L1V3 specification example.",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "manifest.json",
+    "format" : "http://purl.org/NET/mediatypes/application/json",
+    "description" : "Information to create archive metadata"
+  },
+  {
+    "location" : "leloupCellML.xml",
+    "format" : "http://identifiers.org/combine.specifications/sedml",
+    "master": true
+  },
+  {
+    "location" : "results/leloupCellML.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf"
+  }
+
+]}

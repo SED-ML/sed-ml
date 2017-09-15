@@ -7,11 +7,23 @@ import json
 import libcombine
 import pprint
 
-examples_dir = os.path.dirname(os.path.realpath(__file__))
-omex_dir = os.path.join(examples_dir, "./__omex__")
+EXAMPLES_DIR = os.path.dirname(os.path.realpath(__file__))
+OMEX_DIR = os.path.join(EXAMPLES_DIR, "./__omex__")
 
 # The following archives are created
-folders = ['2d-parameter-scan']
+ARCHIVES = [
+    'parameter-scan-2d',
+    'ikappab',
+    'leloupCellML',
+    'leloupSBML',
+    'oscli-nested-pulse',
+    'plotting-data',
+    'repeated-scan-oscli',
+    'repeated-steady-scan-oscli',
+    'repeated-stochastic-runs',
+    'repressilator',
+]
+
 
 def create_omex(folder, omex_file):
     """ Creates a combine archive from folder
@@ -24,6 +36,9 @@ def create_omex(folder, omex_file):
     print('Create OMEX:')
     print('\t', folder)
     print('*' * 100)
+
+    if not os.path.exists(folder):
+        raise IOError("Input folder does not exist:", folder)
 
     json_manifest = os.path.join(folder, 'manifest.json')
     print(json_manifest)
@@ -39,9 +54,6 @@ def create_omex(folder, omex_file):
         path = os.path.join(folder, location)
         format = entry['format']
         master = entry.get('master', False)
-        print(path, location, format, master)
-
-        print(type(path), type(location), type(format), type(master))
         archive.addFile(path, location, format, master)
 
         description = entry.get("description", None)
@@ -54,6 +66,7 @@ def create_omex(folder, omex_file):
 
             if description:
                 omex_d.setDescription(description)
+                print("Setting description:", description)
 
             if creators:
                 for c in creators:
@@ -127,10 +140,12 @@ def printArchive(fileName):
 
     archive.cleanUp()
 
+
 if __name__ == "__main__":
-    test_dir = os.path.join(examples_dir, folders[0])
-    test_omex = os.path.join(omex_dir, "{}.omex".format(folders[0]))
+    for archive_id in ARCHIVES:
+        archive_dir = os.path.join(EXAMPLES_DIR, archive_id)
+        omex_file = os.path.join(OMEX_DIR, "L1V3_{}.omex".format(archive_id))
 
-    create_omex(test_dir, test_omex)
-    printArchive(test_omex)
-
+        create_omex(archive_dir, omex_file)
+        printArchive(omex_file)
+        print('\n\n')

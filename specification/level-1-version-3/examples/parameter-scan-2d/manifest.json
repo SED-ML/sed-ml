@@ -10,7 +10,8 @@
   },
   {
     "location" : "manifest.json",
-    "format" : "http://purl.org/NET/mediatypes/application/json"
+    "format" : "http://purl.org/NET/mediatypes/application/json",
+    "description" : "Information to create archive metadata"
   },
   {
     "location" : "2d-parameter-scan.xml",
@@ -22,8 +23,19 @@
     "format" : "http://identifiers.org/combine.specifications/sbml"
   },
   {
-    "location" : "results/2d-parameter-scan_SEDML-WebTools.pdf",
-    "format" : "http://purl.org/NET/mediatypes/application/pdf"
+    "location" : "results/parameter-scan-2d.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "Plot2D SED-ML webtools"
+  },
+  {
+    "location" : "results/sedml-webtools/plot1.png",
+    "format" : "http://purl.org/NET/mediatypes/application/png",
+    "description": "Plot2D SED-ML webtools"
+  },
+  {
+    "location" : "results/sedml-webtools/report1.xml",
+    "format" : "http://identifiers.org/combine.specifications/numl",
+    "description": "Report SED-ML webtools"
   }
 
 ]}

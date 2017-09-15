@@ -1,0 +1,32 @@
+{ "entries": [
+
+  { "location" : ".",
+    "format" : "http://identifiers.org/combine.specifications/omex",
+    "description" : "SED-ML L1V3 specification example.",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "manifest.json",
+    "format" : "http://purl.org/NET/mediatypes/application/json",
+    "description" : "Information to create archive metadata"
+  },
+  {
+    "location" : "results/rep_post.png",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "Plot2D SED-ML webtools"
+  },
+  {
+    "location" : "results/rep_pre.png",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "Plot2D SED-ML webtools"
+  },
+  {
+    "location" : "results/rep_tc.png",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "Plot2D SED-ML webtools"
+  }
+
+]}
