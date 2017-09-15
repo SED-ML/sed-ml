@@ -15,7 +15,7 @@
   },
   {
     "location" : "leloupCellML.xml",
-    "format" : "http://identifiers.org/combine.specifications/sedml",
+    "format" : "http://identifiers.org/combine.specifications/sed-ml",
     "master": true
   },
   {

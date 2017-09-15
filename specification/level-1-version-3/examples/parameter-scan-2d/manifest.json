@@ -14,7 +14,7 @@
     "description" : "Information to create archive metadata"
   },
   {
-    "location" : "2d-parameter-scan.xml",
+    "location" : "parameter-scan-2d.xml",
     "format" : "http://identifiers.org/combine.specifications/sed-ml",
     "master": true
   },
