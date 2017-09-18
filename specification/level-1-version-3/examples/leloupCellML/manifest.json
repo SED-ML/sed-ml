@@ -11,16 +11,28 @@
   {
     "location" : "manifest.json",
     "format" : "http://purl.org/NET/mediatypes/application/json",
-    "description" : "Information to create archive metadata"
+    "description" : "Information to create archive metadata",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
   },
   {
     "location" : "leloupCellML.xml",
     "format" : "http://identifiers.org/combine.specifications/sed-ml",
-    "master": true
+    "master": true,
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
   },
   {
     "location" : "results/leloupCellML.pdf",
-    "format" : "http://purl.org/NET/mediatypes/application/pdf"
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
   }
 
 ]}

@@ -11,22 +11,38 @@
   {
     "location" : "manifest.json",
     "format" : "http://purl.org/NET/mediatypes/application/json",
-    "description" : "Information to create archive metadata"
+    "description" : "Information to create archive metadata",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
   },
   {
     "location" : "results/rep_post.png",
     "format" : "http://purl.org/NET/mediatypes/application/pdf",
-    "description": "Plot2D SED-ML webtools"
+    "description": "Plot2D SED-ML webtools",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
   },
   {
     "location" : "results/rep_pre.png",
     "format" : "http://purl.org/NET/mediatypes/application/pdf",
-    "description": "Plot2D SED-ML webtools"
+    "description": "Plot2D SED-ML webtools",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
   },
   {
     "location" : "results/rep_tc.png",
     "format" : "http://purl.org/NET/mediatypes/application/pdf",
-    "description": "Plot2D SED-ML webtools"
+    "description": "Plot2D SED-ML webtools",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
   }
 
 ]}
