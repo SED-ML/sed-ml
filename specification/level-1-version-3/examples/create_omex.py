@@ -12,12 +12,14 @@ OMEX_DIR = os.path.join(EXAMPLES_DIR, "./__omex__")
 
 # The following archives are created
 ARCHIVES = [
-    'parameter-scan-2d',
     'ikappab',
-    'leloupCellML',
-    'leloupSBML',
+    'leloup-cellml',
+    'leloup-sbml',
     'oscli-nested-pulse',
+    'parameter-scan-2d',
     'plotting-data',
+    'reading-data-csv',
+    'reading-data-numl',
     'repeated-scan-oscli',
     'repeated-steady-scan-oscli',
     'repeated-stochastic-runs',
@@ -40,6 +42,10 @@ def create_omex(folder, omex_file):
     if not os.path.exists(folder):
         raise IOError("Input folder does not exist:", folder)
 
+    # delete the old omex file
+    if os.path.exists(omex_file):
+        os.remove(omex_file)
+
     json_manifest = os.path.join(folder, 'manifest.json')
     print(json_manifest)
     with open(json_manifest, "r") as f:
@@ -49,6 +55,7 @@ def create_omex(folder, omex_file):
 
     time_now = libcombine.OmexDescription.getCurrentDateAndTime()
     archive = libcombine.CombineArchive()
+
     for entry in json_entries:
         location = entry['location']
         path = os.path.join(folder, location)
@@ -79,11 +86,9 @@ def create_omex(folder, omex_file):
 
             archive.addMetadata(location, omex_d)
 
-    # delete the old omex file
-    if os.path.exists(omex_file):
-        os.remove(omex_file)
 
     archive.writeToFile(omex_file)
+    archive.cleanUp()
     print('Archive created:', omex_file)
 
 

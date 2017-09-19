@@ -63,9 +63,6 @@ In this section an introductory example is given how simulation experiments can 
 
 The repressilator is a synthetic oscillating network of transcription regulators in Escherichia coli. The network is composed of the three repressor genes Lactose Operon Repressor (lacI), Tetracycline Repressor (tetR) and Repressor CI (cI), which code for proteins binding to the promoter of the other, blocking their transcription. The three inhibitions together in tandem, form a cyclic negative-feedback loop. To describe the interactions of the molecular species involved in the network, the authors built a simple mathematical model of coupled first-order differential equations. All six molecular species included in the network (three mRNAs, three repressor proteins) participated in creation (transcription/translation) and degradation processes. The model was used to determine the influence of the various parameters on the dynamic behavior of the system. In particular, parameter values were sought which induce stable oscillations in the concentrations of the system components. Oscillations in the levels of the three repressor proteins can be obtained by numerical integration. 
 
-\hl{TODO MK: add sample experiment to examples in appendix}
-\hl{TODO MK: create simulation results with tellurium and SED-ML webtools to show reproducibility}
-
 %% ~~ TIMECOURSE ~~
 \subsection{Time-course simulation}
 \label{sec:timecourse}
@@ -78,15 +75,22 @@ The first simulation experiment we run with the model reproduces the oscillation
  	\item{Plot the amount of \code{lacI}, \code{tetR} and \code{cI} against time in a 2D Plot.}
  \end{enumerate}
 
-Following those steps and performing the simulation in the simulation tools supporting SED-ML results in the output depicted in \fig{rep_tc}. \hl{TODO: legend and xaxis label missing, rerun with tellurium and SED-ML webtools.}
+Following those steps and performing the simulation in the simulation tools supporting SED-ML results in the output depicted in \fig{rep_tc}.
 
 \begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.6\textwidth]{examples/repressilator/rep_tc}
-	\caption{Time-course simulation of the repressilator model, imported from BioModels Database and simulated in COPASI. The number of repressor proteins lacI, tetR and cI is depicted.}
-	\label{fig:rep_tc}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{examples/repressilator/results/rep_tc}
+        \caption{Time-course simulation of the repressilator model. The number of repressor proteins lacI, tetR and cI is depicted. Simulation with SED-ML webtools.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{examples/placeholder}
+        \caption{Simulation with tellurium.}
+    \end{minipage}
+    \label{fig:rep_tc}
 \end{figure}
-
 
 %% ~~ PRE-PROCESSING ~~
 \subsection{Applying pre-processing}
@@ -105,11 +109,20 @@ Before simulation model parameters can be adjusted. When changing the parameter 
 \fig{rep_pre} shows the result of the simulation.
 
 \begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.7\textwidth]{examples/repressilator/rep_pre.png}
-	\caption{Time-course simulation of the repressilator model, imported from BioModels Database and simulated after modification of the initial parameter values of the \emph{protein copies per promoter} and the \emph{leakiness in protein copies per promoter}. The number of repressor proteins lacI, tetR and cI are depicted.}
-	\label{fig:rep_pre}
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{examples/repressilator/results/rep_pre}
+        \caption{Time-course simulation of the repressilator model, imported from BioModels Database and simulated after modification of the initial parameter values of the \emph{protein copies per promoter} and the \emph{leakiness in protein copies per promoter}. The number of repressor proteins lacI, tetR and cI are depicted. Simulation with SED-ML webtools.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{examples/placeholder}
+        \caption{Simulation with tellurium.}
+    \end{minipage}
+    \label{fig:rep_pre}
 \end{figure}
+
 
 %% ~~ POST-PROCESSING ~~
 \subsection{Applying post-processing}
@@ -125,9 +138,18 @@ The raw numerical output of the simulation steps may be subjected to data post-p
 \end{enumerate}
 
 \fig{rep_post} illustrates the result of the simulation after post-processing of the output data. 
-	\begin{figure}[ht]
-	\centering
-	\includegraphics[width=0.7\textwidth]{examples/repressilator/rep_post.png}
-	\caption{Time-course simulation of the repressilator model imported from BioModels Database and simulated with COPASI. Depicted is the normalized temporal evolution of lacI, tetR and cI in phase-plane.}
-	\label{fig:rep_post}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{examples/repressilator/results/rep_post}
+        \caption{Time-course simulation of the repressilator model imported from BioModels Database. Depicted is the normalized temporal evolution of lacI, tetR and cI in phase-plane. Simulation with SED-ML webtools.}
+    \end{minipage}\hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{examples/placeholder}
+        \caption{Simulation with tellurium.}
+    \end{minipage}
+    \label{fig:rep_post}
 \end{figure}

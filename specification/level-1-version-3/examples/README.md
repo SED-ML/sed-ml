@@ -6,7 +6,7 @@ The combine archives can be created from the updated examples
 by running the `create_omex.py` script. The omex files are stored in
 the `__omex__` folder.
 
-# Create Combine Archives
+## Create Combine Archives
 
 ```
 mkvirtualenv sedml-examples
@@ -14,3 +14,7 @@ mkvirtualenv sedml-examples
 
 ```
 
+## Specification
+The specification is importing parts of the information like the sedml files 
+for the SED-ML example listings. After changes to the archives make sure
+that the specification `latex` document is building.
