@@ -18,6 +18,16 @@
     ]
   },
   {
+    "location" : "repressilator.xml",
+    "format" : "http://identifiers.org/combine.specifications/sed-ml",
+    "master" : true,
+    "description": "Repressilator simulation experiment",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
     "location" : "results/rep_post.png",
     "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "Plot2D SED-ML webtools",

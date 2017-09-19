@@ -5,7 +5,9 @@
 \label{example:repressilator}
 This example lists the SED-ML corresponding to the motivational example in the introduction (Section~\ref{motivation:example}), which provides a description of the executed simulation experiment and the used repressilator model. 
 
-\hl{TODO: create and add SED-ML file and full repressilator archive}
+\myXmlImport{SED-ML document for example simulation experiment.}
+{lst:repressilator}
+{examples/repressilator/repressilator.xml}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % IKAPPAB
@@ -36,16 +38,16 @@ The \hyperref[class:dataDescription]{DataDescription} make it possible to work w
 This examples demonstrate the use of the \hyperref[class:dataDescription]{DataDescription} and \hyperref[class:dataSource]{DataSource} to load external data in SED-ML. 
 
 %\sedfigX[scale=0.6]{examples/reading-data-csv/results/reading-data-csv}{Loaded and plotted data from the simulation description given in \lst{reading-data-csv}}{fig:reading-data-csv}
-\begin{figure}
+\begin{figure}[ht]
     \centering
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/placeholder}
+        \includegraphics[width=1.0\textwidth]{examples/placeholder}
         \caption{Loaded and plotted data from the simulation description given in \lst{reading-data-csv} with SED-ML webtools.}
     \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/placeholder}
+        \includegraphics[width=1.0\textwidth]{examples/placeholder}
         \caption{Loaded and plotted data from the simulation description given in \lst{reading-data-csv} with tellurium.}
     \end{minipage}
     \label{fig:reading-data-csv}
@@ -60,16 +62,16 @@ This example demonstrates the use of the \hyperref[class:dataDescription]{DataDe
 
 %\sedfigX[scale=0.6]{examples/plotting-data/results/plotting-data}{The simulation result from the simulation description given in \lst{plotting-data}}{fig:plotting-data}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/plotting-data/results/plotting-data}
+        \includegraphics[width=1.0\textwidth]{examples/plotting-data/results/plotting-data}
         \caption{The simulation result from the simulation description given in \lst{plotting-data} with SED-ML webtools.}
     \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/placeholder}
+        \includegraphics[width=1.0\textwidth]{examples/placeholder}
         \caption{The simulation result from the simulation description given in \lst{plotting-data} with tellurium.}
     \end{minipage}
     \label{fig:plotting-data}
@@ -93,16 +95,16 @@ NOTE: This example produces three dimensional results (time, species concentrati
 
 %\sedfigX[scale=0.6]{examples/repeated-scan-oscli/results/repeated-scan-oscli}{The simulation result gained from the simulation description given in \lst{repeated-scan-oscli}}{fig:repeated-scan-oscli}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/repeated-scan-oscli/results/repeated-scan-oscli}
+        \includegraphics[width=1.0\textwidth]{examples/repeated-scan-oscli/results/repeated-scan-oscli}
         \caption{The simulation result gained from the simulation description given in \lst{repeated-scan-oscli} with SED-ML webtools.}
     \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/placeholder}
+        \includegraphics[width=1.0\textwidth]{examples/placeholder}
         \caption{The simulation result gained from the simulation description given in \lst{repeated-scan-oscli} with tellurium.}
     \end{minipage}
     \label{fig:repeated-scan-oscli}
@@ -120,14 +122,14 @@ In this example a \hyperref[class:repeatedTask]{repeatedTask} is used in combina
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/repeated-steady-scan-oscli/results/repeated-steady-scan-oscli}
+        \includegraphics[width=1.0\textwidth]{examples/repeated-steady-scan-oscli/results/repeated-steady-scan-oscli}
         \caption{The simulation result from the simulation description given in \lst{repeated-steady-scan-oscli} with SED-ML webtools.}
     \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/placeholder}
+        \includegraphics[width=1.0\textwidth]{examples/placeholder}
         \caption{The simulation result from the simulation description given in \lst{repeated-steady-scan-oscli} with tellurium.}
     \end{minipage}
     \label{fig:repeated-steady-scan-oscli}
@@ -149,14 +151,14 @@ NOTE: This example produces three dimensional results (time, species concentrati
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/repeated-stochastic-runs/results/repeated-stochastic-runs}
+        \includegraphics[width=1.0\textwidth]{examples/repeated-stochastic-runs/results/repeated-stochastic-runs}
         \caption{The simulation result from the simulation description given in \lst{repeated-stochastic-runs} with SED-ML webtools.}
     \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/placeholder}
+        \includegraphics[width=1.0\textwidth]{examples/placeholder}
         \caption{The simulation result from the simulation description given in \lst{repeated-stochastic-runs} with tellurium.}
     \end{minipage}
     \label{fig:repeated-stochastic-runs}
@@ -177,14 +179,14 @@ Note: In the example a \hyperref[class:functionalRange]{functionalRange} is used
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/oscli-nested-pulse/results/oscli-nested-pulse}
+        \includegraphics[width=1.0\textwidth]{examples/oscli-nested-pulse/results/oscli-nested-pulse}
         \caption{The simulation result from the simulation description given in \lst{oscli-nested-pulse} with SED-ML webtools.}
     \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/placeholder}
+        \includegraphics[width=1.0\textwidth]{examples/placeholder}
         \caption{The simulation result from the simulation description given in \lst{oscli-nested-pulse} with tellurium.}
     \end{minipage}
     \label{fig:oscli-nested-pulse}
@@ -205,14 +207,14 @@ NOTE: This example produces three dimensional results (time, species concentrati
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/parameter-scan-2d/results/parameter-scan-2d}
+        \includegraphics[width=1.0\textwidth]{examples/parameter-scan-2d/results/parameter-scan-2d}
         \caption{The simulation result gained from the simulation description given in \lst{parameter-scan-2d} with SED-ML webtools.}
     \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/placeholder}
+        \includegraphics[width=1.0\textwidth]{examples/placeholder}
         \caption{The simulation result gained from the simulation description given in \lst{parameter-scan-2d} with tellurium.}
     \end{minipage}
     \label{fig:parameter-scan-2d}
@@ -246,14 +248,14 @@ The \hyperref[class:output]{output} defined in the experiment consists of three 
 
 \begin{figure}[ht]
     \centering
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/leloup-sbml/results/leloup-sbml}
+        \includegraphics[width=1.0\textwidth]{examples/leloup-sbml/results/leloup-sbml}
         \caption{The simulation result gained from the simulation description given in \lst{leloup-sbml} with SED-ML webtools.}
     \end{minipage}\hfill
-    \begin{minipage}{0.45\textwidth}
+    \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/placeholder}
+        \includegraphics[width=1.0\textwidth]{examples/placeholder}
         \caption{The simulation result gained from the simulation description given in \lst{leloup-sbml} with tellurium.}
     \end{minipage}
     \label{fig:leloup-sbml}
