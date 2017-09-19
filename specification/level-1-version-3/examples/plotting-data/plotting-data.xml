@@ -79,14 +79,10 @@
     </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
-    <plot2D id="plot1" name="Time Course (Oscli)">
+    <plot2D id="timecourse_with_data" name="Time Course with Data (Oscli)">
       <listOfCurves>
         <curve id="curve1" logX="false" logY="false" xDataReference="time_1" yDataReference="S1_1" />
         <curve id="curve2" logX="false" logY="false" xDataReference="time_1" yDataReference="S2_1" />
-      </listOfCurves>
-    </plot2D>
-    <plot2D id="plot2" name="Data (Oscli)">
-      <listOfCurves>
         <curve id="curve3" logX="false" logY="false" xDataReference="dgDataTime" yDataReference="dgDataS1" />
       </listOfCurves>
     </plot2D>
