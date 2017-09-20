@@ -27,7 +27,7 @@
     ]
   },
   {
-    "location" : "results/ikappab.pdf",
+    "location" : "results/sedml_webtools/ikappab.pdf",
     "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "Plot2D SED-ML webtools",
     "creators" : [
@@ -36,7 +36,7 @@
     ]
   },
   {
-    "location" : "results/sedml-webtools/plot1.png",
+    "location" : "results/sedml_webtools/plot1.png",
     "format" : "http://purl.org/NET/mediatypes/application/png",
     "description": "Plot2D SED-ML webtools",
     "creators" : [
@@ -45,7 +45,7 @@
     ]
   },
   {
-    "location" : "results/sedml-webtools/plot2.png",
+    "location" : "results/sedml_webtools/plot2.png",
     "format" : "http://purl.org/NET/mediatypes/application/png",
     "description": "Plot2D SED-ML webtools",
     "creators" : [
@@ -54,7 +54,7 @@
     ]
   },
   {
-    "location" : "results/sedml-webtools/plot3.png",
+    "location" : "results/sedml_webtools/plot3.png",
     "format" : "http://purl.org/NET/mediatypes/application/png",
     "description": "Plot2D SED-ML webtools",
     "creators" : [
@@ -63,7 +63,7 @@
     ]
   },
   {
-    "location" : "results/sedml-webtools/plot4.png",
+    "location" : "results/sedml_webtools/plot4.png",
     "format" : "http://purl.org/NET/mediatypes/application/png",
     "description": "Plot2D SED-ML webtools",
     "creators" : [

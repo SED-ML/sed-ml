@@ -1,63 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created by libAntimony version v2.9.0 with libSBML version 5.14.1. -->
-<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
-  <model id="lorenz" name="lorenz">
-    <listOfParameters>
-      <parameter id="x" value="0.96259" constant="false"/>
-      <parameter id="sigma" value="10" constant="true"/>
-      <parameter id="y" value="2.07272" constant="false"/>
-      <parameter id="rho" value="28" constant="true"/>
-      <parameter id="z" value="18.65888" constant="false"/>
-      <parameter id="beta" value="2.67" constant="true"/>
-    </listOfParameters>
-    <listOfRules>
-      <rateRule variable="x">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <times/>
-            <ci> sigma </ci>
-            <apply>
-              <minus/>
-              <ci> y </ci>
-              <ci> x </ci>
-            </apply>
-          </apply>
-        </math>
-      </rateRule>
-      <rateRule variable="y">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <minus/>
-            <apply>
-              <times/>
-              <ci> x </ci>
-              <apply>
-                <minus/>
-                <ci> rho </ci>
-                <ci> z </ci>
-              </apply>
-            </apply>
-            <ci> y </ci>
-          </apply>
-        </math>
-      </rateRule>
-      <rateRule variable="z">
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-          <apply>
-            <minus/>
-            <apply>
-              <times/>
-              <ci> x </ci>
-              <ci> y </ci>
-            </apply>
-            <apply>
-              <times/>
-              <ci> beta </ci>
-              <ci> z </ci>
-            </apply>
-          </apply>
-        </math>
-      </rateRule>
-    </listOfRules>
-  </model>
-</sbml>
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version3" level="1" version="3">
+  <listOfSimulations>
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="15" numberOfPoints="2000">
+      <algorithm kisaoID="KISAO:0000019"/>
+    </uniformTimeCourse>
+  </listOfSimulations>
+  <listOfModels>
+    <model id="model1" language="urn:sedml:language:sbml.level-3.version-1" source="lorenz-model.xml"/>
+  </listOfModels>
+  <listOfTasks>
+    <task id="task1" modelReference="model1" simulationReference="sim1"/>
+  </listOfTasks>
+  <listOfDataGenerators>
+    <dataGenerator id="plot_0_0_0" name="task1.z">
+      <listOfVariables>
+        <variable id="task1_____z" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='z']" taskReference="task1" modelReference="model1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> task1_____z </ci>
+      </math>
+    </dataGenerator>
+    <dataGenerator id="plot_0_0_1" name="task1.x">
+      <listOfVariables>
+        <variable id="task1_____x" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='x']" taskReference="task1" modelReference="model1"/>
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <ci> task1_____x </ci>
+      </math>
+    </dataGenerator>
+  </listOfDataGenerators>
+  <listOfOutputs>
+    <plot2D id="plot_0">
+      <listOfCurves>
+        <curve id="plot_0__plot_0_0_0__plot_0_0_1" logX="false" logY="false" xDataReference="plot_0_0_0" yDataReference="plot_0_0_1"/>
+      </listOfCurves>
+    </plot2D>
+  </listOfOutputs>
+</sedML>

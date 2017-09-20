@@ -25,6 +25,11 @@ for filename in os.listdir(OMEX_DIR):
         print('Running SEDML Webtools:\n\t', output_path)
         print('-' * 80)
 
+        if "cellml" in  filename:
+            print("cellml archives not executed with SEDML webtools")
+            print("\t", filename)
+            continue
+
         files = {'file': open(input_path, 'rb')}
         response = requests.post(URL, files=files)
 

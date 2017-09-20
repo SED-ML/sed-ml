@@ -60,6 +60,9 @@ def create_omex(folder, omex_file):
     for entry in json_entries:
         location = entry['location']
         path = os.path.join(folder, location)
+        if not os.path.exists(path):
+            raise IOError("File does not exist at given location: {}".format(path))
+
         format = entry['format']
         master = entry.get('master', False)
         archive.addFile(path, location, format, master)

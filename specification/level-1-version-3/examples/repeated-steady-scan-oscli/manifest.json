@@ -35,9 +35,27 @@
     ]
   },
   {
-    "location" : "results/repeated-steady-scan-oscli.pdf",
+    "location" : "results/sedml_webtools/repeated-steady-scan-oscli.pdf",
     "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "Plot2D SED-ML webtools",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "results/sedml_webtools/plot1.png",
+    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "description": "Plot2D SED-ML webtools",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "results/tellurium/plot1.png",
+    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "description": "Plot2D tellurium",
     "creators" : [
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
       { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
