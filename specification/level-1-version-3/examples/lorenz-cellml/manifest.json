@@ -47,10 +47,29 @@
   {
     "location" : "results/opencor/lorenz-screenshot.png",
     "format" : "http://purl.org/NET/mediatypes/image/png",
-    "description": "OpenCor screenshot of simulation.",
+    "description": "OpenCOR screenshot of simulation.",
+    "creators" : [
+      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+    ]
+  },
+  {
+    "location" : "results/opencor/plot1.png",
+    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "description": "OpenCOR results.",
+    "creators" : [
+      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+    ]
+  },
+  {
+    "location" : "results/sedml_webtools/plot1.png",
+    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "description": "SED-ML webtools results.",
     "creators" : [
       { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
     ]
   }
+
 ]}

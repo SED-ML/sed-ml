@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created by libAntimony version v2.9.0 with libSBML version 5.14.1. -->
 <sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
   <model id="lorenz" name="lorenz">
     <listOfParameters>
-      <parameter id="x" value="0.96259" constant="false"/>
+      <parameter id="x" value="1" constant="false"/>
+      <parameter id="y" value="1" constant="false"/>
+      <parameter id="z" value="1" constant="false"/>
       <parameter id="sigma" value="10" constant="true"/>
-      <parameter id="y" value="2.07272" constant="false"/>
       <parameter id="rho" value="28" constant="true"/>
-      <parameter id="z" value="18.65888" constant="false"/>
-      <parameter id="beta" value="2.67" constant="true"/>
+      <parameter id="beta" value="2.66667" constant="true"/>
     </listOfParameters>
     <listOfRules>
       <rateRule variable="x">
