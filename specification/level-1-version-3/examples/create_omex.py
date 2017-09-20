@@ -13,8 +13,9 @@ OMEX_DIR = os.path.join(EXAMPLES_DIR, "./__omex__")
 # The following archives are created
 ARCHIVES = [
     'ikappab',
-    'leloup-cellml',
     'leloup-sbml',
+    'lorenz-cellml',
+    'lorenz-sbml',
     'oscli-nested-pulse',
     'parameter-scan-2d',
     'plotting-data',

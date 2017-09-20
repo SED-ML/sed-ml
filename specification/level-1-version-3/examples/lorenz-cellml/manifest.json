@@ -4,8 +4,8 @@
     "format" : "http://identifiers.org/combine.specifications/omex",
     "description" : "SED-ML L1V3 specification example.",
     "creators" : [
+      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
-      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
     ]
   },
   {
@@ -13,46 +13,46 @@
     "format" : "http://purl.org/NET/mediatypes/application/json",
     "description" : "Information to create archive metadata",
     "creators" : [
+      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
-      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
     ]
   },
   {
-    "location" : "repressilator.xml",
+    "location" : "lorenz.sedml",
     "format" : "http://identifiers.org/combine.specifications/sed-ml",
     "master" : true,
-    "description": "Repressilator simulation experiment",
+    "description": "Lorenz simulation experiment",
     "creators" : [
+      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
-      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
     ]
   },
   {
-    "location" : "results/rep_post.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
-    "description": "Plot2D SED-ML webtools",
+    "location" : "lorenz.rst",
+    "format" : "http://purl.org/NET/mediatypes/text/plain",
+    "description": "Documentation used to create PMR exposure page.",
     "creators" : [
+      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
-      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
     ]
   },
   {
-    "location" : "results/rep_pre.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
-    "description": "Plot2D SED-ML webtools",
+    "location" : "lorenz.cellml",
+    "format" : "http://identifiers.org/combine.specifications/sed-ml",
+    "description": "Lorenz CellML model.",
     "creators" : [
+      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
-      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
     ]
   },
   {
-    "location" : "results/rep_tc.png",
+    "location" : "results/opencor/lorenz-screenshot.png",
     "format" : "http://purl.org/NET/mediatypes/image/png",
-    "description": "Plot2D SED-ML webtools",
+    "description": "OpenCor screenshot of simulation.",
     "creators" : [
+      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
-      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
     ]
-  }
+  },
 
 ]}
