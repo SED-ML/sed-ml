@@ -12,12 +12,14 @@ import os
 import warnings
 import requests
 import traceback
-import tellurium as te
+
+from tellurium.sedml.tesedml import executeCombineArchive
 
 
 EXAMPLES_DIR = os.path.dirname(os.path.realpath(__file__))
 OMEX_DIR = os.path.join(EXAMPLES_DIR, "./__omex__")
 WEBTOOL_DIR = os.path.join(EXAMPLES_DIR, "./__sedml_webtools__")
+TELLURIUM_DIR = os.path.join(EXAMPLES_DIR, "./__tellurium__")
 URL = "http://sysbioapps.dyndns.org/SED-ML_Web_Tools/Home/SimulatePostArchive"
 
 
@@ -54,9 +56,10 @@ def run_tellurium(input_path, output_path):
     print('Running tellurium:\n\t', input_path)
     print('-' * 80)
 
+    filename, extension = os.path.splitext(os.path.basename(input_path))
+    workingDir = os.path.join(TELLURIUM_DIR, '_te_{}'.format(filename))
     try:
-        from tellurium.sedml.tesedml import executeCombineArchive
-        res = executeCombineArchive(input_path)
+        executeCombineArchive(input_path, workingDir=workingDir)
         # TODO: store with results https://github.com/sys-bio/tellurium/issues/207
     except Exception:
         warnings.warn("tellurium could not run: {}".format(input_path))
@@ -74,6 +77,7 @@ if __name__ == "__main__":
                 continue
 
             input_path = os.path.join(OMEX_DIR, filename)
-            output_path = os.path.join(WEBTOOL_DIR, filename)
-            run_sedml_webtools(input_path, output_path)
-            run_tellurium(input_path, output_path)
+            output_webtools = os.path.join(WEBTOOL_DIR, filename)
+            output_tellurium = os.path.join(TELLURIUM_DIR, filename)
+            # run_sedml_webtools(input_path, output_webtools)
+            run_tellurium(input_path, output_tellurium)

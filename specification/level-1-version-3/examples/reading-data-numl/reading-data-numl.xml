@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sedML level="1" version="3" xmlns="http://sed-ml.org/sed-ml/level1/version3">
-
   <listOfDataDescriptions>
     <dataDescription id="data_numl" name="Oscli Time Course Data (NuML)" source="./oscli.numl">
       <dimensionDescription>
@@ -20,7 +19,6 @@
       </listOfDataSources>
     </dataDescription>
   </listOfDataDescriptions>
-
   <listOfDataGenerators>
     <dataGenerator id="dgDataS1" name="S1 (data)">
       <listOfVariables>

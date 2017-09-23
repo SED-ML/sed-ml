@@ -19,7 +19,6 @@
       </listOfDataSources>
     </dataDescription>
   </listOfDataDescriptions>
-
   <listOfDataGenerators>
     <dataGenerator id="dgDataS1" name="S1 (data)">
       <listOfVariables>
@@ -38,7 +37,6 @@
       </math>
     </dataGenerator>
   </listOfDataGenerators>
-
   <listOfOutputs>
     <plot2D id="plot_csv" name="Data (Oscli)">
       <listOfCurves>
