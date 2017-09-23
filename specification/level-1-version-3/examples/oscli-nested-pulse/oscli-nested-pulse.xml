@@ -63,7 +63,7 @@
   <listOfDataGenerators>
     <dataGenerator id="time_1" name="time">
       <listOfVariables>
-        <variable id="time" name="time" taskReference="task1" target="time" />
+        <variable id="time" symbol="urn:sedml:symbol:time" taskReference="task1" />
       </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> time </ci>
