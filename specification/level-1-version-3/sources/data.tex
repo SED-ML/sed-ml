@@ -4,10 +4,9 @@
 \subsection{\element{DataDescription}}
 \label{class:dataDescription}
 
-The \concept{DataDescription} class (\fig{dataDescription}) references a file containing data points, along with a description on how to access that file, and what information to extract from it. 
+The \concept{DataDescription} class (\fig{dataDescription}) references a file containing data, along with a description on how to access that file, in what format it is and what information to extract from it. 
 
-The \concept{DataDescription} class introduces three attributes: the required attributes \hyperref[sec:id]{\element{id}} and  \hyperref[sec:data_source]{\code{source}} and the optional attribute \hyperref[sec:name]{\element{name}}. 
-Additionally two elements are defined: \hyperref[sec:dimensionDescription]{\code{dimensionDescription}} and \hyperref[sec:listOfDataSources]{\code{listOfDataSources}}. 
+The \concept{DataDescription} class introduces four attributes: the required attributes \hyperref[sec:id]{\element{id}} and  \hyperref[sec:data_source]{\code{source}} and the optional attributes \hyperref[sec:format]{\element{format}} and \hyperref[sec:name]{\element{name}}. Additionally two elements are defined: \hyperref[sec:dimensionDescription]{\code{dimensionDescription}} and \hyperref[sec:listOfDataSources]{\code{listOfDataSources}}. 
 
 \sedfig[width=0.8\textwidth]{images/uml/dataDescription}{The SED-ML DataDescription class}{fig:dataDescription}
 
@@ -24,6 +23,7 @@ id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 \midrule
 source & \refpage{sec:data_source}\\
+format$^{o}$ & \refpage{sec:format}\\
 \midrule
 \textbf{\subelements} & \textbf{\desc}\\
 \midrule
@@ -38,40 +38,33 @@ listOfDataSources$^{o}$ & \refpage{sec:listOfDataSources}\\
 \label{tab:dataDescription}
 \end{table}
 
-% ~~~ SOURCE ~~~
-\paragraph*{\element{source}}
-\label{sec:data_source}
-Analog to how the \hyperref[sec:model_source]{\element{source}} attribute on the \SedModel is handled, this attribute provides a location of a data file. In order to resolve the \token{source} attribute, the same mechanisms are allowed as for \SedModel element: be it a local file system, a relative link or an online resource. In the \currentLV only source files encoded in either NuML or CSV are allowed, with NuML being the recommended data format.
-
-In case of CSV as source encoding the file
-\begin{itemize}
-	\item must contain a header row which defines the ids
-	\item must use the comma "," as field separator
-	\item must use the dot "." as separator in numbers
-	\item may contain comment rows which start with "\#"
-	\item the dimensionDescription of the CSV dataDescription must be two dimensional and correspond to the content of the CSV file 
-\end{itemize}
-CSVs are always two dimensional data files with the headers being of data type \hyperref[type:numlsid]{\element{NuMLSId}}. Only CSV columns containing numerical data can be used in \hyperref[class:dataSource]{DataSource}.
-
 \lsttext{dataDescription}{dataDescription}
 \begin{myXmlLst}{SED-ML \code{dataDescription} element}{lst:dataDescription}
-<dataDescription id="Data1" name="Oscli Time Course Data" 
+<dataDescription id="Data1" name="Oscli Time Course Data" format="urn:sedml:format:numl"
 	source="http://svn.code.sf.net/p/libsedml/code/trunk/Samples/data/oscli.numl" >
     [...]
 </dataDescription>
 \end{myXmlLst} 
 
+% ~~~ SOURCE ~~~
+\paragraph*{\element{source}}
+\label{sec:data_source}
+The required \concept{\element{source}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the data file. Analog to how the \hyperref[sec:model_source]{\element{source}} attribute on the \SedModel is handled, this attribute provides a location of a data file. In order to resolve the \token{source} attribute, the same mechanisms are allowed as for \SedModel element: be it a local file system, a relative link, or an online resource.
+
+% ~~~ FORMAT ~~~
+\paragraph*{\element{format}}
+\label{sec:format}
+The optional \concept{\element{format}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the format of the \hyperref[class:dataDescription]{DataDescription}. Example formats are NuML (\code{urn:sedml:format:numl}) or CSV (\code{urn:sedml:format:csv}). The allowed formats are defined in the \hyperref[sec:dataFormatURI]{format references}. If it is not explicitly defined the default value for \concept{\element{format}} is \code{urn:sedml:format:numl}, referring to NuML representation of the data.
 
 % ~~~ DIMENSION DESCRIPTION ~~~
 \paragraph*{\element{dimensionDescription}}
 \label{sec:dimensionDescription}
 The \concept{\element{dimensionDescription}} contains a \hyperref[class:dimensionDescription]{DimensionDescription} object providing the dimension description of the source data file of the \hyperref[class:dataDescription]{DataDescription}.
 
-
 % ~~~ LIST OF DATA SOURCES ~~~
 \paragraph*{\element{listOfDataSources}}
 \label{sec:listOfDataSources}
-The \concept{\element{listOfDataSources}} contains one or more \SedDataSource elements that are then used in the remainder of the SED-ML document.
+The \concept{\element{listOfDataSources}} contains one or more \SedDataSource elements that are then used in the remainder of the SED-ML document. \SedDataSource extracts chunks out of the data file provided by the outer \SedDataDescription element. 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % DATA DESCRIPTION COMPONENTS
@@ -98,15 +91,12 @@ In the following example nested NuML \element{compositeDescription} with \token{
 </dimensionDescription>
 \end{myXmlLst} 
 
-% ? unclear how to write this down correctly, i.e. what is the data type / content of DimensionDescription.
-
-
 % ~~~ DATA SOURCE ~~~
 \subsubsection{\element{DataSource}}
 \label{class:dataSource}
-The \concept{DataSource} class (\fig{dataDescription}) extracts chunks out of the data file provided by the outer \SedDataDescription element. 
+The \concept{DataSource} class (\fig{dataDescription}) extracts chunks out of the data file provided by the outer \SedDataDescription element, e.g., columns out of a \hyperref[sec:dataFormatCSV]{CSV} file.
 
-The \concept{DataSource} class introduces three attributes: the required attribute \hyperref[sec:id]{\element{id}} and the optional attributes \hyperref[sec:name]{\element{name}}, \hyperref[sec:indexSet]{\element{indexSet}}, and \hyperref[sec:listOfSlices]{\code{listOfSlices}} (\fig{dataDescription}). 
+The \concept{DataSource} class introduces three attributes: the required attribute \hyperref[sec:id]{\element{id}} and the optional attributes \hyperref[sec:name]{\element{name}}, \hyperref[sec:indexSet]{\element{indexSet}}, and \hyperref[sec:listOfSlices]{\code{listOfSlices}} (\fig{dataDescription}).
 
 \tabtext{dataSource}{dataSource}
 
@@ -134,17 +124,41 @@ listOfSlices$^{o}$ & \refpage{sec:listOfSlices}\\
 \label{tab:dataSource}
 \end{table}
 
-Once the \SedDataSource elements are defined, they can be reused anywhere in the SED-ML Description. Specifically their \token{id} attribute can be referenced within the \element{listOfVariables} of \element{DataGenerators}, \element{computeChange} or \element{setValue} objects. Here an example that re-uses the data source \token{dataS1}:
+Once the \SedDataSource elements are defined, they can be reused anywhere in the SED-ML Description. Specifically their \token{id} attribute can be referenced within the \element{listOfVariables} of \element{DataGenerators}, \element{computeChange} or \element{setValue} objects. Here an example that references the \SedDataSource \token{dataS1}:
 
 \begin{myXmlLst}{}{lst:indexSource}
-<dataGenerator id="dgDataS1" name="S1 (data)">
-	<listOfVariables>
-		<variable id="varS1" modelReference="model1" target="#dataS1" />
-	</listOfVariables>
-	<math xmlns="http://www.w3.org/1998/Math/MathML">
-		<ci> varS1 </ci>
-	</math>
-</dataGenerator>
+
+<listOfDataDescriptions>
+  <dataDescription id="data1" name="data file" source="./test.csv" format="urn:sedml:format:csv">
+	    <dimensionDescription>
+            <compositeDescription indexType="integer" name="Index">
+              <compositeDescription indexType="string" name="ColumnIds">
+                <atomicDescription valueType="double" name="Values" />
+              </compositeDescription>
+            </compositeDescription>
+          </dimensionDescription>
+    
+    <listOfDataSources>
+      <dataSource id="dataS1">
+        <listOfSlices>
+          <slice reference="SpeciesIds" value="S1" />
+        </listOfSlices>
+      </dataSource>
+      <dataSource id="dataTime" indexSet="time" />
+    </listOfDataSources>
+  </dataDescription>
+</listOfDataDescriptions>
+<listOfDataGenerators>
+  <dataGenerator id="dgDataS1" name="S1 (data)">
+    <listOfVariables>
+	  <variable id="varS1" modelReference="model1" target="#dataS1" />
+    </listOfVariables>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <ci> varS1 </ci>
+    </math>
+  </dataGenerator>
+  ...
+</listOfDataGenerators>
 \end{myXmlLst} 
 
 This represents a change from \LoneVone and \LoneVtwo, in which a \token{taskReference} was always present for a \token{variable} in a data generator.
