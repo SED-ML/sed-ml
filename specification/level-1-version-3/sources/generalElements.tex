@@ -86,26 +86,27 @@ As with \hyperref[type:numlsid]{\element{NuMLSId}}, the equality of \concept{\el
 
 \concept{SEDBase} provides means to attach additional information on all other classes. That information can be specified by human readable \hyperref[class:notes]{Notes} or custom \hyperref[class:annotation]{Annotation}.
 
-\sedfig[width=0.7\textwidth]{images/uml/sedBase}{The SEDBase class}{fig:sedBase}
-
-\tabtext{sedbase}{SEDBase}
 \begin{table}[ht]
-\center
-\begin{tabular}{ll}
-
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid} \\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{SEDBase}}
-\label{tab:sedbase}
+    \begin{minipage}{0.45\textwidth}
+		\sedfig[width=1.0\textwidth]{images/uml/sedBase}{The SEDBase class}{fig:sedBase}
+	\end{minipage}%
+    \begin{minipage}{0.45\textwidth}
+    \centering
+	\begin{tabular}{ll}
+	\toprule
+	\textbf{\attribute} & \textbf{\desc}\\
+	\midrule
+	metaid$^{o}$ & \refpage{sec:metaid} \\
+	\midrule
+	\textbf{\subelements} & \textbf{\desc}\\
+	\midrule
+	notes$^{o}$ & \refpage{class:notes}\\
+	annotation$^{o}$ & \refpage{class:annotation}\\
+	\bottomrule
+	\end{tabular}
+	\caption{\tabcap{SEDBase}}
+	\label{tab:sedbase}
+	\end{minipage}
 \end{table}
 
 % ~~~ META ID ~~~
@@ -204,35 +205,34 @@ An \concept{Annotation} is considered a computer-processible piece of informatio
 The SED-ML \concept{Parameter} (\fig{parameter}) creates named parameters with a constant value.
 The \concept{Parameter} class introduces the required attributes \hyperref[sec:id]{\element{id}} and \hyperref[sec:value]{\element{value}}, and the optional attribute \hyperref[sec:name]{\element{name}}.
 
-\sedfig[width=0.3\textwidth]{images/uml/parameter}{The Parameter class}{fig:parameter}
-
-SED-ML allows the use of \concept{Parameters} wherever a mathematical expression is defined to compute a value (e.g.\ in \hyperref[class:computeChange]{ComputeChange}, \hyperref[class:functionalRange]{FunctionalRange} or \hyperref[class:dataGenerator]{DataGenerator}). The parameter definitions are local to the particular class defining them.
-
-A benefit of naming parameters rather than including numbers directly within the mathematical expression is that \hyperref[class:notes]{notes} and \hyperref[class:annotation]{annotations} can be associated with them.
-
-\tabtext{parameter}{parameter}
-
-\begin{table}[ht!]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid} \\
-id & \refpage{sec:id}\\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-value & \refpage{sec:value}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{parameter}}
-\label{tab:parameter}
+\begin{table}[ht]
+    \begin{minipage}{0.45\textwidth}
+		\sedfig[width=0.8\textwidth]{images/uml/parameter}{The Parameter class}{fig:parameter}
+	\end{minipage}%
+    \begin{minipage}{0.45\textwidth}
+    \centering
+	\begin{tabular}{ll}
+	\toprule
+	\textbf{\attribute} & \textbf{\desc}\\
+	\midrule
+	metaid$^{o}$ & \refpage{sec:metaid} \\
+	id & \refpage{sec:id}\\
+	name$^{o}$ & \refpage{sec:name}\\
+	\midrule
+	value & \refpage{sec:value}\\
+	\midrule
+	\textbf{\subelements} & \textbf{\desc}\\
+	\midrule
+	notes$^{o}$ & \refpage{class:notes}\\
+	annotation$^{o}$ & \refpage{class:annotation}\\
+	\bottomrule
+	\end{tabular}
+	\caption{\tabcap{parameter}}
+	\label{tab:parameter}
+	\end{minipage}
 \end{table}
+
+SED-ML allows the use of \concept{Parameters} wherever a mathematical expression is defined to compute a value (e.g.\, in \hyperref[class:computeChange]{ComputeChange}, \hyperref[class:functionalRange]{FunctionalRange} or \hyperref[class:dataGenerator]{DataGenerator}). The parameter definitions are local to the particular class defining them. A benefit of naming parameters rather than including numbers directly within the mathematical expression is that \hyperref[class:notes]{notes} and \hyperref[class:annotation]{annotations} can be associated with them.
 
 \lsttext{parameter}{parameter}
 In the example a \concept{parameter} \code{p1} with the value \code{40} is defined. 
@@ -246,8 +246,7 @@ In the example a \concept{parameter} \code{p1} with the value \code{40} is defin
 % ~~~ VALUE ~~
 \paragraph*{\element{value}}
 \label{sec:value}
-The \code{value} attribute of data type \code{double} is required for each \concept{Parameter}. Each \hyperref[class:parameter]{parameter} has exactly one fixed \concept{\element{value}}. 
-
+The \concept{\element{value}} attribute of data type \code{double} is required for each \hyperref[class:parameter]{Parameter}. Each \hyperref[class:parameter]{Parameter} has exactly one fixed \concept{\element{value}}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % VARIABLE
@@ -256,7 +255,36 @@ The \code{value} attribute of data type \code{double} is required for each \conc
 \label{class:variable}
 A \concept{Variable} (\fig{variable}) is a reference to an already existing entity, either to an existing object in one of the \hyperref[class:model]{Models} or to implicitly defined \hyperref[sec:symbol]{Symbols}. The \concept{Variable} class introduces the required attribute \hyperref[sec:id]{\element{id}}, the optional attribute \hyperref[sec:name]{\element{name}}, and the context dependent attributes \hyperref[sec:target]{\element{target}}, \hyperref[sec:symbol]{\element{symbol}}, \hyperref[sec:taskReferenceAttribute]{\element{taskReference}}, and \hyperref[sec:modelReferenceAttribute]{\element{modelReference}}.
 
-\sedfig[width=0.35\textwidth]{images/uml/variable}{The Variable class}{fig:variable}
+\begin{table}[ht]
+    \begin{minipage}{0.45\textwidth}
+		\sedfig[width=0.9\textwidth]{images/uml/variable}{The Variable class}{fig:variable}
+	\end{minipage}%
+    \begin{minipage}{0.45\textwidth}
+    \centering
+	\begin{tabular}{ll}
+	\toprule
+	\textbf{\attribute} & \textbf{\desc}\\
+	\midrule
+	metaid$^{o}$ & \refpage{sec:metaid}\\
+	id & \refpage{sec:id} \\
+	name$^{o}$ & \refpage{sec:name}\\
+	\midrule
+	target & \refpage{sec:target}\\
+	symbol & \refpage{sec:symbol}\\
+	\midrule
+	taskReference & \refpage{sec:taskReference}\\
+	modelReference & \refpage{sec:modelReference}\\
+	\midrule
+	\textbf{\subelements} & \textbf{\desc}\\
+	\midrule
+	notes$^{o}$ & \refpage{class:notes}\\
+	annotation$^{o}$ & \refpage{class:annotation}\\
+	\bottomrule
+	\end{tabular}
+	\caption{\tabcap{Variable}}
+	\label{tab:variable}
+	\end{minipage}
+\end{table}
 
 If the variable is defined through a reference to a model constituent, such as an SBML species, or to an entity within the SED-ML file itself, then the reference is specified using the \hyperref[sec:target]{\element{target}} attribute. If the variable is defined through a reference to a \hyperref[sec:implicitVariable]{Symbol}, rather than one explicitly appearing in the model, then the \hyperref[sec:symbol]{\element{symbol}} attribute is used. 
 
@@ -267,33 +295,6 @@ If the variable is defined through a reference to a model constituent, such as a
 	\item A \concept{Variable} element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \hyperref[sec:listOfVariables]{\element{listOfVariables}} inside a \hyperref[class:computeChange]{computeChange} element.
 	\item A \concept{Variable} element appearing within a \hyperref[class:functionalRange]{functionalRange} or \hyperref[class:setValue]{setValue} element must contain a \hyperref[sec:modelReference]{modelReference} if and only if it references a model variable.
 \end{itemize}
-
-\tabtext{variable}{Variable}
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-target & \refpage{sec:target}\\
-symbol & \refpage{sec:symbol}\\
-\midrule
-taskReference & \refpage{sec:taskReference}\\
-modelReference & \refpage{sec:modelReference}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{Variable}}
-\label{tab:variable}
-\end{table}
 
 \lsttext{variable}{variable}
 In the example a variable \code{v1} is defined to compute a change on a model constituent (referenced by the \hyperref[sec:target]{\element{target}} attribute on \hyperref[class:computeChange]{\element{computeChange}}). The value of \code{v1} corresponds with the value of the targeted model constituent referenced by the \code{target} attribute. The second variable \code{v2} is used inside a \hyperref[class:dataGenerator]{\element{dataGenerator}}. As the variable is \concept{time} as used in \code{task1}, the \hyperref[sec:symbol]{\element{symbol}} attribute is used to refer to the SED-ML URI for time.
@@ -450,7 +451,7 @@ SED-ML \concept{\element{listOf*}} elements serve as containers for a collection
 % ~~~ LIST OF PARAMETERS ~~~
 \subsubsection{\element{listOfParameters}}
 \label{sec:listOfParameters}
-All \hyperref[class:parameter]{Parameters} needed throughout the simulation experiment, whether to compute a change on a model prior to or during simulation (\hyperref[class:computeChange]{ComputeChange} and \hyperref[class:setValue]{SetValue}), to compute values in a \hyperref[class:functionalRange]{FunctionalRange}, or to set up a \hyperref[class:dataGenerator]{DataGenerator}, are defined inside a \concept{\element{listOfParameters}}. See \fig{computeChange} or \fig{dataGenerator}.
+All \hyperref[class:parameter]{Parameters} needed throughout the simulation experiment, whether to compute a change on a model prior to or during simulation (\hyperref[class:computeChange]{ComputeChange} and \hyperref[class:setValue]{SetValue}), to compute values in a \hyperref[class:functionalRange]{FunctionalRange}, or to set up a \hyperref[class:dataGenerator]{DataGenerator}, are defined inside a \concept{\element{listOfParameters}}. See \fig{sedChange} or \fig{dataGenerator}.
 
 \lsttext{listOfParameters}{listOfParameters}
 The element is optional and may contain zero to many parameters.
@@ -466,7 +467,7 @@ The element is optional and may contain zero to many parameters.
 % ~~~ LIST OF VARIABLES ~~~
 \subsubsection{\element{listOfVariables}}
 \label{sec:listOfVariables}
-SED-ML uses the \hyperref[class:variable]{Variable} concept to refer to existing entities inside a model. The container for all variables is  \concept{\element{listOfVariables}}. It includes all variables that need to be defined to either describe a change in the model by means of mathematical equations via \hyperref[class:computeChange]{ComputeChange} (\fig{computeChange} or to set up a \hyperref[class:dataGenerator]{DataGenerator} (\fig{dataGenerator}). The \concept{\element{listOfVariables}} is optional and may contain zero to many variables. 
+SED-ML uses the \hyperref[class:variable]{Variable} concept to refer to existing entities inside a model. The container for all variables is  \concept{\element{listOfVariables}}. It includes all variables that need to be defined to either describe a change in the model by means of mathematical equations via \hyperref[class:computeChange]{ComputeChange} (\fig{sedChange} or to set up a \hyperref[class:dataGenerator]{DataGenerator} (\fig{dataGenerator}). The \concept{\element{listOfVariables}} is optional and may contain zero to many variables. 
 
 \lsttext{listOfVariables}{listOfVariables}
 \begin{myXmlLst}{SED-ML listOfVariables element}{lst:listOfVariables}

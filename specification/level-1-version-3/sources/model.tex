@@ -142,7 +142,7 @@ Each \concept{Change} has a mandatory \hyperref[sec:changeTarget]{\element{targe
 
 \tabtext{change}{change}
 
-\begin{table}[h!]
+\begin{table}[ht!]
 \center
 \begin{tabular}{ll}
 \toprule
@@ -178,7 +178,7 @@ The \concept{\element{newXML}} element provides a piece of XML code (\fig{sedCha
 
 \tabtext{newXML}{newXML}
 
-\begin{table}[h!]
+\begin{table}[ht!]
 \center
 \begin{tabular}{ll}
 \toprule
@@ -320,7 +320,7 @@ The \concept{ComputeChange} class permits to change, prior to the experiment, th
 
 The mathematical expression for the change is specified using the required \hyperref[sec:math]{\element{math}} attribute data type \hyperref[type:mathml]{\element{MathML}}. If used as an element of the \concept{ComputeChange} class, it computes the change of the element or attribute addressed by the \hyperref[sec:changeTarget]{target} attribute.
 
-The computation can use the value of \hyperref[class:variable]{Variables} from any model defined in the simulation experiment via the optional element \hyperref[sec:listOfVariables]{\element{listOfVariables}}. Those \hyperref[class:variable]{variables} need to be defined, and can then be addressed by their respective \hyperref[sec:id]{\element{id}}. A \hyperref[class:variable]{Variable} used in a \concept{ComputeChange} must carry a \hyperref[sec:modelReference]{\element{modelReference}} attribute but no \hyperref[sec:taskReference]{\element{taskReference}} attribute (\fig{computeChange}).
+The computation can use the value of \hyperref[class:variable]{Variables} from any model defined in the simulation experiment via the optional element \hyperref[sec:listOfVariables]{\element{listOfVariables}}. Those \hyperref[class:variable]{variables} need to be defined, and can then be addressed by their respective \hyperref[sec:id]{\element{id}}. A \hyperref[class:variable]{Variable} used in a \concept{ComputeChange} must carry a \hyperref[sec:modelReference]{\element{modelReference}} attribute but no \hyperref[sec:taskReference]{\element{taskReference}} attribute (\fig{sedChange}).
 
 To carry out the calculation it may be necessary to introduce additional \hyperref[class:parameter]{Parameters} via the optional element \hyperref[sec:listOfParameters]{\element{listOfParameters}}, that are not defined in any of the \hyperref{class:model}[Models] used in the simulation experiment. Such \hyperref[class:parameter]{Parameters} are thereafter refered to by their \hyperref[sec:id]{\element{id}}. 
 
