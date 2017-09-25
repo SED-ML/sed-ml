@@ -6,7 +6,7 @@
 
 The \concept{DataDescription} class (\fig{dataDescription}) references a file containing data, along with a description on how to access that file, in what format it is and what information to extract from it. 
 
-The \concept{DataDescription} class introduces four attributes: the required attributes \hyperref[sec:id]{\element{id}} and  \hyperref[sec:data_source]{\code{source}} and the optional attributes \hyperref[sec:format]{\element{format}} and \hyperref[sec:name]{\element{name}}. Additionally two elements are defined: \hyperref[sec:dimensionDescription]{\code{dimensionDescription}} and \hyperref[sec:listOfDataSources]{\code{listOfDataSources}}. 
+The \concept{DataDescription} class introduces four attributes: the required attributes \hyperref[sec:id]{\element{id}} and  \hyperref[sec:data_source]{\code{source}} and the optional attributes \hyperref[sec:format]{\element{format}} and \hyperref[sec:name]{\element{name}}. In addition two optional elements are defined: \hyperref[sec:dimensionDescription]{\code{dimensionDescription}} and \hyperref[sec:listOfDataSources]{\code{listOfDataSources}}. 
 
 \sedfig[width=0.8\textwidth]{images/uml/dataDescription}{The SED-ML DataDescription class}{fig:dataDescription}
 
@@ -59,12 +59,12 @@ The optional \concept{\element{format}} attribute of data type \hyperref[type:an
 % ~~~ DIMENSION DESCRIPTION ~~~
 \paragraph*{\element{dimensionDescription}}
 \label{sec:dimensionDescription}
-The \concept{\element{dimensionDescription}} contains a \hyperref[class:dimensionDescription]{DimensionDescription} object providing the dimension description of the source data file of the \hyperref[class:dataDescription]{DataDescription}.
+The optional \concept{\element{dimensionDescription}} contains a \hyperref[class:dimensionDescription]{DimensionDescription} providing the dimension description of the data file.
 
 % ~~~ LIST OF DATA SOURCES ~~~
 \paragraph*{\element{listOfDataSources}}
 \label{sec:listOfDataSources}
-The \concept{\element{listOfDataSources}} contains one or more \SedDataSource elements that are then used in the remainder of the SED-ML document. \SedDataSource extracts chunks out of the data file provided by the outer \SedDataDescription element. 
+The optional \concept{\element{listOfDataSources}} contains zero or more \SedDataSource elements that are then used in the remainder of the SED-ML document. \SedDataSource extracts chunks out of the data file provided by the outer \SedDataDescription element. 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % DATA DESCRIPTION COMPONENTS

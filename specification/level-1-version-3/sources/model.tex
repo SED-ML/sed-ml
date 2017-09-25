@@ -132,7 +132,7 @@ The \concept{Change} class allows to describe changes applied to a \hyperref[cla
 	\item{Changes based on mathematical calculations (\hyperref[class:computeChange]{ComputeChange})} 
 \end{itemize}
 
-The \concept{Change} class is abstract and serves as the base class for different types of changes, the\ \hyperref[class:changeAttribute]{ChangeAttribute}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML}, and \hyperref[class:computeChange]{ComputeChange}.
+The \concept{Change} class is abstract and serves as the base class for different types of changes, the \hyperref[class:changeAttribute]{ChangeAttribute}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML}, and \hyperref[class:computeChange]{ComputeChange}.
 
 The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarget]{target} which defines the target of the change.
 
@@ -316,9 +316,7 @@ The example in Listing~\ref{lst:changeAttribute} shows the update of the value o
 % ~~~ ComputeChange ~~~
 \subsubsection{\element{ComputeChange}}
 \label{class:computeChange}
-The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any element or attribute of a \hyperref[class:model]{Model} addressable by an \hyperref[sec:xpath]{XPath} expression, based on a calculation (\fig{computeChange}).
-
-\sedfig[width=0.85\textwidth]{images/uml/computeChange}{The \code{ComputeChange} class}{fig:computeChange}
+The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any element or attribute of a \hyperref[class:model]{Model} addressable by an \hyperref[sec:xpath]{XPath} expression, based on a calculation (\fig{sedChange}).
 
 The mathematical expression for the change is specified using the required \hyperref[sec:math]{\element{math}} attribute data type \hyperref[type:mathml]{\element{MathML}}. If used as an element of the \concept{ComputeChange} class, it computes the change of the element or attribute addressed by the \hyperref[sec:changeTarget]{target} attribute.
 
