@@ -3,6 +3,7 @@ Creates the Combine Archives from the folders.
 """
 from __future__ import print_function, absolute_import
 import os
+import warnings
 import json
 import libcombine
 import pprint
@@ -27,14 +28,17 @@ ARCHIVES = [
     'repeated-steady-scan-oscli',
     'repeated-stochastic-runs',
     'repressilator',
+    'vanderpol-cellml',
+    'vanderpol-sbml',
 ]
 
 
-def create_omex(folder, omex_file):
+def create_omex(folder, omex_file, strict=True):
     """ Creates a combine archive from folder
 
     :param folder:
     :param omex_file:
+    :param strict: strict creation, raises Errors instead of warnings
     :return:
     """
     print('*' * 100)
@@ -63,7 +67,11 @@ def create_omex(folder, omex_file):
         location = entry['location']
         path = os.path.join(folder, location)
         if not os.path.exists(path):
-            raise IOError("File does not exist at given location: {}".format(path))
+            msg = "File does not exist at given location: {}".format(path)
+            if strict:
+                raise IOError(msg)
+            else:
+                warnings.warn(msg)
 
         format = entry['format']
         master = entry.get('master', False)
@@ -79,7 +87,7 @@ def create_omex(folder, omex_file):
 
             if description:
                 omex_d.setDescription(description)
-                print("Setting description:", description)
+                # print("Setting description:", description)
 
             if creators:
                 for c in creators:
@@ -157,6 +165,7 @@ if __name__ == "__main__":
         archive_dir = os.path.join(EXAMPLES_DIR, archive_id)
         omex_file = os.path.join(OMEX_DIR, "L1V3_{}.omex".format(archive_id))
 
-        create_omex(archive_dir, omex_file)
+        strict = True
+        create_omex(archive_dir, omex_file, strict=strict)
         printArchive(omex_file)
         print('\n\n')

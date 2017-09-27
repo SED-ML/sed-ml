@@ -37,7 +37,7 @@
     </dataGenerator>
     <dataGenerator id="yDataGenerator1_1">
       <listOfVariables>
-        <variable id="yVariable1_1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='x']" taskReference="task1" modelReference="model1"/>
+        <<variable id="yVariable1_1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='x']" taskReference="task1" modelReference="model1"/>
       </listOfVariables>
       <math xmlns="http://www.w3.org/1998/Math/MathML">
         <ci> yVariable1_1 </ci>
