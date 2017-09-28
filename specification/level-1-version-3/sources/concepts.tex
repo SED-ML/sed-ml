@@ -203,7 +203,7 @@ To specify the format of a \hyperref[class:dataDescription]{dataDescription}, a 
 
 If it is not explicitly defined the default value for \element{format} is \code{urn:sedml:format:numl}, referring to NuML representation of the data. However, the use of the \element{format} attribute is strongly encouraged.
 
-For additional information see the \hyperref[sec:format]{\element{format}} attribute on \hyperref[class:dataDescription]{DataDescription} and the description of individual formats below.
+For additional information see the \hyperref[sec:format]{\element{format}} attribute on \hyperref[class:dataDescription]{DataDescription} and the description of individual formats and their use in SED-ML below.
 
 \begin{table}[ht]
 \center
@@ -221,57 +221,70 @@ TSV & \code{urn:sedml:format:tsv} \\
 \label{tab:dataFormatURI}
 \end{table}
 
-\subsubsection{CSV (comma separated values)}
+\subsubsection{NuML (Numerical Markup Language)}
+\label{sec:dataFormatNUML}
+Data in the \concept{NuML} format (\code{urn:sedml:format:numl}) is defined via \code{resultComponents} with a single dataset corresponding to a single \code{resultComponent}. In the case that a \concept{NuML} file consists of multiple \code{resultComponents} the first \code{resultComponent} contains the data used in the \hyperref[class:dataDescription]{DataDescription}. There is currently no mechanism in SED-ML to reference the additional \code{resultComponents}.
+
+If a \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} is set on the \hyperref[class:dataDescription]{DataDescription}, than this \hyperref[sec:dimensionDescription]{\element{dimensionDescription}}{dimensionDescription} must be identical to the \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} of the \concept{NuML} file.
+
+\subsubsection{CSV (Comma Separated Values)}
 \label{sec:dataFormatCSV}
-The format \concept{CSV}: 
+Data in the \concept{CSV} format (\code{urn:sedml:format:csv}) must follow the following rules when used in combination with SED-ML: 
 
 \begin{itemize}
 	\item Each record is one line - Line separator may be LF (0x0A) or CRLF (0x0D0A), a line separator may also be embedded in the data (making a record more than one line but still acceptable).
     \item Fields are separated with commas.
     \item Embedded commas - Field must be delimited with double-quotes.
     \item Leading and trailing whitespace is ignored - Unless the field is delimited with double-quotes in that case the whitespace is preserved.
-    
     \item Embedded double-quotes - Embedded double-quote characters must be doubled, and the field must be delimited with double-quotes.
     \item Embedded line-breaks - Fields must be surounded by double-quotes.
     \item Always Delimiting - Fields may always be delimited with double quotes, the delimiters will be parsed and discarded by the reading applications.
 	\item The first record is the header record defining the unique column ids 
 	\item Lines starting with "\#" are treated as comment lines and ignored
-	\item Empty lines are allowed in the CSV and ignored
+	\item Empty lines are allowed and ignored
 	\item For numerical data the `.` decimal separator is used
 \end{itemize}
 
-Data files in \concept{CSV}s are always two dimensional data files {\element{NuMLSId}} 
-the dimensionDescription of the CSV dataDescription must be two dimensional and correspond to the content of the data file.
+A dataset in \concept{CSV} is always two dimensional data. When using data in the \concept{CSV} format, the \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} is required on the \hyperref[class:dataDescription]{DataDescription}. The {\element{dimensionDescription}} must consist of an outer \code{compositeDescription} with \code{indexType="integer"} which allows to reference the rows of the \concept{CSV} by index and a inner \code{compositeDescription} which allows to reference the columns of the \concept{CSV} by their column header id. Within the inner \code{compositeDescription} exactly one \code{atomicDescription} must exist. All data in the \concept{CSV} must have the same type  which is defined via the \element{valueType} on the \element{atomicDescription}.
 
-
-
-In the following example nested NuML \element{compositeDescription} with \token{time} spanning one dimension and \token{SpeciesIds} another dimension. This two dimensional space is then filled with \token{double} values representing concentrations.
-
-\begin{myXmlLst}{SED-ML \code{dimensionDescription} element}{lst:dimensionDescriptionCSV}
-# ./test.csv
+Below an example of the required \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} for a \concept{CSV} is provided. In the example the \code{time} and \code{S1} columns are read from the \concept{CSV} file
+\begin{myXmlLst}{Example CSV}{lst:exampleCSV}
+# ./example.csv
 time, S1, S2
 0.0, 10.0, 0.0
 0.1, 9.9, 0.1
 0.2, 9.8, 0.2
-...
+\end{myXmlLst}
 
+\begin{myXmlLst}{SED-ML \code{dimensionDescription} element for the example.csv}{lst:dimensionDescriptionCSV}
 
-<dataDescription id="datacsv" name="Oscli Time Course Data (CSV)" source="./oscli.csv" format="urn:sedml:format:csv">
-	    <dimensionDescription>
-            <compositeDescription indexType="integer" name="Index">
-              <compositeDescription indexType="string" name="ColumnIds">
-                <atomicDescription valueType="double" name="Values" />
-              </compositeDescription>
-            </compositeDescription>
-          </dimensionDescription>
-          ...
-          
+<dataDescription id="datacsv" name="Example CSV dataset" source="./example.csv" format="urn:sedml:format:csv">
+  <dimensionDescription>
+    <compositeDescription indexType="integer" name="Index">
+      <compositeDescription indexType="string" name="ColumnIds">
+        <atomicDescription valueType="double" name="Values" />
+      </compositeDescription>
+    </compositeDescription>
+  </dimensionDescription>
+  <listOfDataSources>
+    <dataSource id="dataTime">
+      <listOfSlices>
+        <slice reference="ColumnIds" value="time" />
+      </listOfSlices>
+    </dataSource>
+    <dataSource id="dataS1">
+      <listOfSlices>
+        <slice reference="ColumnIds" value="S1" />
+      </listOfSlices>
+    </dataSource>
+  </listOfDataSources>
+  ...          
 </dataDescription>
 \end{myXmlLst} 
 
-\subsubsection{TSV (tab separated values)}
+\subsubsection{TSV (Tab Separated Values)}
 \label{sec:dataFormatTSV}
-The format \concept{TSV} is defined identical to \hyperref[sec:dataFormatCSV]{\element{CSV}} with the only exections that
+The format \concept{TSV} (\code{urn:sedml:format:tsv}) is defined identical to \hyperref[sec:dataFormatCSV]{\element{CSV}} with the exceptions listed below
 \begin{itemize}
     \item Fields are separated with tabs instead of commas.
     \item Embedded tab - Field must be delimited with double-quotes (embedded comma field must not be delimited with double quotes)

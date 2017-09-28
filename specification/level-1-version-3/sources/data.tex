@@ -4,9 +4,9 @@
 \subsection{\element{DataDescription}}
 \label{class:dataDescription}
 
-The \concept{DataDescription} class (\fig{dataDescription}) references a file containing data, along with a description on how to access that file, in what format it is and what information to extract from it. 
+The \concept{DataDescription} class (\fig{dataDescription}) allows to reference data from a file, and contains a description on how to access the file, in what format it is, and what subset of data to extract from it. 
 
-The \concept{DataDescription} class introduces four attributes: the required attributes \hyperref[sec:id]{\element{id}} and  \hyperref[sec:data_source]{\code{source}} and the optional attributes \hyperref[sec:format]{\element{format}} and \hyperref[sec:name]{\element{name}}. In addition two optional elements are defined: \hyperref[sec:dimensionDescription]{\code{dimensionDescription}} and \hyperref[sec:listOfDataSources]{\code{listOfDataSources}}. 
+The \concept{DataDescription} class introduces four attributes: the required attributes \hyperref[sec:id]{\element{id}} and \hyperref[sec:data_source]{\code{source}} and the optional attributes \hyperref[sec:format]{\element{format}} and \hyperref[sec:name]{\element{name}}. In addition two optional elements are defined: \hyperref[sec:dimensionDescription]{\code{dimensionDescription}} and \hyperref[sec:listOfDataSources]{\code{listOfDataSources}}. 
 
 \sedfig[width=0.8\textwidth]{images/uml/dataDescription}{The SED-ML DataDescription class}{fig:dataDescription}
 
@@ -49,17 +49,17 @@ listOfDataSources$^{o}$ & \refpage{sec:listOfDataSources}\\
 % ~~~ SOURCE ~~~
 \paragraph*{\element{source}}
 \label{sec:data_source}
-The required \concept{\element{source}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the data file. Analog to how the \hyperref[sec:model_source]{\element{source}} attribute on the \SedModel is handled, this attribute provides a location of a data file. In order to resolve the \token{source} attribute, the same mechanisms are allowed as for \SedModel element: be it a local file system, a relative link, or an online resource.
+The required \concept{\element{source}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the data file. Analog to how the \hyperref[sec:model_source]{\element{source}} attribute on the \SedModel is handled, this attribute provides a location of a data file. In order to resolve the \token{source} attribute, the same mechanisms are allowed as for the \SedModel \hyperref[sec:model_source]{\code{source}} element, i.e.\, via the local file system, a relative link, or an online resource.
 
 % ~~~ FORMAT ~~~
 \paragraph*{\element{format}}
 \label{sec:format}
-The optional \concept{\element{format}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the format of the \hyperref[class:dataDescription]{DataDescription}. Example formats are NuML (\code{urn:sedml:format:numl}) or CSV (\code{urn:sedml:format:csv}). The allowed formats are defined in the \hyperref[sec:dataFormatURI]{format references}. If it is not explicitly defined the default value for \concept{\element{format}} is \code{urn:sedml:format:numl}, referring to NuML representation of the data.
+The optional \concept{\element{format}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the format of the \hyperref[class:dataDescription]{DataDescription}. The set allowed formats are defined in the \hyperref[sec:dataFormatURI]{format references}, with example formats being \hyperref[sec:dataFormatNUML]{NuML} (\code{urn:sedml:format:numl}) or \hyperref[sec:dataFormatCSV]{CSV} (\code{urn:sedml:format:csv}). If it is not explicitly defined the default value for \concept{\element{format}} is \code{urn:sedml:format:numl}, referring to \hyperref[sec:dataFormatNUML]{NuML} representation of the data.
 
 % ~~~ DIMENSION DESCRIPTION ~~~
 \paragraph*{\element{dimensionDescription}}
 \label{sec:dimensionDescription}
-The optional \concept{\element{dimensionDescription}} contains a \hyperref[class:dimensionDescription]{DimensionDescription} providing the dimension description of the data file.
+The optional \concept{\element{dimensionDescription}} contains a \hyperref[class:dimensionDescription]{DimensionDescription} providing the dimension description of the data file. If the format is not \hyperref[sec:dataFormatNUML]{NuML} (\code{urn:sedml:format:numl}), the \concept{\element{dimensionDescription}} is required. If the format is \hyperref[sec:dataFormatNUML]{NuML} (\code{urn:sedml:format:numl}) and a \concept{\element{dimensionDescription}} is set, than the \concept{\element{dimensionDescription}} must be identical to the \concept{\element{dimensionDescription}} of the \hyperref[sec:dataFormatNUML]{NuML} file.
 
 % ~~~ LIST OF DATA SOURCES ~~~
 \paragraph*{\element{listOfDataSources}}
@@ -76,16 +76,16 @@ The optional \concept{\element{listOfDataSources}} contains zero or more \SedDat
 % ~~~ DIMENSION DESCRIPTION ~~~
 \subsubsection{\element{DimensionDescription}}
 \label{class:dimensionDescription}
-The \concept{DimensionDescription} class (\fig{dataDescription}) defines the dimension of the data file provided by the outer \SedDataDescription element. The \concept{DimensionDescription} is a \hyperref[sec:numl]{NuML} container containing the NuML dimension description. The \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} element is the data description from an NuML file. 
+The \concept{DimensionDescription} class (\fig{dataDescription}) defines the dimension of the data file provided by the outer \SedDataDescription element. The \concept{DimensionDescription} is a \hyperref[sec:numl]{NuML} container containing the dimension description of the dataset.
 
-In the following example nested NuML \element{compositeDescription} with \token{time} spanning one dimension and \token{SpeciesIds} another dimension. This two dimensional space is then filled with \token{double} values representing concentrations.
+In the following example a nested NuML \element{compositeDescription} with \token{time} spanning one dimension and \token{SpeciesIds} spanning a second dimension is given. This two dimensional space is then filled with \token{double} values representing concentrations.
 
 \begin{myXmlLst}{SED-ML \code{dimensionDescription} element}{lst:dimensionDescription}
 <dimensionDescription>
 	<compositeDescription indexType="double" id="time" name="time" 
 		xmlns="http://www.numl.org/numl/level1/version1">
 		<compositeDescription indexType="string" id="SpeciesIds" name="SpeciesIds">
-			<atomicDescription valueType="double" name="Concentration" />
+			<atomicDescription valueType="double" id="Concentration" name="Concentration" />
 		</compositeDescription>
 	</compositeDescription>
 </dimensionDescription>
@@ -94,7 +94,7 @@ In the following example nested NuML \element{compositeDescription} with \token{
 % ~~~ DATA SOURCE ~~~
 \subsubsection{\element{DataSource}}
 \label{class:dataSource}
-The \concept{DataSource} class (\fig{dataDescription}) extracts chunks out of the data file provided by the outer \SedDataDescription element, e.g., columns out of a \hyperref[sec:dataFormatCSV]{CSV} file.
+The \concept{DataSource} class (\fig{dataDescription}) extracts chunks out of the dataset provided by the outer \SedDataDescription element.
 
 The \concept{DataSource} class introduces three attributes: the required attribute \hyperref[sec:id]{\element{id}} and the optional attributes \hyperref[sec:name]{\element{name}}, \hyperref[sec:indexSet]{\element{indexSet}}, and \hyperref[sec:listOfSlices]{\code{listOfSlices}} (\fig{dataDescription}).
 
@@ -124,27 +124,25 @@ listOfSlices$^{o}$ & \refpage{sec:listOfSlices}\\
 \label{tab:dataSource}
 \end{table}
 
-Once the \SedDataSource elements are defined, they can be reused anywhere in the SED-ML Description. Specifically their \token{id} attribute can be referenced within the \element{listOfVariables} of \element{DataGenerators}, \element{computeChange} or \element{setValue} objects. Here an example that references the \SedDataSource \token{dataS1}:
+The defined \SedDataSource elements can be used anywhere in the SED-ML Description. Specifically their \hyperref[type:id]{\element{id}} attribute can be referenced within the \hyperref[sec:listOfVariables]{\element{listOfVariables}} of \hyperref[class:dataGenerator]{DataGenerators}, \hyperref[class:computeChange]{computeChange} or \hyperref[class:setValue]{setValue} objects. Here an example that references the \SedDataSource \token{dataS1}:
 
 \begin{myXmlLst}{}{lst:indexSource}
-
 <listOfDataDescriptions>
-  <dataDescription id="data1" name="data file" source="./test.csv" format="urn:sedml:format:csv">
-	    <dimensionDescription>
-            <compositeDescription indexType="integer" name="Index">
-              <compositeDescription indexType="string" name="ColumnIds">
-                <atomicDescription valueType="double" name="Values" />
-              </compositeDescription>
-            </compositeDescription>
-          </dimensionDescription>
-    
+  <dataDescription id="data1" name="data file" source="./example.numl" format="urn:sedml:format:numl">
+    <dimensionDescription>
+      <compositeDescription indexType="double" name="Time">
+        <compositeDescription indexType="string" name="SpeciesIds">
+          <atomicDescription valueType="double" name="Values" />
+        </compositeDescription>
+      </compositeDescription>
+    </dimensionDescription>
     <listOfDataSources>
       <dataSource id="dataS1">
         <listOfSlices>
           <slice reference="SpeciesIds" value="S1" />
         </listOfSlices>
       </dataSource>
-      <dataSource id="dataTime" indexSet="time" />
+      <dataSource id="dataTime" indexSet="Time" />
     </listOfDataSources>
   </dataDescription>
 </listOfDataDescriptions>
@@ -161,9 +159,10 @@ Once the \SedDataSource elements are defined, they can be reused anywhere in the
 </listOfDataGenerators>
 \end{myXmlLst} 
 
-This represents a change from \LoneVone and \LoneVtwo, in which a \token{taskReference} was always present for a \token{variable} in a data generator.
+This represents a change from \LoneVone and \LoneVtwo, in which a \token{taskReference} was always present for a \token{variable} in a \hyperref[class:dataGenerator]{DataGenerator}.
 
-To indicate that the target is an entity defined within the current SED-ML description the hashtag (\#) with the reference to an \token{id} was used. Additionally, this example uses the \token{modelReference}, in order to facilitate a mapping of the data encoded in the NuML document with a given model. 
+% MK: Why the hashtag? I don't understand why this is necessary
+To indicate that the target is an entity defined within the current SED-ML description the hashtag (\#) with the reference to an \token{id} is used. Additionally, this example uses the \token{modelReference}, in order to facilitate a mapping of the data encoded in the NuML document with a given model. 
 
 Since data elements in NuML can be either values or indices, the \SedDataSource element provides two ways of addressing those elements. The \hyperref[sec:indexSet]{\element{indexSet}} attribute allows to address all indices provided by NuML elements with \token{indexType}. 
 
