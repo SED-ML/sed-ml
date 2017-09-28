@@ -73,12 +73,16 @@ def create_omex(folder, omex_file, strict=True):
             else:
                 warnings.warn(msg)
 
+        # add file to archive
         format = entry['format']
         master = entry.get('master', False)
         archive.addFile(path, location, format, master)
 
+
+        # add metadata for location
         description = entry.get("description", None)
         creators = entry.get("creators", None)
+
 
         if description or creators:
             omex_d = libcombine.OmexDescription()
