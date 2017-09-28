@@ -1,7 +1,0 @@
-Error
-=====
-Your request could not be processed. Please verify your archive and if the problem persists, contact the author with the following information.
-Detailed Information:
-Message: Object reference not set to an instance of an object.
-Stacktrace:    at libSedMLRunner.SedMLRunner.ComputeResults(SedMLInfo info, Boolean storeRawData)
-   at SED_MLWeb.Controllers.HomeController.SimulatePostArchive(HttpPostedFileBase imagefile)

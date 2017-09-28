@@ -80,4 +80,4 @@ if __name__ == "__main__":
             output_webtools = os.path.join(WEBTOOL_DIR, filename)
             output_tellurium = os.path.join(TELLURIUM_DIR, filename)
             run_sedml_webtools(input_path, output_webtools)
-            # run_tellurium(input_path, output_tellurium)
+            run_tellurium(input_path, output_tellurium)
