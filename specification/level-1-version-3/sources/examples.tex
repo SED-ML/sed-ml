@@ -9,7 +9,7 @@ This example lists the SED-ML corresponding to the motivational example in the i
 {lst:repressilator}
 {examples/repressilator/repressilator.xml}
 
-
+\pagebreak
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % DATA EXAMPLES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -60,6 +60,7 @@ This example demonstrates the use of the \hyperref[class:dataDescription]{DataDe
 {lst:plotting-data}
 {examples/plotting-data/plotting-data.xml}
 
+\pagebreak
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % REPEATED TASKS
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -81,7 +82,7 @@ NOTE: This example produces three dimensional results (time, species concentrati
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=1.0\textwidth]{examples/placeholder}
+                \includegraphics[width=1.0\textwidth]{examples/repeated-scan-oscli/results/tellurium/plot1}
         \caption{Simulated with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:repeated-scan-oscli}
@@ -95,7 +96,7 @@ NOTE: This example produces three dimensional results (time, species concentrati
 \subsection{Steady state parameter scan (\code{repeated-steady-scan-oscli.omex})}
 In this example a \hyperref[class:repeatedTask]{repeatedTask} is used in combination with a \hyperref[class:steadyState]{steadyState} simulation task (performing a steady state computation). On each repeat a parameter is varied resulting in a steady state parameter scan.
 
-\begin{figure}[ht]
+\begin{figure}[ht!]
     \centering
     \begin{minipage}{0.47\textwidth}
         \centering
@@ -104,7 +105,7 @@ In this example a \hyperref[class:repeatedTask]{repeatedTask} is used in combina
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=1.0\textwidth]{examples/placeholder}
+        \includegraphics[width=1.0\textwidth]{examples/repeated-steady-scan-oscli/results/tellurium/plot1}
         \caption{Simulated with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:repeated-steady-scan-oscli}
@@ -131,7 +132,7 @@ NOTE: This example produces three dimensional results (time, species concentrati
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=1.0\textwidth]{examples/placeholder}
+        \includegraphics[width=1.0\textwidth]{examples/repeated-stochastic-runs/results/tellurium/plot1}
         \caption{Simulated with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:repeated-stochastic-runs}
@@ -143,7 +144,7 @@ NOTE: This example produces three dimensional results (time, species concentrati
 
 
 % ~~~ SIMULATION PERTURBATION ~~~
-\subsection{Simulation perturbation (\code{oscli-netsted-pulse.omex})}
+\subsection{Simulation perturbation (\code{oscli-nested-pulse.omex})}
 Often it is interesting to see how the dynamic behavior of a model changes when some perturbations are applied to the model. In this example a \hyperref[class:repeatedTask]{repeatedTask} is used iterating a \hyperref[class:oneStep]{oneStep} task (that advances an ODE integration to the next output step). During the steps a single parameter is modified effectively causing the oscillations of a model to stop. Once the value is reset the oscillations recover. 
 
 Note: In the example a \hyperref[class:functionalRange]{functionalRange} is used, although the same result could also be achieved using the \hyperref[class:setValue]{setValue} element directly.
@@ -157,7 +158,7 @@ Note: In the example a \hyperref[class:functionalRange]{functionalRange} is used
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=1.0\textwidth]{examples/placeholder}
+        \includegraphics[width=1.0\textwidth]{examples/oscli-nested-pulse/results/tellurium/plot1}
         \caption{Simulated with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:oscli-nested-pulse}
@@ -183,7 +184,7 @@ NOTE: This example produces three dimensional results (time, species concentrati
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=1.0\textwidth]{examples/placeholder}
+                \includegraphics[width=1.0\textwidth]{examples/parameter-scan-2d/results/tellurium/plot1}
         \caption{Simulated with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:parameter-scan-2d}
@@ -193,6 +194,7 @@ NOTE: This example produces three dimensional results (time, species concentrati
 {lst:parameter-scan-2d}
 {examples/parameter-scan-2d/parameter-scan-2d.xml}
 
+\pagebreak
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % DIFFERENT MODEL LANGUAGES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -291,6 +293,7 @@ The following example provides a SED-ML description for the simulation of the Va
 %
 %\myXmlImport{LeLoup Model Simulation Description in SED-ML}{lst:lorenz-cellml}{examples/lorenz-cellml/lorenz.xml}
 
+\pagebreak
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % REPRODUCING PUBLICATION RESULTS
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
