@@ -124,7 +124,7 @@ listOfSlices$^{o}$ & \refpage{sec:listOfSlices}\\
 \label{tab:dataSource}
 \end{table}
 
-The defined \SedDataSource elements can be used anywhere in the SED-ML Description. Specifically their \hyperref[type:id]{\element{id}} attribute can be referenced within the \hyperref[sec:listOfVariables]{\element{listOfVariables}} of \hyperref[class:dataGenerator]{DataGenerators}, \hyperref[class:computeChange]{computeChange} or \hyperref[class:setValue]{setValue} objects. Here an example that references the \SedDataSource \token{dataS1}:
+The defined \SedDataSource elements can be used anywhere in the SED-ML Description. Specifically their \hyperref[type:id]{\element{id}} attribute can be referenced within the \hyperref[sec:listOfVariables]{\element{listOfVariables}} of \hyperref[class:dataGenerator]{DataGenerator}, \hyperref[class:computeChange]{ComputeChange} or \hyperref[class:setValue]{SetValue} objects. Here an example that references the \SedDataSource \token{dataS1}:
 
 \begin{myXmlLst}{}{lst:indexSource}
 <listOfDataDescriptions>
@@ -161,11 +161,11 @@ The defined \SedDataSource elements can be used anywhere in the SED-ML Descripti
 
 This represents a change from \LoneVone and \LoneVtwo, in which a \token{taskReference} was always present for a \token{variable} in a \hyperref[class:dataGenerator]{DataGenerator}.
 
-% MK: Why the hashtag? I don't understand why this is necessary
-To indicate that the target is an entity defined within the current SED-ML description the hashtag (\#) with the reference to an \token{id} is used. Additionally, this example uses the \token{modelReference}, in order to facilitate a mapping of the data encoded in the NuML document with a given model. 
+To indicate that the \hyperref[sec:target]{\element{target}} of the \hyperref[class:variable]{Variable} is an entity defined within the current SED-ML description (and not an xpath expression) the hashtag (\#) with the reference to an \hyperref[type:id]{\element{id}} is used. 
 
-Since data elements in NuML can be either values or indices, the \SedDataSource element provides two ways of addressing those elements. The \hyperref[sec:indexSet]{\element{indexSet}} attribute allows to address all indices provided by NuML elements with \token{indexType}. 
+In addition, this example uses the \hyperref[sec:modelReference]{\element{modelReference}}, in order to facilitate a mapping of the data with a given model. 
 
+Since data elements defined via the \hyperref[class:dimensionDescription]{DimensionDescription} of the \hyperref[class:dataDescription] or within the NuML file are either values or indices, the \SedDataSource element provides two ways of addressing those elements, the \hyperref[sec:indexSet]{\element{indexSet}} and \hyperref[sec:listOfSlices]{\element{listOfSlices}}. 
 
 %% ~~~ INDEX SET ~~~
 \paragraph*{\element{indexSet}}
@@ -178,7 +178,7 @@ For example for the \concept{\element{indexSet}} \token{time} below, a \hyperref
 <dataSource id="dataTime" indexSet="time" />
 \end{myXmlLst} 
 
-Similarly: 
+Similarly
 
 \begin{myXmlLst}{}{lst:indexSet2}
 <dataSource id="allIds" indexSet="SpeciesIds" />
@@ -192,8 +192,7 @@ If the \concept{\element{indexSet}} attribute is specified the corresponding \to
 % ~~~ LIST OF SLICES ~~~
 \paragraph*{\element{listOfSlices}}
 \label{sec:listOfSlices}
-The \concept{\element{listOfSlices}} contains one or more \hyperref[class:slice]{Slice} elements.
-The \concept{\element{listOfSlices}} container holds the \hyperref[class:slice]{Slice} definitions of a \hyperref[class:dataSource]{DataSource} (\fig{dataDescription}). The \concept{\element{listOfSlices}} is optional and may contain zero to many \hyperref[class:slice]{Slices}.
+The \concept{\element{listOfSlices}} contains one or more \hyperref[class:slice]{Slice} elements. The \concept{\element{listOfSlices}} container holds the \hyperref[class:slice]{Slice} definitions of a \hyperref[class:dataSource]{DataSource} (\fig{dataDescription}). The \concept{\element{listOfSlices}} is optional and may contain zero to many \hyperref[class:slice]{Slices}.
 
 
 % ~~~ SLICE ~~~
