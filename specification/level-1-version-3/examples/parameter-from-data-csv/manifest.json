@@ -1,0 +1,48 @@
+{ "entries": [
+
+  { "location" : ".",
+    "format" : "http://identifiers.org/combine.specifications/omex",
+    "description" : "SED-ML L1V3 specification example.",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "manifest.json",
+    "format" : "http://purl.org/NET/mediatypes/application/json",
+    "description" : "Information to create archive metadata",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "parameter-from-data-csv.xml",
+    "format" : "http://identifiers.org/combine.specifications/sed-ml",
+    "master": true,
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "vanderpol-sbml.xml",
+    "format" : "http://identifiers.org/combine.specifications/sbml",
+    "description" : "SBML model of Van der Pol oscillator.",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "parameters.csv",
+    "format" : "http://purl.org/NET/mediatypes/text/csv",
+	"description" : "CSV data file with Van der Pol parameters.",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  }
+
+]}
