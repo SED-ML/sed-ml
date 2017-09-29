@@ -7,9 +7,9 @@ The Simulation Experiment Description Markup Language (SED-ML) is an XML-based f
 The number of computational models of biological systems is growing at an ever increasing pace. 
 At the same time, their size and complexity are also increasing. It is now generally accepted that one must be able to exchange the mathematical structure of such models, for instance to build on existing studies by reusing models or for the reproduction of model results. The efforts to standardise the representation of computational models in various areas of biology, such as the Systems Biology Markup Language (SBML) \citep{Hucka:2003}, CellML \citep{cuellar:2003} or NeuroML \citep{Goddard:2001}, resulted in an increase of the exchange and re-use of models. 
 
-However, the description of the structure of models is not sufficient for the reproduction of simulation results. One also needs to describe the procedures the models are subjected to, i.e. the minimal set of information that should be provided to allow the reproduction of simulation experiments among users and software tools as described by the Minimum Information About a Simulation Experiment (MIASE \citep{Waltemath:2011}). The increasing use of computational simulation experiments to inform modern biological research creates new challenges to reproduce, annotate, archive, and share such experiments. 
+However, the description of the structure of models is not sufficient for the reproduction of simulation results. One also needs to describe the procedures the models are subjected to, i.e. the information that must be provided to allow the reproduction of simulation experiments among users and software tools. The increasing use of computational simulation experiments to inform modern biological research creates new challenges to reproduce, annotate, archive, and share such experiments. 
 
-SED-ML describes in a computer-readable exchange format the information to enable the reproduction of simulation experiments. SED-ML is a software-independent format encoded in the Extensible Markup Language (XML) \citep{Bray:2006} not specific to particular simulation tools and independent of the underlying model implementation.
+SED-ML describes in a computer-readable exchange format the information to enable the reproduction of simulation experiments. SED-ML is a software-independent format encoded in the Extensible Markup Language (XML) not specific to particular simulation tools and independent of the underlying model implementation. SED-ML describes the minimum information of a simulation experiment as described by the Minimum Information About a Simulation Experiment (MIASE) \citep{Waltemath:2011}.
 
 SED-ML is developed as a community project and defined via a detailed technical specification and a corresponding XML Schema. 
 
@@ -22,35 +22,35 @@ This document describes \currentLV of SED-ML which is the successor of \previous
 SED-ML specifies for a given simulation experiment
 
 \begin{itemize}
-\item what datasets to use (\hyperref[class:dataDescription]{DataDescription})
-\item which models to use in an simulation experiment (\hyperref[class:model]{Model})
-\item which modifications to apply to models before simulation (\hyperref[class:change]{Change}) 
-\item which simulation procedures to run on each model (\hyperref[class:simulation]{Simulation} and \hyperref[class:task]{Task})
-\item what analysis results to plot or report and how to post-process (\hyperref[class:dataGenerator]{DataGenerator})
-\item and how these results should be presented (\hyperref[class:output]{Output})
+\item what datasets to use (\hyperref[class:dataDescription]{DataDescription}),
+\item which models to use (\hyperref[class:model]{Model}),
+\item which modifications to apply to models before simulation (\hyperref[class:change]{Change}),
+\item which simulation procedures to run on each model (\hyperref[class:simulation]{Simulation} and \hyperref[class:task]{Task}),
+\item what analysis results to plot or report and how to post-process the data (\hyperref[class:dataGenerator]{DataGenerator}), and
+\item how these results should be presented (\hyperref[class:output]{Output})
 \end{itemize}
 
 A \hyperref[class:sed-ml]{SED-ML document} containts the following main objects to describe this information: \hyperref[class:dataDescription]{DataDescription}, \hyperref[class:model]{Model}, \hyperref[class:change]{Change}, \hyperref[class:simulation]{Simulation}, \hyperref[class:task]{Task}, \hyperref[class:dataGenerator]{DataGenerator}, and \hyperref[class:output]{Output}.
 
 \paragraph*{\hyperref[class:dataDescription]{DataDescription}}
-The \hyperref[class:dataDescription]{DataDescription} allows to specify data sets used in a simulation experiment. Such data can be used for instance for parametrization of model simulations or to plot data with simulation results.
+The \hyperref[class:dataDescription]{DataDescription} allows to specify datasets used in a simulation experiment. Such data can be used for instance for parametrization of model simulations or to plot data with simulation results.
 
 \paragraph*{\hyperref[class:model]{Model}}
-The \hyperref[class:model]{Model} is used to reference the models used in the simulation experiment. SED-ML itself is independent of the model encoding underlying the models.
+The \hyperref[class:model]{Model} is used to reference the models used in the simulation experiment.
 
-The SED-ML \hyperref[class:change]{Change} allows the application of changes to the referenced models (pre-processing), including changes on the XML attributes, e.g. changing the value of an observable, computing the change of a value using mathematics, or general changes on any XML element of the model representation that is addressable by \hyperref[sec:xpath]{XPath} expressions, e.g. substituting a piece of XML by an updated one.
+The \hyperref[class:change]{Change} allows the application to modify the referenced models (pre-processing), including changes on the XML attributes, e.g. changing the value of an observable, computing the change of a value using mathematics, or general changes on any XML element of the model representation that is addressable by \hyperref[sec:xpath]{XPath} expressions, e.g. substituting a piece of XML by an updated one.
 
 \paragraph*{\hyperref[class:simulation]{Simulation}}
-The \hyperref[class:simulation]{Simulation} defines the simulation settings and the steps taken during simulation. These include the particular type of simulation and the algorithm used for the execution of the simulation.
+The \hyperref[class:simulation]{Simulation} defines the simulation settings and the steps taken during simulation. These include the particular type of simulation, the algorithm, and the algorithm parameters used for the execution of the simulation.
 
 \paragraph*{\hyperref[class:task]{Task}}
 SED-ML uses the concept of \hyperref[class:task]{Task} to combine a defined \hyperref[class:model]{Model} and \hyperref[class:simulation]{Simulation}.
 
 \paragraph*{\hyperref[class:dataGenerator]{DataGenerator}}
-The \hyperref[class:dataGenerator]{DataGenerator} allows to encode post-processing of simulation results before output, e.g. one might want to normalise a plot before output, or apply post-processing like mean-value calculation. In the definition of a \hyperref[class:dataGenerator]{DataGenerator}, any addressable variable or parameter of any defined model may be referenced, and new entities might be specified using \hyperref[sec:mathML]{MathML}.
+The \hyperref[class:dataGenerator]{DataGenerator} allows to encode post-processing of simulation results before output, e.g. one might want to normalise a plot before output, or apply post-processing like mean-value calculation. In the definition of a \hyperref[class:dataGenerator]{DataGenerator}, any addressable variable or parameter of any defined model or datasets from \hyperref{class:dataDescription}[DataDescription] may be referenced and new entities might be specified using \hyperref[sec:mathML]{MathML}.
 
 \paragraph*{\hyperref[class:output]{Output}}
-The \hyperref[class:output]{Output} defines the output of the simulation, which can be either a two dimensional plot \hyperref[class:plot2D]{Plot2D}, a three dimensional plot \hyperref[class:plot3D]{Plot3D}, or data table \hyperref[class:report]{Report}. The \hyperref[class:output]{Output} is based on the \hyperref[class:dataGenerator]{DataGenerators}.
+The \hyperref[class:output]{Output} defines the output of the simulation, which can be either a two dimensional plot \hyperref[class:plot2D]{Plot2D}, a three dimensional plot \hyperref[class:plot3D]{Plot3D}, or data table \hyperref[class:report]{Report}. The \hyperref[class:output]{Output} is hereby based on the post-processed simulation results in \hyperref[class:dataGenerator]{DataGenerators}.
 
 This section provided a high level overview over the content of a SED-ML file. For the detailed technical specification see Chapter~\ref{chp:specification}. 
 
@@ -59,7 +59,7 @@ This section provided a high level overview over the content of a SED-ML file. F
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Example simulation experiment}
 \label{motivation:example}
-In this section an introductory example is given how simulation experiments can be described with SED-ML. The example experiment uses the repressilator \citep{Elowitz:2000} a famous model capable of displaying rich and variable behaviors. The SED-ML for the presented simulation experiment is listed in Appendix~\ref{example:repressilator}.
+In this section a example simulation experiment in SED-ML for the repressilator model \citep{Elowitz:2000} is presented to provide an overview how simulation experiments can be described with SED-ML. The SED-ML for this simulation experiment is listed in Appendix~\ref{example:repressilator}, the \hyperref[sec:archive]{Combine Archive} is available as \code{L1V1\_repressilator.omex} from \url{http://sed-ml.org/}.
 
 The repressilator is a synthetic oscillating network of transcription regulators in Escherichia coli. The network is composed of the three repressor genes Lactose Operon Repressor (lacI), Tetracycline Repressor (tetR) and Repressor CI (cI), which code for proteins binding to the promoter of the other, blocking their transcription. The three inhibitions together in tandem, form a cyclic negative-feedback loop. To describe the interactions of the molecular species involved in the network, the authors built a simple mathematical model of coupled first-order differential equations. All six molecular species included in the network (three mRNAs, three repressor proteins) participated in creation (transcription/translation) and degradation processes. The model was used to determine the influence of the various parameters on the dynamic behavior of the system. In particular, parameter values were sought which induce stable oscillations in the concentrations of the system components. Oscillations in the levels of the three repressor proteins can be obtained by numerical integration. 
 
