@@ -162,7 +162,7 @@ The evaluation of a SED-ML document is required in order for software to decide 
 To help  software decide whether or not it supports a SED-ML description file, the information on the \hyperref[class:model]{model} encoding for each referenced \hyperref[class:model]{model} can be provided through the \hyperref[sec:language]{\element{language}} attribute, as the description of a language name and version through an unrestricted \code{String} is error-prone. 
 A prerequisite for a language to be fully supported by SED-ML is that a formalised language definition, e.\,g. an XML Schema, is provided online. SED-ML also defines a set of standard URIs to refer to particular language definitions. 
 
-To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used (\tab{languageURI}). The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{\element{name.version}}. SED-ML allows to specify a model representation format very generally as being \code{XML}, if no standardised representation format has been used to encode the model. On the other hand, one can be as specific as defining a model being in a particular version of a language, as ``SBML Level 3 Version 1'' (\code{urn:sedml:language:sbml.level-3.version-1}).
+To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used (\tab{languageURI}). The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{\element{name.version}}. SED-ML allows to specify a model representation format very generally as being \code{XML}, if no standardised representation format has been used to encode the model. On the other hand, one can be as specific as defining a model being in a particular version of a language, e.\,g. SBML Level 3 Version 1 as \code{urn:sedml:language:sbml.level-3.version-1}.
 
 For additional information see the \hyperref[sec:language]{\element{language}} attribute on \hyperref[class:model]{Model}.
 
@@ -225,7 +225,7 @@ TSV & \code{urn:sedml:format:tsv} \\
 \label{sec:dataFormatNUML}
 Data in the \concept{NuML} format (\code{urn:sedml:format:numl}) is defined via \code{resultComponents} with a single dataset corresponding to a single \code{resultComponent}. In the case that a \concept{NuML} file consists of multiple \code{resultComponents} the first \code{resultComponent} contains the data used in the \hyperref[class:dataDescription]{DataDescription}. There is currently no mechanism in SED-ML to reference the additional \code{resultComponents}.
 
-If a \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} is set on the \hyperref[class:dataDescription]{DataDescription}, than this \hyperref[sec:dimensionDescription]{\element{dimensionDescription}}{dimensionDescription} must be identical to the \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} of the \concept{NuML} file.
+If a \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} is set on the \hyperref[class:dataDescription]{DataDescription}, than this \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} must be identical to the \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} of the \concept{NuML} file.
 
 \subsubsection{CSV (Comma Separated Values)}
 \label{sec:dataFormatCSV}
@@ -245,7 +245,9 @@ Data in the \concept{CSV} format (\code{urn:sedml:format:csv}) must follow the f
 	\item For numerical data the `.` decimal separator is used
 \end{itemize}
 
-A dataset in \concept{CSV} is always two dimensional data. When using data in the \concept{CSV} format, the \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} is required on the \hyperref[class:dataDescription]{DataDescription}. The {\element{dimensionDescription}} must consist of an outer \code{compositeDescription} with \code{indexType="integer"} which allows to reference the rows of the \concept{CSV} by index and a inner \code{compositeDescription} which allows to reference the columns of the \concept{CSV} by their column header id. Within the inner \code{compositeDescription} exactly one \code{atomicDescription} must exist. All data in the \concept{CSV} must have the same type  which is defined via the \element{valueType} on the \element{atomicDescription}.
+A dataset in \concept{CSV} is hereby always encoding two dimensional data. 
+
+When using data in the \concept{CSV} format, the \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} is required on the \hyperref[class:dataDescription]{DataDescription}. The {\element{dimensionDescription}} must consist of an outer \code{compositeDescription} with \code{indexType="integer"} which allows to reference the rows of the \concept{CSV} by index and a inner \code{compositeDescription} which allows to reference the columns of the \concept{CSV} by their column header id. Within the inner \code{compositeDescription} exactly one \code{atomicDescription} must exist. All data in the \concept{CSV} must have the same type  which is defined via the \element{valueType} on the \element{atomicDescription}.
 
 Below an example of the required \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} for a \concept{CSV} is provided. In the example the \code{time} and \code{S1} columns are read from the \concept{CSV} file
 \begin{myXmlLst}{Example CSV}{lst:exampleCSV}
@@ -371,8 +373,7 @@ The Kinetic Simulation Algorithm Ontology (\concept{KiSAO} \citep{CWK+10}) is us
 
 Defining simulation \hyperref[class:algorithm]{algorithms} through \concept{KISAO} terms not only identifies the simulation algorithm used for the SED-ML simulation, it also enables software to find related algorithms, if the specific implementation is not available. For example, software could decide to use the CVODE integration library for an analysis instead of a specific Runge Kutta 4,5 implementation. 
 
-Should a particular simulation algorithm or algorithm parameter not exist in \concept{KiSAO}, please 
-request one via \url{http://www.biomodels.net/kisao/}.
+Should a particular simulation algorithm or algorithm parameter not exist in \concept{KiSAO}, please request one via \url{http://www.biomodels.net/kisao/}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% COMBINE ARCHIVE

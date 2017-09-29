@@ -145,7 +145,7 @@ In this section the \hyperref[class:output]{Output} components \hyperref[class:c
 % ~~~ CURVE ~~~
 \subsubsection{\element{Curve}}
 \label{class:curve}
-One or more instances of the \concept{Curve} class define a \hyperref[class:plot2D]{plot2D} (\fig{output}). A \concept{curve} needs a \hyperref[class:dataGenerator]{dataGenerator} reference to refer to the data that will be plotted on the x-axis, using the \hyperref[sec:xDataReference]{\element{xDataReference}}. A second \hyperref[class:dataGenerator]{dataGenerator} reference is needed to refer to the data that will be plotted on the y-axis, using the \hyperref[sec:yDataReference]{\element{yDataReference}}. 
+A \concept{Curve} is a two-dimensional \hyperref[class:output]{Output} component representing a (processed) simulation result (\fig{output}). Zero or more \concept{Curve} instances define a \hyperref[class:plot2D]{plot2D} (\fig{output}). A \concept{curve} needs a \hyperref[class:dataGenerator]{dataGenerator} reference to refer to the data that will be plotted on the x-axis, using the \hyperref[sec:xDataReference]{\element{xDataReference}}. A second \hyperref[class:dataGenerator]{dataGenerator} reference is needed to refer to the data that will be plotted on the y-axis, using the \hyperref[sec:yDataReference]{\element{yDataReference}}. 
 %
 \tabtext{curve}{curve}
 \begin{table}[ht]
@@ -203,7 +203,9 @@ The \concept{\element{yDataReference}} data type is \code{SIdRef}. However, the 
 % ~~~ SURFACE ~~~
 \subsubsection{\element{Surface}}
 \label{class:surface}
-A \concept{Surface} is a three-dimensional figure representing a (processed) simulation result (\fig{output}). \concept{Surface} is a subclass of \hyperref[class:curve]{\element{Curve}} inheriting among others the elements \hyperref[sec:xDataReference]{\element{xDataReference}}, \hyperref[sec:yDataReference]{\element{yDataReference}}, \hyperref[sec:logX]{\element{logX}}, and \hyperref[sec:logY]{\element{logY}}.
+A \concept{Curve} is a three-dimensional \hyperref[class:output]{Output} component representing a (processed) simulation result (\fig{output}). Zero or more \concept{Surface} instances define a \hyperref[class:plot3D]{plot3D} (\fig{output}).
+
+\concept{Surface} is a subclass of \hyperref[class:curve]{\element{Curve}} inheriting among others the elements \hyperref[sec:xDataReference]{\element{xDataReference}}, \hyperref[sec:yDataReference]{\element{yDataReference}}, \hyperref[sec:logX]{\element{logX}}, and \hyperref[sec:logY]{\element{logY}}.
  
 Creating an instance of the \concept{Surface} class requires the definition of data on three different axis. The aforementioned \hyperref[sec:xDataReference]{\element{xDataReference}} and \hyperref[sec:yDataReference]{\element{yDataReference}} attributes define the \hyperref[class:dataGenerator]{dataGenerators} for the x- and y-axis of a surface. In addition, the \hyperref[sec:zDataReference]{\element{zDataReference}} attribute defines the output for the z-axis. All axes might be logarithmic or not. This can be specified through the \hyperref[sec:logX]{\element{logX}}, \hyperref[sec:logY]{\element{logY}}, and the \hyperref[sec:logZ]{\element{logZ}} attributes in the according dataReference elements.
 
