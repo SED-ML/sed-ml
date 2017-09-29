@@ -46,7 +46,7 @@
         </dataGenerator>
         <dataGenerator id="yDataGenerator1_1">
             <listOfVariables>
-                <variable id="yVariable1_1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:species[@id='x']" taskReference="repeatedTask" modelReference="model"/>
+                <variable id="yVariable1_1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='x']" taskReference="repeatedTask" modelReference="model"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
                 <ci> yVariable1_1 </ci>
@@ -62,7 +62,7 @@
         </dataGenerator>
         <dataGenerator id="yDataGenerator2_1">
             <listOfVariables>
-                <variable id="yVariable2_1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:species[@id='y']" taskReference="repeatedTask" modelReference="model"/>
+                <variable id="yVariable2_1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='y']" taskReference="repeatedTask" modelReference="model"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
                 <ci> yVariable2_1 </ci>
@@ -70,7 +70,7 @@
         </dataGenerator>
         <dataGenerator id="xDataGenerator3_1">
             <listOfVariables>
-                <variable id="xVariable3_1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:species[@id='x']" taskReference="repeatedTask" modelReference="model"/>
+                <variable id="xVariable3_1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='x']" taskReference="repeatedTask" modelReference="model"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
                 <ci> xVariable3_1 </ci>
@@ -78,7 +78,7 @@
         </dataGenerator>
         <dataGenerator id="yDataGenerator3_1">
             <listOfVariables>
-                <variable id="yVariable3_1" target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:species[@id='y']" taskReference="repeatedTask" modelReference="model"/>
+                <variable id="yVariable3_1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='y']" taskReference="repeatedTask" modelReference="model"/>
             </listOfVariables>
             <math xmlns="http://www.w3.org/1998/Math/MathML">
                 <ci> yVariable3_1 </ci>
