@@ -37,8 +37,8 @@
     ]
   },
   {
-    "location" : "results/sedml_webtools/plot1.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "location" : "results/sedml_webtools/plot1.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "SED-ML webtools results.",
     "creators" : [
       { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"},
@@ -47,8 +47,8 @@
     ]
   },
     {
-    "location" : "results/sedml_webtools/plot2.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "location" : "results/sedml_webtools/plot2.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "SED-ML webtools results.",
     "creators" : [
       { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"},

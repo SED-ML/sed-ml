@@ -86,6 +86,21 @@
         <ci> MKK_P </ci>
       </math>
     </dataGenerator>
+    <dataGenerator id="MKK_TOT" name="MKK_TOT">
+      <listOfVariables>
+        <variable id="MKK" name="MKK" taskReference="task1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='MKK']" />
+        <variable id="MKK_P" name="MKK_P" taskReference="task1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='MKK_P']" />
+        <variable id="MKK_PP" name="MKK_PP" taskReference="task1" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='MKK_PP']" />
+      </listOfVariables>
+      <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+          <plus/>
+          <ci> MKK </ci>
+          <ci> MKK_P </ci>
+          <ci> MKK_PP </ci>
+        </apply>
+      </math>
+    </dataGenerator>
   </listOfDataGenerators>
   <listOfOutputs>
     <plot2D id="plot1" name="Steady State Scan (Boris 2D)">
@@ -94,6 +109,12 @@
         <curve id="curve2" logX="false" logY="false" xDataReference="J4_KK5_1" yDataReference="MKK_P_1" />
       </listOfCurves>
     </plot2D>
+    <plot2D id="plot2" name="Steady State Scan (Boris 2D)">
+      <listOfCurves>
+        <curve id="curve1" logX="false" logY="false" xDataReference="J4_KK5_1" yDataReference="MKK_TOT" />
+      </listOfCurves>
+    </plot2D>
+
     <report id="report1" name="Steady State Values (Boris2D)">
       <listOfDataSets>
         <dataSet id="col0" dataReference="J4_KK5_1" label="J4_KK5" />

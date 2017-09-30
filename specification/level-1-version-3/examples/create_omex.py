@@ -21,7 +21,6 @@ ARCHIVES = [
     'parameter-scan-2d',
     'plotting-data-csv',
     'plotting-data-numl',
-    'parameter-from-data-csv',
     'repeated-scan-oscli',
     'repeated-steady-scan-oscli',
     'repeated-stochastic-runs',
