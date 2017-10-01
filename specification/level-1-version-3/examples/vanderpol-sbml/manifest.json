@@ -57,16 +57,16 @@
     ]
   },
   {
-    "location" : "results/tellurium/plot1.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "location" : "results/tellurium/plot1.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "tellurium results.",
     "creators" : [
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
     ]
   },
   {
-    "location" : "results/tellurium/plot2.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "location" : "results/tellurium/plot2.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "tellurium results.",
     "creators" : [
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}

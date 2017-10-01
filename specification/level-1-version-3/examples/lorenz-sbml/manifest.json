@@ -31,6 +31,60 @@
     "creators" : [
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
     ]
+  },
+  {
+    "location" : "results/sedml_webtools/plot1.png",
+    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "description": "Plot2D SED-ML webtools",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "results/sedml_webtools/plot2.png",
+    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "description": "Plot2D SED-ML webtools",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "results/sedml_webtools/plot3.png",
+    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "description": "Plot2D SED-ML webtools",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "results/tellurium/plot1.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "Plot2D tellurium",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "results/tellurium/plot2.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "Plot2D tellurium",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "results/tellurium/plot3.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "Plot2D tellurium",
+    "creators" : [
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
   }
 
 ]}

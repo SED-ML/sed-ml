@@ -55,8 +55,8 @@
     ]
   },
   {
-    "location" : "results/tellurium/timecourse.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "location" : "results/tellurium/timecourse.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "Plot2D tellurium",
     "creators" : [
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
@@ -64,8 +64,8 @@
     ]
   },
   {
-    "location" : "results/tellurium/preprocessing.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "location" : "results/tellurium/preprocessing.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "Plot2D tellurium",
     "creators" : [
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
@@ -73,8 +73,8 @@
     ]
   },
   {
-    "location" : "results/tellurium/postprocessing.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "location" : "results/tellurium/postprocessing.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "Plot2D tellurium",
     "creators" : [
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},

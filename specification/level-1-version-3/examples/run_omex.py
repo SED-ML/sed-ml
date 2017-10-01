@@ -14,7 +14,7 @@ import requests
 import traceback
 
 from tellurium.sedml.tesedml import executeCombineArchive
-
+import shutil
 
 EXAMPLES_DIR = os.path.dirname(os.path.realpath(__file__))
 OMEX_DIR = os.path.join(EXAMPLES_DIR, "./__omex__")
@@ -56,10 +56,18 @@ def run_tellurium(input_path, output_path):
     print('Running tellurium:\n\t', input_path)
     print('-' * 80)
 
+    import tellurium
+    import matplotlib
+    matplotlib.use('Agg')
+    tellurium.setDefaultPlottingEngine("matplotlib")
+
     filename, extension = os.path.splitext(os.path.basename(input_path))
     workingDir = os.path.join(TELLURIUM_DIR, '_te_{}'.format(filename))
+    if not os.path.exists(workingDir):
+        os.makedirs(workingDir)
+
     try:
-        executeCombineArchive(input_path, workingDir=workingDir)
+        executeCombineArchive(input_path, workingDir=workingDir, outputDir=workingDir, saveOutputs=True)
         # TODO: store with results https://github.com/sys-bio/tellurium/issues/207
     except Exception:
         warnings.warn("tellurium could not run: {}".format(input_path))
@@ -80,4 +88,4 @@ if __name__ == "__main__":
             output_webtools = os.path.join(WEBTOOL_DIR, filename)
             output_tellurium = os.path.join(TELLURIUM_DIR, filename)
             run_sedml_webtools(input_path, output_webtools)
-            run_tellurium(input_path, output_tellurium)
+            # run_tellurium(input_path, output_tellurium)
