@@ -1,4 +1,4 @@
-# Specification
+# SED-ML sSpecification
 
 This folder and document contains all information related to the SED-ML specifications.
 

@@ -242,7 +242,8 @@ Data in the \concept{CSV} format (\code{urn:sedml:format:csv}) must follow the f
 	\item The first record is the header record defining the unique column ids 
 	\item Lines starting with "\#" are treated as comment lines and ignored
 	\item Empty lines are allowed and ignored
-	\item For numerical data the `.` decimal separator is used
+	\item For numerical data the "." decimal separator is used
+	\item The following strings are interpreted as NaN: "", "\#N/A", "\#N/A N/A", "\#NA", "-1.\#IND", "-1.\#QNAN", "-NaN", "-nan", "1.\#IND", "1.\#QNAN", "N/A", "NA", "NULL", "NaN", "nan".
 \end{itemize}
 
 A dataset in \concept{CSV} is hereby always encoding two dimensional data. 
