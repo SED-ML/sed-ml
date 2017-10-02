@@ -49,17 +49,17 @@ listOfDataSources$^{o}$ & \refpage{sec:listOfDataSources}\\
 % ~~~ SOURCE ~~~
 \paragraph*{\element{source}}
 \label{sec:data_source}
-The required \concept{\element{source}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the data file. Analog to how the \hyperref[sec:model_source]{\element{source}} attribute on the \SedModel is handled, this attribute provides a location of a data file. In order to resolve the \token{source} attribute, the same mechanisms are allowed as for the \SedModel \hyperref[sec:model_source]{\code{source}} element, i.e.\, via the local file system, a relative link, or an online resource.
+The required \concept{\element{source}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the data file. Analog to how the \hyperref[sec:model_source]{\element{source}} attribute on the \SedModel is handled, this attribute provides a location of a data file. In order to resolve the \token{source} attribute, the same mechanisms are allowed as for the \SedModel \hyperref[sec:model_source]{\code{source}} element, i.e., via the local file system, a relative link, or an online resource.
 
 % ~~~ FORMAT ~~~
 \paragraph*{\element{format}}
 \label{sec:format}
-The optional \concept{\element{format}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the format of the \hyperref[class:dataDescription]{DataDescription}. The set allowed formats are defined in the \hyperref[sec:dataFormatURI]{format references}, with example formats being \hyperref[sec:dataFormatNUML]{NuML} (\code{urn:sedml:format:numl}) or \hyperref[sec:dataFormatCSV]{CSV} (\code{urn:sedml:format:csv}). If it is not explicitly defined the default value for \concept{\element{format}} is \code{urn:sedml:format:numl}, referring to \hyperref[sec:dataFormatNUML]{NuML} representation of the data.
+The optional \concept{\element{format}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the format of the \hyperref[class:dataDescription]{DataDescription}. The allowed formats are defined in the \hyperref[sec:dataFormatURI]{format references}, with example formats being \hyperref[sec:dataFormatNUML]{NuML} (\code{urn:sedml:format:numl}) or \hyperref[sec:dataFormatCSV]{CSV} (\code{urn:sedml:format:csv}). If it is not explicitly defined the default value for \concept{\element{format}} is \code{urn:sedml:format:numl}, referring to \hyperref[sec:dataFormatNUML]{NuML} representation of the data.
 
 % ~~~ DIMENSION DESCRIPTION ~~~
 \paragraph*{\element{dimensionDescription}}
 \label{sec:dimensionDescription}
-The optional \concept{\element{dimensionDescription}} contains a \hyperref[class:dimensionDescription]{DimensionDescription} providing the dimension description of the data file. If the format is not \hyperref[sec:dataFormatNUML]{NuML} (\code{urn:sedml:format:numl}), the \concept{\element{dimensionDescription}} is required. If the format is \hyperref[sec:dataFormatNUML]{NuML} (\code{urn:sedml:format:numl}) and a \concept{\element{dimensionDescription}} is set, than the \concept{\element{dimensionDescription}} must be identical to the \concept{\element{dimensionDescription}} of the \hyperref[sec:dataFormatNUML]{NuML} file.
+The optional \concept{\element{dimensionDescription}} contains a \hyperref[class:dimensionDescription]{DimensionDescription} providing the dimension description of the data file. If the format is \hyperref[sec:dataFormatNUML]{NuML} (\code{urn:sedml:format:numl}) and a \concept{\element{dimensionDescription}} is set, than the \concept{\element{dimensionDescription}} must be identical to the \concept{\element{dimensionDescription}} of the \hyperref[sec:dataFormatNUML]{NuML} file. If the format is not \hyperref[sec:dataFormatNUML]{NuML} (\code{urn:sedml:format:numl}), the \concept{\element{dimensionDescription}} is required.
 
 % ~~~ LIST OF DATA SOURCES ~~~
 \paragraph*{\element{listOfDataSources}}
@@ -167,7 +167,7 @@ In addition, this example uses the \hyperref[sec:modelReference]{\element{modelR
 
 Data may contain NA values. All calculations containing a NA values result in a NA value.
 
-Since data elements defined via the \hyperref[class:dimensionDescription]{DimensionDescription} of the \hyperref[class:dataDescription] or within the NuML file are either values or indices, the \SedDataSource element provides two ways of addressing those elements, the \hyperref[sec:indexSet]{\element{indexSet}} and \hyperref[sec:listOfSlices]{\element{listOfSlices}}. 
+Since data elements defined via the \hyperref[class:dimensionDescription]{DimensionDescription} of the \hyperref[class:dataDescription]{DataDescription} or within the NuML file are either values or indices, the \SedDataSource element provides two ways of addressing those elements, the \hyperref[sec:indexSet]{\element{indexSet}} and \hyperref[sec:listOfSlices]{\element{listOfSlices}}. 
 
 %% ~~~ INDEX SET ~~~
 \paragraph*{\element{indexSet}}

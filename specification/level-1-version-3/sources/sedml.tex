@@ -3,11 +3,11 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{SED-ML} top level element}
 \label{class:sed-ml}
-Each SED-ML \currentLV document has a main class called \concept{SED-ML} which defines the document's structure and content (\fig{sed-mlMain}). It consists of several parts connected to the \concept{SED-ML} class via \hyperref[sec:listOf]{\element{listOf*}} constructs through aggregation: 
+Each SED-ML \currentLV document has a main class called \concept{SED-ML} which defines the document's structure and content (\fig{sed-mlMain}). It consists of several parts connected to the \concept{SED-ML} class via \hyperref[sec:listOf]{\element{listOf*}} constructs: 
 \begin{itemize}
 	\item \hyperref[class:dataDescription]{DataDescription} (for resolving external data), 
 	\item \hyperref[class:model]{Model} (for models specifications),
-	\item \hyperref[class:simulation]{Simulation} (for simulation setup specification, see Section~\ref{class:simulation}), 
+	\item \hyperref[class:simulation]{Simulation} (for simulation setup specification), 
 	\item \hyperref[class:abstractTask]{AbstractTask} (for the linkage of models and simulation setups), 
 	\item \hyperref[class:dataGenerator]{DataGenerator} (for the definition of post-processing),
 	\item \hyperref[class:output]{Output} (for the specification of plots and reports).
