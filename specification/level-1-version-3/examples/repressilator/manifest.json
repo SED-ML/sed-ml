@@ -28,8 +28,8 @@
     ]
   },
   {
-    "location" : "results/sedml_webtools/timecourse.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "location" : "results/sedml_webtools/timecourse.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "Plot2D SED-ML webtools",
     "creators" : [
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
@@ -37,8 +37,8 @@
     ]
   },
   {
-    "location" : "results/sedml_webtools/preprocessing.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "location" : "results/sedml_webtools/preprocessing.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "Plot2D SED-ML webtools",
     "creators" : [
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
@@ -46,8 +46,8 @@
     ]
   },
   {
-    "location" : "results/sedml_webtools/postprocessing.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "location" : "results/sedml_webtools/postprocessing.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "Plot2D SED-ML webtools",
     "creators" : [
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},

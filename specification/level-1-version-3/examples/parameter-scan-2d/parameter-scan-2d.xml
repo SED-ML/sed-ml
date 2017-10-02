@@ -107,20 +107,21 @@
       <listOfCurves>
         <curve id="curve1" logX="false" logY="false" xDataReference="J4_KK5_1" yDataReference="MKK_1" />
         <curve id="curve2" logX="false" logY="false" xDataReference="J4_KK5_1" yDataReference="MKK_P_1" />
+        <curve id="curve3" logX="false" logY="false" xDataReference="J4_KK5_1" yDataReference="MKK_TOT" />
       </listOfCurves>
     </plot2D>
     <plot2D id="plot2" name="Steady State Scan (Boris 2D)">
       <listOfCurves>
-        <curve id="curve1" logX="false" logY="false" xDataReference="J4_KK5_1" yDataReference="MKK_TOT" />
+        <curve id="curve3" logX="false" logY="false" xDataReference="J4_KK5_1" yDataReference="MKK_TOT" />
       </listOfCurves>
     </plot2D>
-
     <report id="report1" name="Steady State Values (Boris2D)">
       <listOfDataSets>
         <dataSet id="col0" dataReference="J4_KK5_1" label="J4_KK5" />
         <dataSet id="col1" dataReference="J1_KK2_1" label="J1_KK2" />
         <dataSet id="col2" dataReference="MKK_1" label="MKK" />
         <dataSet id="col3" dataReference="MKK_P_1" label="MKK_P" />
+        <dataSet id="col4" dataReference="MKK_TOT" label="MKK_TOT" />
       </listOfDataSets>
     </report>
   </listOfOutputs>
