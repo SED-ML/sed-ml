@@ -66,12 +66,7 @@ def run_tellurium(input_path, output_path):
     if not os.path.exists(workingDir):
         os.makedirs(workingDir)
 
-    try:
-        executeCombineArchive(input_path, workingDir=workingDir, outputDir=workingDir, saveOutputs=True)
-        # TODO: store with results https://github.com/sys-bio/tellurium/issues/207
-    except Exception:
-        warnings.warn("tellurium could not run: {}".format(input_path))
-        traceback.print_exc()
+    executeCombineArchive(input_path, workingDir=workingDir, outputDir=workingDir, saveOutputs=True)
 
 
 if __name__ == "__main__":
