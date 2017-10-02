@@ -65,23 +65,11 @@
       <listOfCurves>
         <curve  id="c1" logX="false" logY="false" xDataReference="time" 
         yDataReference="Total_NFkBn" />
-      </listOfCurves>
-    </plot2D>
-    <plot2D id="plot2" name="BM140 Total_IkBbeta">
-      <listOfCurves>
-        <curve  id="c2" logX="false" logY="false" xDataReference="time"
+            <curve  id="c2" logX="false" logY="false" xDataReference="time"
         yDataReference="Total_IkBbeta" />
-      </listOfCurves>
-    </plot2D>
-    <plot2D id="plot3" name="BM140 Total_IkBeps">
-      <listOfCurves>
         <curve  id="c3" logX="false" logY="false" xDataReference="time"
         yDataReference="Total_IkBeps" />
-      </listOfCurves>
-    </plot2D>
-    <plot2D id="plot4" name="BM140 Total_IkBalpha">
-      <listOfCurves>
-        <curve id="c4" logX="false" logY="false" xDataReference="time" 
+        <curve id="c4" logX="false" logY="false" xDataReference="time"
         yDataReference="Total_IkBalpha" />
       </listOfCurves>
     </plot2D>
