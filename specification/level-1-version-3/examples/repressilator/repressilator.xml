@@ -20,7 +20,8 @@
     <task id="task2" modelReference="model2" simulationReference="sim1"/>
   </listOfTasks>
   <listOfDataGenerators>
-    <dataGenerator id="plot_0_0_0" name="task1.time">
+    <!-- timecourse -->
+    <dataGenerator id="dg_0_0_0" name="task1.time">
       <listOfVariables>
         <variable id="task1_____time" symbol="urn:sedml:symbol:time" taskReference="task1"/>
       </listOfVariables>
@@ -28,7 +29,7 @@
         <ci> task1_____time </ci>
       </math>
     </dataGenerator>
-    <dataGenerator id="plot_0_0_1" name="task1.PX">
+    <dataGenerator id="dg_0_0_1" name="PX (lacI)">
       <listOfVariables>
         <variable id="task1_____PX" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PX']" taskReference="task1" modelReference="model1"/>
       </listOfVariables>
@@ -36,7 +37,7 @@
         <ci> task1_____PX </ci>
       </math>
     </dataGenerator>
-    <dataGenerator id="plot_0_1_1" name="task1.PZ">
+    <dataGenerator id="dg_0_1_1" name="PZ (cI)">
       <listOfVariables>
         <variable id="task1_____PZ" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PZ']" taskReference="task1" modelReference="model1"/>
       </listOfVariables>
@@ -44,7 +45,7 @@
         <ci> task1_____PZ </ci>
       </math>
     </dataGenerator>
-    <dataGenerator id="plot_0_2_1" name="task1.PY">
+    <dataGenerator id="dg_0_2_1" name="PY (tetR)">
       <listOfVariables>
         <variable id="task1_____PY" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PY']" taskReference="task1" modelReference="model1"/>
       </listOfVariables>
@@ -52,7 +53,8 @@
         <ci> task1_____PY </ci>
       </math>
     </dataGenerator>
-    <dataGenerator id="plot_1_0_0" name="task2.time">
+    <!-- pre-processing -->
+    <dataGenerator id="dg_1_0_0" name="time">
       <listOfVariables>
         <variable id="task2_____time" symbol="urn:sedml:symbol:time" taskReference="task2"/>
       </listOfVariables>
@@ -60,7 +62,7 @@
         <ci> task2_____time </ci>
       </math>
     </dataGenerator>
-    <dataGenerator id="plot_1_0_1" name="task2.PX">
+    <dataGenerator id="dg_1_0_1" name="PX (lacI)">
       <listOfVariables>
         <variable id="task2_____PX" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PX']" taskReference="task2" modelReference="model2"/>
       </listOfVariables>
@@ -68,7 +70,7 @@
         <ci> task2_____PX </ci>
       </math>
     </dataGenerator>
-    <dataGenerator id="plot_1_1_1" name="task2.PZ">
+    <dataGenerator id="dg_1_1_1" name="PZ (cI)">
       <listOfVariables>
         <variable id="task2_____PZ" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PZ']" taskReference="task2" modelReference="model2"/>
       </listOfVariables>
@@ -76,7 +78,7 @@
         <ci> task2_____PZ </ci>
       </math>
     </dataGenerator>
-    <dataGenerator id="plot_1_2_1" name="task2.PY">
+    <dataGenerator id="dg_1_2_1" name="PY (tetR)">
       <listOfVariables>
         <variable id="task2_____PY" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PY']" taskReference="task2" modelReference="model2"/>
       </listOfVariables>
@@ -84,7 +86,8 @@
         <ci> task2_____PY </ci>
       </math>
     </dataGenerator>
-    <dataGenerator id="plot_2_0_0" name="task1.PX/max(task1.PX)">
+    <!-- post-processing -->
+    <dataGenerator id="dg_2_0_0" name="PX/max(PX) (lacI normalized)">
       <listOfVariables>
         <variable id="task1_____PX" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PX']" taskReference="task1" modelReference="model1"/>
       </listOfVariables>
@@ -99,7 +102,7 @@
         </apply>
       </math>
     </dataGenerator>
-    <dataGenerator id="plot_2_0_1" name="task1.PZ/max(task1.PZ)">
+    <dataGenerator id="dg_2_0_1" name="PZ/max(PZ) (cI normalized)">
       <listOfVariables>
         <variable id="task1_____PZ" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PZ']" taskReference="task1" modelReference="model1"/>
       </listOfVariables>
@@ -114,7 +117,7 @@
         </apply>
       </math>
     </dataGenerator>
-    <dataGenerator id="plot_2_1_0" name="task1.PY/max(task1.PY)">
+    <dataGenerator id="dg_2_1_0" name="PY/max(PY) (tetR normalized)">
       <listOfVariables>
         <variable id="task1_____PY" target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PY']" taskReference="task1" modelReference="model1"/>
       </listOfVariables>
@@ -133,23 +136,23 @@
   <listOfOutputs>
     <plot2D id="timecourse" name="Timecourse of repressilator">
       <listOfCurves>
-        <curve id="plot_0__plot_0_0_0__plot_0_0_1" logX="false" logY="false" xDataReference="plot_0_0_0" yDataReference="plot_0_0_1"/>
-        <curve id="plot_0__plot_0_0_0__plot_0_1_1" logX="false" logY="false" xDataReference="plot_0_0_0" yDataReference="plot_0_1_1"/>
-        <curve id="plot_0__plot_0_0_0__plot_0_2_1" logX="false" logY="false" xDataReference="plot_0_0_0" yDataReference="plot_0_2_1"/>
+        <curve id="plot_0__plot_0_0_0__plot_0_0_1" logX="false" logY="false" xDataReference="dg_0_0_0" yDataReference="dg_0_0_1"/>
+        <curve id="plot_0__plot_0_0_0__plot_0_1_1" logX="false" logY="false" xDataReference="dg_0_0_0" yDataReference="dg_0_1_1"/>
+        <curve id="plot_0__plot_0_0_0__plot_0_2_1" logX="false" logY="false" xDataReference="dg_0_0_0" yDataReference="dg_0_2_1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="preprocessing" name="Timecourse after pre-processing">
       <listOfCurves>
-        <curve id="plot_1__plot_1_0_0__plot_1_0_1" logX="false" logY="false" xDataReference="plot_1_0_0" yDataReference="plot_1_0_1"/>
-        <curve id="plot_1__plot_1_0_0__plot_1_1_1" logX="false" logY="false" xDataReference="plot_1_0_0" yDataReference="plot_1_1_1"/>
-        <curve id="plot_1__plot_1_0_0__plot_1_2_1" logX="false" logY="false" xDataReference="plot_1_0_0" yDataReference="plot_1_2_1"/>
+        <curve id="plot_1__plot_1_0_0__plot_1_0_1" logX="false" logY="false" xDataReference="dg_1_0_0" yDataReference="dg_1_0_1"/>
+        <curve id="plot_1__plot_1_0_0__plot_1_1_1" logX="false" logY="false" xDataReference="dg_1_0_0" yDataReference="dg_1_1_1"/>
+        <curve id="plot_1__plot_1_0_0__plot_1_2_1" logX="false" logY="false" xDataReference="dg_1_0_0" yDataReference="dg_1_2_1"/>
       </listOfCurves>
     </plot2D>
     <plot2D id="postprocessing" name="Timecourse after post-processing">
       <listOfCurves>
-        <curve id="plot_2__plot_2_0_0__plot_2_0_1" logX="false" logY="false" xDataReference="plot_2_0_0" yDataReference="plot_2_0_1"/>
-        <curve id="plot_2__plot_2_1_0__plot_2_0_0" logX="false" logY="false" xDataReference="plot_2_1_0" yDataReference="plot_2_0_0"/>
-        <curve id="plot_2__plot_2_0_1__plot_2_1_0" logX="false" logY="false" xDataReference="plot_2_0_1" yDataReference="plot_2_1_0"/>
+        <curve id="plot_2__plot_2_0_0__plot_2_0_1" logX="false" logY="false" xDataReference="dg_2_0_0" yDataReference="dg_2_0_1"/>
+        <curve id="plot_2__plot_2_1_0__plot_2_0_0" logX="false" logY="false" xDataReference="dg_2_1_0" yDataReference="dg_2_0_0"/>
+        <curve id="plot_2__plot_2_0_1__plot_2_1_0" logX="false" logY="false" xDataReference="dg_2_0_1" yDataReference="dg_2_1_0"/>
       </listOfCurves>
     </plot2D>
   </listOfOutputs>
