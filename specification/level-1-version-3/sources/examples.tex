@@ -3,7 +3,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Example simulation experiment (\texttt{L1V3\_repressilator.omex})}
 \label{example:repressilator}
-This example lists the SED-ML corresponding to the motivational example in the introduction (Section~\ref{motivation:example}), which provides a description of the executed simulation experiment and the used repressilator model. 
+This example lists the SED-ML for the example in the introduction (Section~\ref{motivation:example}).
 
 \myXmlImport{SED-ML document for example simulation experiment.}
 {lst:repressilator}
@@ -14,22 +14,22 @@ This example lists the SED-ML corresponding to the motivational example in the i
 % DATA EXAMPLES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Simulation experiments with dataDescriptions}
-The \hyperref[class:dataDescription]{DataDescription} make it possible to work with external data in simulation experiments. In this section simulation experiments using the \hyperref[class:dataDescription]{dataDescription} are presented.
+The \hyperref[class:dataDescription]{DataDescription} provides means to use external datasets in simulation experiments. In this section simulation experiments using the \hyperref[class:dataDescription]{dataDescription} are presented.
 
 \subsection{Plotting data with simulations (\texttt{L1V3\_plotting-data-numl.omex})}
-This example demonstrates the use of the \hyperref[class:dataDescription]{DataDescription} and \hyperref[class:dataSource]{DataSource} to load external data in SED-ML. In the example a \hyperref[class:model]{model} is simulated (using a \hyperref[class:uniformTimeCourse]{uniformTimeCourse} simulation). The simulation result is plotted. Data is plotted using the \hyperref[class:dataDescription]{dataDescription} and \hyperref[class:dataSource]{DataSource}), extracting the \token{S1} and \token{time} column from it and renders it. The listed example uses data encoded in \hyperref[sec:dataFormatNUML]{NuML} as \hyperref[sec:dataFormatURI]{format} (\code{urn:sedml:format:numl}). The respective example using \hyperref[sec:dataFormatCSV]{CSV} (\code{urn:sedml:format:csv}) is available as \texttt{L1V3\_plotting-data-csv.omex}.
+This example demonstrates the use of the \hyperref[class:dataDescription]{DataDescription} and \hyperref[class:dataSource]{DataSource} to load external data in SED-ML. In the example a \hyperref[class:model]{model} is simulated (using a \hyperref[class:uniformTimeCourse]{uniformTimeCourse} simulation) and the simulation results are plotted. In addition data is plotted using the \hyperref[class:dataDescription]{dataDescription} and \hyperref[class:dataSource]{DataSource}), extracting the \token{S1} and \token{time} column from it and renders it. The listed example uses data encoded in \hyperref[sec:dataFormatNUML]{NuML} as \hyperref[sec:dataFormatURI]{format} (\code{urn:sedml:format:numl}). The respective example using \hyperref[sec:dataFormatCSV]{CSV} (\code{urn:sedml:format:csv}) is available as \texttt{L1V3\_plotting-data-csv.omex}.
 
 \begin{figure}[ht]
     \centering
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/plotting-data-numl/results/sedml_webtools/plot1}
-        \caption{The simulation result from the simulation description given in \lst{plotting-data-numl}. Simulated with SED-ML web tools \citep{bergmann2017sed}.}
+        \caption{The simulation result from the simulation description given in \lst{plotting-data-numl}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/plotting-data-numl/results/tellurium/plot1}
-        \caption{Simulated with tellurium \citep{tellurium}.}
+        \caption{Simulation with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:plotting-data}
 \end{figure}
@@ -56,12 +56,12 @@ NOTE: This example produces three dimensional results (time, species concentrati
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/repeated-scan-oscli/results/sedml_webtools/plot1}
-        \caption{The simulation result gained from the simulation description given in \lst{repeated-scan-oscli}. Simulated with SED-ML web tools \citep{bergmann2017sed}.}
+        \caption{The simulation result gained from the simulation description given in \lst{repeated-scan-oscli}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
                 \includegraphics[width=1.0\textwidth]{examples/repeated-scan-oscli/results/tellurium/plot1}
-        \caption{Simulated with tellurium \citep{tellurium}.}
+        \caption{Simulation with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:repeated-scan-oscli}
 \end{figure}
@@ -79,12 +79,12 @@ In this example a \hyperref[class:repeatedTask]{repeatedTask} is used in combina
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/repeated-steady-scan-oscli/results/sedml_webtools/plot1}
-        \caption{The simulation result from the simulation description given in \lst{repeated-steady-scan-oscli}. Simulated with SED-ML web tools \citep{bergmann2017sed}.}
+        \caption{The simulation result from the simulation description given in \lst{repeated-steady-scan-oscli}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/repeated-steady-scan-oscli/results/tellurium/plot1}
-        \caption{Simulated with tellurium \citep{tellurium}.}
+        \caption{Simulation with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:repeated-steady-scan-oscli}
 \end{figure}
@@ -106,12 +106,12 @@ NOTE: This example produces three dimensional results (time, species concentrati
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/repeated-stochastic-runs/results/sedml_webtools/plot1}
-        \caption{The simulation result from the simulation description given in \lst{repeated-stochastic-runs}. Simulated with SED-ML web tools \citep{bergmann2017sed}.}
+        \caption{The simulation result from the simulation description given in \lst{repeated-stochastic-runs}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/repeated-stochastic-runs/results/tellurium/plot1}
-        \caption{Simulated with tellurium \citep{tellurium}.}
+        \caption{Simulation with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:repeated-stochastic-runs}
 \end{figure}
@@ -132,12 +132,12 @@ Note: In the example a \hyperref[class:functionalRange]{functionalRange} is used
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/oscli-nested-pulse/results/sedml_webtools/plot1}
-        \caption{The simulation result from the simulation description given in \lst{oscli-nested-pulse}. Simulated with SED-ML web tools \citep{bergmann2017sed}.}
+        \caption{The simulation result from the simulation description given in \lst{oscli-nested-pulse}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/oscli-nested-pulse/results/tellurium/plot1}
-        \caption{Simulated with tellurium \citep{tellurium}.}
+        \caption{Simulation with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:oscli-nested-pulse}
 \end{figure}
@@ -159,13 +159,13 @@ NOTE: This example produces three dimensional results (time, species concentrati
         \centering
         \includegraphics[width=1.0\textwidth]{examples/parameter-scan-2d/results/sedml_webtools/plot1}
         \includegraphics[width=1.0\textwidth]{examples/parameter-scan-2d/results/sedml_webtools/plot2}
-        \caption{The simulation result gained from the simulation description given in \lst{parameter-scan-2d}. Simulated with SED-ML web tools \citep{bergmann2017sed}.}
+        \caption{The simulation result gained from the simulation description given in \lst{parameter-scan-2d}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/parameter-scan-2d/results/tellurium/plot1}
 		\includegraphics[width=1.0\textwidth]{examples/parameter-scan-2d/results/tellurium/plot2}
-        \caption{Simulated with tellurium \citep{tellurium}.}
+        \caption{Simulation with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:parameter-scan-2d}
 \end{figure}
@@ -191,13 +191,13 @@ The following example provides a SED-ML description for the simulation of the Va
         \centering
         \includegraphics[width=1.0\textwidth]{examples/vanderpol-sbml/results/sedml_webtools/plot1}
         \includegraphics[width=1.0\textwidth]{examples/vanderpol-sbml/results/sedml_webtools/plot2}
-        \caption{The simulation result gained from the simulation description given in \lst{vanderpol-sbml}. Simulated with SED-ML web tools \citep{bergmann2017sed}.}
+        \caption{The simulation result gained from the simulation description given in \lst{vanderpol-sbml}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/vanderpol-sbml/results/tellurium/plot1}
         \includegraphics[width=1.0\textwidth]{examples/vanderpol-sbml/results/tellurium/plot2}
-        \caption{Simulated with tellurium \citep{tellurium}.}
+        \caption{Simulation with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:lorenz-sbml}
 \end{figure}
@@ -214,12 +214,12 @@ The following example provides a SED-ML description for the simulation of the Va
         \centering
         \includegraphics[width=1.0\textwidth]{examples/vanderpol-cellml/results/sedml_webtools/plot1}
         \includegraphics[width=1.0\textwidth]{examples/vanderpol-cellml/results/sedml_webtools/plot2}
-        \caption{The simulation result gained from the simulation description given in \lst{vanderpol-cellml}. Simulated with SED-ML web tools \citep{bergmann2017sed}.}
+        \caption{The simulation result gained from the simulation description given in \lst{vanderpol-cellml}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=0.9\textwidth]{examples/vanderpol-cellml/results/opencor/plot1-2}
-        \caption{Simulated with OpenCOR \citep{garny2015opencor}.}
+        \caption{Simulation with OpenCOR \citep{garny2015opencor}.}
     \end{minipage}
     \label{fig:lorenz-cellml}
 \end{figure}
@@ -238,14 +238,14 @@ The following example provides a SED-ML description for the simulation of the Va
 %        \includegraphics[width=1.0\textwidth]{examples/lorenz-sbml/results/sedml_webtools/plot1}
 %        \includegraphics[width=1.0\textwidth]{examples/lorenz-sbml/results/sedml_webtools/plot2}
 %		\includegraphics[width=1.0\textwidth]{examples/lorenz-sbml/results/sedml_webtools/plot3}
-%        \caption{The simulation result gained from the simulation description given in \lst{lorenz-sbml}. Simulated with SED-ML web tools \citep{bergmann2017sed}.}
+%        \caption{The simulation result gained from the simulation description given in \lst{lorenz-sbml}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
 %    \end{minipage}\hfill
 %    \begin{minipage}{0.47\textwidth}
 %        \centering
 %        \includegraphics[width=1.0\textwidth]{examples/lorenz-sbml/results/tellurium/plot1}
 %        \includegraphics[width=1.0\textwidth]{examples/lorenz-sbml/results/tellurium/plot2}
 %		\includegraphics[width=1.0\textwidth]{examples/lorenz-sbml/results/tellurium/plot3}
-%        \caption{Simulated with tellurium \citep{tellurium}.}
+%        \caption{Simulation with tellurium \citep{tellurium}.}
 %    \end{minipage}
 %    \label{fig:lorenz-sbml}
 %\end{figure}
@@ -261,12 +261,12 @@ The following example provides a SED-ML description for the simulation of the Va
 %    \begin{minipage}{0.47\textwidth}
 %        \centering
 %        \includegraphics[width=1.0\textwidth]{examples/lorenz-cellml/results/sedml_webtools/plot1}
-%        \caption{The simulation result gained from the simulation description given in \lst{lorenz-cellml}. Simulated with SED-ML web tools \citep{bergmann2017sed}.}
+%        \caption{The simulation result gained from the simulation description given in \lst{lorenz-cellml}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
 %    \end{minipage}\hfill
 %    \begin{minipage}{0.47\textwidth}
 %        \centering
 %        \includegraphics[width=1.0\textwidth]{examples/lorenz-cellml/results/opencor/plot1}
-%        \caption{Simulated with OpenCOR \citep{garny2015opencor}.}
+%        \caption{Simulation with OpenCOR \citep{garny2015opencor}.}
 %    \end{minipage}
 %    \label{fig:lorenz-cellml}
 %\end{figure}
@@ -300,14 +300,14 @@ The \hyperref[class:output]{output} defined in the experiment consists of three 
         \includegraphics[width=1.0\textwidth]{examples/leloup-sbml/results/sedml_webtools/plot1}
 		\includegraphics[width=1.0\textwidth]{examples/leloup-sbml/results/sedml_webtools/plot2}
 		\includegraphics[width=1.0\textwidth]{examples/leloup-sbml/results/sedml_webtools/plot3}
-        \caption{The simulation result gained from the simulation description given in \lst{leloup-sbml}. Simulated with SED-ML web tools \citep{bergmann2017sed}.}
+        \caption{The simulation result gained from the simulation description given in \lst{leloup-sbml}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
          \includegraphics[width=1.0\textwidth]{examples/leloup-sbml/results/tellurium/plot1}
 		\includegraphics[width=1.0\textwidth]{examples/leloup-sbml/results/tellurium/plot2}
 		\includegraphics[width=1.0\textwidth]{examples/leloup-sbml/results/tellurium/plot3}
-        \caption{Simulated with tellurium \citep{tellurium}.}
+        \caption{Simulation with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:leloup-sbml}
 \end{figure}
@@ -331,12 +331,12 @@ As output this simulation description collects four parameters: \code{Total\_NFk
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/ikappab/results/sedml_webtools/plot1}
-        \caption{The simulation result gained from the simulation description given in \lst{ikappab}. Simulated with SED-ML web tools \citep{bergmann2017sed}.}
+        \caption{The simulation result gained from the simulation description given in \lst{ikappab}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/ikappab/results/tellurium/plot1}
-        \caption{Simulated with tellurium \citep{tellurium}.}
+        \caption{Simulation with tellurium \citep{tellurium}.}
     \end{minipage}
     \label{fig:ikappab}
 \end{figure}
