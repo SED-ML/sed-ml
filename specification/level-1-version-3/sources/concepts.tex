@@ -248,7 +248,9 @@ Data in the \concept{CSV} format (\code{urn:sedml:format:csv}) must follow the f
 
 A dataset in \concept{CSV} is always encoding two dimensional data. 
 
-When using data in the \concept{CSV} format  SED-ML, the \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} is required on the \hyperref[class:dataDescription]{DataDescription}. The {\element{dimensionDescription}} must consist of an outer \code{compositeDescription} with \code{indexType="integer"} which allows to reference the rows of the \concept{CSV} by index and a inner \code{compositeDescription} which allows to reference the columns of the \concept{CSV} by their column header id. Within the inner \code{compositeDescription} exactly one \code{atomicDescription} must exist. All data in the \concept{CSV} must have the same type  which is defined via the \element{valueType} on the \element{atomicDescription}.
+When using data in the \concept{CSV} format  SED-ML, the \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} is required on the \hyperref[class:dataDescription]{DataDescription}. 
+
+The {\element{dimensionDescription}} must consist of an outer \code{compositeDescription} with \code{indexType="integer"} which allows to reference the rows of the \concept{CSV} by index and a inner \code{compositeDescription} which allows to reference the columns of the \concept{CSV} by their column header id. Within the inner \code{compositeDescription} exactly one \code{atomicDescription} must exist. All data in the \concept{CSV} must have the same type  which is defined via the \element{valueType} on the \element{atomicDescription}.
 
 Below an example of the required \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} for a \concept{CSV} is provided. In the example the \code{time} and \code{S1} columns are read from the \concept{CSV} file
 \begin{myXmlLst}{Example CSV}{lst:exampleCSV}
