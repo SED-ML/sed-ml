@@ -17,7 +17,9 @@ This example lists the SED-ML for the example in the introduction (Section~\ref{
 The \hyperref[class:dataDescription]{DataDescription} provides means to use external datasets in simulation experiments. In this section simulation experiments using the \hyperref[class:dataDescription]{dataDescription} are presented.
 
 \subsection{Plotting data with simulations (\texttt{L1V3\_plotting-data-numl.omex})}
-This example demonstrates the use of the \hyperref[class:dataDescription]{DataDescription} and \hyperref[class:dataSource]{DataSource} to load external data in SED-ML. In the example a \hyperref[class:model]{model} is simulated (using a \hyperref[class:uniformTimeCourse]{uniformTimeCourse} simulation) and the simulation results are plotted. In addition data is plotted using the \hyperref[class:dataDescription]{dataDescription} and \hyperref[class:dataSource]{DataSource}), extracting the \token{S1} and \token{time} column from it and renders it. The listed example uses data encoded in \hyperref[sec:dataFormatNUML]{NuML} as \hyperref[sec:dataFormatURI]{format} (\code{urn:sedml:format:numl}). The respective example using \hyperref[sec:dataFormatCSV]{CSV} (\code{urn:sedml:format:csv}) is available as \texttt{L1V3\_plotting-data-csv.omex}.
+This example demonstrates the use of the \hyperref[class:dataDescription]{DataDescription} and \hyperref[class:dataSource]{DataSource} to load external data in SED-ML. In the example a \hyperref[class:model]{model} is simulated (using a \hyperref[class:uniformTimeCourse]{uniformTimeCourse} simulation) and the simulation results are plotted. In addition data is plotted using the \hyperref[class:dataDescription]{dataDescription} and \hyperref[class:dataSource]{DataSource}), extracting the \token{S1} and \token{time} column from it and renders it. The listed example uses data encoded in \hyperref[sec:dataFormatNUML]{NuML} as \hyperref[sec:dataFormatURI]{format} (\code{urn:sedml:format:numl}). 
+
+The corresponding example using \hyperref[sec:dataFormatCSV]{CSV} (\code{urn:sedml:format:csv}) is available as \texttt{L1V3\_plotting-data-csv.omex}.
 
 \begin{figure}[ht]
     \centering
@@ -43,7 +45,7 @@ This example demonstrates the use of the \hyperref[class:dataDescription]{DataDe
 % REPEATED TASKS
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Simulation experiments with repeatedTasks}
-The \hyperref[class:repeatedTask]{repeatedTask} makes it possible to encode a large number of different simulation experiments. In this section several such simulation experiments using the \hyperref[class:repeatedTask]{repeatedTask} are presented.
+The \hyperref[class:repeatedTask]{RepeatedTask} makes it possible to encode a large number of different simulation experiments. In this section several such simulation experiments are presented.
 
 % ~~~ TIME COURSE PARAMETER SCAN ~~~
 \subsection{Time course parameter scan (\texttt{L1V3\_repeated-scan-oscli.omex})}
@@ -97,7 +99,7 @@ In this example a \hyperref[class:repeatedTask]{repeatedTask} is used in combina
 % ~~~ STOCHASTIC SIMULATION ~~~
 \subsection{Stochastic simulation (\texttt{L1V3\_repeated-stochastic-runs.omex})}
 In this example a \hyperref[class:repeatedTask]{repeatedTask} is used to run a stochastic simulation multiple times.
-Running just one stochastic trace does not provide a complete picture of the behavior of a system. A large number of traces are needed. This example demonstrates the basic use case of running ten traces of a simulation by using a \hyperref[class:repeatedTask]{repeatedTask} which runs ten uniform time course simulations (each performing a stochastic simulation run).
+Running just one stochastic trace does not provide a complete picture of the behavior of a system. A large number of such traces is needed. This example demonstrates the basic use case of running ten traces of a simulation by using a \hyperref[class:repeatedTask]{repeatedTask} which runs ten uniform time course simulations (each performing a stochastic simulation run).
 
 NOTE: This example produces three dimensional results (time, species concentration, multiple repeats). While SED-ML \currentLV does not include a way to post-processing these values. So it is left to the implementation on how to display them. One example would be to flatten the values by overlaying them onto the desired plot. 
 
@@ -149,7 +151,7 @@ Note: In the example a \hyperref[class:functionalRange]{functionalRange} is used
 
 % ~~~ 2D STEADY STATE PARAMETER SCAN ~~~
 \subsection{2D steady state parameter scan (\texttt{L1V3\_parameter-scan-2d.omex})}
-In this example a \hyperref[class:repeatedTask]{repeatedTask} which runs over another \hyperref[class:repeatedTask]{repeatedTask} which performs a steady state computation. Each repeated simulation task modifies a different parameter.
+This example uses a \hyperref[class:repeatedTask]{repeatedTask} which runs over another \hyperref[class:repeatedTask]{repeatedTask} which performs a steady state computation. Each repeated simulation task modifies a different parameter.
 
 NOTE: This example produces three dimensional results (time, species concentration, multiple repeats). While SED-ML \currentLV does not include a way to post-processing these values. So it is left to the implementation on how to display them. One example would be to flatten the values by overlaying them onto the desired plot. 
 
@@ -170,7 +172,7 @@ NOTE: This example produces three dimensional results (time, species concentrati
     \label{fig:parameter-scan-2d}
 \end{figure}
 
-\myXmlImport{SED-ML document implementing the one dimensional steady state parameter scan}
+\myXmlImport{SED-ML document implementing the two dimensional steady state parameter scan}
 {lst:parameter-scan-2d}
 {examples/parameter-scan-2d/parameter-scan-2d.xml}
 
@@ -179,11 +181,11 @@ NOTE: This example produces three dimensional results (time, species concentrati
 % DIFFERENT MODEL LANGUAGES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Simulation experiments with different model languages}
-SED-ML allows to specify models in various languages, e.g., SBML and CellML (see Section~\ref{sec:languageURI} for more information). This section demonstrates the same simulation experiment with the model either in SBML (Appendix~\ref{example:vanderpol_sbml}) or in CellML (Appendix~\ref{example:vanderpol_cellml}).
+SED-ML allows to specify models in various languages, e.g., SBML \citep{Hucka:2003} and CellML \citep{cuellar:2003} (see Section~\ref{sec:languageURI} for more information). This section demonstrates the same simulation experiment with the model either in SBML (Appendix~\ref{example:vanderpol_sbml}) or in CellML (Appendix~\ref{example:vanderpol_cellml}).
 
 \subsection{Van der Pol Model in SBML (\texttt{L1V3\_vanderpol-sbml.omex})}
 \label{example:vanderpol_sbml}
-The following example provides a SED-ML description for the simulation of the Van der Pol model in SBML.
+The following example provides a SED-ML description for the simulation of the Van der Pol oscillator in SBML \citep{Hucka:2003}. The time-course and the behavior in the phase plane are plotted. The mathematical model and the performed simulation experiment are identical to Appendix~\ref{example:vanderpol_cellml}.
 
 \begin{figure}[ht]
     \centering
@@ -202,11 +204,11 @@ The following example provides a SED-ML description for the simulation of the Va
     \label{fig:lorenz-sbml}
 \end{figure}
 
-\myXmlImport{LeLoup Model Simulation Description in SED-ML}{lst:vanderpol-sbml}{examples/vanderpol-sbml/vanderpol.xml}
+\myXmlImport{Van der Pol Model (SBML) Simulation Description in SED-ML}{lst:vanderpol-sbml}{examples/vanderpol-sbml/vanderpol.xml}
 
 \subsection{Van der Pol Model in CellML (\texttt{L1V3\_vanderpol-cellml.omex})}
 \label{example:vanderpol_cellml}
-The following example provides a SED-ML description for the simulation of the Van der Pol model in CellML.
+The following example provides a SED-ML description for the simulation of the Van der Pol model in CellML \citep{cuellar:2003}. The time-course and the behavior in the phase plane are plotted. The mathematical model and the performed simulation experiment are identical to Appendix~\ref{example:vanderpol_sbml}.
 
 \begin{figure}[ht]
     \centering
@@ -218,13 +220,13 @@ The following example provides a SED-ML description for the simulation of the Va
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
-        \includegraphics[width=0.9\textwidth]{examples/vanderpol-cellml/results/opencor/plot1-2}
+        \includegraphics[width=1.0\textwidth]{examples/vanderpol-cellml/results/opencor/plot1-2}
         \caption{Simulation with OpenCOR \citep{garny2015opencor}.}
     \end{minipage}
     \label{fig:lorenz-cellml}
 \end{figure}
 
-\myXmlImport{Van der Pol Model Simulation Description in SED-ML}{lst:vanderpol-cellml}{examples/vanderpol-cellml/vanderpol.xml}
+\myXmlImport{Van der Pol Model (CellML) Simulation Description in SED-ML}{lst:vanderpol-cellml}{examples/vanderpol-cellml/vanderpol.xml}
 
 % LORENZ EXAMPLES - DETERMINISTIC CHAOS
 %\subsection{Lorenz Model SBML (\code{lorenz-sbml.omex})}
@@ -278,12 +280,12 @@ The following example provides a SED-ML description for the simulation of the Va
 % REPRODUCING PUBLICATION RESULTS
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Reproducing publication results}
-SED-ML allows to reproduce figures from publication. This section provides such an example.
+SED-ML allows to describe simulation experiments from publications in a reproducible manner. This section provides such examples.
 
 % ~~~ LE LOUP (SBML) ~~~
-\subsection{Le Loup Model(\texttt{L1V3\_leloup-sbml.omex})}
+\subsection{Le Loup Model (\texttt{L1V3\_leloup-sbml.omex})}
 \label{example:leloup_sbml}
-The following example provides a SED-ML description for the simulation of the model based on the publication\cite{LeLoup1999}.
+The following example provides a SED-ML description for the simulation of the model based on the publication \cite{LeLoup1999}.
 
 The model is referenced by its SED-ML \hyperref[sec:id]{\element{id}} \code{model1} and refers to the model with the MIRIAM URN \url{urn:miriam:biomodels.db:BIOMD0000000021}. A second model is defined in the example, using \code{model1} as a source and applying additional changes to it, in this case updating two model parameters.
 
@@ -291,7 +293,7 @@ One simulation setup is defined in the \code{listOfSimulations}. It is a \code{u
 
 A number of \hyperref[class:dataGenerator]{dataGenerators} are defined, which are the prerequisite for defining the simulation \hyperref[class:output]{output}. The first \hyperref[class:dataGenerator]{dataGenerator} with \hyperref[sec:id]{\element{id}} \code{time} collects the simulation time. \code{tim1} maps on the \code{Mt} entity in the model that is used in \code{task1} which in the model \code{model1}. The dataGenerator named \code{\texttt{per\_tim1}} maps on the \code{Cn} entity in \code{model1}. Finally  the fourth and fifth dataGenerators map on the \code{Mt} and \code{\texttt{per\_tim}} entity respectively in the updated model with ID \code{model2}.
 
-The \hyperref[class:output]{output} defined in the experiment consists of three \hyperref[class:plot2D]{2D plots}. The first plot has two \hyperref[class:curve]{curves} and provides the time course of the simulation using the tim mRNA concentrations from both tasks. The second plot shows the \code{\texttt{per\_tim}} concentration against the \code{tim} concentration for the oscillating model. The third plot shows the same plot for the chaotic model. The resulting three plots are depicted in Figure \ref{fig:leloup-sbml}. 
+The \hyperref[class:output]{output} defined in the experiment consists of three \hyperref[class:plot2D]{2D plots}. The first plot has two \hyperref[class:curve]{curves} and provides the time course of the simulation using the tim mRNA concentrations from both tasks. The second plot shows the \code{\texttt{per\_tim}} concentration against the \code{tim} concentration for the oscillating model. The third plot shows the same plot for the chaotic model. The resulting three plots are depicted in Figure \ref{fig:leloup-sbml1} and \ref{fig:leloup-sbml2} . 
 
 \begin{figure}[ht]
     \centering
@@ -301,6 +303,7 @@ The \hyperref[class:output]{output} defined in the experiment consists of three 
 		\includegraphics[width=1.0\textwidth]{examples/leloup-sbml/results/sedml_webtools/plot2}
 		\includegraphics[width=1.0\textwidth]{examples/leloup-sbml/results/sedml_webtools/plot3}
         \caption{The simulation result gained from the simulation description given in \lst{leloup-sbml}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
+        \label{fig:leloup-sbml1}
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
@@ -308,8 +311,9 @@ The \hyperref[class:output]{output} defined in the experiment consists of three 
 		\includegraphics[width=1.0\textwidth]{examples/leloup-sbml/results/tellurium/plot2}
 		\includegraphics[width=1.0\textwidth]{examples/leloup-sbml/results/tellurium/plot3}
         \caption{Simulation with tellurium \citep{tellurium}.}
+        \label{fig:leloup-sbml2}
     \end{minipage}
-    \label{fig:leloup-sbml}
+    
 \end{figure}
 
 \myXmlImport{LeLoup Model Simulation Description in SED-ML}{lst:leloup-sbml}{examples/leloup-sbml/leloup-sbml.xml}
@@ -324,7 +328,7 @@ Software applications interpreting this example know how to dereference this URN
 
 The simulation description specifies one simulation \code{simulation1}, which is a uniform timecourse simulation that simulates the model for 41 hours. \code{task1} then applies this simulation to the model.
 
-As output this simulation description collects four parameters: \code{Total\_NFkBn}, \code{Total\_IkBbeta}, \code{Total\_IkBeps} and \code{Total\_IkBalpha}. These variables are to be plotted against the simulation time and displayed in four separate plots, as shown in Figure \ref{fig:ikappab}.
+As output this simulation description collects four parameters: \code{Total\_NFkBn}, \code{Total\_IkBbeta}, \code{Total\_IkBeps} and \code{Total\_IkBalpha}. These variables are plotted against the simulation time as shown in Figure \ref{fig:ikappab1} and \ref{fig:ikappab2}.
 
 \begin{figure}[ht]
     \centering
@@ -332,13 +336,14 @@ As output this simulation description collects four parameters: \code{Total\_NFk
         \centering
         \includegraphics[width=1.0\textwidth]{examples/ikappab/results/sedml_webtools/plot1}
         \caption{The simulation result gained from the simulation description given in \lst{ikappab}. Simulation with SED-ML web tools \citep{bergmann2017sed}.}
+        \label{fig:ikappab1}
     \end{minipage}\hfill
     \begin{minipage}{0.47\textwidth}
         \centering
         \includegraphics[width=1.0\textwidth]{examples/ikappab/results/tellurium/plot1}
         \caption{Simulation with tellurium \citep{tellurium}.}
+        \label{fig:ikappab2}
     \end{minipage}
-    \label{fig:ikappab}
 \end{figure}
 
 \myXmlImport{IkappaB-NF-kappaB signaling Model Simulation Description in SED-ML}{lst:ikappab}{examples/ikappab/ikappab.xml}
