@@ -3,8 +3,10 @@
     "format" : "http://identifiers.org/combine.specifications/omex",
     "description" : "SED-ML L1V3 specification example.",
     "creators" : [
-      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
-      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Alan", "familyName": "Garny", "email": "alan.garny@inria.fr", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
     ]
   },
   {
@@ -12,7 +14,7 @@
     "format" : "http://purl.org/NET/mediatypes/application/json",
     "description" : "Information to create archive metadata",
     "creators" : [
-      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
     ]
   },
@@ -22,7 +24,7 @@
     "master" : true,
     "description": "Van der Pol simulation experiment",
     "creators" : [
-      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
     ]
   },
@@ -31,7 +33,7 @@
     "format" : "http://purl.org/NET/mediatypes/text/plain",
     "description": "Documentation used to create PMR exposure page.",
     "creators" : [
-      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
     ]
   },
@@ -40,25 +42,27 @@
     "format" : "http://identifiers.org/combine.specifications/cellml",
     "description": "Van der Pol CellML model.",
     "creators" : [
-      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
     ]
   },
   {
-    "location" : "results/opencor/vanderpol-screenshot.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
-    "description": "OpenCOR screenshot of simulation.",
-    "creators" : [
-      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
-      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
-    ]
-  },
-  {
-    "location" : "results/opencor/plot1-2.png",
-    "format" : "http://purl.org/NET/mediatypes/image/png",
+    "location" : "results/opencor/plot1.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "OpenCOR results.",
     "creators" : [
-      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Alan", "familyName": "Garny", "email": "alan.garny@inria.fr", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+    ]
+  },
+  {
+    "location" : "results/opencor/plot2.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "OpenCOR results.",
+    "creators" : [
+      { "givenName": "Alan", "familyName": "Garny", "email": "alan.garny@inria.fr", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
     ]
   },
@@ -67,7 +71,8 @@
     "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "SED-ML webtools results.",
     "creators" : [
-      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
     ]
   },
@@ -76,7 +81,8 @@
     "format" : "http://purl.org/NET/mediatypes/application/pdf",
     "description": "SED-ML webtools results.",
     "creators" : [
-      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
       { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
     ]
   }
