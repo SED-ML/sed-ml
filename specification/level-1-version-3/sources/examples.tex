@@ -183,7 +183,7 @@ NOTE: This example produces three dimensional results (time, species concentrati
 \section{Simulation experiments with different model languages}
 SED-ML allows to specify models in various languages, e.g., SBML \citep{Hucka:2003} and CellML \citep{cuellar:2003} (see Section~\ref{sec:languageURI} for more information). This section demonstrates the same simulation experiment with the model either in SBML (Appendix~\ref{example:vanderpol_sbml}) or in CellML (Appendix~\ref{example:vanderpol_cellml}).
 
-\subsection{Van der Pol Model in SBML (\texttt{L1V3\_vanderpol-sbml.omex})}
+\subsection{Van der Pol oscillator in SBML (\texttt{L1V3\_vanderpol-sbml.omex})}
 \label{example:vanderpol_sbml}
 The following example provides a SED-ML description for the simulation of the Van der Pol oscillator in SBML \citep{Hucka:2003}. The time-course and the behavior in the phase plane are plotted. The mathematical model and the performed simulation experiment are identical to Appendix~\ref{example:vanderpol_cellml}.
 
@@ -206,7 +206,7 @@ The following example provides a SED-ML description for the simulation of the Va
 
 \myXmlImport{Van der Pol Model (SBML) Simulation Description in SED-ML}{lst:vanderpol-sbml}{examples/vanderpol-sbml/vanderpol.xml}
 
-\subsection{Van der Pol Model in CellML (\texttt{L1V3\_vanderpol-cellml.omex})}
+\subsection{Van der Pol oscillator in CellML (\texttt{L1V3\_vanderpol-cellml.omex})}
 \label{example:vanderpol_cellml}
 The following example provides a SED-ML description for the simulation of the Van der Pol model in CellML \citep{cuellar:2003}. The time-course and the behavior in the phase plane are plotted. The mathematical model and the performed simulation experiment are identical to Appendix~\ref{example:vanderpol_sbml}.
 
@@ -284,7 +284,7 @@ The following example provides a SED-ML description for the simulation of the Va
 SED-ML allows to describe simulation experiments from publications in a reproducible manner. This section provides such examples.
 
 % ~~~ LE LOUP (SBML) ~~~
-\subsection{Le Loup Model (\texttt{L1V3\_leloup-sbml.omex})}
+\subsection{Le Loup model (\texttt{L1V3\_leloup-sbml.omex})}
 \label{example:leloup_sbml}
 The following example provides a SED-ML description for the simulation of the model based on the publication \cite{LeLoup1999}.
 
@@ -321,7 +321,7 @@ The \hyperref[class:output]{output} defined in the experiment consists of three 
 
 
 % ~~~ IKAPPAB ~~~
-\subsection{IkappaB Signaling (\texttt{L1V3\_ikkapab.omex})}
+\subsection{IkappaB signaling (\texttt{L1V3\_ikkapab.omex})}
 The following example provides a SED-ML description for the simulation of the IkappaB-NF-kappaB signaling module described in \citep{hoffmann2002ikappab}.
 
 This model is referenced by its SED-ML ID \code{model1} and refers to the model with the MIRIAM URN \url{urn:miriam:biomodels.db:BIOMD0000000140}. 

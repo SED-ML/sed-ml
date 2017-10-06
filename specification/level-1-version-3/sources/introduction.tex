@@ -5,11 +5,9 @@
 The Simulation Experiment Description Markup Language (SED-ML) is an XML-based format for the description of simulation experiments.
 
 The number of computational models of biological systems is growing at an ever increasing pace. 
-At the same time, their size and complexity are also increasing. It is now generally accepted that one must be able to exchange the mathematical structure of such models, for instance to build on existing studies by reusing models or for the reproduction of model results. The efforts to standardize the representation of computational models in various areas of biology, such as the Systems Biology Markup Language (SBML) \citep{Hucka:2003}, CellML \citep{cuellar:2003} or NeuroML \citep{Goddard:2001}, resulted in an increase of the exchange and re-use of models. 
+At the same time, their size and complexity are also increasing. It is now generally accepted that one must be able to exchange the mathematical structure of such models, for instance to build on existing studies by reusing models or for the reproduction of model results. The efforts to standardize the representation of computational models in various areas of biology, such as the Systems Biology Markup Language (SBML) \citep{Hucka:2003}, CellML \citep{cuellar:2003} or NeuroML \citep{Goddard:2001}, resulted in an increase of the exchange and re-use of models. However, the description of models is not sufficient for the reproduction of simulation experiments and results. One also needs to describe the procedures the models are subjected to, i.e., the information that must be provided to allow the reproduction of simulation experiments among users and software tools. The increasing use of computational simulation experiments to inform modern biological research creates new challenges to reproduce, annotate, archive, and share such experiments. 
 
-However, the description of the structure of models is not sufficient for the reproduction of simulation results. One also needs to describe the procedures the models are subjected to, i.e., the information that must be provided to allow the reproduction of simulation experiments among users and software tools. The increasing use of computational simulation experiments to inform modern biological research creates new challenges to reproduce, annotate, archive, and share such experiments. 
-
-SED-ML describes in a computer-readable exchange format the information to enable the reproduction of simulation experiments. SED-ML is a software-independent format encoded in the Extensible Markup Language (XML) not specific to particular simulation tools and independent of the underlying model implementation. SED-ML describes the minimum information of a simulation experiment as described by the Minimum Information About a Simulation Experiment (MIASE) \citep{Waltemath:2011}.
+SED-ML describes in a computer-readable exchange format the information for the reproduction of simulation experiments. SED-ML is a software-independent format encoded in XML not specific to particular simulation tools and independent of the underlying model language. SED-ML describes the minimum information of a simulation experiment as described by the Minimum Information About a Simulation Experiment (MIASE) \citep{Waltemath:2011}.
 
 SED-ML is developed as a community project and defined via a detailed technical specification and a corresponding XML Schema. 
 
@@ -22,18 +20,18 @@ This document describes \currentLV of SED-ML which is the successor of \previous
 SED-ML specifies for a given simulation experiment
 
 \begin{itemize}
-\item what datasets to use (\hyperref[class:dataDescription]{DataDescription}),
-\item which models to use (\hyperref[class:model]{Model}),
-\item which modifications to apply to models before simulation (\hyperref[class:change]{Change}),
-\item which simulation procedures to run on each model (\hyperref[class:simulation]{Simulation} and \hyperref[class:task]{Task}),
-\item what analysis results to plot or report and how to post-process the data (\hyperref[class:dataGenerator]{DataGenerator}), and
-\item how these results should be presented (\hyperref[class:output]{Output})
+\item what datasets to use (\hyperref[class:dataDescription]{DataDescription});
+\item which models to use (\hyperref[class:model]{Model});
+\item which modifications to apply to models before simulation (\hyperref[class:change]{Change});
+\item which simulation procedures to run on each model (\hyperref[class:simulation]{Simulation}, and \hyperref[class:task]{Task});
+\item what analysis results to plot or report and how to post-process the data (\hyperref[class:dataGenerator]{DataGenerator}); and
+\item how these results should be presented (\hyperref[class:output]{Output}).
 \end{itemize}
 
 A \hyperref[class:sed-ml]{SED-ML document} contains the following main objects to describe this information: \hyperref[class:dataDescription]{DataDescription}, \hyperref[class:model]{Model}, \hyperref[class:change]{Change}, \hyperref[class:simulation]{Simulation}, \hyperref[class:task]{Task}, \hyperref[class:dataGenerator]{DataGenerator}, and \hyperref[class:output]{Output}.
 
 \paragraph*{\hyperref[class:dataDescription]{DataDescription}}
-The \hyperref[class:dataDescription]{DataDescription} class allows to specify datasets used in a simulation experiment. Such data can be used for instance for parametrization of model simulations or to plot data with simulation results.
+The \hyperref[class:dataDescription]{DataDescription} class allows to specify datasets for a simulation experiment. Such data can be used for instance for parametrization of model simulations or to plot data together with simulation results.
 
 \paragraph*{\hyperref[class:model]{Model}}
 The \hyperref[class:model]{Model} class allows to reference the models used in a simulation experiment.
@@ -47,21 +45,21 @@ The \hyperref[class:simulation]{Simulation} class defines the simulation setting
 SED-ML uses the \hyperref[class:task]{Task} class to specify which \hyperref[class:simulation]{Simulation} is run with which \hyperref[class:model]{Model}.
 
 \paragraph*{\hyperref[class:dataGenerator]{DataGenerator}}
-The \hyperref[class:dataGenerator]{DataGenerator} class allows to encode post-processing of simulation results before output, e.g., one might want to normalize a plot before output, or apply post-processing like mean-value calculation. In the definition of a \hyperref[class:dataGenerator]{DataGenerator}, any addressable variable or parameter of any defined model or datasets from \hyperref[class:dataDescription]{DataDescription} may be referenced, and new entities might be specified using \hyperref[sec:mathML]{MathML}.
+The \hyperref[class:dataGenerator]{DataGenerator} class allows to encode post-processing of simulation results before the generation of outputs, e.g., one can normalize a variable, or apply post-processing like mean value calculation. In the definition of a \hyperref[class:dataGenerator]{DataGenerator}, any addressable variable or parameter of any model or \hyperref[class:dataSource]{DataSource} may be referenced, and new entities might be specified using \hyperref[sec:mathML]{MathML}.
 
 \paragraph*{\hyperref[class:output]{Output}}
-The \hyperref[class:output]{Output} defines the output of the simulation, which can be either a two dimensional plot (\hyperref[class:plot2D]{Plot2D}), a three dimensional plot (\hyperref[class:plot3D]{Plot3D}), or data table (\hyperref[class:report]{Report}). The \hyperref[class:output]{Output} is based on the post-processed simulation results in the \hyperref[class:dataGenerator]{DataGenerators}.
+The \hyperref[class:output]{Output} defines the output of the simulation experiment, which can be either a two dimensional plot (\hyperref[class:plot2D]{Plot2D}), a three dimensional plot (\hyperref[class:plot3D]{Plot3D}), or data table (\hyperref[class:report]{Report}). The \hyperref[class:output]{Output} is based on the post-processed simulation results in the \hyperref[class:dataGenerator]{DataGenerators}.
 
-This section provided a low level overview over the content of a simulation experiment in SED-ML. For the detailed technical specification see Chapter~\ref{chp:specification}. 
+This section provided a low level overview over a simulation experiment in SED-ML. For the detailed technical specification see Chapter~\ref{chp:specification}. 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% EXAMPLE SIMULATION
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Example simulation experiment}
 \label{motivation:example}
-In this section an example simulation experiment in SED-ML is presented for the repressilator model \citep{Elowitz:2000}. The corresponding SED-ML is listed in Appendix~\ref{example:repressilator}, the \hyperref[sec:archive]{Combine Archive} for this simulation experiment is available as \texttt{L1V3\char`_repressilator.omex} from \url{http://sed-ml.org/}.
+In this section an example simulation experiment in SED-ML for the repressilator model \citep{Elowitz:2000} is presented. The corresponding SED-ML is listed in Appendix~\ref{example:repressilator}, the \hyperref[sec:archive]{COMBINE Archive} for this simulation experiment is available as \texttt{L1V3\char`_repressilator.omex} from \url{http://sed-ml.org/}.
 
-The repressilator is a synthetic oscillating network of transcription regulators in Escherichia coli. The network is composed of the three repressor genes Lactose Operon Repressor (lacI), Tetracycline Repressor (tetR) and Repressor CI (cI), which code for proteins binding to the promoter of the other, blocking their transcription. The three inhibitions together in tandem, form a cyclic negative-feedback loop. To describe the interactions of the molecular species involved in the network, the authors built a simple mathematical model of coupled first-order differential equations. All six molecular species included in the network (three mRNAs, three repressor proteins) participate in creation (transcription/translation) and degradation processes. The model was used to determine the influence of the various parameters on the dynamic behavior of the system. In particular, parameter values were sought which induce stable oscillations in the concentrations of the system components.
+The repressilator is a synthetic oscillating network of transcription regulators in Escherichia coli. The network is composed of the three repressor genes Lactose Operon Repressor (\code{lacI}), Tetracycline Repressor (\code{tetR}) and Repressor CI (\code{cI}), which code for proteins binding to the promoter of the other, blocking their transcription. The three inhibitions together in tandem, form a cyclic negative-feedback loop. To describe the interactions of the molecular species involved in the network, the authors built a simple mathematical model of coupled first-order differential equations. All six molecular species included in the network (three mRNAs, three repressor proteins) participate in creation (transcription/translation) and degradation processes. The model was used to determine the influence of the various parameters on the dynamic behavior of the system. In particular, parameter values were sought which induce stable oscillations in the concentrations of the system components.
 
 %% ~~ TIME-COURSE ~~
 \subsection{Time-course simulation}
@@ -97,15 +95,15 @@ Following those steps and performing the simulation experiment in a simulation t
 %% ~~ PRE-PROCESSING ~~
 \subsection{Applying pre-processing}
 \label{sec:preprocessing}
-Often in simulation experiments model parameters are adjusted before simulation. When changing the parameter values for the protein copies per promoter \code{tps$\_$repr} and the leakiness in protein copies per promoter \code{tps$\_$active} like stated below, the system's behavior switches from sustained oscillations to damped oscillations towards an asymptotic steady-state. The model changes leading to that behavior are described as: 
+A common step in a simulation experiment is the adjustment of model parameters before simulation. When changing the parameter values for the protein copies per promoter \code{tps$\_$repr} and the leakiness in protein copies per promoter \code{tps$\_$active} like stated below, the system's behavior switches from sustained oscillations to damped oscillations. The simulation experiment leading to that behavior is described as: 
 
 \begin{enumerate}
-	\item{Import the model as above.}
+	\item{Import the model as in Section~\ref{sec:timecourse} above.}
 	\item{Change the value of the parameter \code{tps$\_$repr} from \code{0.0005} to \code{1.3e-05}.}
 	\item{Change the value of the parameter \code{tps$\_$active} from \code{0.5} to \code{0.013}.}
 	\item{Select a deterministic method.}
 	\item{Run a uniform time course for the duration of 1000~min with an output interval of 1~min.}
-	\item Plot the amount of lacI, tetR and cI against time in a 2D Plot.
+	\item Plot the amount of \code{lacI}, \code{tetR} and \code{cI} against time in a 2D Plot.
 \end{enumerate}
 
 \fig{rep_pre1} and \fig{rep_pre2} show the results of the simulation.
@@ -130,9 +128,9 @@ Often in simulation experiments model parameters are adjusted before simulation.
 %% ~~ POST-PROCESSING ~~
 \subsection{Applying post-processing}
 \label{sec:postprocessing}
-The raw numerical output of the simulation steps may be subjected to data post-processing before plotting or reporting. In order to describe the production of a normalized plot of the time-course in the first example (section \ref{sec:timecourse}), depicting the influence of one variable on another (in phase-planes), one performs the additional steps:
+In a simulation experiment the raw numerical output of the simulation may be subjected to data post-processing before plotting or reporting. In order to describe the production of a normalized plot of the time-course in the first example (section \ref{sec:timecourse}), depicting the influence of one variable on another (in phase-plane), one performs the additional steps:
 
-(Please note that the description steps 1 - 4 remain as given in section \ref{sec:timecourse} above.)
+(Please note that the description steps 1 - 4 remain as given in Section~\ref{sec:timecourse} above.)
 \begin{enumerate}
 	\item[5.]{Collect \code{lacI(t)}, \code{tetR(t)} and \code{cI(t)}.}
 	\item[6.]{Compute the highest value for each of the repressor proteins, \code{max(lacI(t))}, \code{max(tetR(t))}, \code{max(cI(t))}.}
