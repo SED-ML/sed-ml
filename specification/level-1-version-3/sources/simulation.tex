@@ -100,12 +100,12 @@ algorithm & \refpage{class:algorithm}\\
 
 \paragraph*{\element{initialTime}}
 \label{sec:initialTime}
-The attribute \concept{\element{initialTime}} of type \code{double} represents what the time is taken to be at the start of the simulation, for purposes of output variables, and for calculating the \element{outputStartTime} and \element{outputEndTime}.  In most cases, this will be \code{0.0}.  The model must be set up such that \element{intialTime} is correct internally with respect to any output variables that may be produced.
+The attribute \concept{\element{initialTime}} of type \code{double} represents what the time is at the start of the simulation, for purposes of output variables, and for calculating the \element{outputStartTime} and \element{outputEndTime}.  In most cases, this will be \code{0.0}.  The model must be set up such that \element{intialTime} is correct internally with respect to any output variables that may be produced.
 Listing~\ref{lst:timecourse} shows an example. 
 
 \paragraph*{\element{outputStartTime}}
 \label{sec:outputStartTime}
-Sometimes a researcher is not interested in simulation results at the start of the simulation (i.e., the initial time). The \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} class uses the attribute \concept{\element{outputStartTime}} of type \code{double} to describe this simulation experiment, and describes the time (relative to the \element{intialTime}) that output is to be collected. To be valid the \concept{\element{outputStartTime}} cannot be before \hyperref[sec:initialTime]{\element{initialTime}}. For an example, see Listing~\ref{lst:timecourse}. 
+Sometimes a researcher is not interested in simulation results at the start of the simulation, i.e., the initial time. The \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} class uses the attribute \concept{\element{outputStartTime}} of type \code{double}, and describes the time (relative to the \element{intialTime}) that output is to be collected. To be valid the \concept{\element{outputStartTime}} cannot be before \hyperref[sec:initialTime]{\element{initialTime}}. For an example, see Listing~\ref{lst:timecourse}. 
 
 \paragraph*{\element{outputEndTime}}
 \label{sec:outputEndTime}
@@ -170,7 +170,7 @@ Note that the \concept{\element{step}} does not necessarily equate to one integr
 % ~~~ STEADYSTATE SIMULATION ~~~
 \subsubsection{\element{SteadyState}}
 \label{class:steadyState}
-The \concept{SteadyState} represents a steady state computation (as for example implemented by NLEQ or Kinsolve). The \concept{SteadyState} class has has no additional elements than the elements from \hyperref[class:simulation]{Simulation} (\fig{simulation}).
+The \concept{SteadyState} represents a steady state computation (as for example implemented by NLEQ or Kinsolve). The \concept{SteadyState} class has no additional elements than the elements from \hyperref[class:simulation]{Simulation} (\fig{simulation}).
 
 \tabtext{steadyState}{steadyState}
 

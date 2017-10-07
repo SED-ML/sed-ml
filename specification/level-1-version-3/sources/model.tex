@@ -48,7 +48,7 @@ listOfChanges$^{o}$ & \refpage{sec:changesModel}\\
 \end{table}
 
 \lsttext{model}{model}
-In the example the \hyperref[sec:listOfModels]{\element{listOfModels}} contains three models: The first model \code{m0001} is the Repressilator model from \biom available from \url{urn:miriam:biomodels.db:BIOMD0000000012}. For the SED-ML simulation the model might undergo preprocessing steps described in the \hyperref[sec:changesModel]{\element{listOfChanges}}. Based on the description of the first model \code{m0001}, the second model \code{m00012} is built, which is a modified version of the Repressilator model. \code{m0002} refers to the model \code{m001} in its \hyperref[sec:model_source]{\code{source}} attribute. \code{m0002} might then have additional changes applied to it on top of the changes defined in the pre-processing of \code{m0001}. The third model in the code example above is a different model in CellML representation. The model \code{m0003} is available from the given URL in the \hyperref[sec:model_source]{\code{source}} attribute. Again, it might have pre-processing steps applied before used in a simulation.
+In the example the \hyperref[sec:listOfModels]{\element{listOfModels}} contains three models: The first model \code{m0001} is the Repressilator model from \biom available from \url{urn:miriam:biomodels.db:BIOMD0000000012}. For the SED-ML simulation the model might undergo preprocessing steps described in the \hyperref[sec:changesModel]{\element{listOfChanges}}. Based on the description of the first model \code{m0001}, the second model \code{m00012} is built, which is a modified version of the Repressilator model. \code{m0002} refers to the model \code{m001} in its \hyperref[sec:model_source]{\code{source}} attribute. \code{m0002} might then have additional changes applied to it on top of the changes defined in the pre-processing of \code{m0001}. The third model in the code example is a model in CellML representation. The model \code{m0003} is available from the given URL in the \hyperref[sec:model_source]{\code{source}} attribute. Again, it might have pre-processing steps applied before used in a simulation.
 
 \begin{myXmlLst}{SED-ML \code{model} element}{lst:model}
 <listOfModels>
@@ -76,15 +76,15 @@ In the example the \hyperref[sec:listOfModels]{\element{listOfModels}} contains 
 \label{sec:language}
 The optional \concept{\element{language}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the format of the \hyperref[class:model]{model}. Example formats are SBML (\code{urn:sedml:language:sbml}) or CellML (\code{urn:sedml:language:cellml}). The supported languages are defined in the \hyperref[sec:languageURI]{language references}.
 
-If it is not explicitly defined the default value for \concept{\element{language}} is \code{urn:sedml:language:xml}, referring to any XML based model representation. However, the use of the \concept{\element{language}} attribute is strongly encouraged for two reasons. Firstly, it helps a user decide whether or not he is able to run the simulation, that is to parse the model referenced in the SED-ML file. Secondly, the language attribute is also needed to decide how to handle the \hyperref[sec:implicitVariable]{Symbols} in the \hyperref[class:variable]{Variable} class, as the interpretation of \hyperref[sec:implicitVariable]{Symbols} depends on the language of the representation format.
+If it is not explicitly defined the default value for \concept{\element{language}} is \code{urn:sedml:language:xml}, referring to any XML based model representation. However, the use of the \concept{\element{language}} attribute is strongly encouraged for two reasons. Firstly, it helps to decide whether or not one is able to run the simulation, that is to parse the model referenced in the SED-ML file. Secondly, the language attribute is also needed to decide how to handle the \hyperref[sec:implicitVariable]{Symbols} in the \hyperref[class:variable]{Variable} class, as the interpretation of \hyperref[sec:implicitVariable]{Symbols} depends on the language of the representation format.
 
 
 % ~~~ MODEL:SOURCE ~~~
 \paragraph*{\element{source}}
 \label{sec:model_source}
-To make a \hyperref[class:model]{model} available for the execution of a SED-ML file, the \concept{\element{source}} must be specified through either an URI or a reference to an \code{SId} of an existing \hyperref[class:model]{Model}. The URI should follow the proposed \hyperref[sec:uriScheme]{URI Scheme} for \hyperref[sec:modelURI]{Model references}.
+To make a \hyperref[class:model]{model} accessible for the execution of a SED-ML file, the \concept{\element{source}} must be specified through either an URI or a reference to an \code{SId} of an existing \hyperref[class:model]{Model}. The URI should follow the proposed \hyperref[sec:uriScheme]{URI Scheme} for \hyperref[sec:modelURI]{Model references}.
 
-An example for the definition of a model via an URI is given in Listing~\ref{lst:sourceA}. The example defines one model \code{m1} with the model \concept{\element{source}} available from \code{urn:miriam:biomodels.db:BIOMD0000000012}. The MIRIAM URN can be resolved into the SBML model stored in BioModels Database under the identifier \element{BIOMD0000000012} using the MIRIAM web service. The resulting URL is \url{http://www.ebi.ac.uk/biomodels-main/BIOMD0000000012}.
+An example for the definition of a model via an URI is given in Listing~\ref{lst:sourceA}. The example defines one model \code{m1} with the model \concept{\element{source}} available from \code{urn:miriam:biomodels.db:BIOMD0000000012}. The MIRIAM URN can be resolved into the SBML model stored in BioModels Database under the identifier \element{BIOMD0000000012} using the MIRIAM web service. The resulting URL is \url{https://www.ebi.ac.uk/biomodels-main/BIOMD0000000012}.
 
 \begin{myXmlLst}{The SED-ML \code{source} element, using the URI scheme}{lst:sourceA}
 <model id="m1" name="repressilator" language="urn:sedml:language:sbml" 
@@ -95,7 +95,7 @@ An example for the definition of a model via an URI is given in Listing~\ref{lst
 </model>
 \end{myXmlLst}
 
-An example for the definition of a model using an URL is given in Listing~\ref{lst:sourceB}. In the example one model is defined. The \element{language} of the model is \element{CellML}. As the CellML model repository currently does not provide a MIRIAM URI for model reference, the \emph{URL} pointing to the model code is used to refer to the model. The URL is given in the \concept{\element{source}} attribute.
+An example for the definition of a model using an URL is given in Listing~\ref{lst:sourceB}. In the example one model is defined. The \element{language} of the model is \element{CellML}. As the CellML model repository currently does not provide a MIRIAM URI for model reference, the \emph{URL} pointing to the model is used in the \concept{\element{source}} attribute.
 
 \begin{myXmlLst}{The SED-ML \code{source} element, using a URL}{lst:sourceB}
 <model id="m1" name="repressilator" language="urn:sedml:language:cellml" 
@@ -134,7 +134,7 @@ The \concept{Change} class allows to describe changes applied to a \hyperref[cla
 
 The \concept{Change} class is abstract and serves as the base class for different types of changes, the \hyperref[class:changeAttribute]{ChangeAttribute}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML}, and \hyperref[class:computeChange]{ComputeChange}.
 
-The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarget]{target} which defines the target of the change. The \hyperref[sec:changeTarget]{\element{target}} attribute holds a valid \hyperref[sec:xpath]{XPath} expression pointing to the XML element or XML attribute that is to undergo the defined changes. Except for the cases of \hyperref[class:changeXml]{ChangeXML} and \hyperref[class:removeXml]{RemoveXML}, this XPath expression must always select a single element or attribute within the relevant model.
+The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarget]{target} which defines the target of the change. The \hyperref[sec:changeTarget]{\element{target}} attribute holds a valid \hyperref[sec:xpath]{XPath} expression pointing to the XML element or XML attribute that is to undergo the defined changes. Except for the cases of \hyperref[class:changeXml]{ChangeXML} and \hyperref[class:removeXml]{RemoveXML}, this \hyperref[sec:xpath]{XPath} expression must always select a single element or attribute within the relevant model.
 
 \sedfig[width=0.7\textwidth]{images/uml/change}{The SED-ML Change class}{fig:sedChange}
 
@@ -174,30 +174,11 @@ The \concept{\element{target}} attribute holds a valid \hyperref[sec:xpath]{XPat
 \label{sec:newXml}
 The \concept{\element{newXML}} element provides a piece of XML code (\fig{sedChange}). \concept{\element{NewXML}} must hold a valid piece of XML which after insertion into the original model must  result in a valid model file (according to the model language specification as given by the \hyperref[sec:language]{\element{language}} attribute of the \hyperref[class:model]{model}).
 
-\tabtext{newXML}{newXML}
-
-\begin{table}[ht!]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-\emph{none} & \\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-\emph{anyXML} & \\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{newXML}}
-\label{tab:newXML}
-\end{table}
-
 The \concept{\element{newXML}} element is used at two different places inside SED-ML \currentLV:
 
 \begin{enumerate}
-	\item{If it is used as a sub-element of the \hyperref[class:addXml]{\element{addXML}} element, then the XML it contains  it is to be \emph{inserted as a child} of the XML element addressed by the XPath.}
-	\item{If it is used as a sub-element of the \hyperref[class:changeXml]{\element{changeXML}} element, then the XML it contains is to \emph{replace} the XML element addressed by the XPath.}
+	\item{If it is used as a sub-element of the \hyperref[class:addXml]{\element{addXML}} element, then the XML it contains \emph{is inserted as a child} of the XML element addressed by the XPath.}
+	\item{If it is used as a sub-element of the \hyperref[class:changeXml]{\element{changeXML}} element, then the XML it contains \emph{replaces} the XML element addressed by the XPath.}
 \end{enumerate}
 
 Examples are given in the relevant change class definitions.
@@ -316,13 +297,13 @@ The example in Listing~\ref{lst:changeAttribute} shows the update of the value o
 \label{class:computeChange}
 The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any element or attribute of a \hyperref[class:model]{Model} addressable by an \hyperref[sec:xpath]{XPath} expression, based on a calculation (\fig{sedChange}).
 
-The mathematical expression for the change is specified using the required \hyperref[sec:math]{\element{math}} attribute data type \hyperref[type:mathml]{\element{MathML}}. If used as an element of the \concept{ComputeChange} class, it computes the change of the element or attribute addressed by the \hyperref[sec:changeTarget]{target} attribute.
+The mathematical expression for the change is specified using the required \hyperref[sec:math]{\element{math}} attribute of data type \hyperref[type:mathml]{\element{MathML}}. If used as an element of the \concept{ComputeChange} class, it computes the change of the element or attribute addressed by the \hyperref[sec:changeTarget]{target} attribute.
 
-The computation can use the value of \hyperref[class:variable]{Variables} from any model defined in the simulation experiment via the optional element \hyperref[sec:listOfVariables]{\element{listOfVariables}}. Those \hyperref[class:variable]{variables} need to be defined, and can then be addressed by their respective \hyperref[sec:id]{\element{id}}. A \hyperref[class:variable]{Variable} used in a \concept{ComputeChange} must carry a \hyperref[sec:modelReference]{\element{modelReference}} attribute but no \hyperref[sec:taskReference]{\element{taskReference}} attribute (\fig{sedChange}).
+The computation can use the value of \hyperref[class:variable]{Variables} via the optional element \hyperref[sec:listOfVariables]{\element{listOfVariables}}. Those \hyperref[class:variable]{variables} can then be addressed by their respective \hyperref[sec:id]{\element{id}}. A \hyperref[class:variable]{Variable} used in a \concept{ComputeChange} must carry a \hyperref[sec:modelReference]{\element{modelReference}} attribute but no \hyperref[sec:taskReference]{\element{taskReference}} attribute (\fig{sedChange}). If the variable is referring to a \hyperref[class:dataSource]{DataSource} neither the \hyperref[sec:modelReference]{\element{modelReference}} nor \hyperref[sec:taskReference]{\element{taskReference}} is required.
 
-To carry out the calculation it may be necessary to introduce additional \hyperref[class:parameter]{Parameters} via the optional element \hyperref[sec:listOfParameters]{\element{listOfParameters}}, that are not defined in any of the \hyperref[class:model]{Models} used in the simulation experiment. Such \hyperref[class:parameter]{Parameters} are thereafter refered to by their \hyperref[sec:id]{\element{id}}. 
+Additional \hyperref[class:parameter]{Parameters} via the optional element \hyperref[sec:listOfParameters]{\element{listOfParameters}}. Such \hyperref[class:parameter]{Parameters} are thereafter referred to by their \hyperref[sec:id]{\element{id}}. 
 
-Note that where a \concept{ComputeChange} refers to another model, that model is not allowed to be modified by \concept{ComputeChange}s which directly or indirectly refer to this model. In other words, cycles in the definitions of computed changes are prohibited, since then the new values would not be well defined.
+Note that when a \concept{ComputeChange} refers to another model, that model is not allowed to be modified by \concept{ComputeChange}s which directly or indirectly refer to this model. In other words, cycles in the definitions of computed changes are prohibited.
 
 \tabtext{computeChange}{computeChange}
 
@@ -399,7 +380,7 @@ math &\refpage{sec:math}\\
 </model>
 \end{myXmlLst}
 
-The example in \lst{computeChange} computes a change of the variable \code{sensor} of the model \code{model2}. To do so, it uses the value of the variable \code{regulator} coming from model \code{model1}. In addition, the calculation used two additional parameters, the cooperativity \code{n}, and the sensitivity \code{K}. The mathematical expression in the mathML then computes the new initial value of \code{sensor} using the equation:
+The example in \lst{computeChange} computes a change of the variable \code{sensor} of the model \code{model2}. To do so, it uses the value of the variable \code{regulator} coming from model \code{model1}. In addition, the calculation uses two additional parameters, the cooperativity \code{n}, and the sensitivity \code{K}. The mathematical expression in the mathML then computes the new initial value of \code{sensor} using the equation:
 \begin{math}
 S =  S \times \frac{R^{n}}{K^{n}+R^{n}}
 \end{math}
