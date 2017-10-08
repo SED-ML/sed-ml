@@ -1,3 +1,140 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{10}
+
+\bibitem{Bergmann2014}
+F.~T. Bergmann, R.~Adams, S.~Moodie, J.~Cooper, M.~Glont, M.~Golebiewski,
+  M.~Hucka, C.~Laibe, A.~K. Miller, D.~P. Nickerson, B.~G. Olivier,
+  N.~Rodriguez, H.~M. Sauro, M.~Scharm, S.~Soiland-Reyes, D.~Waltemath,
+  F.~Yvon, and N.~Le~Nov{\`e}re.
+\newblock {COMBINE} archive and {OMEX} format: one file to share all
+  information to reproduce a modeling project.
+\newblock {\em BMC bioinformatics}, 15:369, Dec. 2014.
+
+\bibitem{bergmann2017sed}
+F.~T. Bergmann, D.~Nickerson, D.~Waltemath, and M.~Scharm.
+\newblock {SED}-{ML} web tools: generate, modify and export standard-compliant
+  simulation studies.
+\newblock {\em Bioinformatics}, 33(8):1253--1254, 2017.
+
+\bibitem{Berners-Lee:2005}
+T.~Berners-Lee, R.~Fielding, and L.~Masinter.
+\newblock {Uniform Resource Identifier ({URI}): Generic Syntax}, 2005.
+
+\bibitem{CIM+01}
+D.~Carlisle, P.~Ion, R.~Miner, and N.~Poppelier.
+\newblock {Mathematical Markup Language (MathML) version 2.0}.
+\newblock {\em W3C Recommendation}, 21, 2001.
+
+\bibitem{tellurium}
+K.~Choi, J.~K. Medley, C.~Cannistra, M.~König, L.~Smith, K.~Stocking, and
+  H.~M. Sauro.
+\newblock {T}ellurium: A python based modeling and reproducibility platform for
+  systems biology.
+\newblock {\em bioRxiv}, 2016.
+
+\bibitem{xpath:1999}
+J.~Clarke and S.~DeRose.
+\newblock {XML} {P}ath {L}anguage ({XP}ath) version 1.0, 1999.
+
+\bibitem{CWK+10}
+M.~Courtot, N.~Juty, C.~Kn{\"u}pfer, D.~Waltemath, A.~Dr{\"a}ger, A.~andFinney,
+  M.~Golebiewski, S.~Hoops, S.~Keating, D.~Kell, S.~Kerrien, J.~Lawson,
+  A.~Lister, J.~Lu, R.~Machne, P.~Mendes, M.~Pocock, N.~Rodriguez, A.~Villeger,
+  S.~Wimalaratne, C.~Laibe, M.~Hucka, and N.~Le~Nov{\`e}re.
+\newblock Controlled vocabularies and semantics in {S}ystems {B}iology.
+\newblock {\em Mol Sys Biol}, 7, Oct. 2011.
+
+\bibitem{cuellar:2003}
+A.~A. Cuellar, C.~M. Lloyd, P.~F. Nielson, M.~D.~B. Halstead, D.~P. Bullivant,
+  D.~P. Nickerson, and P.~J. Hunter.
+\newblock An overview of {C}ell{ML} 1.1, a biological model description
+  language.
+\newblock {\em Simulation}, 79(12):740--747, 2003.
+
+\bibitem{Elowitz:2000}
+M.~Elowitz and S.~Leibler.
+\newblock A synthetic oscillatory network of transcriptional regulators.
+\newblock {\em Nature}, 403(6767):335--338, Jan. 2000.
+
+\bibitem{garny2015opencor}
+A.~Garny and P.~J. Hunter.
+\newblock {O}pen{COR}: a modular and interoperable approach to computational
+  biology.
+\newblock {\em Frontiers in physiology}, 6, 2015.
+
+\bibitem{Goddard:2001}
+N.~Goddard, M.~Hucka, F.~Howell, H.~Cornelis, K.~Skankar, and D.~Beeman.
+\newblock {Towards NeuroML: Model Description Methods for Collaborative
+  Modeling in Neuroscience}.
+\newblock {\em Phil. Trans. Royal Society series B}, 356:1209--1228, 2001.
+
+\bibitem{hoffmann2002ikappab}
+A.~Hoffmann, A.~Levchenko, M.~L. Scott, and D.~Baltimore.
+\newblock The {I}$\kappa${B}-{NF}-$\kappa${B} signaling module: temporal
+  control and selective gene activation.
+\newblock {\em Science}, 298(5596):1241--1245, 2002.
+
+\bibitem{HBH+10}
+M.~Hucka, F.~Bergmann, S.~Hoops, S.~Keating, S.~Sahle, and D.~Wilkinson.
+\newblock {The Systems Biology Markup Language (SBML): Language Specification
+  for Level 3 Version 1 Core (Release 1 Candidate)}.
+\newblock {\em Nature Precedings}, January 2010.
+
+\bibitem{Hucka:2003}
+M.~Hucka, A.~Finney, H.~M. Sauro, H.~Bolouri, J.~C. Doyle, H.~Kitano, A.~P.
+  Arkin, B.~J. Bornstein, D.~Bray, A.~Cornish-Bowden, A.~A. Cuellar, S.~Dronov,
+  E.~D. Gilles, M.~Ginkel, V.~Gor, I.~I. Goryanin, W.~J. Hedley, T.~C. Hodgman,
+  J.~H. Hofmeyr, P.~J. Hunter, N.~S. Juty, J.~L. Kasberger, A.~Kremling,
+  U.~Kummer, N.~Le~Novere, L.~M. Loew, D.~Lucio, P.~Mendes, E.~Minch, E.~D.
+  Mjolsness, Y.~Nakayama, M.~R. Nelson, P.~F. Nielsen, T.~Sakurada, J.~C.
+  Schaff, B.~E. Shapiro, T.~S. Shimizu, H.~D. Spence, J.~Stelling,
+  K.~Takahashi, M.~Tomita, J.~Wagner, and J.~Wang.
+\newblock {The systems biology markup language (SBML): a medium for
+  representation and exchange of biochemical network models}.
+\newblock {\em Bioinformatics}, 19(4):524--531, March 2003.
+
+\bibitem{N+06}
+N.~Le~Nov\`{e}re, B.~Bornstein, A.~Broicher, M.~Courtot, M.~Donizelli,
+  H.~Dharuri, L.~Li, H.~Sauro, M.~Schilstra, B.~Shapiro, J.~L. Snoep, and
+  M.~Hucka.
+\newblock {BioModels Database: a free, centralized database of curated,
+  published, quantitative kinetic models of biochemical and cellular systems.}
+\newblock {\em Nucleic Acids Res}, 34(Database issue), January 2006.
+
+\bibitem{LeLoup1999}
+J.-C. Leloup, D.~Gonze, and A.~Goldbeter.
+\newblock Limit cycle models for circadian rhythms based on transcriptional
+  regulation in drosophila and neurospora.
+\newblock {\em Journal of Biological Rhythms}, 14(6):433--448, 1999.
+
+\bibitem{LDR+10}
+C.~Li, M.~Donizelli, N.~Rodriguez, H.~Dharuri, L.~Endler, V.~Chelliah, L.~Li,
+  E.~He, A.~Henry, M.~Stefan, J.~Snoep, M.~Hucka, N.~Le~Nov{\`e}re, and
+  C.~Laibe.
+\newblock {BioModels Database: An enhanced, curated and annotated resource for
+  published quantitative kinetic models}.
+\newblock {\em BMC Systems Biology}, 4(1):92+, June 2010.
+
+\bibitem{P+02}
+S.~Pemberton et~al.
+\newblock {XHTML 1.0: The Extensible HyperText Markup Language—W3C
+  Recommendation 26 January 2000}.
+\newblock {\em World Wide Web Consortium (W3C)(August 2002)}, 2002.
+
+\bibitem{Waltemath:2011}
+D.~Waltemath, R.~Adams, D.~Beard, F.~Bergmann, U.~Bhalla, R.~Britten,
+  V.~Chelliah, M.~Cooling, J.~Cooper, E.~Crampin, A.~Garny, S.~Hoops, M.~Hucka,
+  P.~Hunter, E.~Klipp, C.~Laibe, A.~Miller, I.~Moraru, D.~Nickerson,
+  P.~Nielsen, M.~Nikolski, S.~Sahle, H.~Sauro, H.~Schmidt, J.~Snoep, D.~Tolle,
+  O.~Wolkenhauer, and N.~Le~Novère.
+\newblock {M}inimum {I}nformation {A}bout a {S}imulation {E}xperiment
+  ({MIASE}).
+\newblock {\em PLoS Comput Biol}, 7:e1001122, 2011.
+
+\bibitem{WAB+11}
+D.~Waltemath, R.~Adams, F.~T. Bergmann, M.~Hucka, F.~Kolpakov, A.~K. Miller,
+  I.~I. Moraru, D.~Nickerson, S.~Sahle, J.~L. Snoep, and N.~Le~Nov{\`e}re.
+\newblock Reproducible computational biology experiments with {SED}-{ML}: the
+  simulation experiment description markup language.
+\newblock {\em BMC systems biology}, 5(1):198, 2011.
 
 \end{thebibliography}

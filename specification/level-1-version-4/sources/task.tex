@@ -5,30 +5,7 @@
 \label{class:abstractTask}
 In SED-ML the subclasses of \concept{AbstractTask} define which \hyperref[class:simulation]{Simulations} should be executed with which \hyperref[class:model]{Models} in the simulation experiment. \concept{AbstractTask} is the base class of all SED-ML tasks, i.e.\ \hyperref[class:task]{Task} and \hyperref[class:repeatedTask]{RepeatedTask}.
 
-\sedfig[width=0.50\textwidth]{images/uml/abstractTask}{The SED-ML Abstract Task class}{fig:abstractTask}
-
-\tabtext{abstractTask}{abstractTask}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{abstractTask}}
-\label{tab:abstractTask}
-\end{table}
-
+\sedfig[width=0.9\textwidth]{images/uml/abstractTask}{The SED-ML Abstract Task class}{fig:abstractTask}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % TASK
@@ -40,31 +17,6 @@ A \concept{Task} links a \hyperref[class:model]{Model} to a certain \hyperref[cl
 
 In SED-ML it is only possible to link one \hyperref[class:simulation]{Simulation} description to one \hyperref[class:model]{Model} at a time. However, one can define as many tasks as needed within one experiment description. Please note that the tasks may be executed in any order, as determined by the implementation.
 
-\tabtext{task}{task}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-modelReference & \refpage{sec:modelReference}\\
-simulationReference & \refpage{sec:simulationReference}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{task}}
-\label{tab:task}
-\end{table}
-
 \lsttext{task}{task} 
 In the example, a simulation setting \code{simulation1} is applied first to \code{model1} and then to \code{model2}.
 \begin{myXmlLst}{The \code{task} element}{lst:task}
@@ -75,6 +27,34 @@ In the example, a simulation setting \code{simulation1} is applied first to \cod
 		simulationReference="simulation1" />
 </listOfTasks>
 \end{myXmlLst}
+
+\subsubsection{\element{CalculateEigenvectors}}
+\label{class:calculateEigenvectors}
+\hl{TODO: fill in}
+
+\subsubsection{\element{CalculateEigenvalues}}
+\label{class:calculateEigenvalues}
+\hl{TODO: fill in}
+
+\subsubsection{\element{CalculateJacobian}}
+\label{class:calculateJacobian}
+\hl{TODO: fill in}
+
+\subsubsection{\element{CalculateStoichiometryMatrix}}
+\label{class:calculateStoichiometryMatrix}
+\hl{TODO: fill in}
+
+\subsubsection{\element{CalculateElasticity}}
+\label{class:calculateElasticity}
+\hl{TODO: fill in}
+
+\subsubsection{\element{CalculateLocalSensitivity}}
+\label{class:calculateLocalSensitivity}
+\hl{TODO: fill in}
+
+\subsubsection{\element{CalculateMoietyConservationLaws}}
+\label{class:calculateMoietyConservationLaws}
+\hl{TODO: fill in}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -94,34 +74,6 @@ The order of activities within each iteration of a \concept{RepeatedTask} is as 
 	\item Any changes to the model specified by \hyperref[class:setValue]{SetValue} objects in the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} are applied to the \hyperref[class:model]{Model}. 
 	\item Finally, all \hyperref[class:subTask]{{subTasks}} in the \hyperref[sec:listOfSubTasks]{\element{listOfSubtasks}} are executed in the order specified by their \hyperref[sec:subTaskOrder]{\element{order}} element.
 \end{itemize}
-
-\tabtext{repeatedTask}{repeatedTask}
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-range & \refpage{sec:rangeAttribute}\\
-resetModel & \refpage{sec:resetModel}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-listOfChanges$^{o}$ & \refpage{sec:changesRepeatedTask}\\
-listOfSubTask & \refpage{sec:listOfSubTasks}\\
-listOfRanges & \refpage{sec:listOfRanges}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{repeatedTask}}
-\label{tab:repeatedTask}
-\end{table}
 
 \lsttext{repeatedTask}{repeatedTask}
 In the example, \code{task1} is repeated three times, each time with a different value for a model parameter \code{w}.
@@ -278,6 +230,10 @@ For example, the range below iterates over the values $1$, $4$ and $10$ in that 
 	<value> 10 </value> 
 </vectorRange> 
 \end{myXmlLst}
+
+\paragraph{\element{DataRange}}
+\label{class:dataRange}
+\hl{TODO: decide and fill in}
 
 \paragraph{\element{FunctionalRange}}
 \label{class:functionalRange}

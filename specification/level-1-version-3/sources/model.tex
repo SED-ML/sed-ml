@@ -147,7 +147,6 @@ The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarge
 \textbf{\attribute} & \textbf{\desc}\\
 \midrule
 metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 \midrule
 target & \refpage{sec:changeTarget}\\
@@ -248,7 +247,7 @@ An example for the removal of an XML element from a model is given in Listing~\r
 \label{class:changeAttribute}
 The \concept{ChangeAttribute} class allows to define updates on the XML attribute values of the corresponding model (\fig{sedChange}). \concept{ChangeAttribute} requires to specify the \hyperref[sec:changeTarget]{\element{target}} of the change, i.e., the location of the addressed XML attribute, and also the \hyperref[sec:newValue]{\element{newValue}} of that attribute. Note that the XPath expression in the \hyperref[sec:changeTarget]{\element{target}} attribute must select a single attribute within the corresponding model.
 
-The \hyperref[class:changeXml]{ChangeXML} class covers the possibilities provided by the \concept{ChangeAttribute} class. I.e., everything that can be expressed by a \concept{ChangeAttribute} construct can also be expressed by \hyperref[class:changeXml]{ChangeXML}. However, for the common case of changing an attribute value \concept{ChangeAttribute} is easier to use, and so it is recommended to use the \concept{ChangeAttribute} for any changes of an XML attribute's value, and to use the more general \hyperref[class:changeXml]{ChangeXML} for other cases.
+The \hyperref[class:changeXml]{ChangeXML} class covers the possibilities provided by the \concept{ChangeAttribute} class, i.e, everything that can be expressed by a \concept{ChangeAttribute} construct can also be expressed by \hyperref[class:changeXml]{ChangeXML}. However, for the common case of changing an attribute value \concept{ChangeAttribute} is easier to use, and so it is recommended to use the \concept{ChangeAttribute} for any changes of an XML attribute's value, and to use the more general \hyperref[class:changeXml]{ChangeXML} for other cases.
 
 \tabtext{changeAttribute}{changeAttribute}
 
@@ -259,7 +258,6 @@ The \hyperref[class:changeXml]{ChangeXML} class covers the possibilities provide
 \textbf{\attribute} & \textbf{\desc}\\
 \midrule
 metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 \midrule
 target & \refpage{sec:changeTarget}\\
@@ -314,7 +312,6 @@ Note that when a \concept{ComputeChange} refers to another model, that model is 
 \textbf{\attribute} & \textbf{\desc}\\
 \midrule
 metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
 name$^{o}$ & \refpage{sec:name}\\
 \midrule
 target & \refpage{sec:changeTarget}\\

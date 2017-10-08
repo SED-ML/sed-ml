@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.27)  8 OCT 2017 08:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.27)  8 OCT 2017 22:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -825,7 +825,11 @@ les
 
          `rotating' package detected
          `float' package detected
-) (./sources/styles/latex-macros.tex) (./sed-ml-L1V4.aux)
+) (./sources/styles/latex-macros.tex) (./sed-ml-L1V4.aux
+
+LaTeX Warning: Label `sec:id' multiply defined.
+
+)
 \openout1 = `sed-ml-L1V4.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
@@ -960,7 +964,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    Font shape `OT1/phv/m/sl' will be
 (Font)              scaled to size 8.69995pt on input line 49.
 
-<images/logoSedml.png, id=264, 273.1806pt x 150.8034pt>
+<images/logoSedml.png, id=521, 273.1806pt x 150.8034pt>
 File: images/logoSedml.png Graphic file (type png)
 
 <use images/logoSedml.png>
@@ -983,26 +987,6 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <24.88> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 4.
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
 (Font)              scaled to size 21.64548pt on input line 4.
-
-Package natbib Warning: Citation `Hucka:2003' on page 6 undefined on input line
- 8.
-
-
-Package natbib Warning: Citation `cuellar:2003' on page 6 undefined on input li
-ne 8.
-
-
-Package natbib Warning: Citation `Goddard:2001' on page 6 undefined on input li
-ne 8.
-
-
-Package natbib Warning: Citation `Waltemath:2011' on page 6 undefined on input 
-line 10.
-
-
-Package natbib Warning: Citation `WAB+11' on page 6 undefined on input line 14.
-
-
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 19.
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
@@ -1015,21 +999,8 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 23.
  [6
 
-]
-
-Package natbib Warning: Citation `Elowitz:2000' on page 7 undefined on input li
-ne 60.
-
-
-Package natbib Warning: Citation `Elowitz:2000' on page 7 undefined on input li
-ne 67.
-
-
-Package natbib Warning: Citation `Berners-Lee:2005' on page 7 undefined on inpu
-t line 70.
-
-[7]
-<examples/repressilator/results/sedml_webtools/timecourse.pdf, id=541, 1284.8pt
+] [7]
+<examples/repressilator/results/sedml_webtools/timecourse.pdf, id=765, 1284.8pt
  x 963.6pt>
 File: examples/repressilator/results/sedml_webtools/timecourse.pdf Graphic file
  (type pdf)
@@ -1052,16 +1023,7 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9> not available
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
 (Font)              scaled to size 7.82996pt on input line 83.
 
-
-Package natbib Warning: Citation `bergmann2017sed' on page 8 undefined on input
- line 83.
-
-
-Package natbib Warning: Citation `bergmann2017sed' on page 8 undefined on input
- line 83.
-
-
-<examples/repressilator/results/tellurium/timecourse.pdf, id=542, 554.6095pt x 
+<examples/repressilator/results/tellurium/timecourse.pdf, id=768, 554.6095pt x 
 394.26297pt>
 File: examples/repressilator/results/tellurium/timecourse.pdf Graphic file (typ
 e pdf)
@@ -1070,16 +1032,7 @@ Package pdftex.def Info: examples/repressilator/results/tellurium/timecourse.pd
 f used on input line 88.
 (pdftex.def)             Requested size: 212.89546pt x 151.3435pt.
 
-
-Package natbib Warning: Citation `tellurium' on page 8 undefined on input line 
-89.
-
-
-Package natbib Warning: Citation `tellurium' on page 8 undefined on input line 
-89.
-
-
-<examples/repressilator/results/sedml_webtools/preprocessing.pdf, id=546, 1284.
+<examples/repressilator/results/sedml_webtools/preprocessing.pdf, id=774, 1284.
 8pt x 963.6pt>
 File: examples/repressilator/results/sedml_webtools/preprocessing.pdf Graphic f
 ile (type pdf)
@@ -1096,16 +1049,7 @@ LaTeX Font Info:    Font shape `OT1/txtt/m/sl' will be
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 116.
 
-
-Package natbib Warning: Citation `bergmann2017sed' on page 8 undefined on input
- line 116.
-
-
-Package natbib Warning: Citation `bergmann2017sed' on page 8 undefined on input
- line 116.
-
-
-<examples/repressilator/results/tellurium/preprocessing.pdf, id=547, 548.22627p
+<examples/repressilator/results/tellurium/preprocessing.pdf, id=777, 548.22627p
 t x 394.26297pt>
 File: examples/repressilator/results/tellurium/preprocessing.pdf Graphic file (
 type pdf)
@@ -1115,15 +1059,6 @@ Package pdftex.def Info: examples/repressilator/results/tellurium/preprocessing
 .pdf used on input line 121.
 (pdftex.def)             Requested size: 212.89546pt x 153.10619pt.
 
-
-Package natbib Warning: Citation `tellurium' on page 8 undefined on input line 
-122.
-
-
-Package natbib Warning: Citation `tellurium' on page 8 undefined on input line 
-122.
-
-
 Overfull \hbox (19.32089pt too wide) in paragraph at lines 136--137
 []\OT1/cmr/m/n/10 Compute the high-est value for each of the re-pres-sor pro-te
 ins, \OT1/txtt/m/n/10 max(lacI(t))\OT1/cmr/m/n/10 , \OT1/txtt/m/n/10 max(tetR(t
@@ -1131,7 +1066,7 @@ ins, \OT1/txtt/m/n/10 max(lacI(t))\OT1/cmr/m/n/10 , \OT1/txtt/m/n/10 max(tetR(t
  []
 
 
-<examples/repressilator/results/sedml_webtools/postprocessing.pdf, id=552, 1284
+<examples/repressilator/results/sedml_webtools/postprocessing.pdf, id=784, 1284
 .8pt x 963.6pt>
 File: examples/repressilator/results/sedml_webtools/postprocessing.pdf Graphic 
 file (type pdf)
@@ -1141,16 +1076,7 @@ Package pdftex.def Info: examples/repressilator/results/sedml_webtools/postproc
 essing.pdf used on input line 147.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-
-Package natbib Warning: Citation `bergmann2017sed' on page 8 undefined on input
- line 148.
-
-
-Package natbib Warning: Citation `bergmann2017sed' on page 8 undefined on input
- line 148.
-
-
-<examples/repressilator/results/tellurium/postprocessing.pdf, id=553, 545.0425p
+<examples/repressilator/results/tellurium/postprocessing.pdf, id=787, 545.0425p
 t x 380.25752pt>
 File: examples/repressilator/results/tellurium/postprocessing.pdf Graphic file 
 (type pdf)
@@ -1159,34 +1085,25 @@ File: examples/repressilator/results/tellurium/postprocessing.pdf Graphic file
 Package pdftex.def Info: examples/repressilator/results/tellurium/postprocessin
 g.pdf used on input line 153.
 (pdftex.def)             Requested size: 212.89546pt x 148.53192pt.
-
-
-Package natbib Warning: Citation `tellurium' on page 8 undefined on input line 
-154.
-
-
-Package natbib Warning: Citation `tellurium' on page 8 undefined on input line 
-154.
-
-[8 <./examples/repressilator/results/sedml_webtools/timecourse.pdf> <./examples
-/repressilator/results/tellurium/timecourse.pdf>]) [9 <./examples/repressilator
-/results/sedml_webtools/preprocessing.pdf> <./examples/repressilator/results/te
-llurium/preprocessing.pdf> <./examples/repressilator/results/sedml_webtools/pos
-tprocessing.pdf> <./examples/repressilator/results/tellurium/postprocessing.pdf
-
+ [8 <./examples/repressilator/results/sedml_webtools/timecourse.pdf> <./example
+s/repressilator/results/tellurium/timecourse.pdf>]) [9 <./examples/repressilato
+r/results/sedml_webtools/preprocessing.pdf> <./examples/repressilator/results/t
+ellurium/preprocessing.pdf> <./examples/repressilator/results/sedml_webtools/po
+stprocessing.pdf> <./examples/repressilator/results/tellurium/postprocessing.pd
+f
 
 pdfTeX warning: pdflatex (file ./examples/repressilator/results/tellurium/postp
 rocessing.pdf): PDF inclusion: multiple pdfs with page group included in a sing
 le page
 >]
 Chapter 2.
-<images/uml/all.pdf, id=802, 434.62375pt x 325.215pt>
+<images/uml/all.pdf, id=1039, 434.62375pt x 325.215pt>
 File: images/uml/all.pdf Graphic file (type pdf)
- <use images/uml/all.pdf>
+
+<use images/uml/all.pdf>
 Package pdftex.def Info: images/uml/all.pdf used on input line 30.
 (pdftex.def)             Requested size: 452.9679pt x 338.95998pt.
-
-(./sources/generalElements.tex [10
+ (./sources/generalElements.tex [10
 
  <./images/uml/all.pdf>]
 LaTeX Font Info:    Font shape `OT1/phv/bx/sl' in size <10> not available
@@ -1197,11 +1114,6 @@ LaTeX Font Info:    Font shape `OT1/txtt/bx/sl' in size <10> not available
 (Font)              Font shape `OT1/txtt/b/sl' tried instead on input line 17.
 LaTeX Font Info:    Font shape `OT1/txtt/b/sl' will be
 (Font)              scaled to size 9.75006pt on input line 17.
-
-
-Package natbib Warning: Citation `HBH+10' on page 11 undefined on input line 19
-.
-
 LaTeX Font Info:    Font shape `OT1/txtt/m/n' will be
 (Font)              scaled to size 8.77505pt on input line 23.
 
@@ -1216,259 +1128,158 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--30
 initions of letter, digit, 
  []
 
-
-Package natbib Warning: Citation `HBH+10' on page 11 undefined on input line 36
-.
-
 [11]
 LaTeX Font Info:    Font shape `OT1/txtt/bx/n' in size <12> not available
 (Font)              Font shape `OT1/txtt/b/n' tried instead on input line 85.
 LaTeX Font Info:    Font shape `OT1/txtt/b/n' will be
 (Font)              scaled to size 11.70007pt on input line 85.
+ <images/uml/sedBase.pdf, id=1134, 328.22626pt x 209.78375pt>
+File: images/uml/sedBase.pdf Graphic file (type pdf)
 
-
-! LaTeX Error: File `images/uml/sedBase' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.93 ...l/sedBase}{The SEDBase class}{fig:sedBase}
-                                                  
-I could not locate the file with any of these extensions:
-.pdf,.png,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+<use images/uml/sedBase.pdf>
+Package pdftex.def Info: images/uml/sedBase.pdf used on input line 91.
+(pdftex.def)             Requested size: 362.37569pt x 231.61429pt.
 LaTeX Font Info:    Font shape `OT1/txtt/m/sl' will be
-(Font)              scaled to size 9.75006pt on input line 115.
-
-Package natbib Warning: Citation `P+02' on page 12 undefined on input line 134.
-
-
-
-Package natbib Warning: Citation `HBH+10' on page 12 undefined on input line 13
-4.
-
-[12] (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+(Font)              scaled to size 9.75006pt on input line 94.
+ [12 <./images/uml/sedBase.pdf>]
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 )
 LaTeX Font Info:    Font shape `OT1/txtt/m/n' will be
-(Font)              scaled to size 6.82504pt on input line 160.
+(Font)              scaled to size 6.82504pt on input line 124.
 LaTeX Font Info:    Font shape `OT1/txtt/m/n' will be
-(Font)              scaled to size 4.87503pt on input line 161.
+(Font)              scaled to size 4.87503pt on input line 125.
+ [13]
+<images/uml/parameter.pdf, id=1228, 135.50626pt x 84.315pt>
+File: images/uml/parameter.pdf Graphic file (type pdf)
 
+<use images/uml/parameter.pdf>
+Package pdftex.def Info: images/uml/parameter.pdf used on input line 174.
+(pdftex.def)             Requested size: 158.54152pt x 98.65198pt.
 
-Package natbib Warning: Citation `HBH+10' on page 13 undefined on input line 17
-7.
+<images/uml/variable.pdf, id=1246, 136.51pt x 106.3975pt>
+File: images/uml/variable.pdf Graphic file (type pdf)
 
-
-! LaTeX Error: File `images/uml/parameter' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.212 ...eter}{The Parameter class}{fig:parameter}
-                                                  
-I could not locate the file with any of these extensions:
-.pdf,.png,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[13]
-
-! LaTeX Error: File `images/uml/variable' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.262 ...riable}{The Variable class}{fig:variable}
-                                                  
-I could not locate the file with any of these extensions:
-.pdf,.png,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[14] [15] [16]
-LaTeX Font Info:    Try loading font information for OMS+txtt on input line 443
+<use images/uml/variable.pdf>
+Package pdftex.def Info: images/uml/variable.pdf used on input line 199.
+(pdftex.def)             Requested size: 158.54152pt x 123.57703pt.
+ [14 <./images/uml/parameter.pdf>] [15 <./images/uml/variable.pdf>] [16]
+LaTeX Font Info:    Try loading font information for OMS+txtt on input line 353
 .
-LaTeX Font Info:    No file OMStxtt.fd. on input line 443.
+LaTeX Font Info:    No file OMStxtt.fd. on input line 353.
 
 
 LaTeX Font Warning: Font shape `OMS/txtt/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 443.
+(Font)              for symbol `textbraceleft' on input line 353.
 
 [17] [18] [19]) [20] (./sources/sedml.tex
+<images/uml/sed-ml.pdf, id=1663, 425.59pt x 467.7475pt>
+File: images/uml/sed-ml.pdf Graphic file (type pdf)
 
-! LaTeX Error: File `images/uml/sed-ml' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.20 .../sed-ml}{The SED-ML class}{fig:sed-mlMain}
-                                                  
-I could not locate the file with any of these extensions:
-.pdf,.png,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+<use images/uml/sed-ml.pdf>
+Package pdftex.def Info: images/uml/sed-ml.pdf used on input line 20.
+(pdftex.def)             Requested size: 362.37569pt x 398.29382pt.
+ [21]
 LaTeX Font Info:    Font shape `OT1/txtt/bx/n' in size <7> not available
-(Font)              Font shape `OT1/txtt/b/n' tried instead on input line 54.
+(Font)              Font shape `OT1/txtt/b/n' tried instead on input line 25.
 LaTeX Font Info:    Font shape `OT1/txtt/b/n' will be
-(Font)              scaled to size 6.82504pt on input line 54.
-[21] [22] [23]) (./sources/data.tex
-<images/uml/dataDescription.pdf, id=1544, 460.72125pt x 338.26375pt>
+(Font)              scaled to size 6.82504pt on input line 25.
+ [22 <./images/uml/sed-ml.pdf>] [23])
+(./sources/data.tex [24]
+<images/uml/dataDescription.pdf, id=1855, 459.7175pt x 365.365pt>
 File: images/uml/dataDescription.pdf Graphic file (type pdf)
 
 <use images/uml/dataDescription.pdf>
 Package pdftex.def Info: images/uml/dataDescription.pdf used on input line 11.
-(pdftex.def)             Requested size: 362.37569pt x 266.05376pt.
- [24 <./images/uml/dataDescription.pdf>]
-Overfull \hbox (22.66122pt too wide) in paragraph at lines 58--59
+(pdftex.def)             Requested size: 362.37569pt x 288.01636pt.
+
+Overfull \hbox (22.66122pt too wide) in paragraph at lines 30--31
 \OT1/cmr/m/n/10 (\OT1/txtt/m/n/10 urn:sedml:format:csv\OT1/cmr/m/n/10 ). If it 
 is not ex-plic-itly de-fined the de-fault value for []\OT1/txtt/m/n/10 format[]
  \OT1/cmr/m/n/10 is \OT1/txtt/m/n/10 urn:sedml:format:numl\OT1/cmr/m/n/10 ,
  []
 
-[25] [26] [27]) (./sources/model.tex
-<images/uml/model.pdf, id=1776, 299.1175pt x 166.6225pt>
+[25 <./images/uml/dataDescription.pdf>] [26]) (./sources/model.tex
+<images/uml/model.pdf, id=2004, 299.1175pt x 166.6225pt>
 File: images/uml/model.pdf Graphic file (type pdf)
 
 <use images/uml/model.pdf>
 Package pdftex.def Info: images/uml/model.pdf used on input line 8.
 (pdftex.def)             Requested size: 317.07614pt x 176.63934pt.
- [28 <./images/uml/model.pdf>] [29]
-<images/uml/change.pdf, id=1928, 456.70625pt x 371.3875pt>
+ [27] [28 <./images/uml/model.pdf>] [29]
+<images/uml/change.pdf, id=2165, 456.70625pt x 371.3875pt>
 File: images/uml/change.pdf Graphic file (type pdf)
 
 <use images/uml/change.pdf>
-Package pdftex.def Info: images/uml/change.pdf used on input line 139.
-(pdftex.def)             Requested size: 317.07614pt x 257.85004pt.
- [30] [31 <./images/uml/change.pdf>] [32] [33])
+Package pdftex.def Info: images/uml/change.pdf used on input line 112.
+(pdftex.def)             Requested size: 362.37569pt x 294.68495pt.
+ [30 <./images/uml/change.pdf>] [31] [32])
 (./sources/simulation.tex
+<images/uml/simulation.pdf, id=2318, 443.6575pt x 368.37625pt>
+File: images/uml/simulation.pdf Graphic file (type pdf)
 
-! LaTeX Error: File `images/uml/simulation' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.8 ...he SED-ML Simulation class}{fig:simulation}
-                                                  
-I could not locate the file with any of these extensions:
-.pdf,.png,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[34] [35] [36] [37] [38]) (./sources/task.tex
-<images/uml/abstractTask.pdf, id=2386, 370.38374pt x 378.41376pt>
+<use images/uml/simulation.pdf>
+Package pdftex.def Info: images/uml/simulation.pdf used on input line 8.
+(pdftex.def)             Requested size: 407.66833pt x 338.48868pt.
+ [33 <./images/uml/simulation.pdf>] [34]
+[35]) (./sources/task.tex [36]
+<images/uml/abstractTask.pdf, id=2529, 367.3725pt x 401.5pt>
 File: images/uml/abstractTask.pdf Graphic file (type pdf)
 
 <use images/uml/abstractTask.pdf>
 Package pdftex.def Info: images/uml/abstractTask.pdf used on input line 8.
-(pdftex.def)             Requested size: 226.48395pt x 231.39792pt.
- [39 <./images/uml/abstractTask.pdf>]
+(pdftex.def)             Requested size: 407.66833pt x 445.57224pt.
+ [37 <./images/uml/abstractTask.pdf>]
+<images/uml/repeatedTask.pdf, id=2578, 357.335pt x 395.4775pt>
+File: images/uml/repeatedTask.pdf Graphic file (type pdf)
 
-! LaTeX Error: File `images/uml/repeatedTask' not found.
+<use images/uml/repeatedTask.pdf>
+Package pdftex.def Info: images/uml/repeatedTask.pdf used on input line 67.
+(pdftex.def)             Requested size: 362.37569pt x 401.07654pt.
+ [38] [39 <./images/uml/repeatedTask.pdf>]
+[40] <images/uml/range.pdf, id=2747, 540.0175pt x 316.18124pt>
+File: images/uml/range.pdf Graphic file (type pdf)
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.87 ...D-ML RepeatedTask class}{fig:repeatedTask}
-                                                  
-I could not locate the file with any of these extensions:
-.pdf,.png,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[40] [41] [42]
-
-! LaTeX Error: File `images/uml/range' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.252 ...range}{The SED-ML Range class}{fig:range}
-                                                  
-I could not locate the file with any of these extensions:
-.pdf,.png,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[43]) (./sources/dataGenerator.tex
-<images/uml/dataGenerator.pdf, id=2677, 261.97874pt x 280.04625pt>
+<use images/uml/range.pdf>
+Package pdftex.def Info: images/uml/range.pdf used on input line 204.
+(pdftex.def)             Requested size: 452.9679pt x 265.21893pt.
+ [41] [42 <./images/uml/range.pdf>])
+(./sources/dataGenerator.tex [43]
+<images/uml/dataGenerator.pdf, id=2884, 261.97874pt x 280.04625pt>
 File: images/uml/dataGenerator.pdf Graphic file (type pdf)
 
 <use images/uml/dataGenerator.pdf>
 Package pdftex.def Info: images/uml/dataGenerator.pdf used on input line 7.
 (pdftex.def)             Requested size: 271.7835pt x 290.53613pt.
- [44] [45 <./images/uml/dataGenerator.pdf>])
+ [44 <./images/uml/dataGenerator.pdf>])
 (./sources/output.tex
+<images/uml/output.pdf, id=2947, 165.61874pt x 100.375pt>
+File: images/uml/output.pdf Graphic file (type pdf)
 
-! LaTeX Error: File `images/uml/output' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.9 ...s are not shown in the figure.}{fig:output}
-                                                  
-I could not locate the file with any of these extensions:
-.pdf,.png,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[46] [47] [48] [49]) (./sources/concepts.tex [50]
+<use images/uml/output.pdf>
+Package pdftex.def Info: images/uml/output.pdf used on input line 9.
+(pdftex.def)             Requested size: 407.66833pt x 247.10785pt.
+ [45 <./images/uml/output.pdf>] [46] [47] [48])
+(./sources/concepts.tex [49]
 Chapter 3.
-
-Package natbib Warning: Citation `CIM+01' on page 51 undefined on input line 9.
-
-
-[51
+[50
 
 ]
 LaTeX Font Info:    Font shape `OT1/txtt/m/n' will be
 (Font)              scaled to size 7.80005pt on input line 136.
- [52]
-
-Package natbib Warning: Citation `LDR+10' on page 53 undefined on input line 13
-8.
-
+ [51]
 LaTeX Font Info:    Font shape `OT1/txtt/m/it' in size <10> not available
 (Font)              Font shape `OT1/txtt/m/sl' tried instead on input line 165.
 
 LaTeX Font Info:    Font shape `OT1/txtt/m/sl' will be
 (Font)              scaled to size 9.75006pt on input line 165.
-[53] [54] [55]
-
-Package natbib Warning: Citation `xpath:1999' on page 56 undefined on input lin
-e 334.
-
-[56]
-
-Package natbib Warning: Citation `CWK+10' on page 57 undefined on input line 37
-3.
-
-
-Package natbib Warning: Citation `Bergmann2014' on page 57 undefined on input l
-ine 385.
-
-
-Package natbib Warning: Citation `Bergmann2014' on page 57 undefined on input l
-ine 388.
-
-) [57]
+ [52] [53] [54] [55]) [56]
 Chapter 4.
-[58
+[57
 
 ]
 Appendix A.
@@ -1477,11 +1288,11 @@ LaTeX Font Info:    Font shape `OT1/txtt/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/txtt/b/n' tried instead on input line 4.
 LaTeX Font Info:    Font shape `OT1/txtt/b/n' will be
 (Font)              scaled to size 14.04007pt on input line 4.
- (./examples/repressilator/repressilator.xml [59
+ (./examples/repressilator/repressilator.xml [58
 
 ]
-[60]) [61]
-<examples/plotting-data-numl/results/sedml_webtools/plot1.pdf, id=3472, 1284.8p
+[59]) [60]
+<examples/plotting-data-numl/results/sedml_webtools/plot1.pdf, id=3627, 1284.8p
 t x 963.6pt>
 File: examples/plotting-data-numl/results/sedml_webtools/plot1.pdf Graphic file
  (type pdf)
@@ -1491,16 +1302,7 @@ Package pdftex.def Info: examples/plotting-data-numl/results/sedml_webtools/plo
 t1.pdf used on input line 28.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-
-Package natbib Warning: Citation `bergmann2017sed' on page 62 undefined on inpu
-t line 29.
-
-
-Package natbib Warning: Citation `bergmann2017sed' on page 62 undefined on inpu
-t line 29.
-
-
-<examples/plotting-data-numl/results/tellurium/plot1.pdf, id=3475, 535.45982pt 
+<examples/plotting-data-numl/results/tellurium/plot1.pdf, id=3632, 535.45982pt 
 x 380.25752pt>
 File: examples/plotting-data-numl/results/tellurium/plot1.pdf Graphic file (typ
 e pdf)
@@ -1509,18 +1311,10 @@ Package pdftex.def Info: examples/plotting-data-numl/results/tellurium/plot1.pd
 f used on input line 33.
 (pdftex.def)             Requested size: 212.89546pt x 151.18935pt.
 
-
-Package natbib Warning: Citation `tellurium' on page 62 undefined on input line
- 34.
-
-
-Package natbib Warning: Citation `tellurium' on page 62 undefined on input line
- 34.
-
-(./examples/plotting-data-numl/plotting-data-numl.xml [62 <./examples/plotting-
+(./examples/plotting-data-numl/plotting-data-numl.xml [61 <./examples/plotting-
 data-numl/results/sedml_webtools/plot1.pdf> <./examples/plotting-data-numl/resu
-lts/tellurium/plot1.pdf>]) [63]
-<examples/repeated-scan-oscli/results/sedml_webtools/plot1.pdf, id=3649, 1284.8
+lts/tellurium/plot1.pdf>]) [62]
+<examples/repeated-scan-oscli/results/sedml_webtools/plot1.pdf, id=3809, 1284.8
 pt x 963.6pt>
 File: examples/repeated-scan-oscli/results/sedml_webtools/plot1.pdf Graphic fil
 e (type pdf)
@@ -1530,16 +1324,7 @@ Package pdftex.def Info: examples/repeated-scan-oscli/results/sedml_webtools/pl
 ot1.pdf used on input line 60.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-
-Package natbib Warning: Citation `bergmann2017sed' on page 64 undefined on inpu
-t line 61.
-
-
-Package natbib Warning: Citation `bergmann2017sed' on page 64 undefined on inpu
-t line 61.
-
-
-<examples/repeated-scan-oscli/results/tellurium/plot1.pdf, id=3652, 535.45982pt
+<examples/repeated-scan-oscli/results/tellurium/plot1.pdf, id=3814, 535.45982pt
  x 393.98067pt>
 File: examples/repeated-scan-oscli/results/tellurium/plot1.pdf Graphic file (ty
 pe pdf)
@@ -1548,18 +1333,10 @@ Package pdftex.def Info: examples/repeated-scan-oscli/results/tellurium/plot1.p
 df used on input line 65.
 (pdftex.def)             Requested size: 212.89546pt x 156.64563pt.
 
-
-Package natbib Warning: Citation `tellurium' on page 64 undefined on input line
- 66.
-
-
-Package natbib Warning: Citation `tellurium' on page 64 undefined on input line
- 66.
-
-(./examples/repeated-scan-oscli/repeated-scan-oscli.xml [64 <./examples/repeate
+(./examples/repeated-scan-oscli/repeated-scan-oscli.xml [63 <./examples/repeate
 d-scan-oscli/results/sedml_webtools/plot1.pdf> <./examples/repeated-scan-oscli/
 results/tellurium/plot1.pdf>])
-<examples/repeated-steady-scan-oscli/results/sedml_webtools/plot1.pdf, id=3761,
+<examples/repeated-steady-scan-oscli/results/sedml_webtools/plot1.pdf, id=3925,
  1284.8pt x 963.6pt>
 File: examples/repeated-steady-scan-oscli/results/sedml_webtools/plot1.pdf Grap
 hic file (type pdf)
@@ -1569,16 +1346,7 @@ Package pdftex.def Info: examples/repeated-steady-scan-oscli/results/sedml_webt
 ools/plot1.pdf used on input line 83.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-
-Package natbib Warning: Citation `bergmann2017sed' on page 65 undefined on inpu
-t line 84.
-
-
-Package natbib Warning: Citation `bergmann2017sed' on page 65 undefined on inpu
-t line 84.
-
-
-<examples/repeated-steady-scan-oscli/results/tellurium/plot1.pdf, id=3764, 545.
+<examples/repeated-steady-scan-oscli/results/tellurium/plot1.pdf, id=3930, 545.
 0425pt x 394.26297pt>
 File: examples/repeated-steady-scan-oscli/results/tellurium/plot1.pdf Graphic f
 ile (type pdf)
@@ -1588,18 +1356,10 @@ Package pdftex.def Info: examples/repeated-steady-scan-oscli/results/tellurium/
 plot1.pdf used on input line 88.
 (pdftex.def)             Requested size: 212.89546pt x 154.00256pt.
 
-
-Package natbib Warning: Citation `tellurium' on page 65 undefined on input line
- 89.
-
-
-Package natbib Warning: Citation `tellurium' on page 65 undefined on input line
- 89.
-
-(./examples/repeated-steady-scan-oscli/repeated-steady-scan-oscli.xml [65 <./ex
+(./examples/repeated-steady-scan-oscli/repeated-steady-scan-oscli.xml [64 <./ex
 amples/repeated-steady-scan-oscli/results/sedml_webtools/plot1.pdf> <./examples
-/repeated-steady-scan-oscli/results/tellurium/plot1.pdf>]) [66]
-<examples/repeated-stochastic-runs/results/sedml_webtools/plot1.png, id=3952, 3
+/repeated-steady-scan-oscli/results/tellurium/plot1.pdf>]) [65]
+<examples/repeated-stochastic-runs/results/sedml_webtools/plot1.png, id=4121, 3
 76.40625pt x 282.30469pt>
 File: examples/repeated-stochastic-runs/results/sedml_webtools/plot1.png Graphi
 c file (type png)
@@ -1609,16 +1369,7 @@ Package pdftex.def Info: examples/repeated-stochastic-runs/results/sedml_webtoo
 ls/plot1.png used on input line 110.
 (pdftex.def)             Requested size: 212.89546pt x 159.67474pt.
 
-
-Package natbib Warning: Citation `bergmann2017sed' on page 67 undefined on inpu
-t line 111.
-
-
-Package natbib Warning: Citation `bergmann2017sed' on page 67 undefined on inpu
-t line 111.
-
-
-<examples/repeated-stochastic-runs/results/tellurium/plot1.pdf, id=3956, 548.22
+<examples/repeated-stochastic-runs/results/tellurium/plot1.pdf, id=4127, 548.22
 627pt x 393.98067pt>
 File: examples/repeated-stochastic-runs/results/tellurium/plot1.pdf Graphic fil
 e (type pdf)
@@ -1628,18 +1379,10 @@ Package pdftex.def Info: examples/repeated-stochastic-runs/results/tellurium/pl
 ot1.pdf used on input line 115.
 (pdftex.def)             Requested size: 212.89546pt x 152.99657pt.
 
-
-Package natbib Warning: Citation `tellurium' on page 67 undefined on input line
- 116.
-
-
-Package natbib Warning: Citation `tellurium' on page 67 undefined on input line
- 116.
-
-(./examples/repeated-stochastic-runs/repeated-stochastic-runs.xml [67 <./exampl
+(./examples/repeated-stochastic-runs/repeated-stochastic-runs.xml [66 <./exampl
 es/repeated-stochastic-runs/results/sedml_webtools/plot1.png> <./examples/repea
 ted-stochastic-runs/results/tellurium/plot1.pdf>])
-<examples/oscli-nested-pulse/results/sedml_webtools/plot1.pdf, id=4070, 1284.8p
+<examples/oscli-nested-pulse/results/sedml_webtools/plot1.pdf, id=4241, 1284.8p
 t x 963.6pt>
 File: examples/oscli-nested-pulse/results/sedml_webtools/plot1.pdf Graphic file
  (type pdf)
@@ -1649,16 +1392,7 @@ Package pdftex.def Info: examples/oscli-nested-pulse/results/sedml_webtools/plo
 t1.pdf used on input line 136.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-
-Package natbib Warning: Citation `bergmann2017sed' on page 68 undefined on inpu
-t line 137.
-
-
-Package natbib Warning: Citation `bergmann2017sed' on page 68 undefined on inpu
-t line 137.
-
-
-<examples/oscli-nested-pulse/results/tellurium/plot1.pdf, id=4073, 535.45982pt 
+<examples/oscli-nested-pulse/results/tellurium/plot1.pdf, id=4246, 535.45982pt 
 x 394.26297pt>
 File: examples/oscli-nested-pulse/results/tellurium/plot1.pdf Graphic file (typ
 e pdf)
@@ -1667,18 +1401,10 @@ Package pdftex.def Info: examples/oscli-nested-pulse/results/tellurium/plot1.pd
 f used on input line 141.
 (pdftex.def)             Requested size: 212.89546pt x 156.75787pt.
 
-
-Package natbib Warning: Citation `tellurium' on page 68 undefined on input line
- 142.
-
-
-Package natbib Warning: Citation `tellurium' on page 68 undefined on input line
- 142.
-
-(./examples/oscli-nested-pulse/oscli-nested-pulse.xml [68] [69 <./examples/oscl
+(./examples/oscli-nested-pulse/oscli-nested-pulse.xml [67] [68 <./examples/oscl
 i-nested-pulse/results/sedml_webtools/plot1.pdf> <./examples/oscli-nested-pulse
 /results/tellurium/plot1.pdf>])
-<examples/parameter-scan-2d/results/sedml_webtools/plot1.pdf, id=4279, 1284.8pt
+<examples/parameter-scan-2d/results/sedml_webtools/plot1.pdf, id=4455, 1284.8pt
  x 963.6pt>
 File: examples/parameter-scan-2d/results/sedml_webtools/plot1.pdf Graphic file 
 (type pdf)
@@ -1687,7 +1413,7 @@ Package pdftex.def Info: examples/parameter-scan-2d/results/sedml_webtools/plot
 1.pdf used on input line 162.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/parameter-scan-2d/results/sedml_webtools/plot2.pdf, id=4280, 1284.8pt
+<examples/parameter-scan-2d/results/sedml_webtools/plot2.pdf, id=4456, 1284.8pt
  x 963.6pt>
 File: examples/parameter-scan-2d/results/sedml_webtools/plot2.pdf Graphic file 
 (type pdf)
@@ -1696,16 +1422,7 @@ Package pdftex.def Info: examples/parameter-scan-2d/results/sedml_webtools/plot
 2.pdf used on input line 163.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-
-Package natbib Warning: Citation `bergmann2017sed' on page 70 undefined on inpu
-t line 164.
-
-
-Package natbib Warning: Citation `bergmann2017sed' on page 70 undefined on inpu
-t line 164.
-
-
-<examples/parameter-scan-2d/results/tellurium/plot1.pdf, id=4283, 548.22627pt x
+<examples/parameter-scan-2d/results/tellurium/plot1.pdf, id=4461, 548.22627pt x
  394.26297pt>
 File: examples/parameter-scan-2d/results/tellurium/plot1.pdf Graphic file (type
  pdf)
@@ -1714,7 +1431,7 @@ Package pdftex.def Info: examples/parameter-scan-2d/results/tellurium/plot1.pdf
  used on input line 168.
 (pdftex.def)             Requested size: 212.89546pt x 153.10619pt.
 
-<examples/parameter-scan-2d/results/tellurium/plot2.pdf, id=4284, 548.22627pt x
+<examples/parameter-scan-2d/results/tellurium/plot2.pdf, id=4462, 548.22627pt x
  394.26297pt>
 File: examples/parameter-scan-2d/results/tellurium/plot2.pdf Graphic file (type
  pdf)
@@ -1723,15 +1440,7 @@ Package pdftex.def Info: examples/parameter-scan-2d/results/tellurium/plot2.pdf
  used on input line 169.
 (pdftex.def)             Requested size: 212.89546pt x 153.10619pt.
 
-
-Package natbib Warning: Citation `tellurium' on page 70 undefined on input line
- 170.
-
-
-Package natbib Warning: Citation `tellurium' on page 70 undefined on input line
- 170.
-
-(./examples/parameter-scan-2d/parameter-scan-2d.xml [70] [71 <./examples/parame
+(./examples/parameter-scan-2d/parameter-scan-2d.xml [69] [70 <./examples/parame
 ter-scan-2d/results/sedml_webtools/plot1.pdf> <./examples/parameter-scan-2d/res
 ults/sedml_webtools/plot2.pdf> <./examples/parameter-scan-2d/results/tellurium/
 plot1.pdf> <./examples/parameter-scan-2d/results/tellurium/plot2.pdf
@@ -1739,21 +1448,8 @@ plot1.pdf> <./examples/parameter-scan-2d/results/tellurium/plot2.pdf
 pdfTeX warning: pdflatex (file ./examples/parameter-scan-2d/results/tellurium/p
 lot2.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
 ge
->]) [72]
-
-Package natbib Warning: Citation `Hucka:2003' on page 73 undefined on input lin
-e 184.
-
-
-Package natbib Warning: Citation `cuellar:2003' on page 73 undefined on input l
-ine 184.
-
-
-Package natbib Warning: Citation `Hucka:2003' on page 73 undefined on input lin
-e 188.
-
-
-<examples/vanderpol-sbml/results/sedml_webtools/plot1.pdf, id=4607, 1284.8pt x 
+>]) [71]
+<examples/vanderpol-sbml/results/sedml_webtools/plot1.pdf, id=4790, 1284.8pt x 
 963.6pt>
 File: examples/vanderpol-sbml/results/sedml_webtools/plot1.pdf Graphic file (ty
 pe pdf)
@@ -1762,7 +1458,7 @@ Package pdftex.def Info: examples/vanderpol-sbml/results/sedml_webtools/plot1.p
 df used on input line 194.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/vanderpol-sbml/results/sedml_webtools/plot2.pdf, id=4608, 1284.8pt x 
+<examples/vanderpol-sbml/results/sedml_webtools/plot2.pdf, id=4791, 1284.8pt x 
 963.6pt>
 File: examples/vanderpol-sbml/results/sedml_webtools/plot2.pdf Graphic file (ty
 pe pdf)
@@ -1771,16 +1467,7 @@ Package pdftex.def Info: examples/vanderpol-sbml/results/sedml_webtools/plot2.p
 df used on input line 195.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-
-Package natbib Warning: Citation `bergmann2017sed' on page 73 undefined on inpu
-t line 196.
-
-
-Package natbib Warning: Citation `bergmann2017sed' on page 73 undefined on inpu
-t line 196.
-
-
-<examples/vanderpol-sbml/results/tellurium/plot1.pdf, id=4611, 543.86623pt x 38
+<examples/vanderpol-sbml/results/tellurium/plot1.pdf, id=4796, 543.86623pt x 38
 0.25752pt>
 File: examples/vanderpol-sbml/results/tellurium/plot1.pdf Graphic file (type pd
 f)
@@ -1789,7 +1476,7 @@ Package pdftex.def Info: examples/vanderpol-sbml/results/tellurium/plot1.pdf us
 ed on input line 200.
 (pdftex.def)             Requested size: 212.89546pt x 148.85104pt.
 
-<examples/vanderpol-sbml/results/tellurium/plot2.pdf, id=4612, 543.86623pt x 39
+<examples/vanderpol-sbml/results/tellurium/plot2.pdf, id=4797, 543.86623pt x 39
 4.09045pt>
 File: examples/vanderpol-sbml/results/tellurium/plot2.pdf Graphic file (type pd
 f)
@@ -1798,28 +1485,15 @@ Package pdftex.def Info: examples/vanderpol-sbml/results/tellurium/plot2.pdf us
 ed on input line 201.
 (pdftex.def)             Requested size: 212.89546pt x 154.26591pt.
 
-
-Package natbib Warning: Citation `tellurium' on page 73 undefined on input line
- 202.
-
-
-Package natbib Warning: Citation `tellurium' on page 73 undefined on input line
- 202.
-
-(./examples/vanderpol-sbml/vanderpol.xml [73 <./examples/vanderpol-sbml/results
+(./examples/vanderpol-sbml/vanderpol.xml [72 <./examples/vanderpol-sbml/results
 /sedml_webtools/plot1.pdf> <./examples/vanderpol-sbml/results/sedml_webtools/pl
 ot2.pdf> <./examples/vanderpol-sbml/results/tellurium/plot1.pdf> <./examples/va
 nderpol-sbml/results/tellurium/plot2.pdf
 
 pdfTeX warning: pdflatex (file ./examples/vanderpol-sbml/results/tellurium/plot
 2.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->]) [74]
-
-Package natbib Warning: Citation `cuellar:2003' on page 75 undefined on input l
-ine 211.
-
-
-<examples/vanderpol-cellml/results/sedml_webtools/plot1.pdf, id=4831, 1284.8pt 
+>]) [73]
+<examples/vanderpol-cellml/results/sedml_webtools/plot1.pdf, id=5019, 1284.8pt 
 x 963.6pt>
 File: examples/vanderpol-cellml/results/sedml_webtools/plot1.pdf Graphic file (
 type pdf)
@@ -1828,7 +1502,7 @@ Package pdftex.def Info: examples/vanderpol-cellml/results/sedml_webtools/plot1
 .pdf used on input line 217.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/vanderpol-cellml/results/sedml_webtools/plot2.pdf, id=4832, 1284.8pt 
+<examples/vanderpol-cellml/results/sedml_webtools/plot2.pdf, id=5020, 1284.8pt 
 x 963.6pt>
 File: examples/vanderpol-cellml/results/sedml_webtools/plot2.pdf Graphic file (
 type pdf)
@@ -1837,16 +1511,7 @@ Package pdftex.def Info: examples/vanderpol-cellml/results/sedml_webtools/plot2
 .pdf used on input line 218.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-
-Package natbib Warning: Citation `bergmann2017sed' on page 75 undefined on inpu
-t line 219.
-
-
-Package natbib Warning: Citation `bergmann2017sed' on page 75 undefined on inpu
-t line 219.
-
-
-<examples/vanderpol-cellml/results/opencor/plot1.pdf, id=4835, 3363.56625pt x 1
+<examples/vanderpol-cellml/results/opencor/plot1.pdf, id=5025, 3363.56625pt x 1
 087.06125pt>
 File: examples/vanderpol-cellml/results/opencor/plot1.pdf Graphic file (type pd
 f)
@@ -1855,7 +1520,7 @@ Package pdftex.def Info: examples/vanderpol-cellml/results/opencor/plot1.pdf us
 ed on input line 223.
 (pdftex.def)             Requested size: 226.48395pt x 73.18271pt.
 
-<examples/vanderpol-cellml/results/opencor/plot2.pdf, id=4836, 3363.56625pt x 1
+<examples/vanderpol-cellml/results/opencor/plot2.pdf, id=5026, 3363.56625pt x 1
 087.06125pt>
 File: examples/vanderpol-cellml/results/opencor/plot2.pdf Graphic file (type pd
 f)
@@ -1864,24 +1529,15 @@ Package pdftex.def Info: examples/vanderpol-cellml/results/opencor/plot2.pdf us
 ed on input line 224.
 (pdftex.def)             Requested size: 226.48395pt x 73.18271pt.
 
+Underfull \hbox (badness 1521) in paragraph at lines 225--225
+ []\OT1/phv/b/n/9 Figure A.16: []\OT1/cmr/m/it/9 Simulation with Open-COR 
+ []
 
-Package natbib Warning: Citation `garny2015opencor' on page 75 undefined on inp
-ut line 225.
-
-
-Package natbib Warning: Citation `garny2015opencor' on page 75 undefined on inp
-ut line 225.
-
-(./examples/vanderpol-cellml/vanderpol.xml [75 <./examples/vanderpol-cellml/res
+(./examples/vanderpol-cellml/vanderpol.xml [74 <./examples/vanderpol-cellml/res
 ults/sedml_webtools/plot1.pdf> <./examples/vanderpol-cellml/results/sedml_webto
 ols/plot2.pdf> <./examples/vanderpol-cellml/results/opencor/plot1.pdf> <./examp
-les/vanderpol-cellml/results/opencor/plot2.pdf>]) [76] [77]
-
-Package natbib Warning: Citation `LeLoup1999' on page 78 undefined on input lin
-e 289.
-
-
-<examples/leloup-sbml/results/sedml_webtools/plot1.pdf, id=5014, 1284.8pt x 963
+les/vanderpol-cellml/results/opencor/plot2.pdf>]) [75] [76]
+<examples/leloup-sbml/results/sedml_webtools/plot1.pdf, id=5209, 1284.8pt x 963
 .6pt>
 File: examples/leloup-sbml/results/sedml_webtools/plot1.pdf Graphic file (type 
 pdf)
@@ -1890,7 +1546,7 @@ Package pdftex.def Info: examples/leloup-sbml/results/sedml_webtools/plot1.pdf
 used on input line 303.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/leloup-sbml/results/sedml_webtools/plot2.pdf, id=5015, 1284.8pt x 963
+<examples/leloup-sbml/results/sedml_webtools/plot2.pdf, id=5210, 1284.8pt x 963
 .6pt>
 File: examples/leloup-sbml/results/sedml_webtools/plot2.pdf Graphic file (type 
 pdf)
@@ -1899,7 +1555,7 @@ Package pdftex.def Info: examples/leloup-sbml/results/sedml_webtools/plot2.pdf
 used on input line 304.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/leloup-sbml/results/sedml_webtools/plot3.pdf, id=5016, 1284.8pt x 963
+<examples/leloup-sbml/results/sedml_webtools/plot3.pdf, id=5211, 1284.8pt x 963
 .6pt>
 File: examples/leloup-sbml/results/sedml_webtools/plot3.pdf Graphic file (type 
 pdf)
@@ -1908,16 +1564,7 @@ Package pdftex.def Info: examples/leloup-sbml/results/sedml_webtools/plot3.pdf
 used on input line 305.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-
-Package natbib Warning: Citation `bergmann2017sed' on page 78 undefined on inpu
-t line 306.
-
-
-Package natbib Warning: Citation `bergmann2017sed' on page 78 undefined on inpu
-t line 306.
-
-
-<examples/leloup-sbml/results/tellurium/plot1.pdf, id=5019, 535.45982pt x 393.9
+<examples/leloup-sbml/results/tellurium/plot1.pdf, id=5216, 535.45982pt x 393.9
 8067pt>
 File: examples/leloup-sbml/results/tellurium/plot1.pdf Graphic file (type pdf)
  <use examples/leloup-sbml/results/tellurium/plot1.pdf>
@@ -1925,7 +1572,7 @@ Package pdftex.def Info: examples/leloup-sbml/results/tellurium/plot1.pdf used
 on input line 311.
 (pdftex.def)             Requested size: 212.89546pt x 156.64563pt.
 
-<examples/leloup-sbml/results/tellurium/plot2.pdf, id=5020, 545.0425pt x 394.26
+<examples/leloup-sbml/results/tellurium/plot2.pdf, id=5217, 545.0425pt x 394.26
 297pt>
 File: examples/leloup-sbml/results/tellurium/plot2.pdf Graphic file (type pdf)
  <use examples/leloup-sbml/results/tellurium/plot2.pdf>
@@ -1933,7 +1580,7 @@ Package pdftex.def Info: examples/leloup-sbml/results/tellurium/plot2.pdf used
 on input line 312.
 (pdftex.def)             Requested size: 212.89546pt x 154.00256pt.
 
-<examples/leloup-sbml/results/tellurium/plot3.pdf, id=5021, 535.45982pt x 394.2
+<examples/leloup-sbml/results/tellurium/plot3.pdf, id=5218, 535.45982pt x 394.2
 6297pt>
 File: examples/leloup-sbml/results/tellurium/plot3.pdf Graphic file (type pdf)
  <use examples/leloup-sbml/results/tellurium/plot3.pdf>
@@ -1941,15 +1588,7 @@ Package pdftex.def Info: examples/leloup-sbml/results/tellurium/plot3.pdf used
 on input line 313.
 (pdftex.def)             Requested size: 212.89546pt x 156.75787pt.
 
-
-Package natbib Warning: Citation `tellurium' on page 78 undefined on input line
- 314.
-
-
-Package natbib Warning: Citation `tellurium' on page 78 undefined on input line
- 314.
-
-(./examples/leloup-sbml/leloup-sbml.xml [78] [79 <./examples/leloup-sbml/result
+(./examples/leloup-sbml/leloup-sbml.xml [77] [78 <./examples/leloup-sbml/result
 s/sedml_webtools/plot1.pdf> <./examples/leloup-sbml/results/sedml_webtools/plot
 2.pdf> <./examples/leloup-sbml/results/sedml_webtools/plot3.pdf> <./examples/le
 loup-sbml/results/tellurium/plot1.pdf> <./examples/leloup-sbml/results/telluriu
@@ -1962,15 +1601,6 @@ df): PDF inclusion: multiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex (file ./examples/leloup-sbml/results/tellurium/plot3.p
 df): PDF inclusion: multiple pdfs with page group included in a single page
 >])
-
-Package natbib Warning: Citation `hoffmann2002ikappab' on page 80 undefined on 
-input line 325.
-
-
-Package natbib Warning: Citation `N+06' on page 80 undefined on input line 328.
-
-
-
 Overfull \hbox (7.09329pt too wide) in paragraph at lines 332--333
 []\OT1/cmr/m/n/10 As out-put this sim-u-la-tion de-scrip-tion col-lects four pa
 -ram-e-ters: \OT1/txtt/m/n/10 Total[]NFkBn\OT1/cmr/m/n/10 , \OT1/txtt/m/n/10 To
@@ -1978,7 +1608,7 @@ tal[]IkBbeta\OT1/cmr/m/n/10 , \OT1/txtt/m/n/10 Total[]IkBeps
  []
 
 
-<examples/ikappab/results/sedml_webtools/plot1.pdf, id=5324, 1284.8pt x 963.6pt
+<examples/ikappab/results/sedml_webtools/plot1.pdf, id=5524, 1284.8pt x 963.6pt
 >
 File: examples/ikappab/results/sedml_webtools/plot1.pdf Graphic file (type pdf)
 
@@ -1987,16 +1617,7 @@ Package pdftex.def Info: examples/ikappab/results/sedml_webtools/plot1.pdf used
  on input line 338.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-
-Package natbib Warning: Citation `bergmann2017sed' on page 80 undefined on inpu
-t line 339.
-
-
-Package natbib Warning: Citation `bergmann2017sed' on page 80 undefined on inpu
-t line 339.
-
-
-<examples/ikappab/results/tellurium/plot1.pdf, id=5327, 545.0425pt x 393.98067p
+<examples/ikappab/results/tellurium/plot1.pdf, id=5529, 545.0425pt x 393.98067p
 t>
 File: examples/ikappab/results/tellurium/plot1.pdf Graphic file (type pdf)
  <use examples/ikappab/results/tellurium/plot1.pdf>
@@ -2004,30 +1625,20 @@ Package pdftex.def Info: examples/ikappab/results/tellurium/plot1.pdf used on i
 nput line 344.
 (pdftex.def)             Requested size: 212.89546pt x 153.8923pt.
 
-
-Package natbib Warning: Citation `tellurium' on page 80 undefined on input line
- 345.
-
-
-Package natbib Warning: Citation `tellurium' on page 80 undefined on input line
- 345.
-
-(./examples/ikappab/ikappab.xml [80 <./examples/ikappab/results/sedml_webtools/
-plot1.pdf> <./examples/ikappab/results/tellurium/plot1.pdf>])) [81]
+(./examples/ikappab/ikappab.xml [79 <./examples/ikappab/results/sedml_webtools/
+plot1.pdf> <./examples/ikappab/results/tellurium/plot1.pdf>])) [80]
 Appendix B.
-(../../schema/level1/version3/sed-ml-L1-V3.xsd [82
+(../../schema/level1/version3/sed-ml-L1-V3.xsd [81
 
-] [83] [84] [85] [86]
-[87] [88] [89])
-No file sed-ml-L1V4.bbl.
+] [82] [83] [84] [85]
+[86] [87] [88]) (./sed-ml-L1V4.bbl [89] [90
 
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 113.
-[90]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 113.
+])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 112.
+ [91]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 112.
  (./sed-ml-L1V4.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 113.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 112.
 
 
  *File List*
@@ -2135,20 +1746,28 @@ examples/repressilator/results/sedml_webtools/postprocessing.pdf
 examples/repressilator/results/tellurium/postprocessing.pdf
 images/uml/all.pdf
 sources/generalElements.tex
+images/uml/sedBase.pdf
 lstlang1.sty    2015/06/04 1.6 listings language file
  lstmisc.sty    2015/06/04 1.6 (Carsten Heinz)
+images/uml/parameter.pdf
+images/uml/variable.pdf
 sources/sedml.tex
+images/uml/sed-ml.pdf
 sources/data.tex
 images/uml/dataDescription.pdf
 sources/model.tex
 images/uml/model.pdf
 images/uml/change.pdf
 sources/simulation.tex
+images/uml/simulation.pdf
 sources/task.tex
 images/uml/abstractTask.pdf
+images/uml/repeatedTask.pdf
+images/uml/range.pdf
 sources/dataGenerator.tex
 images/uml/dataGenerator.pdf
 sources/output.tex
+images/uml/output.pdf
 sources/concepts.tex
 sources/examples.tex
 examples/repressilator/repressilator.xml
@@ -2193,61 +1812,58 @@ examples/ikappab/results/sedml_webtools/plot1.pdf
 examples/ikappab/results/tellurium/plot1.pdf
 examples/ikappab/ikappab.xml
 ../../schema/level1/version3/sed-ml-L1-V3.xsd
+sed-ml-L1V4.bbl
  ***********
 
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 113.
-
-Package rerunfilecheck Warning: File `sed-ml-L1V4.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `sed-ml-L1V4.out':
-(rerunfilecheck)             Before: 2CE72AB9766867115454D2434FC4EAB5;4782
-(rerunfilecheck)             After:  8B7BD85A2D15498C25AB341C8E5CC2C5;9002.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 112.
+Package rerunfilecheck Info: File `sed-ml-L1V4.out' has not changed.
+(rerunfilecheck)             Checksum: 7501A2FF1FF7FF5C2A248ED5B4E49346;9703.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 113.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 112.
  ) 
 Here is how much of TeX's memory you used:
- 14423 strings out of 494910
- 216224 string characters out of 6179836
- 566736 words of memory out of 5000000
- 14456 multiletter control sequences out of 15000+600000
- 29975 words of font info for 69 fonts, out of 8000000 for 9000
+ 14541 strings out of 494910
+ 219667 string characters out of 6179836
+ 567625 words of memory out of 5000000
+ 14562 multiletter control sequences out of 15000+600000
+ 30273 words of font info for 70 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 43i,13n,51p,1120b,1935s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/latxfont/lcircle1.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/txfonts/txbtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/t
-xfonts/txbtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txtt
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txtt.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfdi
-ng/uzdr.pfb>
-Output written on sed-ml-L1V4.pdf (90 pages, 2211113 bytes).
+ 43i,12n,51p,1121b,1915s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{table.2.8} has been referenced but does not exist
+, replaced by a fixed one
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/latxfont/lcircle1.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/txfonts/txbtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/txfonts/txbtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts
+/txtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txtt.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/z
+apfding/uzdr.pfb>
+Output written on sed-ml-L1V4.pdf (91 pages, 2646729 bytes).
 PDF statistics:
- 7006 PDF objects out of 7423 (max. 8388607)
- 5991 compressed objects within 60 object streams
- 2916 named destinations out of 2984 (max. 500000)
- 728 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 7226 PDF objects out of 7423 (max. 8388607)
+ 6125 compressed objects within 62 object streams
+ 2929 named destinations out of 2984 (max. 500000)
+ 1280 words of extra memory for PDF output out of 10000 (max. 10000000)
 
