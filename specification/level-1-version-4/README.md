@@ -1,11 +1,18 @@
-# SED-ML L1V4
+# SED-ML Specification
 
-!!! IMPORTANT !!!
-THE WORKING VERSION OF THE DOCUMENT IS AT
+## Latex files
+All latex files are located in this folder and the `sources` subfolder.
 
-* `level-1-version-4`: https://www.overleaf.com/10141340wptfdtmtcmgp#/37446255/
+## Examples
+SED-ML examples included in specification are located in the `examples` folder.
+From the examples the following information is imported in the latex document
+- result images
+- SED-ML listings based on SED-ML files
 
-ONLY MAKE CHANGES IN THE OVERLEAF FOR NOW.
+## Images (UML)
+The UML diagrams are created in google draw and than exported as pdf to the uml folder.
+All images with exception of the examples are located in the `images` folder.
 
-THIS FOLDER MUST BE UPDATE AFTER THE L1V3 RELEASE USING L1V3 AS A BASELINE TO INCLUDE CHANGES.
+## Schema
+The schema is included from the main `sed-ml/schema/level-?/version-?` folder.
 

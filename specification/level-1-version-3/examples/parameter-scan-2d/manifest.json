@@ -1,5 +1,7 @@
 { "entries": [
-
+  { "location" : "metadata.rdf",
+    "format" : "http://identifiers.org/combine.specifications/omex-metadata"
+  },
   { "location" : ".",
     "format" : "http://identifiers.org/combine.specifications/omex",
     "description" : "SED-ML L1V3 specification example. Demonstrating 2D parameter scan.",

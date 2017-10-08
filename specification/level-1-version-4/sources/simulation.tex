@@ -1,0 +1,287 @@
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% SIMULATION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{Simulation}}
+\label{class:simulation}
+A simulation is the execution of some defined algorithm(s). Simulations are described differently depending on the type of simulation experiment to be performed (\fig{simulation}). 
+
+\sedfig[width=0.9\textwidth]{images/uml/simulation}{The SED-ML Simulation class}{fig:simulation}
+
+\concept{Simulation} is an abstract class and serves as the container for the different types of simulation experiments. SED-ML \currentLV provides the predefined simulation classes \hyperref[class:uniformTimeCourse]{UniformTimeCourse}, \hyperref[class:oneStep]{OneStep} and \hyperref[class:steadyState]{SteadyState}. 
+
+Each instance of the \concept{Simulation} class has an unambiguous and mandatory \hyperref[sec:id]{\code{id}}. An additional, optional \hyperref[sec:name]{\code{name}} may be given to the simulation. Every simulation has a required element \hyperref[sec:algorithm]{\code{algorithm}} describing the simulation \hyperref[class:algorithm]{Algorithm}.
+
+\tabtext{simulation}{simulation}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{\attribute} & \textbf{\desc}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\midrule
+algorithm & \refpage{class:algorithm}\\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{simulation}}
+\label{tab:simulation}
+\end{table}
+
+\lsttext{simulation}{simulation}
+
+\begin{myXmlLst}{The SED-ML \code{listOfSimulations} element, defining two different UniformTimecourse simulations}{lst:simulation}
+<listOfSimulations>
+	<uniformTimeCourse [..]>
+		[SIMULATION SPECIFICATION]
+	</uniformTimeCourse>
+	<uniformTimeCourse [..]>
+		[SIMULATION SPECIFICATION]
+	</uniformTimeCourse>
+</listOfSimulations>
+\end{myXmlLst}
+
+\paragraph*{\element{algorithm}}
+\label{sec:algorithm}
+The mandatory attribute \concept{\element{algorithm}} defines the simulation algorithms used for the execution of the \hyperref[class:simulation]{simulation}. The algorithms are defined via the \hyperref[class:algorithm]{Algorithm} class.
+
+
+%% ~~~ UNIFORM TIMECOURSE SIMULATION ~~~
+\subsubsection{\element{UniformTimeCourse}}
+\label{class:uniformTimeCourse}
+Each instance of the \concept{UniformTimeCourse} class has, in addition to the elements from \hyperref[class:simulation]{Simulation}, the mandatory elements \hyperref[sec:initialTime]{\code{initialTime}}, \hyperref[sec:outputStartTime]{\code{outputStartTime}}, \hyperref[sec:outputEndTime]{\code{outputEndTime}}, and \hyperref[sec:numberOfPoints]{\code{numberOfPoints}} (\fig{simulation}).
+
+\tabtext{uniformTimeCourse}{uniformTimeCourse}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{attribute} & \textbf{description}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\midrule
+initialTime & \refpage{sec:initialTime}\\
+outputStartTime & \refpage{sec:outputStartTime}\\
+outputEndTime & \refpage{sec:outputEndTime}\\
+numberOfPoints & \refpage{sec:numberOfPoints}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\midrule
+algorithm & \refpage{class:algorithm}\\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{uniformTimeCourse}}
+\label{tab:uniformTimeCourse}
+\end{table}
+
+\lsttext{timecourse}{uniformTimeCourse}
+
+\begin{myXmlLst}{The SED-ML \code{uniformTimeCourse} element, defining a uniform time course simulation over 2500 time units with 1000 simulation points.}{lst:timecourse}
+<listOfSimulations>
+	<uniformTimeCourse id="s1"  name="time course simulation of variable v1 over 100 minutes"  
+		initialTime="0" outputStartTime="0" outputEndTime="2500" numberOfPoints="1000">
+		<algorithm [..] />
+ 	</uniformTimeCourse>
+</listOfSimulations>
+\end{myXmlLst}
+
+\paragraph*{\element{initialTime}}
+\label{sec:initialTime}
+The attribute \concept{\element{initialTime}} of type \code{double} represents what the time is at the start of the simulation, for purposes of output variables, and for calculating the \element{outputStartTime} and \element{outputEndTime}.  In most cases, this will be \code{0.0}.  The model must be set up such that \element{intialTime} is correct internally with respect to any output variables that may be produced.
+Listing~\ref{lst:timecourse} shows an example. 
+
+\paragraph*{\element{outputStartTime}}
+\label{sec:outputStartTime}
+Sometimes a researcher is not interested in simulation results at the start of the simulation, i.e., the initial time. The \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} class uses the attribute \concept{\element{outputStartTime}} of type \code{double}, and describes the time (relative to the \element{intialTime}) that output is to be collected. To be valid the \concept{\element{outputStartTime}} cannot be before \hyperref[sec:initialTime]{\element{initialTime}}. For an example, see Listing~\ref{lst:timecourse}. 
+
+\paragraph*{\element{outputEndTime}}
+\label{sec:outputEndTime}
+The attribute \concept{\element{outputEndTime}} of type \code{double} marks the end time of the simulation, relative to the \element{initialTime}. See Listing~\ref{lst:timecourse} for an example. 
+
+\paragraph*{\element{numberOfPoints}}
+\label{sec:numberOfPoints}
+When executed, the \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} simulation produces an output on a regular grid starting with \hyperref[sec:outputStartTime]{\element{outputStartTime}} and ending with \hyperref[sec:outputEndTime]{\element{outputEndTime}}. The attribute \concept{\element{numberOfPoints}} of type \code{integer} describes the number of points expected in the result. Software interpreting the \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} is expected to produce a first outputPoint at time \hyperref[sec:outputStartTime]{\element{outputStartTime}} and then \concept{\element{numberOfPoints}} output points with the results of the simulation. Thus a total of \code{numberOfPoints + 1} output points will be produced.
+
+Just because the output points lie on the regular grid described above, does not mean that the simulation algorithm has to work with the same step size. Usually the step size the simulator chooses will be adaptive and much smaller than the required output step size. On the other hand a stochastic simulator might not have any new events occurring between two grid points. Nevertheless the simulator has to produce data on this regular grid. For an example, see Listing~\ref{lst:timecourse}. 
+
+
+% ~~~ ONESTEP SIMULATION ~~~
+\subsubsection{\element{OneStep}}
+\label{class:oneStep}
+
+The \concept{OneStep} class calculates one further output step for the model from its current state. Each instance of the \concept{OneStep} class has, in addition to the elements from \hyperref[class:simulation]{Simulation}, the mandatory element \hyperref[sec:step]{\code{step}} (\fig{simulation}).
+
+\tabtext{oneStep}{oneStep}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{attribute} & \textbf{description}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\midrule
+step & \refpage{sec:step}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\midrule
+algorithm & \refpage{class:algorithm}\\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{oneStep}}
+\label{tab:oneStep}
+\end{table}
+
+\lsttext{oneStep}{oneStep}
+
+\begin{myXmlLst}{The SED-ML \code{oneStep} element, specifying to apply the simulation algorithm for another output step of size 0.1.}{lst:oneStep}
+<listOfSimulations> 
+	<oneStep id="s1" step="0.1"> 
+		<algorithm kisaoID="KISAO:0000019" />
+	</oneStep> 
+</listOfSimulations>
+\end{myXmlLst}
+
+\paragraph*{\element{step}}
+\label{sec:step}
+The \hyperref[class:oneStep]{OneStep} class has one required attribute \concept{\element{step}} of type \code{double}. It defines the next output point that should be reached by the algorithm, by specifying the increment from the current output point. Listing~\ref{lst:oneStep} shows an example. 
+
+Note that the \concept{\element{step}} does not necessarily equate to one integration step. The simulator is allowed to take as many steps as needed. However, after running oneStep, the desired output time is reached.
+
+
+% ~~~ STEADYSTATE SIMULATION ~~~
+\subsubsection{\element{SteadyState}}
+\label{class:steadyState}
+The \concept{SteadyState} represents a steady state computation (as for example implemented by NLEQ or Kinsolve). The \concept{SteadyState} class has no additional elements than the elements from \hyperref[class:simulation]{Simulation} (\fig{simulation}).
+
+\tabtext{steadyState}{steadyState}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{attribute} & \textbf{description}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\midrule
+algorithm & \refpage{class:algorithm}\\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{steadyState}}
+\label{tab:steadyState}
+\end{table}
+
+\lsttext{steadyState}{steadyState}
+
+\begin{myXmlLst}{The SED-ML \code{steadyState} element, defining a steady state simulation with id \code{steady}.}{lst:steadyState}
+<listOfSimulations>
+	<steadyState id="steady"> 
+		<algorithm kisaoID="KISAO:0000282" />
+	</steadyState > 
+</listOfSimulations>
+\end{myXmlLst}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% SIMULATION COMPONENTS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{Simulation} components}
+\label{class:simulationComponents}
+
+% ~~~ ALGORITHM ~~~
+\subsubsection{\element{Algorithm}}
+\label{class:algorithm}
+The \concept{Algorithm} class has a mandatory element \hyperref[sec:kisaoid]{\element{kisaoID}} which contains a \hyperref[sec:kisao]{KiSAO} reference to the particular simulation algorithm used in the \hyperref[class:simulation]{simulation}. In addition, the \concept{Algorithm} has an optional \hyperref[sec:listOfAlgorithmParameters]{\element{listOfAlgorithmParameters}}, a collection of \hyperref[class:algorithmParameter]{algorithmParameter}, which are used to parameterize the \concept{algorithm}.
+
+\tabtext{algorithm}{Algorithm}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{attribute} & \textbf{description}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+kisaoID & \refpage{sec:kisao}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+listOfAlgorithmParameters$^{o}$ & \refpage{class:algorithmParameter}\\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{algorithm}}
+\label{tab:algorithm}
+\end{table}
+
+The example given in Listing~\ref{lst:simulation}, completed by algorithm definitions results in the code given in Listing \ref{lst:algorithm}. In the example, for both simulations a algorithm is defined. In the first simulation \code{s1} a deterministic approach is used (Euler forward method), in the second simulation \code{s2} a stochastic approach is used (Stochsim nearest neighbor).
+
+\begin{myXmlLst}{The SED-ML \code{algorithm} element for two different time course simulations, defining two different algorithms. KISAO:0000030 refers to the \emph{Euler forward method} ; KISAO:0000021 refers to the \emph{StochSim nearest neighbor algorithm}.}{lst:algorithm}
+<listOfSimulations>
+	<uniformTimeCourse id="s1" name="time course simulation over 100 minutes" [..]>
+		<algorithm kisaoID="KISAO:0000030" />
+	</uniformTimeCourse>
+	<uniformTimeCourse id="s2" name="time course definition for concentration of p" [..]>
+		<algorithm kisaoID="KISAO:0000021" />
+	</uniformTimeCourse>
+</listOfSimulations>
+\end{myXmlLst}
+
+
+% ~~~ LIST OF ALGORITHM PARAMETERS ~~~
+\paragraph*{\element{listOfAlgorithmParameters}}
+\label{sec:listOfAlgorithmParameters}
+The \concept{\element{listOfAlgorithmParameters}} contains the settings for the simulation algorithm used in a \hyperref[class:simulation]{simulation} (\fig{simulation}). It may list several instances of the \hyperref[class:algorithmParameter]{AlgorithmParameter} class. The \concept{\element{listOfAlgorithmParameters}} is optional and may contain zero to many parameters.
+
+\lsttext{listOfAlgorithmParameters}{listOfAlgorithmParameters}
+\begin{myXmlLst}{SED-ML listOfAlgorithmParameters element}{lst:listOfAlgorithmParameters}
+<listOfAlgorithmParameters>
+	<algorithmParameter kisaoID="KISAO:0000211" value="23"/> 
+</listOfAlgorithmParameters>
+\end{myXmlLst}
+
+
+% ~~~ ALGORITHM PARAMETER ~~~
+\subsubsection{\element{AlgorithmParameter}}
+\label{class:algorithmParameter}
+The \concept{AlgorithmParameter} class allows to parameterize a particular simulation \hyperref[class:algorithm]{algorithm}. The set of possible parameters for a particular instance is determined by the algorithm that is referenced by the \element{kisaoID} of the enclosing \hyperref[class:algorithm]{algorithm} element (\fig{simulation}). Parameters of simulation algorithms are unambiguously referenced by the mandatory \hyperref[sec:kisaoid]{\element{kisaoID}} attribute. Their value is set in the mandatory \hyperref[sec:algorithmParameterValue]{\element{value}} attribute.
+
+\begin{myXmlLst}{The SED-ML \concept{\code{algorithmParameter}} element setting the parameter value for the simulation algorithm. \code{KISAO:0000032} refers to the \emph{explicit fourth-order Runge-Kutta method}; \code{KISAO:00000211} refers to the \emph{absolute tolerance}.}{lst:algorithmParameter}
+<algorithm kisaoID="KISAO:0000032"> 
+	<listOfAlgorithmParameters> 
+		<algorithmParameter kisaoID="KISAO:0000211" value="23"/> 
+	</listOfAlgorithmParameters> 
+</algorithm>
+\end{myXmlLst}
+
+
+\paragraph*{\element{value}}
+\label{sec:algorithmParameterValue}
+The \concept{\element{value}} sets the value of the \hyperref[class:algorithmParameter]{AlgorithmParameter}.
+

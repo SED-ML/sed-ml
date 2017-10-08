@@ -1,0 +1,120 @@
+\BOOKMARK [0][]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [1][]{section.1.1}{SED-ML overview}{chapter.1}% 2
+\BOOKMARK [1][]{section.1.2}{Example simulation experiment}{chapter.1}% 3
+\BOOKMARK [2][-]{subsection.1.2.1}{Time-course simulation}{section.1.2}% 4
+\BOOKMARK [2][-]{subsection.1.2.2}{Applying pre-processing}{section.1.2}% 5
+\BOOKMARK [2][-]{subsection.1.2.3}{Applying post-processing}{section.1.2}% 6
+\BOOKMARK [0][]{chapter.2}{SED-ML technical specification}{}% 7
+\BOOKMARK [1][]{section.2.1}{General data types, attributes and classes}{chapter.2}% 8
+\BOOKMARK [2][-]{subsection.2.1.1}{Primitive data types}{section.2.1}% 9
+\BOOKMARK [3][-]{subsubsection.2.1.1.1}{ID}{subsection.2.1.1}% 10
+\BOOKMARK [3][-]{subsubsection.2.1.1.2}{SId}{subsection.2.1.1}% 11
+\BOOKMARK [3][-]{subsubsection.2.1.1.3}{SIdRef}{subsection.2.1.1}% 12
+\BOOKMARK [3][-]{subsubsection.2.1.1.4}{XPath}{subsection.2.1.1}% 13
+\BOOKMARK [3][-]{subsubsection.2.1.1.5}{MathML}{subsection.2.1.1}% 14
+\BOOKMARK [3][-]{subsubsection.2.1.1.6}{anyURI}{subsection.2.1.1}% 15
+\BOOKMARK [3][-]{subsubsection.2.1.1.7}{NuMLSId}{subsection.2.1.1}% 16
+\BOOKMARK [3][-]{subsubsection.2.1.1.8}{NuMLSIdRef}{subsection.2.1.1}% 17
+\BOOKMARK [2][-]{subsection.2.1.2}{SEDBase}{section.2.1}% 18
+\BOOKMARK [2][-]{subsection.2.1.3}{Notes}{section.2.1}% 19
+\BOOKMARK [2][-]{subsection.2.1.4}{Annotation}{section.2.1}% 20
+\BOOKMARK [2][-]{subsection.2.1.5}{Parameter}{section.2.1}% 21
+\BOOKMARK [2][-]{subsection.2.1.6}{Variable}{section.2.1}% 22
+\BOOKMARK [2][-]{subsection.2.1.7}{General attributes}{section.2.1}% 23
+\BOOKMARK [3][-]{subsubsection.2.1.7.1}{id}{subsection.2.1.7}% 24
+\BOOKMARK [3][-]{subsubsection.2.1.7.2}{name}{subsection.2.1.7}% 25
+\BOOKMARK [3][-]{subsubsection.2.1.7.3}{math}{subsection.2.1.7}% 26
+\BOOKMARK [3][-]{subsubsection.2.1.7.4}{kisaoID}{subsection.2.1.7}% 27
+\BOOKMARK [3][-]{subsubsection.2.1.7.5}{listOf* containers}{subsection.2.1.7}% 28
+\BOOKMARK [3][-]{subsubsection.2.1.7.6}{listOfParameters}{subsection.2.1.7}% 29
+\BOOKMARK [3][-]{subsubsection.2.1.7.7}{listOfVariables}{subsection.2.1.7}% 30
+\BOOKMARK [2][-]{subsection.2.1.8}{Reference relations}{section.2.1}% 31
+\BOOKMARK [3][-]{subsubsection.2.1.8.1}{modelReference}{subsection.2.1.8}% 32
+\BOOKMARK [3][-]{subsubsection.2.1.8.2}{simulationReference}{subsection.2.1.8}% 33
+\BOOKMARK [3][-]{subsubsection.2.1.8.3}{taskReference}{subsection.2.1.8}% 34
+\BOOKMARK [3][-]{subsubsection.2.1.8.4}{dataReference}{subsection.2.1.8}% 35
+\BOOKMARK [1][]{section.2.2}{SED-ML Components}{chapter.2}% 36
+\BOOKMARK [2][-]{subsection.2.2.1}{SED-ML top level element}{section.2.2}% 37
+\BOOKMARK [3][-]{subsubsection.2.2.1.1}{xmlns}{subsection.2.2.1}% 38
+\BOOKMARK [3][-]{subsubsection.2.2.1.2}{level}{subsection.2.2.1}% 39
+\BOOKMARK [3][-]{subsubsection.2.2.1.3}{version}{subsection.2.2.1}% 40
+\BOOKMARK [3][-]{subsubsection.2.2.1.4}{listOfDataDescriptions}{subsection.2.2.1}% 41
+\BOOKMARK [3][-]{subsubsection.2.2.1.5}{listOfModels}{subsection.2.2.1}% 42
+\BOOKMARK [3][-]{subsubsection.2.2.1.6}{listOfSimulations}{subsection.2.2.1}% 43
+\BOOKMARK [3][-]{subsubsection.2.2.1.7}{listOfTasks}{subsection.2.2.1}% 44
+\BOOKMARK [3][-]{subsubsection.2.2.1.8}{listOfDataGenerators}{subsection.2.2.1}% 45
+\BOOKMARK [3][-]{subsubsection.2.2.1.9}{listOfOutputs}{subsection.2.2.1}% 46
+\BOOKMARK [2][-]{subsection.2.2.2}{DataDescription}{section.2.2}% 47
+\BOOKMARK [2][-]{subsection.2.2.3}{DataDescription components}{section.2.2}% 48
+\BOOKMARK [3][-]{subsubsection.2.2.3.1}{DimensionDescription}{subsection.2.2.3}% 49
+\BOOKMARK [3][-]{subsubsection.2.2.3.2}{DataSource}{subsection.2.2.3}% 50
+\BOOKMARK [3][-]{subsubsection.2.2.3.3}{Slice}{subsection.2.2.3}% 51
+\BOOKMARK [2][-]{subsection.2.2.4}{Model}{section.2.2}% 52
+\BOOKMARK [2][-]{subsection.2.2.5}{Change}{section.2.2}% 53
+\BOOKMARK [3][-]{subsubsection.2.2.5.1}{NewXML}{subsection.2.2.5}% 54
+\BOOKMARK [3][-]{subsubsection.2.2.5.2}{AddXML}{subsection.2.2.5}% 55
+\BOOKMARK [3][-]{subsubsection.2.2.5.3}{ChangeXML}{subsection.2.2.5}% 56
+\BOOKMARK [3][-]{subsubsection.2.2.5.4}{RemoveXML}{subsection.2.2.5}% 57
+\BOOKMARK [3][-]{subsubsection.2.2.5.5}{ChangeAttribute}{subsection.2.2.5}% 58
+\BOOKMARK [3][-]{subsubsection.2.2.5.6}{ComputeChange}{subsection.2.2.5}% 59
+\BOOKMARK [2][-]{subsection.2.2.6}{Simulation}{section.2.2}% 60
+\BOOKMARK [3][-]{subsubsection.2.2.6.1}{UniformTimeCourse}{subsection.2.2.6}% 61
+\BOOKMARK [3][-]{subsubsection.2.2.6.2}{OneStep}{subsection.2.2.6}% 62
+\BOOKMARK [3][-]{subsubsection.2.2.6.3}{SteadyState}{subsection.2.2.6}% 63
+\BOOKMARK [2][-]{subsection.2.2.7}{Simulation components}{section.2.2}% 64
+\BOOKMARK [3][-]{subsubsection.2.2.7.1}{Algorithm}{subsection.2.2.7}% 65
+\BOOKMARK [3][-]{subsubsection.2.2.7.2}{AlgorithmParameter}{subsection.2.2.7}% 66
+\BOOKMARK [2][-]{subsection.2.2.8}{AbstractTask}{section.2.2}% 67
+\BOOKMARK [3][-]{subsubsection.2.2.8.1}{Task}{subsection.2.2.8}% 68
+\BOOKMARK [3][-]{subsubsection.2.2.8.2}{Repeated Task}{subsection.2.2.8}% 69
+\BOOKMARK [2][-]{subsection.2.2.9}{Task components}{section.2.2}% 70
+\BOOKMARK [3][-]{subsubsection.2.2.9.1}{SubTask}{subsection.2.2.9}% 71
+\BOOKMARK [3][-]{subsubsection.2.2.9.2}{SetValue}{subsection.2.2.9}% 72
+\BOOKMARK [3][-]{subsubsection.2.2.9.3}{Range}{subsection.2.2.9}% 73
+\BOOKMARK [2][-]{subsection.2.2.10}{DataGenerator}{section.2.2}% 74
+\BOOKMARK [2][-]{subsection.2.2.11}{Output}{section.2.2}% 75
+\BOOKMARK [3][-]{subsubsection.2.2.11.1}{Plot2D}{subsection.2.2.11}% 76
+\BOOKMARK [3][-]{subsubsection.2.2.11.2}{Plot3D}{subsection.2.2.11}% 77
+\BOOKMARK [3][-]{subsubsection.2.2.11.3}{Report}{subsection.2.2.11}% 78
+\BOOKMARK [2][-]{subsection.2.2.12}{Output components}{section.2.2}% 79
+\BOOKMARK [3][-]{subsubsection.2.2.12.1}{Curve}{subsection.2.2.12}% 80
+\BOOKMARK [3][-]{subsubsection.2.2.12.2}{Surface}{subsection.2.2.12}% 81
+\BOOKMARK [3][-]{subsubsection.2.2.12.3}{DataSet}{subsection.2.2.12}% 82
+\BOOKMARK [0][]{chapter.3}{Concepts used in SED-ML}{}% 83
+\BOOKMARK [1][]{section.3.1}{MathML}{chapter.3}% 84
+\BOOKMARK [2][-]{subsection.3.1.1}{MathML elements}{section.3.1}% 85
+\BOOKMARK [2][-]{subsection.3.1.2}{MathML symbols}{section.3.1}% 86
+\BOOKMARK [2][-]{subsection.3.1.3}{MathML functions}{section.3.1}% 87
+\BOOKMARK [1][]{section.3.2}{URI scheme}{chapter.3}% 88
+\BOOKMARK [2][-]{subsection.3.2.1}{Model references}{section.3.2}% 89
+\BOOKMARK [2][-]{subsection.3.2.2}{Data references}{section.3.2}% 90
+\BOOKMARK [2][-]{subsection.3.2.3}{Language references}{section.3.2}% 91
+\BOOKMARK [2][-]{subsection.3.2.4}{Data format references}{section.3.2}% 92
+\BOOKMARK [3][-]{subsubsection.3.2.4.1}{NuML \(Numerical Markup Language\)}{subsection.3.2.4}% 93
+\BOOKMARK [3][-]{subsubsection.3.2.4.2}{CSV \(Comma Separated Values\)}{subsection.3.2.4}% 94
+\BOOKMARK [3][-]{subsubsection.3.2.4.3}{TSV \(Tab Separated Values\)}{subsection.3.2.4}% 95
+\BOOKMARK [2][-]{subsection.3.2.5}{Symbols}{section.3.2}% 96
+\BOOKMARK [2][-]{subsection.3.2.6}{Annotation Scheme}{section.3.2}% 97
+\BOOKMARK [1][]{section.3.3}{XPath}{chapter.3}% 98
+\BOOKMARK [1][]{section.3.4}{NuML}{chapter.3}% 99
+\BOOKMARK [1][]{section.3.5}{KiSAO}{chapter.3}% 100
+\BOOKMARK [1][]{section.3.6}{COMBINE archive}{chapter.3}% 101
+\BOOKMARK [1][]{section.3.7}{SED-ML resources}{chapter.3}% 102
+\BOOKMARK [0][]{chapter.4}{Acknowledgements}{}% 103
+\BOOKMARK [0][]{appendix.A}{Examples}{}% 104
+\BOOKMARK [1][]{section.A.1}{Example simulation experiment \(L1V3\137repressilator.omex\)}{appendix.A}% 105
+\BOOKMARK [1][]{section.A.2}{Simulation experiments with dataDescriptions}{appendix.A}% 106
+\BOOKMARK [2][-]{subsection.A.2.1}{Plotting data with simulations \(L1V3\137plotting-data-numl.omex\)}{section.A.2}% 107
+\BOOKMARK [1][]{section.A.3}{Simulation experiments with repeatedTasks}{appendix.A}% 108
+\BOOKMARK [2][-]{subsection.A.3.1}{Time course parameter scan \(L1V3\137repeated-scan-oscli.omex\)}{section.A.3}% 109
+\BOOKMARK [2][-]{subsection.A.3.2}{Steady state parameter scan \(L1V3\137repeated-steady-scan-oscli.omex\)}{section.A.3}% 110
+\BOOKMARK [2][-]{subsection.A.3.3}{Stochastic simulation \(L1V3\137repeated-stochastic-runs.omex\)}{section.A.3}% 111
+\BOOKMARK [2][-]{subsection.A.3.4}{Simulation perturbation \(L1V3\137oscli-nested-pulse.omex\)}{section.A.3}% 112
+\BOOKMARK [2][-]{subsection.A.3.5}{2D steady state parameter scan \(L1V3\137parameter-scan-2d.omex\)}{section.A.3}% 113
+\BOOKMARK [1][]{section.A.4}{Simulation experiments with different model languages}{appendix.A}% 114
+\BOOKMARK [2][-]{subsection.A.4.1}{Van der Pol oscillator in SBML \(L1V3\137vanderpol-sbml.omex\)}{section.A.4}% 115
+\BOOKMARK [2][-]{subsection.A.4.2}{Van der Pol oscillator in CellML \(L1V3\137vanderpol-cellml.omex\)}{section.A.4}% 116
+\BOOKMARK [1][]{section.A.5}{Reproducing publication results}{appendix.A}% 117
+\BOOKMARK [2][-]{subsection.A.5.1}{Le Loup model \(L1V3\137leloup-sbml.omex\)}{section.A.5}% 118
+\BOOKMARK [2][-]{subsection.A.5.2}{IkappaB signaling \(L1V3\137ikkapab.omex\)}{section.A.5}% 119
+\BOOKMARK [0][]{appendix.B}{XML Schema}{}% 120

@@ -1,6 +1,6 @@
 .idea/
 
-# tex temp files
+# L1V3
 specification/level-1-version-3/sed-ml-L1V3.aux
 specification/level-1-version-3/sed-ml-L1V3.log
 specification/level-1-version-3/sed-ml-L1V3.out
@@ -13,8 +13,24 @@ specification/level-1-version-3/sources/*.log
 specification/level-1-version-3/sed-ml-L1V3.bib.bak
 specification/level-1-version-3/sed-ml-L1V3.bib.sav
 
-
 specification/level-1-version-3/examples/__sedml_webtools__/
 specification/level-1-version-3/examples/__tellurium__/
-
 specification/level-1-version-3/.sed-ml-L1V3.out.swp
+
+
+# L1V4
+specification/level-1-version-4/sed-ml-L1V4.aux
+specification/level-1-version-4/sed-ml-L1V4.log
+specification/level-1-version-4/sed-ml-L1V4.out
+specification/level-1-version-4/sed-ml-L1V4.synctex.gz
+specification/level-1-version-4/sed-ml-L1V4.toc
+specification/level-1-version-4/sed-ml-L1V4.bbl
+specification/level-1-version-4/sed-ml-L1V4.blg
+specification/level-1-version-4/sources/dataSourceClass.aux
+specification/level-1-version-4/sources/*.log
+specification/level-1-version-4/sed-ml-L1V4.bib.bak
+specification/level-1-version-4/sed-ml-L1V4.bib.sav
+
+specification/level-1-version-4/examples/__sedml_webtools__/
+specification/level-1-version-4/examples/__tellurium__/
+specification/level-1-version-4/.sed-ml-L1V4.out.swp
