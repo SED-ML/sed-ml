@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.27)  8 OCT 2017 23:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.27)  9 OCT 2017 00:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -970,7 +970,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    Font shape `OT1/phv/m/sl' will be
 (Font)              scaled to size 8.69995pt on input line 49.
 
-<images/logoSedml.png, id=533, 273.1806pt x 150.8034pt>
+<images/logoSedml.png, id=561, 273.1806pt x 150.8034pt>
 File: images/logoSedml.png Graphic file (type png)
 
 <use images/logoSedml.png>
@@ -1006,7 +1006,7 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
  [6
 
 ] [7]
-<examples/repressilator/results/sedml_webtools/timecourse.pdf, id=780, 1284.8pt
+<examples/repressilator/results/sedml_webtools/timecourse.pdf, id=816, 1284.8pt
  x 963.6pt>
 File: examples/repressilator/results/sedml_webtools/timecourse.pdf Graphic file
  (type pdf)
@@ -1029,7 +1029,7 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9> not available
 LaTeX Font Info:    Font shape `OT1/phv/b/n' will be
 (Font)              scaled to size 7.82996pt on input line 83.
 
-<examples/repressilator/results/tellurium/timecourse.pdf, id=783, 554.6095pt x 
+<examples/repressilator/results/tellurium/timecourse.pdf, id=819, 554.6095pt x 
 394.26297pt>
 File: examples/repressilator/results/tellurium/timecourse.pdf Graphic file (typ
 e pdf)
@@ -1038,7 +1038,7 @@ Package pdftex.def Info: examples/repressilator/results/tellurium/timecourse.pd
 f used on input line 88.
 (pdftex.def)             Requested size: 212.89546pt x 151.3435pt.
 
-<examples/repressilator/results/sedml_webtools/preprocessing.pdf, id=789, 1284.
+<examples/repressilator/results/sedml_webtools/preprocessing.pdf, id=825, 1284.
 8pt x 963.6pt>
 File: examples/repressilator/results/sedml_webtools/preprocessing.pdf Graphic f
 ile (type pdf)
@@ -1055,7 +1055,7 @@ LaTeX Font Info:    Font shape `OT1/txtt/m/sl' will be
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <9> on input line 116.
 
-<examples/repressilator/results/tellurium/preprocessing.pdf, id=792, 548.22627p
+<examples/repressilator/results/tellurium/preprocessing.pdf, id=828, 548.22627p
 t x 394.26297pt>
 File: examples/repressilator/results/tellurium/preprocessing.pdf Graphic file (
 type pdf)
@@ -1072,7 +1072,7 @@ ins, \OT1/txtt/m/n/10 max(lacI(t))\OT1/cmr/m/n/10 , \OT1/txtt/m/n/10 max(tetR(t
  []
 
 
-<examples/repressilator/results/sedml_webtools/postprocessing.pdf, id=799, 1284
+<examples/repressilator/results/sedml_webtools/postprocessing.pdf, id=835, 1284
 .8pt x 963.6pt>
 File: examples/repressilator/results/sedml_webtools/postprocessing.pdf Graphic 
 file (type pdf)
@@ -1082,7 +1082,7 @@ Package pdftex.def Info: examples/repressilator/results/sedml_webtools/postproc
 essing.pdf used on input line 147.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/repressilator/results/tellurium/postprocessing.pdf, id=802, 545.0425p
+<examples/repressilator/results/tellurium/postprocessing.pdf, id=838, 545.0425p
 t x 380.25752pt>
 File: examples/repressilator/results/tellurium/postprocessing.pdf Graphic file 
 (type pdf)
@@ -1103,7 +1103,7 @@ rocessing.pdf): PDF inclusion: multiple pdfs with page group included in a sing
 le page
 >]
 Chapter 2.
-<images/uml/all.pdf, id=1054, 434.62375pt x 325.215pt>
+<images/uml/all.pdf, id=1090, 434.62375pt x 325.215pt>
 File: images/uml/all.pdf Graphic file (type pdf)
 
 <use images/uml/all.pdf>
@@ -1136,18 +1136,18 @@ initions of letter, digit,
 
 [11]
 LaTeX Font Info:    Font shape `OT1/txtt/bx/n' in size <12> not available
-(Font)              Font shape `OT1/txtt/b/n' tried instead on input line 85.
+(Font)              Font shape `OT1/txtt/b/n' tried instead on input line 186.
 LaTeX Font Info:    Font shape `OT1/txtt/b/n' will be
-(Font)              scaled to size 11.70007pt on input line 85.
- <images/uml/sedBase.pdf, id=1149, 328.22626pt x 209.78375pt>
+(Font)              scaled to size 11.70007pt on input line 186.
+ [12] <images/uml/sedBase.pdf, id=1193, 328.22626pt x 209.78375pt>
 File: images/uml/sedBase.pdf Graphic file (type pdf)
 
 <use images/uml/sedBase.pdf>
-Package pdftex.def Info: images/uml/sedBase.pdf used on input line 91.
+Package pdftex.def Info: images/uml/sedBase.pdf used on input line 192.
 (pdftex.def)             Requested size: 362.37569pt x 231.61429pt.
 LaTeX Font Info:    Font shape `OT1/txtt/m/sl' will be
-(Font)              scaled to size 9.75006pt on input line 94.
- [12 <./images/uml/sedBase.pdf>]
+(Font)              scaled to size 9.75006pt on input line 195.
+ [13 <./images/uml/sedBase.pdf>]
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
@@ -1155,48 +1155,52 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 )
 LaTeX Font Info:    Font shape `OT1/txtt/m/n' will be
-(Font)              scaled to size 6.82504pt on input line 124.
+(Font)              scaled to size 6.82504pt on input line 225.
 LaTeX Font Info:    Font shape `OT1/txtt/m/n' will be
-(Font)              scaled to size 4.87503pt on input line 125.
- [13]
-<images/uml/parameter.pdf, id=1243, 135.50626pt x 84.315pt>
+(Font)              scaled to size 4.87503pt on input line 226.
+
+<images/uml/parameter.pdf, id=1261, 135.50626pt x 84.315pt>
 File: images/uml/parameter.pdf Graphic file (type pdf)
 
 <use images/uml/parameter.pdf>
-Package pdftex.def Info: images/uml/parameter.pdf used on input line 174.
+Package pdftex.def Info: images/uml/parameter.pdf used on input line 275.
 (pdftex.def)             Requested size: 158.54152pt x 98.65198pt.
-
-<images/uml/variable.pdf, id=1261, 136.51pt x 106.3975pt>
+ [14]
+<images/uml/variable.pdf, id=1311, 136.51pt x 106.3975pt>
 File: images/uml/variable.pdf Graphic file (type pdf)
 
 <use images/uml/variable.pdf>
-Package pdftex.def Info: images/uml/variable.pdf used on input line 199.
+Package pdftex.def Info: images/uml/variable.pdf used on input line 300.
 (pdftex.def)             Requested size: 158.54152pt x 123.57703pt.
- [14 <./images/uml/parameter.pdf>] [15 <./images/uml/variable.pdf>] [16]
-LaTeX Font Info:    Try loading font information for OMS+txtt on input line 353
+ [15 <./images/uml/parameter.pdf> <./images/uml/variable.pdf
+
+pdfTeX warning: pdflatex (file ./images/uml/variable.pdf): PDF inclusion: multi
+ple pdfs with page group included in a single page
+>] [16] [17]
+LaTeX Font Info:    Try loading font information for OMS+txtt on input line 454
 .
-LaTeX Font Info:    No file OMStxtt.fd. on input line 353.
+LaTeX Font Info:    No file OMStxtt.fd. on input line 454.
 
 
 LaTeX Font Warning: Font shape `OMS/txtt/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 353.
+(Font)              for symbol `textbraceleft' on input line 454.
 
-[17] [18] [19]) [20] (./sources/sedml.tex
-<images/uml/sed-ml.pdf, id=1678, 425.59pt x 467.7475pt>
+[18] [19] [20]) [21] (./sources/sedml.tex
+<images/uml/sed-ml.pdf, id=1720, 425.59pt x 467.7475pt>
 File: images/uml/sed-ml.pdf Graphic file (type pdf)
 
 <use images/uml/sed-ml.pdf>
 Package pdftex.def Info: images/uml/sed-ml.pdf used on input line 20.
 (pdftex.def)             Requested size: 362.37569pt x 398.29382pt.
- [21]
+ [22]
 LaTeX Font Info:    Font shape `OT1/txtt/bx/n' in size <7> not available
 (Font)              Font shape `OT1/txtt/b/n' tried instead on input line 25.
 LaTeX Font Info:    Font shape `OT1/txtt/b/n' will be
 (Font)              scaled to size 6.82504pt on input line 25.
- [22 <./images/uml/sed-ml.pdf>] [23])
-(./sources/data.tex [24]
-<images/uml/dataDescription.pdf, id=1870, 459.7175pt x 365.365pt>
+ [23 <./images/uml/sed-ml.pdf>] [24])
+(./sources/data.tex [25]
+<images/uml/dataDescription.pdf, id=1913, 459.7175pt x 365.365pt>
 File: images/uml/dataDescription.pdf Graphic file (type pdf)
 
 <use images/uml/dataDescription.pdf>
@@ -1209,115 +1213,120 @@ is not ex-plic-itly de-fined the de-fault value for []\OT1/txtt/m/n/10 format[]
  \OT1/cmr/m/n/10 is \OT1/txtt/m/n/10 urn:sedml:format:numl\OT1/cmr/m/n/10 ,
  []
 
-[25 <./images/uml/dataDescription.pdf>] [26]) (./sources/model.tex
-<images/uml/model.pdf, id=2019, 299.1175pt x 166.6225pt>
+[26 <./images/uml/dataDescription.pdf>] [27]) (./sources/model.tex
+<images/uml/model.pdf, id=2062, 299.1175pt x 166.6225pt>
 File: images/uml/model.pdf Graphic file (type pdf)
 
 <use images/uml/model.pdf>
 Package pdftex.def Info: images/uml/model.pdf used on input line 8.
 (pdftex.def)             Requested size: 317.07614pt x 176.63934pt.
- [27] [28 <./images/uml/model.pdf>] [29]
-<images/uml/change.pdf, id=2180, 456.70625pt x 371.3875pt>
+ [28] [29 <./images/uml/model.pdf>] [30]
+<images/uml/change.pdf, id=2222, 456.70625pt x 371.3875pt>
 File: images/uml/change.pdf Graphic file (type pdf)
 
 <use images/uml/change.pdf>
 Package pdftex.def Info: images/uml/change.pdf used on input line 112.
 (pdftex.def)             Requested size: 362.37569pt x 294.68495pt.
- [30 <./images/uml/change.pdf>] [31] [32])
+ [31 <./images/uml/change.pdf>] [32] [33])
 (./sources/simulation.tex
-<images/uml/simulation.pdf, id=2333, 443.6575pt x 368.37625pt>
+<images/uml/simulation.pdf, id=2376, 443.6575pt x 368.37625pt>
 File: images/uml/simulation.pdf Graphic file (type pdf)
 
 <use images/uml/simulation.pdf>
 Package pdftex.def Info: images/uml/simulation.pdf used on input line 8.
 (pdftex.def)             Requested size: 407.66833pt x 338.48868pt.
- [33 <./images/uml/simulation.pdf>] [34]
-[35]) (./sources/task.tex [36]
-<images/uml/abstractTask.pdf, id=2544, 367.3725pt x 401.5pt>
+ [34 <./images/uml/simulation.pdf>] [35]
+[36]) (./sources/task.tex [37]
+<images/uml/abstractTask.pdf, id=2588, 367.3725pt x 401.5pt>
 File: images/uml/abstractTask.pdf Graphic file (type pdf)
 
 <use images/uml/abstractTask.pdf>
 Package pdftex.def Info: images/uml/abstractTask.pdf used on input line 8.
 (pdftex.def)             Requested size: 407.66833pt x 445.57224pt.
- [37 <./images/uml/abstractTask.pdf>]
-<images/uml/repeatedTask.pdf, id=2593, 357.335pt x 395.4775pt>
+ [38 <./images/uml/abstractTask.pdf>] [39]
+<images/uml/repeatedTask.pdf, id=2647, 357.335pt x 395.4775pt>
 File: images/uml/repeatedTask.pdf Graphic file (type pdf)
 
 <use images/uml/repeatedTask.pdf>
-Package pdftex.def Info: images/uml/repeatedTask.pdf used on input line 67.
+Package pdftex.def Info: images/uml/repeatedTask.pdf used on input line 105.
 (pdftex.def)             Requested size: 362.37569pt x 401.07654pt.
- [38] [39 <./images/uml/repeatedTask.pdf>]
-[40] <images/uml/range.pdf, id=2762, 540.0175pt x 316.18124pt>
+ [40] [41 <./images/uml/repeatedTask.pdf>]
+[42] <images/uml/range.pdf, id=2811, 540.0175pt x 316.18124pt>
 File: images/uml/range.pdf Graphic file (type pdf)
 
 <use images/uml/range.pdf>
-Package pdftex.def Info: images/uml/range.pdf used on input line 204.
+Package pdftex.def Info: images/uml/range.pdf used on input line 242.
 (pdftex.def)             Requested size: 452.9679pt x 265.21893pt.
- [41] [42 <./images/uml/range.pdf>])
-(./sources/dataGenerator.tex [43]
-<images/uml/dataGenerator.pdf, id=2899, 261.97874pt x 280.04625pt>
+ [43] [44 <./images/uml/range.pdf>])
+(./sources/dataGenerator.tex [45]
+<images/uml/dataGenerator.pdf, id=2947, 261.97874pt x 280.04625pt>
 File: images/uml/dataGenerator.pdf Graphic file (type pdf)
 
 <use images/uml/dataGenerator.pdf>
 Package pdftex.def Info: images/uml/dataGenerator.pdf used on input line 7.
 (pdftex.def)             Requested size: 271.7835pt x 290.53613pt.
- [44 <./images/uml/dataGenerator.pdf>])
+ [46 <./images/uml/dataGenerator.pdf>])
 (./sources/output.tex
-<images/uml/output.pdf, id=2962, 165.61874pt x 100.375pt>
+<images/uml/output.pdf, id=3011, 165.61874pt x 100.375pt>
 File: images/uml/output.pdf Graphic file (type pdf)
 
 <use images/uml/output.pdf>
 Package pdftex.def Info: images/uml/output.pdf used on input line 9.
 (pdftex.def)             Requested size: 271.7835pt x 164.74162pt.
 
-<images/uml/plot.pdf, id=2963, 325.215pt x 433.62pt>
+<images/uml/plot.pdf, id=3012, 325.215pt x 433.62pt>
 File: images/uml/plot.pdf Graphic file (type pdf)
  <use images/uml/plot.pdf>
 Package pdftex.def Info: images/uml/plot.pdf used on input line 11.
 (pdftex.def)             Requested size: 271.7835pt x 362.40555pt.
 
-[45 <./images/uml/output.pdf>]
-<images/uml/report.pdf, id=2982, 271.0125pt x 187.70125pt>
+[47 <./images/uml/output.pdf>]
+<images/uml/report.pdf, id=3030, 271.0125pt x 187.70125pt>
 File: images/uml/report.pdf Graphic file (type pdf)
 
 <use images/uml/report.pdf>
 Package pdftex.def Info: images/uml/report.pdf used on input line 13.
 (pdftex.def)             Requested size: 271.7835pt x 188.2421pt.
 
-<images/uml/abstractCurve.pdf, id=2983, 291.0875pt x 476.78125pt>
+<images/uml/abstractCurve.pdf, id=3031, 291.0875pt x 476.78125pt>
 File: images/uml/abstractCurve.pdf Graphic file (type pdf)
 
 <use images/uml/abstractCurve.pdf>
 Package pdftex.def Info: images/uml/abstractCurve.pdf used on input line 15.
 (pdftex.def)             Requested size: 271.7835pt x 445.19891pt.
- [46 <./images/uml/plot.pdf> <./images/uml/report.pdf
+ [48 <./images/uml/plot.pdf> <./images/uml/report.pdf
 
 pdfTeX warning: pdflatex (file ./images/uml/report.pdf): PDF inclusion: multipl
 e pdfs with page group included in a single page
->] <images/uml/abstractSurface.pdf, id=3046, 508.90125pt x 387.4475pt>
+>] <images/uml/abstractSurface.pdf, id=3094, 508.90125pt x 387.4475pt>
 File: images/uml/abstractSurface.pdf Graphic file (type pdf)
 
 <use images/uml/abstractSurface.pdf>
 Package pdftex.def Info: images/uml/abstractSurface.pdf used on input line 17.
 (pdftex.def)             Requested size: 452.9679pt x 344.87448pt.
- [47 <./images/uml/abstractCurve.pdf>]
-[48 <./images/uml/abstractSurface.pdf>] [49] [50]) (./sources/concepts.tex
-[51]
+ [49 <./images/uml/abstractCurve.pdf>]
+[50 <./images/uml/abstractSurface.pdf>] [51] [52] [53] [54])
+(./sources/concepts.tex [55]
 Chapter 3.
-[52
+[56
 
 ]
 LaTeX Font Info:    Font shape `OT1/txtt/m/n' will be
 (Font)              scaled to size 7.80005pt on input line 136.
- [53]
+ [57]
 LaTeX Font Info:    Font shape `OT1/txtt/m/it' in size <10> not available
 (Font)              Font shape `OT1/txtt/m/sl' tried instead on input line 165.
 
 LaTeX Font Info:    Font shape `OT1/txtt/m/sl' will be
 (Font)              scaled to size 9.75006pt on input line 165.
- [54] [55] [56] [57]) [58]
+ [58] [59] [60]
+Overfull \hbox (18.76144pt too wide) in paragraph at lines 325--344
+ [] 
+ []
+
+[61] [62]) [63]
 Chapter 4.
-[59
+[64
 
 ]
 Appendix A.
@@ -1326,11 +1335,11 @@ LaTeX Font Info:    Font shape `OT1/txtt/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/txtt/b/n' tried instead on input line 4.
 LaTeX Font Info:    Font shape `OT1/txtt/b/n' will be
 (Font)              scaled to size 14.04007pt on input line 4.
- (./examples/repressilator/repressilator.xml [60
+ (./examples/repressilator/repressilator.xml [65
 
 ]
-[61]) [62]
-<examples/plotting-data-numl/results/sedml_webtools/plot1.pdf, id=3703, 1284.8p
+[66]) [67]
+<examples/plotting-data-numl/results/sedml_webtools/plot1.pdf, id=3791, 1284.8p
 t x 963.6pt>
 File: examples/plotting-data-numl/results/sedml_webtools/plot1.pdf Graphic file
  (type pdf)
@@ -1340,7 +1349,7 @@ Package pdftex.def Info: examples/plotting-data-numl/results/sedml_webtools/plo
 t1.pdf used on input line 28.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/plotting-data-numl/results/tellurium/plot1.pdf, id=3708, 535.45982pt 
+<examples/plotting-data-numl/results/tellurium/plot1.pdf, id=3796, 535.45982pt 
 x 380.25752pt>
 File: examples/plotting-data-numl/results/tellurium/plot1.pdf Graphic file (typ
 e pdf)
@@ -1349,10 +1358,10 @@ Package pdftex.def Info: examples/plotting-data-numl/results/tellurium/plot1.pd
 f used on input line 33.
 (pdftex.def)             Requested size: 212.89546pt x 151.18935pt.
 
-(./examples/plotting-data-numl/plotting-data-numl.xml [63 <./examples/plotting-
+(./examples/plotting-data-numl/plotting-data-numl.xml [68 <./examples/plotting-
 data-numl/results/sedml_webtools/plot1.pdf> <./examples/plotting-data-numl/resu
-lts/tellurium/plot1.pdf>]) [64]
-<examples/repeated-scan-oscli/results/sedml_webtools/plot1.pdf, id=3885, 1284.8
+lts/tellurium/plot1.pdf>]) [69]
+<examples/repeated-scan-oscli/results/sedml_webtools/plot1.pdf, id=3973, 1284.8
 pt x 963.6pt>
 File: examples/repeated-scan-oscli/results/sedml_webtools/plot1.pdf Graphic fil
 e (type pdf)
@@ -1362,7 +1371,7 @@ Package pdftex.def Info: examples/repeated-scan-oscli/results/sedml_webtools/pl
 ot1.pdf used on input line 60.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/repeated-scan-oscli/results/tellurium/plot1.pdf, id=3890, 535.45982pt
+<examples/repeated-scan-oscli/results/tellurium/plot1.pdf, id=3978, 535.45982pt
  x 393.98067pt>
 File: examples/repeated-scan-oscli/results/tellurium/plot1.pdf Graphic file (ty
 pe pdf)
@@ -1371,10 +1380,10 @@ Package pdftex.def Info: examples/repeated-scan-oscli/results/tellurium/plot1.p
 df used on input line 65.
 (pdftex.def)             Requested size: 212.89546pt x 156.64563pt.
 
-(./examples/repeated-scan-oscli/repeated-scan-oscli.xml [65 <./examples/repeate
+(./examples/repeated-scan-oscli/repeated-scan-oscli.xml [70 <./examples/repeate
 d-scan-oscli/results/sedml_webtools/plot1.pdf> <./examples/repeated-scan-oscli/
 results/tellurium/plot1.pdf>])
-<examples/repeated-steady-scan-oscli/results/sedml_webtools/plot1.pdf, id=4001,
+<examples/repeated-steady-scan-oscli/results/sedml_webtools/plot1.pdf, id=4088,
  1284.8pt x 963.6pt>
 File: examples/repeated-steady-scan-oscli/results/sedml_webtools/plot1.pdf Grap
 hic file (type pdf)
@@ -1384,7 +1393,7 @@ Package pdftex.def Info: examples/repeated-steady-scan-oscli/results/sedml_webt
 ools/plot1.pdf used on input line 83.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/repeated-steady-scan-oscli/results/tellurium/plot1.pdf, id=4006, 545.
+<examples/repeated-steady-scan-oscli/results/tellurium/plot1.pdf, id=4093, 545.
 0425pt x 394.26297pt>
 File: examples/repeated-steady-scan-oscli/results/tellurium/plot1.pdf Graphic f
 ile (type pdf)
@@ -1394,10 +1403,10 @@ Package pdftex.def Info: examples/repeated-steady-scan-oscli/results/tellurium/
 plot1.pdf used on input line 88.
 (pdftex.def)             Requested size: 212.89546pt x 154.00256pt.
 
-(./examples/repeated-steady-scan-oscli/repeated-steady-scan-oscli.xml [66 <./ex
+(./examples/repeated-steady-scan-oscli/repeated-steady-scan-oscli.xml [71 <./ex
 amples/repeated-steady-scan-oscli/results/sedml_webtools/plot1.pdf> <./examples
-/repeated-steady-scan-oscli/results/tellurium/plot1.pdf>]) [67]
-<examples/repeated-stochastic-runs/results/sedml_webtools/plot1.png, id=4197, 3
+/repeated-steady-scan-oscli/results/tellurium/plot1.pdf>]) [72]
+<examples/repeated-stochastic-runs/results/sedml_webtools/plot1.png, id=4284, 3
 76.40625pt x 282.30469pt>
 File: examples/repeated-stochastic-runs/results/sedml_webtools/plot1.png Graphi
 c file (type png)
@@ -1407,7 +1416,7 @@ Package pdftex.def Info: examples/repeated-stochastic-runs/results/sedml_webtoo
 ls/plot1.png used on input line 110.
 (pdftex.def)             Requested size: 212.89546pt x 159.67474pt.
 
-<examples/repeated-stochastic-runs/results/tellurium/plot1.pdf, id=4203, 548.22
+<examples/repeated-stochastic-runs/results/tellurium/plot1.pdf, id=4290, 548.22
 627pt x 393.98067pt>
 File: examples/repeated-stochastic-runs/results/tellurium/plot1.pdf Graphic fil
 e (type pdf)
@@ -1417,10 +1426,10 @@ Package pdftex.def Info: examples/repeated-stochastic-runs/results/tellurium/pl
 ot1.pdf used on input line 115.
 (pdftex.def)             Requested size: 212.89546pt x 152.99657pt.
 
-(./examples/repeated-stochastic-runs/repeated-stochastic-runs.xml [68 <./exampl
+(./examples/repeated-stochastic-runs/repeated-stochastic-runs.xml [73 <./exampl
 es/repeated-stochastic-runs/results/sedml_webtools/plot1.png> <./examples/repea
 ted-stochastic-runs/results/tellurium/plot1.pdf>])
-<examples/oscli-nested-pulse/results/sedml_webtools/plot1.pdf, id=4318, 1284.8p
+<examples/oscli-nested-pulse/results/sedml_webtools/plot1.pdf, id=4405, 1284.8p
 t x 963.6pt>
 File: examples/oscli-nested-pulse/results/sedml_webtools/plot1.pdf Graphic file
  (type pdf)
@@ -1430,7 +1439,7 @@ Package pdftex.def Info: examples/oscli-nested-pulse/results/sedml_webtools/plo
 t1.pdf used on input line 136.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/oscli-nested-pulse/results/tellurium/plot1.pdf, id=4323, 535.45982pt 
+<examples/oscli-nested-pulse/results/tellurium/plot1.pdf, id=4410, 535.45982pt 
 x 394.26297pt>
 File: examples/oscli-nested-pulse/results/tellurium/plot1.pdf Graphic file (typ
 e pdf)
@@ -1439,10 +1448,10 @@ Package pdftex.def Info: examples/oscli-nested-pulse/results/tellurium/plot1.pd
 f used on input line 141.
 (pdftex.def)             Requested size: 212.89546pt x 156.75787pt.
 
-(./examples/oscli-nested-pulse/oscli-nested-pulse.xml [69] [70 <./examples/oscl
+(./examples/oscli-nested-pulse/oscli-nested-pulse.xml [74] [75 <./examples/oscl
 i-nested-pulse/results/sedml_webtools/plot1.pdf> <./examples/oscli-nested-pulse
 /results/tellurium/plot1.pdf>])
-<examples/parameter-scan-2d/results/sedml_webtools/plot1.pdf, id=4530, 1284.8pt
+<examples/parameter-scan-2d/results/sedml_webtools/plot1.pdf, id=4618, 1284.8pt
  x 963.6pt>
 File: examples/parameter-scan-2d/results/sedml_webtools/plot1.pdf Graphic file 
 (type pdf)
@@ -1451,7 +1460,7 @@ Package pdftex.def Info: examples/parameter-scan-2d/results/sedml_webtools/plot
 1.pdf used on input line 162.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/parameter-scan-2d/results/sedml_webtools/plot2.pdf, id=4531, 1284.8pt
+<examples/parameter-scan-2d/results/sedml_webtools/plot2.pdf, id=4619, 1284.8pt
  x 963.6pt>
 File: examples/parameter-scan-2d/results/sedml_webtools/plot2.pdf Graphic file 
 (type pdf)
@@ -1460,7 +1469,7 @@ Package pdftex.def Info: examples/parameter-scan-2d/results/sedml_webtools/plot
 2.pdf used on input line 163.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/parameter-scan-2d/results/tellurium/plot1.pdf, id=4536, 548.22627pt x
+<examples/parameter-scan-2d/results/tellurium/plot1.pdf, id=4624, 548.22627pt x
  394.26297pt>
 File: examples/parameter-scan-2d/results/tellurium/plot1.pdf Graphic file (type
  pdf)
@@ -1469,7 +1478,7 @@ Package pdftex.def Info: examples/parameter-scan-2d/results/tellurium/plot1.pdf
  used on input line 168.
 (pdftex.def)             Requested size: 212.89546pt x 153.10619pt.
 
-<examples/parameter-scan-2d/results/tellurium/plot2.pdf, id=4537, 548.22627pt x
+<examples/parameter-scan-2d/results/tellurium/plot2.pdf, id=4625, 548.22627pt x
  394.26297pt>
 File: examples/parameter-scan-2d/results/tellurium/plot2.pdf Graphic file (type
  pdf)
@@ -1478,7 +1487,7 @@ Package pdftex.def Info: examples/parameter-scan-2d/results/tellurium/plot2.pdf
  used on input line 169.
 (pdftex.def)             Requested size: 212.89546pt x 153.10619pt.
 
-(./examples/parameter-scan-2d/parameter-scan-2d.xml [71] [72 <./examples/parame
+(./examples/parameter-scan-2d/parameter-scan-2d.xml [76] [77 <./examples/parame
 ter-scan-2d/results/sedml_webtools/plot1.pdf> <./examples/parameter-scan-2d/res
 ults/sedml_webtools/plot2.pdf> <./examples/parameter-scan-2d/results/tellurium/
 plot1.pdf> <./examples/parameter-scan-2d/results/tellurium/plot2.pdf
@@ -1486,8 +1495,8 @@ plot1.pdf> <./examples/parameter-scan-2d/results/tellurium/plot2.pdf
 pdfTeX warning: pdflatex (file ./examples/parameter-scan-2d/results/tellurium/p
 lot2.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
 ge
->]) [73]
-<examples/vanderpol-sbml/results/sedml_webtools/plot1.pdf, id=4867, 1284.8pt x 
+>]) [78]
+<examples/vanderpol-sbml/results/sedml_webtools/plot1.pdf, id=4953, 1284.8pt x 
 963.6pt>
 File: examples/vanderpol-sbml/results/sedml_webtools/plot1.pdf Graphic file (ty
 pe pdf)
@@ -1496,7 +1505,7 @@ Package pdftex.def Info: examples/vanderpol-sbml/results/sedml_webtools/plot1.p
 df used on input line 194.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/vanderpol-sbml/results/sedml_webtools/plot2.pdf, id=4868, 1284.8pt x 
+<examples/vanderpol-sbml/results/sedml_webtools/plot2.pdf, id=4954, 1284.8pt x 
 963.6pt>
 File: examples/vanderpol-sbml/results/sedml_webtools/plot2.pdf Graphic file (ty
 pe pdf)
@@ -1505,7 +1514,7 @@ Package pdftex.def Info: examples/vanderpol-sbml/results/sedml_webtools/plot2.p
 df used on input line 195.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/vanderpol-sbml/results/tellurium/plot1.pdf, id=4873, 543.86623pt x 38
+<examples/vanderpol-sbml/results/tellurium/plot1.pdf, id=4959, 543.86623pt x 38
 0.25752pt>
 File: examples/vanderpol-sbml/results/tellurium/plot1.pdf Graphic file (type pd
 f)
@@ -1514,7 +1523,7 @@ Package pdftex.def Info: examples/vanderpol-sbml/results/tellurium/plot1.pdf us
 ed on input line 200.
 (pdftex.def)             Requested size: 212.89546pt x 148.85104pt.
 
-<examples/vanderpol-sbml/results/tellurium/plot2.pdf, id=4874, 543.86623pt x 39
+<examples/vanderpol-sbml/results/tellurium/plot2.pdf, id=4960, 543.86623pt x 39
 4.09045pt>
 File: examples/vanderpol-sbml/results/tellurium/plot2.pdf Graphic file (type pd
 f)
@@ -1523,15 +1532,15 @@ Package pdftex.def Info: examples/vanderpol-sbml/results/tellurium/plot2.pdf us
 ed on input line 201.
 (pdftex.def)             Requested size: 212.89546pt x 154.26591pt.
 
-(./examples/vanderpol-sbml/vanderpol.xml [74 <./examples/vanderpol-sbml/results
+(./examples/vanderpol-sbml/vanderpol.xml [79 <./examples/vanderpol-sbml/results
 /sedml_webtools/plot1.pdf> <./examples/vanderpol-sbml/results/sedml_webtools/pl
 ot2.pdf> <./examples/vanderpol-sbml/results/tellurium/plot1.pdf> <./examples/va
 nderpol-sbml/results/tellurium/plot2.pdf
 
 pdfTeX warning: pdflatex (file ./examples/vanderpol-sbml/results/tellurium/plot
 2.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->]) [75]
-<examples/vanderpol-cellml/results/sedml_webtools/plot1.pdf, id=5094, 1284.8pt 
+>]) [80]
+<examples/vanderpol-cellml/results/sedml_webtools/plot1.pdf, id=5182, 1284.8pt 
 x 963.6pt>
 File: examples/vanderpol-cellml/results/sedml_webtools/plot1.pdf Graphic file (
 type pdf)
@@ -1540,7 +1549,7 @@ Package pdftex.def Info: examples/vanderpol-cellml/results/sedml_webtools/plot1
 .pdf used on input line 217.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/vanderpol-cellml/results/sedml_webtools/plot2.pdf, id=5095, 1284.8pt 
+<examples/vanderpol-cellml/results/sedml_webtools/plot2.pdf, id=5183, 1284.8pt 
 x 963.6pt>
 File: examples/vanderpol-cellml/results/sedml_webtools/plot2.pdf Graphic file (
 type pdf)
@@ -1549,7 +1558,7 @@ Package pdftex.def Info: examples/vanderpol-cellml/results/sedml_webtools/plot2
 .pdf used on input line 218.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/vanderpol-cellml/results/opencor/plot1.pdf, id=5100, 3363.56625pt x 1
+<examples/vanderpol-cellml/results/opencor/plot1.pdf, id=5188, 3363.56625pt x 1
 087.06125pt>
 File: examples/vanderpol-cellml/results/opencor/plot1.pdf Graphic file (type pd
 f)
@@ -1558,7 +1567,7 @@ Package pdftex.def Info: examples/vanderpol-cellml/results/opencor/plot1.pdf us
 ed on input line 223.
 (pdftex.def)             Requested size: 226.48395pt x 73.18271pt.
 
-<examples/vanderpol-cellml/results/opencor/plot2.pdf, id=5101, 3363.56625pt x 1
+<examples/vanderpol-cellml/results/opencor/plot2.pdf, id=5189, 3363.56625pt x 1
 087.06125pt>
 File: examples/vanderpol-cellml/results/opencor/plot2.pdf Graphic file (type pd
 f)
@@ -1571,11 +1580,11 @@ Underfull \hbox (badness 1521) in paragraph at lines 225--225
  []\OT1/phv/b/n/9 Figure A.16: []\OT1/cmr/m/it/9 Simulation with Open-COR 
  []
 
-(./examples/vanderpol-cellml/vanderpol.xml [76 <./examples/vanderpol-cellml/res
+(./examples/vanderpol-cellml/vanderpol.xml [81 <./examples/vanderpol-cellml/res
 ults/sedml_webtools/plot1.pdf> <./examples/vanderpol-cellml/results/sedml_webto
 ols/plot2.pdf> <./examples/vanderpol-cellml/results/opencor/plot1.pdf> <./examp
-les/vanderpol-cellml/results/opencor/plot2.pdf>]) [77] [78]
-<examples/leloup-sbml/results/sedml_webtools/plot1.pdf, id=5284, 1284.8pt x 963
+les/vanderpol-cellml/results/opencor/plot2.pdf>]) [82] [83]
+<examples/leloup-sbml/results/sedml_webtools/plot1.pdf, id=5372, 1284.8pt x 963
 .6pt>
 File: examples/leloup-sbml/results/sedml_webtools/plot1.pdf Graphic file (type 
 pdf)
@@ -1584,7 +1593,7 @@ Package pdftex.def Info: examples/leloup-sbml/results/sedml_webtools/plot1.pdf
 used on input line 303.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/leloup-sbml/results/sedml_webtools/plot2.pdf, id=5285, 1284.8pt x 963
+<examples/leloup-sbml/results/sedml_webtools/plot2.pdf, id=5373, 1284.8pt x 963
 .6pt>
 File: examples/leloup-sbml/results/sedml_webtools/plot2.pdf Graphic file (type 
 pdf)
@@ -1593,7 +1602,7 @@ Package pdftex.def Info: examples/leloup-sbml/results/sedml_webtools/plot2.pdf
 used on input line 304.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/leloup-sbml/results/sedml_webtools/plot3.pdf, id=5286, 1284.8pt x 963
+<examples/leloup-sbml/results/sedml_webtools/plot3.pdf, id=5374, 1284.8pt x 963
 .6pt>
 File: examples/leloup-sbml/results/sedml_webtools/plot3.pdf Graphic file (type 
 pdf)
@@ -1602,7 +1611,7 @@ Package pdftex.def Info: examples/leloup-sbml/results/sedml_webtools/plot3.pdf
 used on input line 305.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/leloup-sbml/results/tellurium/plot1.pdf, id=5291, 535.45982pt x 393.9
+<examples/leloup-sbml/results/tellurium/plot1.pdf, id=5379, 535.45982pt x 393.9
 8067pt>
 File: examples/leloup-sbml/results/tellurium/plot1.pdf Graphic file (type pdf)
  <use examples/leloup-sbml/results/tellurium/plot1.pdf>
@@ -1610,7 +1619,7 @@ Package pdftex.def Info: examples/leloup-sbml/results/tellurium/plot1.pdf used
 on input line 311.
 (pdftex.def)             Requested size: 212.89546pt x 156.64563pt.
 
-<examples/leloup-sbml/results/tellurium/plot2.pdf, id=5292, 545.0425pt x 394.26
+<examples/leloup-sbml/results/tellurium/plot2.pdf, id=5380, 545.0425pt x 394.26
 297pt>
 File: examples/leloup-sbml/results/tellurium/plot2.pdf Graphic file (type pdf)
  <use examples/leloup-sbml/results/tellurium/plot2.pdf>
@@ -1618,7 +1627,7 @@ Package pdftex.def Info: examples/leloup-sbml/results/tellurium/plot2.pdf used
 on input line 312.
 (pdftex.def)             Requested size: 212.89546pt x 154.00256pt.
 
-<examples/leloup-sbml/results/tellurium/plot3.pdf, id=5293, 535.45982pt x 394.2
+<examples/leloup-sbml/results/tellurium/plot3.pdf, id=5381, 535.45982pt x 394.2
 6297pt>
 File: examples/leloup-sbml/results/tellurium/plot3.pdf Graphic file (type pdf)
  <use examples/leloup-sbml/results/tellurium/plot3.pdf>
@@ -1626,7 +1635,7 @@ Package pdftex.def Info: examples/leloup-sbml/results/tellurium/plot3.pdf used
 on input line 313.
 (pdftex.def)             Requested size: 212.89546pt x 156.75787pt.
 
-(./examples/leloup-sbml/leloup-sbml.xml [79] [80 <./examples/leloup-sbml/result
+(./examples/leloup-sbml/leloup-sbml.xml [84] [85 <./examples/leloup-sbml/result
 s/sedml_webtools/plot1.pdf> <./examples/leloup-sbml/results/sedml_webtools/plot
 2.pdf> <./examples/leloup-sbml/results/sedml_webtools/plot3.pdf> <./examples/le
 loup-sbml/results/tellurium/plot1.pdf> <./examples/leloup-sbml/results/telluriu
@@ -1646,7 +1655,7 @@ tal[]IkBbeta\OT1/cmr/m/n/10 , \OT1/txtt/m/n/10 Total[]IkBeps
  []
 
 
-<examples/ikappab/results/sedml_webtools/plot1.pdf, id=5600, 1284.8pt x 963.6pt
+<examples/ikappab/results/sedml_webtools/plot1.pdf, id=5688, 1284.8pt x 963.6pt
 >
 File: examples/ikappab/results/sedml_webtools/plot1.pdf Graphic file (type pdf)
 
@@ -1655,7 +1664,7 @@ Package pdftex.def Info: examples/ikappab/results/sedml_webtools/plot1.pdf used
  on input line 338.
 (pdftex.def)             Requested size: 212.89546pt x 159.66348pt.
 
-<examples/ikappab/results/tellurium/plot1.pdf, id=5605, 545.0425pt x 393.98067p
+<examples/ikappab/results/tellurium/plot1.pdf, id=5693, 545.0425pt x 393.98067p
 t>
 File: examples/ikappab/results/tellurium/plot1.pdf Graphic file (type pdf)
  <use examples/ikappab/results/tellurium/plot1.pdf>
@@ -1663,17 +1672,17 @@ Package pdftex.def Info: examples/ikappab/results/tellurium/plot1.pdf used on i
 nput line 344.
 (pdftex.def)             Requested size: 212.89546pt x 153.8923pt.
 
-(./examples/ikappab/ikappab.xml [81 <./examples/ikappab/results/sedml_webtools/
-plot1.pdf> <./examples/ikappab/results/tellurium/plot1.pdf>])) [82]
+(./examples/ikappab/ikappab.xml [86 <./examples/ikappab/results/sedml_webtools/
+plot1.pdf> <./examples/ikappab/results/tellurium/plot1.pdf>])) [87]
 Appendix B.
-(../../schema/level1/version3/sed-ml-L1-V3.xsd [83
+(../../schema/level1/version3/sed-ml-L1-V3.xsd [88
 
-] [84] [85] [86] [87]
-[88] [89] [90]) (./sed-ml-L1V4.bbl [91] [92
+] [89] [90] [91] [92]
+[93] [94] [95]) (./sed-ml-L1V4.bbl [96] [97
 
 ])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 112.
- [93]
+ [98]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 112.
  (./sed-ml-L1V4.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 112.
@@ -1859,7 +1868,7 @@ sed-ml-L1V4.bbl
 
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 112.
 Package rerunfilecheck Info: File `sed-ml-L1V4.out' has not changed.
-(rerunfilecheck)             Checksum: 889760D40FDE5FEC162EBAB4386EF970;9936.
+(rerunfilecheck)             Checksum: 4FB6844290BDA72F3C11915C6AB7EC6A;10452.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1869,40 +1878,41 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 112.
  ) 
 Here is how much of TeX's memory you used:
- 14561 strings out of 494910
- 220327 string characters out of 6179836
- 567396 words of memory out of 5000000
- 14575 multiletter control sequences out of 15000+600000
+ 14625 strings out of 494910
+ 221256 string characters out of 6179836
+ 565621 words of memory out of 5000000
+ 14601 multiletter control sequences out of 15000+600000
  30273 words of font info for 70 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 43i,12n,51p,1121b,1915s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,13n,51p,1121b,1915s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/latxfont/lcircle1.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/txfonts/txbtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/txfonts/txbtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfon
-ts/txtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txtt.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/font
-s/type1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
-/zapfding/uzdr.pfb>
-Output written on sed-ml-L1V4.pdf (93 pages, 2887892 bytes).
+f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/latxfont/lcircle1.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/txfonts/txbtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+txfonts/txbtt.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txt
+t.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txtt.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/urw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfd
+ing/uzdr.pfb>
+Output written on sed-ml-L1V4.pdf (98 pages, 2909813 bytes).
 PDF statistics:
- 7301 PDF objects out of 7423 (max. 8388607)
- 6168 compressed objects within 62 object streams
- 2933 named destinations out of 2984 (max. 500000)
- 1324 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 7400 PDF objects out of 7423 (max. 8388607)
+ 6260 compressed objects within 63 object streams
+ 2971 named destinations out of 2984 (max. 500000)
+ 1380 words of extra memory for PDF output out of 10000 (max. 10000000)
 

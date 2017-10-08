@@ -17,121 +17,128 @@
 \contentsline {subsubsection}{\numberline {2.1.1.6}\texttt {anyURI}}{12}{subsubsection.2.1.1.6}
 \contentsline {subsubsection}{\numberline {2.1.1.7}\texttt {NuMLSId}}{12}{subsubsection.2.1.1.7}
 \contentsline {subsubsection}{\numberline {2.1.1.8}\texttt {NuMLSIdRef}}{12}{subsubsection.2.1.1.8}
-\contentsline {subsection}{\numberline {2.1.2}\texttt {SEDBase}}{12}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}\texttt {Notes}}{13}{subsection.2.1.3}
-\contentsline {subsection}{\numberline {2.1.4}\texttt {Annotation}}{13}{subsection.2.1.4}
+\contentsline {subsubsection}{\numberline {2.1.1.9}\texttt {ColorType}}{12}{subsubsection.2.1.1.9}
+\contentsline {subsubsection}{\numberline {2.1.1.10}\texttt {MarkerType}}{12}{subsubsection.2.1.1.10}
+\contentsline {subsubsection}{\numberline {2.1.1.11}\texttt {LineType}}{12}{subsubsection.2.1.1.11}
+\contentsline {subsection}{\numberline {2.1.2}\texttt {SEDBase}}{13}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}\texttt {Notes}}{14}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.4}\texttt {Annotation}}{14}{subsection.2.1.4}
 \contentsline {subsection}{\numberline {2.1.5}\texttt {Parameter}}{14}{subsection.2.1.5}
-\contentsline {subsection}{\numberline {2.1.6}\texttt {Variable}}{14}{subsection.2.1.6}
+\contentsline {subsection}{\numberline {2.1.6}\texttt {Variable}}{15}{subsection.2.1.6}
 \contentsline {subsection}{\numberline {2.1.7}General attributes}{17}{subsection.2.1.7}
 \contentsline {subsubsection}{\numberline {2.1.7.1}\texttt {id}}{17}{subsubsection.2.1.7.1}
-\contentsline {subsubsection}{\numberline {2.1.7.2}\texttt {name}}{17}{subsubsection.2.1.7.2}
-\contentsline {subsubsection}{\numberline {2.1.7.3}\texttt {math}}{17}{subsubsection.2.1.7.3}
-\contentsline {subsubsection}{\numberline {2.1.7.4}\texttt {kisaoID}}{17}{subsubsection.2.1.7.4}
-\contentsline {subsubsection}{\numberline {2.1.7.5}\texttt {listOf*} containers}{17}{subsubsection.2.1.7.5}
-\contentsline {subsubsection}{\numberline {2.1.7.6}\texttt {listOfParameters}}{17}{subsubsection.2.1.7.6}
+\contentsline {subsubsection}{\numberline {2.1.7.2}\texttt {name}}{18}{subsubsection.2.1.7.2}
+\contentsline {subsubsection}{\numberline {2.1.7.3}\texttt {math}}{18}{subsubsection.2.1.7.3}
+\contentsline {subsubsection}{\numberline {2.1.7.4}\texttt {kisaoID}}{18}{subsubsection.2.1.7.4}
+\contentsline {subsubsection}{\numberline {2.1.7.5}\texttt {listOf*} containers}{18}{subsubsection.2.1.7.5}
+\contentsline {subsubsection}{\numberline {2.1.7.6}\texttt {listOfParameters}}{18}{subsubsection.2.1.7.6}
 \contentsline {subsubsection}{\numberline {2.1.7.7}\texttt {listOfVariables}}{18}{subsubsection.2.1.7.7}
-\contentsline {subsection}{\numberline {2.1.8}Reference relations}{18}{subsection.2.1.8}
-\contentsline {subsubsection}{\numberline {2.1.8.1}modelReference}{18}{subsubsection.2.1.8.1}
-\contentsline {subsubsection}{\numberline {2.1.8.2}simulationReference}{19}{subsubsection.2.1.8.2}
-\contentsline {subsubsection}{\numberline {2.1.8.3}taskReference}{19}{subsubsection.2.1.8.3}
+\contentsline {subsection}{\numberline {2.1.8}Reference relations}{19}{subsection.2.1.8}
+\contentsline {subsubsection}{\numberline {2.1.8.1}modelReference}{19}{subsubsection.2.1.8.1}
+\contentsline {subsubsection}{\numberline {2.1.8.2}simulationReference}{20}{subsubsection.2.1.8.2}
+\contentsline {subsubsection}{\numberline {2.1.8.3}taskReference}{20}{subsubsection.2.1.8.3}
 \contentsline {subsubsection}{\numberline {2.1.8.4}dataReference}{20}{subsubsection.2.1.8.4}
-\contentsline {section}{\numberline {2.2}SED-ML Components}{21}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}\texttt {SED-ML} top level element}{21}{subsection.2.2.1}
-\contentsline {subsubsection}{\numberline {2.2.1.1}\texttt {xmlns}}{23}{subsubsection.2.2.1.1}
-\contentsline {subsubsection}{\numberline {2.2.1.2}\texttt {level}}{23}{subsubsection.2.2.1.2}
-\contentsline {subsubsection}{\numberline {2.2.1.3}\texttt {version}}{23}{subsubsection.2.2.1.3}
-\contentsline {subsubsection}{\numberline {2.2.1.4}\texttt {listOfDataDescriptions}}{23}{subsubsection.2.2.1.4}
-\contentsline {subsubsection}{\numberline {2.2.1.5}\texttt {listOfModels}}{23}{subsubsection.2.2.1.5}
-\contentsline {subsubsection}{\numberline {2.2.1.6}\texttt {listOfSimulations}}{24}{subsubsection.2.2.1.6}
-\contentsline {subsubsection}{\numberline {2.2.1.7}\texttt {listOfTasks}}{24}{subsubsection.2.2.1.7}
-\contentsline {subsubsection}{\numberline {2.2.1.8}\texttt {listOfDataGenerators}}{24}{subsubsection.2.2.1.8}
-\contentsline {subsubsection}{\numberline {2.2.1.9}\texttt {listOfOutputs}}{24}{subsubsection.2.2.1.9}
-\contentsline {subsection}{\numberline {2.2.2}\texttt {DataDescription}}{25}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}\texttt {DataDescription} components}{26}{subsection.2.2.3}
-\contentsline {subsubsection}{\numberline {2.2.3.1}\texttt {DimensionDescription}}{26}{subsubsection.2.2.3.1}
-\contentsline {subsubsection}{\numberline {2.2.3.2}\texttt {DataSource}}{26}{subsubsection.2.2.3.2}
-\contentsline {subsubsection}{\numberline {2.2.3.3}\texttt {Slice}}{27}{subsubsection.2.2.3.3}
-\contentsline {subsection}{\numberline {2.2.4}\texttt {Model}}{28}{subsection.2.2.4}
-\contentsline {subsection}{\numberline {2.2.5}\texttt {Change}}{30}{subsection.2.2.5}
-\contentsline {subsubsection}{\numberline {2.2.5.1}\texttt {NewXML}}{30}{subsubsection.2.2.5.1}
-\contentsline {subsubsection}{\numberline {2.2.5.2}\texttt {AddXML}}{31}{subsubsection.2.2.5.2}
-\contentsline {subsubsection}{\numberline {2.2.5.3}\texttt {ChangeXML}}{31}{subsubsection.2.2.5.3}
-\contentsline {subsubsection}{\numberline {2.2.5.4}\texttt {RemoveXML}}{31}{subsubsection.2.2.5.4}
-\contentsline {subsubsection}{\numberline {2.2.5.5}\texttt {ChangeAttribute}}{32}{subsubsection.2.2.5.5}
-\contentsline {subsubsection}{\numberline {2.2.5.6}\texttt {ComputeChange}}{32}{subsubsection.2.2.5.6}
-\contentsline {subsection}{\numberline {2.2.6}\texttt {Simulation}}{33}{subsection.2.2.6}
-\contentsline {subsubsection}{\numberline {2.2.6.1}\texttt {UniformTimeCourse}}{34}{subsubsection.2.2.6.1}
-\contentsline {subsubsection}{\numberline {2.2.6.2}\texttt {NonUniformTimecourse}}{35}{subsubsection.2.2.6.2}
-\contentsline {subsubsection}{\numberline {2.2.6.3}\texttt {OneStep}}{35}{subsubsection.2.2.6.3}
-\contentsline {subsubsection}{\numberline {2.2.6.4}\texttt {SteadyState}}{36}{subsubsection.2.2.6.4}
-\contentsline {subsection}{\numberline {2.2.7}\texttt {Simulation} components}{36}{subsection.2.2.7}
-\contentsline {subsubsection}{\numberline {2.2.7.1}\texttt {Algorithm}}{36}{subsubsection.2.2.7.1}
-\contentsline {subsubsection}{\numberline {2.2.7.2}\texttt {AlgorithmParameter}}{36}{subsubsection.2.2.7.2}
-\contentsline {subsection}{\numberline {2.2.8}\texttt {AbstractTask}}{37}{subsection.2.2.8}
-\contentsline {subsubsection}{\numberline {2.2.8.1}\texttt {Task}}{37}{subsubsection.2.2.8.1}
-\contentsline {subsubsection}{\numberline {2.2.8.2}\texttt {CalculateEigenvectors}}{38}{subsubsection.2.2.8.2}
-\contentsline {subsubsection}{\numberline {2.2.8.3}\texttt {CalculateEigenvalues}}{38}{subsubsection.2.2.8.3}
-\contentsline {subsubsection}{\numberline {2.2.8.4}\texttt {CalculateJacobian}}{38}{subsubsection.2.2.8.4}
-\contentsline {subsubsection}{\numberline {2.2.8.5}\texttt {CalculateStoichiometryMatrix}}{38}{subsubsection.2.2.8.5}
-\contentsline {subsubsection}{\numberline {2.2.8.6}\texttt {CalculateElasticity}}{38}{subsubsection.2.2.8.6}
-\contentsline {subsubsection}{\numberline {2.2.8.7}\texttt {CalculateLocalSensitivity}}{38}{subsubsection.2.2.8.7}
-\contentsline {subsubsection}{\numberline {2.2.8.8}\texttt {CalculateMoietyConservationLaws}}{38}{subsubsection.2.2.8.8}
-\contentsline {subsubsection}{\numberline {2.2.8.9}\texttt {Repeated Task}}{38}{subsubsection.2.2.8.9}
-\contentsline {subsection}{\numberline {2.2.9}\texttt {Task} components}{41}{subsection.2.2.9}
-\contentsline {subsubsection}{\numberline {2.2.9.1}\texttt {SubTask}}{41}{subsubsection.2.2.9.1}
-\contentsline {subsubsection}{\numberline {2.2.9.2}\texttt {SetValue}}{41}{subsubsection.2.2.9.2}
-\contentsline {subsubsection}{\numberline {2.2.9.3}\texttt {Range}}{41}{subsubsection.2.2.9.3}
-\contentsline {paragraph}{\numberline {2.2.9.3.1}\texttt {UniformRange}}{42}{paragraph.2.2.9.3.1}
-\contentsline {paragraph}{\numberline {2.2.9.3.2}\texttt {VectorRange}}{42}{paragraph.2.2.9.3.2}
-\contentsline {paragraph}{\numberline {2.2.9.3.3}\texttt {DataRange}}{42}{paragraph.2.2.9.3.3}
-\contentsline {paragraph}{\numberline {2.2.9.3.4}\texttt {FunctionalRange}}{43}{paragraph.2.2.9.3.4}
-\contentsline {subsection}{\numberline {2.2.10}\texttt {DataGenerator}}{44}{subsection.2.2.10}
-\contentsline {subsection}{\numberline {2.2.11}\texttt {Output}}{45}{subsection.2.2.11}
-\contentsline {subsubsection}{\numberline {2.2.11.1}\texttt {Plot2D}}{48}{subsubsection.2.2.11.1}
-\contentsline {subsubsection}{\numberline {2.2.11.2}\texttt {Plot3D}}{48}{subsubsection.2.2.11.2}
-\contentsline {subsubsection}{\numberline {2.2.11.3}\texttt {Report}}{49}{subsubsection.2.2.11.3}
-\contentsline {subsection}{\numberline {2.2.12}\texttt {Output} components}{49}{subsection.2.2.12}
-\contentsline {subsubsection}{\numberline {2.2.12.1}\texttt {Axis}}{49}{subsubsection.2.2.12.1}
-\contentsline {subsubsection}{\numberline {2.2.12.2}\texttt {AbstractCurve}}{49}{subsubsection.2.2.12.2}
-\contentsline {subsubsection}{\numberline {2.2.12.3}\texttt {AbstractSurface}}{49}{subsubsection.2.2.12.3}
-\contentsline {subsubsection}{\numberline {2.2.12.4}\texttt {Curve}}{49}{subsubsection.2.2.12.4}
-\contentsline {subsubsection}{\numberline {2.2.12.5}\texttt {Surface}}{50}{subsubsection.2.2.12.5}
-\contentsline {subsubsection}{\numberline {2.2.12.6}\texttt {DataSet}}{51}{subsubsection.2.2.12.6}
-\contentsline {chapter}{\numberline {3}Concepts used in SED-ML}{52}{chapter.3}
-\contentsline {section}{\numberline {3.1}MathML}{52}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}MathML elements}{52}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}MathML symbols}{52}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}MathML functions}{52}{subsection.3.1.3}
-\contentsline {section}{\numberline {3.2}URI scheme}{53}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Model references}{54}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Data references}{54}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Language references}{54}{subsection.3.2.3}
-\contentsline {subsection}{\numberline {3.2.4}Data format references}{55}{subsection.3.2.4}
-\contentsline {subsubsection}{\numberline {3.2.4.1}NuML (Numerical Markup Language)}{55}{subsubsection.3.2.4.1}
-\contentsline {subsubsection}{\numberline {3.2.4.2}CSV (Comma Separated Values)}{55}{subsubsection.3.2.4.2}
-\contentsline {subsubsection}{\numberline {3.2.4.3}TSV (Tab Separated Values)}{57}{subsubsection.3.2.4.3}
-\contentsline {subsection}{\numberline {3.2.5}Symbols}{57}{subsection.3.2.5}
-\contentsline {subsection}{\numberline {3.2.6}Annotation Scheme}{57}{subsection.3.2.6}
-\contentsline {section}{\numberline {3.3}XPath}{57}{section.3.3}
-\contentsline {section}{\numberline {3.4}NuML}{58}{section.3.4}
-\contentsline {section}{\numberline {3.5}KiSAO}{58}{section.3.5}
-\contentsline {section}{\numberline {3.6}COMBINE archive}{58}{section.3.6}
-\contentsline {section}{\numberline {3.7}SED-ML resources}{58}{section.3.7}
-\contentsline {chapter}{\numberline {4}Acknowledgements}{59}{chapter.4}
-\contentsline {chapter}{\numberline {A}Examples}{60}{appendix.A}
-\contentsline {section}{\numberline {A.1}Example simulation experiment (\texttt {L1V3\_repressilator.omex})}{60}{section.A.1}
-\contentsline {section}{\numberline {A.2}Simulation experiments with dataDescriptions}{63}{section.A.2}
-\contentsline {subsection}{\numberline {A.2.1}Plotting data with simulations (\texttt {L1V3\_plotting-data-numl.omex})}{63}{subsection.A.2.1}
-\contentsline {section}{\numberline {A.3}Simulation experiments with repeatedTasks}{65}{section.A.3}
-\contentsline {subsection}{\numberline {A.3.1}Time course parameter scan (\texttt {L1V3\_repeated-scan-oscli.omex})}{65}{subsection.A.3.1}
-\contentsline {subsection}{\numberline {A.3.2}Steady state parameter scan (\texttt {L1V3\_repeated-steady-scan-oscli.omex})}{66}{subsection.A.3.2}
-\contentsline {subsection}{\numberline {A.3.3}Stochastic simulation (\texttt {L1V3\_repeated-stochastic-runs.omex})}{67}{subsection.A.3.3}
-\contentsline {subsection}{\numberline {A.3.4}Simulation perturbation (\texttt {L1V3\_oscli-nested-pulse.omex})}{69}{subsection.A.3.4}
-\contentsline {subsection}{\numberline {A.3.5}2D steady state parameter scan (\texttt {L1V3\_parameter-scan-2d.omex})}{71}{subsection.A.3.5}
-\contentsline {section}{\numberline {A.4}Simulation experiments with different model languages}{74}{section.A.4}
-\contentsline {subsection}{\numberline {A.4.1}Van der Pol oscillator in SBML (\texttt {L1V3\_vanderpol-sbml.omex})}{74}{subsection.A.4.1}
-\contentsline {subsection}{\numberline {A.4.2}Van der Pol oscillator in CellML (\texttt {L1V3\_vanderpol-cellml.omex})}{76}{subsection.A.4.2}
-\contentsline {section}{\numberline {A.5}Reproducing publication results}{79}{section.A.5}
-\contentsline {subsection}{\numberline {A.5.1}Le Loup model (\texttt {L1V3\_leloup-sbml.omex})}{79}{subsection.A.5.1}
-\contentsline {subsection}{\numberline {A.5.2}IkappaB signaling (\texttt {L1V3\_ikkapab.omex})}{81}{subsection.A.5.2}
-\contentsline {chapter}{\numberline {B}XML Schema}{83}{appendix.B}
+\contentsline {section}{\numberline {2.2}SED-ML Components}{22}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}\texttt {SED-ML} top level element}{22}{subsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.1.1}\texttt {xmlns}}{24}{subsubsection.2.2.1.1}
+\contentsline {subsubsection}{\numberline {2.2.1.2}\texttt {level}}{24}{subsubsection.2.2.1.2}
+\contentsline {subsubsection}{\numberline {2.2.1.3}\texttt {version}}{24}{subsubsection.2.2.1.3}
+\contentsline {subsubsection}{\numberline {2.2.1.4}\texttt {listOfDataDescriptions}}{24}{subsubsection.2.2.1.4}
+\contentsline {subsubsection}{\numberline {2.2.1.5}\texttt {listOfModels}}{24}{subsubsection.2.2.1.5}
+\contentsline {subsubsection}{\numberline {2.2.1.6}\texttt {listOfSimulations}}{25}{subsubsection.2.2.1.6}
+\contentsline {subsubsection}{\numberline {2.2.1.7}\texttt {listOfTasks}}{25}{subsubsection.2.2.1.7}
+\contentsline {subsubsection}{\numberline {2.2.1.8}\texttt {listOfDataGenerators}}{25}{subsubsection.2.2.1.8}
+\contentsline {subsubsection}{\numberline {2.2.1.9}\texttt {listOfOutputs}}{25}{subsubsection.2.2.1.9}
+\contentsline {subsection}{\numberline {2.2.2}\texttt {DataDescription}}{26}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}\texttt {DataDescription} components}{27}{subsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.3.1}\texttt {DimensionDescription}}{27}{subsubsection.2.2.3.1}
+\contentsline {subsubsection}{\numberline {2.2.3.2}\texttt {DataSource}}{27}{subsubsection.2.2.3.2}
+\contentsline {subsubsection}{\numberline {2.2.3.3}\texttt {Slice}}{28}{subsubsection.2.2.3.3}
+\contentsline {subsection}{\numberline {2.2.4}\texttt {Model}}{29}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}\texttt {Change}}{31}{subsection.2.2.5}
+\contentsline {subsubsection}{\numberline {2.2.5.1}\texttt {NewXML}}{31}{subsubsection.2.2.5.1}
+\contentsline {subsubsection}{\numberline {2.2.5.2}\texttt {AddXML}}{32}{subsubsection.2.2.5.2}
+\contentsline {subsubsection}{\numberline {2.2.5.3}\texttt {ChangeXML}}{32}{subsubsection.2.2.5.3}
+\contentsline {subsubsection}{\numberline {2.2.5.4}\texttt {RemoveXML}}{32}{subsubsection.2.2.5.4}
+\contentsline {subsubsection}{\numberline {2.2.5.5}\texttt {ChangeAttribute}}{33}{subsubsection.2.2.5.5}
+\contentsline {subsubsection}{\numberline {2.2.5.6}\texttt {ComputeChange}}{33}{subsubsection.2.2.5.6}
+\contentsline {subsection}{\numberline {2.2.6}\texttt {Simulation}}{34}{subsection.2.2.6}
+\contentsline {subsubsection}{\numberline {2.2.6.1}\texttt {UniformTimeCourse}}{35}{subsubsection.2.2.6.1}
+\contentsline {subsubsection}{\numberline {2.2.6.2}\texttt {NonUniformTimecourse}}{36}{subsubsection.2.2.6.2}
+\contentsline {subsubsection}{\numberline {2.2.6.3}\texttt {OneStep}}{36}{subsubsection.2.2.6.3}
+\contentsline {subsubsection}{\numberline {2.2.6.4}\texttt {SteadyState}}{37}{subsubsection.2.2.6.4}
+\contentsline {subsection}{\numberline {2.2.7}\texttt {Simulation} components}{37}{subsection.2.2.7}
+\contentsline {subsubsection}{\numberline {2.2.7.1}\texttt {Algorithm}}{37}{subsubsection.2.2.7.1}
+\contentsline {subsubsection}{\numberline {2.2.7.2}\texttt {AlgorithmParameter}}{37}{subsubsection.2.2.7.2}
+\contentsline {subsection}{\numberline {2.2.8}\texttt {AbstractTask}}{38}{subsection.2.2.8}
+\contentsline {subsubsection}{\numberline {2.2.8.1}\texttt {Task}}{38}{subsubsection.2.2.8.1}
+\contentsline {subsubsection}{\numberline {2.2.8.2}\texttt {CalculateEigenvectors}}{39}{subsubsection.2.2.8.2}
+\contentsline {subsubsection}{\numberline {2.2.8.3}\texttt {CalculateEigenvalues}}{39}{subsubsection.2.2.8.3}
+\contentsline {subsubsection}{\numberline {2.2.8.4}\texttt {CalculateJacobian}}{39}{subsubsection.2.2.8.4}
+\contentsline {subsubsection}{\numberline {2.2.8.5}\texttt {CalculateStoichiometryMatrix}}{39}{subsubsection.2.2.8.5}
+\contentsline {subsubsection}{\numberline {2.2.8.6}\texttt {CalculateElasticity}}{39}{subsubsection.2.2.8.6}
+\contentsline {subsubsection}{\numberline {2.2.8.7}\texttt {CalculateLocalSensitivity}}{39}{subsubsection.2.2.8.7}
+\contentsline {subsubsection}{\numberline {2.2.8.8}\texttt {CalculateMoietyConservationLaws}}{39}{subsubsection.2.2.8.8}
+\contentsline {subsubsection}{\numberline {2.2.8.9}Other Tasks}{39}{subsubsection.2.2.8.9}
+\contentsline {subsubsection}{\numberline {2.2.8.10}\texttt {Repeated Task}}{40}{subsubsection.2.2.8.10}
+\contentsline {subsection}{\numberline {2.2.9}\texttt {Task} components}{43}{subsection.2.2.9}
+\contentsline {subsubsection}{\numberline {2.2.9.1}\texttt {SubTask}}{43}{subsubsection.2.2.9.1}
+\contentsline {subsubsection}{\numberline {2.2.9.2}\texttt {SetValue}}{43}{subsubsection.2.2.9.2}
+\contentsline {subsubsection}{\numberline {2.2.9.3}\texttt {Range}}{43}{subsubsection.2.2.9.3}
+\contentsline {paragraph}{\numberline {2.2.9.3.1}\texttt {UniformRange}}{44}{paragraph.2.2.9.3.1}
+\contentsline {paragraph}{\numberline {2.2.9.3.2}\texttt {VectorRange}}{44}{paragraph.2.2.9.3.2}
+\contentsline {paragraph}{\numberline {2.2.9.3.3}\texttt {DataRange}}{44}{paragraph.2.2.9.3.3}
+\contentsline {paragraph}{\numberline {2.2.9.3.4}\texttt {FunctionalRange}}{45}{paragraph.2.2.9.3.4}
+\contentsline {subsection}{\numberline {2.2.10}\texttt {DataGenerator}}{46}{subsection.2.2.10}
+\contentsline {subsection}{\numberline {2.2.11}\texttt {Output}}{47}{subsection.2.2.11}
+\contentsline {subsubsection}{\numberline {2.2.11.1}\texttt {Plot}}{50}{subsubsection.2.2.11.1}
+\contentsline {subsubsection}{\numberline {2.2.11.2}\texttt {Plot2D}}{50}{subsubsection.2.2.11.2}
+\contentsline {subsubsection}{\numberline {2.2.11.3}\texttt {Plot3D}}{51}{subsubsection.2.2.11.3}
+\contentsline {subsubsection}{\numberline {2.2.11.4}\texttt {Report}}{51}{subsubsection.2.2.11.4}
+\contentsline {subsection}{\numberline {2.2.12}\texttt {Output} components}{51}{subsection.2.2.12}
+\contentsline {subsubsection}{\numberline {2.2.12.1}\texttt {Axis}}{51}{subsubsection.2.2.12.1}
+\contentsline {subsubsection}{\numberline {2.2.12.2}\texttt {Marker}}{52}{subsubsection.2.2.12.2}
+\contentsline {subsubsection}{\numberline {2.2.12.3}\texttt {Line}}{52}{subsubsection.2.2.12.3}
+\contentsline {subsubsection}{\numberline {2.2.12.4}\texttt {AbstractCurve}}{53}{subsubsection.2.2.12.4}
+\contentsline {subsubsection}{\numberline {2.2.12.5}\texttt {AbstractSurface}}{53}{subsubsection.2.2.12.5}
+\contentsline {subsubsection}{\numberline {2.2.12.6}\texttt {Curve}}{53}{subsubsection.2.2.12.6}
+\contentsline {subsubsection}{\numberline {2.2.12.7}\texttt {Surface}}{53}{subsubsection.2.2.12.7}
+\contentsline {subsubsection}{\numberline {2.2.12.8}\texttt {DataSet}}{54}{subsubsection.2.2.12.8}
+\contentsline {chapter}{\numberline {3}Concepts used in SED-ML}{56}{chapter.3}
+\contentsline {section}{\numberline {3.1}MathML}{56}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}MathML elements}{56}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}MathML symbols}{56}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}MathML functions}{56}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}URI scheme}{57}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Model references}{58}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Data references}{58}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Language references}{58}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Data format references}{59}{subsection.3.2.4}
+\contentsline {subsubsection}{\numberline {3.2.4.1}NuML (Numerical Markup Language)}{59}{subsubsection.3.2.4.1}
+\contentsline {subsubsection}{\numberline {3.2.4.2}CSV (Comma Separated Values)}{59}{subsubsection.3.2.4.2}
+\contentsline {subsubsection}{\numberline {3.2.4.3}TSV (Tab Separated Values)}{61}{subsubsection.3.2.4.3}
+\contentsline {subsection}{\numberline {3.2.5}Symbols}{61}{subsection.3.2.5}
+\contentsline {subsection}{\numberline {3.2.6}Annotation Scheme}{61}{subsection.3.2.6}
+\contentsline {section}{\numberline {3.3}XPath}{61}{section.3.3}
+\contentsline {section}{\numberline {3.4}NuML}{62}{section.3.4}
+\contentsline {section}{\numberline {3.5}KiSAO}{63}{section.3.5}
+\contentsline {section}{\numberline {3.6}COMBINE archive}{63}{section.3.6}
+\contentsline {section}{\numberline {3.7}SED-ML resources}{63}{section.3.7}
+\contentsline {chapter}{\numberline {4}Acknowledgements}{64}{chapter.4}
+\contentsline {chapter}{\numberline {A}Examples}{65}{appendix.A}
+\contentsline {section}{\numberline {A.1}Example simulation experiment (\texttt {L1V3\_repressilator.omex})}{65}{section.A.1}
+\contentsline {section}{\numberline {A.2}Simulation experiments with dataDescriptions}{68}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Plotting data with simulations (\texttt {L1V3\_plotting-data-numl.omex})}{68}{subsection.A.2.1}
+\contentsline {section}{\numberline {A.3}Simulation experiments with repeatedTasks}{70}{section.A.3}
+\contentsline {subsection}{\numberline {A.3.1}Time course parameter scan (\texttt {L1V3\_repeated-scan-oscli.omex})}{70}{subsection.A.3.1}
+\contentsline {subsection}{\numberline {A.3.2}Steady state parameter scan (\texttt {L1V3\_repeated-steady-scan-oscli.omex})}{71}{subsection.A.3.2}
+\contentsline {subsection}{\numberline {A.3.3}Stochastic simulation (\texttt {L1V3\_repeated-stochastic-runs.omex})}{72}{subsection.A.3.3}
+\contentsline {subsection}{\numberline {A.3.4}Simulation perturbation (\texttt {L1V3\_oscli-nested-pulse.omex})}{74}{subsection.A.3.4}
+\contentsline {subsection}{\numberline {A.3.5}2D steady state parameter scan (\texttt {L1V3\_parameter-scan-2d.omex})}{76}{subsection.A.3.5}
+\contentsline {section}{\numberline {A.4}Simulation experiments with different model languages}{79}{section.A.4}
+\contentsline {subsection}{\numberline {A.4.1}Van der Pol oscillator in SBML (\texttt {L1V3\_vanderpol-sbml.omex})}{79}{subsection.A.4.1}
+\contentsline {subsection}{\numberline {A.4.2}Van der Pol oscillator in CellML (\texttt {L1V3\_vanderpol-cellml.omex})}{81}{subsection.A.4.2}
+\contentsline {section}{\numberline {A.5}Reproducing publication results}{84}{section.A.5}
+\contentsline {subsection}{\numberline {A.5.1}Le Loup model (\texttt {L1V3\_leloup-sbml.omex})}{84}{subsection.A.5.1}
+\contentsline {subsection}{\numberline {A.5.2}IkappaB signaling (\texttt {L1V3\_ikkapab.omex})}{86}{subsection.A.5.2}
+\contentsline {chapter}{\numberline {B}XML Schema}{88}{appendix.B}

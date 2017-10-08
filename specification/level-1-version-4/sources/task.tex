@@ -30,7 +30,7 @@ In the example, a simulation setting \code{simulation1} is applied first to \cod
 
 \subsubsection{\element{CalculateEigenvectors}}
 \label{class:calculateEigenvectors}
-\hl{TODO: fill in}
+\hl{TODO: fill in, merge with other tasks below}
 
 \subsubsection{\element{CalculateEigenvalues}}
 \label{class:calculateEigenvalues}
@@ -56,6 +56,44 @@ In the example, a simulation setting \code{simulation1} is applied first to \cod
 \label{class:calculateMoietyConservationLaws}
 \hl{TODO: fill in}
 
+\subsubsection{Other Tasks}
+There are a range of other tasks that can be specified. These are generally related to model specific properties. Figure~\ref{fig:abstractTask} lists the current set of such tasks. 
+
+{\bf CalculateJacobian} The {\tt CalculateJacobian} task is used to compute the Jacobian matrix at the current state of the model. The matrix will be $m$ by $m$ where $m$ is the number state variables in the model. For those models where there are dependencies among the state variables (eg in reaction network models) it is also possible to specify the calculation of a reduced Jacobian matrix. The attribute {\tt reduced} is Boolean value than can specify a reduced of full matrix. 
+
+{\bf CalculateStoichiometryMatrix} The {\tt CalculateStoichiometryMatrix} task is used to retrieve the stoichiometry matrix from the current model. This calculation is only applicable for reaction network models. The Boolean attribute {\tt reduced} can be used to specify either a reduced or full stoichiometry matrix. 
+
+{\bf CalculateEigenvalues} The {\tt CalculateEigenvalues} task is used to compute the eigenvalues for a model at the last computed state of the model. The task generates two vectors, one vector contains the real numbers and the other the imaginary numbers. 
+
+{\bf CalculateEigenvectors} The {\tt CalculateEigenvalues} task is used to compute the eigenvectors for a model at the last computed state of the model. The task generates a matrix where the columns are the corresponding eigenvectors. 
+
+{\bf CalculateLocalSensitivities} The {\tt CalculateLocalSensitivities} is used to specify sensitivity of a model variable with respect to a parameter. 
+%
+$$ \frac{dx}{dp} $$
+%
+where $x$ is a model variable and $p$ a model parameter. For reaction network models, the variable can be a species concentration, reaction flux, or other output of the model. The parameter can be a rate constant or boundary species or other value that the model is dependent upon.
+
+The Boolean attribute {\tt scaled} can be used to compute scaled sensitivities as defined below:
+%
+$$ \frac{dx}{dp} \frac{x}{p} $$
+%
+In metabolic control analysis the scaled sensitivities are called the control coefficients and in biochemical systems theory, the logarithmic gains. 
+
+The Boolean attribute {\tt all} can be used to specify that all sensitivities should be computed. In this case the parameter independent sensitivities are computed (See ref). 
+
+{\bf CalculateMoietyConservationLaws} The {\tt CalculateMoietyConservationLaws} can be used to obtain the moiety concervation laws for a model. This is applicable to reaction network based models where it is possible for a linear combination of species amounts to be fixed throughout a simulation.
+
+The task will return a matrix where each row corresponds to a conservation law. The columns will corresponds to the floating species in the model and indicate the amount of each species in a given conservation law. The last column will include the total amount represented by the conservation law. 
+
+For example the model {\tt S1 -> S2; S2 -> S1} has a single conservation laws $S1 + S2$, this would be represented using the matrix:
+
+$$
+\left[
+\begin{array}{ll}
+1 & 1 \\
+\end{array}
+\right]
+$$
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % REPEATED TASK

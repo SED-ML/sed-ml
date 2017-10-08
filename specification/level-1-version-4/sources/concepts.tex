@@ -319,6 +319,30 @@ SBML & \code{urn:sedml:symbol:time} & Time in SBML is an intrinsic model variabl
 \label{tab:symbols}
 \end{table}
 
+\hl{TODO: merge the tables, define this}
+\begin{table}[ht]
+\center
+\begin{tabular}{lp{8cm}} \toprule
+Symbol URN & Definition \\ \midrule
+{\tt urn:sedml:symbol:time} & time in SBML is an intrinsic model variable that is addressable in model equations via a csymbol 'time'. \\[5pt]
+{\tt urn:sedml:symbol:fullStoichiometryMatrix} & The full $m$ by $n$ stoichiometry matrix where $m$ is the number of state variables and $n$ the number of reactions. \\[5pt]
+{\tt urn:sedml:symbol:reducedStoichiometryMatrix} & The reduced $m$ by $n$ stoichiometry matrix where $m$ is the number of independent state variables and $n$ the number of reactions. \\[5pt]
+{\tt urn:sedml:symbol:N} & The full $m$ by $n$ stoichiometry matrix where $m$ is the number of state variables and $n$ the number of reactions. \\[5pt]
+{\tt urn:sedml:symbol:Nr} & The reduced $m$ by $n$ stoichiometry matrix where $m$ is the number of independent state variables and $n$ the number of reactions. \\[5pt]
+{\tt urn:sedml:symbol:J} & $n$ by $n$ matrix of $\displaystyle \partial f_i/\partial x_j$ where $f_i$ is the ith differential equation in the model and $n$ is the number of state variables.\\[5pt] 
+{\tt urn:sedml:symbol:Jr} & $n_r$ by $n_r$ matrix of $\displaystyle \partial f_i/\partial x_j$ where $f_i$ is the ith differential equation in the model and $n_r$ is the number of independent state variables.\\[5pt] 
+{\tt urn:sedml:symbol:fullJacobian} & $n$ by $n$ matrix of $\displaystyle \partial f_i/\partial x_j$ where $f_i$ is the ith differential equation in the model and $n$ is the number of state variables.\\[5pt] 
+{\tt urn:sedml:symbol:reducedJacobian} & $n_r$ by $n_r$ matrix of $\displaystyle \partial f_i/\partial x_j$ where $f_i$ is the ith differential equation in the model and $n_r$ is the number of independent state variables.\\[5pt] 
+{\tt urn:sedml:symbol:eigenvalue} & How do we specify the ith eigenvalue? \\[5pt]
+{\tt urn:sedml:symbol:uelasticity} & Unscaled elasticity \\[5pt]
+{\tt urn:sedml:symbol:elasticity} & Scaled elasticity \\[5pt]
+{\tt urn:sedml:symbol:ucc} & Unscaled control coefficient \\[5pt]
+{\tt urn:sedml:symbol:cc} & Scaled control coefficient \\
+\bottomrule
+\end{tabular}
+\label{tab:newSymbols}
+\end{table}
+
 
 % ~~~ ANNOTATIONS ~~~
 \subsection{Annotation Scheme}
