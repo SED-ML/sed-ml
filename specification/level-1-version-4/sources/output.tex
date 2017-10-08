@@ -6,7 +6,16 @@
 
 The abstract \concept{Output} class describes how the results of a simulation are presented (\fig{output}). The available output classes are plots (\hyperref[class:plot2D]{Plot2D} and \hyperref[class:plot3D]{Plot3D}) and reports (\hyperref[class:report]{Report}). The data used in \concept{Outputs} is provided via \hyperref[class:dataGenerator]{DataGenerators}.
 
-\sedfig{images/uml/output}{The SED-ML Output class. Note that ListOfCurves, Curve, ListOfSurfaces, Surface, ListOfDataSets, DataSet and DataGenerator are subclasses of \emph{SEDBase}; the respective inheritance connections are not shown in the figure.}{fig:output}
+\sedfig[width=0.6\textwidth]{images/uml/output}{The SED-ML Output class. Note that ListOfCurves, Curve, ListOfSurfaces, Surface, ListOfDataSets, DataSet and DataGenerator are subclasses of \emph{SEDBase}; the respective inheritance connections are not shown in the figure.}{fig:output}
+
+\sedfig[width=0.6\textwidth]{images/uml/plot}{The SED-ML Plot class}{fig:plot}
+
+\sedfig[width=0.6\textwidth]{images/uml/report}{The SED-ML Report class}{fig:report}
+
+\sedfig[width=0.6\textwidth]{images/uml/abstractCurve}{The SED-ML AbstractCurve class}{fig:abstractCurve}
+
+\sedfig[width=1.0\textwidth]{images/uml/abstractSurface}{The SED-ML AbstractSurface class}{fig:abstractSurface}
+
 
 Note that even though the terms \code{Plot2D} and \code{Plot3D} are used, the exact type of plot is not specified. In other words, whether the 3D plot represents a surface plot, or three dimensional lines in space, cannot be distinguished by SED-ML SED-ML \currentLV alone.
 
@@ -15,29 +24,6 @@ Note that even though the terms \code{Plot2D} and \code{Plot3D} are used, the ex
 \subsubsection{\element{Plot2D}}
 \label{class:plot2D}
 The \concept{Plot2D} class is used for two dimensional plot outputs (\fig{output}). The \concept{Plot2D} contains a number of \hyperref[class:curve]{Curve} definitions in the \element{listOfCurves}, defining the \hyperref[class:curve]{curves} to be plotted in the the 2D plot.
-%
-\tabtext{plot2D}{plot2D}
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-listOfCurves$^{o}$ & \refpage{class:curve}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{plot2D}}
-\label{tab:plot2D}
-\end{table}
 
 \lsttext{listOfCurves}{listOfCurves}
 The example shows the definition of a \element{Plot2D} containing one \hyperref[class:curve]{Curve} inside the \element{listOfCurves}.
@@ -56,29 +42,6 @@ The example shows the definition of a \element{Plot2D} containing one \hyperref[
 \subsubsection{\element{Plot3D}}
 \label{class:plot3D}
 The \concept{Plot3D} class is used for three dimensional plot outputs (\fig{output}). The \concept{Plot3D} contains a number of \hyperref[class:surface]{Surface} definitions in the \element{listOfSurfaces}. 
-%
-\tabtext{plot3D}{plot3D}
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-listOfSurfaces$^{o}$ & \refpage{class:surface}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{plot3D}}
-\label{tab:plot3D}
-\end{table}
 
 \lsttext{plot3D}{plot3D}
 The example shows the definition of a \hyperref[class:surface]{\element{Surface}} for the three dimensional plot inside the \code{listOfSurfaces}.
@@ -98,29 +61,6 @@ The example shows the definition of a \hyperref[class:surface]{\element{Surface}
 \subsubsection{\element{Report}}
 \label{class:report}
 The \concept{Report} class defines a data table consisting of several single instances of the \hyperref[class:dataSet]{\element{DataSet}} in the \element{listOfDataSets} (\fig{output}). Its output returns the simulation result processed via \hyperref[class:dataGenerator]{DataGenerators} in actual numbers. The columns of the report table are defined by creating an instance of the \hyperref[class:dataSet]{DataSet} for each column. 
-
-\tabtext{report}{report}
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-listOfDataSets$^{o}$ & \refpage{class:dataSet}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{report}}
-\label{tab:report}
-\end{table}
 
 \lsttext{listOfDataSets}{listOfDataSets}
 
@@ -142,36 +82,26 @@ The simulation result itself, i.e.\ concrete result numbers, are not stored in S
 \subsection{\element{Output} components}
 In this section the \hyperref[class:output]{Output} components \hyperref[class:curve]{Curve}, \hyperref[class:surface]{Surface}, and \hyperref[class:dataSet]{DataSet} are described.
 
+
+% ~~~ AXIS ~~~
+\subsubsection{\element{Axis}}
+\label{class:axis}
+\hl{TODO: fill in}
+
+% ~~~ ABSTRACT CURVE ~~~
+\subsubsection{\element{AbstractCurve}}
+\label{class:axis}
+\hl{TODO: fill in and remove Curve}
+
+% ~~~ ABSTRACT SURFACE ~~~
+\subsubsection{\element{AbstractSurface}}
+\label{class:axis}
+\hl{TODO: fill in and remove Surface}
+
 % ~~~ CURVE ~~~
 \subsubsection{\element{Curve}}
 \label{class:curve}
 A \concept{Curve} is a two-dimensional \hyperref[class:output]{Output} component representing a (processed) simulation result (\fig{output}). Zero or more \concept{Curve} instances define a \hyperref[class:plot2D]{plot2D} (\fig{output}). A \concept{curve} needs a \hyperref[class:dataGenerator]{dataGenerator} reference to refer to the data that will be plotted on the x-axis, using the \hyperref[sec:xDataReference]{\element{xDataReference}}. A second \hyperref[class:dataGenerator]{dataGenerator} reference is needed to refer to the data that will be plotted on the y-axis, using the \hyperref[sec:yDataReference]{\element{yDataReference}}. 
-%
-\tabtext{curve}{curve}
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-logX & \refpage{sec:logX}\\
-xDataReference & \refpage{sec:xDataReference}\\
-logY & \refpage{sec:logY}\\
-yDataReference & \refpage{sec:yDataReference}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{curve}}
-\label{tab:curve}
-\end{table}
 
 \lsttext{curve}{curve}
 In the example a single curve is created. Results for the x-axis are generated by the dataGenerator \code{dg1}, results for the y-axis are generated by the \hyperref[class:dataGenerator]{dataGenerator} \code{dg2}. Both \code{dg1} and \code{dg2} need to be defined in the \hyperref[sec:listOfDataGenerators]{\element{listOfDataGenerators}}. The x-axis is plotted logarithmically.

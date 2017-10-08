@@ -85,44 +85,47 @@
 \BOOKMARK [3][-]{subsubsection.2.2.11.2}{Plot3D}{subsection.2.2.11}% 85
 \BOOKMARK [3][-]{subsubsection.2.2.11.3}{Report}{subsection.2.2.11}% 86
 \BOOKMARK [2][-]{subsection.2.2.12}{Output components}{section.2.2}% 87
-\BOOKMARK [3][-]{subsubsection.2.2.12.1}{Curve}{subsection.2.2.12}% 88
-\BOOKMARK [3][-]{subsubsection.2.2.12.2}{Surface}{subsection.2.2.12}% 89
-\BOOKMARK [3][-]{subsubsection.2.2.12.3}{DataSet}{subsection.2.2.12}% 90
-\BOOKMARK [0][]{chapter.3}{Concepts used in SED-ML}{}% 91
-\BOOKMARK [1][]{section.3.1}{MathML}{chapter.3}% 92
-\BOOKMARK [2][-]{subsection.3.1.1}{MathML elements}{section.3.1}% 93
-\BOOKMARK [2][-]{subsection.3.1.2}{MathML symbols}{section.3.1}% 94
-\BOOKMARK [2][-]{subsection.3.1.3}{MathML functions}{section.3.1}% 95
-\BOOKMARK [1][]{section.3.2}{URI scheme}{chapter.3}% 96
-\BOOKMARK [2][-]{subsection.3.2.1}{Model references}{section.3.2}% 97
-\BOOKMARK [2][-]{subsection.3.2.2}{Data references}{section.3.2}% 98
-\BOOKMARK [2][-]{subsection.3.2.3}{Language references}{section.3.2}% 99
-\BOOKMARK [2][-]{subsection.3.2.4}{Data format references}{section.3.2}% 100
-\BOOKMARK [3][-]{subsubsection.3.2.4.1}{NuML \(Numerical Markup Language\)}{subsection.3.2.4}% 101
-\BOOKMARK [3][-]{subsubsection.3.2.4.2}{CSV \(Comma Separated Values\)}{subsection.3.2.4}% 102
-\BOOKMARK [3][-]{subsubsection.3.2.4.3}{TSV \(Tab Separated Values\)}{subsection.3.2.4}% 103
-\BOOKMARK [2][-]{subsection.3.2.5}{Symbols}{section.3.2}% 104
-\BOOKMARK [2][-]{subsection.3.2.6}{Annotation Scheme}{section.3.2}% 105
-\BOOKMARK [1][]{section.3.3}{XPath}{chapter.3}% 106
-\BOOKMARK [1][]{section.3.4}{NuML}{chapter.3}% 107
-\BOOKMARK [1][]{section.3.5}{KiSAO}{chapter.3}% 108
-\BOOKMARK [1][]{section.3.6}{COMBINE archive}{chapter.3}% 109
-\BOOKMARK [1][]{section.3.7}{SED-ML resources}{chapter.3}% 110
-\BOOKMARK [0][]{chapter.4}{Acknowledgements}{}% 111
-\BOOKMARK [0][]{appendix.A}{Examples}{}% 112
-\BOOKMARK [1][]{section.A.1}{Example simulation experiment \(L1V3\137repressilator.omex\)}{appendix.A}% 113
-\BOOKMARK [1][]{section.A.2}{Simulation experiments with dataDescriptions}{appendix.A}% 114
-\BOOKMARK [2][-]{subsection.A.2.1}{Plotting data with simulations \(L1V3\137plotting-data-numl.omex\)}{section.A.2}% 115
-\BOOKMARK [1][]{section.A.3}{Simulation experiments with repeatedTasks}{appendix.A}% 116
-\BOOKMARK [2][-]{subsection.A.3.1}{Time course parameter scan \(L1V3\137repeated-scan-oscli.omex\)}{section.A.3}% 117
-\BOOKMARK [2][-]{subsection.A.3.2}{Steady state parameter scan \(L1V3\137repeated-steady-scan-oscli.omex\)}{section.A.3}% 118
-\BOOKMARK [2][-]{subsection.A.3.3}{Stochastic simulation \(L1V3\137repeated-stochastic-runs.omex\)}{section.A.3}% 119
-\BOOKMARK [2][-]{subsection.A.3.4}{Simulation perturbation \(L1V3\137oscli-nested-pulse.omex\)}{section.A.3}% 120
-\BOOKMARK [2][-]{subsection.A.3.5}{2D steady state parameter scan \(L1V3\137parameter-scan-2d.omex\)}{section.A.3}% 121
-\BOOKMARK [1][]{section.A.4}{Simulation experiments with different model languages}{appendix.A}% 122
-\BOOKMARK [2][-]{subsection.A.4.1}{Van der Pol oscillator in SBML \(L1V3\137vanderpol-sbml.omex\)}{section.A.4}% 123
-\BOOKMARK [2][-]{subsection.A.4.2}{Van der Pol oscillator in CellML \(L1V3\137vanderpol-cellml.omex\)}{section.A.4}% 124
-\BOOKMARK [1][]{section.A.5}{Reproducing publication results}{appendix.A}% 125
-\BOOKMARK [2][-]{subsection.A.5.1}{Le Loup model \(L1V3\137leloup-sbml.omex\)}{section.A.5}% 126
-\BOOKMARK [2][-]{subsection.A.5.2}{IkappaB signaling \(L1V3\137ikkapab.omex\)}{section.A.5}% 127
-\BOOKMARK [0][]{appendix.B}{XML Schema}{}% 128
+\BOOKMARK [3][-]{subsubsection.2.2.12.1}{Axis}{subsection.2.2.12}% 88
+\BOOKMARK [3][-]{subsubsection.2.2.12.2}{AbstractCurve}{subsection.2.2.12}% 89
+\BOOKMARK [3][-]{subsubsection.2.2.12.3}{AbstractSurface}{subsection.2.2.12}% 90
+\BOOKMARK [3][-]{subsubsection.2.2.12.4}{Curve}{subsection.2.2.12}% 91
+\BOOKMARK [3][-]{subsubsection.2.2.12.5}{Surface}{subsection.2.2.12}% 92
+\BOOKMARK [3][-]{subsubsection.2.2.12.6}{DataSet}{subsection.2.2.12}% 93
+\BOOKMARK [0][]{chapter.3}{Concepts used in SED-ML}{}% 94
+\BOOKMARK [1][]{section.3.1}{MathML}{chapter.3}% 95
+\BOOKMARK [2][-]{subsection.3.1.1}{MathML elements}{section.3.1}% 96
+\BOOKMARK [2][-]{subsection.3.1.2}{MathML symbols}{section.3.1}% 97
+\BOOKMARK [2][-]{subsection.3.1.3}{MathML functions}{section.3.1}% 98
+\BOOKMARK [1][]{section.3.2}{URI scheme}{chapter.3}% 99
+\BOOKMARK [2][-]{subsection.3.2.1}{Model references}{section.3.2}% 100
+\BOOKMARK [2][-]{subsection.3.2.2}{Data references}{section.3.2}% 101
+\BOOKMARK [2][-]{subsection.3.2.3}{Language references}{section.3.2}% 102
+\BOOKMARK [2][-]{subsection.3.2.4}{Data format references}{section.3.2}% 103
+\BOOKMARK [3][-]{subsubsection.3.2.4.1}{NuML \(Numerical Markup Language\)}{subsection.3.2.4}% 104
+\BOOKMARK [3][-]{subsubsection.3.2.4.2}{CSV \(Comma Separated Values\)}{subsection.3.2.4}% 105
+\BOOKMARK [3][-]{subsubsection.3.2.4.3}{TSV \(Tab Separated Values\)}{subsection.3.2.4}% 106
+\BOOKMARK [2][-]{subsection.3.2.5}{Symbols}{section.3.2}% 107
+\BOOKMARK [2][-]{subsection.3.2.6}{Annotation Scheme}{section.3.2}% 108
+\BOOKMARK [1][]{section.3.3}{XPath}{chapter.3}% 109
+\BOOKMARK [1][]{section.3.4}{NuML}{chapter.3}% 110
+\BOOKMARK [1][]{section.3.5}{KiSAO}{chapter.3}% 111
+\BOOKMARK [1][]{section.3.6}{COMBINE archive}{chapter.3}% 112
+\BOOKMARK [1][]{section.3.7}{SED-ML resources}{chapter.3}% 113
+\BOOKMARK [0][]{chapter.4}{Acknowledgements}{}% 114
+\BOOKMARK [0][]{appendix.A}{Examples}{}% 115
+\BOOKMARK [1][]{section.A.1}{Example simulation experiment \(L1V3\137repressilator.omex\)}{appendix.A}% 116
+\BOOKMARK [1][]{section.A.2}{Simulation experiments with dataDescriptions}{appendix.A}% 117
+\BOOKMARK [2][-]{subsection.A.2.1}{Plotting data with simulations \(L1V3\137plotting-data-numl.omex\)}{section.A.2}% 118
+\BOOKMARK [1][]{section.A.3}{Simulation experiments with repeatedTasks}{appendix.A}% 119
+\BOOKMARK [2][-]{subsection.A.3.1}{Time course parameter scan \(L1V3\137repeated-scan-oscli.omex\)}{section.A.3}% 120
+\BOOKMARK [2][-]{subsection.A.3.2}{Steady state parameter scan \(L1V3\137repeated-steady-scan-oscli.omex\)}{section.A.3}% 121
+\BOOKMARK [2][-]{subsection.A.3.3}{Stochastic simulation \(L1V3\137repeated-stochastic-runs.omex\)}{section.A.3}% 122
+\BOOKMARK [2][-]{subsection.A.3.4}{Simulation perturbation \(L1V3\137oscli-nested-pulse.omex\)}{section.A.3}% 123
+\BOOKMARK [2][-]{subsection.A.3.5}{2D steady state parameter scan \(L1V3\137parameter-scan-2d.omex\)}{section.A.3}% 124
+\BOOKMARK [1][]{section.A.4}{Simulation experiments with different model languages}{appendix.A}% 125
+\BOOKMARK [2][-]{subsection.A.4.1}{Van der Pol oscillator in SBML \(L1V3\137vanderpol-sbml.omex\)}{section.A.4}% 126
+\BOOKMARK [2][-]{subsection.A.4.2}{Van der Pol oscillator in CellML \(L1V3\137vanderpol-cellml.omex\)}{section.A.4}% 127
+\BOOKMARK [1][]{section.A.5}{Reproducing publication results}{appendix.A}% 128
+\BOOKMARK [2][-]{subsection.A.5.1}{Le Loup model \(L1V3\137leloup-sbml.omex\)}{section.A.5}% 129
+\BOOKMARK [2][-]{subsection.A.5.2}{IkappaB signaling \(L1V3\137ikkapab.omex\)}{section.A.5}% 130
+\BOOKMARK [0][]{appendix.B}{XML Schema}{}% 131

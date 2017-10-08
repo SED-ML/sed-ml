@@ -87,48 +87,51 @@
 \contentsline {paragraph}{\numberline {2.2.9.3.4}\texttt {FunctionalRange}}{43}{paragraph.2.2.9.3.4}
 \contentsline {subsection}{\numberline {2.2.10}\texttt {DataGenerator}}{44}{subsection.2.2.10}
 \contentsline {subsection}{\numberline {2.2.11}\texttt {Output}}{45}{subsection.2.2.11}
-\contentsline {subsubsection}{\numberline {2.2.11.1}\texttt {Plot2D}}{45}{subsubsection.2.2.11.1}
-\contentsline {subsubsection}{\numberline {2.2.11.2}\texttt {Plot3D}}{46}{subsubsection.2.2.11.2}
-\contentsline {subsubsection}{\numberline {2.2.11.3}\texttt {Report}}{46}{subsubsection.2.2.11.3}
-\contentsline {subsection}{\numberline {2.2.12}\texttt {Output} components}{47}{subsection.2.2.12}
-\contentsline {subsubsection}{\numberline {2.2.12.1}\texttt {Curve}}{47}{subsubsection.2.2.12.1}
-\contentsline {subsubsection}{\numberline {2.2.12.2}\texttt {Surface}}{48}{subsubsection.2.2.12.2}
-\contentsline {subsubsection}{\numberline {2.2.12.3}\texttt {DataSet}}{49}{subsubsection.2.2.12.3}
-\contentsline {chapter}{\numberline {3}Concepts used in SED-ML}{50}{chapter.3}
-\contentsline {section}{\numberline {3.1}MathML}{50}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}MathML elements}{50}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}MathML symbols}{50}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}MathML functions}{50}{subsection.3.1.3}
-\contentsline {section}{\numberline {3.2}URI scheme}{51}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Model references}{52}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Data references}{52}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}Language references}{52}{subsection.3.2.3}
-\contentsline {subsection}{\numberline {3.2.4}Data format references}{53}{subsection.3.2.4}
-\contentsline {subsubsection}{\numberline {3.2.4.1}NuML (Numerical Markup Language)}{53}{subsubsection.3.2.4.1}
-\contentsline {subsubsection}{\numberline {3.2.4.2}CSV (Comma Separated Values)}{53}{subsubsection.3.2.4.2}
-\contentsline {subsubsection}{\numberline {3.2.4.3}TSV (Tab Separated Values)}{55}{subsubsection.3.2.4.3}
-\contentsline {subsection}{\numberline {3.2.5}Symbols}{55}{subsection.3.2.5}
-\contentsline {subsection}{\numberline {3.2.6}Annotation Scheme}{55}{subsection.3.2.6}
-\contentsline {section}{\numberline {3.3}XPath}{55}{section.3.3}
-\contentsline {section}{\numberline {3.4}NuML}{56}{section.3.4}
-\contentsline {section}{\numberline {3.5}KiSAO}{56}{section.3.5}
-\contentsline {section}{\numberline {3.6}COMBINE archive}{56}{section.3.6}
-\contentsline {section}{\numberline {3.7}SED-ML resources}{56}{section.3.7}
-\contentsline {chapter}{\numberline {4}Acknowledgements}{57}{chapter.4}
-\contentsline {chapter}{\numberline {A}Examples}{58}{appendix.A}
-\contentsline {section}{\numberline {A.1}Example simulation experiment (\texttt {L1V3\_repressilator.omex})}{58}{section.A.1}
-\contentsline {section}{\numberline {A.2}Simulation experiments with dataDescriptions}{61}{section.A.2}
-\contentsline {subsection}{\numberline {A.2.1}Plotting data with simulations (\texttt {L1V3\_plotting-data-numl.omex})}{61}{subsection.A.2.1}
-\contentsline {section}{\numberline {A.3}Simulation experiments with repeatedTasks}{63}{section.A.3}
-\contentsline {subsection}{\numberline {A.3.1}Time course parameter scan (\texttt {L1V3\_repeated-scan-oscli.omex})}{63}{subsection.A.3.1}
-\contentsline {subsection}{\numberline {A.3.2}Steady state parameter scan (\texttt {L1V3\_repeated-steady-scan-oscli.omex})}{64}{subsection.A.3.2}
-\contentsline {subsection}{\numberline {A.3.3}Stochastic simulation (\texttt {L1V3\_repeated-stochastic-runs.omex})}{65}{subsection.A.3.3}
-\contentsline {subsection}{\numberline {A.3.4}Simulation perturbation (\texttt {L1V3\_oscli-nested-pulse.omex})}{67}{subsection.A.3.4}
-\contentsline {subsection}{\numberline {A.3.5}2D steady state parameter scan (\texttt {L1V3\_parameter-scan-2d.omex})}{69}{subsection.A.3.5}
-\contentsline {section}{\numberline {A.4}Simulation experiments with different model languages}{72}{section.A.4}
-\contentsline {subsection}{\numberline {A.4.1}Van der Pol oscillator in SBML (\texttt {L1V3\_vanderpol-sbml.omex})}{72}{subsection.A.4.1}
-\contentsline {subsection}{\numberline {A.4.2}Van der Pol oscillator in CellML (\texttt {L1V3\_vanderpol-cellml.omex})}{74}{subsection.A.4.2}
-\contentsline {section}{\numberline {A.5}Reproducing publication results}{77}{section.A.5}
-\contentsline {subsection}{\numberline {A.5.1}Le Loup model (\texttt {L1V3\_leloup-sbml.omex})}{77}{subsection.A.5.1}
-\contentsline {subsection}{\numberline {A.5.2}IkappaB signaling (\texttt {L1V3\_ikkapab.omex})}{79}{subsection.A.5.2}
-\contentsline {chapter}{\numberline {B}XML Schema}{81}{appendix.B}
+\contentsline {subsubsection}{\numberline {2.2.11.1}\texttt {Plot2D}}{48}{subsubsection.2.2.11.1}
+\contentsline {subsubsection}{\numberline {2.2.11.2}\texttt {Plot3D}}{48}{subsubsection.2.2.11.2}
+\contentsline {subsubsection}{\numberline {2.2.11.3}\texttt {Report}}{49}{subsubsection.2.2.11.3}
+\contentsline {subsection}{\numberline {2.2.12}\texttt {Output} components}{49}{subsection.2.2.12}
+\contentsline {subsubsection}{\numberline {2.2.12.1}\texttt {Axis}}{49}{subsubsection.2.2.12.1}
+\contentsline {subsubsection}{\numberline {2.2.12.2}\texttt {AbstractCurve}}{49}{subsubsection.2.2.12.2}
+\contentsline {subsubsection}{\numberline {2.2.12.3}\texttt {AbstractSurface}}{49}{subsubsection.2.2.12.3}
+\contentsline {subsubsection}{\numberline {2.2.12.4}\texttt {Curve}}{49}{subsubsection.2.2.12.4}
+\contentsline {subsubsection}{\numberline {2.2.12.5}\texttt {Surface}}{50}{subsubsection.2.2.12.5}
+\contentsline {subsubsection}{\numberline {2.2.12.6}\texttt {DataSet}}{51}{subsubsection.2.2.12.6}
+\contentsline {chapter}{\numberline {3}Concepts used in SED-ML}{52}{chapter.3}
+\contentsline {section}{\numberline {3.1}MathML}{52}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}MathML elements}{52}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}MathML symbols}{52}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}MathML functions}{52}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}URI scheme}{53}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Model references}{54}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Data references}{54}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Language references}{54}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Data format references}{55}{subsection.3.2.4}
+\contentsline {subsubsection}{\numberline {3.2.4.1}NuML (Numerical Markup Language)}{55}{subsubsection.3.2.4.1}
+\contentsline {subsubsection}{\numberline {3.2.4.2}CSV (Comma Separated Values)}{55}{subsubsection.3.2.4.2}
+\contentsline {subsubsection}{\numberline {3.2.4.3}TSV (Tab Separated Values)}{57}{subsubsection.3.2.4.3}
+\contentsline {subsection}{\numberline {3.2.5}Symbols}{57}{subsection.3.2.5}
+\contentsline {subsection}{\numberline {3.2.6}Annotation Scheme}{57}{subsection.3.2.6}
+\contentsline {section}{\numberline {3.3}XPath}{57}{section.3.3}
+\contentsline {section}{\numberline {3.4}NuML}{58}{section.3.4}
+\contentsline {section}{\numberline {3.5}KiSAO}{58}{section.3.5}
+\contentsline {section}{\numberline {3.6}COMBINE archive}{58}{section.3.6}
+\contentsline {section}{\numberline {3.7}SED-ML resources}{58}{section.3.7}
+\contentsline {chapter}{\numberline {4}Acknowledgements}{59}{chapter.4}
+\contentsline {chapter}{\numberline {A}Examples}{60}{appendix.A}
+\contentsline {section}{\numberline {A.1}Example simulation experiment (\texttt {L1V3\_repressilator.omex})}{60}{section.A.1}
+\contentsline {section}{\numberline {A.2}Simulation experiments with dataDescriptions}{63}{section.A.2}
+\contentsline {subsection}{\numberline {A.2.1}Plotting data with simulations (\texttt {L1V3\_plotting-data-numl.omex})}{63}{subsection.A.2.1}
+\contentsline {section}{\numberline {A.3}Simulation experiments with repeatedTasks}{65}{section.A.3}
+\contentsline {subsection}{\numberline {A.3.1}Time course parameter scan (\texttt {L1V3\_repeated-scan-oscli.omex})}{65}{subsection.A.3.1}
+\contentsline {subsection}{\numberline {A.3.2}Steady state parameter scan (\texttt {L1V3\_repeated-steady-scan-oscli.omex})}{66}{subsection.A.3.2}
+\contentsline {subsection}{\numberline {A.3.3}Stochastic simulation (\texttt {L1V3\_repeated-stochastic-runs.omex})}{67}{subsection.A.3.3}
+\contentsline {subsection}{\numberline {A.3.4}Simulation perturbation (\texttt {L1V3\_oscli-nested-pulse.omex})}{69}{subsection.A.3.4}
+\contentsline {subsection}{\numberline {A.3.5}2D steady state parameter scan (\texttt {L1V3\_parameter-scan-2d.omex})}{71}{subsection.A.3.5}
+\contentsline {section}{\numberline {A.4}Simulation experiments with different model languages}{74}{section.A.4}
+\contentsline {subsection}{\numberline {A.4.1}Van der Pol oscillator in SBML (\texttt {L1V3\_vanderpol-sbml.omex})}{74}{subsection.A.4.1}
+\contentsline {subsection}{\numberline {A.4.2}Van der Pol oscillator in CellML (\texttt {L1V3\_vanderpol-cellml.omex})}{76}{subsection.A.4.2}
+\contentsline {section}{\numberline {A.5}Reproducing publication results}{79}{section.A.5}
+\contentsline {subsection}{\numberline {A.5.1}Le Loup model (\texttt {L1V3\_leloup-sbml.omex})}{79}{subsection.A.5.1}
+\contentsline {subsection}{\numberline {A.5.2}IkappaB signaling (\texttt {L1V3\_ikkapab.omex})}{81}{subsection.A.5.2}
+\contentsline {chapter}{\numberline {B}XML Schema}{83}{appendix.B}
