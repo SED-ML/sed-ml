@@ -3,10 +3,10 @@
   <rdf:Description rdf:about='.'>
     <dcterms:description>SED-ML L1V3 specification example.</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -44,10 +44,10 @@
   <rdf:Description rdf:about='manifest.json'>
     <dcterms:description>Information to create archive metadata</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -69,10 +69,10 @@
   <rdf:Description rdf:about='lorenz.xml'>
     <dcterms:description>Lorenz simulation experiment</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -94,10 +94,10 @@
   <rdf:Description rdf:about='lorenz.rst'>
     <dcterms:description>Documentation used to create PMR exposure page.</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -119,10 +119,10 @@
   <rdf:Description rdf:about='lorenz-model.cellml'>
     <dcterms:description>Lorenz CellML model.</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -144,10 +144,10 @@
   <rdf:Description rdf:about='results/opencor/plot1.pdf'>
     <dcterms:description>OpenCOR results.</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -177,10 +177,10 @@
   <rdf:Description rdf:about='results/opencor/plot2.pdf'>
     <dcterms:description>OpenCOR results.</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -210,10 +210,10 @@
   <rdf:Description rdf:about='results/opencor/plot3.pdf'>
     <dcterms:description>OpenCOR results.</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -243,10 +243,10 @@
   <rdf:Description rdf:about='results/sedml_webtools/plot1.pdf'>
     <dcterms:description>SED-ML webtools results.</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -276,10 +276,10 @@
   <rdf:Description rdf:about='results/sedml_webtools/plot2.pdf'>
     <dcterms:description>SED-ML webtools results.</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -309,10 +309,10 @@
   <rdf:Description rdf:about='results/sedml_webtools/plot3.pdf'>
     <dcterms:description>SED-ML webtools results.</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2017-10-08T11:41:07Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2017-12-28T16:23:43Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>

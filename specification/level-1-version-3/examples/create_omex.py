@@ -122,7 +122,7 @@ def create_omex(folder, omex_file, strict=True):
     for entry in json_entries:
         location = entry['location']
         path = os.path.join(folder, location)
-        if not os.path.exists(path):
+        if not os.path.exists(path) and not path.endswith('manifest.xml'):
             msg = "File does not exist at given location: {}".format(path)
             if strict:
                 raise IOError(msg)
@@ -147,6 +147,6 @@ if __name__ == "__main__":
         strict = True
         create_omex(archive_dir, omex_file, strict=strict)
 
-        from tellurium.utils import omex
-        omex.printArchive(omex_file)
-        print('\n\n')
+        # from tellurium.utils import omex
+        # omex.printArchive(omex_file)
+        # print('\n\n')

@@ -1,4 +1,7 @@
 { "entries": [
+  { "location" : "manifest.xml",
+    "format" : "http://identifiers.org/combine.specifications/omex-manifest"
+  },
   { "location" : "metadata.rdf",
     "format" : "http://identifiers.org/combine.specifications/omex-metadata"
   },
