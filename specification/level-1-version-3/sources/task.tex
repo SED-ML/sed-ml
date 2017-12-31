@@ -268,7 +268,7 @@ The following logarithmic example generates the three values \code{1}, \code{10}
 \paragraph{\element{VectorRange}}
 \label{class:vectorRange}
 
-The \concept{VectorRange} (\fig{range}) describes an ordered collection of real values, listing them explicitly within child \element{value} elements .
+The \concept{VectorRange} (\fig{range}) describes an ordered collection of real values, listing them explicitly within child \hyperref[class:Value]{\element{value}} elements.
 
 For example, the range below iterates over the values $1$, $4$ and $10$ in that order.
 \begin{myXmlLst}{The \code{VectorRange} element}{lst:vectorRange}
@@ -278,6 +278,10 @@ For example, the range below iterates over the values $1$, $4$ and $10$ in that 
 	<value> 10 </value> 
 </vectorRange> 
 \end{myXmlLst}
+
+\paragraph{\element{Value}}
+\label{class:value}
+The \concept{Value} (\fig{range}) describes a single value, e.g., the \concept{Value}s in a \hyperref[class:vectorRange]{VectorRange}.
 
 \paragraph{\element{FunctionalRange}}
 \label{class:functionalRange}

@@ -111,7 +111,12 @@ The \concept{\element{product}} of a variable represents the multiplication of a
  	<ci> variableId </ci>
 </apply>
 \end{myXmlLst}
-  
+
+% ~~~ NA VALUES ~~~
+\subsection{NA values}
+NA (not available) values can occur within a simulation experiment. Examples are missing values in a \hyperref[class:dataSource]{DataSource} or simulation results with NA values. All math operations encoded in \hyperref[sec:mathML]{MathML} in SED-ML are well defined on NA values. 
+
+NA values in a \hyperref[class:curve]{Curve} or \hyperref[class:surface]{Surface} should be ignored during plotting.
   
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % URI SCHEME
