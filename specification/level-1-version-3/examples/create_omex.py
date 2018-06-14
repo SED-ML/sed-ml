@@ -38,6 +38,14 @@ ARCHIVES = [
     'vanderpol-sbml',
 ]
 
+def zip_dir(dirPath, zipPath):
+    zipf = zipfile.ZipFile(zipPath , mode='w')
+    lenDirPath = len(dirPath)
+    for root, _, files in os.walk(dirPath):
+        for file in files:
+            filePath = os.path.join(root, file)
+            zipf.write(filePath , filePath[lenDirPath :] )
+    zipf.close()
 
 
 def create_omex(folder, omex_file, strict=True):
@@ -115,27 +123,32 @@ def create_omex(folder, omex_file, strict=True):
         f.write(metadata_str)
 
     # ----------------------------------
-    # Add entries to COMBINE archive
+    # create manifest.xml
     # ----------------------------------
-    archive = libcombine.CombineArchive()
+    f_manifest = os.path.join(folder, "manifest.xml")
+    with open(f_manifest, "w") as f:
+        f.write("<omexManifest>\n")
+        for entry in json_entries:
+            location = entry['location']
+            path = os.path.join(folder, location)
+            if not os.path.exists(path) and not path.endswith('manifest.xml'):
+                msg = "File does not exist at given location: {}".format(path)
+                if strict:
+                    raise IOError(msg)
+                else:
+                    warnings.warn(msg)
 
-    for entry in json_entries:
-        location = entry['location']
-        path = os.path.join(folder, location)
-        if not os.path.exists(path) and not path.endswith('manifest.xml'):
-            msg = "File does not exist at given location: {}".format(path)
-            if strict:
-                raise IOError(msg)
-            else:
-                warnings.warn(msg)
+            # add file to archive
+            format = entry['format']
+            master = entry.get('master', False)
+            # archive.addFile(path, location, format, master)
+            f.write('<content location="{}" format="{}" master="{}"/>\n'.format(location, format, master))
+        f.write("</omexManifest>\n")
 
-        # add file to archive
-        format = entry['format']
-        master = entry.get('master', False)
-        archive.addFile(path, location, format, master)
-
-    archive.writeToFile(omex_file)
-    archive.cleanUp()
+    # ----------------------------------
+    # create omex
+    # ----------------------------------
+    zip_dir(folder, omex_file)
     print('Archive created:', omex_file)
 
 

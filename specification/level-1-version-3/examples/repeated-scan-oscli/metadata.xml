@@ -3,10 +3,10 @@
   <rdf:Description rdf:about='.'>
     <dcterms:description>SED-ML L1V3 specification example.</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2018-06-14T08:47:11Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2018-06-14T08:47:11Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -15,15 +15,23 @@
       </vCard:hasName>
       <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
       <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Bergmann</vCard:family-name>
+        <vCard:given-name>Frank</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='fbergmann@caltech.edu' />
+      <vCard:organization-name>Caltech</vCard:organization-name>
     </dcterms:creator>
   </rdf:Description>
   <rdf:Description rdf:about='manifest.json'>
     <dcterms:description>Information to create archive metadata</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2018-06-14T08:47:11Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2018-06-14T08:47:11Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -33,14 +41,22 @@
       <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
       <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
     </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Bergmann</vCard:family-name>
+        <vCard:given-name>Frank</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='fbergmann@caltech.edu' />
+      <vCard:organization-name>Caltech</vCard:organization-name>
+    </dcterms:creator>
   </rdf:Description>
-  <rdf:Description rdf:about='lorenz.xml'>
-    <dcterms:description>Lorenz simulation experiment</dcterms:description>
+  <rdf:Description rdf:about='repeated-scan-oscli.xml'>
+    <dcterms:description></dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2018-06-14T08:47:11Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2018-06-14T08:47:11Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -50,14 +66,22 @@
       <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
       <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
     </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Bergmann</vCard:family-name>
+        <vCard:given-name>Frank</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='fbergmann@caltech.edu' />
+      <vCard:organization-name>Caltech</vCard:organization-name>
+    </dcterms:creator>
   </rdf:Description>
-  <rdf:Description rdf:about='lorenz-model.xml'>
-    <dcterms:description>Lorenz CellML model.</dcterms:description>
+  <rdf:Description rdf:about='oscli.xml'>
+    <dcterms:description></dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2018-06-14T08:47:11Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2018-06-14T08:47:11Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -66,65 +90,23 @@
       </vCard:hasName>
       <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
       <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Bergmann</vCard:family-name>
+        <vCard:given-name>Frank</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='fbergmann@caltech.edu' />
+      <vCard:organization-name>Caltech</vCard:organization-name>
     </dcterms:creator>
   </rdf:Description>
   <rdf:Description rdf:about='results/sedml_webtools/plot1.pdf'>
     <dcterms:description>Plot2D SED-ML webtools</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2018-06-14T08:47:11Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:created>
-    <dcterms:creator rdf:parseType='Resource'>
-      <vCard:hasName rdf:parseType='Resource'>
-        <vCard:family-name>König</vCard:family-name>
-        <vCard:given-name>Matthias</vCard:given-name>
-      </vCard:hasName>
-      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
-      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
-    </dcterms:creator>
-    <dcterms:creator rdf:parseType='Resource'>
-      <vCard:hasName rdf:parseType='Resource'>
-        <vCard:family-name>Bergmann</vCard:family-name>
-        <vCard:given-name>Frank</vCard:given-name>
-      </vCard:hasName>
-      <vCard:hasEmail rdf:resource='fbergmann@caltech.edu' />
-      <vCard:organization-name>Caltech</vCard:organization-name>
-    </dcterms:creator>
-  </rdf:Description>
-  <rdf:Description rdf:about='results/sedml_webtools/plot2.pdf'>
-    <dcterms:description>Plot2D SED-ML webtools</dcterms:description>
-    <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:modified>
-    <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:created>
-    <dcterms:creator rdf:parseType='Resource'>
-      <vCard:hasName rdf:parseType='Resource'>
-        <vCard:family-name>König</vCard:family-name>
-        <vCard:given-name>Matthias</vCard:given-name>
-      </vCard:hasName>
-      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
-      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
-    </dcterms:creator>
-    <dcterms:creator rdf:parseType='Resource'>
-      <vCard:hasName rdf:parseType='Resource'>
-        <vCard:family-name>Bergmann</vCard:family-name>
-        <vCard:given-name>Frank</vCard:given-name>
-      </vCard:hasName>
-      <vCard:hasEmail rdf:resource='fbergmann@caltech.edu' />
-      <vCard:organization-name>Caltech</vCard:organization-name>
-    </dcterms:creator>
-  </rdf:Description>
-  <rdf:Description rdf:about='results/sedml_webtools/plot3.pdf'>
-    <dcterms:description>Plot2D SED-ML webtools</dcterms:description>
-    <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:modified>
-    <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2018-06-14T08:47:11Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -146,60 +128,10 @@
   <rdf:Description rdf:about='results/tellurium/plot1.pdf'>
     <dcterms:description>Plot2D tellurium</dcterms:description>
     <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2018-06-14T08:47:11Z</dcterms:W3CDTF>
     </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:created>
-    <dcterms:creator rdf:parseType='Resource'>
-      <vCard:hasName rdf:parseType='Resource'>
-        <vCard:family-name>König</vCard:family-name>
-        <vCard:given-name>Matthias</vCard:given-name>
-      </vCard:hasName>
-      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
-      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
-    </dcterms:creator>
-    <dcterms:creator rdf:parseType='Resource'>
-      <vCard:hasName rdf:parseType='Resource'>
-        <vCard:family-name>Bergmann</vCard:family-name>
-        <vCard:given-name>Frank</vCard:given-name>
-      </vCard:hasName>
-      <vCard:hasEmail rdf:resource='fbergmann@caltech.edu' />
-      <vCard:organization-name>Caltech</vCard:organization-name>
-    </dcterms:creator>
-  </rdf:Description>
-  <rdf:Description rdf:about='results/tellurium/plot2.pdf'>
-    <dcterms:description>Plot2D tellurium</dcterms:description>
-    <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:modified>
-    <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:created>
-    <dcterms:creator rdf:parseType='Resource'>
-      <vCard:hasName rdf:parseType='Resource'>
-        <vCard:family-name>König</vCard:family-name>
-        <vCard:given-name>Matthias</vCard:given-name>
-      </vCard:hasName>
-      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
-      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
-    </dcterms:creator>
-    <dcterms:creator rdf:parseType='Resource'>
-      <vCard:hasName rdf:parseType='Resource'>
-        <vCard:family-name>Bergmann</vCard:family-name>
-        <vCard:given-name>Frank</vCard:given-name>
-      </vCard:hasName>
-      <vCard:hasEmail rdf:resource='fbergmann@caltech.edu' />
-      <vCard:organization-name>Caltech</vCard:organization-name>
-    </dcterms:creator>
-  </rdf:Description>
-  <rdf:Description rdf:about='results/tellurium/plot3.pdf'>
-    <dcterms:description>Plot2D tellurium</dcterms:description>
-    <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:modified>
-    <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2018-06-14T08:47:11Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
