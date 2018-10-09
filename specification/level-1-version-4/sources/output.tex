@@ -4,41 +4,35 @@
 \subsection{\element{Output}}
 \label{class:output}
 
-The abstract \concept{Output} class describes how the results of a simulation are presented (\fig{output}). The available output classes are plots (\hyperref[class:plot2D]{Plot2D} and \hyperref[class:plot3D]{Plot3D}) and reports (\hyperref[class:report]{Report}). The data used in \concept{Outputs} is provided via \hyperref[class:dataGenerator]{DataGenerators}.
+The abstract \Output class describes how the results of a simulation are presented (\fig{output}). \changed{The available output classes are \Plot, \Report, and \Figure.} The data used in an \Output is provided via the \DataGenerator class.
 
-\sedfig{images/uml/output}{The SED-ML Output class. Note that ListOfCurves, Curve, ListOfSurfaces, Surface, ListOfDataSets, DataSet and DataGenerator are subclasses of \emph{SEDBase}; the respective inheritance connections are not shown in the figure.}{fig:output}
+\sedfig{images/uml/output}{The definition of the SED-ML \Output class. The subclasses are defined below.}{fig:output}
 
-Note that even though the terms \code{Plot2D} and \code{Plot3D} are used, the exact type of plot is not specified. In other words, whether the 3D plot represents a surface plot, or three dimensional lines in space, cannot be distinguished by SED-ML SED-ML \currentLV alone.
+\begin{blockChanged}
+The \Output class inherits the \element{id} and \element{name} attributes from \SedBase, as well as the optional \element{annotation} and \element{notes} chidren.  When producing a printed table or figure, users may want to use the \element{name} as the title, and the \element{notes} as the legend.
+\end{blockChanged}
 
+\begin{blockChanged}
+% ~~~ PLOT ~~~
+\subsubsection{\element{Plot}}
+\label{class:plot}
+The \Plot class is used for two- and three-dimensional plot outputs.  It defines the axes of a plot, as well as whether or not a legend should be displayed.
 
-% ~~~ PLOT2D ~~~
+\sedfig{images/uml/plot}{The definition of the SED-ML \Plot, \PlotTwo, \PlotThree, \Axis, \ListOfCurves, and \ListOfSurfaces classes.  The \AbstractCurve and \Surface classes are defined below.}{fig:plot}
+
+The \Plot class inherits the \element{id} and \element{name} attributes from \SedBase, and must additionally contain a \element{legend} attribute of type Boolean that defines whether a legend should be displayed (\val{true}) or not (\val{false}).
+
+A \Plot may define optional \element{xAxis} and \element{yAxis} children, each of type \Axis.  Each axis defines the axis by which the \Curve or \Surface children are to be interpreted.  
+
+\end{blockChanged}
+
 \subsubsection{\element{Plot2D}}
 \label{class:plot2D}
-The \concept{Plot2D} class is used for two dimensional plot outputs (\fig{output}). The \concept{Plot2D} contains a number of \hyperref[class:curve]{Curve} definitions in the \element{listOfCurves}, defining the \hyperref[class:curve]{curves} to be plotted in the the 2D plot.
-%
-\tabtext{plot2D}{plot2D}
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-listOfCurves$^{o}$ & \refpage{class:curve}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{plot2D}}
-\label{tab:plot2D}
-\end{table}
+The \concept{Plot2D} class is used for two dimensional plot outputs. The \concept{Plot2D} may contain a number of \Curve definitions in the \element{listOfCurves}, defining the \hyperref[class:curve]{curves} to be plotted in the the 2D plot.  \changed{It may also contain a child \element{rightYAxis}, defining an alternate vertical axis that corresponds to some of the \Curve children.  Each \Curve defines for itself which y axis it corresponds to, if there are two.  A \PlotTwo with no \element{yAxis} may not have a \element{rightYAxis}.}
+
 
 \lsttext{listOfCurves}{listOfCurves}
+\label{class:listOfCurves}
 The example shows the definition of a \element{Plot2D} containing one \hyperref[class:curve]{Curve} inside the \element{listOfCurves}.
 \begin{myXmlLst}{The \code{plot2D} element with the nested \code{listOfCurves} element.}{lst:listOfCurves}
 <plot2D>
@@ -56,27 +50,6 @@ The example shows the definition of a \element{Plot2D} containing one \hyperref[
 \label{class:plot3D}
 The \concept{Plot3D} class is used for three dimensional plot outputs (\fig{output}). The \concept{Plot3D} contains a number of \hyperref[class:surface]{Surface} definitions in the \element{listOfSurfaces}. 
 %
-\tabtext{plot3D}{plot3D}
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-listOfSurfaces$^{o}$ & \refpage{class:surface}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{plot3D}}
-\label{tab:plot3D}
-\end{table}
 
 \lsttext{plot3D}{plot3D}
 The example shows the definition of a \hyperref[class:surface]{\element{Surface}} for the three dimensional plot inside the \code{listOfSurfaces}.

@@ -77,6 +77,27 @@ Attributes and nested elements for \concept{#1}. \emph{$^{o}$}denotes optional e
 \newcommand{\myXmlImport}[3]	{\lstinputlisting[basicstyle=\ttfamily\scriptsize,caption={#1},label={#2},%
 	keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue}, commentstyle=\color{red}, captionpos=b, breaklines=true, xleftmargin=1.5em, xrightmargin=1.5em, numbers=left, numberstyle=\ttfamily\tiny, numbersep=5pt, tabsize=4, showstringspaces=false, language=XML, stepnumber=1]{#3}} %float=h!
 
+\newcommand{\changedColor}{Maroon}
+
+\newcommand{\changed}[1]{\textcolor{\changedColor}{#1}}
+
+\newcommand{\Output} {\hyperref[class:output]{\emph{Output}}\xspace}
+\newcommand{\Plot} {\hyperref[class:plot]{Plot}\xspace}
+\newcommand{\AbstractCurve} {\hyperref[class:abstractCurve]{\emph{AbstractCurve}}\xspace}
+\newcommand{\Plot} {\hyperref[class:plot]{Plot}\xspace}
+\newcommand{\PlotTwo} {\hyperref[class:plot2D]{Plot2D}\xspace}
+\newcommand{\PlotThree} {\hyperref[class:plot3D]{Plot3D}\xspace}
+\newcommand{\Report} {\hyperref[class:report]{Report}\xspace}
+\newcommand{\Figure} {\hyperref[class:figure]{Figure}\xspace}
+\newcommand{\DataGenerator} {\hyperref[class:dataGenerator]{DataGenerator}\xspace}
+
+
+\newenvironment{blockChanged}{\color{\changedColor}}{\color{black}}
+
+<figure source='whatever'>This is the legend. It describes the figure</figure>
+<figure source='whatever' legend='This is the legend.  It describes the figure.'>
+
+
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../sed-ml-L1V3"
