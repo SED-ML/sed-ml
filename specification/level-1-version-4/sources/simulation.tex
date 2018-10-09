@@ -11,6 +11,30 @@ A simulation is the execution of some defined algorithm(s). Simulations are desc
 
 Each instance of the \concept{Simulation} class has an unambiguous and mandatory \hyperref[sec:id]{\code{id}}. An additional, optional \hyperref[sec:name]{\code{name}} may be given to the simulation. Every simulation has a required element \hyperref[sec:algorithm]{\code{algorithm}} describing the simulation \hyperref[class:algorithm]{Algorithm}.
 
+\tabtext{simulation}{simulation}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{\attribute} & \textbf{\desc}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\midrule
+algorithm & \refpage{class:algorithm}\\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{simulation}}
+\label{tab:simulation}
+\end{table}
+
 \lsttext{simulation}{simulation}
 
 \begin{myXmlLst}{The SED-ML \code{listOfSimulations} element, defining two different UniformTimecourse simulations}{lst:simulation}
@@ -94,15 +118,37 @@ When executed, the \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse
 Just because the output points lie on the regular grid described above, does not mean that the simulation algorithm has to work with the same step size. Usually the step size the simulator chooses will be adaptive and much smaller than the required output step size. On the other hand a stochastic simulator might not have any new events occurring between two grid points. Nevertheless the simulator has to produce data on this regular grid. For an example, see Listing~\ref{lst:timecourse}. 
 
 
-% ~~~ NONUNIFORM TIMECOURSE SIMULATION ~~~
-\subsubsection{\element{NonUniformTimecourse}}
-\hl{TODO: fill in this section}
-
 % ~~~ ONESTEP SIMULATION ~~~
 \subsubsection{\element{OneStep}}
 \label{class:oneStep}
 
 The \concept{OneStep} class calculates one further output step for the model from its current state. Each instance of the \concept{OneStep} class has, in addition to the elements from \hyperref[class:simulation]{Simulation}, the mandatory element \hyperref[sec:step]{\code{step}} (\fig{simulation}).
+
+\tabtext{oneStep}{oneStep}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{attribute} & \textbf{description}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\midrule
+step & \refpage{sec:step}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\midrule
+algorithm & \refpage{class:algorithm}\\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{oneStep}}
+\label{tab:oneStep}
+\end{table}
 
 \lsttext{oneStep}{oneStep}
 
@@ -126,6 +172,30 @@ Note that the \concept{\element{step}} does not necessarily equate to one integr
 \label{class:steadyState}
 The \concept{SteadyState} represents a steady state computation (as for example implemented by NLEQ or Kinsolve). The \concept{SteadyState} class has no additional elements than the elements from \hyperref[class:simulation]{Simulation} (\fig{simulation}).
 
+\tabtext{steadyState}{steadyState}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{attribute} & \textbf{description}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\midrule
+algorithm & \refpage{class:algorithm}\\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{steadyState}}
+\label{tab:steadyState}
+\end{table}
+
 \lsttext{steadyState}{steadyState}
 
 \begin{myXmlLst}{The SED-ML \code{steadyState} element, defining a steady state simulation with id \code{steady}.}{lst:steadyState}
@@ -147,6 +217,28 @@ The \concept{SteadyState} represents a steady state computation (as for example 
 \subsubsection{\element{Algorithm}}
 \label{class:algorithm}
 The \concept{Algorithm} class has a mandatory element \hyperref[sec:kisaoid]{\element{kisaoID}} which contains a \hyperref[sec:kisao]{KiSAO} reference to the particular simulation algorithm used in the \hyperref[class:simulation]{simulation}. In addition, the \concept{Algorithm} has an optional \hyperref[sec:listOfAlgorithmParameters]{\element{listOfAlgorithmParameters}}, a collection of \hyperref[class:algorithmParameter]{algorithmParameter}, which are used to parameterize the \concept{algorithm}.
+
+\tabtext{algorithm}{Algorithm}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{attribute} & \textbf{description}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+kisaoID & \refpage{sec:kisao}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+listOfAlgorithmParameters$^{o}$ & \refpage{class:algorithmParameter}\\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{algorithm}}
+\label{tab:algorithm}
+\end{table}
 
 The example given in Listing~\ref{lst:simulation}, completed by algorithm definitions results in the code given in Listing \ref{lst:algorithm}. In the example, for both simulations a algorithm is defined. In the first simulation \code{s1} a deterministic approach is used (Euler forward method), in the second simulation \code{s2} a stochastic approach is used (Stochsim nearest neighbor).
 

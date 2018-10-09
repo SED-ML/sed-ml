@@ -5,8 +5,17 @@ from __future__ import print_function, absolute_import
 import os
 import warnings
 import json
-import libcombine
+
+try:
+    import libcombine
+except ImportError:
+    import tecombine as libcombine
+
+import zipfile
+import tempfile
 import pprint
+
+
 
 EXAMPLES_DIR = os.path.dirname(os.path.realpath(__file__))
 OMEX_DIR = os.path.join(EXAMPLES_DIR, "./__omex__")
@@ -28,6 +37,15 @@ ARCHIVES = [
     'vanderpol-cellml',
     'vanderpol-sbml',
 ]
+
+def zip_dir(dirPath, zipPath):
+    zipf = zipfile.ZipFile(zipPath , mode='w')
+    lenDirPath = len(dirPath)
+    for root, _, files in os.walk(dirPath):
+        for file in files:
+            filePath = os.path.join(root, file)
+            zipf.write(filePath , filePath[lenDirPath :] )
+    zipf.close()
 
 
 def create_omex(folder, omex_file, strict=True):
@@ -51,44 +69,34 @@ def create_omex(folder, omex_file, strict=True):
         os.remove(omex_file)
 
     json_manifest = os.path.join(folder, 'manifest.json')
-    print(json_manifest)
+    # print(json_manifest)
     with open(json_manifest, "r") as f:
         json_entries = json.load(f)
         json_entries = json_entries['entries']
-        pprint.pprint(json_entries)
+        # pprint.pprint(json_entries)
 
+    # ----------------------------------
+    # Create metadata file
+    # ----------------------------------
+    # create the metadata file
+    # <content format = "http://identifiers.org/combine.specifications/omex-metadata" location = "metadata.rdf" / >
     time_now = libcombine.OmexDescription.getCurrentDateAndTime()
-    archive = libcombine.CombineArchive()
-
+    metadata_xml = []
     for entry in json_entries:
         location = entry['location']
-        path = os.path.join(folder, location)
-        if not os.path.exists(path):
-            msg = "File does not exist at given location: {}".format(path)
-            if strict:
-                raise IOError(msg)
-            else:
-                warnings.warn(msg)
-
-        # add file to archive
-        format = entry['format']
-        master = entry.get('master', False)
-        archive.addFile(path, location, format, master)
-
 
         # add metadata for location
         description = entry.get("description", None)
         creators = entry.get("creators", None)
 
-
         if description or creators:
+            # Create an omex description
             omex_d = libcombine.OmexDescription()
             omex_d.setAbout(location)
             omex_d.setCreated(time_now)
 
             if description:
                 omex_d.setDescription(description)
-                # print("Setting description:", description)
 
             if creators:
                 for c in creators:
@@ -99,66 +107,49 @@ def create_omex(folder, omex_file, strict=True):
                     creator.setOrganization(c.get("organisation"))
                     omex_d.addCreator(creator)
 
-            archive.addMetadata(location, omex_d)
+            metadata_xml.append(omex_d.toXML())
 
+    # store the metadata file
+    # FIXME: bad hack for now, but seems to work
+    contents = [(item.split("\n"))[2:-2] for item in metadata_xml]
+    start_str = "<?xml version='1.0' encoding='UTF-8'?>\n" \
+                "<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:dcterms='http://purl.org/dc/terms/' xmlns:vCard='http://www.w3.org/2006/vcard/ns#'>"
+    content_str = "\n".join(["\n".join(lines) for lines in contents])
+    end_str = "</rdf:RDF>"
+    metadata_str = "\n".join([start_str, content_str, end_str])
 
-    archive.writeToFile(omex_file)
-    archive.cleanUp()
+    f_metadata = os.path.join(folder, "metadata.rdf")
+    with open(f_metadata, "w") as f:
+        f.write(metadata_str)
+
+    # ----------------------------------
+    # create manifest.xml
+    # ----------------------------------
+    f_manifest = os.path.join(folder, "manifest.xml")
+    with open(f_manifest, "w") as f:
+        f.write("<omexManifest>\n")
+        for entry in json_entries:
+            location = entry['location']
+            path = os.path.join(folder, location)
+            if not os.path.exists(path) and not path.endswith('manifest.xml'):
+                msg = "File does not exist at given location: {}".format(path)
+                if strict:
+                    raise IOError(msg)
+                else:
+                    warnings.warn(msg)
+
+            # add file to archive
+            format = entry['format']
+            master = entry.get('master', False)
+            # archive.addFile(path, location, format, master)
+            f.write('<content location="{}" format="{}" master="{}"/>\n'.format(location, format, master))
+        f.write("</omexManifest>\n")
+
+    # ----------------------------------
+    # create omex
+    # ----------------------------------
+    zip_dir(folder, omex_file)
     print('Archive created:', omex_file)
-
-
-def printMetaDataFor(archive, location):
-    """ Prints metadata for given location.
-
-    :param archive: CombineArchive instance
-    :param location:
-    :return:
-    """
-    desc = archive.getMetadataForLocation(location)
-    if desc.isEmpty():
-        print("  no metadata for '{0}'".format(location))
-        return None
-
-    print("  metadata for '{0}':".format(location))
-    print("     Created : {0}".format(desc.getCreated().getDateAsString()))
-    for i in range(desc.getNumModified()):
-        print("     Modified : {0}".format(desc.getModified(i).getDateAsString()))
-
-    print("     # Creators: {0}".format(desc.getNumCreators()))
-    for i in range(desc.getNumCreators()):
-        creator = desc.getCreator(i)
-        print("       {0} {1}".format(creator.getGivenName(), creator.getFamilyName()))
-
-
-def printArchive(fileName):
-    """ Prints content of combine archive
-
-    :param fileName: path of archive
-    :return: None
-    """
-    archive = libcombine.CombineArchive()
-    if archive.initializeFromArchive(fileName) is None:
-        print("Invalid Combine Archive")
-        return None
-
-    print('*'*80)
-    print('Print archive:', fileName)
-    print('*' * 80)
-    printMetaDataFor(archive, ".")
-    print("Num Entries: {0}".format(archive.getNumEntries()))
-
-    for i in range(archive.getNumEntries()):
-        entry = archive.getEntry(i)
-        print(" {0}: location: {1} format: {2}".format(i, entry.getLocation(), entry.getFormat()))
-        printMetaDataFor(archive, entry.getLocation())
-
-        # the entry could now be extracted via
-        # archive.extractEntry(entry.getLocation(), <filename or folder>)
-
-        # or used as string
-        # content = archive.extractEntryToString(entry.getLocation());
-
-    archive.cleanUp()
 
 
 if __name__ == "__main__":
@@ -168,5 +159,7 @@ if __name__ == "__main__":
 
         strict = True
         create_omex(archive_dir, omex_file, strict=strict)
-        printArchive(omex_file)
-        print('\n\n')
+
+        # from tellurium.utils import omex
+        # omex.printArchive(omex_file)
+        # print('\n\n')

@@ -111,7 +111,12 @@ The \concept{\element{product}} of a variable represents the multiplication of a
  	<ci> variableId </ci>
 </apply>
 \end{myXmlLst}
-  
+
+% ~~~ NA VALUES ~~~
+\subsection{NA values}
+NA (not available) values can occur within a simulation experiment. Examples are missing values in a \hyperref[class:dataSource]{DataSource} or simulation results with NA values. All math operations encoded in \hyperref[sec:mathML]{MathML} in SED-ML are well defined on NA values. 
+
+NA values in a \hyperref[class:curve]{Curve} or \hyperref[class:surface]{Surface} should be ignored during plotting.
   
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % URI SCHEME
@@ -185,7 +190,6 @@ SBML Level 2 Version 1 & \code{urn:sedml:language:sbml.level-2.version-1} \\
 SBML Level 2 Version 2 & \code{urn:sedml:language:sbml.level-2.version-2} \\
 SBML Level 2 Version 3 & \code{urn:sedml:language:sbml.level-2.version-3} \\
 SBML Level 2 Version 4 & \code{urn:sedml:language:sbml.level-2.version-4} \\
-SBML Level 2 Version 5 & \code{urn:sedml:language:sbml.level-2.version-5} \\
 SBML Level 3 Version 1 & \code{urn:sedml:language:sbml.level-3.version-1} \\
 SBML Level 3 Version 2 & \code{urn:sedml:language:sbml.level-3.version-2} \\
 VCML (generic) & \code{urn:sedml:language:vcml} \\
@@ -318,30 +322,6 @@ SBML & \code{urn:sedml:symbol:time} & Time in SBML is an intrinsic model variabl
 \end{tabular}
 \caption{Predefined symbols in SED-ML. The latest list of symbols is available from \url{http://sed-ml.org}.}
 \label{tab:symbols}
-\end{table}
-
-\hl{TODO: merge the tables, define this}
-\begin{table}[ht]
-\center
-\begin{tabular}{lp{8cm}} \toprule
-Symbol URN & Definition \\ \midrule
-{\tt urn:sedml:symbol:time} & time in SBML is an intrinsic model variable that is addressable in model equations via a csymbol 'time'. \\[5pt]
-{\tt urn:sedml:symbol:fullStoichiometryMatrix} & The full $m$ by $n$ stoichiometry matrix where $m$ is the number of state variables and $n$ the number of reactions. \\[5pt]
-{\tt urn:sedml:symbol:reducedStoichiometryMatrix} & The reduced $m$ by $n$ stoichiometry matrix where $m$ is the number of independent state variables and $n$ the number of reactions. \\[5pt]
-{\tt urn:sedml:symbol:N} & The full $m$ by $n$ stoichiometry matrix where $m$ is the number of state variables and $n$ the number of reactions. \\[5pt]
-{\tt urn:sedml:symbol:Nr} & The reduced $m$ by $n$ stoichiometry matrix where $m$ is the number of independent state variables and $n$ the number of reactions. \\[5pt]
-{\tt urn:sedml:symbol:J} & $n$ by $n$ matrix of $\displaystyle \partial f_i/\partial x_j$ where $f_i$ is the ith differential equation in the model and $n$ is the number of state variables.\\[5pt] 
-{\tt urn:sedml:symbol:Jr} & $n_r$ by $n_r$ matrix of $\displaystyle \partial f_i/\partial x_j$ where $f_i$ is the ith differential equation in the model and $n_r$ is the number of independent state variables.\\[5pt] 
-{\tt urn:sedml:symbol:fullJacobian} & $n$ by $n$ matrix of $\displaystyle \partial f_i/\partial x_j$ where $f_i$ is the ith differential equation in the model and $n$ is the number of state variables.\\[5pt] 
-{\tt urn:sedml:symbol:reducedJacobian} & $n_r$ by $n_r$ matrix of $\displaystyle \partial f_i/\partial x_j$ where $f_i$ is the ith differential equation in the model and $n_r$ is the number of independent state variables.\\[5pt] 
-{\tt urn:sedml:symbol:eigenvalue} & How do we specify the ith eigenvalue? \\[5pt]
-{\tt urn:sedml:symbol:uelasticity} & Unscaled elasticity \\[5pt]
-{\tt urn:sedml:symbol:elasticity} & Scaled elasticity \\[5pt]
-{\tt urn:sedml:symbol:ucc} & Unscaled control coefficient \\[5pt]
-{\tt urn:sedml:symbol:cc} & Scaled control coefficient \\
-\bottomrule
-\end{tabular}
-\label{tab:newSymbols}
 \end{table}
 
 

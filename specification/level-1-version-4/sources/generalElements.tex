@@ -79,107 +79,6 @@ Type \concept{\element{NuMLSIdRef}} is used for all attributes that refer to ide
 As with \hyperref[type:numlsid]{\element{NuMLSId}}, the equality of \concept{\element{NuMLSIdRef}} values is determined by exact character sequence match; i.e., comparisons of these identifiers must be performed in a case-sensitive manner.
 
 
-% The folowing was in the old draft, but I think we can remove it.
-% ------------------------------------------------------------------
-%\subsubsection{\element{double}}
-%\label{type:double}
-%
-%The XML Schema 1.0 type {\tt double} is the data type of
-%floating-point numerical quantities in SED-ML.  It is restricted to IEEE
-%double-precision 64-bit floating-point type IEEE 754-1985\cite{ADD_REFERENCE}.  The
-%value space of {\tt double} consists of (a) the numerical
-%values $m \cdot 2^x$, where $m$ is an integer whose absolute
-%value is less than $2^{53}$, and $x$ is an integer between -1075
-%and 970, inclusive, (b) the special value positive infinity
-%({\tt INF}), (c) the special value negative infinity
-%({\tt -INF}), and (d) the special value not-a-number
-%({\tt NaN}).  The order relation on the values is the following:
-%$x < y$ if and only if $y - x$ is positive for values of $x$ and
-%$y$ in the value space of {\tt double}.  Positive infinity is
-%greater than all other values other than {\tt NaN}.  {\tt NaN}
-%is equal to itself but is neither greater nor less than any other
-%value in the value space.  (Software implementors should consult
-%the XML Schema 1.0 definition of {\tt double} for additional
-%details about equality and relationships to IEEE 754-1985.)
-%
-%The general form of {\tt double} numbers is
-%{\tt $x$e$y$}, where $x$ is a decimal number (the mantissa),
-%{\tt e} is a separator character, and $y$ is an
-%exponent; the meaning of this is ``$x$ multiplied by 10 raised
-%to the power of $y$'', i.e., $x \cdot 10^y$.  More
-%precisely, a {\tt double} value consists of a mantissa with
-%an optional leading sign ({\tt +} or {\tt -}), optionally followed
-%by the character {\tt E} or {\tt e} followed by an integer
-%(the exponent).  The mantissa must be a decimal number: an integer
-%optionally followed by a period ({\tt .})\ optionally followed
-%by another integer.  If the leading sign is omitted, {\tt +} is
-%assumed.  An omitted {\tt E} or {\tt e} (and associated exponent) means
-%that a value of 0 is assumed for the exponent.  If the {\tt E}
-%or {\tt e} is present, it must be followed by an integer, or else an
-%error results.  The integer exponent must consist of
-%a decimal number optionally preceded by a leading sign ({\tt +} or
-%{\tt -}).  If the sign is omitted, {\tt +} is assumed.  The
-%following are examples of legal literal {\tt double} values:
-%\begin{center}\vspace*{-0.5ex}
-%\begin{tabular}{llllllllllll}
-%\token{-1E4}, & {\tt +4}, & {\tt 234.234e3}, & {\tt 6.02E-23}, 
-%& \token{0.3e+11}, & \token{2}, & \token{0}, & {\tt -0}, 
-%& \token{INF}, & \token{-INF}, & \token{NaN}
-%\end{tabular}
-%\end{center}\vspace*{-0.6ex}
-% ------------------------------------------------------------------
-
-% The following must be corrected and updated
-% -->
-\subsubsection{\element{ColorType}}
-\label{type:colorType}
-
-The primitive {\tt ColorType} is a string encoding the hexadecimal color code. Color values are specified as a six {\bf or} eight character hexadecimal string which defines the RGBA value of the color. The string is formatted as {\tt `\#'} followed by the six or eight characters from {\tt 0-9 a-f A-F}. If only six characters are given (RGB), the alpha (A) value (also known as transparency or opacity of the color) is assumed to be {\tt FF}.
-
-\subsubsection{\element{MarkerType}}
-\label{type:markerType}
-MarkerType is defined as an enumerated type that can take on one of the values shown in Table~\ref{tbl:MarkerType}.
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{ll} \toprule
-Enumeration Value & Display \\ \midrule
-{\tt 'square'} & \\
-{\tt 'diamond'} & \\
-{\tt 'triangle'} & \\
-{\tt 'circle'} & \\ 
-{\tt 'xCross'} & \\ 
-{\tt 'plus'} & \\
-{\tt 'star'} & \\ 
-{\tt 'triangleDown'} & \\
-{\tt 'hDash'} & \\
-{\tt 'vDash'} & \\ 
-{\tt 'none'} & \\  \bottomrule
-\end{tabular}
-\caption{List of marker types.}
-\label{tbl:MarkerType}
-\end{table}
-
-\subsubsection{\element{LineType}}
-\label{type:lineType}
-LineType is defined as an enumerated type that can be one of the values listed in Table~\ref{tbl:LineType}.
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{ll} \toprule 
-Enumeration Value & Display \\ \midrule
-{\tt 'solid'} & \\
-{\tt 'dash'} & \\
-{\tt 'dot'} & \\
-{\tt 'dashDot'} & \\ 
-{\tt 'dashDotDot'} & \\ 
-{\tt 'none'} & \\ \bottomrule
-\end{tabular}
-\caption{List of line types.}
-\label{tbl:LineType}
-\end{table}
-% <-- until here
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % SEDBASE
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -189,7 +88,28 @@ Enumeration Value & Display \\ \midrule
 
 \concept{SEDBase} provides means to attach additional information on all other classes. That information can be specified by human readable \hyperref[class:notes]{Notes} or custom \hyperref[class:annotation]{Annotation}.
 
-\sedfig[width=0.8\textwidth]{images/uml/sedBase}{The SEDBase class}{fig:sedBase}
+\begin{table}[ht]
+    \begin{minipage}{0.45\textwidth}
+		\sedfig[width=1.0\textwidth]{images/uml/sedBase}{The SEDBase class}{fig:sedBase}
+	\end{minipage}%
+    \begin{minipage}{0.45\textwidth}
+    \centering
+	\begin{tabular}{ll}
+	\toprule
+	\textbf{\attribute} & \textbf{\desc}\\
+	\midrule
+	metaid$^{o}$ & \refpage{sec:metaid} \\
+	\midrule
+	\textbf{\subelements} & \textbf{\desc}\\
+	\midrule
+	notes$^{o}$ & \refpage{class:notes}\\
+	annotation$^{o}$ & \refpage{class:annotation}\\
+	\bottomrule
+	\end{tabular}
+	\caption{\tabcap{SEDBase}}
+	\label{tab:sedbase}
+	\end{minipage}
+\end{table}
 
 % ~~~ META ID ~~~
 \paragraph*{\element{metaid}}
@@ -197,11 +117,6 @@ Enumeration Value & Display \\ \midrule
 The main purpose of the \concept{\element{metaid}} attribute of data type \code{\hyperref[type:id]{ID}} is to attach semantic annotations in form of the \hyperref[class:annotation]{Annotation} class to SED-ML elements. The \concept{\element{metaid}} attribute is globally unique throughout the SED-ML document, i.e., the \concept{\element{metaid}} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
 
 In order to set either \hyperref[class:notes]{Notes} or \hyperref[class:annotation]{Annotation} on a SED-ML class the \concept{\element{metaid}} is required.
-
-\paragraph*{\element{id}}
-\label{sec:id}
-\hl{TODO describe new optional id on SED-base, fix the other id references in the document}
-
 
 \paragraph*{\element{notes}}
 \label{sec:notesElement}
@@ -217,6 +132,26 @@ The optional \concept{\element{annotation}} element stores \hyperref[class:annot
 \subsection{\element{Notes}}
 \label{class:notes}
 A \concept{Notes} is considered a human-readable description of the element it is assigned to. Instances of the \concept{Notes} class may contain any valid XHTML \citep{P+02}. The namespace URL for \code{XHTML} content inside the \hyperref[class:notes]{Notes} class is \url{http://www.w3.org/1999/xhtml}, which may be declared either in the \hyperref[class:sed-ml]{\element{sedML}} element, or directly in the top level XHTML elements contained within the \hyperref[sec:notesElement]{\code{notes}} element. For details on of how to set the namespace and examples see the SBML specification \citep{HBH+10}.
+
+\tabtext{notes}{Notes}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{\attribute} & \textbf{\desc}\\
+\midrule
+xmlns:string & \refpage{sec:xmlns} \\
+ {``http://www.w3.org/1999/xhtml" } & \\
+\midrule
+\textbf{\subelements} & \textbf{ }\\
+\midrule
+\emph{well-formed content permitted in XHTML} & \\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{Notes}}
+\label{tab:notes}
+\end{table}
 
 \concept{Notes} does not have any further sub-elements defined in SED-ML, nor attributes associated with it.
 
@@ -272,7 +207,32 @@ An \concept{Annotation} is considered a computer-processable piece of informatio
 The \concept{Parameter} class (\fig{parameter}) is used to create named parameters with a constant value.
 The \concept{Parameter} class introduces the required attributes \hyperref[sec:id]{\element{id}} and \hyperref[sec:value]{\element{value}}, and the optional attribute \hyperref[sec:name]{\element{name}}.
 
-\sedfig[width=0.35\textwidth]{images/uml/parameter}{The Parameter class}{fig:parameter}
+\begin{table}[ht]
+    \begin{minipage}{0.45\textwidth}
+		\sedfig[width=0.7\textwidth]{images/uml/parameter}{The Parameter class}{fig:parameter}
+	\end{minipage}%
+    \begin{minipage}{0.45\textwidth}
+    \centering
+	\begin{tabular}{ll}
+	\toprule
+	\textbf{\attribute} & \textbf{\desc}\\
+	\midrule
+	metaid$^{o}$ & \refpage{sec:metaid} \\
+	id & \refpage{sec:id}\\
+	name$^{o}$ & \refpage{sec:name}\\
+	\midrule
+	value & \refpage{sec:value}\\
+	\midrule
+	\textbf{\subelements} & \textbf{\desc}\\
+	\midrule
+	notes$^{o}$ & \refpage{class:notes}\\
+	annotation$^{o}$ & \refpage{class:annotation}\\
+	\bottomrule
+	\end{tabular}
+	\caption{\tabcap{parameter}}
+	\label{tab:parameter}
+	\end{minipage}
+\end{table}
 
 \concept{Parameters} can be used wherever a mathematical expression to compute a value is defined, e.g., in \hyperref[class:computeChange]{ComputeChange}, \hyperref[class:functionalRange]{FunctionalRange} or \hyperref[class:dataGenerator]{DataGenerator}. The \concept{Parameter} definitions are local to the particular class defining them. By using \concept{Parameters} rather than including numbers directly within a mathematical expression is that \hyperref[class:notes]{notes} and \hyperref[class:annotation]{annotations} can be associated with them.
 
@@ -297,7 +257,36 @@ The \concept{\element{value}} attribute of data type \code{double} is required f
 \label{class:variable}
 A \concept{Variable} (\fig{variable}) is a reference to an already existing entity, either to an object in one of the \hyperref[class:model]{Models} or to implicitly defined \hyperref[sec:symbol]{Symbols}. The \concept{Variable} class introduces the required attribute \hyperref[sec:id]{\element{id}}, the optional attribute \hyperref[sec:name]{\element{name}}, and the context dependent attributes \hyperref[sec:target]{\element{target}}, \hyperref[sec:symbol]{\element{symbol}}, \hyperref[sec:taskReferenceAttribute]{\element{taskReference}}, and \hyperref[sec:modelReferenceAttribute]{\element{modelReference}}.
 
-\sedfig[width=0.35\textwidth]{images/uml/variable}{The Variable class}{fig:variable}
+\begin{table}[ht]
+    \begin{minipage}{0.45\textwidth}
+		\sedfig[width=0.7\textwidth]{images/uml/variable}{The Variable class}{fig:variable}
+	\end{minipage}%
+    \begin{minipage}{0.45\textwidth}
+    \centering
+	\begin{tabular}{ll}
+	\toprule
+	\textbf{\attribute} & \textbf{\desc}\\
+	\midrule
+	metaid$^{o}$ & \refpage{sec:metaid}\\
+	id & \refpage{sec:id} \\
+	name$^{o}$ & \refpage{sec:name}\\
+	\midrule
+	target & \refpage{sec:target}\\
+	symbol & \refpage{sec:symbol}\\
+	\midrule
+	taskReference & \refpage{sec:taskReference}\\
+	modelReference & \refpage{sec:modelReference}\\
+	\midrule
+	\textbf{\subelements} & \textbf{\desc}\\
+	\midrule
+	notes$^{o}$ & \refpage{class:notes}\\
+	annotation$^{o}$ & \refpage{class:annotation}\\
+	\bottomrule
+	\end{tabular}
+	\caption{\tabcap{Variable}}
+	\label{tab:variable}
+	\end{minipage}
+\end{table}
 
 If the variable is defined through a reference to a model constituent, such as an SBML species, or to an entity within the SED-ML file itself, then the reference is specified using the \hyperref[sec:target]{\element{target}} attribute. If the variable is defined through a reference to a \hyperref[sec:implicitVariable]{Symbol}, rather than one explicitly appearing in the model, then the \hyperref[sec:symbol]{\element{symbol}} attribute is used. 
 

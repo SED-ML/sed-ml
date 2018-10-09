@@ -1,0 +1,13 @@
+<omexManifest>
+<content location="manifest.xml" format="http://identifiers.org/combine.specifications/omex-manifest" master="False"/>
+<content location="metadata.rdf" format="http://identifiers.org/combine.specifications/omex-metadata" master="False"/>
+<content location="." format="http://identifiers.org/combine.specifications/omex" master="False"/>
+<content location="manifest.json" format="http://purl.org/NET/mediatypes/application/json" master="False"/>
+<content location="vanderpol.xml" format="http://identifiers.org/combine.specifications/sed-ml" master="True"/>
+<content location="vanderpol.rst" format="http://purl.org/NET/mediatypes/text/plain" master="False"/>
+<content location="vanderpol-model.cellml" format="http://identifiers.org/combine.specifications/cellml" master="False"/>
+<content location="results/opencor/plot1.pdf" format="http://purl.org/NET/mediatypes/application/pdf" master="False"/>
+<content location="results/opencor/plot2.pdf" format="http://purl.org/NET/mediatypes/application/pdf" master="False"/>
+<content location="results/sedml_webtools/plot1.pdf" format="http://purl.org/NET/mediatypes/application/pdf" master="False"/>
+<content location="results/sedml_webtools/plot2.pdf" format="http://purl.org/NET/mediatypes/application/pdf" master="False"/>
+</omexManifest>

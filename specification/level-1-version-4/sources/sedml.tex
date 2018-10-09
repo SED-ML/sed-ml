@@ -19,6 +19,35 @@ The root element of each SED-ML XML file is the \code{sedML} element, encoding \
 
 \sedfig[width=0.8\textwidth]{images/uml/sed-ml}{The SED-ML class}{fig:sed-mlMain}
 
+\tabtext{sed-ml}{SED-ML}
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{\attribute} & \textbf{\desc}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+xmlns & \refpage{sec:xmlns}\\
+level & \refpage{sec:level}\\
+version & \refpage{sec:version}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+listOfDataDescriptions$^{o}$ & \refpage{sec:listOfDataDescriptions}\\
+listOfModels$^{o}$ & \refpage{sec:listOfModels}\\
+listOfSimulations$^{o}$ & \refpage{sec:listOfSimulations} \\
+listOfTasks$^{o}$ & \refpage{sec:listOfTasks} \\
+listOfDataGenerators$^{o}$ & \refpage{sec:listOfDataGenerators} \\
+listOfOutputs$^{o}$ & \refpage{sec:listOfOutputs} \\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{SED-ML}}
+\label{tab:sed-ml}
+\end{table}
+
+
 The basic XML structure of a SED-ML file is shown in listing \vref{lst:sedmlRoot}.
 
 \begin{myXmlLst}{The SED-ML root element}{lst:sedmlRoot}

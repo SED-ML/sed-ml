@@ -10,6 +10,34 @@ The \concept{DataDescription} class introduces four attributes: the required att
 
 \sedfig[width=0.8\textwidth]{images/uml/dataDescription}{The SED-ML DataDescription class}{fig:dataDescription}
 
+\tabtext{dataDescription}{dataDescription}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{\attribute} & \textbf{\desc}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\midrule
+source & \refpage{sec:data_source}\\
+format$^{o}$ & \refpage{sec:format}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\midrule
+dimensionDescription$^{o}$ & \refpage{sec:dimensionDescription}\\
+listOfDataSources$^{o}$ & \refpage{sec:listOfDataSources}\\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{dataDescription}}
+\label{tab:dataDescription}
+\end{table}
+
 \lsttext{dataDescription}{dataDescription}
 \begin{myXmlLst}{SED-ML \code{dataDescription} element}{lst:dataDescription}
 <dataDescription id="Data1" name="Oscli Time Course Data" format="urn:sedml:format:numl"
@@ -68,6 +96,32 @@ In the following example a nested NuML \element{compositeDescription} with \toke
 \subsubsection{\element{DataSource}}
 \label{class:dataSource}
 The \concept{DataSource} class (\fig{dataDescription}) extracts chunks out of the dataset provided by the outer \SedDataDescription element. The \concept{DataSource} class introduces three attributes: the required attribute \hyperref[sec:id]{\element{id}} and the optional attributes \hyperref[sec:name]{\element{name}}, \hyperref[sec:indexSet]{\element{indexSet}}, and \hyperref[sec:listOfSlices]{\code{listOfSlices}} (\fig{dataDescription}).
+
+\tabtext{dataSource}{dataSource}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{\attribute} & \textbf{\desc}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+id & \refpage{sec:id} \\
+name$^{o}$ & \refpage{sec:name}\\
+\midrule
+indexSet & \refpage{sec:indexSet}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\midrule
+listOfSlices$^{o}$ & \refpage{sec:listOfSlices}\\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{dataSource}}
+\label{tab:dataSource}
+\end{table}
 
 \SedDataSource elements can be used anywhere in the SED-ML Description. Specifically their \hyperref[type:id]{\element{id}} attribute can be referenced within the \hyperref[sec:listOfVariables]{\element{listOfVariables}} of \hyperref[class:dataGenerator]{DataGenerator}, \hyperref[class:computeChange]{ComputeChange} or \hyperref[class:setValue]{SetValue} objects. Here an example that references the \SedDataSource \token{dataS1}:
 
@@ -149,6 +203,28 @@ If a \SedDataSource does not define the \hyperref[sec:indexSet]{\element{indexSe
 
 The \concept{Slice} class introduces two required attributes: \hyperref[sec:sliceReference]{\element{reference}} and \hyperref[sec:sliceValue]{\element{value}} (\fig{dataDescription}).
 
+\tabtext{slice}{slice}
+
+\begin{table}[ht]
+\center
+\begin{tabular}{ll}
+\toprule
+\textbf{\attribute} & \textbf{\desc}\\
+\midrule
+metaid$^{o}$ & \refpage{sec:metaid}\\
+\midrule
+reference & \refpage{sec:sliceReference}\\
+value & \refpage{sec:sliceValue}\\
+\midrule
+\textbf{\subelements} & \textbf{\desc}\\
+\midrule
+notes$^{o}$ & \refpage{class:notes}\\
+annotation$^{o}$ & \refpage{class:annotation}\\
+\bottomrule
+\end{tabular}
+\caption{\tabcap{slice}}
+\label{tab:slice}
+\end{table}
 
 % ~~~ SLICE:REFERENCE ~~~
 \paragraph*{\element{reference}}
