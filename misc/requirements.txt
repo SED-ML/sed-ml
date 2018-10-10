@@ -1,0 +1,9 @@
+numpy
+pandas
+matplotlib
+tornado
+ipykernel
+
+# pip install jupyterlab
+# ipython kernel install --name "sedml" --user
+
