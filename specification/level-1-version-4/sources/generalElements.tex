@@ -78,6 +78,19 @@ Type \concept{\element{NuMLSIdRef}} is used for all attributes that refer to ide
 
 As with \hyperref[type:numlsid]{\element{NuMLSId}}, the equality of \concept{\element{NuMLSIdRef}} values is determined by exact character sequence match; i.e., comparisons of these identifiers must be performed in a case-sensitive manner.
 
+\begin{blockChanged}
+\subsubsection[\element{AxisKind}]{Type \element{AxisKind}}
+\label{type:axisKind}
+
+The \element{AxisKind} primitive data type is used in the definition of the \Axis class.  \element{AxisKind} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{linear}, and \val{log10}.  Attributes of type \element{AxisKind} cannot take on any other values.  The meaning of these values is discussed in the context of the \Axis class's definition in \ref{class:axis}.
+
+\subsubsection[\element{CurveKind}]{Type \element{CurveKind}}
+\label{type:curveKind}
+
+The \element{CurveKind} primitive data type is used in the definition of the \Curve class.  \element{CurveKind} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{points}, \val{bar}, \val{barStacked}, \val{horizontalBar}, \val{horizontalBarStacked}, \val{polarPoints}, \val{polarBar}, and \val{polarBarStacked}.  Attributes of type \element{CurveKind} cannot take on any other values.  The meaning of these values is discussed in the context of the \Curve class's definition in \ref{class:curve}.
+
+\end{blockChanged}
+
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % SEDBASE
