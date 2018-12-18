@@ -8,31 +8,12 @@ This repository contains the SED-ML specifications, schema, figures and presenta
 **Homepage**: [http://sed-ml.org/](http://sed-ml.org/)  
 **Discussion group**: https://groups.google.com/forum/#!forum/sedml-discuss  
 **Editors' email**: sedml-editors@googlegroups.com  
-**Issue tracker**: https://github.com/SED-ML/sed-ml/issues
+**Issue tracker**: https://github.com/SED-ML/sed-ml/issues  
 **Repository**: https://github.com/sed-ml/sed-ml  
-**Test suite**: https://github.com/SED-ML/sedml-test-suite 
+**Test suite**: https://github.com/SED-ML/sedml-test-suite  
 
-## Discussions
+## Editor notes, online documents, ...
+**Google Drive**: https://drive.google.com/drive/folders/0B71r5kLs3FlibnZMUEpIU1RKR1k?usp=sharing  
 
-* `HARMONY2017`: https://docs.google.com/document/d/1l2jx5K6msZhB-kfZKjeN2WgRVgfkVuCYnM8yYhIsUsw/edit
-* `COMBINE2016`: https://docs.google.com/document/d/1uNNkjATFUQ78FspKkBTwJ2UmevmCGfovaKI22sr3VF8/edit#
-* `Harmony 2015/2016`
-https://docs.google.com/document/d/1dgm6hGCK8MbxlrkXY-fdU1Y9UTph4G7WQ_Xjhq6HipU/edit#heading=h.pio9gf5mv6uo
-* `Parameter estimation`
-https://docs.google.com/document/d/1rrs0fYuKFr4fgL1b7eGwSnaLhRPW6NdXwAaJY0ZN_WY/edit#heading=h.61sixvmnpg15
-* `Harmony 2012` https://docs.google.com/document/d/1ifqQy1QJoAYXGtxI7LElHFie6_kP8sXwSIBGTiG5_as/edit
-
-## Proposals
-* `Qual extension`: https://figshare.com/articles/Proposal_for_SED_ML_extension_to_cover_models_in_SBML_Qual_format/2075143
-
-## Figures
-
-Latest version of figures is available from
-https://drive.google.com/drive/folders/0B71r5kLs3FlibnZMUEpIU1RKR1k
-Snapshots of latest figures in `/figures/`
-
-## Editor meetings
-* `HARMONY 2017`: https://docs.google.com/document/d/19piJW-KLd9h4q7L_vZbNz-3JsfXtTQG1N7ZblVQIcLo/edit#
-
-&copy; 2017 sed-ml.org
+&copy; 2017-2018 sed-ml.org
 
