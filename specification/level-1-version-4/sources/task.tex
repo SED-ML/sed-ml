@@ -285,13 +285,9 @@ The \concept{Value} (\fig{range}) describes a single value, e.g., the \concept{V
 
 \paragraph{\element{FunctionalRange}}
 \label{class:functionalRange}
-The \concept{FunctionalRange} (\fig{range}) constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables. In this it is similar to the \hyperref[class:computeChange]{ComputeChange} element, and shares some of the same child elements (but is no subclass of \hyperref[class:computeChange]{ComputeChange}). It consists of an optional attribute \code{range}, two optional elements \hyperref[sec:listOfVariables]{\element{listOfVariables}} and \hyperref[sec:listOfParameters]{\element{listOfParameters}}, and a required element \hyperref[sec:math]{\element{math}}.
+The \concept{FunctionalRange} (\fig{range}) constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables. In this it is similar to the \hyperref[class:computeChange]{ComputeChange} element, and shares some of the same child elements (but is no subclass of \hyperref[class:computeChange]{ComputeChange}). It consists of an optional attribute \code{range}, two optional elements \ListOfVariables and \ListOfParameters, and a required element \hyperref[sec:math]{\element{math}}.
 
 The optional attribute \code{range} of type \hyperref[type:sidref]{SIdRef} may be used as a shorthand to specify the \hyperref[sec:id]{\element{id}} of another \hyperref[class:range]{Range}. The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \hyperref[sec:id]{\element{id}} of the range is used directly. In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
-
-In the \hyperref[sec:listOfVariables]{\element{listOfVariables}}, the \hyperref[class:variable]{variable} elements define identifiers referring to model variables or range values, which may then be used within the \hyperref[sec:math]{\element{math}} expression. These references always retrieve the current value of the model variable or range at the current iteration of the enclosing \element{repeatedTask}.
-
-The \hyperref[sec:math]{\element{math}} encompasses the mathematical expression that is used to compute the value for the \concept{FunctionalRange} at each iteration of the enclosing \hyperref[class:repeatedTask]{repeatedTask}.
 
 For example:
 

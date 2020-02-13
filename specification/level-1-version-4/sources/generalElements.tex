@@ -60,6 +60,12 @@ As with \hyperref[type:sid]{\element{SId}}, the equality of \concept{\element{SI
 \label{type:xpath}
 Type \concept{\element{XPath}} is used to identify nodes and attributes within an XML representation. \concept{\element{XPath}} in SED-ML is an \hyperref[sec:xpath]{XPath} version 1 expression which can be used to unambiguously identify an element or attribute in an XML file. The concept of \hyperref[sec:xpath]{XPath} is described in Section~\ref{sec:xpath}.
 
+\begin{blockChanged}
+\subsubsection[\element{URN}]{Type \element{URN}}
+\label{type:urn}
+A \element{URN} is a colon-separated string that reference an external variable, but does not imply accessibility of that variable.  The notion of implicit variables is explained in Section~\ref{sec:implicitVariable}.
+\end{blockChanged}
+
 \subsubsection[\element{MathML}]{Type \element{MathML}}
 \label{type:mathml}
 Type \concept{\element{MathML}} is used to describe mathematical expression in \hyperref[sec:mathML]{MathML}. The concept of \hyperref[sec:mathML]{MathML} and the allowed subset of \hyperref[sec:mathML]{MathML} on a \concept{\element{MathML}} attribute is described in Section~\ref{sec:mathML}.
@@ -89,6 +95,12 @@ The \element{AxisKind} primitive data type is used in the definition of the \Axi
 
 The \element{CurveKind} primitive data type is used in the definition of the \Curve class.  \element{CurveKind} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{points}, \val{bar}, \val{barStacked}, \val{horizontalBar}, \val{horizontalBarStacked}, \val{polarPoints}, \val{polarBar}, and \val{polarBarStacked}.  Attributes of type \element{CurveKind} cannot take on any other values.  The meaning of these values is discussed in the context of the \Curve class's definition in \ref{class:curve}.
 
+\subsubsection[\element{SurfaceKind}]{Type \element{SurfaceKind}}
+\label{type:surfaceKind}
+
+The \element{SurfaceKind} primitive data type is used in the definition of the \Surface class.  \element{SurfaceKind} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{parametricCurve}, \val{surfaceMesh}, \val{surfaceContour}, \val{contour}, \val{heatMap}, \val{stackedCurves}, and \val{bar}.  Attributes of type \element{SurfaceKind} cannot take on any other values.  The meaning of these values is discussed in the context of the \Surface class's definition in \ref{class:surface}.
+
+
 \end{blockChanged}
 
 
@@ -101,28 +113,52 @@ The \element{CurveKind} primitive data type is used in the definition of the \Cu
 
 \concept{SEDBase} provides means to attach additional information on all other classes. That information can be specified by human readable \hyperref[class:notes]{Notes} or custom \hyperref[class:annotation]{Annotation}.
 
-\begin{table}[ht]
-    \begin{minipage}{0.45\textwidth}
-		\sedfig[width=1.0\textwidth]{images/uml/sedBase}{The SEDBase class}{fig:sedBase}
-	\end{minipage}%
-    \begin{minipage}{0.45\textwidth}
-    \centering
-	\begin{tabular}{ll}
-	\toprule
-	\textbf{\attribute} & \textbf{\desc}\\
-	\midrule
-	metaid$^{o}$ & \refpage{sec:metaid} \\
-	\midrule
-	\textbf{\subelements} & \textbf{\desc}\\
-	\midrule
-	notes$^{o}$ & \refpage{class:notes}\\
-	annotation$^{o}$ & \refpage{class:annotation}\\
-	\bottomrule
-	\end{tabular}
-	\caption{\tabcap{SEDBase}}
-	\label{tab:sedbase}
-	\end{minipage}
-\end{table}
+\begin{blockChanged}
+\sedfig[width=0.75\textwidth]{images/uml/sedBase}{The \SEDBase, \Notes, and \Annotation classes}{fig:sedBase}
+
+% ~~~ ID ~~~
+\paragraph*{\element{id}}
+\label{sec:id}
+The \element{id} attribute is an optional attribute on the \SEDBase class.  The \element{id} attribute value on an object serves as its \emph{identifier}.  The data type of \element{id} on \SEDBase is \element{SId} (Section~\ref{type:sid}).  Every \element{SId} attribute value in a \SedDocument must be unique.  Whenever a SED-ML element references another SED-ML element, it uses this identifier to do so.
+
+Although \element{id} is optional on \SEDBase, object classes derived from \SEDBase may stipulate that \element{id} is a required attribute for those classes.
+
+In lower Level/Version combinations of SED-ML, the attributes \element{id} and \element{name} are defined on individual object subclasses.  The movement of these attributes to \SEDBase in this version has no practical effect on these classes.
+
+An example for an \concept{\element{id}} is given in Listing~\ref{lst:id}. In the example the model has the \concept{\element{id}} \code{m00001}.
+
+\begin{myXmlLst}{SED-ML \element{id} definition, e.g., for a model}{lst:id}
+<model id="m00001" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000012">
+	[MODEL DEFINITION]
+</model>
+\end{myXmlLst}
+
+
+% ~~~ NAME ~~~
+\paragraph*{\element{name}}
+\label{sec:name}
+The attribute \element{name} is an optional attribute on \SEDBase of type \element{string}.  
+In contrast to the \element{id} attribute, the \element{name} attribute
+is not intended to be used for cross-referencing
+purposes within a model.  Its purpose instead is to provide a
+human-readable label for a component.  The data type of 
+\element{name} is the type \element{string} defined in XML
+Schema~\citep{biron:2000,thompson:2000}.  SED-ML imposes no restrictions
+as to the content of \element{name} attributes beyond those restrictions
+defined by the \element{string} type in XML Schema.
+In addition, there are no restrictions on the uniqueness
+of \element{name} values in a \SedDocument.
+
+Listing \ref{lst:name} extends the model definition in \lst{id} by a model \concept{\element{name}}.
+
+\begin{myXmlLst}{SED-ML \element{name} definition, e.g., for a model}{lst:name}
+<model id="m00001" name="Circadian oscillator" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000012">
+	[MODEL DEFINITION]
+</model>
+\end{myXmlLst}
+\end{blockChanged}
+
+
 
 % ~~~ META ID ~~~
 \paragraph*{\element{metaid}}
@@ -218,34 +254,9 @@ An \concept{Annotation} is considered a computer-processable piece of informatio
 \subsection{\element{Parameter}}
 \label{class:parameter}
 The \concept{Parameter} class (\fig{parameter}) is used to create named parameters with a constant value.
-The \concept{Parameter} class introduces the required attributes \hyperref[sec:id]{\element{id}} and \hyperref[sec:value]{\element{value}}, and the optional attribute \hyperref[sec:name]{\element{name}}.
+The \concept{Parameter} class introduces the required \changed{attribute \hyperref[sec:value]{\element{value}}, and inhertis other attributes and children from \SEDBase, with the exception that the attribute \element{id} is required instead of optional.}
 
-\begin{table}[ht]
-    \begin{minipage}{0.45\textwidth}
-		\sedfig[width=0.7\textwidth]{images/uml/parameter}{The Parameter class}{fig:parameter}
-	\end{minipage}%
-    \begin{minipage}{0.45\textwidth}
-    \centering
-	\begin{tabular}{ll}
-	\toprule
-	\textbf{\attribute} & \textbf{\desc}\\
-	\midrule
-	metaid$^{o}$ & \refpage{sec:metaid} \\
-	id & \refpage{sec:id}\\
-	name$^{o}$ & \refpage{sec:name}\\
-	\midrule
-	value & \refpage{sec:value}\\
-	\midrule
-	\textbf{\subelements} & \textbf{\desc}\\
-	\midrule
-	notes$^{o}$ & \refpage{class:notes}\\
-	annotation$^{o}$ & \refpage{class:annotation}\\
-	\bottomrule
-	\end{tabular}
-	\caption{\tabcap{parameter}}
-	\label{tab:parameter}
-	\end{minipage}
-\end{table}
+\sedfig[width=0.4\textwidth]{images/uml/parameter}{The \Parameter class}{fig:parameter}
 
 \concept{Parameters} can be used wherever a mathematical expression to compute a value is defined, e.g., in \hyperref[class:computeChange]{ComputeChange}, \hyperref[class:functionalRange]{FunctionalRange} or \hyperref[class:dataGenerator]{DataGenerator}. The \concept{Parameter} definitions are local to the particular class defining them. By using \concept{Parameters} rather than including numbers directly within a mathematical expression is that \hyperref[class:notes]{notes} and \hyperref[class:annotation]{annotations} can be associated with them.
 
@@ -268,47 +279,19 @@ The \concept{\element{value}} attribute of data type \code{double} is required f
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Variable}}
 \label{class:variable}
-A \concept{Variable} (\fig{variable}) is a reference to an already existing entity, either to an object in one of the \hyperref[class:model]{Models} or to implicitly defined \hyperref[sec:symbol]{Symbols}. The \concept{Variable} class introduces the required attribute \hyperref[sec:id]{\element{id}}, the optional attribute \hyperref[sec:name]{\element{name}}, and the context dependent attributes \hyperref[sec:target]{\element{target}}, \hyperref[sec:symbol]{\element{symbol}}, \hyperref[sec:taskReferenceAttribute]{\element{taskReference}}, and \hyperref[sec:modelReferenceAttribute]{\element{modelReference}}.
+\label{class:listOfVariables}
+A \Variable (\fig{variable}) is a reference to an already existing entity, either explicitly created in the \SedDocument, or to an implicitly defined symbol.  The \Variable class inherits the attributes and children of \SEDBase, changing the attribute \element{id} to be required, and adds the context dependent attributes \hyperref[sec:target]{\element{target}}, \hyperref[sec:symbol]{\element{symbol}}, \hyperref[sec:taskReferenceAttribute]{\element{taskReference}}, and \hyperref[sec:modelReferenceAttribute]{\element{modelReference}}. It also may have any number of \RemainingDimension children, as members of its \ListOfRemainingDimensions optional child.
 
-\begin{table}[ht]
-    \begin{minipage}{0.45\textwidth}
-		\sedfig[width=0.7\textwidth]{images/uml/variable}{The Variable class}{fig:variable}
-	\end{minipage}%
-    \begin{minipage}{0.45\textwidth}
-    \centering
-	\begin{tabular}{ll}
-	\toprule
-	\textbf{\attribute} & \textbf{\desc}\\
-	\midrule
-	metaid$^{o}$ & \refpage{sec:metaid}\\
-	id & \refpage{sec:id} \\
-	name$^{o}$ & \refpage{sec:name}\\
-	\midrule
-	target & \refpage{sec:target}\\
-	symbol & \refpage{sec:symbol}\\
-	\midrule
-	taskReference & \refpage{sec:taskReference}\\
-	modelReference & \refpage{sec:modelReference}\\
-	\midrule
-	\textbf{\subelements} & \textbf{\desc}\\
-	\midrule
-	notes$^{o}$ & \refpage{class:notes}\\
-	annotation$^{o}$ & \refpage{class:annotation}\\
-	\bottomrule
-	\end{tabular}
-	\caption{\tabcap{Variable}}
-	\label{tab:variable}
-	\end{minipage}
-\end{table}
+\sedfig[width=1.0\textwidth]{images/uml/variable}{The \Variable, \DependentVariable, \ListOfRemainingDimensions, and \RemainingDimension classes}{fig:variable}
 
 If the variable is defined through a reference to a model constituent, such as an SBML species, or to an entity within the SED-ML file itself, then the reference is specified using the \hyperref[sec:target]{\element{target}} attribute. If the variable is defined through a reference to a \hyperref[sec:implicitVariable]{Symbol}, rather than one explicitly appearing in the model, then the \hyperref[sec:symbol]{\element{symbol}} attribute is used. 
 
 \begin{itemize}
-	\item A \concept{Variable} is always placed inside a \hyperref[sec:listOfVariables]{listOfVariables}. 
-	\item The \hyperref[sec:symbol]{\element{symbol}} and \hyperref[sec:target]{\element{target}} attributes must not be used together in a single instance of Variable, although at least one must be present.
-	\item A \concept{Variable} element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \hyperref[sec:listOfVariables]{\element{listOfVariables}} inside a \hyperref[class:dataGenerator]{dataGenerator} element. Only exception is if the \concept{Variable} references a \hyperref[class:dataSource]{DataSource}, in this case no \hyperref[sec:taskReference]{taskReference} is required.
-	\item A \concept{Variable} element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \hyperref[sec:listOfVariables]{\element{listOfVariables}} inside a \hyperref[class:computeChange]{computeChange} element.
-	\item A \concept{Variable} element appearing within a \hyperref[class:functionalRange]{functionalRange} or \hyperref[class:setValue]{setValue} element must contain a \hyperref[sec:modelReference]{modelReference} if and only if it references a model variable.
+	\item A \Variable is always placed inside a \hyperref[sec:listOfVariables]{listOfVariables}.  \changed{If it is the base class, its XML name will be \val{variable}; if it is the derived \DependentVariable class, its XML name will be \val{dependentVariable}.}
+	\item \changed{Exactly one of the \hyperref[sec:symbol]{\element{symbol}} and \hyperref[sec:target]{\element{target}} attributes must be used, unless the \element{symbol} references an implicit function instead of an implicit variable.  In that case, both must be present.}
+	\item A \Variable element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \hyperref[sec:listOfVariables]{\element{listOfVariables}} inside a \hyperref[class:dataGenerator]{dataGenerator} element. Only exception is if the \Variable references a \hyperref[class:dataSource]{DataSource}, in this case no \hyperref[sec:taskReference]{taskReference} is required.
+	\item A \Variable element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \hyperref[sec:listOfVariables]{\element{listOfVariables}} inside a \hyperref[class:computeChange]{computeChange} element.
+	\item A \Variable  element appearing within a \hyperref[class:functionalRange]{functionalRange} or \hyperref[class:setValue]{setValue} element must contain a \hyperref[sec:modelReference]{modelReference} if and only if it references a model variable.
 \end{itemize}
 
 \lsttext{variable}{variable}
@@ -387,7 +370,9 @@ The \hyperref[sec:xpath]{XPath} expression used in the \concept{\code{target}} a
 % ~~~ SYMBOL ~~~
 \paragraph*{\element{symbol}}
 \label{sec:symbol}
-The \concept{\element{symbol}} element is used to refer to a \concept{Symbol}. \concept{Symbol}s are predefined, implicit variables, which can be used in a SED-ML file by referring to the defined URNs representing that variable's concept. The notion of implicit variables is explained in Section~\ref{sec:implicitVariable}.
+The \concept{\element{symbol}} \changed{attribute of type \element{URN} is used to refer either to a predefined, implicit variable or to a predefined implicit function to be performed on the \element{target}.  In both cases,} the defined URNs representing that variable's concept. The notion of implicit variables is explained in Section~\ref{sec:implicitVariable}.
+
+\changed{In the case where the \element{symbol} refers to a function, the function is applied to the \element{target} of the \Variable.  If the function reduces the dimensionality of the \Variable, a \RemainingDimension child should be used.}
 
 \lsttexta{symbol}{symbol}
 The example encodes a computed change of model \code{m001}. To specify that change, a symbol is defined (i.e., the SED-ML symbol for \code{time} is assigned to the variable \code{t1}). How to compute the change itself is explained in Section~\ref{class:computeChange}.
@@ -409,47 +394,111 @@ The \concept{\element{taskReference}} element of data type \hyperref[type:sidref
 The \concept{\element{modelReference}} element of data type \hyperref[type:sidref]{\element{SIdRef}} is used to reference a \hyperref[class:model]{Model} via a \hyperref[sec:modelReference]{modelReference}. The usage depends on the context the \hyperref[class:variable]{Variable} is used in.
 
 
+\begin{blockChanged}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% REMAININGDIMENSION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{RemainingDimension}}
+\label{class:remainingDimension}
+\label{class:listOfRemainingDimensions}
+
+A \RemainingDimension object is used when a \Variable is multidimensional, but the \element{symbol} of the \Variable is a function that reduces the dimensionality of the data.  For example, a variable derived from a \Task inside a \RepeatedTask will have the dimensionality of both.  If the \element{symbol} of the parent \Variable is \val{urn:sedml:function:average}, the following options are available:
+
+\begin{itemize}
+        \item The \Variable contains a single \RemainingDimension child that refers to the \Task.  The resulting data will have the same dimensions as if the \Variable referred directly to the \Task, but averaged over every repeat of the \RepeatedTask.  This situation is particularly common when the \Task is a stochastic time course simulation, and the \RepeatedTask is a simple loop of that \Task.
+        \item The \Variable contains a single \RemainingDimension child that refers to the \RepeatedTask.  The resulting data will be a vector with the same number of entries as there were repeats of the \RepeatedTask.  This situation is particularly helpful when the \RepeatedTask is a parameter scan, and the \Variable is tracking a model variable that oscillates during the \Task.  The resulting vector will be the average value of that model variable under each of the different starting conditions.
+        \item The \Variable contains no \RemainingDimension children at all.  The resulting data will be a single value, that has been averaged over both the \Task and \RepeatedTask.
+\end{itemize}
+
+A \RemainingDimension inherits the attributes and children of \SedBase, and adds the attributes \element{target} (of type \element{SIdRef}), and \element{dimensionTarget} (of type \element{NuMLIdRef}), both of which are optional, but one of which must be present.
+
+\paragraph*{\element{target}}
+The \element{target} attribute of a \RemainingDimension is used when the remaining dimension is a \Task or \RepeatedTask, which must be implicitly involved in the construction of the dimensionality of the parent \Variable.
+
+\paragraph*{\element{dimensionTarget}}
+The \element{dimensionTarget} attribute of a \RemainingDimension is used when the \Variable references an external data set.  The \element{NuMLIdRef} must reference a dimension of the referenced data.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% DEPENDENTVARIABLE
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{DependentVariable}}
+\label{class:dependentVariable}
+
+The \DependentVariable object is a child of the \Variable class, extending it to include three new attributes:  \element{term} (of type \element{URN}), \element{target2} (of type XPath), and \element{symbol2} (of type URN).  A dependent variable is necessary when the desired variable is a composite of two other variables, such as 'the rate of change of S1 with respect to time'.
+
+In a \DependentVariable, the \element{term} is used to define the relationship of the two variables (i.e. 'rate of change'), the \element{target} or \element{symbol} attributes are used to define the first such variable, and the new \element{target2} and \element{symbol2} is used to define the second variable.  
+
+\begin{myXmlLst}{SED-ML dependent variable definition of 'the rate of change of S1 with respect to time'}{lst:sedmlDependentVariable}
+<listOfVariables>
+	<dependentVariable id="S1prime" name="S1'"  taskReference="task1"
+		term="urn:sedml:symbol:rateOfChange"
+		target="/sbml:sbml/sbml:listOfSpecies/sbml:species[@id='S1']"
+		symbol2="urn:sedml:symbol:time" />
+</listOfVariables>
+\end{myXmlLst}
+
+
+% ~~~ LIST OF VARIABLES ~~~
+\subsubsection{\element{ListOfVariables}}
+\label{sec:listOfVariables}
+The \Variable class is used to refer to existing entities inside a model. The container for all variables is the \ListOfVariables. It includes all variables that need to be defined to either describe a change in the model by means of mathematical equations via \ComputeChange or to set up a \DataGenerator. The \ListOfVariables is optional and may contain zero to many variables. 
+
+\lsttext{listOfVariables}{listOfVariables}
+\begin{myXmlLst}{SED-ML listOfVariables element}{lst:listOfVariables}
+<listOfVariables>
+	<variable id="v1" name="maximum velocity" taskReference="task1" 
+		target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" />
+	<variable id="v2" taskReference="task2" symbol="urn:sedml:symbol:time" />
+</listOfVariables>
+\end{myXmlLst}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% CALCULATION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{Calculation}}
+\label{class:calculation}
+
+The \Calculation class is an abstract base class for the \ComputeChange, \DataGenerator, and \FunctionalRange classes (defined later).  A \Calculation inherits from \SedBase, and adds three children:  a required \Math child, and optional lists of \Variable and \Parameter objects.  In all three of its uses, it performs a calculation that optionally may depend on locally-defined elements.  This abstract class is provided for convenience, since all three other classes contain this same relatively complicated structure.  However, as \FunctionalRange also inherits from \Range, implementations may choose to simply re-instantiate the child elements of \Calculation on that or other derived classes, in environments where multiple inheritance is illegal or infeasible.
+
+\sedfig[width=0.9\textwidth]{images/uml/calculation}{The \Calculation, \Math, \ListOfVariables, \ListOfParameters, and \Parameter classes.}{fig:calculation}
+
+In the \ListOfVariables, the \Variable elements define identifiers referring to model variables or range values, which may then be used within the \Math expression. These references always retrieve the current value of the variable in the context of the \Calculation.  A \ListOfVariables may contain any number of \Variable and/or \DependentVariable entries.
+
+In the \ListOfParameters, the \Parameter elements define simple values that may be used in the \Math of the \Calculation.
+
+The \Math encompasses the mathematical expression that is used to compute the value for the \Calculation.
+
+% ~~~ MATH ~~~
+\subsubsection{\element{Math}}
+\label{sec:math}
+A \Calculation's mandatory child element \concept{\element{math}} contains a MathML expression used to calculate a value in the context of the \Calculation.  The available subset of mathematical functions and elements which can be used in the \Math element are listed in Section~\hyperref[sec:mathML]{MathML}.
+
+% ~~~ PARAMETER ~~~
+\subsubsection{\element{Parameter}}
+\label{sec:parameter}
+\label{class:listOfParameters}
+A \Parameter inherits from \SedBase, with the change that the \element{id} is required instead of optional.  It adds a single required attribute \element{value} of type \element{double}.  The \element{id} takes on the value of the \element{value} in the context of the \Math of the parent \Calculation.  Its \element{id} may not be used in a \Calculation that is not its parent, but it must nevertheless be globally unique.
+
+Every \Parameter is defined inside a \ListOfParameters.  The element is optional and may contain zero to many parameters.
+
+\begin{myXmlLst}{SED-ML \code{listOfParameters} element}{lst:listOfParameters}
+<listOfParameters>
+	<parameter id="p1" value="1" />
+	<parameter id="p2" name="Kadp 2" value="0.23" />
+</listOfParameters>
+\end{myXmlLst}
+
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % GENERAL ATTRIBUTES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{General attributes}
-This section describes attributes which occur on multiple SED-ML classes, e.g., \hyperref[sec:id]{\element{id}}, \hyperref[sec:name]{\element{name}}, \hyperref[sec:math]{\element{math}}, \hyperref[sec:kisaoid]{\element{kisaoID}}, or \hyperref[sec:listOf]{\element{listOf*}} constructs.
+\subsection{General attributes and elements}
+This section describes attributes which occur on multiple SED-ML classes, e.g., \hyperref[sec:kisaoid]{\element{kisaoID}}, or \hyperref[sec:listOf]{\element{listOf*}} constructs.
 \label{sec:generalAttributes}
 
-% ~~~ ID ~~~
-\subsubsection{\element{id}}
-\label{sec:id}
-Most SED-ML classes have an \concept{\element{id}} attribute of data type \hyperref[type:sid]{\code{SId}}. The \concept{\element{id}} attribute, if it exists for an object, is required and identifies SED-ML constituents unambiguously. All \concept{\element{id}}s have a global scope, i.e., every \concept{\element{id}} must be unambiguous throughout a SED-ML document.
-
-An example for an \concept{\element{id}} is given in Listing~\ref{lst:id}. In the example the model has the \concept{\element{id}} \code{m00001}.
-
-\begin{myXmlLst}{SED-ML \element{id} definition, e.g., for a model}{lst:id}
-<model id="m00001" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000012">
-	[MODEL DEFINITION]
-</model>
-\end{myXmlLst}
-
-
-% ~~~ NAME ~~~
-\subsubsection{\element{name}}
-\label{sec:name}
-SED-ML classes may have an optional element \concept{\element{name}} of data type \element{string}. Names do not have identifying character, i.e., several SED-ML constituents may have the same name. The purpose of the \concept{\element{name}} attribute is to store a human-readable name.
-
-Listing \ref{lst:name} extends the model definition in \lst{id} by a model \concept{\element{name}}.
-
-\begin{myXmlLst}{SED-ML \element{name} definition, e.g., for a model}{lst:name}
-<model id="m00001" name="Circadian oscillator" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000012">
-	[MODEL DEFINITION]
-</model>
-\end{myXmlLst}
-
-
-% ~~~ MATH ~~~
-\subsubsection{\element{math}}
-\label{sec:math}
-Some classes have a mandatory element \concept{\element{math}} of data type \hyperref[type:mathml]{\element{MathML}} to encode mathematical expressions. Examples are the \hyperref[class:computeChange]{ComputeChange} for pre-processing of \hyperref[class:model]{Models} or \hyperref[class:dataGenerator]{DataGenerator} for post-processing of \hyperref[class:task]{Task} results.
-The available subset of mathematical functions and elements which can be used in the \concept{\element{math}} element are listed in Section~\hyperref[sec:mathML]{MathML}.
-
+\end{blockChanged}
 % ~~~ KISAOID ~~~
 \subsubsection{\element{kisaoID}}
 \label{sec:kisaoid}
@@ -461,36 +510,6 @@ Some classes, e.g., \hyperref[class:algorithm]{Algorithm} and \hyperref[class:al
 \label{sec:listOf}
 SED-ML \concept{\element{listOf*}} elements serve as containers for a collection of objects of the same type. For example, the \hyperref[sec:listOfModels]{\element{listOfModels}} contains all \hyperref[class:model]{Model} objects of a SED-ML document. Lists do not carry any further semantics nor do they add additional attributes. They might, however, be annotated with \hyperref[class:notes]{Notes} and \hyperref[class:annotation]{Annotations} as they are derived from \hyperref[class:sedBase]{SEDBase}. All \concept{\element{listOf*}} elements are optional in a SED-ML document (with exception of \hyperref[sec:listOfRanges]{\element{listOfRanges}} and \hyperref[class:subTask]{\element{listOfSubTasks}} in a \hyperref[class:repeatedTask]{RepeatedTask}, which are mandatory).
 
-
-% ~~~ LIST OF PARAMETERS ~~~
-\subsubsection{\element{listOfParameters}}
-\label{sec:listOfParameters}
-All \hyperref[class:parameter]{Parameters} needed throughout the simulation experiment, whether to compute a change on a model prior to or during simulation (\hyperref[class:computeChange]{ComputeChange} and \hyperref[class:setValue]{SetValue}), to compute values in a \hyperref[class:functionalRange]{FunctionalRange}, or to set up a \hyperref[class:dataGenerator]{DataGenerator}, are defined inside a \concept{\element{listOfParameters}}.
-
-\lsttext{listOfParameters}{listOfParameters}
-The element is optional and may contain zero to many parameters.
-
-\begin{myXmlLst}{SED-ML \code{listOfParameters} element}{lst:listOfParameters}
-<listOfParameters>
-	<parameter id="p1" value="1" />
-	<parameter id="p2" name="Kadp_2" value="0.23" />
-</listOfParameters>
-\end{myXmlLst}
-
-
-% ~~~ LIST OF VARIABLES ~~~
-\subsubsection{\element{listOfVariables}}
-\label{sec:listOfVariables}
-The \hyperref[class:variable]{Variable} class is used to refer to existing entities inside a model. The container for all variables is  \concept{\element{listOfVariables}}. It includes all variables that need to be defined to either describe a change in the model by means of mathematical equations via \hyperref[class:computeChange]{ComputeChange} or to set up a \hyperref[class:dataGenerator]{DataGenerator}. The \concept{\element{listOfVariables}} is optional and may contain zero to many variables. 
-
-\lsttext{listOfVariables}{listOfVariables}
-\begin{myXmlLst}{SED-ML listOfVariables element}{lst:listOfVariables}
-<listOfVariables>
-	<variable id="v1" name="maximum velocity" taskReference="task1" 
-		target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" />
-	<variable id="v2" taskReference="task2" symbol="urn:sedml:symbol:time" />
-</listOfVariables>
-\end{myXmlLst}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % REFERENCE RELATION
@@ -601,22 +620,3 @@ The example shows the definition of a variable \code{v1} in a \code{dataGenerato
 \end{myXmlLst}
 Task \code{t1} references the model \code{model1}. Therefore we can conclude that the variable \code{v1} defined in \lst{reference3} targets an element of the model with ID \code{model1}. The targeting process itself will be explained in section \ref{sec:target} on \refpage{sec:target}.
 
-
-% ~~~ DATA(GENERATOR) REFERENCE ~~~
-\subsubsection{dataReference}
-\label{sec:dataReference}
-The \concept{dataReference} is a \hyperref[sec:reference]{reference} used to refer to a particular \hyperref[class:dataGenerator]{DataGenerator}
-via a \hyperref[type:sidref]{\element{SIdRef}}, e.g., from an \hyperref[class:output]{Output} instance.
-
-Four different types of \concept{dataReference} exist in SED-ML \currentLV. They are used depending on the type of output for the simulation. A \hyperref[class:plot2D]{Plot2D} has an \hyperref[sec:xDataReference]{\element{xDataReference}} and a \hyperref[sec:yDataReference]{\element{yDataReference}} assigned. A \hyperref[class:plot3D]{Plot3D} has in addition a \hyperref[sec:zDataReference]{\element{zDataReference}} assigned. To define a report, each data column has a \hyperref[sec:dataReference1]{\element{dataReference}} assigned.
-
-Listing \ref{lst:dataReference} shows the reference to a defined data set for a sample SED-ML document. In the example, the output type is a 2D plot, which defines one curve with id \code{c1}. A curve must refer to two different data generators which describe how to procure the data that is to be plotted on the x-axis and y-axis respectively. 
-
-\begin{myXmlLst}{Example for the use of data references in a curve definition}{lst:dataReference}
-<listOfOutputs>
-	<plot2D id="p1" [..] >
-    		<curve id="c1" xDataReference="dg1" yDataReference="dg2" />
-		[..]
-	</plot>
-</listOfOutputs>
-\end{myXmlLst}
