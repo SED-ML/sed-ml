@@ -1,12 +1,9 @@
 \subsection{\element{DataGenerator}}
 \label{class:dataGenerator}
 
-The \concept{DataGenerator} class prepares the raw simulation results for later output (\fig{dataGenerator}). It encodes the post-processing  to be applied to the simulation data. The post-processing steps could be anything, from simple normalisations of data to mathematical calculations. 
+The \concept{DataGenerator} class prepares the raw simulation results for later output (\fig{dataGenerator}). It encodes the post-processing  to be applied to the simulation data. The post-processing steps could be anything, from simple normalisations of data to mathematical calculations.  It inherits from \Calculation, changing the \element{id} attribute to be required instead of optional.
 
-\sedfig[width=0.6\textwidth]{images/uml/dataGenerator}{The SED-ML DataGenerator class. 
-Note that \element{Parameter} and \element{Variable} are subclasses of \emph{SEDBase}; the respective inheritance connections are not shown in the figure.}{fig:dataGenerator}
-
-Each instance of the \concept{DataGenerator} class is identifiable within the experiment by its unambiguous \hyperref[sec:id]{\element{id}}. It can be further characterised by an optional \hyperref[sec:name]{\element{name}}. The required \Math element contains a \hyperref[sec:mathML]{mathML} expression for the calculation of the \concept{DataGenerator}. \Variable and \Parameter instances can be used to encode the mathematical expression.
+\sedfig[width=0.3\textwidth]{images/uml/dataGenerator}{The SED-ML DataGenerator class.} {fig:dataGenerator}
 
 
 \lsttext{dataGenerator}{dataGenerator}
@@ -34,4 +31,3 @@ The first one, \code{d1}, refers to the task definition \code{task1} (which itse
 	</dataGenerator>
 </listOfDataGenerators>
 \end{myXmlLst}
-

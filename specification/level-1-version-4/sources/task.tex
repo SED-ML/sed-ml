@@ -17,11 +17,12 @@ In SED-ML the subclasses of \concept{AbstractTask} define which \Simulations sho
 A \concept{Task} links a \Model to a certain \Simulation description via their respective identifiers (\fig{abstractTask}), using the \hyperref[sec:modelReference]{\element{modelReference}} and the \hyperref[sec:simulationReference]{\element{simulationReference}}. The task class inherits the attributes and children of the \AbstractTask.
 
 \paragraph*{\element{modelReference}}
-The \element{modelReference} attribute of type  \SIdRef
+The \element{modelReference} attribute of type \SIdRef must refer to a \Model.  Inside a \RepeatedTask, the state of the model may have been changed, but in parallel tasks, a \Model is to assume to its initial state.
 
+\paragraph*{\element{simulationReference}}
+the \element{simulationReference} attribute of type \SIdRef must refer to a \Simulation.
 
 In SED-ML it is only possible to link one \Simulation description to one \Model at a time. However, one can define as many tasks as needed within one experiment description. Please note that the tasks may be executed in any order, as determined by the implementation.
-
 
 
 In the example, a simulation setting \code{simulation1} is applied first to \code{model1} and then to \code{model2}.
@@ -34,6 +35,21 @@ In the example, a simulation setting \code{simulation1} is applied first to \cod
 </listOfTasks>
 \end{myXmlLst}
 
+
+\begin{blockChanged}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% SIMPLEREPEATED TASK
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsubsection{\element{SimpleRepeated Task}}
+\label{class:simpleRepeatedTask}
+The \concept{SimpleRepeatedTask} inherits from \Task, and provides a simplified looping construct that performs the \Task multiple times, resetting the model or not, according to its \element{resetModel} attribute.  The task itself is defined by the \element{modelReference} and \element{simulationReference} attributes it inherits from \Task.
+
+\paragraph*{\element{resetModel}}
+The \element{resetModel} attribute, of type \element{boolean} defines whether, for each execution of the simulation, the model is to be reset (\val{true}) or not (\val{false}).
+
+\paragraph*{\element{numRepeats}}
+The \element{numRepeats}, of type \element{positive integer}, defines the number of times the simulation is to be performed.
+\end{blockChanged}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % REPEATED TASK
@@ -277,3 +293,13 @@ Here is another example, this time using the values in a piecewise expression:
 	</math>
 </functionalRange>
 \end{myXmlLst}
+
+\begin{blockChanged}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% REPEATED TASK
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsubsection{\element{ParameterEstimationTask}}
+\label{class:parameterEstimationTask}
+
+The \ParameterEstimationTask inherits from \AbstractTask.  Other than that, it has yet to be fully defined, but some people hope to get it into L1v4.  Further bulletins as events warrant.
+\end{blockChanged}
