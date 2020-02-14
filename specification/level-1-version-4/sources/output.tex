@@ -55,7 +55,7 @@ When a \PlotThree contains a child \element{zAxis}, that \Axis defines the chara
 % ~~~ Axis ~~~
 \subsubsection{\element{Axis}}
 \label{class:axis}
-The \Axis class is used to define whether an axis for a given \Plot is linear or logarithmic, and how to display it.  It inherits the optional attributes \element{id} and \element{name} from \SedBase (the latter of which can be used as a label), and adds the required attribute \element{type} of type \AxisKind (either 'linear' or 'log10'), as well as the optional attributes \element{min} and \element{max}, both of type \element{double}, \element{grid} of type \element{Boolean}, and \element{style} of type \element{SIdRef}.
+The \Axis class is used to define whether an axis for a given \Plot is linear or logarithmic, and how to display it.  It inherits the optional attributes \element{id} and \element{name} from \SedBase (the latter of which can be used as a label), and adds the required attribute \element{type} of type \AxisKind (either 'linear' or 'log10'), as well as the optional attributes \element{min} and \element{max}, both of type \element{double}, \element{grid} of type \element{Boolean}, and \element{style} of type \SIdRef.
 
 \begin{blockChanged}
 The \element{type} value of \val{linear} means the axis should be scaled linearly, while a value of \val{log10} indicates it should have a log10 scale.  Other scalings are not possible in this version of SED-ML.
@@ -84,7 +84,7 @@ The \element{xDataReference} attribute, if present, must be the \element{SId} of
 
 The \element{order} attribute is of type \element{non-negative integer} and, if present, defines the order in which this \Curve must be displayed relative to other \Curve elements in the same \Plot.  A \Curve with a lower \element{order} will be added earlier to the displayed curves.  This means that for lines, the curve with the highest \element{order} will be fully visible, while a \Curve with a lower \element{order} may be hidden by a \Curve with a higher \element{order}.  A \Curve with no \element{order} may be displayed in front or behind any other \Curve.  For adjacent bars, the bar with the lower \element{order} is presented to the left of any bar with a higher \element{order}.  For stacked bars, the bar with the lower \element{order} is presented underneath any bar with a higher \element{order}.
 
-The \element{style} attribute is of type \element{SIdRef} and, if present, must reference a \Style in the same \SedDocument.  It can be used to indicate things like color, marker, and/or line thickness for this \Curve.  If not present, any style may be used.  A \Curve may be displayed as only a set of markers if the \Line from its \Style is set to have a \element{type} of \val{none}.  Similarly, a \Curve may be displayed as a line only with no markers if the \Marker from its \Style is set to have a \element{type} of \val{none}.  (If both are set to \val{none}, the curve will not be displayed at all!)  The \Fill of a \Style has no meaning for a \Curve, and, if present, will be ignored.
+The \element{style} attribute is of type \SIdRef and, if present, must reference a \Style in the same \SedDocument.  It can be used to indicate things like color, marker, and/or line thickness for this \Curve.  If not present, any style may be used.  A \Curve may be displayed as only a set of markers if the \Line from its \Style is set to have a \element{type} of \val{none}.  Similarly, a \Curve may be displayed as a line only with no markers if the \Marker from its \Style is set to have a \element{type} of \val{none}.  (If both are set to \val{none}, the curve will not be displayed at all!)  The \Fill of a \Style has no meaning for a \Curve, and, if present, will be ignored.
 
 The \element{yAxis} attribute is of type \element{string} and must be defined if the parent \Plot defines both a \element{yAxis} and a \element{rightYAxis}.  If it has the value of \val{left}, it means that the data is to be displayed corresponding to the \element{yAxis} of the parent \Plot, and if it has the value of \val{right}, it means that the data is to be disaplyed corresponding to the \element{rightYAxis} of the parent \Plot.  If the parent \Plot has no defined \element{rightYAxis}, this attribute must not be defined.
 
@@ -96,7 +96,7 @@ The \element{logX} attribute, of type \element{Boolean}, was used in previous ve
 % ~~~ CURVE ~~~
 \subsubsection{\element{Curve}}
 \label{class:curve}
-A \Curve is a two-dimensional \Output component representing a (processed) simulation result (\fig{output}). Zero or more \Curve instances define a \PlotTwo (\fig{output}). \changed{In addition to the attributes  it inherits from \AbstractCurve (and \SedBase), it also defines the required attribute \element{yDataReference} of type \element{SIdRef}.  It also defines the optional attribute \element{type} of type \CurveKind, and the optional attributes \element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower}, all of type \element{SIdRef}.}
+A \Curve is a two-dimensional \Output component representing a (processed) simulation result (\fig{output}). Zero or more \Curve instances define a \PlotTwo (\fig{output}). \changed{In addition to the attributes  it inherits from \AbstractCurve (and \SedBase), it also defines the required attribute \element{yDataReference} of type \SIdRef.  It also defines the optional attribute \element{type} of type \CurveKind, and the optional attributes \element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower}, all of type \SIdRef.}
 
 \begin{blockChanged}
 Like the \element{xDataReference}, the \element{yDataReference} must be the \element{SId} of a \DataGenerator in the same \SedDocument.  The referenced \DataGenerator will contain the information for the y coordinates for the data to be plotted.  The dimensions of the y data sould match the x data, if present.  If the y data is multi-dimensional (such as time course data over several stochastic replicates), one dimension should match the x data (time, in our example), and the other dimension should simply be replicated as separate curves on the same plot (with the same style and label).
@@ -120,7 +120,7 @@ The optional attributes \element{xError}, \element{xErrorLower}, \element{yError
 % ~~~ SHADEDAREA ~~~
 \subsubsection{\element{ShadedArea}}
 \label{class:shadedArea}
-A \ShadedArea is an \AbstractCurve that defines an area instead of a series of points.  In addition to what is inherited from \AbstractCurve, a \ShadedArea defines the required attributes \element{yDataReferenceFrom} and \element{yDataReferenceTo}, both of which must be an \element{SIdRef} for a \DataGenerator in the same \SedDocument.  The area between these two sets of points is then filled for display.  If the \element{style} is defined, the \Fill of that \Style is used to color the fill.  If both \element{color} and \element{secondColor} are defined, the first is associated with the \element{yDataReferenceFrom}, and the second is associated with the \element{yDataReferenceTo}.
+A \ShadedArea is an \AbstractCurve that defines an area instead of a series of points.  In addition to what is inherited from \AbstractCurve, a \ShadedArea defines the required attributes \element{yDataReferenceFrom} and \element{yDataReferenceTo}, both of which must be an \SIdRef for a \DataGenerator in the same \SedDocument.  The area between these two sets of points is then filled for display.  If the \element{style} is defined, the \Fill of that \Style is used to color the fill.  If both \element{color} and \element{secondColor} are defined, the first is associated with the \element{yDataReferenceFrom}, and the second is associated with the \element{yDataReferenceTo}.
 
 \end{blockChanged}
 
@@ -131,7 +131,7 @@ A \ShadedArea is an \AbstractCurve that defines an area instead of a series of p
 \subsubsection{\element{Surface}}
 \label{class:surface}
 \begin{blockChanged}
-A \Surface is a parallel class to \AbstractCurve that defines a three-dimensional surface instead of a two-dimensional curve (\fig{surface}).  It defines the attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \element{SIdRef}, the first two of which are optional and the last of which is required.  It also defines the optional attributes \element{style} of type \element{SIdRef}, and \element{type}, of type \SurfaceKind.
+A \Surface is a parallel class to \AbstractCurve that defines a three-dimensional surface instead of a two-dimensional curve (\fig{surface}).  It defines the attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \SIdRef, the first two of which are optional and the last of which is required.  It also defines the optional attributes \element{style} of type \SIdRef, and \element{type}, of type \SurfaceKind.
 
 The three data reference attributes, if defined, must point to \DataGenerator elements in the same \SedDocument, which define the surface to be plotted.  If the \element{zDataReference} is two-dimensional, the x and y data may be omitted: if so, the z data points are displayed in an ordinal or categorical manner, with x and y values drawn from the data's position in the matrix.
 
@@ -178,7 +178,7 @@ Each data set in a \Report must have an unambiguous \element{label}. A \element{
 
 \paragraph*{\element{dataReference}}
 \label{sec:dataReference}
-The \element{dataReference} attribute is of type \element{SIdRef}, and must be the ID of a \DataGenerator element in the same \SedDocument.  The data produced by that particular \DataGenerator fills the according \hyperref[class:dataSet]{dataSet} in the \hyperref[class:report]{report}.
+The \element{dataReference} attribute is of type \SIdRef, and must be the ID of a \DataGenerator element in the same \SedDocument.  The data produced by that particular \DataGenerator fills the according \hyperref[class:dataSet]{dataSet} in the \hyperref[class:report]{report}.
 
 \lsttext{dataSet}{dataSet}
 The example shows the definition of a dataSet. The referenced dataGenerator \element{dg1} must be defined in the \hyperref[class:listOfDataGenerators]{\element{listOfDataGenerators}}.

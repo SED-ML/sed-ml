@@ -9,10 +9,10 @@ The \Style class (\fig{style}) allows to reference external data, and contains a
 
 \sedfig[width=0.6\textwidth]{images/uml/style}{The SED-ML \Style class}{fig:style}
 
-The \concept{DataDescription} class inherits the attributes and children from \SedBase, extending the \element{id} attribute to be required, adding an optional \element{baseStyle} of type \element{SIdRef}, and allowing up to three optional chidren of type \Line, \Marker, and \Fill.  Collectively, these elements describe a visual style that can be applied to elements of an \Output.
+The \concept{DataDescription} class inherits the attributes and children from \SedBase, extending the \element{id} attribute to be required, adding an optional \element{baseStyle} of type \SIdRef, and allowing up to three optional chidren of type \Line, \Marker, and \Fill.  Collectively, these elements describe a visual style that can be applied to elements of an \Output.
 
 \paragraph*{\element{baseStyle}}
-The optional \element{baseStyle} attribute of data type \element{SIdRef} is used to reference a different \Style in the same \SedDocument.  If present, any defined aspect of the referenced \Style is assumed to apply to the current \Style, unless superseded by an element of the current \Style.  For example, if one \Style \val{style1} defines a black line with a blue marker, and a second \Style \val{style2} has a \element{baseStyle} of \val{style1} and defines a red line, applying a \val{style2} would result in a red line with a blue marker.
+The optional \element{baseStyle} attribute of data type \SIdRef is used to reference a different \Style in the same \SedDocument.  If present, any defined aspect of the referenced \Style is assumed to apply to the current \Style, unless superseded by an element of the current \Style.  For example, if one \Style \val{style1} defines a black line with a blue marker, and a second \Style \val{style2} has a \element{baseStyle} of \val{style1} and defines a red line, applying a \val{style2} would result in a red line with a blue marker.
 
 
 \subsubsection{\element{Line}}

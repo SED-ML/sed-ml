@@ -3,31 +3,9 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{AbstractTask}}
 \label{class:abstractTask}
-In SED-ML the subclasses of \concept{AbstractTask} define which \hyperref[class:simulation]{Simulations} should be executed with which \hyperref[class:model]{Models} in the simulation experiment. \concept{AbstractTask} is the base class of all SED-ML tasks, i.e.\ \hyperref[class:task]{Task} and \hyperref[class:repeatedTask]{RepeatedTask}.
+In SED-ML the subclasses of \concept{AbstractTask} define which \hyperref[class:simulation]{Simulations} should be executed with which \hyperref[class:model]{Models} in the simulation experiment. \concept{AbstractTask} is the base class of all SED-ML tasks, i.e.\ \hyperref[class:task]{Task} and \hyperref[class:repeatedTask]{RepeatedTask}.  \changed{It inherits the attributes and children of \SedBase, but changes the \element{id} attribute to be required instead of optional.}
 
-\sedfig[width=0.50\textwidth]{images/uml/abstractTask}{The SED-ML Abstract Task class}{fig:abstractTask}
-
-\tabtext{abstractTask}{abstractTask}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{abstractTask}}
-\label{tab:abstractTask}
-\end{table}
+\sedfig[width=0.80\textwidth]{images/uml/abstractTask}{The SED-ML Abstract Task, Task, RepeatedTask, and SimpleRepeatedTask classes}{fig:abstractTask}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -36,36 +14,16 @@ annotation$^{o}$ & \refpage{class:annotation}\\
 \subsubsection{\element{Task}}
 \label{class:task}
 
-A \concept{Task} links a \hyperref[class:model]{Model} to a certain \hyperref[class:simulation]{Simulation} description via their respective identifiers (\fig{abstractTask}), using the \hyperref[sec:modelReference]{\element{modelReference}} and the \hyperref[sec:simulationReference]{\element{simulationReference}}. The task class receives the \hyperref[sec:id]{\element{id}} and \hyperref[sec:name]{\element{name}} attributes from \hyperref[class:abstractTask]{AbstractTask}.
+A \concept{Task} links a \hyperref[class:model]{Model} to a certain \hyperref[class:simulation]{Simulation} description via their respective identifiers (\fig{abstractTask}), using the \hyperref[sec:modelReference]{\element{modelReference}} and the \hyperref[sec:simulationReference]{\element{simulationReference}}. The task class inherits the attributes and children of the \AbstractTask.
+
+\paragraph*{\element{modelReference}}
+The \element{modelReference} attribute of type  \SIdRef
+
 
 In SED-ML it is only possible to link one \hyperref[class:simulation]{Simulation} description to one \hyperref[class:model]{Model} at a time. However, one can define as many tasks as needed within one experiment description. Please note that the tasks may be executed in any order, as determined by the implementation.
 
-\tabtext{task}{task}
 
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-modelReference & \refpage{sec:modelReference}\\
-simulationReference & \refpage{sec:simulationReference}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{task}}
-\label{tab:task}
-\end{table}
 
-\lsttext{task}{task} 
 In the example, a simulation setting \code{simulation1} is applied first to \code{model1} and then to \code{model2}.
 \begin{myXmlLst}{The \code{task} element}{lst:task}
 <listOfTasks>
@@ -95,33 +53,6 @@ The order of activities within each iteration of a \concept{RepeatedTask} is as 
 	\item Finally, all \hyperref[class:subTask]{{subTasks}} in the \hyperref[class:listOfSubTasks]{\element{listOfSubtasks}} are executed in the order specified by their \hyperref[sec:subTaskOrder]{\element{order}} element.
 \end{itemize}
 
-\tabtext{repeatedTask}{repeatedTask}
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-range & \refpage{sec:rangeAttribute}\\
-resetModel & \refpage{sec:resetModel}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-listOfChanges$^{o}$ & \refpage{sec:changesRepeatedTask}\\
-listOfSubTask & \refpage{class:listOfSubTasks}\\
-listOfRanges & \refpage{class:listOfRanges}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{repeatedTask}}
-\label{tab:repeatedTask}
-\end{table}
 
 \lsttext{repeatedTask}{repeatedTask}
 In the example, \code{task1} is repeated three times, each time with a different value for a model parameter \code{w}.
@@ -155,7 +86,7 @@ In the example, \code{task1} is repeated three times, each time with a different
 % ~~~ RANGE ~~~
 \paragraph*{\element{range}}
 \label{sec:rangeAttribute}
-The \hyperref[class:repeatedTask]{RepeatedTask} has a required attribute \concept{\element{range}} of type \hyperref[type:sidref]{\element{SIdRef}}. It specifies which \concept{\element{range}} defined in the \hyperref[class:listOfRanges]{\element{listOfRanges}} this repeated task iterates over. Listing~\ref{lst:repeatedTask} shows an example of a \hyperref[class:repeatedTask]{repeatedTask} iterating over a single range comprising the values: \code{1}, \code{4} and \code{10}.
+The \hyperref[class:repeatedTask]{RepeatedTask} has a required attribute \concept{\element{range}} of type \SIdRef. It specifies which \concept{\element{range}} defined in the \hyperref[class:listOfRanges]{\element{listOfRanges}} this repeated task iterates over. Listing~\ref{lst:repeatedTask} shows an example of a \hyperref[class:repeatedTask]{repeatedTask} iterating over a single range comprising the values: \code{1}, \code{4} and \code{10}.
 If there are multiple ranges in the \hyperref[class:listOfRanges]{\element{listOfRanges}}, then only the master \concept{\element{range}} identified by this attribute determines how many iterations there will be in the \hyperref[class:repeatedTask]{repeatedTask}. All other ranges must allow for at least as many iterations as the master range, and will be moved through in lock-step; their values can be used in \hyperref[class:setValue]{setValue} constructs.
 
 % ~~~ RESET MODEL ~~~
@@ -205,7 +136,7 @@ A \concept{SubTask} (\fig{repeatedTask}) defines the subtask which is executed i
 
 \paragraph*{\element{task}}
 \label{sec:subTaskTask}
-The required element \concept{\element{task}} of data type \hyperref[type:sidref]{\element{SIdRef}} specifies the \hyperref[class:abstractTask]{AbstractTask} executed by this \hyperref[class:subTask]{SubTask}.
+The required element \concept{\element{task}} of data type \SIdRef specifies the \hyperref[class:abstractTask]{AbstractTask} executed by this \hyperref[class:subTask]{SubTask}.
 
 \paragraph*{\element{order}}
 \label{sec:subTaskOrder}
