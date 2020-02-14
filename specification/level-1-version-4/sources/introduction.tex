@@ -21,34 +21,34 @@ SED-ML specifies for a given simulation experiment
 
 \begin{itemize}
 \item what datasets to use (\hyperref[class:dataDescription]{DataDescription});
-\item which models to use (\hyperref[class:model]{Model});
+\item which models to use (\Model);
 \item which modifications to apply to models before simulation (\hyperref[class:change]{Change});
-\item which simulation procedures to run on each model (\hyperref[class:simulation]{Simulation}, and \hyperref[class:task]{Task});
-\item what analysis results to plot or report and how to post-process the data (\hyperref[class:dataGenerator]{DataGenerator}); and
+\item which simulation procedures to run on each model (\Simulation, and \Task);
+\item what analysis results to plot or report and how to post-process the data (\DataGenerator); and
 \item how these results should be presented (\hyperref[class:output]{Output}).
 \end{itemize}
 
-A \hyperref[class:sed-ml]{SED-ML document} contains the following main objects to describe this information: \hyperref[class:dataDescription]{DataDescription}, \hyperref[class:model]{Model}, \hyperref[class:change]{Change}, \hyperref[class:simulation]{Simulation}, \hyperref[class:task]{Task}, \hyperref[class:dataGenerator]{DataGenerator}, and \hyperref[class:output]{Output}.
+A \hyperref[class:sed-ml]{SED-ML document} contains the following main objects to describe this information: \hyperref[class:dataDescription]{DataDescription}, \Model, \hyperref[class:change]{Change}, \Simulation, \Task, \DataGenerator, and \hyperref[class:output]{Output}.
 
 \paragraph*{\hyperref[class:dataDescription]{DataDescription}}
 The \hyperref[class:dataDescription]{DataDescription} class allows to specify datasets for a simulation experiment. Such data can be used for instance for parametrization of model simulations or to plot data together with simulation results.
 
-\paragraph*{\hyperref[class:model]{Model}}
-The \hyperref[class:model]{Model} class allows to reference the models used in a simulation experiment.
+\paragraph*{\Model}
+The \Model class allows to reference the models used in a simulation experiment.
 
 The \hyperref[class:change]{Change} class allows to modify models (pre-processing), i.e., changing the value of an observable, computing the change of a value using mathematics, or general changes on any XML element of the model representation that is addressable by \hyperref[sec:xpath]{XPath} expressions, e.g., substituting a piece of XML by an updated one.
 
-\paragraph*{\hyperref[class:simulation]{Simulation}}
-The \hyperref[class:simulation]{Simulation} class defines the simulation settings and the steps taken during simulation. These include the particular type of simulation, the algorithm, and the algorithm parameters used for the execution of the simulation.
+\paragraph*{\Simulation}
+The \Simulation class defines the simulation settings and the steps taken during simulation. These include the particular type of simulation, the algorithm, and the algorithm parameters used for the execution of the simulation.
 
-\paragraph*{\hyperref[class:task]{Task}}
-SED-ML uses the \hyperref[class:task]{Task} class to specify which \hyperref[class:simulation]{Simulation} is run with which \hyperref[class:model]{Model}.
+\paragraph*{\Task}
+SED-ML uses the \Task class to specify which \Simulation is run with which \Model.
 
-\paragraph*{\hyperref[class:dataGenerator]{DataGenerator}}
-The \hyperref[class:dataGenerator]{DataGenerator} class allows to encode post-processing of simulation results before the generation of outputs, e.g., one can normalize a variable, or apply post-processing like mean value calculation. In the definition of a \hyperref[class:dataGenerator]{DataGenerator}, any addressable variable or parameter of any model or \hyperref[class:dataSource]{DataSource} may be referenced, and new entities might be specified using \hyperref[sec:mathML]{MathML}.
+\paragraph*{\DataGenerator}
+The \DataGenerator class allows to encode post-processing of simulation results before the generation of outputs, e.g., one can normalize a variable, or apply post-processing like mean value calculation. In the definition of a \DataGenerator, any addressable variable or parameter of any model or \hyperref[class:dataSource]{DataSource} may be referenced, and new entities might be specified using \hyperref[sec:mathML]{MathML}.
 
 \paragraph*{\hyperref[class:output]{Output}}
-The \hyperref[class:output]{Output} defines the output of the simulation experiment, which can be either a two dimensional plot (\hyperref[class:plot2D]{Plot2D}), a three dimensional plot (\hyperref[class:plot3D]{Plot3D}), or data table (\hyperref[class:report]{Report}). The \hyperref[class:output]{Output} is based on the post-processed simulation results in the \hyperref[class:dataGenerator]{DataGenerators}.
+The \hyperref[class:output]{Output} defines the output of the simulation experiment, which can be either a two dimensional plot (\hyperref[class:plot2D]{Plot2D}), a three dimensional plot (\hyperref[class:plot3D]{Plot3D}), or data table (\hyperref[class:report]{Report}). The \hyperref[class:output]{Output} is based on the post-processed simulation results in the \DataGenerator.
 
 This section provided a low level overview over a simulation experiment in SED-ML. For the detailed technical specification see Chapter~\ref{chp:specification}. 
 

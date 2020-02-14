@@ -163,7 +163,7 @@ The \element{type} attribute, if present, determines the type of surface and how
 \label{class:report}
 \label{class:listOfDataSets}
 \begin{blockChanged}
-The \concept{Report} class defines a data table consisting of several single instances of the \DataSet in the child \element{listOfDataSets} (\fig{report}). Its output returns the simulation result processed via \hyperref[class:dataGenerator]{DataGenerators} in actual numbers. The columns of the report table are defined by creating an instance of the \DataSet for each column. 
+The \concept{Report} class defines a data table consisting of several single instances of the \DataSet in the child \element{listOfDataSets} (\fig{report}). Its output returns the simulation result processed via \DataGenerators in actual numbers. The columns of the report table are defined by creating an instance of the \DataSet for each column. 
 \end{blockChanged}
 
 The simulation result itself, i.e.\ concrete result numbers, are not stored in SED-ML, but the directive how to calculate them from the output of the simulator is provided through the \hyperref[class:dataGenerator]{dataGenerator}. The encoding of simulation results is not part of SED-ML \currentLV.

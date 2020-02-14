@@ -8,9 +8,9 @@
 \label{sec:mathML}
 SED-ML encodes mathematical expressions using a subset of \concept{MathML} 2.0 \citep{CIM+01}. \concept{MathML} is an international standard for encoding mathematical expressions using XML. It is also used as a representation of mathematical expressions in other formats, such as SBML and CellML, two of the model languages supported by SED-ML. 
 
-SED-ML files can use mathematical expressions to encode for example pre-processing steps applied to the computational model (\hyperref[class:computeChange]{ComputeChange}), or post processing steps applied to the raw simulation data before output (\hyperref[class:dataGenerator]{DataGenerator}). 
+SED-ML files can use mathematical expressions to encode for example pre-processing steps applied to the computational model (\ComputeChange), or post processing steps applied to the raw simulation data before output (\DataGenerator). 
 
-SED-ML classes reference \concept{MathML} expressions via the element \hyperref[sec:math]{\element{math}} of data type \hyperref[type:mathml]{\element{MathML}}.
+SED-ML classes reference \concept{MathML} expressions via the element \Math of data type \hyperref[type:mathml]{\element{MathML}}.
 
 % ~~~ MATHML ELEMENTS ~~~
 \subsection{MathML elements}
@@ -57,7 +57,7 @@ The allowed MathML in SED-ML is restricted to the following subset:
 
 % ~~~ MATHML SYMBOLS ~~~
 \subsection{MathML symbols}
-All the operations listed above only operate on \emph{scalar} values. However, as one of SED-ML's aims is to provide post processing on the results of simulation experiments, this basic set needs to be extended by some aggregate functions. Therefore a defined set of \concept{MathML symbols} that represent vector values are supported by SED-ML. The only allowed symbols to be used in aggregate functions are the identifiers of \hyperref[class:variable]{Variables} defined in the \hyperref[class:listOfVariables]{\element{listOfVariables}} of \hyperref[class:dataGenerator]{DataGenerators}. These \hyperref[class:variable]{Variables} represent the data collected from the simulation experiment in the associated \hyperref[class:task]{Task}. 
+All the operations listed above only operate on \emph{scalar} values. However, as one of SED-ML's aims is to provide post processing on the results of simulation experiments, this basic set needs to be extended by some aggregate functions. Therefore a defined set of \concept{MathML symbols} that represent vector values are supported by SED-ML. The only allowed symbols to be used in aggregate functions are the identifiers of \Variables defined in the \hyperref[class:listOfVariables]{\element{listOfVariables}} of a \DataGenerator. These \Variables represent the data collected from the simulation experiment in the associated \Task. 
 
 
 % ~~~ MATHML FUNCTIONS ~~~
@@ -144,7 +144,7 @@ One way for referencing a model from a SED-ML file is adopted from the \concept{
 
 SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offers web services to do so\footnote{\url{http://www.ebi.ac.uk/miriam/}}. For the above example of the \code{urn:miriam:biomodels.db:BIOMD0000000048} model, the resolved URL may look like \code{\url{http://www.ebi.ac.uk/biomodels-main/BIOMD0000000048}}.
 
-For additional information see the \hyperref[sec:model_source]{\element{source}} attribute on \hyperref[class:model]{Model}.
+For additional information see the \hyperref[sec:model_source]{\element{source}} attribute on \Model.
 
 An alternative means to obtain a model may be to provide a single resource containing necessary models and a SED-ML file. Although a specification of such a resource is beyond the scope of this document, the recommended means is the \hyperref[sec:archive]{COMBINE archive}.
 
@@ -169,7 +169,7 @@ A prerequisite for a language to be fully supported by SED-ML is that a formalis
 
 To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used (\tab{languageURI}). The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{\element{name.version}}. SED-ML allows to specify a model representation format very generally as being \code{XML}, if no standardised representation format has been used to encode the model. On the other hand, one can be as specific as defining a model being in a particular version of a language, e.g., SBML Level 3 Version 1 as \code{urn:sedml:language:sbml.level-3.version-1}.
 
-For additional information see the \hyperref[sec:language]{\element{language}} attribute on \hyperref[class:model]{Model}.
+For additional information see the \hyperref[sec:language]{\element{language}} attribute on \Model.
 
 \begin{table}[ht]
 \center
@@ -339,7 +339,7 @@ When annotating SED-ML elements with semantic \hyperref[class:annotation]{annota
 \concept{XPath} is a language for finding and referencing information in an XML document \citep{xpath:1999}. Within SED-ML \currentLV, XPath version 1 expressions are used to identify nodes and attributes within an XML representation in the following ways:
 
 \begin{itemize}
-	\item {Within a \hyperref[class:variable]{Variable} definition, where \concept{XPath} identifies the model variable required for manipulation in SED-ML.}
+	\item {Within a \Variable definition, where \concept{XPath} identifies the model variable required for manipulation in SED-ML.}
 	\item {Within a \hyperref[class:change]{Change} definition, where \concept{XPath} is used to identify the target XML to which a change should be applied.}
 \end{itemize}
 

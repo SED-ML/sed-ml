@@ -30,7 +30,7 @@ The mandatory attribute \concept{\element{algorithm}} defines the simulation alg
 %% ~~~ UNIFORM TIMECOURSE SIMULATION ~~~
 \subsubsection{\element{UniformTimeCourse}}
 \label{class:uniformTimeCourse}
-Each instance of the \concept{UniformTimeCourse} class has, in addition to the elements from \hyperref[class:simulation]{Simulation}, the mandatory elements \hyperref[sec:initialTime]{\code{initialTime}}, \hyperref[sec:outputStartTime]{\code{outputStartTime}}, \hyperref[sec:outputEndTime]{\code{outputEndTime}}, and \hyperref[sec:numberOfPoints]{\code{numberOfPoints}} (\fig{simulation}).
+Each instance of the \concept{UniformTimeCourse} class has, in addition to the elements from \Simulation, the mandatory elements \hyperref[sec:initialTime]{\code{initialTime}}, \hyperref[sec:outputStartTime]{\code{outputStartTime}}, \hyperref[sec:outputEndTime]{\code{outputEndTime}}, and \hyperref[sec:numberOfPoints]{\code{numberOfPoints}} (\fig{simulation}).
 
 \lsttext{timecourse}{uniformTimeCourse}
 
@@ -69,7 +69,7 @@ Just because the output points lie on the regular grid described above, does not
 \subsubsection{\element{OneStep}}
 \label{class:oneStep}
 
-The \concept{OneStep} class calculates one further output step for the model from its current state. Each instance of the \concept{OneStep} class has, in addition to the elements from \hyperref[class:simulation]{Simulation}, the mandatory element \hyperref[sec:step]{\code{step}} (\fig{simulation}).
+The \concept{OneStep} class calculates one further output step for the model from its current state. Each instance of the \concept{OneStep} class has, in addition to the elements from \Simulation, the mandatory element \hyperref[sec:step]{\code{step}} (\fig{simulation}).
 
 \lsttext{oneStep}{oneStep}
 
@@ -91,7 +91,7 @@ Note that the \concept{\element{step}} does not necessarily equate to one integr
 % ~~~ STEADYSTATE SIMULATION ~~~
 \subsubsection{\element{SteadyState}}
 \label{class:steadyState}
-The \concept{SteadyState} represents a steady state computation (as for example implemented by NLEQ or Kinsolve). The \concept{SteadyState} class has no additional elements than the elements from \hyperref[class:simulation]{Simulation} (\fig{simulation}).
+The \concept{SteadyState} represents a steady state computation (as for example implemented by NLEQ or Kinsolve). The \concept{SteadyState} class has no additional elements than the elements from \Simulation (\fig{simulation}).
 
 \lsttext{steadyState}{steadyState}
 

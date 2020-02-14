@@ -69,7 +69,7 @@ In the following example a nested NuML \element{compositeDescription} with \toke
 \label{class:dataSource}
 The \concept{DataSource} class (\fig{dataDescription}) extracts chunks out of the dataset provided by the outer \SedDataDescription element. The \concept{DataSource} class introduces three attributes: the required attribute \hyperref[sec:id]{\element{id}} and the optional attributes \hyperref[sec:name]{\element{name}}, \hyperref[sec:indexSet]{\element{indexSet}}, and \hyperref[class:listOfSlices]{\code{listOfSlices}} (\fig{dataDescription}).
 
-\SedDataSource elements can be used anywhere in the SED-ML Description. Specifically their \hyperref[type:id]{\element{id}} attribute can be referenced within the \hyperref[class:listOfVariables]{\element{listOfVariables}} of \hyperref[class:dataGenerator]{DataGenerator}, \hyperref[class:computeChange]{ComputeChange} or \hyperref[class:setValue]{SetValue} objects. Here an example that references the \SedDataSource \token{dataS1}:
+\SedDataSource elements can be used anywhere in the SED-ML Description. Specifically their \hyperref[type:id]{\element{id}} attribute can be referenced within the \hyperref[class:listOfVariables]{\element{listOfVariables}} of \DataGenerator, \ComputeChange or \hyperref[class:setValue]{SetValue} objects. Here an example that references the \SedDataSource \token{dataS1}:
 
 \begin{myXmlLst}{}{lst:indexSource}
 <listOfDataDescriptions>
@@ -104,9 +104,9 @@ The \concept{DataSource} class (\fig{dataDescription}) extracts chunks out of th
 </listOfDataGenerators>
 \end{myXmlLst} 
 
-This represents a change from \LoneVone and \LoneVtwo, in which a \token{taskReference} was always present for a \token{variable} in a \hyperref[class:dataGenerator]{DataGenerator}.
+This represents a change from \LoneVone and \LoneVtwo, in which a \token{taskReference} was always present for a \token{variable} in a \DataGenerator.
 
-To indicate that the \hyperref[sec:target]{\element{target}} of the \hyperref[class:variable]{Variable} is an entity defined within the current SED-ML description (and not an \hyperref[sec:xpath]{Xpath} expression) the hashtag (\#) with the reference to an \hyperref[type:id]{\element{id}} is used. 
+To indicate that the \hyperref[sec:target]{\element{target}} of the \Variable is an entity defined within the current SED-ML description (and not an \hyperref[sec:xpath]{Xpath} expression) the hashtag (\#) with the reference to an \hyperref[type:id]{\element{id}} is used. 
 
 In addition, this example uses the \hyperref[sec:modelReference]{\element{modelReference}}, in order to facilitate a mapping of the data with a given model. 
 

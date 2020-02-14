@@ -1,7 +1,7 @@
 \pagebreak
 
 \section{General data types, attributes and classes}
-In this section concepts used repeatedly throughout the SED-ML specification are introduced. This includes  \hyperref[sec:dataTypes]{primitive data types}, classes (\hyperref[class:sedBase]{SedBase}, \hyperref[class:notes]{Notes}, \hyperref[class:notes]{Annotation}, \hyperref[class:parameter]{Parameter}, \hyperref[class:variable]{Variable}), \hyperref[sec:generalAttributes]{attributes}, and \hyperref[sec:reference]{reference relations}.
+In this section concepts used repeatedly throughout the SED-ML specification are introduced. This includes  \hyperref[sec:dataTypes]{primitive data types}, classes (\SedBase, \Notes, \hyperref[class:notes]{Annotation}, \Parameter, \Variable), \hyperref[sec:generalAttributes]{attributes}, and \hyperref[sec:reference]{reference relations}.
 
 The main \hyperref[sec:components]{SED-ML components} based on these general data types, attributes and classes are described in Section~\ref{sec:components}.
 
@@ -128,7 +128,7 @@ The \element{MarkerKind} primitive data type is used in the definition of the \M
 \label{class:sedBase}
 \concept{SEDBase} is the base class of all SED-ML classes (\fig{sedBase}). The \concept{SEDBase} class has the optional attribute \hyperref[sec:metaid]{\element{metaid}}, and the two optional subelements \hyperref[sec:notesElement]{\element{notes}} and \hyperref[sec:annotationElement]{\element{annotation}}. 
 
-\concept{SEDBase} provides means to attach additional information on all other classes. That information can be specified by human readable \hyperref[class:notes]{Notes} or custom \hyperref[class:annotation]{Annotation}.
+\concept{SEDBase} provides means to attach additional information on all other classes. That information can be specified by human readable \Notes or custom \Annotation.
 
 \begin{blockChanged}
 \sedfig[width=0.75\textwidth]{images/uml/sedBase}{The \SEDBase, \Notes, and \Annotation classes}{fig:sedBase}
@@ -180,24 +180,24 @@ Listing \ref{lst:name} extends the model definition in \lst{id} by a model \conc
 % ~~~ META ID ~~~
 \paragraph*{\element{metaid}}
 \label{sec:metaid}
-The main purpose of the \concept{\element{metaid}} attribute of data type \code{\hyperref[type:id]{ID}} is to attach semantic annotations in form of the \hyperref[class:annotation]{Annotation} class to SED-ML elements. The \concept{\element{metaid}} attribute is globally unique throughout the SED-ML document, i.e., the \concept{\element{metaid}} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
+The main purpose of the \concept{\element{metaid}} attribute of data type \code{\hyperref[type:id]{ID}} is to attach semantic annotations in form of the \Annotation class to SED-ML elements. The \concept{\element{metaid}} attribute is globally unique throughout the SED-ML document, i.e., the \concept{\element{metaid}} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
 
-In order to set either \hyperref[class:notes]{Notes} or \hyperref[class:annotation]{Annotation} on a SED-ML class the \concept{\element{metaid}} is required.
+In order to set either \Notes or \Annotation on a SED-ML class the \concept{\element{metaid}} is required.
 
 \paragraph*{\element{notes}}
 \label{sec:notesElement}
-The optional \concept{\element{notes}} element stores \hyperref[class:notes]{Notes} on \hyperref[class:sedBase]{SedBase}.
+The optional \concept{\element{notes}} element stores \Notes on \SedBase.
 
 \paragraph*{\element{annotation}}
 \label{sec:annotationElement}
-The optional \concept{\element{annotation}} element stores \hyperref[class:annotation]{Annotation} on \hyperref[class:sedBase]{SedBase}.
+The optional \concept{\element{annotation}} element stores \Annotation on \SedBase.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % NOTES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Notes}}
 \label{class:notes}
-A \concept{Notes} is considered a human-readable description of the element it is assigned to. Instances of the \concept{Notes} class may contain any valid XHTML \citep{P+02}. The namespace URL for \code{XHTML} content inside the \hyperref[class:notes]{Notes} class is \url{http://www.w3.org/1999/xhtml}, which may be declared either in the \hyperref[class:sed-ml]{\element{sedML}} element, or directly in the top level XHTML elements contained within the \hyperref[sec:notesElement]{\code{notes}} element. For details on of how to set the namespace and examples see the SBML specification \citep{HBH+10}.
+A \concept{Notes} is considered a human-readable description of the element it is assigned to. Instances of the \concept{Notes} class may contain any valid XHTML \citep{P+02}. The namespace URL for \code{XHTML} content inside the \Notes class is \url{http://www.w3.org/1999/xhtml}, which may be declared either in the \SedML element, or directly in the top level XHTML elements contained within the \hyperref[sec:notesElement]{\code{notes}} element. For details on of how to set the namespace and examples see the SBML specification \citep{HBH+10}.
 
 \tabtext{notes}{Notes}
 
@@ -231,7 +231,7 @@ xmlns:string & \refpage{sec:xmlns} \\
 </sedML>
 \end{myXmlLst}
 
-In this example, the namespace declaration is inside the \element{notes} element and the note is related to the \element{sedML} root element of the SED-ML file. A note may, however, occur inside \emph{any} SED-ML XML element, except \code{note} itself and \hyperref[class:annotation]{\code{annotation}}.
+In this example, the namespace declaration is inside the \element{notes} element and the note is related to the \element{sedML} root element of the SED-ML file. A note may, however, occur inside \emph{any} SED-ML XML element, except \code{note} itself and \Annotation.
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -275,7 +275,7 @@ The \concept{Parameter} class introduces the required \changed{attribute \hyperr
 
 \sedfig[width=0.35\textwidth]{images/uml/parameter}{The \Parameter class}{fig:parameter}
 
-A \Parameter can be used wherever a mathematical expression to compute a value is defined, e.g., in \hyperref[class:computeChange]{ComputeChange}, \hyperref[class:functionalRange]{FunctionalRange} or \hyperref[class:dataGenerator]{DataGenerator}. The \Parameter definitions are local to the particular class defining them. By using \concept{Parameters} rather than including numbers directly within a mathematical expression is that \hyperref[class:notes]{notes} and \hyperref[class:annotation]{annotations} can be associated with them.
+A \Parameter can be used wherever a mathematical expression to compute a value is defined, e.g., in \ComputeChange, \FunctionalRange or \DataGenerator. The \Parameter definitions are local to the particular class defining them. By using \concept{Parameters} rather than including numbers directly within a mathematical expression is that \hyperref[class:notes]{notes} and \hyperref[class:annotation]{annotations} can be associated with them.
 
 Every \Parameter is defined inside a \ListOfParameters.  The element is optional and may contain zero to many parameters.
 
@@ -291,7 +291,7 @@ In the example a \concept{parameter} \code{p1} with the value \code{40} is defin
 % ~~~ VALUE ~~
 \paragraph*{\element{value}}
 \label{sec:value}
-The \concept{\element{value}} attribute of data type \code{double} is required for each \hyperref[class:parameter]{Parameter}. Each \hyperref[class:parameter]{Parameter} has exactly one fixed \concept{\element{value}}.
+The \concept{\element{value}} attribute of data type \code{double} is required for each \Parameter. Each \Parameter has exactly one fixed \concept{\element{value}}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % VARIABLE
@@ -348,9 +348,9 @@ In the example a variable \code{v1} is defined to compute a change on a model co
 % ~~~ TARGET ~~~
 \paragraph*{\element{target}}
 \label{sec:target}
-An instance of \hyperref[class:variable]{Variable} can refer to a model constituent inside a particular \hyperref[class:model]{model} through an \code{\hyperref[type:xpath]{XPath}} expression stored in the \concept{\element{target}} attribute. 
+An instance of \Variable can refer to a model constituent inside a particular \hyperref[class:model]{model} through an \code{\hyperref[type:xpath]{XPath}} expression stored in the \concept{\element{target}} attribute. 
 
-The \concept{\element{target}} attribute may also be used to reference an entity within the SED-ML file itself, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \SId of the targeted element. As of SED-ML \currentLV this is used to refer to a \hyperref[class:dataSource]{DataSource} in a \hyperref[class:variable]{Variable} or to refer to \hyperref[class:listOfRanges]{ranges} within a \hyperref[class:repeatedTask]{repeatedTask} (see Listing~\ref{lst:repeatedTask}).
+The \concept{\element{target}} attribute may also be used to reference an entity within the SED-ML file itself, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \SId of the targeted element. As of SED-ML \currentLV this is used to refer to a \hyperref[class:dataSource]{DataSource} in a \Variable or to refer to \hyperref[class:listOfRanges]{ranges} within a \hyperref[class:repeatedTask]{repeatedTask} (see Listing~\ref{lst:repeatedTask}).
 
 Note that while it is possible to write \code{\hyperref[type:xpath]{XPath}} expressions that select multiple nodes within a referenced model, when used within a \concept{\element{target}} attribute a single element or attribute \emph{must} be selected by the expression.
 
@@ -404,12 +404,12 @@ The example encodes a computed change of model \code{m001}. To specify that chan
 % ~~~ TASK REFERENCE ~~~
 \paragraph*{\element{taskReference}}
 \label{sec:taskReferenceAttribute}
-The \concept{\element{taskReference}} element of data type \SIdRef is used to reference a \hyperref[class:task]{Task} via a \hyperref[sec:taskReference]{taskReference}. The usage depends on the context the \hyperref[class:variable]{Variable} is used in.
+The \concept{\element{taskReference}} element of data type \SIdRef is used to reference a \Task via a \hyperref[sec:taskReference]{taskReference}. The usage depends on the context the \Variable is used in.
 
 % ~~~ MODEL REFERENCE ~~~
 \paragraph*{\element{modelReference}}
 \label{sec:modelReferenceAttribute}
-The \concept{\element{modelReference}} element of data type \SIdRef is used to reference a \hyperref[class:model]{Model} via a \hyperref[sec:modelReference]{modelReference}. The usage depends on the context the \hyperref[class:variable]{Variable} is used in.
+The \concept{\element{modelReference}} element of data type \SIdRef is used to reference a \Model via a \hyperref[sec:modelReference]{modelReference}. The usage depends on the context the \Variable is used in.
 
 
 \begin{blockChanged}
@@ -511,7 +511,7 @@ Some classes, e.g., \hyperref[class:algorithm]{Algorithm} and \hyperref[class:al
 % ~~~ LISTOF ~~~
 \subsubsection{\element{listOf*} containers}
 \label{class:listOf}
-SED-ML \concept{\element{listOf*}} elements serve as containers for a collection of objects of the same type. For example, the \hyperref[class:listOfModels]{\element{listOfModels}} contains all \hyperref[class:model]{Model} objects of a SED-ML document. Lists do not carry any further semantics nor do they add additional attributes. They might, however, be annotated with \hyperref[class:notes]{Notes} and \hyperref[class:annotation]{Annotations} as they are derived from \hyperref[class:sedBase]{SEDBase}. All \concept{\element{listOf*}} elements are optional in a SED-ML document (with exception of \hyperref[class:listOfRanges]{\element{listOfRanges}} and \hyperref[class:subTask]{\element{listOfSubTasks}} in a \hyperref[class:repeatedTask]{RepeatedTask}, which are mandatory).
+SED-ML \concept{\element{listOf*}} elements serve as containers for a collection of objects of the same type. For example, the \hyperref[class:listOfModels]{\element{listOfModels}} contains all \Model objects of a SED-ML document. Lists do not carry any further semantics nor do they add additional attributes. They might, however, be annotated with \Notes and \Annotation as they are derived from \hyperref[class:sedBase]{SEDBase}. All \concept{\element{listOf*}} elements are optional in a SED-ML document (with exception of \hyperref[class:listOfRanges]{\element{listOfRanges}} and \hyperref[class:subTask]{\element{listOfSubTasks}} in a \RepeatedTask, which are mandatory).
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -523,34 +523,34 @@ SED-ML \concept{\element{listOf*}} elements serve as containers for a collection
 The \concept{reference} concept is used to refer to a particular element inside the SED-ML document. It may occur as an association between:
 
 \begin{itemize}
-	\item{two \hyperref[class:model]{Model}s (\hyperref[sec:modelReference]{modelReference})}
-	\item{a \hyperref[class:variable]{Variable} and a \hyperref[class:model]{Model} (\hyperref[sec:modelReference]{modelReference})}
-	\item{a \hyperref[class:variable]{Variable} and an \hyperref[class:abstractTask]{AbstractTask} (\hyperref[sec:taskReference]{taskReference})}
-	\item{a \hyperref[class:task]{Task} and the simulated \hyperref[class:model]{Model} (\hyperref[sec:modelReference]{modelReference})}
-	\item{a \hyperref[class:task]{Task} and the \hyperref[class:simulation]{Simulation} (\hyperref[sec:simulationReference]{simulationReference})}
-	\item{an \hyperref[class:output]{Output} and a \hyperref[class:dataGenerator]{DataGenerator} (\hyperref[sec:dataReference]{dataReference})}
+	\item{two \Models (\hyperref[sec:modelReference]{modelReference})}
+	\item{a \Variable and a \Model (\hyperref[sec:modelReference]{modelReference})}
+	\item{a \Variable and an \AbstractTask (\hyperref[sec:taskReference]{taskReference})}
+	\item{a \Task and the simulated \Model (\hyperref[sec:modelReference]{modelReference})}
+	\item{a \Task and the \Simulation (\hyperref[sec:simulationReference]{simulationReference})}
+	\item{an \hyperref[class:output]{Output} and a \DataGenerator (\hyperref[sec:dataReference]{dataReference})}
 \end{itemize}
 
-The definition of a \hyperref[class:task]{Task} requires a reference to a particular \hyperref[class:model]{Model} object (\hyperref[sec:modelReference]{modelReference}); furthermore, the \hyperref[class:abstractTask]{Task} object must be associated with a particular \hyperref[class:simulation]{Simulation} object (\hyperref[sec:simulationReference]{simulationReference}).
+The definition of a \Task requires a reference to a particular \Model object (\hyperref[sec:modelReference]{modelReference}); furthermore, the \hyperref[class:abstractTask]{Task} object must be associated with a particular \Simulation object (\hyperref[sec:simulationReference]{simulationReference}).
 
-Depending on the use of the \concept{reference} relation in connection with a \hyperref[class:variable]{Variable} object, it may take different roles: 
+Depending on the use of the \concept{reference} relation in connection with a \Variable object, it may take different roles: 
 
 \begin{enumerate}
-\item[a.]{The \concept{reference} association might occur between a \hyperref[class:variable]{Variable} object and a \hyperref[class:model]{Model} object, e.g., if the variable is to define a \hyperref[class:change]{Change}. 
+\item[a.]{The \concept{reference} association might occur between a \Variable object and a \Model object, e.g., if the variable is to define a \hyperref[class:change]{Change}. 
 In that case the \code{variable} element contains a \hyperref[sec:modelReference]{modelReference} to refer to the particular model that contains the variable used to define the change.}
 
-\item[b.]{If the \concept{reference} is used as an association between a \hyperref[class:variable]{Variable} object and an \hyperref[class:abstractTask]{AbstractTask} object inside the \hyperref[class:dataGenerator]{dataGenerator} class, then the \code{variable} element contains a \hyperref[sec:taskReference]{taskReference} to unambiguously refer to an observable in a given task.}
+\item[b.]{If the \concept{reference} is used as an association between a \Variable object and an \AbstractTask object inside the \hyperref[class:dataGenerator]{dataGenerator} class, then the \code{variable} element contains a \hyperref[sec:taskReference]{taskReference} to unambiguously refer to an observable in a given task.}
 \end{enumerate}
 
 
 % ~~~ MODEL REFERENCE ~~~
 \subsubsection{modelReference}
 \label{sec:modelReference}
-The \concept{modelReference} is a \hyperref[sec:reference]{reference} used to refer to a particular \hyperref[class:model]{Model} via a \SIdRef. The \concept{modelReference} either represents a relation between two \hyperref[class:model]{Model} objects, a \hyperref[class:variable]{Variable} object and a \hyperref[class:model]{Model} object, or a relation between a \hyperref[class:task]{Task} object and a \hyperref[class:model]{Model} object.
+The \concept{modelReference} is a \hyperref[sec:reference]{reference} used to refer to a particular \Model via a \SIdRef. The \concept{modelReference} either represents a relation between two \Model objects, a \Variable object and a \Model object, or a relation between a \Task object and a \Model object.
 
-The \hyperref[sec:model_source]{\code{source}} attribute of a \hyperref[class:model]{Model} is allowed to reference either a URI or an \SId of a second \hyperref[class:model]{Model}. Circular constructs where a model \code{A} refers to a model \code{B} and \code{B} to \code{A} (directly or indirectly) are invalid.
+The \hyperref[sec:model_source]{\code{source}} attribute of a \Model is allowed to reference either a URI or an \SId of a second \Model. Circular constructs where a model \code{A} refers to a model \code{B} and \code{B} to \code{A} (directly or indirectly) are invalid.
 
-If pre-processing needs to be applied to a model before simulation, then the model update can be specified by creating a \hyperref[class:change]{Change} object. In the particular case that a change must be calculated with a mathematical function, variables need to be defined. To refer to an existing entity in a defined \hyperref[class:model]{Model}, the \concept{modelReference} is used. 
+If pre-processing needs to be applied to a model before simulation, then the model update can be specified by creating a \hyperref[class:change]{Change} object. In the particular case that a change must be calculated with a mathematical function, variables need to be defined. To refer to an existing entity in a defined \Model, the \concept{modelReference} is used. 
 
 The \code{modelReference} attribute of the \code{variable} element contains the \concept{id} of a model that is defined in the document. 
 
@@ -574,7 +574,7 @@ In the example, a change is  applied on model \code{m0001}. In the \code{compute
 </model>
 \end{myXmlLst}
 
-The \concept{modelReference} is also used to indicate that a \hyperref[class:model]{Model} object is used in a particular  \hyperref[class:task]{Task}. Listing \ref{lst:modelReference2} shows how this can be done for a sample SED-ML document.
+The \concept{modelReference} is also used to indicate that a \Model object is used in a particular  \Task. Listing \ref{lst:modelReference2} shows how this can be done for a sample SED-ML document.
 
 \begin{myXmlLst}{SED-ML \code{modelReference} definition inside a \element{task} element}{lst:modelReference2}
 <listOfTasks>
@@ -589,7 +589,7 @@ The example defines two different tasks; the first one applies the simulation se
 % ~~~ SIMULATION REFERENCE ~~~
 \subsubsection{simulationReference}
 \label{sec:simulationReference}
-The \concept{simulationReference} is used to refer to a particular \hyperref[class:simulation]{Simulation}  via a \SIdRef, e.g., in a \hyperref[class:task]{Task}. 
+The \concept{simulationReference} is used to refer to a particular \Simulation  via a \SIdRef, e.g., in a \Task. 
 
 Listing \ref{lst:modelReference2} shows the reference to a defined simulation for a sample SED-ML document. In the example, both tasks \code{t1} and \code{t2} use the simulation settings defined in \code{simulation1} to run the experiment.
 
@@ -597,11 +597,11 @@ Listing \ref{lst:modelReference2} shows the reference to a defined simulation fo
 % ~~~ TASK REFERENCE ~~~
 \subsubsection{taskReference}
 \label{sec:taskReference}
-The \concept{taskReference} is a \hyperref[sec:reference]{reference} used to refer to a particular \hyperref[class:abstractTask]{AbstractTask} via a \SIdRef. The \concept{taskReference} is used in \hyperref[class:subTask]{SubTask} to reference the respective subtask, or in \hyperref[class:variable]{Variable} within a \hyperref[class:dataGenerator]{DataGenerator}.
+The \concept{taskReference} is a \hyperref[sec:reference]{reference} used to refer to a particular \AbstractTask via a \SIdRef. The \concept{taskReference} is used in \SubTask to reference the respective subtask, or in \Variable within a \DataGenerator.
 
-\hyperref[class:dataGenerator]{DataGenerator} objects are created to apply post-processing to the simulation results before final output. 
-For certain types of post-processing \hyperref[class:variable]{Variable} objects need to be created.
-These link to a \hyperref[class:abstractTask]{task} defined within the \hyperref[class:listOfTasks]{listOfTasks} from which the model that contains the variable of interest can be inferred. A \concept{taskReference} association is used to realise that link from a \hyperref[class:variable]{Variable} object inside a \hyperref[class:dataGenerator]{DataGenerator} to an \hyperref[class:abstractTask]{AbstractTask} object. Listing \ref{lst:reference3} gives an example.
+\DataGenerator objects are created to apply post-processing to the simulation results before final output. 
+For certain types of post-processing \Variable objects need to be created.
+These link to a \hyperref[class:abstractTask]{task} defined within the \ListOfTasks from which the model that contains the variable of interest can be inferred. A \concept{taskReference} association is used to realise that link from a \Variable object inside a \DataGenerator to an \AbstractTask object. Listing \ref{lst:reference3} gives an example.
 
 \begin{myXmlLst}{SED-ML \code{taskReference} definition inside a \element{dataGenerator} element}{lst:reference3}
 <listOfDataGenerators>

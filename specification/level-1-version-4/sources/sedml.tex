@@ -6,10 +6,10 @@
 Each SED-ML \currentLV document has a main class called \concept{SED-ML} which defines the document's structure and content (\fig{sed-mlMain}). It consists of several parts connected to the \concept{SED-ML} class via \hyperref[class:listOf]{\element{listOf*}} constructs: 
 \begin{itemize}
 	\item \hyperref[class:dataDescription]{DataDescription} (for specification of external data), 
-	\item \hyperref[class:model]{Model} (for specification of models),
-	\item \hyperref[class:simulation]{Simulation} (for specification of simulation setups), 
-	\item \hyperref[class:abstractTask]{AbstractTask} (for the linkage of models and simulation setups), 
-	\item \hyperref[class:dataGenerator]{DataGenerator} (for the definition of post-processing),
+	\item \Model (for specification of models),
+	\item \Simulation (for specification of simulation setups), 
+	\item \AbstractTask (for the linkage of models and simulation setups), 
+	\item \DataGenerator (for the definition of post-processing),
 	\item \hyperref[class:output]{Output} (for the specification of plots and reports).
 	\item \hyperref[class:style]{Style} \changed{(for the specification of plot element styles)}.
 \end{itemize}
@@ -103,7 +103,7 @@ In order to reference data in a simulation experiment, the data files along with
 % ~~~ LIST OF MODELS ~~
 \subsubsection{\element{listOfModels}}
 \label{class:listOfModels}
-The models used in a simulation experiment are defined in the \concept{\element{listOfModels}} container (\fig{sed-mlMain}). The \concept{\element{listOfModels}} is optional and may contain zero to many \hyperref[class:model]{Models}. However, if a \hyperref[class:sed-ml]{SED-ML document} contains one or more \hyperref[class:abstractTask]{Tasks}, at least one \hyperref[class:model]{Model} must be defined to which the \hyperref[class:abstractTask]{Task} elements refer (see Section~\ref{sec:modelReference}).
+The models used in a simulation experiment are defined in the \concept{\element{listOfModels}} container (\fig{sed-mlMain}). The \concept{\element{listOfModels}} is optional and may contain zero to many \Models. However, if a \hyperref[class:sed-ml]{SED-ML document} contains one or more \hyperref[class:abstractTask]{Tasks}, at least one \Model must be defined to which the \hyperref[class:abstractTask]{Task} elements refer (see Section~\ref{sec:modelReference}).
 
 \lsttext{listOfModels}{listOfModels}
 
@@ -120,7 +120,7 @@ The models used in a simulation experiment are defined in the \concept{\element{
 % ~~~ LIST OF SIMULATIONS ~~
 \subsubsection{\element{listOfSimulations}}
 \label{class:listOfSimulations}
-The \concept{\element{listOfSimulations}} element is the container for \hyperref[class:simulation]{Simulation} descriptions (\fig{sed-mlMain}). The \concept{\element{listOfSimulations}} is optional and may contain zero to many \hyperref[class:simulation]{Simulations}. However, if the \hyperref[class:sed-ml]{SED-ML document} contains one or more \hyperref[class:abstractTask]{Tasks}, at least one \hyperref[class:simulation]{Simulation} element must be defined to which the \hyperref[class:abstractTask]{Task} elements refer (see Section \ref{sec:simulationReference}).
+The \concept{\element{listOfSimulations}} element is the container for \Simulation descriptions (\fig{sed-mlMain}). The \concept{\element{listOfSimulations}} is optional and may contain zero to many \Simulations. However, if the \hyperref[class:sed-ml]{SED-ML document} contains one or more \hyperref[class:abstractTask]{Tasks}, at least one \Simulation element must be defined to which the \hyperref[class:abstractTask]{Task} elements refer (see Section \ref{sec:simulationReference}).
 
 \lsttext{listOfSimulations}{listOfSimulation}
 \begin{myXmlLst}{The SED-ML \element{listOfSimulations} element, containing two simulation setups}{lst:listOfSimulations}
@@ -137,7 +137,7 @@ The \concept{\element{listOfSimulations}} element is the container for \hyperref
 % ~~~ LIST OF TASKS ~~~
 \subsubsection{\element{listOfTasks}}
 \label{class:listOfTasks}
-The \concept{\element{listOfTasks}} element contains the defined \hyperref[class:task]{tasks} for the simulation experiment (\fig{sed-mlMain}). The \concept{\element{listOfTasks}} is optional and may contain zero to many tasks, each of which is an instance of a subclass of \hyperref[class:abstractTask]{AbstractTask}.
+The \concept{\element{listOfTasks}} element contains the defined \hyperref[class:task]{tasks} for the simulation experiment (\fig{sed-mlMain}). The \concept{\element{listOfTasks}} is optional and may contain zero to many tasks, each of which is an instance of a subclass of \AbstractTask.
 
 \lsttext{listOfTasks}{listOfTasks}
 \begin{myXmlLst}{The SED-ML \code{listOfTasks} element, defining one task}{lst:listOfTasks}
@@ -151,9 +151,9 @@ The \concept{\element{listOfTasks}} element contains the defined \hyperref[class
 % ~~~ LIST OF DATA GENERATORS ~~~
 \subsubsection{\element{listOfDataGenerators}}
 \label{class:listOfDataGenerators}
-The \concept{\element{listOfDataGenerators}} container holds the \hyperref[class:dataGenerator]{dataGenerator} definitions of a simulation experiment (\fig{sed-mlMain}). The \concept{\element{listOfDataGenerators}} is optional and in general may contain zero to many \hyperref[class:dataGenerator]{DataGenerators}.
+The \concept{\element{listOfDataGenerators}} container holds the \hyperref[class:dataGenerator]{dataGenerator} definitions of a simulation experiment (\fig{sed-mlMain}). The \concept{\element{listOfDataGenerators}} is optional and in general may contain zero to many \DataGenerators.
 
-In SED-ML, all variable and parameter values used in the \hyperref[class:output]{Output} class need to be defined as a \hyperref[class:dataGenerator]{DataGenerator} beforehand.
+In SED-ML, all variable and parameter values used in the \hyperref[class:output]{Output} class need to be defined as a \DataGenerator beforehand.
 
 \lsttext{listOfDataGenerators}{listOfDataGenerators}
 
