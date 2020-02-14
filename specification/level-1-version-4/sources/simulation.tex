@@ -11,32 +11,6 @@ A simulation is the execution of some defined algorithm(s). Simulations are desc
 
 Each instance of the \concept{Simulation} class has an unambiguous and mandatory \hyperref[sec:id]{\code{id}}. An additional, optional \hyperref[sec:name]{\code{name}} may be given to the simulation. Every simulation has a required element \hyperref[sec:algorithm]{\code{algorithm}} describing the simulation \hyperref[class:algorithm]{Algorithm}.
 
-\tabtext{simulation}{simulation}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-algorithm & \refpage{class:algorithm}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{simulation}}
-\label{tab:simulation}
-\end{table}
-
-\lsttext{simulation}{simulation}
-
 \begin{myXmlLst}{The SED-ML \code{listOfSimulations} element, defining two different UniformTimecourse simulations}{lst:simulation}
 <listOfSimulations>
 	<uniformTimeCourse [..]>
@@ -57,35 +31,6 @@ The mandatory attribute \concept{\element{algorithm}} defines the simulation alg
 \subsubsection{\element{UniformTimeCourse}}
 \label{class:uniformTimeCourse}
 Each instance of the \concept{UniformTimeCourse} class has, in addition to the elements from \hyperref[class:simulation]{Simulation}, the mandatory elements \hyperref[sec:initialTime]{\code{initialTime}}, \hyperref[sec:outputStartTime]{\code{outputStartTime}}, \hyperref[sec:outputEndTime]{\code{outputEndTime}}, and \hyperref[sec:numberOfPoints]{\code{numberOfPoints}} (\fig{simulation}).
-
-\tabtext{uniformTimeCourse}{uniformTimeCourse}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{attribute} & \textbf{description}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-initialTime & \refpage{sec:initialTime}\\
-outputStartTime & \refpage{sec:outputStartTime}\\
-outputEndTime & \refpage{sec:outputEndTime}\\
-numberOfPoints & \refpage{sec:numberOfPoints}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-algorithm & \refpage{class:algorithm}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{uniformTimeCourse}}
-\label{tab:uniformTimeCourse}
-\end{table}
 
 \lsttext{timecourse}{uniformTimeCourse}
 
@@ -124,32 +69,6 @@ Just because the output points lie on the regular grid described above, does not
 
 The \concept{OneStep} class calculates one further output step for the model from its current state. Each instance of the \concept{OneStep} class has, in addition to the elements from \hyperref[class:simulation]{Simulation}, the mandatory element \hyperref[sec:step]{\code{step}} (\fig{simulation}).
 
-\tabtext{oneStep}{oneStep}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{attribute} & \textbf{description}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-step & \refpage{sec:step}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-algorithm & \refpage{class:algorithm}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{oneStep}}
-\label{tab:oneStep}
-\end{table}
-
 \lsttext{oneStep}{oneStep}
 
 \begin{myXmlLst}{The SED-ML \code{oneStep} element, specifying to apply the simulation algorithm for another output step of size 0.1.}{lst:oneStep}
@@ -172,30 +91,6 @@ Note that the \concept{\element{step}} does not necessarily equate to one integr
 \label{class:steadyState}
 The \concept{SteadyState} represents a steady state computation (as for example implemented by NLEQ or Kinsolve). The \concept{SteadyState} class has no additional elements than the elements from \hyperref[class:simulation]{Simulation} (\fig{simulation}).
 
-\tabtext{steadyState}{steadyState}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{attribute} & \textbf{description}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-algorithm & \refpage{class:algorithm}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{steadyState}}
-\label{tab:steadyState}
-\end{table}
-
 \lsttext{steadyState}{steadyState}
 
 \begin{myXmlLst}{The SED-ML \code{steadyState} element, defining a steady state simulation with id \code{steady}.}{lst:steadyState}
@@ -216,29 +111,7 @@ algorithm & \refpage{class:algorithm}\\
 % ~~~ ALGORITHM ~~~
 \subsubsection{\element{Algorithm}}
 \label{class:algorithm}
-The \concept{Algorithm} class has a mandatory element \hyperref[sec:kisaoid]{\element{kisaoID}} which contains a \hyperref[sec:kisao]{KiSAO} reference to the particular simulation algorithm used in the \hyperref[class:simulation]{simulation}. In addition, the \concept{Algorithm} has an optional \hyperref[sec:listOfAlgorithmParameters]{\element{listOfAlgorithmParameters}}, a collection of \hyperref[class:algorithmParameter]{algorithmParameter}, which are used to parameterize the \concept{algorithm}.
-
-\tabtext{algorithm}{Algorithm}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{attribute} & \textbf{description}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-kisaoID & \refpage{sec:kisao}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-listOfAlgorithmParameters$^{o}$ & \refpage{class:algorithmParameter}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{algorithm}}
-\label{tab:algorithm}
-\end{table}
+The \concept{Algorithm} class has a mandatory element \hyperref[sec:kisaoid]{\element{kisaoID}} which contains a \hyperref[sec:kisao]{KiSAO} reference to the particular simulation algorithm used in the \hyperref[class:simulation]{simulation}. In addition, the \concept{Algorithm} has an optional \hyperref[class:listOfAlgorithmParameters]{\element{listOfAlgorithmParameters}}, a collection of \hyperref[class:algorithmParameter]{algorithmParameter}, which are used to parameterize the \concept{algorithm}.
 
 The example given in Listing~\ref{lst:simulation}, completed by algorithm definitions results in the code given in Listing \ref{lst:algorithm}. In the example, for both simulations a algorithm is defined. In the first simulation \code{s1} a deterministic approach is used (Euler forward method), in the second simulation \code{s2} a stochastic approach is used (Stochsim nearest neighbor).
 
@@ -256,7 +129,7 @@ The example given in Listing~\ref{lst:simulation}, completed by algorithm defini
 
 % ~~~ LIST OF ALGORITHM PARAMETERS ~~~
 \paragraph*{\element{listOfAlgorithmParameters}}
-\label{sec:listOfAlgorithmParameters}
+\label{class:listOfAlgorithmParameters}
 The \concept{\element{listOfAlgorithmParameters}} contains the settings for the simulation algorithm used in a \hyperref[class:simulation]{simulation} (\fig{simulation}). It may list several instances of the \hyperref[class:algorithmParameter]{AlgorithmParameter} class. The \concept{\element{listOfAlgorithmParameters}} is optional and may contain zero to many parameters.
 
 \lsttext{listOfAlgorithmParameters}{listOfAlgorithmParameters}
@@ -270,7 +143,16 @@ The \concept{\element{listOfAlgorithmParameters}} contains the settings for the 
 % ~~~ ALGORITHM PARAMETER ~~~
 \subsubsection{\element{AlgorithmParameter}}
 \label{class:algorithmParameter}
-The \concept{AlgorithmParameter} class allows to parameterize a particular simulation \hyperref[class:algorithm]{algorithm}. The set of possible parameters for a particular instance is determined by the algorithm that is referenced by the \element{kisaoID} of the enclosing \hyperref[class:algorithm]{algorithm} element (\fig{simulation}). Parameters of simulation algorithms are unambiguously referenced by the mandatory \hyperref[sec:kisaoid]{\element{kisaoID}} attribute. Their value is set in the mandatory \hyperref[sec:algorithmParameterValue]{\element{value}} attribute.
+The \concept{AlgorithmParameter} class allows to parameterize a particular simulation \hyperref[class:algorithm]{algorithm}. The set of possible parameters for a particular instance is determined by the algorithm that is referenced by the \element{kisaoID} of the enclosing \hyperref[class:algorithm]{algorithm} element (\fig{simulation}). Parameters of simulation algorithms are unambiguously referenced by the mandatory \hyperref[sec:kisaoid]{\element{kisaoID}} attribute. Their value is set in the mandatory \hyperref[sec:algorithmParameterValue]{\element{value}} attribute.  \changed{An \AlgorithmParameter may also have child \AlgorithmParameter elements through a \ListOfAlgorithmParameters.}
+
+
+\paragraph*{\element{value}}
+The attribute \element{value} of type \element{string} should contain a value that makes sense for the \element{kisaoID} in question:  if the KiSAO term is a value, the string should contain a number; if the KiSAO term is a Boolean, the string should contain the string \val{true} or \val{false}, etc.
+
+\begin{blockChanged}
+\paragraph*{\element{listOfAlgorithmParameters}}
+The child \element{listOfAlgorithmParameters} of an \AlgorithmParameter may contain parameters that modify or refine the parent parameter, depending on the KiSAO term used.  
+\end{blockChanged}
 
 \begin{myXmlLst}{The SED-ML \concept{\code{algorithmParameter}} element setting the parameter value for the simulation algorithm. \code{KISAO:0000032} refers to the \emph{explicit fourth-order Runge-Kutta method}; \code{KISAO:00000211} refers to the \emph{absolute tolerance}.}{lst:algorithmParameter}
 <algorithm kisaoID="KISAO:0000032"> 

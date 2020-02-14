@@ -11,13 +11,14 @@
 \newcommand{\mailto}[1]   {\link{mailto:#1}{#1}}
 \newcommand{\link}[2]     {\literalFont{\href{#1}{#2}}}
 \newcommand{\literalFont}[1]{\textup{\texttt{#1}}}
-\newcommand{\version}{3\xspace}
+\newcommand{\version}{4\xspace}
 \newcommand{\level}{1\xspace}
 \newcommand{\LoneVone}{Level~1 Version~1\xspace}
 \newcommand{\LoneVtwo}{Level~1 Version~2\xspace}
 \newcommand{\LoneVthree}{Level~1 Version~3\xspace}
-\newcommand{\currentLV}{Level~1 Version~3\xspace}
-\newcommand{\previousLV}{Level~1 Version~2\xspace}
+\newcommand{\LoneVfour}{Level~1 Version~4\xspace}
+\newcommand{\currentLV}{Level~1 Version~4\xspace}
+\newcommand{\previousLV}{Level~1 Version~3\xspace}
 \newcommand{\biom}{BioModels Database\xspace}
 % attribute table layout
 \newcommand{\attribute}{attribute\xspace}
@@ -85,11 +86,16 @@ Attributes and nested elements for \concept{#1}. \emph{$^{o}$}denotes optional e
 \newcommand{\AxisKind} {\hyperref[type:axisKind]{AxisKind}\xspace}
 \newcommand{\CurveKind} {\hyperref[type:curveKind]{CurveKind}\xspace}
 \newcommand{\SurfaceKind} {\hyperref[type:surfaceKind]{SurfaceKind}\xspace}
+\newcommand{\ColorKind} {\hyperref[type:colorKind]{ColorKind}\xspace}
+\newcommand{\LineKind} {\hyperref[type:lineKind]{LineKind}\xspace}
+\newcommand{\MarkerKind} {\hyperref[type:markerKind]{MarkerKind}\xspace}
 
 \newcommand{\AbstractCurve} {\hyperref[class:abstractCurve]{\emph{AbstractCurve}}\xspace}
+\newcommand{\AlgorithmParameter} {\hyperref[class:algorithmParameter]{AlgorithmParameter}\xspace}
 \newcommand{\Annotation} {\hyperref[class:annotation]{Annotation}\xspace}
 \newcommand{\Axis} {\hyperref[class:axis]{Axis}\xspace}
 \newcommand{\Calculation} {\hyperref[class:calculation]{Calculation}\xspace}
+\newcommand{\Change} {\hyperref[class:change]{Change}\xspace}
 \newcommand{\ComputeChange} {\hyperref[class:computeChange]{ComputeChange}\xspace}
 \newcommand{\Curve} {\hyperref[class:curve]{Curve}\xspace}
 \newcommand{\DataGenerator} {\hyperref[class:dataGenerator]{DataGenerator}\xspace}
@@ -100,10 +106,12 @@ Attributes and nested elements for \concept{#1}. \emph{$^{o}$}denotes optional e
 \newcommand{\FunctionalRange} {\hyperref[class:functionalRange]{FunctionalRange}\xspace}
 \newcommand{\Line} {\hyperref[class:line]{Line}\xspace}
 \newcommand{\ListOfCurves} {\hyperref[class:listOfCurves]{ListOfCurves}\xspace}
+\newcommand{\ListOfAlgorithmParameters} {\hyperref[class:listOfAlgorithmParameters]{ListOfAlgorithmParameters}\xspace}
 \newcommand{\ListOfSurfaces} {\hyperref[class:listOfSurfaces]{ListOfSurfaces}\xspace}
 \newcommand{\ListOfDataSets} {\hyperref[class:listOfDataSets]{ListOfDataSets}\xspace}
 \newcommand{\ListOfParameters} {\hyperref[class:listOfParameters]{ListOfParameters}\xspace}
 \newcommand{\ListOfRemainingDimensions} {\hyperref[class:listOfRemainingDimensions]{ListOfRemainingDimensions}\xspace}
+\newcommand{\ListOfStyles} {\hyperref[class:listOfStyles]{ListOfStyles}\xspace}
 \newcommand{\ListOfVariables} {\hyperref[class:listOfVariables]{ListOfVariables}\xspace}
 \newcommand{\Marker} {\hyperref[class:marker]{Marker}\xspace}
 \newcommand{\Math} {\hyperref[sec:math]{Math}\xspace}
@@ -122,6 +130,7 @@ Attributes and nested elements for \concept{#1}. \emph{$^{o}$}denotes optional e
 \newcommand{\SedBase} {\hyperref[class:sedBase]{\emph{SEDBase}}\xspace}
 \newcommand{\SedDocument} {\hyperref[class:sed-ml]{SED-ML Document}\xspace}
 \newcommand{\ShadedArea} {\hyperref[class:shadedArea]{ShadedArea}\xspace}
+\newcommand{\Slice} {\hyperref[class:slice]{Slice}\xspace}
 \newcommand{\Style} {\hyperref[class:style]{Style}\xspace}
 \newcommand{\Surface} {\hyperref[class:surface]{Surface}\xspace}
 \newcommand{\Task} {\hyperref[class:task]{Task}\xspace}

@@ -13,8 +13,13 @@ The \Output class inherits the \element{id} and \element{name} attributes from \
 \end{blockChanged}
 
 \begin{blockChanged}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% OUTPUT COMPONENTS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+
 % ~~~ PLOT ~~~
-\subsection{\element{Plot}}
+\subsubsection{\element{Plot}}
 \label{class:plot}
 The \Plot class is used for two- and three-dimensional plot outputs.  It defines the axes of a plot, as well as whether or not a legend should be displayed.
 
@@ -26,7 +31,8 @@ The \Plot class inherits the \element{id} and \element{name} attributes from \Se
 The optional \element{xAxis} and \element{yAxis} children, each of type \Axis, define the axes by which the \Curve or \Surface children are to be interpreted.  If either child is omitted, that axis is undefined, and it is up to the tool whether and how to display any necessary axes, and to decide whether that axis should be linear or logarithmic.
 
 The \element{legend} attribute defines whether a legend should be displayed (\val{true}) or not (\val{false}).  If the attribute is missing, it is up to the tool whether to display the legend or not.  It does not mean that the attribute has a default value of \val{false}.  The position and styling of the legend is unspecified.
-\subsection{\element{Plot2D}}
+
+\subsubsection{\element{Plot2D}}
 \label{class:plot2D}
 \label{class:listOfCurves}
 The \PlotTwo class is used for two dimensional plot outputs. In addition to the features it inherits from \Plot, it may contain any number of \Curve definitions in the \element{listOfCurves}, as well as an optional child \element{rightYAxis}.
@@ -37,7 +43,7 @@ If a \PlotTwo contains a child \element{rightYAxis}, this defines a new Y axis, 
 
 
 % ~~~ PLOT3D ~~~
-\subsection{\element{Plot3D}}
+\subsubsection{\element{Plot3D}}
 \label{class:plot3D}
 \label{class:listOfSurfaces}
 The \PlotThree class is used for three dimensional plot outputs (\fig{output}). In addition to the elements it inherits from \Plot, the \PlotThree may contain a number of child \Surface definitions in a \element{listOfSurfaces}, and may additionally define a \element{zAxis} child, of type \Axis.
@@ -46,9 +52,8 @@ When a \PlotThree contains a child \element{zAxis}, that \Axis defines the chara
 \end{blockChanged}
 
 
-
 % ~~~ Axis ~~~
-\subsection{\element{Axis}}
+\subsubsection{\element{Axis}}
 \label{class:axis}
 The \Axis class is used to define whether an axis for a given \Plot is linear or logarithmic, and how to display it.  It inherits the optional attributes \element{id} and \element{name} from \SedBase (the latter of which can be used as a label), and adds the required attribute \element{type} of type \AxisKind (either 'linear' or 'log10'), as well as the optional attributes \element{min} and \element{max}, both of type \element{double}, \element{grid} of type \element{Boolean}, and \element{style} of type \element{SIdRef}.
 
@@ -65,52 +70,12 @@ The \element{grid} attribute indicates whether grid lines should (\val{true}) or
 The \element{style} attribute, if present, must be the \element{SId} of a \Style in the same \SedDocument, and can be used to indicate how to display the axis itself, for features such as color and/or line thickness for that axis and its labels.  If not present, any style may be used.  Note that it is possible to suppress an axis from being displayed entirely if the corresponding \Style of an \Axis has a \element{line} with a \element{style} of \val{none}.
 
 
-
-\end{blockChanged}
-%
-
-\sedfig[width=0.7\textwidth]{images/uml/report}{The definition of the SED-ML \Report, \ListOfDataSets, and \DataSet classes.}{fig:report}
-
-% ~~~ REPORT ~~~
-\subsection{\element{Report}}
-\label{class:report}
-\label{class:listOfDataSets}
-\begin{blockChanged}
-The \concept{Report} class defines a data table consisting of several single instances of the \DataSet in the child \element{listOfDataSets} (\fig{report}). Its output returns the simulation result processed via \hyperref[class:dataGenerator]{DataGenerators} in actual numbers. The columns of the report table are defined by creating an instance of the \DataSet for each column. 
-\end{blockChanged}
-
-The simulation result itself, i.e.\ concrete result numbers, are not stored in SED-ML, but the directive how to calculate them from the output of the simulator is provided through the \hyperref[class:dataGenerator]{dataGenerator}. The encoding of simulation results is not part of SED-ML \currentLV.
-
-\begin{blockChanged}
-%% ~~~ DATASET ~~~
-\subsection{\element{DataSet}}
-\label{class:dataSet}
-The \DataSet class holds definitions of data to be used in the \Report class (\fig{report}). DataSets are labeled references to instances of the \DataGenerator class.
-
-Each data set in a \Report must have an unambiguous \element{label}. A \element{label} is a human readable descriptor of a data set for use in a \Report. For example, for a tabular data set of time series results, the \element{label} could be the column heading. 
-
-\paragraph*{\element{dataReference}}
-\label{sec:dataReference}
-The \element{dataReference} attribute is of type \element{SIdRef}, and must be the ID of a \DataGenerator element in the same \SedDocument.  The data produced by that particular \DataGenerator fills the according \hyperref[class:dataSet]{dataSet} in the \hyperref[class:report]{report}.
-
-\lsttext{dataSet}{dataSet}
-The example shows the definition of a dataSet. The referenced dataGenerator \element{dg1} must be defined in the \hyperref[sec:listOfDataGenerators]{\element{listOfDataGenerators}}.
-\begin{myXmlLst}{The SED-ML \code{dataSet} element, defining a data set containing the result of the referenced task}{lst:dataSet}
-<listOfDataSets>
-	<dataSet id="d1" name="v1 over time" dataReference="dg1" label="_1">
-</listOfDataSets>
-\end{myXmlLst}
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% OUTPUT COMPONENTS
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
 \sedfig[width=0.57\textwidth]{images/uml/abstractCurve}{The definition of the SED-ML \AbstractCurve, \Curve, and \ShadedArea classes.}{fig:abstractCurve}
 \end{blockChanged}
 
 
 \begin{blockChanged}
-\subsection{\element{AbstractCurve}}
+\subsubsection{\element{AbstractCurve}}
 \label{class:abstractCurve}
 An \AbstractCurve is a two-dimensional \Output component representing a (processed) simulation result (\fig{abstractCurve}). Zero or more \AbstractCurve instances define a \PlotTwo (\fig{output}).  The \AbstractCurve class defines the attributes common to the \Curve and \ShadedArea child classes.  In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase (the latter of which may be used as the label in the \Plot legend, if present), it also defines the optional attributes \element{xDataReference}, \element{order}, \element{style}, and \element{yAxis}.  It is also legal but discouraged to include an attribute \element{logX}.
 
@@ -129,7 +94,7 @@ The \element{logX} attribute, of type \element{Boolean}, was used in previous ve
 
 
 % ~~~ CURVE ~~~
-\subsection{\element{Curve}}
+\subsubsection{\element{Curve}}
 \label{class:curve}
 A \Curve is a two-dimensional \Output component representing a (processed) simulation result (\fig{output}). Zero or more \Curve instances define a \PlotTwo (\fig{output}). \changed{In addition to the attributes  it inherits from \AbstractCurve (and \SedBase), it also defines the required attribute \element{yDataReference} of type \element{SIdRef}.  It also defines the optional attribute \element{type} of type \CurveKind, and the optional attributes \element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower}, all of type \element{SIdRef}.}
 
@@ -153,7 +118,7 @@ The optional attributes \element{xError}, \element{xErrorLower}, \element{yError
 
 
 % ~~~ SHADEDAREA ~~~
-\subsection{\element{ShadedArea}}
+\subsubsection{\element{ShadedArea}}
 \label{class:shadedArea}
 A \ShadedArea is an \AbstractCurve that defines an area instead of a series of points.  In addition to what is inherited from \AbstractCurve, a \ShadedArea defines the required attributes \element{yDataReferenceFrom} and \element{yDataReferenceTo}, both of which must be an \element{SIdRef} for a \DataGenerator in the same \SedDocument.  The area between these two sets of points is then filled for display.  If the \element{style} is defined, the \Fill of that \Style is used to color the fill.  If both \element{color} and \element{secondColor} are defined, the first is associated with the \element{yDataReferenceFrom}, and the second is associated with the \element{yDataReferenceTo}.
 
@@ -163,7 +128,7 @@ A \ShadedArea is an \AbstractCurve that defines an area instead of a series of p
 \sedfig[width=0.6\textwidth]{images/uml/surface}{The definition of the SED-ML \Surface class.}{fig:surface}
 
 % ~~~ SURFACE ~~~
-\subsection{\element{Surface}}
+\subsubsection{\element{Surface}}
 \label{class:surface}
 \begin{blockChanged}
 A \Surface is a parallel class to \AbstractCurve that defines a three-dimensional surface instead of a two-dimensional curve (\fig{surface}).  It defines the attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \element{SIdRef}, the first two of which are optional and the last of which is required.  It also defines the optional attributes \element{style} of type \element{SIdRef}, and \element{type}, of type \SurfaceKind.
@@ -183,6 +148,49 @@ The \element{type} attribute, if present, determines the type of surface and how
 %\item \textbf{stackedCurves}:  [I think this should actually be \Curve type? --LS]
 \item \textbf{bar}: The data is plotted as a 3D bar plot.
 \end{itemize}
+
+
+
+\end{blockChanged}
+%
+
+
+
+\sedfig[width=0.7\textwidth]{images/uml/report}{The definition of the SED-ML \Report, \ListOfDataSets, and \DataSet classes.}{fig:report}
+
+% ~~~ REPORT ~~~
+\subsection{\element{Report}}
+\label{class:report}
+\label{class:listOfDataSets}
+\begin{blockChanged}
+The \concept{Report} class defines a data table consisting of several single instances of the \DataSet in the child \element{listOfDataSets} (\fig{report}). Its output returns the simulation result processed via \hyperref[class:dataGenerator]{DataGenerators} in actual numbers. The columns of the report table are defined by creating an instance of the \DataSet for each column. 
+\end{blockChanged}
+
+The simulation result itself, i.e.\ concrete result numbers, are not stored in SED-ML, but the directive how to calculate them from the output of the simulator is provided through the \hyperref[class:dataGenerator]{dataGenerator}. The encoding of simulation results is not part of SED-ML \currentLV.
+
+\begin{blockChanged}
+%% ~~~ DATASET ~~~
+\subsubsection{\element{DataSet}}
+\label{class:dataSet}
+The \DataSet class holds definitions of data to be used in the \Report class (\fig{report}). DataSets are labeled references to instances of the \DataGenerator class.
+
+Each data set in a \Report must have an unambiguous \element{label}. A \element{label} is a human readable descriptor of a data set for use in a \Report. For example, for a tabular data set of time series results, the \element{label} could be the column heading. 
+
+\paragraph*{\element{dataReference}}
+\label{sec:dataReference}
+The \element{dataReference} attribute is of type \element{SIdRef}, and must be the ID of a \DataGenerator element in the same \SedDocument.  The data produced by that particular \DataGenerator fills the according \hyperref[class:dataSet]{dataSet} in the \hyperref[class:report]{report}.
+
+\lsttext{dataSet}{dataSet}
+The example shows the definition of a dataSet. The referenced dataGenerator \element{dg1} must be defined in the \hyperref[class:listOfDataGenerators]{\element{listOfDataGenerators}}.
+\begin{myXmlLst}{The SED-ML \code{dataSet} element, defining a data set containing the result of the referenced task}{lst:dataSet}
+<listOfDataSets>
+	<dataSet id="d1" name="v1 over time" dataReference="dg1" label="_1">
+</listOfDataSets>
+\end{myXmlLst}
+
+% ~~~ SURFACE ~~~
+\subsection{\element{Figure}}
+\label{class:figure}
 
 
 \end{blockChanged}

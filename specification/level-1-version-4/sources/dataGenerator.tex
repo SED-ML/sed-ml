@@ -8,31 +8,6 @@ Note that \element{Parameter} and \element{Variable} are subclasses of \emph{SED
 
 Each instance of the \concept{DataGenerator} class is identifiable within the experiment by its unambiguous \hyperref[sec:id]{\element{id}}. It can be further characterised by an optional \hyperref[sec:name]{\element{name}}. The required \hyperref[sec:math]{\element{math}} element contains a \hyperref[sec:mathML]{mathML} expression for the calculation of the \concept{DataGenerator}. \hyperref[class:variable]{Variable} and \hyperref[class:parameter]{Parameter} instances can be used to encode the mathematical expression.
 
-\tabtext{dataGenerator}{dataGenerator}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-math & \refpage{sec:math}\\
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-listOfVariables$^{o}$ & \refpage{class:variable}\\
-listOfParameters$^{o}$ & \refpage{class:parameter}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{dataGenerator}}
-\label{tab:dataGenerator}
-\end{table}
 
 \lsttext{dataGenerator}{dataGenerator}
 In the example the \code{listOfDataGenerator} contains two \code{dataGenerator} elements. 

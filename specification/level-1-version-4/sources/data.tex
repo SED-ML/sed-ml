@@ -6,37 +6,9 @@
 
 The \concept{DataDescription} class (\fig{dataDescription}) allows to reference external data, and contains a description on how to access the data, in what format it is, and what subset of data to extract. 
 
-The \concept{DataDescription} class introduces four attributes: the required attributes \hyperref[sec:id]{\element{id}} and \hyperref[sec:data_source]{\code{source}} and the optional attributes \hyperref[sec:format]{\element{format}} and \hyperref[sec:name]{\element{name}}. In addition two optional elements are defined: \hyperref[sec:dimensionDescription]{\code{dimensionDescription}} and \hyperref[sec:listOfDataSources]{\code{listOfDataSources}}. 
+\sedfig[width=1.0\textwidth]{images/uml/dataDescription}{The SED-ML DataDescription class}{fig:dataDescription}
 
-\sedfig[width=0.8\textwidth]{images/uml/dataDescription}{The SED-ML DataDescription class}{fig:dataDescription}
-
-\tabtext{dataDescription}{dataDescription}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-source & \refpage{sec:data_source}\\
-format$^{o}$ & \refpage{sec:format}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-dimensionDescription$^{o}$ & \refpage{sec:dimensionDescription}\\
-listOfDataSources$^{o}$ & \refpage{sec:listOfDataSources}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{dataDescription}}
-\label{tab:dataDescription}
-\end{table}
+The \concept{DataDescription} class introduces four attributes: the required attributes \hyperref[sec:id]{\element{id}} and \hyperref[sec:data_source]{\code{source}} and the optional attributes \hyperref[sec:format]{\element{format}} and \hyperref[sec:name]{\element{name}}. In addition two optional elements are defined: \hyperref[sec:dimensionDescription]{\code{dimensionDescription}} and \hyperref[class:listOfDataSources]{\code{listOfDataSources}}. 
 
 \lsttext{dataDescription}{dataDescription}
 \begin{myXmlLst}{SED-ML \code{dataDescription} element}{lst:dataDescription}
@@ -64,7 +36,7 @@ The optional \concept{\element{dimensionDescription}} contains a \hyperref[class
 
 % ~~~ LIST OF DATA SOURCES ~~~
 \paragraph*{\element{listOfDataSources}}
-\label{sec:listOfDataSources}
+\label{class:listOfDataSources}
 The optional \concept{\element{listOfDataSources}} contains zero or more \SedDataSource elements. A \SedDataSource extracts chunks out of the external data provided by the outer \SedDataDescription element. 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -95,35 +67,9 @@ In the following example a nested NuML \element{compositeDescription} with \toke
 % ~~~ DATA SOURCE ~~~
 \subsubsection{\element{DataSource}}
 \label{class:dataSource}
-The \concept{DataSource} class (\fig{dataDescription}) extracts chunks out of the dataset provided by the outer \SedDataDescription element. The \concept{DataSource} class introduces three attributes: the required attribute \hyperref[sec:id]{\element{id}} and the optional attributes \hyperref[sec:name]{\element{name}}, \hyperref[sec:indexSet]{\element{indexSet}}, and \hyperref[sec:listOfSlices]{\code{listOfSlices}} (\fig{dataDescription}).
+The \concept{DataSource} class (\fig{dataDescription}) extracts chunks out of the dataset provided by the outer \SedDataDescription element. The \concept{DataSource} class introduces three attributes: the required attribute \hyperref[sec:id]{\element{id}} and the optional attributes \hyperref[sec:name]{\element{name}}, \hyperref[sec:indexSet]{\element{indexSet}}, and \hyperref[class:listOfSlices]{\code{listOfSlices}} (\fig{dataDescription}).
 
-\tabtext{dataSource}{dataSource}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-id & \refpage{sec:id} \\
-name$^{o}$ & \refpage{sec:name}\\
-\midrule
-indexSet & \refpage{sec:indexSet}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\midrule
-listOfSlices$^{o}$ & \refpage{sec:listOfSlices}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{dataSource}}
-\label{tab:dataSource}
-\end{table}
-
-\SedDataSource elements can be used anywhere in the SED-ML Description. Specifically their \hyperref[type:id]{\element{id}} attribute can be referenced within the \hyperref[sec:listOfVariables]{\element{listOfVariables}} of \hyperref[class:dataGenerator]{DataGenerator}, \hyperref[class:computeChange]{ComputeChange} or \hyperref[class:setValue]{SetValue} objects. Here an example that references the \SedDataSource \token{dataS1}:
+\SedDataSource elements can be used anywhere in the SED-ML Description. Specifically their \hyperref[type:id]{\element{id}} attribute can be referenced within the \hyperref[class:listOfVariables]{\element{listOfVariables}} of \hyperref[class:dataGenerator]{DataGenerator}, \hyperref[class:computeChange]{ComputeChange} or \hyperref[class:setValue]{SetValue} objects. Here an example that references the \SedDataSource \token{dataS1}:
 
 \begin{myXmlLst}{}{lst:indexSource}
 <listOfDataDescriptions>
@@ -166,7 +112,7 @@ In addition, this example uses the \hyperref[sec:modelReference]{\element{modelR
 
 Data may contain NA values. All calculations containing a NA value have NA as a result.
 
-Since data elements defined via the \hyperref[class:dimensionDescription]{DimensionDescription} of the \hyperref[class:dataDescription]{DataDescription} or within the NuML file are either values or indices, the \SedDataSource element provides two ways of addressing those elements, the \hyperref[sec:indexSet]{\element{indexSet}} and \hyperref[sec:listOfSlices]{\element{listOfSlices}}. 
+Since data elements defined via the \hyperref[class:dimensionDescription]{DimensionDescription} of the \hyperref[class:dataDescription]{DataDescription} or within the NuML file are either values or indices, the \SedDataSource element provides two ways of addressing those elements, the \hyperref[sec:indexSet]{\element{indexSet}} and \hyperref[class:listOfSlices]{\element{listOfSlices}}. 
 
 %% ~~~ INDEX SET ~~~
 \paragraph*{\element{indexSet}}
@@ -192,7 +138,7 @@ If the \concept{\element{indexSet}} attribute is specified the corresponding \to
 
 % ~~~ LIST OF SLICES ~~~
 \paragraph*{\element{listOfSlices}}
-\label{sec:listOfSlices}
+\label{class:listOfSlices}
 The \concept{\element{listOfSlices}} contains one or more \hyperref[class:slice]{Slice} elements. The \concept{\element{listOfSlices}} container holds the \hyperref[class:slice]{Slice} definitions of a \hyperref[class:dataSource]{DataSource} (\fig{dataDescription}). The \concept{\element{listOfSlices}} is optional and may contain zero to many \hyperref[class:slice]{Slices}.
 
 
@@ -201,30 +147,8 @@ The \concept{\element{listOfSlices}} contains one or more \hyperref[class:slice]
 \label{class:slice}
 If a \SedDataSource does not define the \hyperref[sec:indexSet]{\element{indexSet}} attribute, it will contain \concept{Slice} elements. Each slice removes one dimension from the data hypercube.
 
-The \concept{Slice} class introduces two required attributes: \hyperref[sec:sliceReference]{\element{reference}} and \hyperref[sec:sliceValue]{\element{value}} (\fig{dataDescription}).
+\changed{The \concept{Slice} class introduces a required \element{reference} attribute of type \element{NuMLSIdRef}, and four optional attributes: \element{value} of type \element{DataIdRef}, \element{index} of type \element{SIdRef}, and \element{startIndex} and \element{endIndex}, both of type \element{int} (\fig{dataDescription}).}
 
-\tabtext{slice}{slice}
-
-\begin{table}[ht]
-\center
-\begin{tabular}{ll}
-\toprule
-\textbf{\attribute} & \textbf{\desc}\\
-\midrule
-metaid$^{o}$ & \refpage{sec:metaid}\\
-\midrule
-reference & \refpage{sec:sliceReference}\\
-value & \refpage{sec:sliceValue}\\
-\midrule
-\textbf{\subelements} & \textbf{\desc}\\
-\midrule
-notes$^{o}$ & \refpage{class:notes}\\
-annotation$^{o}$ & \refpage{class:annotation}\\
-\bottomrule
-\end{tabular}
-\caption{\tabcap{slice}}
-\label{tab:slice}
-\end{table}
 
 % ~~~ SLICE:REFERENCE ~~~
 \paragraph*{\element{reference}}
@@ -254,3 +178,12 @@ isolates the index set of all species ids specified to only the single entry for
 	</listOfSlices>
 </dataSource>
 \end{myXmlLst} 
+
+\begin{blockChanged}
+\paragraph*{\element{index}}
+The \element{index} attribute is an \element{SIdRef} to a \RepeatedTask.  This is for cases where the \Slice refers to data generated by potentially-nested \RepeatedTask elements.  [NEEDS MORE:  I DON'T ACTUALLY KNOW HOW THIS IS SUPPOSED TO WORK. --LS]
+
+\paragraph*{\element{startIndex} and \element{endIndex}}
+The \element{startIndex} and \element{endIndex} attributes can be used to further subdivide a subset of dimensional data to only part of the full array of data.  If \element{startIndex} is defined, no data point with an index less than its value should be included, and if \element{endIndex} is included, no data point with an index greater than its value should be included.  [I THINK?  IS THIS WHAT PEOPLE WANT?  --LS]
+
+\end{blockChanged}
