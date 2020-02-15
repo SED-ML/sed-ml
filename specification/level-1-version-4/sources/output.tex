@@ -21,25 +21,31 @@ The \Output class inherits the \element{id} and \element{name} attributes from \
 % ~~~ PLOT ~~~
 \subsubsection{\element{Plot}}
 \label{class:plot}
-The \Plot class is used for two- and three-dimensional plot outputs.  It defines the axes of a plot, as well as whether or not a legend should be displayed.
+The \Plot is an abstract base class for two- and three-dimensional plot outputs.  It defines the size and axes of a plot, as well as whether or not a legend should be displayed.
 
 \sedfig[width=0.75\textwidth]{images/uml/plot}{The definition of the SED-ML \Plot, \PlotTwo, \PlotThree, \Axis, \ListOfCurves, and \ListOfSurfaces classes.  The \AbstractCurve and \Surface classes are defined below.}{fig:plot}
 
-\begin{blockChanged}
-The \Plot class inherits the \element{id} and \element{name} attributes from \SedBase, may additionally contain a \element{legend} attribute of type Boolean, and may define two optional \Axis children.
+The \Plot class inherits the attributes and children from \SedBase, and adds three optional attributes:  \element{legend}, of type Boolean, \element{height} of type \element{double}, and \element{width} of type \element{double}.  It also defines two optional \Axis children, an \element{xAxis} and a \element{yAxis}.
 
-The optional \element{xAxis} and \element{yAxis} children, each of type \Axis, define the axes by which the \Curve or \Surface children are to be interpreted.  If either child is omitted, that axis is undefined, and it is up to the tool whether and how to display any necessary axes, and to decide whether that axis should be linear or logarithmic.
+\paragraph*{\element{legend}}
+The \element{legend} attribute defines whether a legend should be displayed (\val{true}) or not (\val{false}).  If the attribute is not defined, it is up to the tool whether to display the legend or not.  It does not mean that the attribute has a default value of \val{false}.  The position and styling of the legend is unspecified.
 
-The \element{legend} attribute defines whether a legend should be displayed (\val{true}) or not (\val{false}).  If the attribute is missing, it is up to the tool whether to display the legend or not.  It does not mean that the attribute has a default value of \val{false}.  The position and styling of the legend is unspecified.
+\paragraph*{\element{height} and \element{width}}
+The \element{height} and \element{width} elements, both of type \element{double}, may be used to define the size of the plot, in pixels (or the equivalent in the application's display environment).  If either is not defined, the application may choose what size to display the plot. 
+
+\paragraph*{\element{xAxis} and \element{yAxis}}
+The optional \element{xAxis} and \element{yAxis} children, each of type \Axis, define the x and y axes (respectively) by which the \Curve or \Surface children are to be interpreted.  If either child is omitted, that axis is undefined, and it is up to the tool whether and how to display any necessary axes, and to decide whether that axis should be linear or logarithmic.
 
 \subsubsection{\element{Plot2D}}
 \label{class:plot2D}
 \label{class:listOfCurves}
 The \PlotTwo class is used for two dimensional plot outputs. In addition to the features it inherits from \Plot, it may contain any number of \Curve definitions in the \element{listOfCurves}, as well as an optional child \element{rightYAxis}.
 
-Each child \Curve of a \PlotTwo represents a line to be displayed on the plot.  The \Curve itself will define what data it contains, and how it should be displayed.
-
+\paragraph*{\element{rightYAxis}}
 If a \PlotTwo contains a child \element{rightYAxis}, this defines a new Y axis, displayed on the right, which any of the \Curve children may be scaled to.  Each \Curve contains the information about which axis it is to be scaled to.  The \element{rightYAxis} is to be displayed on the right of the plot, and may differ significantly in scale and range from the \element{yAxis}.  A \PlotTwo with no \element{yAxis} may not have a \element{rightYAxis}.
+
+\paragraph*{\element{listOfCurves}}
+Each child \AbstractCurve of a \PlotTwo represents a line to be displayed on the plot.  The \AbstractCurve itself will define what data it contains, and how it should be displayed.
 
 
 % ~~~ PLOT3D ~~~
@@ -48,6 +54,10 @@ If a \PlotTwo contains a child \element{rightYAxis}, this defines a new Y axis, 
 \label{class:listOfSurfaces}
 The \PlotThree class is used for three dimensional plot outputs (\fig{output}). In addition to the elements it inherits from \Plot, the \PlotThree may contain a number of child \Surface definitions in a \element{listOfSurfaces}, and may additionally define a \element{zAxis} child, of type \Axis.
 
+\paragraph*{\element{listOfSurfaces}}
+Each child \Surface of a \PlotThree represents a surface to be displayed on the plot.  The \Surface itself will define what data it contains, and how it should be displayed.
+
+\paragraph*{\element{zAxis}}
 When a \PlotThree contains a child \element{zAxis}, that \Axis defines the characteristics of the z axis. If no \element{zAxis} is provided, those characteristics are undefined, and the tool may choose how and whether to display that axis, as well as what type it is (linear or logarithmic).
 \end{blockChanged}
 
@@ -55,40 +65,47 @@ When a \PlotThree contains a child \element{zAxis}, that \Axis defines the chara
 % ~~~ Axis ~~~
 \subsubsection{\element{Axis}}
 \label{class:axis}
-The \Axis class is used to define whether an axis for a given \Plot is linear or logarithmic, and how to display it.  It inherits the optional attributes \element{id} and \element{name} from \SedBase (the latter of which can be used as a label), and adds the required attribute \element{type} of type \AxisKind (either 'linear' or 'log10'), as well as the optional attributes \element{min} and \element{max}, both of type \element{double}, \element{grid} of type \element{Boolean}, and \element{style} of type \SIdRef.
+The \Axis class is used to define whether an axis for a given \Plot is linear or logarithmic, and how to display it.  It inherits the attributes and children from \SedBase, and adds the required attribute \element{type} of type \AxisKind (either 'linear' or 'log10'), as well as the optional attributes \element{min} and \element{max}, both of type \element{double}, \element{grid} of type \element{boolean}, and \element{style} of type \SIdRef.
 
 \begin{blockChanged}
-The \element{type} value of \val{linear} means the axis should be scaled linearly, while a value of \val{log10} indicates it should have a log10 scale.  Other scalings are not possible in this version of SED-ML.
-\end{blockChanged}
+\paragraph*{\element{name}}
+The \Axis class inherits the \element{name} attribute from \SedBase, but it is worth noting that it is commonly used as a label for the axis.
 
+
+\paragraph*{\element{type}}
+The \element{type} value of \val{linear} means the axis should be scaled linearly, while a value of \val{log10} indicates it should have a log10 scale.  Other scalings are not possible in this version of SED-ML.  This attribute replaces the \val{log} attributes that used to be present on \Curve objects in previous versions of SED-ML. 
+
+\paragraph*{\element{min} and \element{max}}
 The \element{min} and \element{max} values indicate the minimum and maximum values for the axis.  Data points outside of this range should not be shown on the parent \Plot.  Either value may be set or not, and if not set, a value must be chosen for display that is less than (for \element{min}) or greater than (for \element{max}) the most extreme value along that axis for any \Curve or \Surface in that \Plot.  Do note that in some cases, a given \Curve may not have any data points associated with one Y \Axis, as its data may be associated with the alternative Y \Axis.
 
-\begin{blockChanged}
+\paragraph*{\element{grid}}
 The \element{grid} attribute indicates whether grid lines should (\val{true}) or should not (\val{false}) be displayed in the \Plot for tick marks along that axis.  If the \element{grid} attribute is not defined, this means it is up to the tool whether or not to display the grid lines; it does not have a default value of \val{false}.
-\end{blockChanged}
 
-The \element{style} attribute, if present, must be the \element{SId} of a \Style in the same \SedDocument, and can be used to indicate how to display the axis itself, for features such as color and/or line thickness for that axis and its labels.  If not present, any style may be used.  Note that it is possible to suppress an axis from being displayed entirely if the corresponding \Style of an \Axis has a \element{line} with a \element{style} of \val{none}.
+\paragraph*{\element{grid}}
+The \element{style} attribute, if present, must be an \SIdRef to a \Style in the same \SedDocument.  If defined, it indicates how to display the axis itself, for features such as color and/or line thickness for the axis and its labels.  If not present, any style may be used.  Note that it is possible to suppress an axis from being displayed entirely if the corresponding \Style of an \Axis has a \element{line} with a \element{style} of \val{none}.
 
 
 \sedfig[width=0.57\textwidth]{images/uml/abstractCurve}{The definition of the SED-ML \AbstractCurve, \Curve, and \ShadedArea classes.}{fig:abstractCurve}
-\end{blockChanged}
 
-
-\begin{blockChanged}
 \subsubsection{\element{AbstractCurve}}
 \label{class:abstractCurve}
 An \AbstractCurve is a two-dimensional \Output component representing a (processed) simulation result (\fig{abstractCurve}). Zero or more \AbstractCurve instances define a \PlotTwo (\fig{output}).  The \AbstractCurve class defines the attributes common to the \Curve and \ShadedArea child classes.  In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase (the latter of which may be used as the label in the \Plot legend, if present), it also defines the optional attributes \element{xDataReference}, \element{order}, \element{style}, and \element{yAxis}.  It is also legal but discouraged to include an attribute \element{logX}.
 
 
-The \element{xDataReference} attribute, if present, must be the \element{SId} of a \DataGenerator in the same \SedDocument.  The referenced \DataGenerator will contain the information for the x coordinates for the data to be plotted.  This attribute is optional because in the case of a \Curve, an absence of x-coordinate data means that the y-coordinate data is ordinal or categorical, and can simply be plotted in order.
+\paragraph*{\element{xDataReference}}
+The \element{xDataReference} attribute, if present, must be an \SIdRef to a \DataGenerator in the same \SedDocument.  The referenced \DataGenerator will contain the information for the x coordinates for the data to be plotted.  This attribute is optional because in the case of a \Curve, an absence of x-coordinate data means that the y-coordinate data is ordinal or categorical, and can simply be plotted in order.
 
-The \element{order} attribute is of type \element{non-negative integer} and, if present, defines the order in which this \Curve must be displayed relative to other \Curve elements in the same \Plot.  A \Curve with a lower \element{order} will be added earlier to the displayed curves.  This means that for lines, the curve with the highest \element{order} will be fully visible, while a \Curve with a lower \element{order} may be hidden by a \Curve with a higher \element{order}.  A \Curve with no \element{order} may be displayed in front or behind any other \Curve.  For adjacent bars, the bar with the lower \element{order} is presented to the left of any bar with a higher \element{order}.  For stacked bars, the bar with the lower \element{order} is presented underneath any bar with a higher \element{order}.
+\paragraph*{\element{order}}
+The \element{order} attribute is of type \element{non-negative integer} and, if present, defines the order in which this \Curve must be displayed relative to other \Curve elements in the same \Plot.  A \Curve with a lower \element{order} will be added earlier to the displayed curves.  This means that for lines, the curve with the highest \element{order} will be fully visible, while a \Curve with a lower \element{order} may be hidden by a \Curve with a higher \element{order}.  A \Curve with no \element{order} may be displayed in front or behind any other \Curve.  For adjacent bars, the bar with the lower \element{order} is presented to the left of any bar with a higher \element{order}.  For stacked bars, the bar with the lower \element{order} is presented underneath any bar with a higher \element{order}.  As with lines, any bar with no \element{order} defined may be placed in any position relative to the other bars in the \Curve.
 
+\paragraph*{\element{style}}
 The \element{style} attribute is of type \SIdRef and, if present, must reference a \Style in the same \SedDocument.  It can be used to indicate things like color, marker, and/or line thickness for this \Curve.  If not present, any style may be used.  A \Curve may be displayed as only a set of markers if the \Line from its \Style is set to have a \element{type} of \val{none}.  Similarly, a \Curve may be displayed as a line only with no markers if the \Marker from its \Style is set to have a \element{type} of \val{none}.  (If both are set to \val{none}, the curve will not be displayed at all!)  The \Fill of a \Style has no meaning for a \Curve, and, if present, will be ignored.
 
+\paragraph*{\element{yAxis}}
 The \element{yAxis} attribute is of type \element{string} and must be defined if the parent \Plot defines both a \element{yAxis} and a \element{rightYAxis}.  If it has the value of \val{left}, it means that the data is to be displayed corresponding to the \element{yAxis} of the parent \Plot, and if it has the value of \val{right}, it means that the data is to be disaplyed corresponding to the \element{rightYAxis} of the parent \Plot.  If the parent \Plot has no defined \element{rightYAxis}, this attribute must not be defined.
 
-The \element{logX} attribute, of type \element{Boolean}, was used in previous versions of SED-ML to indicate whether the x axis of the \Plot should be linear or log10.  This allowed mutliple \Curve objects in the same \Plot to contradict each other, and has therefore been moved to \Plot.  The \element{logX} attribute on \Curve has therefore been deprecated, and will always be ignored.
+\paragraph*{\element{logX} (deprecated)}
+The \element{logX} attribute, of type \element{Boolean}, was used in previous versions of SED-ML to indicate whether the x axis of the \Plot should be linear or log10.  This allowed mutliple \Curve objects in the same \Plot to contradict each other, and has therefore been moved to \Axis.  The \element{logX} attribute on \Curve has therefore been deprecated, and will always be ignored.
 
 \end{blockChanged}
 
@@ -99,8 +116,10 @@ The \element{logX} attribute, of type \element{Boolean}, was used in previous ve
 A \Curve is a two-dimensional \Output component representing a (processed) simulation result (\fig{output}). Zero or more \Curve instances define a \PlotTwo (\fig{output}). \changed{In addition to the attributes  it inherits from \AbstractCurve (and \SedBase), it also defines the required attribute \element{yDataReference} of type \SIdRef.  It also defines the optional attribute \element{type} of type \CurveKind, and the optional attributes \element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower}, all of type \SIdRef.}
 
 \begin{blockChanged}
+\paragraph*{\element{xDataReference}}
 Like the \element{xDataReference}, the \element{yDataReference} must be the \element{SId} of a \DataGenerator in the same \SedDocument.  The referenced \DataGenerator will contain the information for the y coordinates for the data to be plotted.  The dimensions of the y data sould match the x data, if present.  If the y data is multi-dimensional (such as time course data over several stochastic replicates), one dimension should match the x data (time, in our example), and the other dimension should simply be replicated as separate curves on the same plot (with the same style and label).
 
+\paragraph*{\element{type}}
 The optional \element{type} attribute is of type \CurveKind, and determines the kind of curve being displayed.  The possible values are:
 
 \begin{itemize}
@@ -114,6 +133,7 @@ The optional \element{type} attribute is of type \CurveKind, and determines the 
 \item \textbf{polarBarStacked}: The curve is plotted as a stacked bar plot, as above, but on polar coordinates.
 \end{itemize}
 
+\paragraph*{\element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower}}
 The optional attributes \element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower} may be declared to define the error in the data present in the \Curve.  Each attribute must, if defined, point to a \DataGenerator in the same \SedDocument.  The \element{xError} and \element{xErrorLower} must have the same dimensionality as the \element{xDataReference}, and the \element{yError} and \element{yErrorLower} must have the same dimensionality as the \element{yDataReference}.  Each set of data represents the error in that dimension, in distance from the given data point.  If \element{xError} is defined and \element{xErrorLower} is not defined, the error in the x dimension is assumed to be symmetrical (i.e. '1.1 +/- 0.4').  If both attributes are defined, \element{xError} refers to the error in the positive direction, and \element{xErrorLower} refers to the error in the negative direction.  The same is true for \element{yError} and \element{yErrorLower}.
 
 
@@ -122,10 +142,12 @@ The optional attributes \element{xError}, \element{xErrorLower}, \element{yError
 \label{class:shadedArea}
 A \ShadedArea is an \AbstractCurve that defines an area instead of a series of points.  In addition to what is inherited from \AbstractCurve, a \ShadedArea defines the required attributes \element{yDataReferenceFrom} and \element{yDataReferenceTo}, both of which must be an \SIdRef for a \DataGenerator in the same \SedDocument.  The area between these two sets of points is then filled for display.  If the \element{style} is defined, the \Fill of that \Style is used to color the fill.  If both \element{color} and \element{secondColor} are defined, the first is associated with the \element{yDataReferenceFrom}, and the second is associated with the \element{yDataReferenceTo}.
 
+\paragraph*{\element{yDataReferenceFrom} and \element{yDataReferenceTo}}
+The attributes \element{yDataReferenceFrom} and \element{yDataReferenceTo} are both of type \SIdRef, and must reference data of the same dimensionality.  The values of the two attributes may be swapped, with the only effect being the direction of the shading between them, if two fill colors are used.
+
 \end{blockChanged}
 
 
-\sedfig[width=0.6\textwidth]{images/uml/surface}{The definition of the SED-ML \Surface class.}{fig:surface}
 
 % ~~~ SURFACE ~~~
 \subsubsection{\element{Surface}}
@@ -133,10 +155,15 @@ A \ShadedArea is an \AbstractCurve that defines an area instead of a series of p
 \begin{blockChanged}
 A \Surface is a parallel class to \AbstractCurve that defines a three-dimensional surface instead of a two-dimensional curve (\fig{surface}).  It defines the attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \SIdRef, the first two of which are optional and the last of which is required.  It also defines the optional attributes \element{style} of type \SIdRef, and \element{type}, of type \SurfaceKind.
 
+\sedfig[width=0.6\textwidth]{images/uml/surface}{The definition of the SED-ML \Surface class.}{fig:surface}
+
+\paragraph*{\element{xDataReference}, \element{yDataReference}, and \element{zDataReference}}
 The three data reference attributes, if defined, must point to \DataGenerator elements in the same \SedDocument, which define the surface to be plotted.  If the \element{zDataReference} is two-dimensional, the x and y data may be omitted: if so, the z data points are displayed in an ordinal or categorical manner, with x and y values drawn from the data's position in the matrix.
 
+\paragraph*{\element{style}}
 The \element{style} attribute, if defined, must contain the \element{SId} of a \Style object in the same \SedDocument.  This \Style determines how any lines, markers, or fills on that surface should be displayed, if present for that type of \Surface.
 
+\paragraph*{\element{type}}
 The \element{type} attribute, if present, determines the type of surface and how it should be displayed.  The options are:
 
 \begin{itemize}
@@ -188,9 +215,52 @@ The example shows the definition of a dataSet. The referenced dataGenerator \ele
 </listOfDataSets>
 \end{myXmlLst}
 
-% ~~~ SURFACE ~~~
+% ~~~ FIGURE ~~~
 \subsection{\element{Figure}}
 \label{class:figure}
+\label{class:listOfSubPlots}
+
+The \Figure class provides a mechanism to arrange and display several \Plot elements together.  It inherits the attributes and children of \Output, and additionally defines two required attributes \element{numRows} and \element{numCols}, both of type \element{positive integer}, and can additionally contain any number of \SubPlot children through a \ListOfSubPlots.
+
+\sedfig[width=0.7\textwidth]{images/uml/figure}{The definition of the SED-ML \Figure, \ListOfSubPlots, and \SubPlot classes.}{fig:figure}
+
+\paragraph*{\element{numRows} and \element{numCols}}
+The \element{numRows} and \element{numCols} attributes define the number of rows and columns, respectively, to be contained in the figure.  The relative size of each row and columns is not defined, but should be large enough to contain the \Plot elements to be displayed in them.
+
+\paragraph*{\element{listOfSubPlots}}
+The \element{listOfSubPlots} child of a \Figure contains all the \Plot elements to display.  Each \SubPlot declares itself where it is to be displayed in the \Figure.
+
+
+% ~~~ SUBPLOT ~~~
+\subsubsection{\element{SubPlot}}
+\label{class:subPlot}
+
+The \SubPlot class inherits from \SedBase and additionally defines three required attributes (\element{plot}, of type \SIdRef, and \element{row} and \element{col}, both of type \element{positive integer}), and two optional attributes (\element{rowSpan} and \element{colSpan}, both of type \element{positive integer}).  Each \SubPlot defines where in the \Figure the referenced \Plot should be displayed.
+
+\paragraph*{\element{plot}}
+The \element{plot} attribute must be an \SIdRef to a \Plot.  The referenced \Plot will be displayed in the \Figure.  It is not necessary for each \element{plot} to be unique, if the same \Plot should be displayed multiple times.
+
+\paragraph*{\element{row} and \element{col}}
+The \element{row} and \element{col} attributes define the row and column, respectively, within the \Figure where the \Plot is to be displayed.  This must not conflict with any other \SubPlot in the same \Figure, and may not be greater than the \Figure's \element{numRows} or \element{numCols} attributes, respectively.  Rows and columns are both numbered starting with \val{1}, rows are ordered top to bottom, and columns are ordered left to right, so \element{row=\val{1} col=\val{1}} places a \Plot in the upper left corner of the \Figure.
+
+\paragraph*{\element{rowSpan} and \element{colSpan}}
+The optional \element{rowSpan} and \element{colSpan} attributes are used when a \Plot is to be displayed in multiple rows and/or columns in a \Figure.  Each attribute indicates the number of rows and/or columns the figure is to span.  The value must be a positive integer, and it must not be greater than the number of available rows and/or columns in the \Figure.
+
+In the following example, a 3x3 \Figure is defined with four subplots.  The first is in the upper left corner, the second in the top row occupying columns 2 and 3, the next a 2x2 subplot in the lower left, and the final subplot in the right-most column, occupying rows 2 and 3.
+
+\begin{myXmlLst}{The SED-ML \code{figure} element, defining a figure with four subplots of different sizes}{lst:figure_example}
+<figure id="fig1" name="Figure 1" numRows="3" numCols="3">
+    <listOfSubPlots>
+        <subPlot id="ax1" plot="plot_y1" row="1" col="1" />
+        <subPlot id="ax2" plot="plot_y2" row="1" col="2" colSpan="2"/>
+        <subPlot id="ax3" plot="plot_y3" row="2" col="1" colSpan="2" rowSpan="2"/>
+        <subPlot id="ax4" plot="plot_y4" row="2" col="3" rowSpan="2"/>
+    </listOfSubPlots>
+    <notes><p xmlns="xhtml">Figure 1 - Example for figure with text legend and sub-plots.</p></notes>
+</figure>
+\end{myXmlLst}
+
+\sedfig[width=0.6\textwidth]{images/Figure_example}{The output of Listing \vref{lst:figure_example}}{fig:figure_example}
 
 
 \end{blockChanged}
