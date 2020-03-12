@@ -4,9 +4,9 @@
 \subsection{\element{Output}}
 \label{class:output}
 
-The abstract \Output class describes how the results of a simulation are presented (\fig{output}). \changed{The available output classes are \Plot, \Report, and \Figure.} The data used in an \Output is provided via the \DataGenerator class.
+The abstract \Output class describes how the results of a simulation are presented (\fig{output}). \changed{The available output classes are \Plot, \Report, \ParameterEstimationReport, and \Figure.} The data used in an \Output is provided via the \DataGenerator class.
 
-\sedfig[width=0.8\textwidth]{images/uml/output}{The definition of the SED-ML \Output class. The subclasses are defined below.}{fig:output}
+\sedfig[width=0.6\textwidth]{images/uml/output}{The definition of the SED-ML \Output class. The subclasses are defined below.}{fig:output}
 
 \begin{blockChanged}
 The \Output class inherits the \element{id} and \element{name} attributes from \SedBase, as well as the optional \element{annotation} and \element{notes} chidren.  When producing a printed table or figure, users may want to use the \element{name} as the title, and the \element{notes} as the legend.
@@ -85,7 +85,7 @@ The \element{grid} attribute indicates whether grid lines should (\val{true}) or
 The \element{style} attribute, if present, must be an \SIdRef to a \Style in the same \SedDocument.  If defined, it indicates how to display the axis itself, for features such as color and/or line thickness for the axis and its labels.  If not present, any style may be used.  Note that it is possible to suppress an axis from being displayed entirely if the corresponding \Style of an \Axis has a \element{line} with a \element{style} of \val{none}.
 
 
-\sedfig[width=0.57\textwidth]{images/uml/abstractCurve}{The definition of the SED-ML \AbstractCurve, \Curve, and \ShadedArea classes.}{fig:abstractCurve}
+\sedfig[width=0.5\textwidth]{images/uml/abstractCurve}{The definition of the SED-ML \AbstractCurve, \Curve, and \ShadedArea classes.}{fig:abstractCurve}
 
 \subsubsection{\element{AbstractCurve}}
 \label{class:abstractCurve}
@@ -215,6 +215,17 @@ The example shows the definition of a dataSet. The referenced dataGenerator \ele
 </listOfDataSets>
 \end{myXmlLst}
 
+\subsection{\element{ParameterEstimationReport}}
+\label{class:parameterEstimationReport}
+A \ParameterEstimationReport class is used to create a default report from a \ParameterEstimationTask.  It has a single required attribute \element{taskRef} of type \SIdRef that points to that task.
+
+\sedfig[width=0.35\textwidth]{images/uml/parameterEstimationReport}{The definition of the SED-ML \ParameterEstimationReport  class.}{fig:parameterEstimationReport}
+
+The report should include the relevant information collected during the parameter estimation, but the specifics may vary from tool to tool depending on the particular method used.  At the very least, the optimal \AdjustableParameter values should be reported, along with any information that would let the user determine the confidence in those estimates.
+
+It is possible to reproduce and/or have more control over the contents of a \Report that covers the contents of a \ParameterEstimationTask by creating \DataGenerator elements that use \DependentVariable objects whose \element{term} references particular elements of a \ParameterEstimationTask such as the residuals of the \Objective, or the overall chi square value of the task.  But most of these values should be produced by default in a \ParameterEstimationReport.
+
+
 % ~~~ FIGURE ~~~
 \subsection{\element{Figure}}
 \label{class:figure}
@@ -261,6 +272,24 @@ In the following example, a 3x3 \Figure is defined with four subplots.  The firs
 \end{myXmlLst}
 
 \sedfig[width=0.6\textwidth]{images/Figure_example}{The output of Listing \vref{lst:figure_example}}{fig:figure_example}
+
+
+\subsection{\element{ParameterEstimationResultsPlot}}
+\label{class:parameterEstimationResultsPlot}
+A \ParameterEstimationResultsPlot class is used to create a default plot from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskRef} of type \SIdRef that points to that task.
+
+\sedfig[width=0.7\textwidth]{images/uml/parameterEstimationResultsPlot}{The definition of the SED-ML \ParameterEstimationResultsPlot class.}{fig:parameterEstimationResultsPlotFigure}
+
+The plot should display the relevant information collected during the parameter estimation, but the specifics may vary from tool to tool depending on the particular method used.  At the very least, the optimal \AdjustableParameter values should be reported, along with any information that would let the user determine the confidence in those estimates, such as the residuals.
+
+It is possible to reproduce and/or have more control over the contents of a \Plot that covers the contents of a \ParameterEstimationTask by creating \DataGenerator elements that use \DependentVariable objects whose \element{term} references particular elements of a \ParameterEstimationTask such as the residuals of the \Objective, or the overall chi square value of the task.  This is the only way to get direct control over the \Style of anything displayed in a \ParameterEstimationResultsPlot.  But the data itself should be displayed in some form by default in a \ParameterEstimationReport.
+
+
+\subsection{\element{WaterfallPlot}}
+\label{class:waterfallPlot}
+The \WaterfallPlot class is used to create a default plot of a particular style from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskRef} of type \SIdRef that points to that task.
+
+Like a \ParameterEstimationResultsPlot, a \WaterfallPlot displays a range of results and data from a \ParameterEstimationTask that might not otherwise be easily accessible.  Different tools and different experiments may result in different types and styles of waterfall plots.  For an overview of the sort of data present in one, see Gillespie, 2012 \citep{gillespie2012}.
 
 
 \end{blockChanged}

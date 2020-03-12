@@ -93,7 +93,7 @@ The \element{AxisKind} primitive data type is used in the definition of the \Axi
 \subsubsection[\element{CurveKind}]{Type \element{CurveKind}}
 \label{type:curveKind}
 
-The \element{CurveKind} primitive data type is used in the definition of the \Curve class.  \element{CurveKind} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{points}, \val{bar}, \val{barStacked}, \val{horizontalBar}, \val{horizontalBarStacked}, \val{polarPoints}, \val{polarBar}, and \val{polarBarStacked}.  Attributes of type \element{CurveKind} cannot take on any other values.  The meaning of these values is discussed in the context of the \Curve class's definition in \ref{class:curve}.
+The \element{CurveKind} primitive data type is used in the definition of the \Curve class.  \element{CurveKind} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{points}, \val{bar}, \val{barStacked}, \val{horizontalBar}, and \val{horizontalBarStacked}.  Attributes of type \element{CurveKind} cannot take on any other values.  The meaning of these values is discussed in the context of the \Curve class's definition in \ref{class:curve}.
 
 \subsubsection[\element{SurfaceKind}]{Type \element{SurfaceKind}}
 \label{type:surfaceKind}
@@ -110,12 +110,28 @@ The \element{LineKind} primitive data type is used in the definition of the \Lin
 
 The \element{ColorKind} primitive data type is used in the definition of various children of the \Style class.  \element{ColorKind} is derived from type \element{string} and its values are allowed to be a six-character RGB hex value (where the alpha is assumed to be 100\%), or an eight-character RGBA hex value.  For example, 808000FF would be red and green 50.2\%, blue 0\%, and alpha 100\%, i.e. a brown.  Attributes of type \element{ColorKind} cannot take on any other values.
 
-[QUESTION:  are we allowing some common color name strings like 'red' or 'orange' here?  -LS]
-
 \subsubsection[\element{MarkerKind}]{Type \element{MarkerKind}}
 \label{type:markerKind}
 
 The \element{MarkerKind} primitive data type is used in the definition of the \Marker class.  \element{MarkerKind} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{none}, \val{square}, \val{circle}, \val{diamond}, \val{xCross}, \val{plus}, \val{star}, \val{triangleUp}, \val{triangleDown}, \val{triangleLeft}, \val{triangleRight}, \val{hdash}, and \val{vDash}.  Attributes of type \element{MarkerKind} cannot take on any other values.  The meaning of these values is discussed in the context of the \Marker class's definition in \ref{class:marker}.
+
+
+\subsubsection[\element{MappingKind}]{Type \element{MappingKind}}
+\label{type:mappingKind}
+
+The \element{MappingKind} primitive data type is used in the definition of the \FitMapping class.  \element{MappingKind} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{parameter} and \val{variable}.  Attributes of type \element{MappingKind} cannot take on any other values.  The meaning of these values is discussed in the context of the \FitMapping class's definition in \ref{class:fitMapping}.
+
+
+\subsubsection[\element{ExperimentKind}]{Type \element{ExperimentKind}}
+\label{type:experimentKind}
+
+The \element{ExperimentKind} primitive data type is used in the definition of the \FitExperiment class.  \element{ExperimentKind} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{steadyState} and \val{timeCourse}.  Attributes of type \element{ExperimentKind} cannot take on any other values.  The meaning of these values is discussed in the context of the \FitExperiment class's definition in \ref{class:fitExperiment}.
+
+
+\subsubsection[\element{ScaleKind}]{Type \element{ScaleKind}}
+\label{type:scaleKind}
+
+The \element{ScaleKind} primitive data type is used in the definition of the \Bounds class.  \element{ScaleKind} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{lin} \val{log}, and \val{log10}.  Attributes of type \element{ScaleKind} cannot take on any other values.  The meaning of these values is discussed in the context of the \Bounds class's definition in \ref{class:bounds}.
 
 
 \end{blockChanged}

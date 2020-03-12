@@ -5,7 +5,7 @@
 \label{class:abstractTask}
 In SED-ML the subclasses of \concept{AbstractTask} define which \Simulations should be executed with which \Models in the simulation experiment. \concept{AbstractTask} is the base class of all SED-ML tasks, i.e.\ \Task and \RepeatedTask.  \changed{It inherits the attributes and children of \SedBase, but changes the \element{id} attribute to be required instead of optional.}
 
-\sedfig[width=0.80\textwidth]{images/uml/abstractTask}{The SED-ML Abstract Task, Task, RepeatedTask, and SimpleRepeatedTask classes}{fig:abstractTask}
+\sedfig[width=0.9\textwidth]{images/uml/abstractTask}{The SED-ML Abstract Task, Task, RepeatedTask, and SimpleRepeatedTask classes}{fig:abstractTask}
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -232,7 +232,7 @@ The \concept{Value} (\fig{range}) describes a single value, e.g., the \concept{V
 
 \paragraph{\element{FunctionalRange}}
 \label{class:functionalRange}
-The \concept{FunctionalRange} (\fig{range}) constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables. In this it is similar to the \ComputeChange element, and shares some of the same child elements (but is no subclass of \ComputeChange). It consists of an optional attribute \code{range}, two optional elements \ListOfVariables and \ListOfParameters, and a required element \Math.
+The \concept{FunctionalRange} (\fig{range}) constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables. In this it is similar to the \ComputeChange element, and shares some of the same child elements (but is not a subclass of \ComputeChange). It consists of an optional attribute \code{range}, two optional elements \ListOfVariables and \ListOfParameters, and a required element \Math.
 
 The optional attribute \code{range} of type \hyperref[type:sidref]{SIdRef} may be used as a shorthand to specify the \hyperref[sec:id]{\element{id}} of another \Range. The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \hyperref[sec:id]{\element{id}} of the range is used directly. In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
 
@@ -296,10 +296,136 @@ Here is another example, this time using the values in a piecewise expression:
 
 \begin{blockChanged}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% REPEATED TASK
+% PARAMETER ESTIMATION TASK
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsubsection{\element{ParameterEstimationTask}}
+\subsection{\element{ParameterEstimationTask}}
 \label{class:parameterEstimationTask}
+\label{class:listOfAdjustableParameters}
+\label{class:listOfFitExperiments}
 
-The \ParameterEstimationTask inherits from \AbstractTask.  Other than that, it has yet to be fully defined, but some people hope to get it into L1v4.  Further bulletins as events warrant.
+The \ParameterEstimationTask inherits from \AbstractTask, and defines a parameter estimation experiment:  given a set of constraints, what are the best/optimal parameter values for a particular model?  For the purposes of SED-ML, a \ParameterEstimationTask will return a list of optimized values for the estimated parameters (if used in a \DataGenerator of \Calculation \Variable), and will also change the model state such that the estimated parameters will have those values.  However, if used in a \ParameterEstimationResultsPlot, \WaterfallPlot, or \ParameterEstimationReport, various other pieces of information will be output, as defined in those classes.
+
+\sedfig[width=0.9\textwidth]{images/uml/parameterEstimationTask}{The SED-ML \ParameterEstimationTask class}{fig:parameterEstimationTask}
+
+
+A \ParameterEstimationTask has four required children: an \Algorithm, an \Objective, at least one \AdjustableParameter in a \ListOfAdjustableParameters, and at least one \FitExperiment in a \ListOfFitExperiments.  It also has a required \element{modelReference} attribute of type \SIdRef.
+
+\paragraph*{\element{modelReference}}
+The \element{modelReference} attribute of data type \SIdRef is used to reference a \Model in the same \SedDocument.  This model is the one to be used for parameter fitting.
+
+
+\paragraph*{\element{algorithm}}
+The \element{algorithm} child of a \ParameterEstimationTask defines the \Algorithm to be used for parameter fitting.  Any algorithm parameters must be included as child \AlgorithmParameter elements.  The \Algorithm class is defined in section \ref{class:algorithm}.
+
+
+\paragraph*{\element{objective}}
+The \element{objective} child of the \ParameterEstimationTask defines the objective function to be minimized during the parameter estimation.  In \currentLV, there is only a single \Objective option: the \LeastSquareObjectiveFunction (called \val{leastSquareObjectiveFunction} instead of \val{objective}).  In future versions of SED-ML, other objectives may be introduced that cover other cases.
+
+
+\paragraph*{\element{adjustableParameters}}
+The required \ListOfAdjustableParameters child of a \ParameterEstimationTask must contain at least one \AdjustableParameter.  Each \AdjustableParameter defines a single parameter to be estimated.
+
+
+\paragraph*{\element{fitExperiments}}
+The required \ListOfFitExperiments child of a \ParameterEstimationTask must contain at least one \FitExperiment.  Each \FitExperiment defines a set of scenario and expected outcomes, which are compared with simulated data to produce a set of residuals for the \AdjustableParameter values that can be compared according to the \Objective and \Algorithm.  Minimizing these residuals over all fit experiments is the goal of the parameter estimation task.
+
+
+
+\subsubsection{\element{Objective}}
+\label{class:objective}
+
+The \Objective inherits from \SedBase, and does not introduce any new attributes or children.  It is an abstract base class intended to (eventually) organize the different objective function possibilities for parameter estimation tasks.
+
+\sedfig[width=0.4\textwidth]{images/uml/objective}{The SED-ML \Objective and \LeastSquareObjectiveFunction classes}{fig:objective}
+
+
+\subsubsection{\element{LeastSquareObjectiveFunction}}
+\label{class:leastSquareObjectiveFunction}
+
+The \LeastSquareObjectiveFunction inherits from \Objective, and does not introduce any new attributes or children.  Its use indicates that the \ParameterEstimationTask is to minimize the least squares of the residuals of the fit experiments to estimate the parameters.
+
+
+\subsubsection{\element{AdjustableParameter}}
+\label{class:adjustableParameter}
+\label{class:listOfExperimentRefs}
+
+The \AdjustableParameter inherits from \SedBase, and adds a required attribute \element{target} of type \XPath, a required child \Bounds, and an optional child \ListOfExperimentRefs with zero or more \ExperimentRef elements.
+
+The \element{target} of an \AdjustableParameter must point to an adjustable element of the \Model referenced by the parent \ParameterEstimationTask.  This element is one of the elements whose value can be changed by the task in order to optimize the fit experiments.
+
+\sedfig[width=0.8\textwidth]{images/uml/adjustableParameter}{The SED-ML \AdjustableParameter, \Bounds, \ListOfExperimentRefs, and \ExperimentRef classes}{fig:adjustableParameter}
+
+The required \Bounds child of the \AdjustableParameter defines the allowed range of values for the targetted element.  Any \ExperimentRef child indicates that the residuals for this \AdjustableParameter should only be calculated and added to the optimization function for the referenced \FitExperiments.  If an \AdjustableParameter has no \FitExperiment children, the residuals should be calculated for every \FitExperiment in the \ParameterEstimationTask.
+
+
+
+\subsubsection{\element{Bounds}}
+\label{class:bounds}
+
+A \Bounds object defines the allowable range of values for an \AdjustableParameter.  A \Bounds inherits from \SedBase, and adds three required attributes (\element{upperBound} and \element{lowerBound}, both of type \code{double}, and \element{scale}, of type \ScaleKind), and one optional attribute (\element{initialValue}, of type \element{double}).
+
+The \element{lowerBound} defines the lowest value the parent \AdjustableParameter may take during the \ParameterEstimationTask, and \element{upperBound} the highest, with both values being legal outputs of the system.  The \element{lowerBound} must be less than or equal to the \element{upperBound}, though if it is equal, there is nothing to optimize, since only that single value is allowed.
+
+The \element{initialValue}, if defined, is the value that the \AdjustableParameter is to be set at the beginning of the \ParameterEstimationTask.  Otherwise, the value of the \AdjustableParameter at the model's current state is used, unless that value is outside the \element{upperBound} and \element{lowerBound}, in which case any value between or including those values is allowed.
+
+The \element{scale}, of type \ScaleKind, defines the structure of the search space between the upper and lower bounds.  The allowed values are:
+
+\begin{itemize}
+\item lin:  The bounds enclose a linear search space
+\item log:  The bounds enclose a search space scaled by its natural log.
+\item log10:  The bounds enclose a search space scaled by its log base-10 values.
+\end{itemize}
+
+
+\subsubsection{\element{ExperimentRef}}
+\label{class:experimentRef}
+
+An \ExperimentRef inherits from \SedBase and adds the single required attribute \element{experiment}, of type \SIdRef, which must point to a \FitExperiment in the same \ParameterEstimationTask.  If an \AdjustableParameter has one or more \ExperimentRef children, its residuals are only evaluated for the \Objective for the \FitExperiments that are referenced.  If an \AdjustableParameter has no \ExperimentRef children, its residuals are evaluated for every \FitExperiment.
+
+
+\subsubsection{\element{FitExperiment}}
+\label{class:fitExperiment}
+\label{class:listOfFitMappings}
+
+The \FitExperiment inherits from \SedBase, and adds the required attribute \element{type} of type \ExperimentKind, a required \Algorithm child, and a required \ListOfFitMappings child which must in turn contain one or more \FitMapping children.
+
+\sedfig[width=0.9\textwidth]{images/uml/fitExperiment}{The SED-ML \FitExperiment, \ListOfFitMappings, and \FitMappings classes}{fig:fitExperiment}
+
+A \FitExperiment describes an experiment for which there are known experimental conditions, and expected experimental output.  The differences between the expected experimental output and the simulated output is used by the \Objective to determine the optimal values to use for the \AdjustableParameters.
+
+
+The \element{type} attribute indicates whether the experiment is a time-course experiment (\val{timeCourse}), or a steady-state experiment (\val{steadyState}).
+
+The \Algorithm of a \FitExperiment describes the algorithm (time course or steady state), and can also be used to define any algorithm parameters of the experiment.
+
+The \FitMapping children are used to map externallly-set experimental conditions, observables, and time (in time course experiments) to the model.
+
+
+\subsubsection{\element{FitMapping}}
+\label{class:fitMapping}
+
+A \FitMapping inherits from \SedBase, and adds three required attributes \element{dataSouce} and \element{target}, both of type \SIdRef, \element{type} of type \MappingKind, and two optional attributes \element{weight} of type \code{positive double}, and \element{pointWeight} of type \SIdRef.  A \FitMapping is used to correlate elements of a model simulation with data for that simulation, whether time, inputs (experimental conditions) or outputs (observables).
+
+The \element{type} is of type \MappingKind, and may take one of the following three values:
+
+\begin{itemize}
+\item time:  Used only in time course simulations, a \val{time} \FitMapping correlates the time points of the observables to the time points of the simulated output.  This also serves to declare what time points must be output by the simulation:  unlike a \UniformTimeCourse, a \FitExperiment time course must at least output the time points mapped here, so that the observables may be directly compared to each other.
+\item experimentalCondition:  Any \FitMapping of type \val{experimentalCondition} maps a single value to a model element.  The model element must be set to the value as part of the model's initial condition.
+\item observable:  An \val{observable} \FitMapping maps the output of the simulation to a set of expected values.  These values are used by the \Objective when determining the goodness of fit of a set of \AdjustableParameters.
+\end{itemize}
+
+The \element{dataSource} is an \SIdRef to a \DataSource in the \SedDocument.  This is a pointer to the expected values of the \val{observable} \FitMappings, to the time values of \val{time} \FitMappings, or the target initial conditions of \val{experimentalConditions} \FitMappings.
+
+The \element{target} is an \SIdRef to a \DataGenerator in the \SedDocument.  Any \Variable in the referenced \DataGenerator must contain a \element{modelRef} to a \Model referenced in an \AdjustableParameter that applies to this \FitExperiment.
+
+The \element{weight} or \element{pointWeight} attributes are used for \val{observable} \FitMappings to weight the contribution of that particular observable to the \Objective function.  For every \FitMapping of type \val{observable}, either \element{weight} or \element{pointWeight} must be defined.  For \FitMappings with \element{type} of \val{time} or \val{experimentalCondition}, neither attribute may be defined.
+
+If \element{weight} is defined, that value is used as the weight for all values in the series.  If \element{pointWeight} is defined instead, it must be an \SIdRef to a \DataGenerator or \DataSource with the same dimensionality as the \token{dataSource}.  Each value in the referenced \element{pointWeight} is then used as the weight of the comparison of the corresponding \element{dataSource} and \element{target}.
+
+
+
+
+
+
+
 \end{blockChanged}
