@@ -223,7 +223,7 @@ A \ParameterEstimationReport class is used to create a default report from a \Pa
 
 The report should include the relevant information collected during the parameter estimation, but the specifics may vary from tool to tool depending on the particular method used.  At the very least, the optimal \AdjustableParameter values should be reported, along with any information that would let the user determine the confidence in those estimates.
 
-It is possible to reproduce and/or have more control over the contents of a \Report that covers the contents of a \ParameterEstimationTask by creating \DataGenerator elements that use \DependentVariable objects whose \element{term} references particular elements of a \ParameterEstimationTask such as the residuals of the \Objective, or the overall chi square value of the task.  But most of these values should be produced by default in a \ParameterEstimationReport.
+It is possible to reproduce and/or have more control over the contents of a \Report that covers the contents of a \ParameterEstimationTask by creating \DataGenerator elements that use \DependentVariable objects whose \element{term} references particular elements of a \ParameterEstimationTask such as the residuals of the \Objective, or the overall $\chi^2$ value of the task.  But most of these values should be produced by default in a \ParameterEstimationReport.
 
 
 % ~~~ FIGURE ~~~
@@ -282,7 +282,7 @@ A \ParameterEstimationResultsPlot class is used to create a default plot from a 
 
 The plot should display the relevant information collected during the parameter estimation, but the specifics may vary from tool to tool depending on the particular method used.  At the very least, the optimal \AdjustableParameter values should be reported, along with any information that would let the user determine the confidence in those estimates, such as the residuals.
 
-It is possible to reproduce and/or have more control over the contents of a \Plot that covers the contents of a \ParameterEstimationTask by creating \DataGenerator elements that use \DependentVariable objects whose \element{term} references particular elements of a \ParameterEstimationTask such as the residuals of the \Objective, or the overall chi square value of the task.  This is the only way to get direct control over the \Style of anything displayed in a \ParameterEstimationResultsPlot.  But the data itself should be displayed in some form by default in a \ParameterEstimationReport.
+It is possible to reproduce and/or have more control over the contents of a \Plot that covers the contents of a \ParameterEstimationTask by creating \DataGenerator elements that use \DependentVariable objects whose \element{term} references particular elements of a \ParameterEstimationTask such as the residuals of the \Objective, or the overall $\chi^2$ value of the task.  This is the only way to get direct control over the \Style of anything displayed in a \ParameterEstimationResultsPlot.  But the data itself should be displayed in some form by default in a \ParameterEstimationReport.
 
 
 \subsection{\element{WaterfallPlot}}

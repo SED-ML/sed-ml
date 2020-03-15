@@ -62,7 +62,7 @@ All the operations listed above only operate on \emph{scalar} values. However, a
 
 % ~~~ MATHML FUNCTIONS ~~~
 \subsection{MathML functions}
-The only aggregate \concept{MathML functions} available in SED-ML are \hyperref[fun:min]{\element{min}}, \hyperref[fun:max]{\element{max}}, \hyperref[fun:sum]{\element{sum}}, and \hyperref[fun:product]{\element{product}}. These represent the only exceptions. At this point SED-ML does not define a complete algebra of vector values.
+The only aggregate \concept{MathML functions} available in SED-ML are \sedmin, \sedmax, \sedsum, \product, \changed{\sedcount, \mean, \stdev, \variance, \uniform, \normal, \lognormal, \poisson, and \sedgamma}. These represent the only exceptions. At this point SED-ML does not define a complete algebra of vector values.
 
 \subsubsection*{\element{min}}
 \label{fun:min}
@@ -111,6 +111,49 @@ The \concept{\element{product}} of a variable represents the multiplication of a
  	<ci> variableId </ci>
 </apply>
 \end{myXmlLst}
+
+\subsubsection*{\element{count}}
+\label{fun:count}
+The \sedcount of a variable represents 
+
+\subsubsection*{\element{mean}}
+\label{fun:mean}
+The \mean of a variable represents 
+
+\subsubsection*{\element{stdev}}
+\label{fun:stdev}
+The \stdev of a variable represents 
+
+\subsubsection*{\element{variance}}
+\label{fun:variance}
+The \variance of a variable represents 
+
+\subsubsection*{\element{uniform}}
+\label{fun:uniform}
+The \uniform of a variable represents 
+
+\subsubsection*{\element{normal}}
+\label{fun:normal}
+The \normal of a variable represents 
+
+\subsubsection*{\element{lognormal}}
+\label{fun:lognormal}
+The \lognormal of a variable represents 
+
+%\subsubsection*{\element{exponential}}
+%\label{fun:exponential}
+%The \exponential of a variable represents 
+
+\subsubsection*{\element{gamma}}
+\label{fun:gamma}
+The \sedgamma of a variable represents 
+
+\subsubsection*{\element{poisson}}
+\label{fun:poisson}
+The \poisson of a variable represents 
+
+
+
 
 % ~~~ NA VALUES ~~~
 \subsection{NA values}
