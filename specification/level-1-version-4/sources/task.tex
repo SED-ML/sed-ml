@@ -365,11 +365,11 @@ If an \AdjustableParameter has no \ExperimentRef children, it is adjusted for ev
 \subsubsection{\element{Bounds}}
 \label{class:bounds}
 
-A \Bounds object defines the allowable range of values for an \AdjustableParameter.  A \Bounds inherits from \SedBase, and adds three required attributes (\element{upperBound} and \element{lowerBound}, both of type \code{double}, and \element{scale}, of type \ScaleKind), and one optional attribute (\element{initialValue}, of type \element{double}).
+A \Bounds object defines the allowable range of values for an \AdjustableParameter.  A \Bounds inherits from \SedBase, and adds three required attributes (\element{upperBound} and \element{lowerBound}, both of type \code{double}, and \element{scale}, of type \ScaleType), and one optional attribute (\element{initialValue}, of type \element{double}).
 
 The \element{lowerBound} defines the lowest value the parent \AdjustableParameter may take during the \ParameterEstimationTask, and \element{upperBound} the highest, with both values being legal outputs of the system.  The \element{lowerBound} must be less than or equal to the \element{upperBound}, though if it is equal, there is nothing to optimize, since only that single value is allowed.
 
-The \element{scale}, of type \ScaleKind, defines the structure of the search space between the upper and lower bounds.  The allowed values are:
+The \element{scale}, of type \ScaleType, defines the structure of the search space between the upper and lower bounds.  The allowed values are:
 
 \begin{itemize}
 \item lin:  The bounds enclose a linear search space
@@ -388,7 +388,7 @@ An \ExperimentRef inherits from \SedBase and adds the single required attribute 
 \label{class:fitExperiment}
 \label{class:listOfFitMappings}
 
-The \FitExperiment inherits from \SedBase, and adds the required attribute \element{type} of type \ExperimentKind, a required \Algorithm child, and a required \ListOfFitMappings child which must in turn contain one or more \FitMapping children.
+The \FitExperiment inherits from \SedBase, and adds the required attribute \element{type} of type \ExperimentType, a required \Algorithm child, and a required \ListOfFitMappings child which must in turn contain one or more \FitMapping children.
 
 \sedfig[width=0.9\textwidth]{images/uml/fitExperiment}{The SED-ML \FitExperiment, \ListOfFitMappings, and \FitMappings classes}{fig:fitExperiment}
 
@@ -405,9 +405,9 @@ The \FitMapping children are used to map externallly-set experimental conditions
 \subsubsection{\element{FitMapping}}
 \label{class:fitMapping}
 
-A \FitMapping inherits from \SedBase, and adds three required attributes \element{dataSouce} and \element{target}, both of type \SIdRef, \element{type} of type \MappingKind, and two optional attributes \element{weight} of type \code{positive double}, and \element{pointWeight} of type \SIdRef.  A \FitMapping is used to correlate elements of a model simulation with data for that simulation, whether time, inputs (experimental conditions) or outputs (observables).
+A \FitMapping inherits from \SedBase, and adds three required attributes \element{dataSouce} and \element{target}, both of type \SIdRef, \element{type} of type \MappingType, and two optional attributes \element{weight} of type \code{positive double}, and \element{pointWeight} of type \SIdRef.  A \FitMapping is used to correlate elements of a model simulation with data for that simulation, whether time, inputs (experimental conditions) or outputs (observables).
 
-The \element{type} is of type \MappingKind, and may take one of the following three values:
+The \element{type} is of type \MappingType, and may take one of the following three values:
 
 \begin{itemize}
 \item time:  Used only in time course simulations, a \val{time} \FitMapping maps the time points of the observables to the time points of the simulated output.  This also serves to declare what time points must be output by the simulation:  unlike a \UniformTimeCourse, a \FitExperiment time course must at least output the time points mapped here, so that the observables may be directly compared to each other.  (Note that here as in elsewhere in SED-ML, `time' is used as a common label of what is more formally an `independent variable' for some simulators.)

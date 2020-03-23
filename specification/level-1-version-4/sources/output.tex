@@ -65,7 +65,7 @@ When a \PlotThree contains a child \element{zAxis}, that \Axis defines the chara
 % ~~~ Axis ~~~
 \subsubsection{\element{Axis}}
 \label{class:axis}
-The \Axis class is used to define whether an axis for a given \Plot is linear or logarithmic, and how to display it.  It inherits the attributes and children from \SedBase, and adds the required attribute \element{type} of type \AxisKind (either 'linear' or 'log10'), as well as the optional attributes \element{min} and \element{max}, both of type \element{double}, \element{grid} of type \element{boolean}, and \element{style} of type \SIdRef.
+The \Axis class is used to define whether an axis for a given \Plot is linear or logarithmic, and how to display it.  It inherits the attributes and children from \SedBase, and adds the required attribute \element{type} of type \AxisType (either 'linear' or 'log10'), as well as the optional attributes \element{min} and \element{max}, both of type \element{double}, \element{grid} of type \element{boolean}, and \element{style} of type \SIdRef.
 
 \begin{blockChanged}
 \paragraph*{\element{name}}
@@ -113,14 +113,14 @@ The \element{logX} attribute, of type \element{Boolean}, was used in previous ve
 % ~~~ CURVE ~~~
 \subsubsection{\element{Curve}}
 \label{class:curve}
-A \Curve is a two-dimensional \Output component representing a (processed) simulation result (\fig{output}). Zero or more \Curve instances define a \PlotTwo (\fig{output}). \changed{In addition to the attributes  it inherits from \AbstractCurve (and \SedBase), it also defines the required attribute \element{yDataReference} of type \SIdRef.  It also defines the optional attribute \element{type} of type \CurveKind, and the optional attributes \element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower}, all of type \SIdRef.}
+A \Curve is a two-dimensional \Output component representing a (processed) simulation result (\fig{output}). Zero or more \Curve instances define a \PlotTwo (\fig{output}). \changed{In addition to the attributes  it inherits from \AbstractCurve (and \SedBase), it also defines the required attribute \element{yDataReference} of type \SIdRef.  It also defines the optional attribute \element{type} of type \CurveType, and the optional attributes \element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower}, all of type \SIdRef.}
 
 \begin{blockChanged}
 \paragraph*{\element{xDataReference}}
 Like the \element{xDataReference}, the \element{yDataReference} must be the \element{SId} of a \DataGenerator in the same \SedDocument.  The referenced \DataGenerator will contain the information for the y coordinates for the data to be plotted.  The dimensions of the y data sould match the x data, if present.  If the y data is multi-dimensional (such as time course data over several stochastic replicates), one dimension should match the x data (time, in our example), and the other dimension should simply be replicated as separate curves on the same plot (with the same style and label).
 
 \paragraph*{\element{type}}
-The optional \element{type} attribute is of type \CurveKind, and determines the kind of curve being displayed.  The possible values are:
+The optional \element{type} attribute is of type \CurveType, and determines the kind of curve being displayed.  The possible values are:
 
 \begin{itemize}
 \item \textbf{points}: The curve is plotted as points, which can mean markers and/or a line, depending on the \element{style}.
@@ -153,7 +153,7 @@ The attributes \element{yDataReferenceFrom} and \element{yDataReferenceTo} are b
 \subsubsection{\element{Surface}}
 \label{class:surface}
 \begin{blockChanged}
-A \Surface is a parallel class to \AbstractCurve that defines a three-dimensional surface instead of a two-dimensional curve (\fig{surface}).  It defines the attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \SIdRef, the first two of which are optional and the last of which is required.  It also defines the optional attributes \element{style} of type \SIdRef, and \element{type}, of type \SurfaceKind.
+A \Surface is a parallel class to \AbstractCurve that defines a three-dimensional surface instead of a two-dimensional curve (\fig{surface}).  It defines the attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \SIdRef, the first two of which are optional and the last of which is required.  It also defines the optional attributes \element{style} of type \SIdRef, and \element{type}, of type \SurfaceType.
 
 \sedfig[width=0.6\textwidth]{images/uml/surface}{The definition of the SED-ML \Surface class.}{fig:surface}
 

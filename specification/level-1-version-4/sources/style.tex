@@ -18,7 +18,7 @@ The optional \element{baseStyle} attribute of data type \SIdRef is used to refer
 \subsubsection{\element{Line}}
 \label{class:line}
 
-The \Line class inherits the attributes and children of \SedBase, and adds three optional attributes: \element{type} of type \LineKind, \element{color} of type \ColorKind, and \element{thickness} of type \element{double}.  If any of these attributes are defined, lines presented in the parent \Style should have that type, color, and/or thickness.  If any of the attributes is not defined, it can be defined by the \Style referenced in the \element{baseStyle}, or is undefined and can be anything.
+The \Line class inherits the attributes and children of \SedBase, and adds three optional attributes: \element{type} of type \LineType, \element{color} of type \SedColor, and \element{thickness} of type \element{double}.  If any of these attributes are defined, lines presented in the parent \Style should have that type, color, and/or thickness.  If any of the attributes is not defined, it can be defined by the \Style referenced in the \element{baseStyle}, or is undefined and can be anything.
 
 \paragraph*{\element{type}}
 
@@ -35,7 +35,7 @@ The \element{type} attribute defines how lines are to be drawn.  The options are
 
 \paragraph*{\element{color}}
 
-The \element{color} attribute defines what color the line should be.  See the \ColorKind for a description of how colors are defined in SED-ML.
+The \element{color} attribute defines what color the line should be.  See the \SedColor for a description of how colors are defined in SED-ML.
 
 \paragraph*{\element{thickness}}
 
@@ -45,7 +45,7 @@ The \element{thickness} attribute defines the thickness of the line, in pixels (
 \subsubsection{\element{Marker}}
 \label{class:marker}
 
-The \Marker class inherits the attributes and children of \SedBase, and adds five optional attributes: \element{type} of type \MarkerKind, \element{size} of type \element{double}, \element{fill} of type \ColorKind, \element{lineColor} of type \ColorKind, and \element{lineThickness} of type \element{double}.  If any of these attributes are defined, markers presented in the parent \Style should have that attribute.  If any of the attributes is not defined, it can be defined by the \Style referenced in the \element{baseStyle}, or is undefined and can be anything.
+The \Marker class inherits the attributes and children of \SedBase, and adds five optional attributes: \element{type} of type \MarkerType, \element{size} of type \element{double}, \element{fill} of type \SedColor, \element{lineColor} of type \SedColor, and \element{lineThickness} of type \element{double}.  If any of these attributes are defined, markers presented in the parent \Style should have that attribute.  If any of the attributes is not defined, it can be defined by the \Style referenced in the \element{baseStyle}, or is undefined and can be anything.
 
 \paragraph*{\element{type}}
 
@@ -73,11 +73,11 @@ The \element{size} attribute defines what size, in pixels, the marker should be 
 
 \paragraph*{\element{fill}}
 
-The \element{fill} attribute defines what color the interior of the marker should be.  See the \ColorKind for a description of how colors are defined in SED-ML.
+The \element{fill} attribute defines what color the interior of the marker should be.  See the \SedColor for a description of how colors are defined in SED-ML.
 
 \paragraph*{\element{lineColor}}
 
-The \element{lineColor} attribute defines what color the border of the marker should be.  See the \ColorKind for a description of how colors are defined in SED-ML.
+The \element{lineColor} attribute defines what color the border of the marker should be.  See the \SedColor for a description of how colors are defined in SED-ML.
 
 \paragraph*{\element{lineThickness}}
 
@@ -88,15 +88,15 @@ The \element{thickness} attribute defines the thickness of the marker's border, 
 \subsubsection{\element{Fill}}
 \label{class:fill}
 
-The \Fill class inherits the attributes and children of \SedBase, and adds two optional attributes: \element{color} of type \ColorKind, and \element{secondColor} of type \ColorKind.  If any of these attributes are defined, fills presented in the parent \Style should have that color or colors.  If any of the attributes is not defined, it can be defined by the \Style referenced in the \element{baseStyle}, or is undefined and can be anything.
+The \Fill class inherits the attributes and children of \SedBase, and adds two optional attributes: \element{color} of type \SedColor, and \element{secondColor} of type \SedColor.  If any of these attributes are defined, fills presented in the parent \Style should have that color or colors.  If any of the attributes is not defined, it can be defined by the \Style referenced in the \element{baseStyle}, or is undefined and can be anything.
 
 \paragraph*{\element{color}}
 
-The \element{color} attribute defines what color the fill should be.  See the \ColorKind for a description of how colors are defined in SED-ML.
+The \element{color} attribute defines what color the fill should be.  See the \SedColor for a description of how colors are defined in SED-ML.
 
 \paragraph*{\element{secondColor}}
 
-The \element{secondColor} attribute defines what the second color of the fill should be.  See the \ColorKind for a description of how colors are defined in SED-ML.  By providing a \element{secondColor}, gradients can be specified which run linearly from \element{color} to \element{secondColor}.  If not defined, the fill should be a single color.
+The \element{secondColor} attribute defines what the second color of the fill should be.  See the \SedColor for a description of how colors are defined in SED-ML.  By providing a \element{secondColor}, gradients can be specified which run linearly from \element{color} to \element{secondColor}.  If not defined, the fill should be a single color.
 
 
 
