@@ -13,8 +13,8 @@ The optional attribute \hyperref[sec:language]{\code{language}} defines the form
 
 The \concept{Model} class refers to the particular model of interest through the \hyperref[sec:model_source]{\element{source}} attribute. The restrictions on the model reference are
 \begin{itemize}
- \item{The model must be encoded in an XML format.}
- \item{To refer to the model encoding language, a reference to a valid definition of that XML format must be given (\hyperref[sec:language]{\element{language}} attribute).}
+ \item{The model must be encoded in a well-defined format.}
+ \item{To refer to the model encoding language, a reference to a valid definition of that format must be given (\hyperref[sec:language]{\element{language}} attribute).}
  \item{To refer to a particular model in an external resource, an unambiguous reference must be given (\hyperref[sec:model_source]{\element{source}} attribute).}
 \end{itemize}
 
@@ -50,7 +50,7 @@ In the example the \hyperref[class:listOfModels]{\element{listOfModels}} contain
 \label{sec:language}
 The optional \concept{\element{language}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the format of the \hyperref[class:model]{model}. Example formats are SBML (\code{urn:sedml:language:sbml}) or CellML (\code{urn:sedml:language:cellml}). The supported languages are defined in the \hyperref[sec:languageURI]{language references}.
 
-If it is not explicitly defined the default value for \concept{\element{language}} is \code{urn:sedml:language:xml}, referring to any XML based model representation. However, the use of the \concept{\element{language}} attribute is strongly encouraged for two reasons. Firstly, it helps to decide whether or not one is able to run the simulation, that is to parse the model referenced in the SED-ML file. Secondly, the language attribute is also needed to decide how to handle the \hyperref[sec:implicitVariable]{Symbols} in the \Variable class, as the interpretation of \hyperref[sec:implicitVariable]{Symbols} depends on the language of the representation format.
+If it is not explicitly defined, the default value for \concept{\element{language}} is \code{urn:sedml:language:xml}, referring to any XML-based model representation. However, the use of the \concept{\element{language}} attribute is strongly encouraged for two reasons. Firstly, it helps to decide whether or not one is able to run the simulation, that is to parse the model referenced in the SED-ML file. Secondly, the language attribute is also needed to decide how to handle the \hyperref[sec:implicitVariable]{Symbols} in the \Variable class, as the interpretation of \hyperref[sec:implicitVariable]{Symbols} depends on the language of the representation format.
 
 
 % ~~~ MODEL:SOURCE ~~~
@@ -101,9 +101,9 @@ The \concept{\element{listOfChanges}} (\fig{model}) contains the \hyperref[class
 \label{class:change}
 The \concept{Change} class allows to describe changes applied to a \hyperref[class:model]{model} before simulation (\fig{sedChange}). \concept{Changes} can be of the following types:
 \begin{itemize}
-	\item{Changes on attributes of the model's XML representation (\hyperref[class:changeAttribute]{ChangeAttribute})}
-	\item{Changes on any XML snippet of the model's XML representation (\hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML})}
+	\item{Changes on attributes of the model (\hyperref[class:changeAttribute]{ChangeAttribute})}	
 	\item{Changes based on mathematical calculations (\ComputeChange)} 
+	\item{For XML-encoded models, changes on any XML snippet of the model's XML representation (\hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML})}
 \end{itemize}
 
 The \concept{Change} class is abstract and serves as the base class for different types of changes, the \hyperref[class:changeAttribute]{ChangeAttribute}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML}, and \ComputeChange.
@@ -198,12 +198,12 @@ An example for the removal of an XML element from a model is given in Listing~\r
 \label{class:changeAttribute}
 The \concept{ChangeAttribute} class allows to define updates on the attribute values of the corresponding model (\fig{sedChange}). \concept{ChangeAttribute} requires to specify the \hyperref[sec:changeTarget]{\element{target}} of the change, i.e., the location of the addressed attribute, and also the \hyperref[sec:newValue]{\element{newValue}} of that attribute. Note that the \hyperref[sec:changeTarget]{\element{target}} attribute must select a single attribute within the corresponding model.
 
-The \hyperref[class:changeXml]{ChangeXML} class covers the possibilities provided by the \concept{ChangeAttribute} class, i.e, everything that can be expressed by a \concept{ChangeAttribute} construct can also be expressed by \hyperref[class:changeXml]{ChangeXML}. However, for the common case of changing an attribute value \concept{ChangeAttribute} is easier to use, and so it is recommended to use the \concept{ChangeAttribute} for any changes of an XML attribute's value, and to use the more general \hyperref[class:changeXml]{ChangeXML} for other cases.
+The \hyperref[class:changeXml]{ChangeXML} class covers the possibilities provided by the \concept{ChangeAttribute} class, i.e, everything that can be expressed by a \concept{ChangeAttribute} construct can also be expressed by \hyperref[class:changeXml]{ChangeXML}. However, for the common case of changing an attribute value \concept{ChangeAttribute} is easier to use, and so it is recommended to use the \concept{ChangeAttribute} for any changes of an attribute's value, and to use the more general \hyperref[class:changeXml]{ChangeXML} for other cases.
 
 
 \paragraph*{\element{newValue}}
 \label{sec:newValue}
-The mandatory \concept{\element{newValue}} attribute of data type \code{string} assignes a new value to the targeted XML attribute.
+The mandatory \concept{\element{newValue}} attribute of data type \code{string} assignes a new value to the targeted attribute.
 
 The example in Listing~\ref{lst:changeAttribute} shows the update of the value of two parameters inside an SBML model.
 
