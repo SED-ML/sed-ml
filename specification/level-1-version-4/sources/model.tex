@@ -108,7 +108,7 @@ The \concept{Change} class allows to describe changes applied to a \hyperref[cla
 
 The \concept{Change} class is abstract and serves as the base class for different types of changes, the \hyperref[class:changeAttribute]{ChangeAttribute}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML}, and \ComputeChange.
 
-The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarget]{target} which defines the target of the change. The \hyperref[sec:changeTarget]{\element{target}} attribute holds a valid \hyperref[sec:xpath]{XPath} expression pointing to the XML element or XML attribute that is to undergo the defined changes. Except for the cases of \hyperref[class:changeXml]{ChangeXML} and \hyperref[class:removeXml]{RemoveXML}, this \hyperref[sec:xpath]{XPath} expression must always select a single element or attribute within the relevant model.
+The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarget]{target} which defines the target of the change. The \hyperref[sec:changeTarget]{\element{target}} attribute holds an unambiguous description of the address of the element or attribute that is to undergo the defined changes, such as a valid \hyperref[sec:xpath]{XPath} expression pointing to the XML element or XML attribute. For \hyperref[class:newXml]{NewXML}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, and \hyperref[class:removeXml]{RemoveXML}, \hyperref[sec:changeTarget]{target} must be an \hyperref[sec:xpath]{XPath} expression. Except for the cases of \hyperref[class:changeXml]{ChangeXML} and \hyperref[class:removeXml]{RemoveXML}, this \hyperref[sec:xpath]{XPath} expression must always select a single element or attribute within the relevant model.
 
 \sedfig[width=1.0\textwidth]{images/uml/change}{The SED-ML Change class}{fig:sedChange}
 
@@ -116,7 +116,7 @@ The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarge
 % ~~~ target ~~~
 \paragraph*{\element{target}}
 \label{sec:changeTarget}
-The \concept{\element{target}} attribute holds a valid \hyperref[sec:xpath]{XPath} expression of data type \hyperref[type:xpath]{\element{xpath}} pointing to the XML element or XML attribute that is to undergo the defined changes.
+The \concept{\element{target}} attribute holds an unambiguous description of the address of an element or attribute of a model that is to undergo the defined changes. For XML model languages such as SBML, \hyperref[sec:changeTarget]{\element{target}} should be a valid \hyperref[sec:xpath]{XPath} expression of data type \hyperref[type:xpath]{\element{xpath}} pointing to the XML element or XML attribute that is to undergo the defined changes.
 
 
 % ~~~ NewXML ~~~
@@ -196,7 +196,7 @@ An example for the removal of an XML element from a model is given in Listing~\r
 % ~~~ ChangeAttribute ~~~
 \subsubsection{\element{ChangeAttribute}}
 \label{class:changeAttribute}
-The \concept{ChangeAttribute} class allows to define updates on the XML attribute values of the corresponding model (\fig{sedChange}). \concept{ChangeAttribute} requires to specify the \hyperref[sec:changeTarget]{\element{target}} of the change, i.e., the location of the addressed XML attribute, and also the \hyperref[sec:newValue]{\element{newValue}} of that attribute. Note that the XPath expression in the \hyperref[sec:changeTarget]{\element{target}} attribute must select a single attribute within the corresponding model.
+The \concept{ChangeAttribute} class allows to define updates on the attribute values of the corresponding model (\fig{sedChange}). \concept{ChangeAttribute} requires to specify the \hyperref[sec:changeTarget]{\element{target}} of the change, i.e., the location of the addressed attribute, and also the \hyperref[sec:newValue]{\element{newValue}} of that attribute. Note that the \hyperref[sec:changeTarget]{\element{target}} attribute must select a single attribute within the corresponding model.
 
 The \hyperref[class:changeXml]{ChangeXML} class covers the possibilities provided by the \concept{ChangeAttribute} class, i.e, everything that can be expressed by a \concept{ChangeAttribute} construct can also be expressed by \hyperref[class:changeXml]{ChangeXML}. However, for the common case of changing an attribute value \concept{ChangeAttribute} is easier to use, and so it is recommended to use the \concept{ChangeAttribute} for any changes of an XML attribute's value, and to use the more general \hyperref[class:changeXml]{ChangeXML} for other cases.
 
@@ -221,7 +221,7 @@ The example in Listing~\ref{lst:changeAttribute} shows the update of the value o
 % ~~~ ComputeChange ~~~
 \subsubsection{\element{ComputeChange}}
 \label{class:computeChange}
-The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any element or attribute of a \Model addressable by an \hyperref[sec:xpath]{XPath} expression, based on a calculation (\fig{sedChange}).  \changed{It inherits the \element{target} attribute from the \Change abstract base class, as well as the standard \SedBase attributes and children, and its ability to perform a calculation is described in the \Calculation class.  (For implementations, if multiple inheritance is not possible, the children of \Calculation should just be added directly to the \ComputeChange class itself.)}
+The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any element or attribute of a \Model addressable by a \hyperref[sec:changeTarget]{\element{target}}, based on a calculation (\fig{sedChange}).  \changed{It inherits the \element{target} attribute from the \Change abstract base class, as well as the standard \SedBase attributes and children, and its ability to perform a calculation is described in the \Calculation class.  (For implementations, if multiple inheritance is not possible, the children of \Calculation should just be added directly to the \ComputeChange class itself.)}
 
 \changed{The change is calculated from the \Math of the \Calculation, and applied to the \element{target} of the \Change.}
 

@@ -350,7 +350,7 @@ The particular method used to determine the least squares can be defined through
 \label{class:adjustableParameter}
 \label{class:listOfExperimentRefs}
 
-The \AdjustableParameter inherits from \SedBase, and adds a required attribute \element{target} of type \XPath, a required child \Bounds, and an optional child \ListOfExperimentRefs with zero or more \ExperimentRef elements, and an optional attribute \element{initalValue} of type \code{double}.
+The \AdjustableParameter inherits from \SedBase, and adds a required attribute \element{target} of type \Target, a required child \Bounds, and an optional child \ListOfExperimentRefs with zero or more \ExperimentRef elements, and an optional attribute \element{initalValue} of type \code{double}.
 
 The \element{target} of an \AdjustableParameter must point to an adjustable element of the \Model referenced by the parent \ParameterEstimationTask.  This element is one of the elements whose value can be changed by the task in order to optimize the fit experiments.
 
