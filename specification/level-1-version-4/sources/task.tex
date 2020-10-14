@@ -45,7 +45,8 @@ In the example, a simulation setting \code{simulation1} is applied first to \cod
 The \concept{SimpleRepeatedTask} inherits from \Task, and provides a simplified looping construct that performs the \Task multiple times, resetting the model or not, according to its \element{resetModel} attribute.  The task itself is defined by the \element{modelReference} and \element{simulationReference} attributes it inherits from \Task.
 
 \paragraph*{\element{resetModel}}
-The \element{resetModel} attribute, of type \element{boolean} defines whether, for each execution of the simulation, the model is to be reset (\val{true}) or not (\val{false}).
+The \element{resetModel} attribute, 
+\element{boolean} defines whether, for each execution of the simulation, the model is to be reset (\val{true}) or not (\val{false}).
 
 \paragraph*{\element{numRepeats}}
 The \element{numRepeats}, of type \element{positive integer}, defines the number of times the simulation is to be performed.
@@ -350,7 +351,7 @@ The particular method used to determine the least squares can be defined through
 \label{class:adjustableParameter}
 \label{class:listOfExperimentRefs}
 
-The \AdjustableParameter inherits from \SedBase, and adds a required attribute \element{target} of type \Target, a required child \Bounds, and an optional child \ListOfExperimentRefs with zero or more \ExperimentRef elements, and an optional attribute \element{initalValue} of type \code{double}.
+The \AdjustableParameter inherits from \SedBase, and adds a required attribute \element{target} \changed{of type \Target}, a required child \Bounds, and an optional child \ListOfExperimentRefs with zero or more \ExperimentRef elements, and an optional attribute \element{initalValue} of type \code{double}.
 
 The \element{target} of an \AdjustableParameter must point to an adjustable element of the \Model referenced by the parent \ParameterEstimationTask.  This element is one of the elements whose value can be changed by the task in order to optimize the fit experiments.
 
