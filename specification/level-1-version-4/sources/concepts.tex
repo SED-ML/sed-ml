@@ -210,7 +210,7 @@ The evaluation of a SED-ML document is required in order for software to decide 
 To help  software decide whether or not it supports a SED-ML description file, the information on the \hyperref[class:model]{model} encoding for each referenced \hyperref[class:model]{model} can be provided through the \hyperref[sec:language]{\element{language}} attribute, as the description of a language name and version through an unrestricted \code{String} is error-prone. 
 A prerequisite for a language to be fully supported by SED-ML is that a formalised language definition, e.g., an XML Schema, is provided online. SED-ML also defines a set of standard URIs to refer to particular language definitions. 
 
-To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used (\tab{languageURI}). The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{\element{name.version}}. SED-ML allows to specify a model representation format very generally as being \code{XML}, if no standardised representation format has been used to encode the model. On the other hand, one can be as specific as defining a model being in a particular version of a language, e.g., SBML Level 3 Version 1 as \code{urn:sedml:language:sbml.level-3.version-1}.
+To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used (\tab{languageURI}). The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{\element{name.version}}. \changed{One} can be as specific as defining a model being in a particular version of a language, e.g., SBML Level 3 Version 1 as \code{urn:sedml:language:sbml.level-3.version-1}.
 
 For additional information see the \hyperref[sec:language]{\element{language}} attribute on \Model.
 
@@ -220,6 +220,7 @@ For additional information see the \hyperref[sec:language]{\element{language}} a
 \toprule
 \textbf{Language} & \textbf{URN}\\
 \midrule
+\changed{BNGL (generic) & \code{urn:sedml:language:bgnl}} \\
 CellML (generic) & \code{urn:sedml:language:cellml} \\
 CellML 1.0 & \code{urn:sedml:language:cellml.1\_0} \\
 CellML 1.1 & \code{urn:sedml:language:cellml.1\_1} \\
@@ -379,7 +380,7 @@ When annotating SED-ML elements with semantic \hyperref[class:annotation]{annota
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{XPath}  
 \label{sec:xpath}
-\concept{XPath} is a language for finding and referencing information in an XML document \citep{xpath:1999}. Within SED-ML \currentLV, XPath version 1 expressions are used to identify nodes and attributes within an XML representation in the following ways:
+\concept{XPath} is a language for finding and referencing information in an XML document \citep{xpath:1999}. Within SED-ML \currentLV, XPath version 1 expressions \changed{can be used to identify nodes and attributes within an XML representation of an XML-encoded model} in the following ways:
 
 \begin{itemize}
 	\item {Within a \Variable definition, where \concept{XPath} identifies the model variable required for manipulation in SED-ML.}
@@ -397,7 +398,8 @@ is preferable to
 
 which will only be interpretable by standard XML software tools if the SBML file declares no namespaces (and hence is invalid SBML).
 
-Following the convention of other \concept{XPath} host languages such as XPointer and XSLT, the prefixes used within \concept{XPath} expressions must be declared using namespace declarations within the SED-ML document, and be in-scope for the relevant expression. Thus for the correct example above, there must also be an ancestor element of the node containing the XPath expression that has an attribute like:
+Following the convention of other \concept{XPath} host languages such as XPointer and XSLT, the prefixes used within \concept{XPath} expressions must be declared using namespace declarations within the SED-ML document, and be in-scope for the relevant expression. Thus for the correct example above, there must also be an ancestor element of the node containing the 
+ssion that has an attribute like:
 \begin{alltt}
 xmlns:sbml=`http://www.sbml.org/sbml/level3/version1/core'
 \end{alltt}
