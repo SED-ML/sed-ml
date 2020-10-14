@@ -338,7 +338,7 @@ In the example a variable \code{v1} is defined to compute a change on a model co
 			<listOfChanges>
 				<computeChange target="TARGET ELEMENT OR ATTRIBUTE">
 				<listOfVariables>
-				   <variable id="v1" name="maximum velocity" target="Path TO MODEL ELEMENT/ATTRIBUTE" />
+				   <variable id="v1" name="maximum velocity" target="\changed{Path} TO MODEL ELEMENT/ATTRIBUTE" />
 				   [FURTHER VARIABLE DEFINITIONS]
 				</listOfVariables>
 				[..]
@@ -364,11 +364,11 @@ In the example a variable \code{v1} is defined to compute a change on a model co
 % ~~~ TARGET ~~~
 \paragraph*{\element{target}}
 \label{sec:target}
-An instance of \Variable can refer to a model constituent inside a particular \hyperref[class:model]{model} through the address stored in the \concept{\element{target}} attribute, such as an \code{\hyperref[type:xpath]{XPath}} expression. 
+An instance of \Variable can refer to a model constituent inside a particular \hyperref[class:model]{model} through \changed{the address stored in the \concept{\element{target}} attribute, such as an \code{\hyperref[type:xpath]{XPath}} expression}. 
 
 The \concept{\element{target}} attribute may also be used to reference an entity within the SED-ML file itself, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \SId of the targeted element. As of SED-ML \currentLV this is used to refer to a \hyperref[class:dataSource]{DataSource} in a \Variable or to refer to \hyperref[class:listOfRanges]{ranges} within a \hyperref[class:repeatedTask]{repeatedTask} (see Listing~\ref{lst:repeatedTask}).
 
-Note that while it is possible to write addresses that select multiple nodes within a referenced model, when used within a \concept{\element{target}} attribute a single element or attribute \emph{must} be selected by the expression.
+Note that while it is possible to write \changed{addresses} that select multiple nodes within a referenced model, when used within a \concept{\element{target}} attribute a single element or attribute \emph{must} be selected by the expression.
 
 \lsttexta{target}{target}
 In the example the \concept{\element{target}} is used to reference a species with \element{id='PY'} in an SBML model.
