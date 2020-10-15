@@ -112,33 +112,101 @@ The \concept{\element{product}} of a variable represents the multiplication of a
 </apply>
 \end{myXmlLst}
 
+\begin{blockChanged}
+
 \subsubsection*{\element{count}}
 \label{fun:count}
-The \sedcount of a variable represents 
+The \sedcount of a variable represents the number of elements in its single argument.
+\begin{myXmlLst}{Example for the use of the MathML \code{count} function.}{lst:countFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#count">
+ 		count
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
+
 
 \subsubsection*{\element{mean}}
 \label{fun:mean}
-The \mean of a variable represents 
+The \mean of a variable represents the mean of the elements in its single argument.
+\begin{myXmlLst}{Example for the use of the MathML \code{mean} function.}{lst:meanFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#mean">
+ 		mean
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
+
 
 \subsubsection*{\element{stdev}}
 \label{fun:stdev}
-The \stdev of a variable represents 
+The \stdev of a variable represents the standard deviation of the elements in its single argument.
+\begin{myXmlLst}{Example for the use of the MathML \code{stdev} function.}{lst:stdevFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#stdev">
+ 		stdev
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
+
 
 \subsubsection*{\element{variance}}
 \label{fun:variance}
-The \variance of a variable represents 
+The \variance of a variable represents the variance of the elements in its single argument.
+\begin{myXmlLst}{Example for the use of the MathML \code{variance} function.}{lst:varianceFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#variance">
+ 		variance
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
+
 
 \subsubsection*{\element{uniform}}
 \label{fun:uniform}
-The \uniform of a variable represents 
+The \uniform of a variable represents a draw from a uniform distribution.  It has two arguments:  the first is `min' and the second is `max', with `max' requried to be greater than `min'.  The draw from the distribution must be between `min' and `max', and may include `min', but may not include `max'.
+\begin{myXmlLst}{Example for the use of the MathML \code{uniform} function.}{lst:uniformFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#uniform">
+ 		uniform
+ 	</csymbol>
+ 	<ci> maxId </ci>
+ 	<ci> minId </ci>
+</apply>
+\end{myXmlLst}
+
 
 \subsubsection*{\element{normal}}
 \label{fun:normal}
-The \normal of a variable represents 
+The \normal of a variable represents a draw from a normal distribution.  It has two arguments:  the first is `mean', and the second is `stdev', that define the mean and the standard deviation, respectively, of the distribution.
+\begin{myXmlLst}{Example for the use of the MathML \code{normal} function.}{lst:normalFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#normal">
+ 		normal
+ 	</csymbol>
+ 	<ci> meanId </ci>
+ 	<ci> stdevId </ci>
+</apply>
+\end{myXmlLst}
+
 
 \subsubsection*{\element{lognormal}}
 \label{fun:lognormal}
-The \lognormal of a variable represents 
+The \lognormal of a variable represents a draw from a log-normal distribution.  It has two arguments:  the first is `mean', and the second is `stdev', that define the mean and the standard deviation, respectively, of the distribution.
+\begin{myXmlLst}{Example for the use of the MathML \code{lognormal} function.}{lst:lognormalFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#lognormal">
+ 		lognormal
+ 	</csymbol>
+ 	<ci> meanId </ci>
+ 	<ci> stdevId </ci>
+</apply>
+\end{myXmlLst}
+
 
 %\subsubsection*{\element{exponential}}
 %\label{fun:exponential}
@@ -146,12 +214,30 @@ The \lognormal of a variable represents
 
 \subsubsection*{\element{gamma}}
 \label{fun:gamma}
-The \sedgamma of a variable represents 
+The \sedgamma of a variable represents a draw from a gamma distribution.  It has two arguments:  the first is `shape', and the second is `scale', that define the shape and scale, respectively, of the distribution.
+\begin{myXmlLst}{Example for the use of the MathML \code{gamma} function.}{lst:gammaFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#gamma">
+ 		gamma
+ 	</csymbol>
+ 	<ci> shapeId </ci>
+ 	<ci> scaleId </ci>
+</apply>
+\end{myXmlLst}
 
 \subsubsection*{\element{poisson}}
 \label{fun:poisson}
-The \poisson of a variable represents 
+The \poisson of a variable represents a discrete value drawn from a poisson distribution.  It has a single argument:  `rate', the expected rate of occurrences for the distribution.
+\begin{myXmlLst}{Example for the use of the MathML \code{poisson} function.}{lst:poissonFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#poisson">
+ 		poisson
+ 	</csymbol>
+ 	<ci> rateId </ci>
+</apply>
+\end{myXmlLst}
 
+\end{blockChanged}
 
 
 
@@ -220,7 +306,7 @@ For additional information see the \hyperref[sec:language]{\element{language}} a
 \toprule
 \textbf{Language} & \textbf{URN}\\
 \midrule
-\changed{BNGL (generic) & \code{urn:sedml:language:bgnl}} \\
+\changed{BNGL (generic)} & \code{urn:sedml:language:bngl} \\
 CellML (generic) & \code{urn:sedml:language:cellml} \\
 CellML 1.0 & \code{urn:sedml:language:cellml.1\_0} \\
 CellML 1.1 & \code{urn:sedml:language:cellml.1\_1} \\

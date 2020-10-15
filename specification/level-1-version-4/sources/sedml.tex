@@ -18,7 +18,7 @@ A SED-ML document needs to have the SED-ML namespace defined through the mandato
 
 The root element of each SED-ML XML file is the \code{sedML} element, encoding \hyperref[sec:level]{\element{level}} and \hyperref[sec:version]{\element{version}} of the file, and setting the necessary namespaces. Nested inside the \code{sedML} element are the six optional lists serving as containers for the encoded information: \hyperref[class:listOfDataDescriptions]{\element{listOfDataDescriptions}} for all external data, \hyperref[class:listOfModels]{\element{listOfModels}} for all models, \hyperref[class:listOfSimulations]{\element{listOfSimulations}} for all simulations, \hyperref[class:listOfTasks]{\element{listOfTasks}} for all tasks, \hyperref[class:listOfDataGenerators]{\element{listOfDataGenerators}} for all post-processing definitions, \hyperref[class:listOfOutputs]{\element{listOfOutputs}} for all output definitions, \changed{and \ListOfStyles for all style definitions}.
 
-\sedfig[width=0.8\textwidth]{images/uml/sed-ml}{The SED-ML class}{fig:sed-mlMain}
+\sedfig[width=0.76\textwidth]{images/uml/sed-ml}{The SED-ML class}{fig:sed-mlMain}
 
 
 The basic XML structure of a SED-ML file is shown in listing \vref{lst:sedmlRoot}.

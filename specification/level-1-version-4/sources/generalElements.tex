@@ -1,5 +1,3 @@
-\pagebreak
-
 \section{General data types, attributes and classes}
 In this section concepts used repeatedly throughout the SED-ML specification are introduced. This includes  \hyperref[sec:dataTypes]{primitive data types}, classes (\SedBase, \Notes, \hyperref[class:notes]{Annotation}, \Parameter, \Variable), \hyperref[sec:generalAttributes]{attributes}, and \hyperref[sec:reference]{reference relations}.
 
@@ -12,7 +10,7 @@ The main \hyperref[sec:components]{SED-ML components} based on these general dat
 \label{sec:dataTypes}
 Primitive data types comprise the set of data types used in SED-ML classes. Most primitive types in SED-ML are taken from the data types defined in XML Schema 1.0, including \element{string}, \element{boolean}, \element{int}, \element{positiveInteger}, \element{double} and \element{XML}. 
 
-A few additional primitive types are defined by SED-ML itself: \hyperref[type:id]{\element{ID}}, \SId, \SIdRef, \hyperref[type:xpath]{\element{XPath}}, \hyperref[type:mathml]{\element{MathML}}, \hyperref[type:anyURI]{\element{anyURI}}, \hyperref[type:numlsid]{\element{NuMLSId}}, and \hyperref[type:numlsidref]{\element{NuMLSIdRef}}.
+A few additional primitive types are defined by SED-ML itself: \hyperref[type:id]{\element{ID}}, \SId, \SIdRef, \hyperref[type:target]{\element{TargetType}}, \hyperref[type:xpath]{\element{XPath}}, \hyperref[type:mathml]{\element{MathML}}, \hyperref[type:anyURI]{\element{anyURI}}, \hyperref[type:numlsid]{\element{NuMLSId}}, and \hyperref[type:numlsidref]{\element{NuMLSIdRef}}.
 
 \subsubsection[\element{ID}]{Type \element{ID}}
 \label{type:id}
@@ -42,7 +40,7 @@ The type \concept{\element{SId}} is the type of the id attribute found on the ma
   \begin{tabular}{lll}
     letter & ::= & 'a'..'z','A'..'Z'\\
     digit  & ::= & '0'..'9'\\
-    idChar & ::= & letter | digit | '\_'\\
+    idChar & ::= & letter | digit | `\_'\\
     SId    & ::= & ( letter | '\_' ) idChar*\\
   \end{tabular}
   \vspace*{-1ex}
@@ -56,9 +54,15 @@ Type \concept{SIdRef} is used for all attributes that refer to identifiers of ty
 
 As with \SId, the equality of \concept{SIdRef} values is determined by exact character sequence match; i.e., comparisons of these identifiers must be performed in a case-sensitive manner.
 
+\begin{blockChanged}
+\subsubsection[\element{TargetType}]{Type \element{TargetType}}
+\label{type:target}
+Type \concept{\element{TargetType}} is used to identify elements of a model.  This type is derived from type \element{string}, and it is up to the target modeling language to define what form makes sense to uniquely identify a particular element of that model.  For XML-based lanaguages, using an \element{XPath} is recommended.
+\end{blockChanged}
+
 \subsubsection[\element{XPath}]{Type \element{XPath}}
 \label{type:xpath}
-Type \concept{\element{XPath}} is used to identify nodes and attributes within an XML representation. \concept{\element{XPath}} in SED-ML is an \hyperref[sec:xpath]{XPath} version 1 expression which can be used to unambiguously identify an element or attribute in an XML file. The concept of \hyperref[sec:xpath]{XPath} is described in Section~\ref{sec:xpath}.
+Type \concept{\element{XPath}} is \changed{derived from type \element{TargetType} and is} used to identify nodes and attributes within an XML representation. \concept{\element{XPath}} in SED-ML is an \hyperref[sec:xpath]{XPath} version 1 expression which can be used to unambiguously identify an element or attribute in an XML file. The concept of \hyperref[sec:xpath]{XPath} is described in Section~\ref{sec:xpath}.
 
 \begin{blockChanged}
 \subsubsection[\element{URN}]{Type \element{URN}}
@@ -459,13 +463,13 @@ The \element{dimensionTarget} attribute of a \RemainingDimension is used when th
 \subsection{\element{DependentVariable}}
 \label{class:dependentVariable}
 
-The \DependentVariable object is a child of the \Variable class, extending it to include three new attributes:  \element{term} (of type \element{URN}), \element{target2} (of type Target), and \element{symbol2} (of type URN).  A dependent variable is necessary when the desired variable is a composite of two other variables, such as 'the rate of change of S1 with respect to time'.
+The \DependentVariable object is a child of the \Variable class, extending it to include three new attributes:  \element{term} (of type \element{URN}), \element{target2} (of \changed{type \element{TargetType}}), and \element{symbol2} (of type URN).  A dependent variable is necessary when the desired variable is a composite of two other variables, such as `the rate of change of S1 with respect to time'.
 
-In a \DependentVariable, the \element{term} is used to define the relationship of the two variables (i.e. 'rate of change'), the \element{target} or \element{symbol} attributes are used to define the first such variable, and the new \element{target2} and \element{symbol2} is used to define the second variable.  
+In a \DependentVariable, the \element{term} is used to define the relationship of the two variables (i.e. `rate of change'), the \element{target} or \element{symbol} attributes are used to define the first such variable, and the new \element{target2} and \element{symbol2} is used to define the second variable.  
 
 \paragraph*{\element{term}}
 \label{sec:term}
-The \element{term} attribute is of type \element{URN}, and refers to a function (such as 'rate of change') that relates two variables to each other, instead of just one.
+The \element{term} attribute is of type \element{URN}, and refers to a function (such as `rate of change') that relates two variables to each other, instead of just one.
 
 \paragraph*{\element{target2}}
 \label{sec:target2}

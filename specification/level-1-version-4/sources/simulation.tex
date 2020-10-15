@@ -30,14 +30,14 @@ The mandatory attribute \concept{\element{algorithm}} defines the simulation alg
 %% ~~~ UNIFORM TIMECOURSE SIMULATION ~~~
 \subsubsection{\element{UniformTimeCourse}}
 \label{class:uniformTimeCourse}
-Each instance of the \concept{UniformTimeCourse} class has, in addition to the elements from \Simulation, the mandatory elements \hyperref[sec:initialTime]{\code{initialTime}}, \hyperref[sec:outputStartTime]{\code{outputStartTime}}, \hyperref[sec:outputEndTime]{\code{outputEndTime}}, and \hyperref[sec:numberOfPoints]{\code{numberOfPoints}} (\fig{simulation}).
+Each instance of the \concept{UniformTimeCourse} class has, in addition to the elements from \Simulation, the mandatory elements \hyperref[sec:initialTime]{\code{initialTime}}, \hyperref[sec:outputStartTime]{\code{outputStartTime}}, \hyperref[sec:outputEndTime]{\code{outputEndTime}}, and \hyperref[sec:numberOfSteps]{\code{numberOfSteps}} (\fig{simulation}).
 
 \lsttext{timecourse}{uniformTimeCourse}
 
 \begin{myXmlLst}{The SED-ML \code{uniformTimeCourse} element, defining a uniform time course simulation over 2500 time units with 1000 simulation points.}{lst:timecourse}
 <listOfSimulations>
 	<uniformTimeCourse id="s1"  name="time course simulation of variable v1 over 100 minutes"  
-		initialTime="0" outputStartTime="0" outputEndTime="2500" numberOfPoints="1000">
+		initialTime="0" outputStartTime="0" outputEndTime="2500" numberOfSteps="1000">
 		<algorithm [..] />
  	</uniformTimeCourse>
 </listOfSimulations>
@@ -57,12 +57,12 @@ Sometimes a researcher is not interested in simulation results at the start of t
 The attribute \concept{\element{outputEndTime}} of type \code{double} marks the end time of the simulation, relative to the \element{initialTime}. See Listing~\ref{lst:timecourse} for an example. 
 
 \paragraph*{\element{numberOfSteps}}
-\label{sec:numberOfPoints}
-When executed, the \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} simulation produces an output on a regular grid starting with \hyperref[sec:outputStartTime]{\element{outputStartTime}} and ending with \hyperref[sec:outputEndTime]{\element{outputEndTime}}. The attribute \concept{\element{numberOfSteps}} of type \code{integer} describes the number of steps expected to produce the result. Software interpreting the \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} is expected to produce a first outputPoint at time \hyperref[sec:outputStartTime]{\element{outputStartTime}} and then \concept{\element{numberOfPoints}} output points with the results of the simulation. Thus a total of \code{numberOfSteps + 1} output points will be produced.
+\label{sec:numberOfSteps}
+When executed, the \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} simulation produces an output on a regular grid starting with \hyperref[sec:outputStartTime]{\element{outputStartTime}} and ending with \hyperref[sec:outputEndTime]{\element{outputEndTime}}. The attribute \concept{\element{numberOfSteps}} of type \code{integer} describes the number of steps expected to produce the result. Software interpreting the \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} is expected to produce a first outputPoint at time \hyperref[sec:outputStartTime]{\element{outputStartTime}} and then \concept{\element{numberOfSteps}} output points with the results of the simulation. Thus a total of \code{numberOfSteps + 1} output points will be produced.
 
 Just because the output points lie on the regular grid described above, does not mean that the simulation algorithm has to work with the same step size. Usually the step size the simulator chooses will be adaptive and much smaller than the required output step size. On the other hand a stochastic simulator might not have any new events occurring between two grid points. Nevertheless the simulator has to produce data on this regular grid. For an example, see Listing~\ref{lst:timecourse}.
 
-\changed{This attribute used to be named \element{numberOfPoints}, but was defined to be 'the number of output points minus one', which was confusing.  The old name is thus deprecated, and the new name is more in line with its definition.}
+\changed{This attribute used to be named \element{numberOfPoints}, but was defined to be `the number of output points minus one', which was confusing.  The old name is thus deprecated, and the new name is more in line with its definition.}
 
 
 % ~~~ ONESTEP SIMULATION ~~~

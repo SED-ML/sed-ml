@@ -3,7 +3,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \listfiles
 \documentclass[pdftex,rgb,dvipsnames,svgnames,hyperref,table]{report}
-\usepackage{tocvsec2} 
+\usepackage{tocvsec2}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{scalefnt}
+\usepackage{suffix}
 
 % layout (initialy done for the SBGN project)
 \input{sources/styles/latex-style}
@@ -25,9 +30,11 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \chapter{SED-ML technical specification}
 \label{chp:specification}
-This document represents the technical specification of SED-ML \currentLV. The corresponding UML class diagram is shown in \fig{sedML}. Example simulation experiments in SED-ML are provided in Appendix~\ref{app:examples}. The XML Schema is provided in Appendix~\ref{app:schema}. However, not all concepts of SED-ML can be captured using XML Schema alone. In such cases this specification is the normative document. 
+This document represents the technical specification of SED-ML \currentLV. The corresponding UML class diagrams \changed{are included throughout this document.}. Example simulation experiments in SED-ML are provided in Appendix~\ref{app:examples}.
+%The XML Schema is provided in Appendix~\ref{app:schema}.
+However, not all concepts of SED-ML can be captured using \changed{UML diagrams} alone. In such cases this specification is the normative document. 
 
-\sedfig[width=\textwidth]{images/uml/all}{The SED-ML \currentLV UML class diagram}{fig:sedML}
+%\sedfig[width=\textwidth]{images/uml/all}{The SED-ML \currentLV UML class diagram}{fig:sedML}
 
 \settocdepth{subsubsection}
 
@@ -38,7 +45,7 @@ This document represents the technical specification of SED-ML \currentLV. The c
 \pagebreak
 \section{SED-ML Components}
 \label{sec:components}
-In this section the major components of SED-ML are described. The complete UML class diagram is given in \fig{sedML}, example simulation experiments are provided in Appendix~\ref{app:examples}, the XML Schema is listed in Appendix~\ref{app:schema}.
+In this section the major components of SED-ML are described. \changed{Each section defines the UML for the class described.}  Example simulation experiments are provided in Appendix~\ref{app:examples}.%, and the XML Schema is listed in Appendix~\ref{app:schema}.
 
 %% SEDML
 \input{sources/sedml}
@@ -60,6 +67,11 @@ In this section the major components of SED-ML are described. The complete UML c
 %% ~~~ CONCEPTS ~~~
 \input{sources/concepts}
 
+%\appendix
+
+%% ~~~ VALIDATION ~~~
+%\input{sources/apdx-validation}
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% ACKNOWLEDGMENTS
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -69,13 +81,18 @@ The SED-ML specification is developed with the input of many people. The followi
 
 \begin{itemize}
 \item Richard Adams (editor, 2011-2012)
-\item Frank Bergmann (editor, 2011-2014)
+\item Frank Bergmann (editor, 2011-2014, 2020-2022)
 \item Jonathan Cooper (editor, 2012-2015)
 \item Nicolas Le Nov{\`e}re (editorial advisor, 2011-2012, 2013)
 \item Andrew Miller (editor, 2011-2012)
 \item Ion Moraru (editor, 2014-2016)
 \item Sven Sahle (editor, 2014-2016)
-\item Herbert Sauro (editor, 2017-
+\item Herbert Sauro (editor, 2018-2020)
+\item David Nickerson (editor, 2011-2013, 2015-2017, 2019-2021)
+\item Lucian Smith (editor, 2016-2018)
+\item Alan Garny (editor, 2018-2020)
+\item Matthias K\"{o}nig (editor, 2017-2019, 2020-2022)
+\item 
 \end{itemize}
 
 Moreover, we would like to thank all the participants of the meetings where SED-ML has been discussed as well as the members of the SED-ML community.
@@ -101,10 +118,10 @@ Additional SED-ML examples are available at \url{http://sed-ml.org/}.
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % XML SCHEMA
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\chapter{XML Schema}
-\label{app:schema}
-Listing \ref{lst:schema} shows the full SED-ML XML Schema.
-\myXmlImport{The SED-ML XML Schema definition}{lst:schema}{schema/sed-ml-L1-V4.xsd}
+%\chapter{XML Schema}
+%\label{app:schema}
+%Listing \ref{lst:schema} shows the full SED-ML XML Schema.
+%\myXmlImport{The SED-ML XML Schema definition}{lst:schema}{schema/sed-ml-L1-V4.xsd}
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % REFERENCES

@@ -28,7 +28,7 @@ The \Plot is an abstract base class for two- and three-dimensional plot outputs.
 The \Plot class inherits the attributes and children from \SedBase, and adds three optional attributes:  \element{legend}, of type Boolean, \element{height} of type \element{double}, and \element{width} of type \element{double}.  It also defines two optional \Axis children, an \element{xAxis} and a \element{yAxis}.
 
 \paragraph*{\element{legend}}
-The \element{legend} attribute defines whether a legend should be displayed (\val{true}) or not (\val{false}).  If the attribute is not defined, it is up to the tool whether to display the legend or not.  It does not mean that the attribute has a default value of \val{false}.  The position and styling of the legend is unspecified.
+The \element{legend} attribute defines whether a legend should be displayed (\val{true}) or not (\val{false}).  The position and styling of the legend is unspecified.  If the attribute is not defined, it is up to the tool whether to display the legend or not, and does not mean that the attribute has a default value of \val{false}.
 
 \paragraph*{\element{height} and \element{width}}
 The \element{height} and \element{width} elements, both of type \element{double}, may be used to define the size of the plot, in pixels (or the equivalent in the application's display environment).  If either is not defined, the application may choose what size to display the plot. 
@@ -65,7 +65,7 @@ When a \PlotThree contains a child \element{zAxis}, that \Axis defines the chara
 % ~~~ Axis ~~~
 \subsubsection{\element{Axis}}
 \label{class:axis}
-The \Axis class is used to define whether an axis for a given \Plot is linear or logarithmic, and how to display it.  It inherits the attributes and children from \SedBase, and adds the required attribute \element{type} of type \AxisType (either 'linear' or 'log10'), as well as the optional attributes \element{min} and \element{max}, both of type \element{double}, \element{grid} of type \element{boolean}, and \element{style} of type \SIdRef.
+The \Axis class is used to define whether an axis for a given \Plot is linear or logarithmic, and how to display it.  It inherits the attributes and children from \SedBase, and adds the required attribute \element{type} of type \AxisType (either `linear' or `log10'), as well as the optional attributes \element{min} and \element{max}, both of type \element{double}, \element{grid} of type \element{boolean}, and \element{style} of type \SIdRef.
 
 \begin{blockChanged}
 \paragraph*{\element{name}}
@@ -81,7 +81,7 @@ The \element{min} and \element{max} values indicate the minimum and maximum valu
 \paragraph*{\element{grid}}
 The \element{grid} attribute indicates whether grid lines should (\val{true}) or should not (\val{false}) be displayed in the \Plot for tick marks along that axis.  If the \element{grid} attribute is not defined, this means it is up to the tool whether or not to display the grid lines; it does not have a default value of \val{false}.
 
-\paragraph*{\element{grid}}
+\paragraph*{\element{style}}
 The \element{style} attribute, if present, must be an \SIdRef to a \Style in the same \SedDocument.  If defined, it indicates how to display the axis itself, for features such as color and/or line thickness for the axis and its labels.  If not present, any style may be used.  Note that it is possible to suppress an axis from being displayed entirely if the corresponding \Style of an \Axis has a \element{line} with a \element{style} of \val{none}.
 
 
@@ -117,7 +117,7 @@ A \Curve is a two-dimensional \Output component representing a (processed) simul
 
 \begin{blockChanged}
 \paragraph*{\element{xDataReference}}
-Like the \element{xDataReference}, the \element{yDataReference} must be the \element{SId} of a \DataGenerator in the same \SedDocument.  The referenced \DataGenerator will contain the information for the y coordinates for the data to be plotted.  The dimensions of the y data sould match the x data, if present.  If the y data is multi-dimensional (such as time course data over several stochastic replicates), one dimension should match the x data (time, in our example), and the other dimension should simply be replicated as separate curves on the same plot (with the same style and label).
+Like the \element{xDataReference}, the \element{yDataReference} must be the \element{SId} of a \DataGenerator in the same \SedDocument.  The referenced \DataGenerator will contain the information for the y coordinates for the data to be plotted.  The dimensions of the y data should match the x data, if present.  If the y data is multi-dimensional (such as time course data over several stochastic replicates), one dimension should match the x data (time, in our example), and the other dimension should simply be replicated as separate curves on the same plot (with the same style and label).
 
 \paragraph*{\element{type}}
 The optional \element{type} attribute is of type \CurveType, and determines the kind of curve being displayed.  The possible values are:
@@ -134,7 +134,7 @@ The optional \element{type} attribute is of type \CurveType, and determines the 
 \end{itemize}
 
 \paragraph*{\element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower}}
-The optional attributes \element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower} may be declared to define the error in the data present in the \Curve.  Each attribute must, if defined, point to a \DataGenerator in the same \SedDocument.  The \element{xError} and \element{xErrorLower} must have the same dimensionality as the \element{xDataReference}, and the \element{yError} and \element{yErrorLower} must have the same dimensionality as the \element{yDataReference}.  Each set of data represents the error in that dimension, in distance from the given data point.  If \element{xError} is defined and \element{xErrorLower} is not defined, the error in the x dimension is assumed to be symmetrical (i.e. '1.1 +/- 0.4').  If both attributes are defined, \element{xError} refers to the error in the positive direction, and \element{xErrorLower} refers to the error in the negative direction.  The same is true for \element{yError} and \element{yErrorLower}.
+The optional attributes \element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower} may be declared to define the error in the data present in the \Curve.  Each attribute must, if defined, point to a \DataGenerator in the same \SedDocument.  The \element{xError} and \element{xErrorLower} must have the same dimensionality as the \element{xDataReference}, and the \element{yError} and \element{yErrorLower} must have the same dimensionality as the \element{yDataReference}.  Each set of data represents the error in that dimension, in distance from the given data point.  If \element{xError} is defined and \element{xErrorLower} is not defined, the error in the x dimension is assumed to be symmetrical (i.e. `1.1 +/- 0.4').  If both attributes are defined, \element{xError} refers to the error in the positive direction, and \element{xErrorLower} refers to the error in the negative direction.  The same is true for \element{yError} and \element{yErrorLower}.
 
 
 % ~~~ SHADEDAREA ~~~
@@ -278,7 +278,7 @@ In the following example, a 3x3 \Figure is defined with four subplots.  The firs
 \label{class:parameterEstimationResultsPlot}
 A \ParameterEstimationResultsPlot class is used to create a default plot from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskRef} of type \SIdRef that points to that task.
 
-\sedfig[width=0.7\textwidth]{images/uml/parameterEstimationResultsPlot}{The definition of the SED-ML \ParameterEstimationResultsPlot class.}{fig:parameterEstimationResultsPlotFigure}
+\sedfig[width=0.7\textwidth]{images/uml/parameterEstimationResultsPlot}{The definition of the SED-ML \ParameterEstimationResultsPlot and \WaterfallPlot classes.}{fig:parameterEstimationResultsPlotFigure}
 
 The plot should display the relevant information collected during the parameter estimation, but the specifics may vary from tool to tool depending on the particular method used.  At the very least, the optimal \AdjustableParameter values should be reported, along with any information that would let the user determine the confidence in those estimates, such as the residuals.
 
