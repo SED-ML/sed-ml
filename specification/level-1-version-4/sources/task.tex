@@ -201,16 +201,18 @@ The \concept{Range} class is the abstract base class for the different types of 
 
 \paragraph{\element{UniformRange}}
 \label{class:uniformRange}
-The \concept{UniformRange} (\fig{range}) allows the definition of a \Range with uniformly spaced values. In this it is quite similar to what is used in the \hyperref[class:uniformTimeCourse]{UniformTimeCourse}. The \concept{UniformRange} is defined via three mandatory attributes: \element{start}, the start value; \element{end}, the end value and \code{numberOfPoints} which defines defines the number of points in addition to the start value (the actual items in the range are \code{numberOfPoints+1}). A fourth attribute \code{type} that can take the values \code{linear} or \code{log} determines whether to draw the values logarithmically (with a base of $10$) or linearly.
+The \concept{UniformRange} (\fig{range}) allows the definition of a \Range with uniformly spaced values. In this it is quite similar to what is used in the \hyperref[class:uniformTimeCourse]{UniformTimeCourse}. The \concept{UniformRange} is defined via three mandatory attributes: \element{start}, the start value; \element{end}, the end value and \changed{\code{numberOfSteps} which defines defines the number of points in addition to the start value (the actual number of points in the range will be} \code{numberOfSteps+1}). A fourth attribute \code{type} that can take the values \code{linear} or \code{log} determines whether to draw the values logarithmically (with a base of $10$) or linearly.
+
+\changed{The \element{numberOfSteps} attribute used to be called \element{numberOfPoints}, but was changed to better reflect the meaning of the attribute.  The old attribute name is allowed, but is deprecated.  The SED-ML meaning of both attributes is the same, and has not changed.}
 
 For example, the following \concept{UniformRange} will produce \code{101} values uniformly spaced on the interval \code{$[0, 10]$} in ascending order.
 \begin{myXmlLst}{The \code{UniformRange} element}{lst:uniformRange}
-<uniformRange id="current" start="0.0" end="10.0" numberOfPoints="100" type="linear" /> 
+<uniformRange id="current" start="0.0" end="10.0" numberOfSteps="100" type="linear" /> 
 \end{myXmlLst}
 
 The following logarithmic example generates the three values \code{1}, \code{10} and \code{100}.
 \begin{myXmlLst}{The \code{UniformRange} element with a logarithmic range.}{lst:uniformRangeLog}
-<uniformRange id="current" start="1.0" end="100.0" numberOfPoints="2" type="log" />
+<uniformRange id="current" start="1.0" end="100.0" numberOfSteps="2" type="log" />
 \end{myXmlLst}
 
 \paragraph{\element{VectorRange}}
@@ -259,7 +261,7 @@ For example:
 Here is another example, this time using the values in a piecewise expression: 
 
 \begin{myXmlLst}{A \code{functionalRange} element that returns \code{8} if \code{index} is smaller than \code{1}, \code{0.1} if \code{index} is between \code{4} and \code{6}, and \code{8} otherwise.}{lst:functionalRange2}
-<uniformRange id="index" start="0" end="10" numberOfPoints="100" />
+<uniformRange id="index" start="0" end="10" numberOfSteps="100" />
 <functionalRange id="current" range="index">
 	<math xmlns="http://www.w3.org/1998/Math/MathML">
 		<piecewise>
