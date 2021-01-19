@@ -5,7 +5,7 @@ SED-ML is an XML-based format for encoding simulation setups, to ensure exchange
 
 This repository contains the SED-ML specifications, schema, figures and presentations.
 
-**Homepage**: [http://sed-ml.org/](http://sed-ml.org/)  
+**Homepage**: [https://sed-ml.org/](https://sed-ml.org/)  
 **Discussion group**: https://groups.google.com/forum/#!forum/sedml-discuss  
 **Editors' email**: sedml-editors@googlegroups.com  
 **Issue tracker**: https://github.com/SED-ML/sed-ml/issues  
@@ -15,5 +15,4 @@ This repository contains the SED-ML specifications, schema, figures and presenta
 ## Editor notes, online documents, ...
 **Google Drive**: https://drive.google.com/drive/folders/0B71r5kLs3FlibnZMUEpIU1RKR1k?usp=sharing  
 
-&copy; 2017-2018 sed-ml.org
-
+&copy; 2017-2020 sed-ml.org
