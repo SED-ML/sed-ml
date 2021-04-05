@@ -15,4 +15,4 @@ This repository contains the SED-ML specifications, schema, figures and presenta
 ## Editor notes, online documents, ...
 **Google Drive**: https://drive.google.com/drive/folders/0B71r5kLs3FlibnZMUEpIU1RKR1k?usp=sharing  
 
-&copy; 2017-2020 sed-ml.org
+&copy; 2017-20201 sed-ml.org
