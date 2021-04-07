@@ -113,7 +113,7 @@ The \element{logX} attribute, of type \element{Boolean}, was used in previous ve
 % ~~~ CURVE ~~~
 \subsubsection{\element{Curve}}
 \label{class:curve}
-A \Curve is a two-dimensional \Output component representing a (processed) simulation result (\fig{output}). Zero or more \Curve instances define a \PlotTwo (\fig{output}). \changed{In addition to the attributes  it inherits from \AbstractCurve (and \SedBase), it also defines the required attribute \element{yDataReference} of type \SIdRef.  It also defines the optional attribute \element{type} of type \CurveType, and the optional attributes \element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower}, all of type \SIdRef.}
+A \Curve is a two-dimensional \Output component representing a (processed) simulation result (\fig{output}). Zero or more \Curve instances define a \PlotTwo (\fig{output}). \changed{In addition to the attributes  it inherits from \AbstractCurve (and \SedBase), it also defines the required attribute \element{yDataReference} of type \SIdRef.  It also defines the optional attribute \element{type} of type \CurveType, and the optional attributes \element{xErrorUpper}, \element{xErrorLower}, \element{yErrorUpper}, and \element{yErrorLower}, all of type \SIdRef.}
 
 \begin{blockChanged}
 \paragraph*{\element{xDataReference}}
@@ -130,8 +130,8 @@ The optional \element{type} attribute is of type \CurveType, and determines the 
 \item \textbf{horizontalBarStacked}: The curve is plotted as a stacked bar plot, as above, but the y axis is vertical and the x axis is horizontal.
 \end{itemize}
 
-\paragraph*{\element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower}}
-The optional attributes \element{xError}, \element{xErrorLower}, \element{yError}, and \element{yErrorLower} may be declared to define the error in the data present in the \Curve.  Each attribute must, if defined, point to a \DataGenerator in the same \SedDocument.  The \element{xError} and \element{xErrorLower} must have the same dimensionality as the \element{xDataReference}, and the \element{yError} and \element{yErrorLower} must have the same dimensionality as the \element{yDataReference}.  Each set of data represents the error in that dimension, in distance from the given data point.  If \element{xError} is defined and \element{xErrorLower} is not defined, the error in the x dimension is assumed to be symmetrical (i.e. `1.1 +/- 0.4').  If both attributes are defined, \element{xError} refers to the error in the positive direction, and \element{xErrorLower} refers to the error in the negative direction.  The same is true for \element{yError} and \element{yErrorLower}.
+\paragraph*{\element{xErrorUpper}, \element{xErrorLower}, \element{yErrorUpper}, and \element{yErrorLower}}
+The optional attributes \element{xErrorUpper}, \element{xErrorLower}, \element{yErrorUpper}, and \element{yErrorLower} may be declared to define the error in the data present in the \Curve.  Each attribute must, if defined, point to a \DataGenerator in the same \SedDocument.  The \element{xErrorUpper} and \element{xErrorLower} must have the same dimensionality as the \element{xDataReference}, and the \element{yErrorUpper} and \element{yErrorLower} must have the same dimensionality as the \element{yDataReference}.  Each set of data represents the error in that dimension, in distance from the given data point.  The \element{xErrorUpper} refers to the error in the positive direction, and \element{xErrorLower} refers to the error in the negative direction. To set symmetrical errors \element{xErrorUpper} and \element{xErrorLower} should point to the same \DataGenerator.  The same is true for \element{yErrorUpper} and \element{yErrorLower}.
 
 
 % ~~~ SHADEDAREA ~~~
