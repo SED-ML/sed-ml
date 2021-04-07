@@ -28,7 +28,7 @@ The \Plot is an abstract base class for two- and three-dimensional plot outputs.
 The \Plot class inherits the attributes and children from \SedBase, and adds three optional attributes:  \element{legend}, of type Boolean, \element{height} of type \element{double}, and \element{width} of type \element{double}.  It also defines two optional \Axis children, an \element{xAxis} and a \element{yAxis}.
 
 \paragraph*{\element{legend}}
-The \element{legend} attribute defines whether a legend should be displayed (\val{true}) or not (\val{false}).  The position and styling of the legend is unspecified.  If the attribute is not defined, it is up to the tool whether to display the legend or not, and does not mean that the attribute has a default value of \val{false}.
+The \element{legend} attribute defines whether a legend should be displayed (\val{true}) or not (\val{false}).  The position and styling of the legend is unspecified.  If the attribute is not defined, it is up to the tool whether to display the legend or not, and does not mean that the attribute has a default value of \val{false}.  The \element{name} of an \AbstractCurve in a \Plot2D and  the \element{name} of a \Surface in a \Plot3D are used as labels in the legend, if defined. If not the respective \element{id} should be used as label.
 
 \paragraph*{\element{height} and \element{width}}
 The \element{height} and \element{width} elements, both of type \element{double}, may be used to define the size of the plot, in pixels (or the equivalent in the application's display environment).  If either is not defined, the application may choose what size to display the plot. 
@@ -69,8 +69,7 @@ The \Axis class is used to define whether an axis for a given \Plot is linear or
 
 \begin{blockChanged}
 \paragraph*{\element{name}}
-The \Axis class inherits the \element{name} attribute from \SedBase, but it is worth noting that it is commonly used as a label for the axis.
-
+The \Axis class inherits the \element{name} attribute from \SedBase.  If present The \element{name} should be used as label for the axis, if present.  If not the \element{id} should be used as axis label.
 
 \paragraph*{\element{type}}
 The \element{type} value of \val{linear} means the axis should be scaled linearly, while a value of \val{log10} indicates it should have a log10 scale.  Other scalings are not possible in this version of SED-ML.  This attribute replaces the \val{log} attributes that used to be present on \Curve objects in previous versions of SED-ML. 
@@ -89,7 +88,7 @@ The \element{style} attribute, if present, must be an \SIdRef to a \Style in the
 
 \subsubsection{\element{AbstractCurve}}
 \label{class:abstractCurve}
-An \AbstractCurve is a two-dimensional \Output component representing a (processed) simulation result (\fig{abstractCurve}). Zero or more \AbstractCurve instances define a \PlotTwo (\fig{output}).  The \AbstractCurve class defines the attributes common to the \Curve and \ShadedArea child classes.  In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase (the latter of which may be used as the label in the \Plot legend, if present), it also defines the optional attributes \element{xDataReference}, \element{order}, \element{style}, and \element{yAxis}.  It is also legal but discouraged to include an attribute \element{logX}.
+An \AbstractCurve is a two-dimensional \Output component representing a (processed) simulation result (\fig{abstractCurve}).  Zero or more \AbstractCurve instances define a \PlotTwo (\fig{output}).  The \AbstractCurve class defines the attributes common to the \Curve and \ShadedArea child classes.  In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase (the latter of which should be used as the label in the \Plot legend, if present), it also defines the optional attributes \element{xDataReference}, \element{order}, \element{style}, and \element{yAxis}.  It is also legal but discouraged to include an attribute \element{logX}.
 
 
 \paragraph*{\element{xDataReference}}
@@ -102,7 +101,7 @@ The \element{order} attribute is of type \element{non-negative integer} and, if 
 The \element{style} attribute is of type \SIdRef and, if present, must reference a \Style in the same \SedDocument.  It can be used to indicate things like color, marker, and/or line thickness for this \Curve.  If not present, any style may be used.  A \Curve may be displayed as only a set of markers if the \Line from its \Style is set to have a \element{type} of \val{none}.  Similarly, a \Curve may be displayed as a line only with no markers if the \Marker from its \Style is set to have a \element{type} of \val{none}.  (If both are set to \val{none}, the curve will not be displayed at all!)  The \Fill of a \Style has no meaning for a \Curve, and, if present, will be ignored.
 
 \paragraph*{\element{yAxis}}
-The \element{yAxis} attribute is of type \element{string} and must be defined if the parent \Plot defines both a \element{yAxis} and a \element{rightYAxis}.  If it has the value of \val{left}, it means that the data is to be displayed corresponding to the \element{yAxis} of the parent \Plot, and if it has the value of \val{right}, it means that the data is to be disaplyed corresponding to the \element{rightYAxis} of the parent \Plot.  If the parent \Plot has no defined \element{rightYAxis}, this attribute must not be defined.
+The \element{yAxis} attribute is of type \element{string} and must be defined if the parent \Plot defines both a \element{yAxis} and a \element{rightYAxis}.  If it has the value of \val{left}, it means that the data is to be displayed corresponding to the \element{yAxis} of the parent \Plot, and if it has the value of \val{right}, it means that the data is to be displayed corresponding to the \element{rightYAxis} of the parent \Plot.  If the parent \Plot has no defined \element{rightYAxis}, this attribute must not be defined.
 
 \paragraph*{\element{logX} (deprecated)}
 The \element{logX} attribute, of type \element{Boolean}, was used in previous versions of SED-ML to indicate whether the x axis of the \Plot should be linear or log10.  This allowed mutliple \Curve objects in the same \Plot to contradict each other, and has therefore been moved to \Axis.  The \element{logX} attribute on \Curve has therefore been deprecated, and will always be ignored.
@@ -145,12 +144,13 @@ The attributes \element{yDataReferenceFrom} and \element{yDataReferenceTo} are b
 \end{blockChanged}
 
 
-
 % ~~~ SURFACE ~~~
 \subsubsection{\element{Surface}}
 \label{class:surface}
 \begin{blockChanged}
-A \Surface is a parallel class to \AbstractCurve that defines a three-dimensional surface instead of a two-dimensional curve (\fig{surface}).  It defines the attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \SIdRef, the first two of which are optional and the last of which is required.  It also defines the optional attributes \element{style} of type \SIdRef, and \element{type}, of type \SurfaceType.
+A \Surface is a three-dimensional \Output component representing a (processed) simulation result (\fig{surface}).  A \Surface is a parallel class to \AbstractCurve that defines a three-dimensional surface instead of a two-dimensional curve.  Zero or more \Surface instances define a \PlotThree (\fig{output}).
+
+In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase (the latter of which should be used as the label in the \Plot3D legend, if present), it also defines the attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \SIdRef, the first two of which are optional and the last of which is required.  It also defines the optional attributes \element{style} of type \SIdRef, and \element{type}, of type \SurfaceType.
 
 \sedfig[width=0.6\textwidth]{images/uml/surface}{The definition of the SED-ML \Surface class.}{fig:surface}
 
@@ -173,6 +173,8 @@ The \element{type} attribute, if present, determines the type of surface and how
 \item \textbf{bar}: The data is plotted as a 3D bar plot.
 \end{itemize}
 
+\paragraph*{\element{logX}, \element{logY}, \element{logZ} (deprecated)}
+The \element{logX}, \element{logY} and \element{logZ} attribute, of type \element{Boolean}, were used in previous versions of SED-ML to indicate whether the respective axis of the \Plot should be linear or log10.  This allowed multiple objects in the same \Plot to contradict each other, and has therefore been moved to \Axis.  The \element{logX}, \element{logY} and \element{logZ} attributes on \Surface have therefore been deprecated, and will always be ignored.
 
 
 \end{blockChanged}
