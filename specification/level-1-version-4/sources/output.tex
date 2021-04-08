@@ -187,7 +187,7 @@ The \element{type} attribute, if present, determines the type of surface and how
 \label{class:report}
 \label{class:listOfDataSets}
 \begin{blockChanged}
-The \concept{Report} class defines a data table consisting of several single instances of the \DataSet in the child \element{listOfDataSets} (\fig{report}). Its output returns the simulation result processed via \DataGenerators in actual numbers. The columns of the report table are defined by creating an instance of the \DataSet for each column. 
+The \concept{Report} class defines a data map consisting of several single instances of the \DataSet in the child \element{listOfDataSets} (\fig{report}). Its output returns the simulation result processed via \DataGenerators in actual numbers. The elements of the report are defined by creating an instance of the \DataSet for each element of the report and are identified by the \element{label} of the \DataSet. 
 \end{blockChanged}
 
 The simulation result itself, i.e.\ concrete result numbers, are not stored in SED-ML, but the directive how to calculate them from the output of the simulator is provided through the \hyperref[class:dataGenerator]{dataGenerator}. The encoding of simulation results is not part of SED-ML \currentLV.
@@ -196,9 +196,13 @@ The simulation result itself, i.e.\ concrete result numbers, are not stored in S
 %% ~~~ DATASET ~~~
 \subsubsection{\element{DataSet}}
 \label{class:dataSet}
-The \DataSet class holds definitions of data to be used in the \Report class (\fig{report}). DataSets are labeled references to instances of the \DataGenerator class.
+The \DataSet class holds definitions of data to be used in the \Report class (\fig{report}). DataSets are labeled references to instances of the \DataGenerator class.  It defines the required attributes \element{label} of type \element{string} and \element{dataReference} of type \SIdRef.  
 
-Each data set in a \Report must have an unambiguous \element{label}. A \element{label} is a human readable descriptor of a data set for use in a \Report. For example, for a tabular data set of time series results, the \element{label} could be the column heading. 
+Each data set in a \Report must have an unambiguous \element{label}. A \element{label} is a human readable descriptor of a data set for use in a \Report.  In general the Report is a map between labels and data from \DataGenerator instances, but can be interpreted as a data table for certain tasks. For example, in the special case of time series results, the report could be a tabular data set with the \element{label} being the column heading and the time series results being the columns.
+
+\paragraph*{\element{label}}
+\label{sec:label}
+The \element{label} attribute is of type \element{string} defines a unique label for every \DataSet in a given \Report.
 
 \paragraph*{\element{dataReference}}
 \label{sec:dataReference}
