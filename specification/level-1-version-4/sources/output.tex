@@ -28,7 +28,7 @@ The \Plot is an abstract base class for two- and three-dimensional plot outputs.
 The \Plot class inherits the attributes and children from \SedBase, and adds three optional attributes:  \element{legend}, of type Boolean, \element{height} of type \element{double}, and \element{width} of type \element{double}.  It also defines two optional \Axis children, an \element{xAxis} and a \element{yAxis}.
 
 \paragraph*{\element{legend}}
-The \element{legend} attribute defines whether a legend should be displayed (\val{true}) or not (\val{false}).  The position and styling of the legend is unspecified.  If the attribute is not defined, it is up to the tool whether to display the legend or not, and does not mean that the attribute has a default value of \val{false}.  The \element{name} of an \AbstractCurve in a \Plot2D and  the \element{name} of a \Surface in a \Plot3D are used as labels in the legend, if defined. If not the respective \element{id} should be used as label.
+The \element{legend} attribute defines whether a legend should be displayed (\val{true}) or not (\val{false}).  The position and styling of the legend is unspecified.  If the attribute is not defined, it is up to the tool whether to display the legend or not, and does not mean that the attribute has a default value of \val{false}.  The \element{name} of an \AbstractCurve in a \PlotTwo and  the \element{name} of a \Surface in a \PlotThree are used as labels in the legend, if defined. If not the respective \element{id} should be used as label.
 
 \paragraph*{\element{height} and \element{width}}
 The \element{height} and \element{width} elements, both of type \element{double}, may be used to define the size of the plot, in pixels (or the equivalent in the application's display environment).  If either is not defined, the application may choose what size to display the plot. 
@@ -150,7 +150,7 @@ The attributes \element{yDataReferenceFrom} and \element{yDataReferenceTo} are b
 \begin{blockChanged}
 A \Surface is a three-dimensional \Output component representing a (processed) simulation result (\fig{surface}).  A \Surface is a parallel class to \AbstractCurve that defines a three-dimensional surface instead of a two-dimensional curve.  Zero or more \Surface instances define a \PlotThree (\fig{output}).
 
-In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase (the latter of which should be used as the label in the \Plot3D legend, if present), it also defines the attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \SIdRef, the first two of which are optional and the last of which is required.  It also defines the optional attributes \element{style} of type \SIdRef, and \element{type}, of type \SurfaceType.
+In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase (the latter of which should be used as the label in the \PlotThree legend, if present), it also defines the attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \SIdRef, the first two of which are optional and the last of which is required.  It also defines the optional attributes \element{style} of type \SIdRef, and \element{type}, of type \SurfaceType.
 
 \sedfig[width=0.6\textwidth]{images/uml/surface}{The definition of the SED-ML \Surface class.}{fig:surface}
 
