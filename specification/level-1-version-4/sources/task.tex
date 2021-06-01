@@ -61,7 +61,7 @@ The \concept{RepeatedTask} (\fig{repeatedTask}) provides a generic looping const
 
 \sedfig[width=.8\textwidth]{images/uml/repeatedTask}{The SED-ML RepeatedTask class}{fig:repeatedTask}
 
-The \concept{RepeatedTask} inherits the required attribute \hyperref[sec:id]{\element{id}} and optional attribute \hyperref[sec:name]{\element{name}} from \AbstractTask. Additionally it has the two required attributes \hyperref[sec:rangeAttribute]{\element{range}} and \hyperref[sec:resetModel]{\element{resetModel}} and the child elements \hyperref[class:listOfRanges]{\element{listOfRanges}}, \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} and \hyperref[class:subTask]{\element{listOfSubTasks}}. Of these \hyperref[class:listOf]{\element{listOf*}} only \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} is optional.
+The \concept{RepeatedTask} inherits the required attribute \hyperref[sec:id]{\element{id}} and optional attribute \hyperref[sec:name]{\element{name}} from \AbstractTask. Additionally it has the two required attributes \hyperref[sec:rangeAttribute]{\element{range}} and \hyperref[sec:resetModel]{\element{resetModel}}, \changed{an optional attribute \hyperref[sec:concatenateAttribute]{\element{concatenate}},} and the child elements \hyperref[class:listOfRanges]{\element{listOfRanges}} (required), \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} (optional) and \hyperref[class:subTask]{\element{listOfSubTasks}} (required).
 
 The order of activities within each iteration of a \concept{RepeatedTask} is as follows:
 \begin{itemize} 
@@ -113,6 +113,15 @@ The \hyperref[class:repeatedTask]{repeatedTask} has a required attribute \concep
 
 In the example in  Listing~\ref{lst:repeatedTask} the repeated task is not to be reset, so a change is made, \code{task1} is carried out, another change is made, then \code{task1} continues from there, another change is applied, and \code{task1} is carried out a last time.
 
+\begin{blockChanged}
+% ~~~ CONCATENATE ~~~
+\paragraph*{\element{concatenate}}
+\label{sec:concatenateAttribute}
+The \RepeatedTask has an optional attribute \concept{\element{concatenate}} of type \code{boolean}. It specifies whether the output of the subtasks should be appended to the results of the previous outputs (\val{true}), or whether it should be added in parallel, as a new dimension of the output (\val{false}).
+
+If this attribute is not defined, the interpreter may either concatenate or parallelize the results.  As this makes the results less comparable between interpreters, it is strongly suggested that this attribute be defined.
+\end{blockChanged}
+
 %% ~~~ LIST OF CHANGES ~~~
 \paragraph*{\element{listOfChanges}}
 \label{sec:changesRepeatedTask}
@@ -121,7 +130,7 @@ The optional \concept{\element{listOfChanges}} element contains one or many \hyp
 %% ~~~ REPEATED TASK : LIST OF SUBTASKS ~~~
 \paragraph*{\element{listOfSubTasks}}
 \label{class:listOfSubTasks}
-The required \concept{\element{listOfSubTasks}} contains one or more \hyperref[class:subTask]{subTasks} that specify which \hyperref[class:abstractTask]{Tasks} are performed in every iteration of the \RepeatedTask. All \hyperref[class:subTask]{subTasks} have to be carried out sequentially, each continuing from the current model state (i.e.\ as at the end of the previous \hyperref[class:subTask]{subTask}, assuming it simulates the same model), and with their results concatenated (thus appearing identical to a single complex simulation). The order in which to run multiple \hyperref[class:subTask]{subTasks} must be specified using the \hyperref[sec:subTaskOrder]{\element{order}} attribute on the \hyperref[class:subTask]{subTask}. 
+The required \concept{\element{listOfSubTasks}} contains one or more \hyperref[class:subTask]{subTasks} that specify which \hyperref[class:abstractTask]{Tasks} are performed in every iteration of the \RepeatedTask. All \hyperref[class:subTask]{subTasks} have to be carried out sequentially, each continuing from the current model state (i.e.\ as at the end of the previous \hyperref[class:subTask]{subTask}, assuming it simulates the same model).  \changed{If the \element{concatentate} attribute is set \val{true}, the results are} concatenated (thus appearing identical to a single complex simulation), \changed{and if set \val{false}, the results are added to a matrix with the addtitional dimension of the repeated task.} The order in which to run multiple \hyperref[class:subTask]{subTasks} must be specified using the \hyperref[sec:subTaskOrder]{\element{order}} attribute on the \hyperref[class:subTask]{subTask}. 
 
 \begin{myXmlLst}{The \code{subTask} element. In this example the task \code{task2} must be executed before \code{task1}.}{lst:subTask}
 <listOfSubTasks>
