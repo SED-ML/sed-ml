@@ -7,9 +7,9 @@ The \concept{Model} class defines the models used in a simulation experiment (\f
 
 \sedfig[width=0.7\textwidth]{images/uml/model}{The SED-ML Model class}{fig:model}
 
-Each instance of the \concept{Model} class has the mandatory attributes \hyperref[sec:id]{\element{id}} and \hyperref[sec:model_source]{\code{source}}, and the optional attributes \hyperref[sec:name]{\element{name}}, \hyperref[sec:language]{\element{language}}, and \hyperref[sec:changesModel]{\element{listOfChanges}}.
+Each instance of the \concept{Model} class has the required attributes \hyperref[sec:id]{\element{id}}, \hyperref[sec:model_source]{\code{source}}, and \hyperref[sec:language]{\element{language}}, the optional attribute \hyperref[sec:name]{\element{name}}, \changed{and the optional child} \hyperref[sec:changesModel]{\element{listOfChanges}}.
 
-The optional attribute \hyperref[sec:language]{\code{language}} defines the format the model is encoded in.
+The \hyperref[sec:language]{\code{language}} attribute defines the format the model is encoded in.
 
 The \concept{Model} class refers to the particular model of interest through the \hyperref[sec:model_source]{\element{source}} attribute. The restrictions on the model reference are
 \begin{itemize}
@@ -48,9 +48,9 @@ In the example the \hyperref[class:listOfModels]{\element{listOfModels}} contain
 % ~~~ MODEL:LANGUAGE ~~~
 \paragraph*{\element{language}}
 \label{sec:language}
-The optional \concept{\element{language}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the format of the \hyperref[class:model]{model}. Example formats are SBML (\code{urn:sedml:language:sbml}) or CellML (\code{urn:sedml:language:cellml}). The supported languages are defined in the \hyperref[sec:languageURI]{language references}.
+The \changed{required} \concept{\element{language}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the format of the \hyperref[class:model]{model}. Example formats are SBML (\code{urn:sedml:language:sbml}) or CellML (\code{urn:sedml:language:cellml}). The supported languages are defined in the \hyperref[sec:languageURI]{language references}.
 
-If it is not explicitly defined, the default value for \concept{\element{language}} is \code{urn:sedml:language:xml}, referring to any XML-based model representation. However, the use of the \concept{\element{language}} attribute is strongly encouraged for two reasons. Firstly, it helps to decide whether or not one is able to run the simulation, that is to parse the model referenced in the SED-ML file. Secondly, the language attribute is also needed to decide how to handle the \hyperref[sec:implicitVariable]{Symbols} in the \Variable class, as the interpretation of \hyperref[sec:implicitVariable]{Symbols} depends on the language of the representation format.
+The use of the \concept{\element{language}} attribute is \changed{required} for two reasons. Firstly, it helps to decide whether or not one is able to run the simulation, that is to parse the model referenced in the SED-ML file. Secondly, the language attribute is also needed to decide how to handle the \hyperref[sec:implicitVariable]{Symbols} in the \Variable class, as the interpretation of \hyperref[sec:implicitVariable]{Symbols} depends on the language of the representation format.
 
 
 % ~~~ MODEL:SOURCE ~~~
@@ -122,7 +122,7 @@ The \concept{\element{target}} attribute holds \changed{an unambiguous descripti
 % ~~~ NewXML ~~~
 \subsubsection{\element{NewXML}}
 \label{sec:newXml}
-The \concept{\element{newXML}} element provides a piece of XML code (\fig{sedChange}). \concept{\element{NewXML}} must hold a valid piece of XML which after insertion into the original model must  result in a valid model file (according to the model language specification as given by the \hyperref[sec:language]{\element{language}} attribute of the \hyperref[class:model]{model}).
+The \concept{\element{newXML}} element provides a piece of XML code (\fig{sedChange}). \concept{\element{NewXML}} must hold a valid piece of XML which after insertion into the original model must result in a valid model file (according to the model language specification as given by the \hyperref[sec:language]{\element{language}} attribute of the \hyperref[class:model]{model}).
 
 The \concept{\element{newXML}} element is used at two different places inside SED-ML \currentLV:
 
