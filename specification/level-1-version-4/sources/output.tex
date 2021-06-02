@@ -78,6 +78,8 @@ The \element{type} value of \val{linear} means the axis should be scaled linearl
 \paragraph*{\element{min} and \element{max}}
 The \element{min} and \element{max} values indicate the minimum and maximum values for the axis.  Data points outside of this range should not be shown on the parent \Plot.  Either value may be set or not, and if not set, a value must be chosen for display that is less than (for \element{min}) or greater than (for \element{max}) the most extreme value along that axis for any \Curve or \Surface in that \Plot.  Do note that in some cases, a given \Curve may not have any data points associated with one Y \Axis, as its data may be associated with the alternative Y \Axis.
 
+Note that \element{min} and \element{max} will have the same units as the data plotted along it, regardless of the value of the \element{type}.  An axis with a \element{min} value of \val{1} and a \element{max} value of \val{100} will either be plotted with '50' halfway between those two extremes if the \element{type} is \val{linear}, or with '10' halfway between those two extremes if the \element{type} is \val{log10}.
+
 \paragraph*{\element{grid}}
 The \element{grid} attribute indicates whether grid lines should (\val{true}) or should not (\val{false}) be displayed in the \Plot for tick marks along that axis.  If the \element{grid} attribute is not defined, this means it is up to the tool whether or not to display the grid lines; it does not have a default value of \val{false}.
 
