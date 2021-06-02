@@ -89,7 +89,9 @@ The \element{style} attribute, if present, must be an \SIdRef to a \Style in the
 
 \subsubsection{\element{AbstractCurve}}
 \label{class:abstractCurve}
-An \AbstractCurve is a two-dimensional \Output component representing a (processed) simulation result (\fig{abstractCurve}). Zero or more \AbstractCurve instances define a \PlotTwo (\fig{output}).  The \AbstractCurve class defines the attributes common to the \Curve and \ShadedArea child classes.  In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase (the latter of which may be used as the label in the \Plot legend, if present), it also defines the \changed{required attribute \element{xDataReference}, and the optional attributes} \element{order}, \element{style}, and \element{yAxis}.  It is also legal but discouraged to include an attribute \element{logX}.
+An \AbstractCurve is a two-dimensional \Output component representing a (processed) simulation result (\fig{abstractCurve}). Zero or more \AbstractCurve instances define a \PlotTwo (\fig{output}).  The \AbstractCurve class defines the attributes common to the \Curve and \ShadedArea child classes.  In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase, it also defines the \changed{required attribute \element{xDataReference}, and the optional attributes} \element{order}, \element{style}, and \element{yAxis}.  It is also legal but discouraged to include an attribute \element{logX}.
+
+\changed{The \element{name} of the \AbstractCurve should be used to label the curve in the given \PlotTwo, or, if \element{name} is not defined, the \element{id} may be used.  If neither are present, the \element{name} or \element{id} of the referenced \element{yDataReference} may be used in the case of a \Curve or the \element{yDataReferenceFrom} and/or \element{yDataReferenceTo} in the case of a \ShadedArea.  Because of the complications this can engender, it is highly recommended to define the \element{name} of all \AbstractCurve elements.}
 
 
 \paragraph*{\element{xDataReference}}
@@ -150,7 +152,10 @@ The attributes \element{yDataReferenceFrom} and \element{yDataReferenceTo} are b
 \subsubsection{\element{Surface}}
 \label{class:surface}
 \begin{blockChanged}
-A \Surface is a parallel class to \AbstractCurve that defines a three-dimensional surface instead of a two-dimensional curve (\fig{surface}).  It defines the \changed{required} attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \SIdRef.  It also defines the optional attributes \element{style} of type \SIdRef, and \element{type}, of type \SurfaceType.
+A \Surface is a parallel class to \AbstractCurve that defines a three-dimensional surface instead of a two-dimensional curve (\fig{surface}).  In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase, it also defines the \changed{required} attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \SIdRef.  It also defines the optional attributes \element{style} of type \SIdRef, and \element{type}, of type \SurfaceType.
+
+\changed{The \element{name} of the \Surface should be used to label the surface in the given \PlotThree, or, if \element{name} is not defined, the \element{id} may be used.  If neither are present, the \element{name} or \element{id} of the referenced \element{zDataReference} may be used.  In general, it is highly recommended to define the \element{name} of all \Surface elements.}
+
 
 \sedfig[width=0.6\textwidth]{images/uml/surface}{The definition of the SED-ML \Surface class.}{fig:surface}
 
