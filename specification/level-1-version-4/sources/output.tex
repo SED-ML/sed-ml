@@ -190,7 +190,7 @@ The \element{type} attribute, if present, determines the type of surface and how
 The \concept{Report} class defines a data map consisting of several single instances of the \DataSet in the child \element{listOfDataSets} (\fig{report}). Its output returns the simulation result processed via \DataGenerators in actual numbers. The elements of the report are defined by creating an instance of the \DataSet for each element of the report and are identified by the \element{label} of the \DataSet. 
 \end{blockChanged}
 
-The simulation result itself, i.e.\ concrete result numbers, are not stored in SED-ML, but the directive how to calculate them from the output of the simulator is provided through the \hyperref[class:dataGenerator]{dataGenerator}. The encoding of simulation results is not part of SED-ML \currentLV.
+The simulation result itself, i.e.\ concrete result numbers, are not stored in SED-ML, but the directive how to calculate them from the output of the simulator is provided through the \hyperref[class:dataGenerator]{dataGenerator}. The encoding of simulation results is not part of SED-ML \currentLV, \changed{but it is recommended that 2D output be exported as CSV files, using the \element{label} as column headers, and that output with more dimensions be exported as HDF5, again using the \element{label} to uniquely identify the data sets.}
 
 \begin{blockChanged}
 %% ~~~ DATASET ~~~
