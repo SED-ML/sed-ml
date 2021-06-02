@@ -68,8 +68,8 @@ When a \PlotThree contains a child \element{zAxis}, that \Axis defines the chara
 The \Axis class is used to define whether an axis for a given \Plot is linear or logarithmic, and how to display it.  It inherits the attributes and children from \SedBase, and adds the required attribute \element{type} of type \AxisType (either `linear' or `log10'), as well as the optional attributes \element{min} and \element{max}, both of type \element{double}, \element{grid} of type \element{boolean}, and \element{style} of type \SIdRef.
 
 \begin{blockChanged}
-\paragraph*{\element{name}}
-The \Axis class inherits the \element{name} attribute from \SedBase, but it is worth noting that it is commonly used as a label for the axis.
+\paragraph*{\element{name} and \element{id}}
+The \Axis class inherits the \element{name} and \element{id} attributes from \SedBase.  The \element{name}, if present, should be used as the label for the axis.  If it is not present, the \element{id} may be used.
 
 
 \paragraph*{\element{type}}
