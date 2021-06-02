@@ -58,6 +58,22 @@ The use of the \concept{\element{language}} attribute is \changed{required} for 
 \label{sec:model_source}
 To make a \hyperref[class:model]{model} accessible for the execution of a SED-ML file, the \concept{\element{source}} must be specified through either an URI or a reference to an \code{SId} of an existing \Model. The URI should follow the proposed \hyperref[sec:uriScheme]{URI Scheme} for \hyperref[sec:modelURI]{Model references}.
 
+\begin{blockChanged}
+There are three typical ways to identify a model with the \element{source} attribute:  by relative path, by identifier, or by URL.
+
+An example for the definition of a model via a relative path URI is given in Listing~\ref{lst:source0}. The example defines one model \code{m1} with the model \concept{\element{source}} available from \val{oscillator.xml} in the same directory or location as the SED-ML file.  A \element{source} value of \val{./oscillator.xml} would accomplish the same thing more explicitly, with \val{./} being shorthand for 'the current directory'.
+
+\begin{myXmlLst}{The SED-ML \code{source} element, using the URI scheme}{lst:source0}
+<model id="m1" name="repressilator" language="urn:sedml:language:sbml" 
+	source="oscillator.xml">
+	<listOfChanges>
+		[MODEL PRE-PROCESSING]
+	</listOfChanges>
+</model>
+\end{myXmlLst}
+
+\end{blockChanged}
+
 An example for the definition of a model via an URI is given in Listing~\ref{lst:sourceA}. The example defines one model \code{m1} with the model \concept{\element{source}} available from \code{urn:miriam:biomodels.db:BIOMD0000000012}. The MIRIAM URN can be resolved into the SBML model stored in BioModels Database under the identifier \element{BIOMD0000000012} using the MIRIAM web service. The resulting URL is \url{https://www.ebi.ac.uk/biomodels-main/BIOMD0000000012}.
 
 \begin{myXmlLst}{The SED-ML \code{source} element, using the URI scheme}{lst:sourceA}
