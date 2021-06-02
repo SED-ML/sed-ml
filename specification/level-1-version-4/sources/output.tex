@@ -84,6 +84,9 @@ The \element{grid} attribute indicates whether grid lines should (\val{true}) or
 \paragraph*{\element{style}}
 The \element{style} attribute, if present, must be an \SIdRef to a \Style in the same \SedDocument.  If defined, it indicates how to display the axis itself, for features such as color and/or line thickness for the axis and its labels.  If not present, any style may be used.  Note that it is possible to suppress an axis from being displayed entirely if the corresponding \Style of an \Axis has a \element{line} with a \element{style} of \val{none}.
 
+\paragraph*{\element{reverse}}
+The \element{reverse} attribute indicates whether the axis should be plotted from the minimum value to the maximum value (\val{false}) or from the maximum value to the minimum value (\val{true}) (i.e. left to right or bottom to top, depending on the axis).  If not defined, either is technically possible, but should be assumed to go from minimum to maximum.
+
 
 \sedfig[width=0.5\textwidth]{images/uml/abstractCurve}{The definition of the SED-ML \AbstractCurve, \Curve, and \ShadedArea classes.}{fig:abstractCurve}
 
