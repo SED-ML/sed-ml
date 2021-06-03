@@ -158,7 +158,7 @@ A \Range is the iterative element of the repeated simulation experiment. Each \R
 % ~~~ SUBTASK ~~~
 \subsubsection{\element{SubTask}}
 \label{class:subTask}
-A \concept{SubTask} (\fig{repeatedTask}) defines the subtask which is executed in every iteration of the enclosing \RepeatedTask. The \concept{SubTask} has a required attribute \hyperref[sec:subTaskTask]{\element{task}} that references the \hyperref[sec:id]{\element{id}} of another \AbstractTask. The order in which to run multiple \concept{subTasks} must be specified via the required attribute \hyperref[sec:subTaskOrder]{\element{order}}. 
+A \concept{SubTask} (\fig{repeatedTask}) defines the subtask which is executed in every iteration of the enclosing \RepeatedTask. The \concept{SubTask} has a required attribute \hyperref[sec:subTaskTask]{\element{task}} that references the \hyperref[sec:id]{\element{id}} of another \AbstractTask. The order in which to run multiple \concept{subTasks} must be specified via the required attribute \hyperref[sec:subTaskOrder]{\element{order}}.  \changed{It may contain a child \ListOfChanges to specify any changes that apply at the beginning of the particular subtask, in contrast to the \ListOfChanges child of the \RepeatedTask itself, which specifies changes that apply before any of the subtasks.}
 
 \paragraph*{\element{task}}
 \label{sec:subTaskTask}
@@ -167,6 +167,13 @@ The required element \concept{\element{task}} of data type \SIdRef specifies the
 \paragraph*{\element{order}}
 \label{sec:subTaskOrder}
 The required attribute \concept{\element{order}} of data type \element{integer} specifies the order in which to run multiple \concept{subTasks} in the \hyperref[class:listOfSubTasks]{\element{listOfSubTasks}}. To specify that one \concept{subTask} should be executed before another its \concept{\element{order}} attribute must have a lower number (e.g.\ in Listing~\ref{lst:subTask}).
+
+\begin{blockChanged}
+\paragraph*{\element{listOfChanges}}
+\label{sec:subTaskListOfChanges}
+The \SetValue children of the \ListOfChanges of this \SubTask define changes to apply to the model state before this \SubTask is carried out.  This allows model changes between individual \SubTask elements, perhaps based on the changed state of the model itself.  The set of all \SetValue children of the first \SubTask are applied after the set of \SetValue children of the \RepeatedTask itself.
+\end{blockChanged}
+
 
 
 % ~~~ SET VALUE ~~~
