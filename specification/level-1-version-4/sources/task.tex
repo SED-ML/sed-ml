@@ -314,6 +314,20 @@ Here is another example, this time using the values in a piecewise expression:
 \end{myXmlLst}
 
 \begin{blockChanged}
+\paragraph{\element{DataRange}}
+\label{class:dataRange}
+The \concept{DataRange} (\fig{range}) constructs a range by reference to external data. It inherits from \Range, and adds the required atribute \element{sourceRef} of type \hyperref[type:sidref]{SIdRef}.  The \element{sourceRef} must point to a \DataDescription with a single dimension, whose values are used as the values of the range.
+
+For example:
+
+\begin{myXmlLst}{An example of a \code{dataRange} which tracks a variable from an external file.}{lst:dataRange}
+    <dataRange id="current" sourceRef="dosage_times" />
+\end{myXmlLst}
+\end{blockChanged}
+
+
+
+\begin{blockChanged}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % PARAMETER ESTIMATION TASK
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
