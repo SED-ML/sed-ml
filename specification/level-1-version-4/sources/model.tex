@@ -237,7 +237,7 @@ The example in Listing~\ref{lst:changeAttribute} shows the update of the value o
 % ~~~ ComputeChange ~~~
 \subsubsection{\element{ComputeChange}}
 \label{class:computeChange}
-The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any element or attribute of a \Model addressable by \changed{a \hyperref[sec:changeTarget]{\element{target}}}, based on a calculation (\fig{sedChange}).  \changed{It inherits the \element{target} attribute from the \Change abstract base class, as well as the standard \SedBase attributes and children, and adds the optional attribute \element{symbol} (of type URN).  Its ability to perform a calculation is described in the \Calculation class.  (For implementations, if multiple inheritance is not possible, the children of \Calculation should just be added directly to the \ComputeChange class itself.)}
+The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any element or attribute of a \Model addressable by \changed{a \hyperref[sec:changeTarget]{\element{target}}}, based on a calculation (\fig{sedChange}).  \changed{It inherits the \element{target} attribute from the \Change abstract base class, as well as the standard \SedBase attributes and children, and adds the optional attribute \element{symbol} (of type string).  Its ability to perform a calculation is described in the \Calculation class.  (For implementations, if multiple inheritance is not possible, the children of \Calculation should just be added directly to the \ComputeChange class itself.)}
 
 \changed{The change is calculated from the \Math of the \Calculation, and applied to the \element{target} of the \Change.}
 
@@ -246,7 +246,7 @@ Note that when a \concept{ComputeChange} refers to another model, that model is 
 \begin{blockChanged}
 \paragraph*{\element{symbol}}
 \label{sec:cc_symbol}
-The optional \element{symbol} attribute of data type \code{URN} may be used in addition to the \element{target} when the particular value associated with the \element{target} may be described in multiple ways.  In particular, a species whose value could be expressed either as a concentration or an amount may have its concentration set by using the \element{symbol} \val{urn:sedml:symbol:concentration}, or its amount set by using the \element{symbol} \val{urn:sedml:symbol:amount}.
+The optional \element{symbol} attribute of data type \code{string} may be used in addition to the \element{target} when the particular value associated with the \element{target} may be described in multiple ways.  In particular, a species whose value could be expressed either as a concentration or an amount may have its concentration set by using the \element{symbol} \val{KISAO:0000838}, or its amount set by using the \element{symbol} \val{KISAO:0000836}.
 \end{blockChanged}
 
 \lsttext{computeChange}{computeChange}

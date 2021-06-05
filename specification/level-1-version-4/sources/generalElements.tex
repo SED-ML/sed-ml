@@ -355,7 +355,7 @@ In the example a variable \code{v1} is defined to compute a change on a model co
 	<listOfDataGenerators>
 		<dataGenerator [..]>
 			<listOfVariables>
-				<variable id="v2" name="time" taskReference="task1" symbol="urn:sedml:symbol:time" />
+				<variable id="v2" name="time" taskReference="task1" symbol="KISAO:0000832" />
 				[FURTHER VARIABLE DEFINITIONS]
 			</listOfVariables>
 		</dataGenerator>
@@ -408,16 +408,16 @@ The \hyperref[sec:xpath]{XPath} expression used in the \concept{\code{target}} a
 % ~~~ SYMBOL ~~~
 \paragraph*{\element{symbol}}
 \label{sec:symbol}
-The \concept{\element{symbol}} \changed{attribute of type \element{URN} is used to refer either to a predefined, implicit variable or to a predefined implicit function to be performed on the \element{target}.  In both cases,} the defined URNs representing that variable's concept. The notion of implicit variables is explained in Section~\ref{sec:implicitVariable}.
+The \concept{\element{symbol}} \changed{attribute of type \element{string} is used to refer either to a predefined, implicit variable or to a predefined implicit function to be performed on the \element{target}.  In both cases, the \element{symbol} should be a \kisaoID (and follow the format of that attribute) that represents} that variable's concept. The notion of implicit variables is explained in Section~\ref{sec:implicitVariable}.  \changed{For backwards compatibility, the old string \val{urn:sedml:symbol:time} is also allowed, though interpreters should interpret \val{KISAO:0000832} as meaning the same thing.}
 
 \changed{In the case where the \element{symbol} refers to a function, the function is applied to the \element{target} of the \Variable.  If the function reduces the dimensionality of the \Variable, a \RemainingDimension child should be used.}
 
 \lsttexta{symbol}{symbol}
-The example encodes a computed change of model \code{m001}. To specify that change, a symbol is defined (i.e., the SED-ML symbol for \code{time} is assigned to the variable \code{t1}). How to compute the change itself is explained in Section~\ref{class:computeChange}.
+The example \changed{encodes a variable \val{t1} defined to be the SED-ML symbol for \code{time}.  How to use this variable to calculate a change is} explained in Section~\ref{class:computeChange}.
 
 \begin{myXmlLst}{SED-ML \code{symbol} definition}{lst:symbol}
 <listOfVariables>
-	<variable id="t1" name="time" taskReference="task1" symbol="urn:sedml:symbol:time" />
+	<variable id="t1" name="time" taskReference="task1" symbol="KISAO:0000832" />
 </listOfVariables>
 \end{myXmlLst}
 
@@ -440,7 +440,7 @@ The \concept{\element{modelReference}} element of data type \SIdRef is used to r
 \label{class:remainingDimension}
 \label{class:listOfRemainingDimensions}
 
-A \RemainingDimension object is used when a \Variable is multidimensional, but the \element{symbol} of the \Variable is a function that reduces the dimensionality of the data.  For example, a variable derived from a \Task inside a \RepeatedTask will have the dimensionality of both.  If the \element{symbol} of the parent \Variable is \val{urn:sedml:function:average}, the following options are available:
+A \RemainingDimension object is used when a \Variable is multidimensional, but the \element{symbol} of the \Variable is a function that reduces the dimensionality of the data.  For example, a variable derived from a \Task inside a \RepeatedTask will have the dimensionality of both.  If the \element{symbol} of the parent \Variable is the `mean' function (\val{KISAO:0000825}), the following options are available:
 
 \begin{itemize}
         \item The \Variable contains a single \RemainingDimension child that refers to the \Task.  The resulting data will have the same dimensions as if the \Variable referred directly to the \Task, but averaged over every repeat of the \RepeatedTask.  This situation is particularly common when the \Task is a stochastic time course simulation, and the \RepeatedTask is a simple loop of that \Task.
@@ -463,13 +463,13 @@ The \element{dimensionTarget} attribute of a \RemainingDimension is used when th
 \subsection{\element{DependentVariable}}
 \label{class:dependentVariable}
 
-The \DependentVariable object is a child of the \Variable class, extending it to include three new attributes:  \element{term} (of type \element{URN}), \element{target2} (of \changed{type \element{TargetType}}), and \element{symbol2} (of type URN).  A dependent variable is necessary when the desired variable is a composite of two other variables, such as `the rate of change of S1 with respect to time'.
+The \DependentVariable object is a child of the \Variable class, extending it to include three new attributes:  \element{term} (of type \element{string}), \element{target2} (of \changed{type \element{TargetType}}), and \element{symbol2} (of type string).  A dependent variable is necessary when the desired variable is a composite of two other variables, such as `the rate of change of S1 with respect to time'.
 
-In a \DependentVariable, the \element{term} is used to define the relationship of the two variables (i.e. `rate of change'), the \element{target} or \element{symbol} attributes are used to define the first such variable, and the new \element{target2} and \element{symbol2} is used to define the second variable.  
+In a \DependentVariable, the \element{term} is used to define an analysis to be performed on the model as a whole, or the relationship of the two variables (i.e. `rate of change'), the \element{target} or \element{symbol} attributes are used to define the first such variable, and the new \element{target2} and \element{symbol2} is used to define the second variable.  
 
 \paragraph*{\element{term}}
 \label{sec:term}
-The \element{term} attribute is of type \element{URN}, and may refer to a function (such as `rate of change') that relates two variables to each other, instead of just one, or it may refer to an analysis (such as 'the eigenvalue matrix') that is dependent on the model as a whole and not on individual model elements.
+The \element{term} attribute is of type \element{string}, and should conform to the syntax of a \kisaoID, though the string \val{urn:sedml:symbol:time} may be used for backwards compatibility.  The \element{term} may refer to a function (such as `rate of change', KISAO:0000834) that relates two variables to each other, instead of just one, or it may refer to an analysis (such as 'the eigenvalue matrix', KISAO:0000813) that is dependent on the model as a whole and not on individual model elements.
 
 \paragraph*{\element{target2}}
 \label{sec:target2}
@@ -483,9 +483,9 @@ A \element{symbol2} attribute has exactly the same constraints and behavior as a
 \begin{myXmlLst}{SED-ML dependent variable definition of 'the rate of change of S1 with respect to time'}{lst:sedmlDependentVariable}
 <listOfVariables>
 	<dependentVariable id="S1prime" name="S1'"  taskReference="task1"
-		term="urn:sedml:symbol:rateOfChange"
+		term="KISAO:0000834"
 		target="/sbml:sbml/sbml:listOfSpecies/sbml:species[@id='S1']"
-		symbol2="urn:sedml:symbol:time" />
+		symbol2="KISAO:0000832" />
 </listOfVariables>
 \end{myXmlLst}
 
@@ -518,14 +518,14 @@ A \Calculation's mandatory child element \concept{\element{math}} contains a Mat
 % GENERAL ATTRIBUTES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{General attributes and elements}
-This section describes attributes which occur on multiple SED-ML classes, e.g., \hyperref[sec:kisaoid]{\element{kisaoID}}, or \hyperref[class:listOf]{\element{listOf*}} constructs.
+This section describes attributes which occur on multiple SED-ML classes, e.g., \kisaoID, or \hyperref[class:listOf]{\element{listOf*}} constructs.
 \label{sec:generalAttributes}
 
 \end{blockChanged}
 % ~~~ KISAOID ~~~
 \subsubsection{\element{kisaoID}}
 \label{sec:kisaoid}
-Some classes, e.g., \hyperref[class:algorithm]{Algorithm} and \hyperref[class:algorithmParameter]{AlgorithmParameter}, have a mandatory element \concept{\element{kisaoID}} which references a term from the \hyperref[sec:kisao]{KiSAO} ontology. The referenced term must be defined in the correct syntax, as defined by the regular expression \code{KISAO:[0-9]\{7\}}. The referenced \hyperref[sec:kisao]{KiSAO} term  should define the simulation \hyperref[class:algorithm]{Algorithm} or \hyperref[class:algorithmParameter]{AlgorithmParameter} as precisely as possible.
+Some classes, e.g., \hyperref[class:algorithm]{Algorithm} and \hyperref[class:algorithmParameter]{AlgorithmParameter}, have a mandatory element \concept{\element{kisaoID}} \changed{or another attribute} which references a term from the \hyperref[sec:kisao]{KiSAO} ontology. The referenced term must be defined in the correct syntax, as defined by the regular expression \code{KISAO:[0-9]\{7\}}. The referenced \hyperref[sec:kisao]{KiSAO} term  should define the simulation \hyperref[class:algorithm]{Algorithm} or \hyperref[class:algorithmParameter]{AlgorithmParameter} as precisely as possible.
 
 
 % ~~~ LISTOF ~~~
