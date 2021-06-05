@@ -13,7 +13,7 @@ The \Output class inherits the \element{id} and \element{name} attributes from \
 \end{blockChanged}
 
 \begin{blockChanged}
-The output of a SED-ML file may be used to compare simulation executions from the same tool or from different tools.  As such, interpreters may choose to focus on the output of a SED-ML file, and execute only the tasks necessary to produce this output.  Repeated executions of the same SED-ML should always produce comparable output.
+The output of a SED-ML file may be used to compare simulation executions from the same tool or from different tools.  As such, interpreters may choose to focus on the output of a SED-ML file, and execute only the tasks necessary to produce this output.  Repeated executions of the same SED-ML should always produce comparable output.  When a stochastic run is given a seed, interpreters should be aware that users may expect to get identical results from repeated runs on the same architecture, including when tasks are run in parallel.
 \end{blockChanged}
 
 \begin{blockChanged}
