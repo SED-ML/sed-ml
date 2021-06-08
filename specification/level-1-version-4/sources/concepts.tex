@@ -438,7 +438,9 @@ Some variables used in a simulation experiment are not explicitly defined in the
 
 SED-ML can refer to such implicit variables via the \concept{Symbol} concept. Such implicit variables are \changed{defined using KiSAO through the \kisaoID format to reference the implied variable}. 
 
-For example, to refer in a SED-ML file to the definition of time, the string \element{KISAO:0000832} is used.  For backwards compatibility, the string \val{urn:sedml:symbol:time} may be used
+For example, to refer in a SED-ML file to the definition of time, the string \element{KISAO:0000832} is used.  For backwards compatibility, the string \val{urn:sedml:symbol:time} may be used.
+
+\changed{With very few exceptions, symbols refer to mathematics of a model that can be read out of the model, but cannot be set directly.  You cannot use a \element{symbol} attribute to set the time of a model, for example, nor may you set the Stoichiometry matrix nor the elasticities.  The only partial exception to this is that the amount, concentation, or particle number of a species may be set by an element using both a \element{target} attribute to indicate the species and a \element{symbol} to indicate which form to use.}
 
 \tab{symbols}~lists the predefined symbols in SED-ML.
 \begin{table}[ht]

@@ -246,7 +246,7 @@ Note that when a \concept{ComputeChange} refers to another model, that model is 
 \begin{blockChanged}
 \paragraph*{\element{symbol}}
 \label{sec:cc_symbol}
-The optional \element{symbol} attribute of data type \code{string} may be used in addition to the \element{target} when the particular value associated with the \element{target} may be described in multiple ways.  In particular, a species whose value could be expressed either as a concentration or an amount may have its concentration set by using the \element{symbol} \val{KISAO:0000838}, or its amount set by using the \element{symbol} \val{KISAO:0000836}.
+The optional \element{symbol} attribute of data type \code{string} may be used in addition to the \element{target} when the particular value associated with the \element{target} may be described in multiple ways.  In particular, a species whose value could be expressed either as a concentration or an amount may be set by using the \element{target} to point to the species, and setting the \element{symbol} to \val{KISAO:0000838} to set the concentration, or setting the \element{symbol} to \val{KISAO:0000836} to set the amount.
 \end{blockChanged}
 
 \lsttext{computeChange}{computeChange}
