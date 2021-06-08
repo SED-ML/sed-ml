@@ -370,7 +370,7 @@ In the example a variable \code{v1} is defined to compute a change on a model co
 \label{sec:target}
 An instance of \Variable can refer to a model constituent inside a particular \hyperref[class:model]{model} through \changed{the address stored in the \concept{\element{target}} attribute, such as an \code{\hyperref[type:xpath]{XPath}} expression}. 
 
-The \concept{\element{target}} attribute may also be used to reference an entity within the SED-ML file itself, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \SId of the targeted element. As of SED-ML \currentLV this is used to refer to a \hyperref[class:dataSource]{DataSource} in a \Variable or to refer to \hyperref[class:listOfRanges]{ranges} within a \hyperref[class:repeatedTask]{repeatedTask} (see Listing~\ref{lst:repeatedTask}).
+The \concept{\element{target}} attribute may also be used to reference an entity within the SED-ML file itself, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \SId of the targeted element. As of SED-ML \currentLV this \changed{may only be} used to refer to a \hyperref[class:dataSource]{DataSource} in a \Variable or to refer to \hyperref[class:listOfRanges]{ranges} within a \hyperref[class:repeatedTask]{repeatedTask} (see Listing~\ref{lst:repeatedTask}).  \changed{No other SED-ML element has mathematical meaning that can be obtained by using its id as the \element{target} of a \Variable.}
 
 Note that while it is possible to write \changed{addresses} that select multiple nodes within a referenced model, when used within a \concept{\element{target}} attribute a single element or attribute \emph{must} be selected by the expression.
 
