@@ -65,9 +65,17 @@ The \concept{RepeatedTask} inherits the required attribute \hyperref[sec:id]{\el
 
 The order of activities within each iteration of a \concept{RepeatedTask} is as follows:
 \begin{itemize} 
-	\item The \Model is reset if specified by the \hyperref[sec:resetModel]{\element{resetModel}} attribute. 
-	\item Any changes to the model specified by \hyperref[class:setValue]{SetValue} objects in the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} are applied to the \Model. 
-	\item Finally, all \hyperref[class:subTask]{{subTasks}} in the \hyperref[class:listOfSubTasks]{\element{listOfSubtasks}} are executed in the order specified by their \hyperref[sec:subTaskOrder]{\element{order}} element.
+        \item \changed{Any \AlgorithmParameter children of the associated \Simulation are applied (with the possible exception of the \code{seed}; see Section \ref{class:algorithmParameter}).}
+	\item The \changed{entire} \Model state is reset if specified by the \hyperref[sec:resetModel]{\element{resetModel}} attribute.
+	\item Any changes to the model specified by \hyperref[class:setValue]{SetValue} objects in the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} are applied to the \Model.
+\end{itemize}
+
+\changed{Then, for each \SubTask child of the \RepeatedTask, in the order specified by its \hyperref[sec:subTaskOrder]{\element{order}} attribute:}
+\begin{itemize}
+        \item \changed{Any \AlgorithmParameter of the associated \Simulation are applied.}
+        \item \changed{Any \SetValue children of the \SubTask are applied to the relevant \Model.}
+        \item \changed{The referenced \Task of the \SubTask is executed.}
+
 \end{itemize}
 
 
