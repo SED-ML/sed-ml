@@ -137,7 +137,7 @@ The optional \concept{\element{listOfChanges}} element contains one or many \hyp
 %% ~~~ REPEATED TASK : LIST OF SUBTASKS ~~~
 \paragraph*{\element{listOfSubTasks}}
 \label{class:listOfSubTasks}
-The required \concept{\element{listOfSubTasks}} contains one or more \hyperref[class:subTask]{subTasks} that specify which \hyperref[class:abstractTask]{Tasks} are performed in every iteration of the \RepeatedTask. All \hyperref[class:subTask]{subTasks} have to be carried out sequentially, each continuing from the current model state (i.e.\ as at the end of the previous \hyperref[class:subTask]{subTask}, assuming it simulates the same model).  \changed{If the \element{concatentate} attribute is set \val{true}, the results are} concatenated (thus appearing identical to a single complex simulation), \changed{and if set \val{false}, the results are added to a matrix with the addtitional dimension of the repeated task.} The order in which to run multiple \hyperref[class:subTask]{subTasks} must be specified using the \hyperref[sec:subTaskOrder]{\element{order}} attribute on the \hyperref[class:subTask]{subTask}. 
+The required \concept{\element{listOfSubTasks}} contains one or more \hyperref[class:subTask]{subTasks} that specify which \hyperref[class:abstractTask]{Tasks} are performed in every iteration of the \RepeatedTask. All \hyperref[class:subTask]{subTasks} have to be carried out sequentially, each continuing from the current model state (i.e.\ as at the end of the previous \hyperref[class:subTask]{subTask}, assuming it simulates the same model).  \changed{If the \element{concatentate} attribute is set \val{true}, the results are} concatenated (thus appearing identical to a single complex simulation), \changed{and if set \val{false}, the results are added to a matrix with the addtitional dimension of the repeated task.} The order in which to run multiple \hyperref[class:subTask]{subTasks} must be specified using the \hyperref[sec:subTaskOrder]{\element{order}} attribute on the \hyperref[class:subTask]{subTask}.
 
 \begin{myXmlLst}{The \code{subTask} element. In this example the task \code{task2} must be executed before \code{task1}.}{lst:subTask}
 <listOfSubTasks>
@@ -145,6 +145,18 @@ The required \concept{\element{listOfSubTasks}} contains one or more \hyperref[c
 	<subTask task="task2" order="1"/> 
 </listOfSubTasks>
 \end{myXmlLst}
+
+\begin{blockChanged}
+In some cases, it may be possible to run some subtasks in parallel if the following conditions are met:
+
+\begin{itemize}
+\item The \element{order} attribute of both subtasks must be the same or unset.
+\item The subtasks must not change the model state of the same model.
+\item If there are subtasks to run with a higher \element{order} value, or if the \element{resetModel} attribute of the \RepeatedTask is \val{false}, it must be possible to obtain and apply the changed model states from all parallel subtasks before running the next subtask.
+\end{itemize}
+
+\end{blockChanged}
+
 
 % ~~~ LIST OF RANGES ~~~
 \paragraph*{\element{listOfRanges}}
@@ -170,6 +182,8 @@ The required element \concept{\element{task}} of data type \SIdRef specifies the
 \paragraph*{\element{order}}
 \label{sec:subTaskOrder}
 The required attribute \concept{\element{order}} of data type \element{integer} specifies the order in which to run multiple \concept{subTasks} in the \hyperref[class:listOfSubTasks]{\element{listOfSubTasks}}. To specify that one \concept{subTask} should be executed before another its \concept{\element{order}} attribute must have a lower number (e.g.\ in Listing~\ref{lst:subTask}).
+
+\changed{Leaving the \element{order} undefined for a \SubTask implies that the \SubTask may be executed before, after, or in parallel with any other \SubTask.  Giving the same \element{order} to multiple \SubTask elements is an explicit statement that each \SubTask in the group may be executed before, after, or in parallel with any other \SubTask in the group. It is recommended that users always explicitly set the \element{order} attribute for this reason.}
 
 \begin{blockChanged}
 \paragraph*{\element{listOfChanges}}
