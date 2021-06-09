@@ -138,7 +138,7 @@ The \concept{\element{target}} attribute holds \changed{an unambiguous descripti
 % ~~~ NewXML ~~~
 \subsubsection{\element{NewXML}}
 \label{sec:newXml}
-The \concept{\element{newXML}} element provides a piece of XML code (\fig{sedChange}). \concept{\element{NewXML}} must hold a valid piece of XML which after insertion into the original model must result in a valid model file (according to the model language specification as given by the \hyperref[sec:language]{\element{language}} attribute of the \hyperref[class:model]{model}).
+The \concept{\element{newXML}} element provides a piece of XML code (\fig{sedChange}). \concept{\element{NewXML}} must hold a valid piece of XML \changed{in the appropriate namespace} which after insertion into the original model must result in a valid model file (according to the model language specification as given by the \hyperref[sec:language]{\element{language}} attribute of the \hyperref[class:model]{model}).
 
 The \concept{\element{newXML}} element is used at two different places inside SED-ML \currentLV:
 
@@ -162,7 +162,8 @@ An example for a change that adds an additional parameter to a model is given in
 	<listOfChanges>
 		<addXML target="/sbml:sbml/sbml:model/sbml:listOfParameters" >
 			<newXML>
-				<parameter metaid="metaid_0000010" id="V_mT" value="0.7" />
+				<sbml:parameter xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core"
+				                metaid="metaid_0000010" id="V_mT" value="0.7" />
 			</newXML>
 		</addXML>
 	</listOfChanges>
@@ -184,8 +185,10 @@ An example for a change that adds an additional parameter to a model is given in
 	<listOfChanges>
 		<changeXML target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_mT']" >
 			<newXML>
-				<parameter metaid="metaid_0000010" id="V_mT_1" value="0.7" />
-				<parameter metaid="metaid_0000050" id="V_mT_2" value="4.6"> />
+				<sbml:parameter xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core"
+				                metaid="metaid_0000010" id="V_mT_1" value="0.7" />
+				<sbml:parameter xmlns:sbml="http://www.sbml.org/sbml/level3/version1/core"
+				                metaid="metaid_0000050" id="V_mT_2" value="4.6"> />
 			</newXML>
 		</changeXML>
 	</listOfChanges>
