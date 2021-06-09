@@ -143,6 +143,10 @@ The \concept{\element{listOfSimulations}} element is the container for \Simulati
 \label{class:listOfTasks}
 The \concept{\element{listOfTasks}} element contains the defined \hyperref[class:task]{tasks} for the simulation experiment (\fig{sed-mlMain}). The \concept{\element{listOfTasks}} is optional and may contain zero or more tasks, each of which is an instance of a subclass of \AbstractTask.
 
+\changed{Each task is defined independently of the others:  if one task is executed after another, the states of the models must be completely reset so there's no cross-contamination of one task to the next.  This means that the tasks are particularly well suited to being executed in parallel, should that be desired.}
+
+\changed{SED-ML interpreters may choose to execute all the tasks in the list, or they may choose to examine the list of outputs, and only execute the tasks that are necessary to produce the requested output.  This situation comes up most often when one task is listed as a \SubTask of a \RepeatedTask:  the outputs may well only require the \RepeatedTask to be run, meaning an independent execution of the singular \Task is not necessary, even though it's on this list.}
+
 \lsttext{listOfTasks}{listOfTasks}
 \begin{myXmlLst}{The SED-ML \code{listOfTasks} element, defining one task}{lst:listOfTasks}
 <listOfTasks>
