@@ -151,10 +151,6 @@ The required \concept{\element{listOfSubTasks}} contains one or more \hyperref[c
 \label{class:listOfRanges}
 The \concept{\element{listOfRanges}} defines one or more \hyperref[class:range]{ranges} used in the \hyperref[class:repeatedTask]{repeatedTask}.
 
-A \Range is the iterative element of the repeated simulation experiment. Each \Range defines a collection of values to iterate over. The \hyperref[sec:id]{\element{id}} attribute of the ranges can be used to refer to the current value of a range. When the \hyperref[sec:id]{\element{id}} attribute is used in a \hyperref[class:listOfVariables]{listOfVariables} within the \RepeatedTask its value is to be replaced with the current value of the \Range.
-%% ? IS THIS CORRECT ? I.e. is it necessary to define a variable with the range id, or is it 
-% sufficient to use math with the id.
-
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % TASK COMPONENTS
@@ -218,7 +214,9 @@ Again as for \hyperref[class:functionalRange]{functionalRange}, variable referen
 % ~~~ RANGE ~~~
 \subsubsection{\element{Range}}
 \label{class:range}
-The \concept{Range} class is the abstract base class for the different types of ranges, i.e. \UniformRange, \VectorRange, and \FunctionalRange (\fig{range}). 
+The \concept{Range} class is the abstract base class for the different types of ranges, i.e. \UniformRange, \VectorRange, \FunctionalRange, and \DataRange (\fig{range}). 
+
+\changed{The \Range is the iterative element of the repeated simulation experiment. Each \Range defines a collection of values to iterate over. Its \element{id} may be used as the \element{target} of a \Variable within the \RepeatedTask by pre-pending a `\#' (i.e. \val{\#rangeId}).  It is used in that context to mean the value of the range for the current iteration of the \RepeatedTask.}
 
 \sedfig[width=1.0\textwidth]{images/uml/range}{The SED-ML Range class}{fig:range}
 

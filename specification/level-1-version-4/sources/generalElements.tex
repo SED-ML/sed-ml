@@ -370,9 +370,19 @@ In the example a variable \code{v1} is defined to compute a change on a model co
 \label{sec:target}
 An instance of \Variable can refer to a model constituent inside a particular \hyperref[class:model]{model} through \changed{the address stored in the \concept{\element{target}} attribute, such as an \code{\hyperref[type:xpath]{XPath}} expression}. 
 
-The \concept{\element{target}} attribute may also be used to reference an entity within the SED-ML file itself, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \SId of the targeted element. As of SED-ML \currentLV this \changed{may only be} used to refer to a \hyperref[class:dataSource]{DataSource} in a \Variable or to refer to \hyperref[class:listOfRanges]{ranges} within a \hyperref[class:repeatedTask]{repeatedTask} (see Listing~\ref{lst:repeatedTask}).  \changed{No other SED-ML element has mathematical meaning that can be obtained by using its id as the \element{target} of a \Variable.}
+Note that while it is possible to write \changed{XPath expressions} that select multiple nodes within a referenced model, when used within a \concept{\element{target}} attribute, a single element or attribute \emph{must} be selected by the expression.
 
-Note that while it is possible to write \changed{addresses} that select multiple nodes within a referenced model, when used within a \concept{\element{target}} attribute a single element or attribute \emph{must} be selected by the expression.
+\begin{blockChanged}
+The \concept{\element{target}} attribute may also be used in three situations to reference another SED-ML element with mathematical meaning, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \SId of the element (i.e. \val{\#id001}).
+
+The first situation is a \Variable inside a \RepeatedTask, which may use a \element{target} to reference a \Range.  In this situation, the \Variable has the mathematical meaning of the scalar value of the \Range for that iteration of the \RepeatedTask.
+
+The second situation is that any \Variable may use a \element{target} to reference a scalar \DataSource.  In this situation, the \Variable has the mathematical meaning of that scalar value.
+
+The final situation is a \Variable inside a \DataGenerator, which may use a \element{target} to reference a multidimensional \DataSource.  In this situation, the \Variable has the mathematical meaning of the referenced external data.  If the \element{id} of the \Variable is used inside a \Math element, any function applied to it is assumed to apply to each individual scalar value of that data.
+
+There are no other situations in SED-ML where the \element{id} of a SED-ML element may be used as the \element{target} of a \Variable.  Also note that multidimensional \DataSource ids may not be used in \RepeatedTask elements, nor \Range ids in \DataGenerator elements.  (To access multidimensional data for a \Range, a \DataRange may be used instead.)
+\end{blockChanged}
 
 \lsttexta{target}{target}
 In the example the \concept{\element{target}} is used to reference a species with \element{id='PY'} in an SBML model.
@@ -404,6 +414,8 @@ It should be noted that the identifiers and names inside the SED-ML document do 
 \end{myXmlLst}
 
 The \hyperref[sec:xpath]{XPath} expression used in the \concept{\code{target}} attribute unambiguously leads to the particular place in the SBML model, i.e., the species is to be found in the \emph{sbml} element, and there inside the \emph{listOfSpecies} (Listing~\ref{lst:sbmlModel}). 
+
+
 
 % ~~~ SYMBOL ~~~
 \paragraph*{\element{symbol}}

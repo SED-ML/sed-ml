@@ -3,6 +3,12 @@
 
 The \concept{DataGenerator} class prepares the raw simulation results for later output (\fig{dataGenerator}). It encodes the post-processing  to be applied to the simulation data. The post-processing steps could be anything, from simple normalisations of data to mathematical calculations.  It inherits from \Calculation, changing the \element{id} attribute to be required instead of optional.
 
+\begin{blockChanged}
+\Variable objects in \DataGenerator elements may be scalar or multidimensional.  If the \Math of a \DataGenerator attempts to apply functions to multi-dimensional elements, those functions always apply to the individual scalar values of that data.  If multiple multidimensional \Variable ids are used in the same \Math, those ids must each have the same dimensions as each other.  No vector or matrix algebra functions such as dot products or cross products are allowed.
+
+A \Variable in a \DataGenerator may use the id of a \DataSource as its \element{target}, pre-pended by a \code{`\#'}, i.e. \val{\#dataSourceId}.  This \Variable may be multidimensional, and if so, must follow the above strictures.
+\end{blockChanged}
+
 \sedfig[width=0.3\textwidth]{images/uml/dataGenerator}{The SED-ML DataGenerator class.} {fig:dataGenerator}
 
 
