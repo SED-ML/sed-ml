@@ -124,7 +124,7 @@ The \concept{Change} class allows to describe changes applied to a \hyperref[cla
 
 The \concept{Change} class is abstract and serves as the base class for different types of changes, the \hyperref[class:changeAttribute]{ChangeAttribute}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML}, and \ComputeChange.
 
-The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarget]{target} which defines the target of the change. The \hyperref[sec:changeTarget]{\element{target}} attribute holds \changed{an unambiguous description of the address of the element or attribute that is to undergo the defined changes, such as a valid \hyperref[sec:xpath]{XPath} expression pointing to the XML element or XML attribute. For \hyperref[sec:newXml]{NewXML}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, and \hyperref[class:removeXml]{RemoveXML}, \hyperref[sec:changeTarget]{target} must be an \hyperref[sec:xpath]{XPath} expression.} Except for the cases of \hyperref[class:changeXml]{ChangeXML} and \hyperref[class:removeXml]{RemoveXML}, this \hyperref[sec:xpath]{XPath} expression must always select a single element or attribute within the relevant model.
+The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarget]{target} which defines the target of the change. The \hyperref[sec:changeTarget]{\element{target}} attribute holds \changed{an unambiguous description of the address of the element, elements, attribute, or attributes that are to undergo the defined changes, such as a valid \hyperref[sec:xpath]{XPath} expression pointing to the specified XML. For \hyperref[sec:newXml]{NewXML}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, and \hyperref[class:removeXml]{RemoveXML}, \hyperref[sec:changeTarget]{target} must be an \hyperref[sec:xpath]{XPath} expression.} \changed{This \hyperref[sec:xpath]{XPath} expression must always select an appropriate target for the particular \Change used}.
 
 \sedfig[width=1.0\textwidth]{images/uml/change}{The SED-ML Change class}{fig:sedChange}
 
@@ -132,7 +132,7 @@ The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarge
 % ~~~ target ~~~
 \paragraph*{\element{target}}
 \label{sec:changeTarget}
-The \concept{\element{target}} attribute holds \changed{an unambiguous description of the address of an element or attribute of a model that is to undergo the defined changes. For XML model languages such as SBML, \hyperref[sec:changeTarget]{\element{target}} must be} a valid \hyperref[sec:xpath]{XPath} expression of data type \hyperref[type:xpath]{\element{xpath}} pointing to the XML element or XML attribute that is to undergo the defined changes.
+The \concept{\element{target}} attribute holds \changed{an unambiguous description of the address of an element or attribute of a model that is to undergo the defined changes. For XML model languages such as SBML, \hyperref[sec:changeTarget]{\element{target}} must be} a valid \hyperref[sec:xpath]{XPath} expression of data type \hyperref[type:xpath]{\element{xpath}} pointing to the \changed{XML} that is to undergo the defined changes.
 
 
 % ~~~ NewXML ~~~
@@ -144,7 +144,7 @@ The \concept{\element{newXML}} element is used at two different places inside SE
 
 \begin{enumerate}
 	\item{If it is used as a sub-element of the \hyperref[class:addXml]{\element{addXML}} element, then the XML it contains \emph{is inserted as a child} of the XML element addressed by the XPath.}
-	\item{If it is used as a sub-element of the \hyperref[class:changeXml]{\element{changeXML}} element, then the XML it contains \emph{replaces} the XML element addressed by the XPath.}
+	\item{If it is used as a sub-element of the \hyperref[class:changeXml]{\element{changeXML}} element, then the XML it contains \emph{replaces} the XML element \changed{or elements} addressed by the XPath.}
 \end{enumerate}
 
 Examples are given in the relevant change class definitions.
@@ -153,7 +153,7 @@ Examples are given in the relevant change class definitions.
 % ~~~ AddXML ~~~
 \subsubsection{\element{AddXML}}
 \label{class:addXml}
-The \concept{AddXML} class specifies a snippet of XML that is added as a child of the element selected by the XPath expression in the \hyperref[sec:changeTarget]{\element{target}} attribute (\fig{sedChange}). The new piece of XML code is provided by the \hyperref[sec:newXml]{NewXML} class.
+The \concept{AddXML} class specifies a snippet of XML that is added as a child of the element selected by the XPath expression in the \hyperref[sec:changeTarget]{\element{target}} attribute (\fig{sedChange}). The new piece of XML code is provided by the \hyperref[sec:newXml]{NewXML} class, \changed{and may contain one or more XML elements}.
 
 An example for a change that adds an additional parameter to a model is given in \lst{addXML}. In the example the model is changed so that a parameter with ID \code{V\_mT} is added to its list of parameters. The \code{newXML} element adds an additional XML element to the original model. The element's name is \code{parameter} and it is added to the existing parent element \code{listOfParameters} that is addressed by the XPath expression in the \code{target} attribute.
 
@@ -176,7 +176,7 @@ An example for a change that adds an additional parameter to a model is given in
 \label{class:changeXml}
 The \concept{ChangeXML} class allows you to replace any XML element(s) in the model that can be addressed by a valid XPath expression (\fig{sedChange}).
 
-The XPath expression is specified in the required \hyperref[sec:changeTarget]{\element{target}} attribute. The replacement XML content is specified in the \hyperref[sec:newXml]{NewXML} class.
+The XPath expression is specified in the required \hyperref[sec:changeTarget]{\element{target}} attribute, \changed{and may target one or more XML elements}. The replacement XML content is specified in the \hyperref[sec:newXml]{NewXML} class, \changed{and may also contain one or more XML elements}.
 
 An example for a change that adds an additional parameter to a model is given in \lst{changeXML}. In the example the model is changed in the way that its parameter with ID \code{V\_mT} is substituted by two other parameters \code{V\_mT\_1} and \code{V\_mT\_2}. The \code{target} attribute defines that the parameter with ID \code{V\_mT} is to be changed. The \code{newXML} element then specifies the XML that is to be exchanged for that parameter.
 
@@ -199,7 +199,7 @@ An example for a change that adds an additional parameter to a model is given in
 % ~~~ RemoveXML ~~~
 \subsubsection{\element{RemoveXML}}
 \label{class:removeXml}
-The \concept{RemoveXML} class can be used to delete XML elements or attributes in the model that are addressed by the XPath expression (\fig{sedChange}). The XPath is specified in the required \hyperref[sec:changeTarget]{\element{target}} attribute.
+The \concept{RemoveXML} class can be used to delete \changed{one or more} XML elements or attributes in the model that are addressed by the XPath expression (\fig{sedChange}). The XPath is specified in the required \hyperref[sec:changeTarget]{\element{target}} attribute.
 
 An example for the removal of an XML element from a model is given in Listing~\ref{lst:removeXML}. In the example the model is changed by deleting the reaction with ID \code{V\_mT} from the model's list of reactions.
 
@@ -215,7 +215,7 @@ An example for the removal of an XML element from a model is given in Listing~\r
 % ~~~ ChangeAttribute ~~~
 \subsubsection{\element{ChangeAttribute}}
 \label{class:changeAttribute}
-The \concept{ChangeAttribute} class allows to define updates on the attribute values of the corresponding model (\fig{sedChange}). \concept{ChangeAttribute} requires to specify the \hyperref[sec:changeTarget]{\element{target}} of the change, i.e., the location of the addressed attribute, and also the \hyperref[sec:newValue]{\element{newValue}} of that attribute. Note that \changed{the \hyperref[sec:changeTarget]{\element{target}} attribute} must select a single attribute within the corresponding model.
+The \concept{ChangeAttribute} class allows to define updates on the attribute values of the corresponding model (\fig{sedChange}). \concept{ChangeAttribute} requires to specify the \hyperref[sec:changeTarget]{\element{target}} of the change, i.e., the location of the addressed attribute, and also the \hyperref[sec:newValue]{\element{newValue}} of that attribute. Note that \changed{the \hyperref[sec:changeTarget]{\element{target}} XPath expression} must select a single attribute within the corresponding model.
 
 The \hyperref[class:changeXml]{ChangeXML} class covers the possibilities provided by the \concept{ChangeAttribute} class, i.e, everything that can be expressed by a \concept{ChangeAttribute} construct can also be expressed by \hyperref[class:changeXml]{ChangeXML}. However, for the common case of changing an attribute value \concept{ChangeAttribute} is easier to use, and so it is recommended to use the \concept{ChangeAttribute} for any changes of an attribute's value, and to use the more general \hyperref[class:changeXml]{ChangeXML} for other cases.
 
@@ -240,11 +240,15 @@ The example in Listing~\ref{lst:changeAttribute} shows the update of the value o
 % ~~~ ComputeChange ~~~
 \subsubsection{\element{ComputeChange}}
 \label{class:computeChange}
-The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any element or attribute of a \Model addressable by \changed{a \hyperref[sec:changeTarget]{\element{target}}}, based on a calculation (\fig{sedChange}).  \changed{It inherits the \element{target} attribute from the \Change abstract base class, as well as the standard \SedBase attributes and children, and adds the optional attribute \element{symbol} (of type string).  Its ability to perform a calculation is described in the \Calculation class.  (For implementations, if multiple inheritance is not possible, the children of \Calculation should just be added directly to the \ComputeChange class itself.)}
+The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any \changed{single} element or attribute of a \Model addressable by \changed{a \hyperref[sec:changeTarget]{\element{target}}}, based on a calculation (\fig{sedChange}).  \changed{It inherits the \element{target} attribute from the \Change abstract base class, as well as the standard \SedBase attributes and children, and adds the optional attribute \element{symbol} (of type string).  Its ability to perform a calculation is described in the \Calculation class.  (For implementations, if multiple inheritance is not possible, the children of \Calculation should just be added directly to the \ComputeChange class itself.)}
 
 \changed{The change is calculated from the \Math of the \Calculation, and applied to the \element{target} of the \Change.  This \Math may in turn depend on values calculated from the \Model itself, meaning that the interpeters may need to initialize the model state before applying a \ComputeChange to that state.}
 
-Note that when a \concept{ComputeChange} refers to another model, that model is not allowed to be modified by \concept{ComputeChange}s which directly or indirectly refer to this model. In other words, cycles in the definitions of computed changes are prohibited.  \changed{This does mean that other models may also need to be initialized (and changes applied) in order to apply the changes to this model.}
+\changed{Note that if a \ComputeChange targets an XML element, it is changing that object's value in the model state, which would need to be initialized.  If it targets a specific attribute, it is changing that attribute directly, which may affect the object's value according to the specification of that modeling language.}
+
+\changed{For example:  an SBML Parameter has a \element{value} attribute whose value is used as its initial value, unless there is also an \element{InitialAssignment} in the same model that targets that parameter--if it is, the \element{value} is ignored in favor of the \element{InitialAssignment}.  If a \ComputeChange points to the Parameter element, the computed value will be used in the initialized model state, overriding any \element{InitialAssignment} the model may have contained.  If a \ComputeChange points to the \element{value} attribute, it is just that attribute that is changed, meaning that when the model is initialized, the new \element{value} will be ignored in deference to the \element{InitialAssignment}.  For this reason, the XML element itself is usually the correct target of a \ComputeChange.}
+
+Note also that when a \concept{ComputeChange} refers to another model, that model is not allowed to be modified by \concept{ComputeChange}s which directly or indirectly refer to this model. In other words, cycles in the definitions of computed changes are prohibited.  \changed{This does mean that other models may also need to be initialized (and changes applied) in order to apply the changes to this model.}
 
 \begin{blockChanged}
 \paragraph*{\element{symbol}}

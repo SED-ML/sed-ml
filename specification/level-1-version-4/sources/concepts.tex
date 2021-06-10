@@ -369,8 +369,8 @@ When annotating SED-ML elements with semantic \hyperref[class:annotation]{annota
 \concept{XPath} is a language for finding and referencing information in an XML document \citep{xpath:1999}. Within SED-ML \currentLV, XPath version 1 expressions \changed{can be used to identify nodes and attributes within an XML representation of an XML-encoded model} in the following ways:
 
 \begin{itemize}
-	\item {Within a \Variable definition, where \concept{XPath} identifies the model variable required for manipulation in SED-ML.}
-	\item {Within a \hyperref[class:change]{Change} definition, where \concept{XPath} is used to identify the target XML to which a change should be applied.}
+	\item {Within a \Variable definition, where \concept{XPath} identifies the model variable required for manipulation in SED-ML.  \changed{In this context, the XPath must always reference a single XML element, and not an attribute nor multiple XML elements.}}
+	\item {Within a \hyperref[class:change]{Change} definition, where \concept{XPath} is used to identify the target XML to which a change should be applied.  \changed{In this context, the XPath may point to anything in the XML as appropriate for the \Change (i.e. an attribute in a \ChangeAttribute; one or more elements or attributes to remove in a \RemoveXML, etc.).}}
 \end{itemize}
 
 For proper application, \concept{XPath} expressions should contain prefixes that allow their resolution to the correct XML namespace within an XML document. For example, the \concept{XPath} expression referring to a species \emph{X} in an SBML model:
