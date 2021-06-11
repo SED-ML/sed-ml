@@ -336,7 +336,7 @@ The format \concept{TSV} (\code{urn:sedml:format:tsv}) is defined identical to \
 \label{sec:dataFormatHDF5}
 The format \concept{HDF5} is defined at \url{https://portal.hdfgroup.org/display/HDF5/HDF5}.  It supports the storage of multidimensional data, and is therefore ideal for storing the SED-ML output of repeated tasks; particularly nested repeated tasks.
 
-Each dimension of SED-ML \RepeatedTask output should be labeled according to the \element{id} of the SED-ML object that describes that dimension, namely:
+Each dimension of SED-ML \RepeatedTask output should be labeled according to the relevant \element{id} of the SED-ML object that describes that dimension, namely:
 
 \begin{itemize}
     \item The \element{id} of the top-level \RepeatedTask
@@ -346,7 +346,9 @@ Each dimension of SED-ML \RepeatedTask output should be labeled according to the
     \item The \element{id} of the requested variable, or the infix representation of the \Math from the \DataGenerator.
 \end{itemize}
 
-When a \DataGenerator contains a \DependentVariable that outputs a matrix, that matrix can also be labeled appropriately (such as with species or reaction ids).
+When a \DependentVariable is used to reduce the dimensionality of a set of data, the \element{id}s of whatever dimensions remain should be used (defined by its \RemainingDimension children).  The dimensions may by annotated to describe the dimension reduction as well.  When a \DataGenerator contains a \DependentVariable that outputs a matrix, that matrix can also be labeled appropriately (such as with species or reaction ids).
+
+When output from multiple tasks are combined mathematically, their dimensions must match exactly, so the ids from either (or a combination of both) may be used.  Again, annotations are recommended to describe how the data was combined.
 
 Each dimension may also be annotated in this format, with some ontology such as the 'Semanticscience Integrated Ontology' (SIO, \url{https://bioportal.bioontology.org/ontologies/SIO}).
 
