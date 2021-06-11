@@ -121,7 +121,7 @@ The \hyperref[class:repeatedTask]{repeatedTask} has a required attribute \concep
 
 In the example in  Listing~\ref{lst:repeatedTask} the repeated task is not to be reset, so a change is made, \code{task1} is carried out, another change is made, then \code{task1} continues from there, another change is applied, and \code{task1} is carried out a last time.
 
-\changed{When the \element{resetModel} attribute is set to \val{true}, the individual repeats of the task may be paralellizable, assuming any child \Range of the \RepeatedTask does not depend on the results of any individual repeat (as is theoretically possible for the \FunctionalRange, but not for the other \Range types.)}
+\changed{When the \element{resetModel} attribute is set to \val{true}, the individual repeats may be executed in parallel.}
 
 \begin{blockChanged}
 % ~~~ CONCATENATE ~~~
@@ -140,7 +140,7 @@ The optional \concept{\element{listOfChanges}} element contains one or many \hyp
 %% ~~~ REPEATED TASK : LIST OF SUBTASKS ~~~
 \paragraph*{\element{listOfSubTasks}}
 \label{class:listOfSubTasks}
-The required \concept{\element{listOfSubTasks}} contains one or more \hyperref[class:subTask]{subTasks} that specify which \hyperref[class:abstractTask]{Tasks} are performed in every iteration of the \RepeatedTask. All \hyperref[class:subTask]{subTasks} have to be carried out sequentially, each continuing from the current model state \changed{or states} (i.e.\ as at the end of the previous \hyperref[class:subTask]{subTask}).  \changed{If the \element{concatentate} attribute is set \val{true}, the results are} concatenated (thus appearing identical to a single complex simulation), \changed{and if set \val{false}, the results are added to a matrix with the addtitional dimension of the repeated task.} The order in which to run multiple \hyperref[class:subTask]{subTasks} must be specified using the \hyperref[sec:subTaskOrder]{\element{order}} attribute on the \hyperref[class:subTask]{subTask}.
+The required \concept{\element{listOfSubTasks}} contains one or more \hyperref[class:subTask]{subTasks} that specify which \hyperref[class:abstractTask]{Tasks} are performed in every iteration of the \RepeatedTask. All \hyperref[class:subTask]{subTasks} have to be carried out sequentially, each continuing from the current model state \changed{or states} (i.e.\ as at the end of the previous \hyperref[class:subTask]{subTask}).  \changed{If the \element{concatentate} attribute is set \val{true}, the results are} concatenated (thus appearing identical to a single complex simulation), \changed{and if set \val{false}, the results are added to a matrix with the addtitional dimension of the repeated task.} The order in which to run multiple \hyperref[class:subTask]{subTasks} must be specified using the \hyperref[sec:subTaskOrder]{\element{order}} attribute on the \hyperref[class:subTask]{subTask}.  \changed{Subtasks can also be executed in parallel when they do not share any state. Interpreters can determine this from the descriptions of the subtasks.}
 
 \begin{myXmlLst}{The \code{subTask} element. In this example the task \code{task2} must be executed before \code{task1}.}{lst:subTask}
 <listOfSubTasks>
@@ -148,11 +148,6 @@ The required \concept{\element{listOfSubTasks}} contains one or more \hyperref[c
 	<subTask task="task2" order="1"/> 
 </listOfSubTasks>
 \end{myXmlLst}
-
-\begin{blockChanged}
-In some cases, it may be possible to run some subtasks in parallel.  Interpreters may use the \element{order} attribute as a hint in making the decision about what to parallelize, but in general, should be prepared to examine which \Model each \SubTask is modifying and which model or models are being used as input.
-\end{blockChanged}
-
 
 % ~~~ LIST OF RANGES ~~~
 \paragraph*{\element{listOfRanges}}
@@ -274,6 +269,8 @@ The \concept{Value} (\fig{range}) describes a single value, e.g., the \concept{V
 The \concept{FunctionalRange} (\fig{range}) constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables. In this it is similar to the \ComputeChange element, and shares some of the same child elements (but is not a subclass of \ComputeChange). It consists of an optional attribute \code{range}, two optional elements \ListOfVariables and \ListOfParameters, and a required element \Math.
 
 The optional attribute \code{range} of type \hyperref[type:sidref]{SIdRef} may be used as a shorthand to specify the \hyperref[sec:id]{\element{id}} of another \Range. The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \hyperref[sec:id]{\element{id}} of the range is used directly. In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
+
+\changed{The value of any \Variable child of a \FunctionalRange should be calculated before the first simulation begins, and will not be affected by any \SubTask in the \RepeatedTask.}
 
 For example:
 
