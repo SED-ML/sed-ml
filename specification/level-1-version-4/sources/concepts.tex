@@ -249,6 +249,7 @@ NuML (generic) & \code{urn:sedml:format:numl} \\
 NuML Level 1 Version 1 & \code{urn:sedml:format:numl.level-1.version-1} \\
 CSV & \code{urn:sedml:format:csv} \\
 TSV & \code{urn:sedml:format:tsv} \\
+HDF5 & \code{urn:sedml:format:hdf5} \\
 \bottomrule
 \end{tabular}
 \caption{Predefined dataDescription format URNs. The latest list of format URNs is available from \url{http://sed-ml.org/}.}
@@ -266,7 +267,7 @@ If a \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} is set 
 Data in the \concept{CSV} format (\code{urn:sedml:format:csv}) must follow the following rules when used in combination with SED-ML: 
 
 \begin{itemize}
-	\item Each record is one line - Line separator may be LF (0x0A) or CRLF (0x0D0A), a line separator may also be embedded in the data (making a record more than one line but still acceptable).
+    \item Each record is one line - Line separator may be LF (0x0A) or CRLF (0x0D0A), a line separator may also be embedded in the data (making a record more than one line but still acceptable).
     \item Fields are separated with commas.
     \item Embedded commas - Field must be delimited with double-quotes.
     \item Leading and trailing whitespace is ignored - Unless the field is delimited with double-quotes in that case the whitespace is preserved.
@@ -328,6 +329,28 @@ The format \concept{TSV} (\code{urn:sedml:format:tsv}) is defined identical to \
     \item Fields are separated with tabs instead of commas.
     \item Embedded tab - Field must be delimited with double-quotes (embedded comma field must not be delimited with double quotes)
 \end{itemize}
+
+
+\begin{blockChanged}
+\subsubsection{HDF5 (Hierarchical Data Format version 5)}
+\label{sec:dataFormatHDF5}
+The format \concept{HDF5} is defined at \url{https://portal.hdfgroup.org/display/HDF5/HDF5}.  It supports the storage of multidimensional data, and is therefore ideal for storing the SED-ML output of repeated tasks; particularly nested repeated tasks.
+
+Each dimension of SED-ML \RepeatedTask output should be labeled according to the \element{id} of the SED-ML object that describes that dimension, namely:
+
+\begin{itemize}
+    \item The \element{id} of the top-level \RepeatedTask
+    \item The \element{id} of the \SubTask
+    \item The \element{id} of any nested \SubTask (for arbitrarily-deeply nested subtasks).
+    \item The dimension of the data itself (i.e. \code{time} for a \UniformTimeCourse).
+    \item The \element{id} of the requested variable, or the infix representation of the \Math from the \DataGenerator.
+\end{itemize}
+
+When a \DataGenerator contains a \DependentVariable that outputs a matrix, that matrix can also be labeled appropriately (such as with species or reaction ids).
+
+Each dimension may also be annotated in this format, with some ontology such as the 'Semanticscience Integrated Ontology' (SIO, \url{https://bioportal.bioontology.org/ontologies/SIO}).
+
+\end{blockChanged}
 
 
 % ~~~ SYMBOLS ~~~

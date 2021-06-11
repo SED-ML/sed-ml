@@ -102,9 +102,11 @@ An \AbstractCurve is a two-dimensional \Output component representing a (process
 
 \changed{The \element{name} of the \AbstractCurve should be used to label the curve in the given \PlotTwo, or, if \element{name} is not defined, the \element{id} may be used.  If neither are present, the \element{name} or \element{id} of the referenced \element{yDataReference} may be used in the case of a \Curve or the \element{yDataReferenceFrom} and/or \element{yDataReferenceTo} in the case of a \ShadedArea.  Because of the complications this can engender, it is highly recommended to define the \element{name} of all \AbstractCurve elements.}
 
-
 \paragraph*{\element{xDataReference}}
 The \element{xDataReference} attribute must be an \SIdRef to a \DataGenerator in the same \SedDocument.  The referenced \DataGenerator will contain the information for the x coordinates for the data to be plotted.  \changed{If the y-coordinate data is ordinal or categorical, this attribute should point to a simple ordinal \DataGenerator.}
+
+\changed{The dimensionality of the \element{xDataReference} must match the y data, but need not be one-dimensional.  When a curve is being displayed, each one-dimensional vector within the x and y data should be displayed on the same plot.  This will effectively flatten the data to the two dimensions of the plot.  When being displayed as lines, each vector should be plotted separately, so that the plot is not overlaid with spurious lines from the end of one vector to the beginning of the next.}
+
 
 \paragraph*{\element{order}}
 The \element{order} attribute is of type \element{non-negative integer} and, if present, defines the order in which this \Curve must be displayed relative to other \Curve elements in the same \Plot.  A \Curve with a lower \element{order} will be added earlier to the displayed curves.  This means that for lines, the curve with the highest \element{order} will be fully visible, while a \Curve with a lower \element{order} may be hidden by a \Curve with a higher \element{order}.  A \Curve with no \element{order} may be displayed in front or behind any other \Curve.  For adjacent bars, the bar with the lower \element{order} is presented to the left of any bar with a higher \element{order}.  For stacked bars, the bar with the lower \element{order} is presented underneath any bar with a higher \element{order}.  As with lines, any bar with no \element{order} defined may be placed in any position relative to the other bars in the \Curve.
@@ -171,6 +173,9 @@ A \Surface is a parallel class to \AbstractCurve that defines a three-dimensiona
 \paragraph*{\element{xDataReference}, \element{yDataReference}, and \element{zDataReference}}
 The three data reference attributes must point to \DataGenerator elements in the same \SedDocument, which define the surface to be plotted.  \changed{All three attributes are required.  If the \element{zDataReference} is intended to be plotted by index, the \element{xDataReference} and \element{yDataReference} attributes should point to \DataGenerator elements that generate those indices.}
 
+\changed{As with an \AbstractCurve, the dimensionality of the \element{xDataReference}, \element{yDataReference} and \element{zDataReference} must match each other, but need not be one-dimensional.  When a surface is being displayed, each one-dimensional vector within the x,  y, and z data should be displayed on the same plot.  This will effectively flatten the data to the three dimensions of the plot.  When the data is being plotted as lines, Each vector should be plotted with its own line, so that the plot is not overlaid with spurious lines from the end of one vector to the beginning of the next.}
+
+
 \paragraph*{\element{style}}
 The \element{style} attribute, if defined, must contain the \element{SId} of a \Style object in the same \SedDocument.  This \Style determines how any lines, markers, or fills on that surface should be displayed, if present for that type of \Surface.
 
@@ -204,7 +209,7 @@ The \element{type} attribute, if present, determines the type of surface and how
 The \concept{Report} class defines a data map consisting of several single instances of the \DataSet in the child \element{listOfDataSets} (\fig{report}). Its output returns the simulation result processed via \DataGenerators in actual numbers. The elements of the report are defined by creating an instance of the \DataSet for each element of the report and are identified by the \element{label} of the \DataSet. 
 \end{blockChanged}
 
-The simulation result itself, i.e.\ concrete result numbers, are not stored in SED-ML, but the directive how to calculate them from the output of the simulator is provided through the \hyperref[class:dataGenerator]{dataGenerator}. The encoding of simulation results is not part of SED-ML \currentLV, \changed{but it is recommended that 2D output be exported as CSV files, using the \element{label} as column headers, and that output with more dimensions be exported as HDF5, again using the \element{label} to uniquely identify the data sets.}
+The simulation result itself, i.e.\ concrete result numbers, are not stored in SED-ML, but the directive how to calculate them from the output of the simulator is provided through the \hyperref[class:dataGenerator]{dataGenerator}. The encoding of simulation results is not part of SED-ML \currentLV, \changed{but it is recommended that 2D output be exported as \CSV files, using the \element{label} as column headers, and that output with more dimensions be exported as \HDF, again using the \element{label} to uniquely identify the data sets.}
 
 \begin{blockChanged}
 %% ~~~ DATASET ~~~

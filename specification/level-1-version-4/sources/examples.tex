@@ -51,7 +51,7 @@ The \RepeatedTask makes it possible to encode a large number of different simula
 \subsection{Time course parameter scan (\texttt{L1V3\_repeated-scan-oscli.omex})}
 In this example a \hyperref[class:repeatedTask]{repeatedTask} is used to run repeated \hyperref[class:uniformTimeCourse]{uniformTimeCourse} simulations with a deterministic simulation algorithm. Within the \hyperref[class:repeatedTask]{repeatedTask} after each run the parameter value is changed, resulting in a time course parameter scan.
 
-NOTE: This example produces three dimensional results (time, species concentration, multiple repeats).  SED-ML \currentLV does not include a way to post-process these values, so it is left to the implementation on how to display them. One example would be to flatten the values by overlaying them onto the desired plot.
+NOTE: This example produces three dimensional results (time, species concentration, multiple repeats).  SED-ML \currentLV \changed{provides ways to post-process these values with the \DependentVariable class, but here they are not used, meaning that every individual element in the \element{xDataReference} is plotted vs. every individual element in the \element{yDataReference}, effectively flattening the values by overlaying them onto the desired plot.  The breaks between dimensions should be used as breaks between any connected lines, so that spurious lines from the end of one plot to the beginning of the next are not present.}
 
 \begin{figure}[ht]
     \centering
@@ -101,7 +101,7 @@ In this example a \hyperref[class:repeatedTask]{repeatedTask} is used in combina
 In this example a \hyperref[class:repeatedTask]{repeatedTask} is used to run a stochastic simulation multiple times.
 Running just one stochastic trace does not provide a complete picture of the behavior of a system. A large number of such traces is needed. This example demonstrates the basic use case of running ten traces of a simulation by using a \hyperref[class:repeatedTask]{repeatedTask} which runs ten uniform time course simulations (each performing a stochastic simulation run).
 
-NOTE: This example produces three dimensional results (time, species concentration, multiple repeats). While SED-ML \currentLV does not include a way to post-processing these values. So it is left to the implementation on how to display them. One example would be to flatten the values by overlaying them onto the desired plot. 
+NOTE: This example produces three dimensional results (time, species concentration, multiple repeats). While SED-ML \currentLV \changed{provides ways to post-process these values with the \DependentVariable class, but here they are not used, meaning that every individual element in the \element{xDataReference} is plotted vs. every individual element in the \element{yDataReference}, effectively flattening the values by overlaying them onto the desired plot.  The breaks between dimensions should be used as breaks between any connected lines, so that spurious lines from the end of one plot to the beginning of the next are not present.}
 
 \begin{figure}[ht]
     \centering
@@ -153,7 +153,7 @@ Note: In the example a \hyperref[class:functionalRange]{functionalRange} is used
 \subsection{2D steady state parameter scan (\texttt{L1V3\_parameter-scan-2d.omex})}
 This example uses a \hyperref[class:repeatedTask]{repeatedTask} which runs over another \hyperref[class:repeatedTask]{repeatedTask} which performs a steady state computation. Each repeated simulation task modifies a different parameter.
 
-NOTE: This example produces three dimensional results (time, species concentration, multiple repeats). While SED-ML \currentLV does not include a way to post-processing these values. So it is left to the implementation on how to display them. One example would be to flatten the values by overlaying them onto the desired plot. 
+NOTE: This example produces three dimensional results (time, species concentration, multiple repeats). While SED-ML \currentLV \changed{provides ways to post-process these values with the \DependentVariable class, but here they are not used, meaning that every individual element in the \element{xDataReference} is plotted vs. every individual element in the \element{yDataReference}, effectively flattening the values by overlaying them onto the desired plot.  The breaks between dimensions should be used as breaks between any connected lines, so that spurious lines from the end of one plot to the beginning of the next are not present.}
 
 \begin{figure}[ht]
     \centering
