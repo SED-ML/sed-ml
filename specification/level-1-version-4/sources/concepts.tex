@@ -57,7 +57,8 @@ The allowed MathML in SED-ML is restricted to the following subset:
 
 % ~~~ MATHML SYMBOLS ~~~
 \subsection{MathML symbols}
-All the operations listed above operate on \emph{scalar} values.  \changed{Non-scalar values are allowed in the \Math of \DataGenerator elements, where a \Variable may point to multi-dimensional results from a \Task or from an external \DataSource.  In these cases, any MathML functionality is assumed to apply element-by-element, either from dimensional data to a scalar, or from dimensional data to other dimensional data with identical dimensions.  In other words, if \code{M} and \code{N} are matrices, '\code{M+3}' would add three to every element of \code{M}, and '\code{M+N}' would require that \code{M} and \code{N} have the same dimensions, and the resulting matrix \code{R} would be created such that \code{R(x,y) = M(x,y) + N(x,y)}.}  At this point SED-ML does not define an algebra of vector values.
+
+\changed{All the operations listed above describe functions of scalar-valued SED variables, or element-wise computations of matrix-valued SED variables. Matrix-valued SED variables can arise in multiple ways. For example, a variable for a basic task of a non-spatial \UniformTimeCourse would be a vector with length equal to the number of steps of the time course plus one. A \Variable for a \RepeatedTask of a non-spatial time course could be represented a matrix with dimensions for the iterations of the repeated tasks, its subtasks, and the steps of the nested basic task. MathML functions for matrices should be evaluated on an element-wise basis. For example, if $M$ and $N$ were two 2D matrix-valued SED variables, $M+3$ would add three to every element of $M$, $R = M+N$ would only be valid if $M$ and $N$ have the same dimensions, and $R_{i,j}$ would be equal to $M_{i,j} + N_{i,j}$. At this point, SED-ML does not define an algebra for matrix computations.}
 
 % ~~~ MATHML FUNCTIONS ~~~
 \subsection{MathML functions}
