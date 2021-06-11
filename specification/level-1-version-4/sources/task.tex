@@ -57,7 +57,7 @@ The \element{numRepeats}, of type \element{positive integer}, defines the number
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsubsection{\element{Repeated Task}}
 \label{class:repeatedTask}
-The \concept{RepeatedTask} (\fig{repeatedTask}) provides a generic looping construct, allowing complex tasks to be composed from individual steps. The \concept{RepeatedTask} performs a specified task (or sequence of tasks as defined in the \hyperref[class:listOfSubTasks]{\element{listOfSubTasks}}) multiple times (where the exact number is specified through a \Range construct as defined in \hyperref[sec:rangeAttribute]{\element{range}}), while allowing specific quantities in the model to be altered at each iteration (as defined in the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}}).
+The \concept{RepeatedTask} (\fig{repeatedTask}) provides a generic looping construct, allowing complex tasks to be composed from individual steps. The \concept{RepeatedTask} performs a specified task (or sequence of tasks as defined in the \hyperref[class:listOfSubTasks]{\element{listOfSubTasks}}) multiple times (where the exact number is specified through a \Range construct as defined in \hyperref[sec:rangeAttribute]{\element{range}}), while allowing specific quantities in the model \changed{or models} to be altered at each iteration (as defined in the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}}).
 
 \sedfig[width=.8\textwidth]{images/uml/repeatedTask}{The SED-ML RepeatedTask class}{fig:repeatedTask}
 
@@ -65,8 +65,8 @@ The \concept{RepeatedTask} inherits the required attribute \hyperref[sec:id]{\el
 
 The order of activities within each iteration of a \concept{RepeatedTask} is as follows:
 \begin{itemize} 
-	\item The \changed{entire} \Model state is reset if specified by the \hyperref[sec:resetModel]{\element{resetModel}} attribute.
-	\item Any changes to the model specified by \hyperref[class:setValue]{SetValue} objects in the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} are applied to the \Model.
+	\item The \changed{entire} model state \changed{for any involved \Model} is reset if specified by the \hyperref[sec:resetModel]{\element{resetModel}} attribute.
+	\item Any changes to the model \changed{or models} specified by \hyperref[class:setValue]{SetValue} objects in the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} are applied to \changed{each} \Model.
 \end{itemize}
 
 \changed{Then, for each \SubTask child of the \RepeatedTask, in the order specified by its \hyperref[sec:subTaskOrder]{\element{order}} attribute:}
@@ -116,7 +116,7 @@ If there are multiple ranges in the \hyperref[class:listOfRanges]{\element{listO
 % ~~~ RESET MODEL ~~~
 \paragraph*{\element{resetModel}}
 \label{sec:resetModel}
-The \hyperref[class:repeatedTask]{repeatedTask} has a required attribute \concept{\element{resetModel}} of type \code{boolean}. It specifies whether the model should be reset to the initial state before processing an iteration of the defined \hyperref[class:subTask]{subTasks}. Here initial state refers to the state of the model as given in the \hyperref[class:listOfModels]{\element{listOfModels}}.
+The \hyperref[class:repeatedTask]{repeatedTask} has a required attribute \concept{\element{resetModel}} of type \code{boolean}. It specifies whether the model \changed{or models} should be reset to the initial state before processing an iteration of the defined \hyperref[class:subTask]{subTasks}. Here initial state refers to the state of the model \changed{or models} as given in the \hyperref[class:listOfModels]{\element{listOfModels}}.
 
 In the example in  Listing~\ref{lst:repeatedTask} the repeated task is not to be reset, so a change is made, \code{task1} is carried out, another change is made, then \code{task1} continues from there, another change is applied, and \code{task1} is carried out a last time.
 
@@ -132,12 +132,12 @@ If this attribute is not defined, the interpreter may either concatenate or para
 %% ~~~ LIST OF CHANGES ~~~
 \paragraph*{\element{listOfChanges}}
 \label{sec:changesRepeatedTask}
-The optional \concept{\element{listOfChanges}} element contains one or many \hyperref[class:setValue]{SetValue} elements. These elements allow the modification of values in the model prior to the next iteration of the \RepeatedTask.
+The optional \concept{\element{listOfChanges}} element contains one or many \hyperref[class:setValue]{SetValue} elements. These elements allow the modification of values in the model \changed{or models} prior to the next iteration of the \RepeatedTask.
 
 %% ~~~ REPEATED TASK : LIST OF SUBTASKS ~~~
 \paragraph*{\element{listOfSubTasks}}
 \label{class:listOfSubTasks}
-The required \concept{\element{listOfSubTasks}} contains one or more \hyperref[class:subTask]{subTasks} that specify which \hyperref[class:abstractTask]{Tasks} are performed in every iteration of the \RepeatedTask. All \hyperref[class:subTask]{subTasks} have to be carried out sequentially, each continuing from the current model state (i.e.\ as at the end of the previous \hyperref[class:subTask]{subTask}, assuming it simulates the same model).  \changed{If the \element{concatentate} attribute is set \val{true}, the results are} concatenated (thus appearing identical to a single complex simulation), \changed{and if set \val{false}, the results are added to a matrix with the addtitional dimension of the repeated task.} The order in which to run multiple \hyperref[class:subTask]{subTasks} must be specified using the \hyperref[sec:subTaskOrder]{\element{order}} attribute on the \hyperref[class:subTask]{subTask}.
+The required \concept{\element{listOfSubTasks}} contains one or more \hyperref[class:subTask]{subTasks} that specify which \hyperref[class:abstractTask]{Tasks} are performed in every iteration of the \RepeatedTask. All \hyperref[class:subTask]{subTasks} have to be carried out sequentially, each continuing from the current model state \changed{or states} (i.e.\ as at the end of the previous \hyperref[class:subTask]{subTask}).  \changed{If the \element{concatentate} attribute is set \val{true}, the results are} concatenated (thus appearing identical to a single complex simulation), \changed{and if set \val{false}, the results are added to a matrix with the addtitional dimension of the repeated task.} The order in which to run multiple \hyperref[class:subTask]{subTasks} must be specified using the \hyperref[sec:subTaskOrder]{\element{order}} attribute on the \hyperref[class:subTask]{subTask}.
 
 \begin{myXmlLst}{The \code{subTask} element. In this example the task \code{task2} must be executed before \code{task1}.}{lst:subTask}
 <listOfSubTasks>
@@ -188,7 +188,7 @@ The required attribute \concept{\element{order}} of data type \element{integer} 
 \begin{blockChanged}
 \paragraph*{\element{listOfChanges}}
 \label{sec:subTaskListOfChanges}
-The \SetValue children of the \ListOfChanges of this \SubTask define changes to apply to the model state before this \SubTask is carried out.  This allows model changes between individual \SubTask elements, perhaps based on the changed state of the model itself.  The set of all \SetValue children of the first \SubTask are applied after the set of \SetValue children of the \RepeatedTask itself.
+The \SetValue children of the \ListOfChanges of this \SubTask define changes to apply to the model state \changed{or states} before this \SubTask is carried out.  This allows model changes between individual \SubTask elements, perhaps based on the changed state of the model itself.  The set of all \SetValue children of the first \SubTask are applied after the set of \SetValue children of the \RepeatedTask itself.
 \end{blockChanged}
 
 
@@ -196,13 +196,11 @@ The \SetValue children of the \ListOfChanges of this \SubTask define changes to 
 % ~~~ SET VALUE ~~~
 \subsubsection{\element{SetValue}}
 \label{class:setValue}
-The \concept{SetValue} class (\fig{repeatedTask}) allows the modification of the \hyperref[class:model]{model} prior to the next execution of the \hyperref[class:subTask]{subTasks}. The changes to the model are defined in the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} of the \RepeatedTask.
+The \concept{SetValue} class (\fig{repeatedTask}) allows the modification of a \Model.  \changed{Each \SetValue in the \ListOfChanges child of the \RepeatedTask fires before each repeat, and each \SetValue in the \ListOfChanges child of a \SubTask fires before the execution of that \SubTask.}
 
-\concept{SetValue} inherits from the \ComputeChange class, which allows it to compute arbitrary expressions involving a number of \hyperref[class:variable]{variables} and \hyperref[class:parameter]{parameters}. \concept{SetValue} has a mandatory \element{modelReference} attribute, and the optional attributes \element{range} and \element{symbol}.
+\concept{SetValue} inherits from the \ComputeChange class, which allows it to compute arbitrary expressions involving a number of \hyperref[class:variable]{variables} and \hyperref[class:parameter]{parameters}. \concept{SetValue} \changed{inherits the standard attributes and children from \SedBase, a required \element{target} and optional \element{symbol} from \ComputeChange, and adds} a mandatory \element{modelReference} attribute and the optional attribute \element{range}.
 
-The value to be changed is identified via the combination of the attributes \code{modelReference} and either \code{symbol} or \code{target}, in order to select an implicit or explicit variable within the referenced model.
-
-As in \hyperref[class:functionalRange]{functionalRange}, the attribute \code{range} may be used as a shorthand to specify the \code{id} of another \concept{Range}. The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \code{id} of the range is used directly. In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
+The value to be changed is identified via the combination of \changed{the attributes \code{modelReference}, \code{symbol}, and \code{target}}, in order to select an implicit or explicit variable within the referenced model.
 
 The \Math contains the expression computing the value by referring to optional \hyperref[class:parameter]{parameters}, \hyperref[class:variable]{variables} or \hyperref[class:range]{ranges}.
 Again as for \hyperref[class:functionalRange]{functionalRange}, variable references retrieve always the current value of the model variable or range at the current iteration of the enclosing \hyperref[class:repeatedTask]{repeatedTask}.
@@ -218,11 +216,16 @@ Again as for \hyperref[class:functionalRange]{functionalRange}, variable referen
 </listOfChanges>
 \end{myXmlLst}
 
-% missing attribute descriptions for consistency
-% \paragraph*{range}
-% \paragraph*{symbol}
-% \paragraph*{range}
-% \paragraph*{modelReference}
+\paragraph*{\element{modelReference}}
+\label{sec:subTaskModelReference}
+\changed{The required element \concept{\element{modelReference}} of data type \SIdRef specifies the \Model this \SetValue is to modify.  Each \SetValue elements in the same \RepeatedTask may potentially reference a different \Model.}
+
+\paragraph*{\element{range}}
+\label{sec:subTaskRange}
+\changed{The optional attribute \concept{\element{range}} of data type \SIdRef, if defined, must reference a \Range child of the parent \RepeatedTask.}
+
+As in \hyperref[class:functionalRange]{functionalRange}, the attribute \code{range} may be used as a shorthand to specify the \code{id} of another \concept{Range}. The current value of the referenced range may then be used within the \Math defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \code{id} of the range is used directly. In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
+
 
 
 % ~~~ RANGE ~~~
