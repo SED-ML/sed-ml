@@ -481,7 +481,7 @@ In a \DependentVariable, the \element{term} is used to define an analysis to be 
 
 \paragraph*{\element{term}}
 \label{sec:term}
-The \element{term} attribute is of type \element{string}, and should conform to the syntax of a \kisaoID, though the string \val{urn:sedml:symbol:time} may be used for backwards compatibility.  The \element{term} may refer to a function (such as `rate of change', KISAO:0000834) that relates two variables to each other, instead of just one, or it may refer to an analysis (such as 'the eigenvalue matrix', KISAO:0000813) that is dependent on the model as a whole and not on individual model elements.
+The \element{term} attribute is of type \element{string}, and should conform to the syntax of a \kisaoID, though the string \val{urn:sedml:symbol:time} may be used for backwards compatibility.  The \element{term} may refer to a function (such as `rate of change', \code{KISAO:0000834}) that relates two variables to each other, instead of just one, or it may refer to an analysis (such as 'the eigenvalue matrix', \code{KISAO:0000813}) that is dependent on the model as a whole and not on individual model elements.
 
 \paragraph*{\element{target2}}
 \label{sec:target2}
@@ -537,7 +537,7 @@ This section describes attributes which occur on multiple SED-ML classes, e.g., 
 % ~~~ KISAOID ~~~
 \subsubsection{\element{kisaoID}}
 \label{sec:kisaoid}
-Some classes, e.g., \hyperref[class:algorithm]{Algorithm} and \hyperref[class:algorithmParameter]{AlgorithmParameter}, have a mandatory element \concept{\element{kisaoID}} \changed{or another attribute} which references a term from the \hyperref[sec:kisao]{KiSAO} ontology. The referenced term must be defined in the correct syntax, as defined by the regular expression \code{KISAO:[0-9]\{7\}}. The referenced \hyperref[sec:kisao]{KiSAO} term  should define the simulation \hyperref[class:algorithm]{Algorithm} or \hyperref[class:algorithmParameter]{AlgorithmParameter} as precisely as possible.
+Some classes, e.g., \hyperref[class:algorithm]{Algorithm} and \hyperref[class:algorithmParameter]{AlgorithmParameter}, have a mandatory element \concept{\element{kisaoID}} \changed{or another attribute} which references a term from the \hyperref[sec:kisao]{KiSAO} ontology. The referenced term must be defined in the correct syntax, as defined by the regular expression \code{KISAO:[0-9]\{7\}}. The referenced \hyperref[sec:kisao]{KiSAO} term  should define the simulation \hyperref[class:algorithm]{Algorithm} or \hyperref[class:algorithmParameter]{AlgorithmParameter} as precisely as possible.  \changed{Note that the use of a colon predates KiSAO's switch to using an underscore in official KiSAO URLs.  We continue to use the colon here for backwards compatibility, and because a \element{kisaoID} is not a URL.}
 
 
 % ~~~ LISTOF ~~~
