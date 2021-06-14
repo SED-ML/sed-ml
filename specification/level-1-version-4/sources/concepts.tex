@@ -60,8 +60,60 @@ The allowed MathML in SED-ML is restricted to the following subset:
 
 \changed{All the operations listed above describe functions of scalar-valued SED variables, or element-wise computations of matrix-valued SED variables. Matrix-valued SED variables can arise in multiple ways. For example, a variable for a basic task of a non-spatial \UniformTimeCourse would be a vector with length equal to the number of steps of the time course plus one. A \Variable for a \RepeatedTask of a non-spatial time course could be represented a matrix with dimensions for the iterations of the repeated tasks, its subtasks, and the steps of the nested basic task. MathML functions for matrices should be evaluated on an element-wise basis. For example, if $M$ and $N$ were two 2D matrix-valued SED variables, $M+3$ would add three to every element of $M$, $R = M+N$ would only be valid if $M$ and $N$ have the same dimensions, and $R_{i,j}$ would be equal to $M_{i,j} + N_{i,j}$. At this point, SED-ML does not define an algebra for matrix computations.}
 
+
+%However, as one of SED-ML's aims is to provide post processing on the results of simulation experiments, this basic set needs to be extended by some aggregate functions. Therefore a defined set of \concept{MathML symbols} that represent vector values are supported by SED-ML. The only allowed symbols to be used in aggregate functions are the identifiers of \Variables defined in the \hyperref[class:listOfVariables]{\element{listOfVariables}} of a \DataGenerator. These \Variables represent the data collected from the simulation experiment in the associated \Task.  \changed{They always return scalar values, regardless of the dimensionality of the \Variable.}
+
+%\subsubsection*{\element{min}}
+%\label{fun:min}
+%The \concept{\element{min}} of a variable represents the smallest value the simulation experiment for that variable (Listing~\ref{lst:minFunction}). 
+%\begin{myXmlLst}{Example for the use of the MathML \code{min} function.}{lst:minFunction}
+%<apply>
+% 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#min">
+% 		min
+% 	</csymbol>
+% 	<ci> variableId </ci>
+%</apply>
+%\end{myXmlLst}
+
+%\subsubsection*{\element{max}}
+%\label{fun:max}
+%The \concept{\element{max}} of a variable represents the largest value the simulation experiment for that variable (\lst{maxFunction}).
+%\begin{myXmlLst}{Example for the use of the MathML \code{max} function.}{lst:maxFunction}
+%<apply>
+% 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#max">
+% 		max
+% 	</csymbol>
+% 	<ci> variableId </ci>
+%</apply>
+%\end{myXmlLst}
+
+%\subsubsection*{\element{sum}}
+%\label{fun:sum}
+%The \concept{\element{sum}} of a variable represents the sum of all values of the variable returned by the simulation experiment (\lst{sumFunction}).
+%\begin{myXmlLst}{Example for the use of the MathML \code{sum} function.}{lst:sumFunction}
+%<apply>
+% 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#sum">
+% 		sum
+% 	</csymbol>
+% 	<ci> variableId </ci>
+%</apply>
+%\end{myXmlLst}
+
+%\subsubsection*{\element{product}}
+%\label{fun:product}
+%The \concept{\element{product}} of a variable represents the multiplication of all values of the variable returned by the simulation experiment (\lst{productFunction}).
+%\begin{myXmlLst}{Example for the use of the MathML \code{product} function.}{lst:productFunction}
+%<apply>
+% 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#product">
+% 		product
+% 	</csymbol>
+% 	<ci> variableId </ci>
+%</apply>
+%\end{myXmlLst}
+
+
 % ~~~ MATHML FUNCTIONS ~~~
-\subsection{MathML functions}
+%\subsection{MathML functions}
 \changed{The following functions are added to MathML as csymbols to represent draws from distributions:  \uniform, \normal, \lognormal, \poisson, and \sedgamma}:
 
 \begin{blockChanged}
