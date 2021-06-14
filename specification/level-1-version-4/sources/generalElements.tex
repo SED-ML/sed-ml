@@ -57,12 +57,12 @@ As with \SId, the equality of \concept{SIdRef} values is determined by exact cha
 \begin{blockChanged}
 \subsubsection[\element{TargetType}]{Type \element{TargetType}}
 \label{type:target}
-Type \concept{\element{TargetType}} is used to identify elements of a model.  This type is derived from type \element{string}, and it is up to the target modeling language to define what form makes sense to uniquely identify a particular element of that model.  For XML-based languages, using an \element{XPath} is required.
+Type \concept{\element{TargetType}} is used to identify elements of a model.  This type is derived from type \element{string}, and it is up to the target modeling language to define what form makes sense to uniquely identify a particular element of that model.  For XML-based languages, using an \element{XPath} is required when referencing the raw XML of the model, but other schemes may be used when referencing more abstract concepts implied by the model.
 \end{blockChanged}
 
 \subsubsection[\element{XPath}]{Type \element{XPath}}
 \label{type:xpath}
-Type \concept{\element{XPath}} is \changed{derived from type \element{TargetType} and is} used to identify nodes and attributes within an XML representation. \concept{\element{XPath}} in SED-ML is an \hyperref[sec:xpath]{XPath} version 1 expression which can be used to unambiguously identify an element or attribute in an XML file. The concept of \hyperref[sec:xpath]{XPath} is described in Section~\ref{sec:xpath}.
+Type \concept{\element{XPath}} is \changed{derived from type \element{TargetType} and is} used to identify nodes and attributes within an XML representation. \concept{\element{XPath}} in SED-ML is an \hyperref[sec:xpath]{XPath} version 1 expression which can be used to unambiguously identify an element or attribute in an XML file. The concept of \hyperref[sec:xpath]{XPath} is described in Section~\ref{sec:xpath}.  Note that \concept{\element{XPath}} may be used by some model languages to imply more abstract concepts implied by the model, such as pointing to an XML element to mean `the current value of this element in the changed model state'.
 
 \begin{blockChanged}
 \subsubsection[\element{URN}]{Type \element{URN}}
