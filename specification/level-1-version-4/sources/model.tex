@@ -118,7 +118,7 @@ The \concept{\element{listOfChanges}} (\fig{model}) contains the \hyperref[class
 The \concept{Change} class allows to describe changes applied to a \hyperref[class:model]{model} before simulation (\fig{sedChange}). \concept{Changes} can be of the following types:
 \begin{itemize}
 	\item{Changes based on mathematical calculations (\ComputeChange)} 
-	\item{\changed{For XML-encoded models}, changes on \changed{attributes of the model} (\hyperref[class:changeAttribute]{ChangeAttribute})}	
+	\item{\changed{Changes on attributes of the model} (\hyperref[class:changeAttribute]{ChangeAttribute})}
 	\item{\changed{For XML-encoded models, changes on any XML snippet of the model's XML representation} (\hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML})}
 \end{itemize}
 
@@ -215,7 +215,9 @@ An example for the removal of an XML element from a model is given in Listing~\r
 % ~~~ ChangeAttribute ~~~
 \subsubsection{\element{ChangeAttribute}}
 \label{class:changeAttribute}
-The \concept{ChangeAttribute} class allows to define updates on the attribute values of the corresponding model (\fig{sedChange}). \concept{ChangeAttribute} requires to specify the \hyperref[sec:changeTarget]{\element{target}} of the change, i.e., the location of the addressed attribute, and also the \hyperref[sec:newValue]{\element{newValue}} of that attribute. Note that \changed{the \hyperref[sec:changeTarget]{\element{target}} XPath expression} must select a single attribute within the corresponding model.
+The \concept{ChangeAttribute} class allows to define updates on the attribute values of the corresponding model (\fig{sedChange}). \concept{ChangeAttribute} requires to specify the \hyperref[sec:changeTarget]{\element{target}} of the change, i.e., the location of the addressed attribute, and also the \hyperref[sec:newValue]{\element{newValue}} of that attribute. Note that the \hyperref[sec:changeTarget]{\element{target}} must select a single attribute within the corresponding model.
+
+\changed{Despite its name, the `attribute' changed by this class need not be an XML attribute, and hence, its \element{target} need not be an \XPath.  Every target model language may define what `attributes' may be changed by this contruct, and how to indicate those attributes.}
 
 The \hyperref[class:changeXml]{ChangeXML} class covers the possibilities provided by the \concept{ChangeAttribute} class, i.e, everything that can be expressed by a \concept{ChangeAttribute} construct can also be expressed by \hyperref[class:changeXml]{ChangeXML}. However, for the common case of changing an attribute value \concept{ChangeAttribute} is easier to use, and so it is recommended to use the \concept{ChangeAttribute} for any changes of an attribute's value, and to use the more general \hyperref[class:changeXml]{ChangeXML} for other cases.
 
