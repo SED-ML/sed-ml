@@ -326,10 +326,10 @@ If the variable is defined through a reference to a model constituent, such as a
 
 \begin{itemize}
 	\item A \Variable is always placed inside a \hyperref[class:listOfVariables]{listOfVariables}.  \changed{If it is the base class, its XML name will be \val{variable}; if it is the derived \DependentVariable class, its XML name will be \val{dependentVariable}.}
-	\item \changed{Exactly one of the \hyperref[sec:symbol]{\element{symbol}} and \hyperref[sec:target]{\element{target}} attributes must be used, unless the \element{symbol} references an implicit function instead of an implicit variable.  In that case, both must be present.}
-	\item A \Variable element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \hyperref[class:listOfVariables]{\element{listOfVariables}} inside a \hyperref[class:dataGenerator]{dataGenerator} element. Only exception is if the \Variable references a \hyperref[class:dataSource]{DataSource}, in this case no \hyperref[sec:taskReference]{taskReference} is required.
-	\item A \Variable element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \hyperref[class:listOfVariables]{\element{listOfVariables}} inside a \hyperref[class:computeChange]{computeChange} element.
-	\item A \Variable  element appearing within a \hyperref[class:functionalRange]{functionalRange} or \hyperref[class:setValue]{setValue} element must contain a \hyperref[sec:modelReference]{modelReference} if and only if it references a model variable.
+	\item \changed{The \hyperref[sec:symbol]{\element{symbol}} and \hyperref[sec:target]{\element{target}} attributes (plus the \element{term}, \element{symbol2}, and \element{target2} attributes of a \DependentVariable) must collectively define exactly one element with mathematical meaning.}
+	\item A \Variable element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \hyperref[class:listOfVariables]{\element{listOfVariables}} inside a \hyperref[class:dataGenerator]{dataGenerator} element. The only exception is if the \Variable references a \hyperref[class:dataSource]{DataSource}, in which case no \hyperref[sec:taskReference]{taskReference} is required.
+	\item A \Variable element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \hyperref[class:listOfVariables]{\element{listOfVariables}} inside a \hyperref[class:computeChange]{computeChange} element.  \changed{It must also define the \element{modelReference} if its \element{taskReference} points to a \RepeatedTask that contains references to multiple models.}
+	\item A \Variable element appearing within a \hyperref[class:functionalRange]{functionalRange} or \hyperref[class:setValue]{setValue} element must contain a \hyperref[sec:modelReference]{modelReference} if and only if it references a model variable.
 \end{itemize}
 
 \lsttext{variable}{variable}
@@ -452,7 +452,7 @@ The \concept{\element{modelReference}} element of data type \SIdRef is used to r
 \label{class:remainingDimension}
 \label{class:listOfRemainingDimensions}
 
-A \RemainingDimension object is used when a \Variable is multidimensional, but the \element{symbol} of the \Variable is a function that reduces the dimensionality of the data.  For example, a variable derived from a \Task inside a \RepeatedTask will have the dimensionality of both.  If the \element{symbol} of the parent \Variable is the `mean' function (\val{KISAO:0000825}), the following options are available:
+A \RemainingDimension object is used when a \Variable is multidimensional, but the \element{term} of the \Variable is a function that reduces the dimensionality of the data.  For example, a variable derived from a \Task inside a \RepeatedTask will have the dimensionality of both.  If the \element{term} of the parent \Variable is the `mean' function (\val{KISAO:0000825}), the following options are available:
 
 \begin{itemize}
         \item The \Variable contains a single \RemainingDimension child that refers to the \Task.  The resulting data will have the same dimensions as if the \Variable referred directly to the \Task, but averaged over every repeat of the \RepeatedTask.  This situation is particularly common when the \Task is a stochastic time course simulation, and the \RepeatedTask is a simple loop of that \Task.
@@ -464,6 +464,13 @@ A \RemainingDimension inherits the attributes and children of \SedBase, and adds
 
 \paragraph*{\element{target}}
 The \element{target} attribute of a \RemainingDimension is used when the remaining dimension is a \Task or \RepeatedTask, which must be implicitly involved in the construction of the dimensionality of the parent \Variable.
+
+Possible values for the \element{target} attribute include:
+\begin{itemize}
+        \item The id of a \RepeatedTask
+        \item The id of a \Task referenced by a \RepeatedTask
+        \item The id of a \SubTask child of a \RepeatedTask
+\end{itemize}
 
 \paragraph*{\element{dimensionTarget}}
 The \element{dimensionTarget} attribute of a \RemainingDimension is used when the \Variable references an external data set.  The \element{NuMLIdRef} must reference a dimension of the referenced data.
