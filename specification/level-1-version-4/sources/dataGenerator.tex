@@ -11,6 +11,8 @@ The \concept{DataGenerator} class prepares the raw simulation results for later 
 A \Variable in a \DataGenerator may use the id of a \DataSource as its \element{target}, pre-pended by a \code{`\#'}, i.e. \val{\#dataSourceId}.  This \Variable may be multidimensional, and if so, must follow the above strictures.
 
 When multidimensional data is output to a \Report, information about the dimensions should be stored in the output format chosen for the report, such as \CSV or \HDF.
+
+It is left up to interpreters how to store or output `ragged' matrices, where the data in some dimensions might not have the same lengths as each other.  One practice is to leave the data in this uneven state; another option is to fill out the `missing' data with NaNs.  The only requirement is that mathematical operations should not be affected by this choice.  For example, the `mean' of a vector should be the same whether or not it was extended with NaNs.
 \end{blockChanged}
 
 
