@@ -22,12 +22,12 @@ A model might need to undergo pre-processing before simulation. Those pre-proces
 
 
 \lsttext{model}{model}
-In the example the \hyperref[class:listOfModels]{\element{listOfModels}} contains three models: The first model \code{m0001} is the Repressilator model from \biom available from \url{urn:miriam:biomodels.db:BIOMD0000000012}. For the SED-ML simulation the model might undergo preprocessing steps described in the \hyperref[sec:changesModel]{\element{listOfChanges}}. Based on the description of the first model \code{m0001}, the second model \code{m00012} is built, which is a modified version of the Repressilator model. \code{m0002} refers to the model \code{m001} in its \hyperref[sec:model_source]{\code{source}} attribute. \code{m0002} might then have additional changes applied to it on top of the changes defined in the pre-processing of \code{m0001}. The third model in the code example is a model in CellML representation. The model \code{m0003} is available from the given URL in the \hyperref[sec:model_source]{\code{source}} attribute. Again, it might have pre-processing steps applied before used in a simulation.
+In the example the \hyperref[class:listOfModels]{\element{listOfModels}} contains three models: The first model \code{m0001} is the Repressilator model from \biom available from \url{https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000012?filename=BIOMD0000000012_url.xml}. For the SED-ML simulation the model might undergo preprocessing steps described in the \hyperref[sec:changesModel]{\element{listOfChanges}}. Based on the description of the first model \code{m0001}, the second model \code{m00002} is built, which is a modified version of the Repressilator model. \code{m0002} refers to the model \code{m001} in its \hyperref[sec:model_source]{\code{source}} attribute. \code{m0002} might then have additional changes applied to it on top of the changes defined in the pre-processing of \code{m0001}. The third model in the code example is a model in CellML representation. The model \code{m0003} is available from the given URL in the \hyperref[sec:model_source]{\code{source}} attribute. Again, it might have pre-processing steps applied before used in a simulation.
 
 \begin{myXmlLst}{SED-ML \code{model} element}{lst:model}
 <listOfModels>
 	<model id="m0001" language="urn:sedml:language:sbml" 
-		source="urn:miriam:biomodels.db:BIOMD0000000012">
+		source="https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000012?filename=BIOMD0000000012_url.xml">
 		<listOfChanges>
 			<change>
 				[MODEL PRE-PROCESSING]
@@ -74,7 +74,16 @@ An example for the definition of a model via a relative path URI is given in Lis
 
 \end{blockChanged}
 
-An example for the definition of a model via an URI is given in Listing~\ref{lst:sourceA}. The example defines one model \code{m1} with the model \concept{\element{source}} available from \code{urn:miriam:biomodels.db:BIOMD0000000012}. The MIRIAM URN can be resolved into the SBML model stored in BioModels Database under the identifier \element{BIOMD0000000012} using the MIRIAM web service. The resulting URL is \url{https://www.ebi.ac.uk/biomodels-main/BIOMD0000000012}.
+An example for the definition of a model using an URL is given in Listing~\ref{lst:sourceB}. In the example one model is defined. The \element{language} of the model is \element{CellML}. The \emph{URL} pointing to the model is used in the \concept{\element{source}} attribute.
+
+\begin{myXmlLst}{The SED-ML \code{source} element, using a URL}{lst:sourceB}
+<model id="m1" name="repressilator" language="urn:sedml:language:cellml" 
+	source="http://models.cellml.org/exposure/bba4e39f2c7ba8af51fd045463e7bdd3/aguda_b_1999.cellml">
+	<listOfChanges />
+</model>
+\end{myXmlLst}
+
+\changed{MIRIAM URNs are no longer recommended due to increased difficulty in resolving them, but the scheme is still valid and interpreters may find SED-ML files that use them.}  An example for the definition of a model via an URI is given in Listing~\ref{lst:sourceA}. The example defines one model \code{m1} with the model \concept{\element{source}} available from \code{urn:miriam:biomodels.db:BIOMD0000000012}. The MIRIAM URN can be resolved into the SBML model stored in BioModels Database under the identifier \element{BIOMD0000000012} by \changed{querying the Biomodels webservice and requesting the `main' SBML file for that biomodel. The resulting URL is \url{https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000012?filename=BIOMD0000000012_url.xml}}.
 
 \begin{myXmlLst}{The SED-ML \code{source} element, using the URI scheme}{lst:sourceA}
 <model id="m1" name="repressilator" language="urn:sedml:language:sbml" 
@@ -82,15 +91,6 @@ An example for the definition of a model via an URI is given in Listing~\ref{lst
 	<listOfChanges>
 		[MODEL PRE-PROCESSING]
 	</listOfChanges>
-</model>
-\end{myXmlLst}
-
-An example for the definition of a model using an URL is given in Listing~\ref{lst:sourceB}. In the example one model is defined. The \element{language} of the model is \element{CellML}. As the CellML model repository currently does not provide a MIRIAM URI for model reference, the \emph{URL} pointing to the model is used in the \concept{\element{source}} attribute.
-
-\begin{myXmlLst}{The SED-ML \code{source} element, using a URL}{lst:sourceB}
-<model id="m1" name="repressilator" language="urn:sedml:language:cellml" 
-	source="http://models.cellml.org/exposure/bba4e39f2c7ba8af51fd045463e7bdd3/aguda_b_1999.cellml">
-	<listOfChanges />
 </model>
 \end{myXmlLst}
 
@@ -230,7 +230,7 @@ The example in Listing~\ref{lst:changeAttribute} shows the update of the value o
 
 \begin{myXmlLst}{The \code{changeAttribute} element and its \code{newValue} attribute}{lst:changeAttribute}
 <model id="model1" name="Circadian Chaos" language="urn:sedml:language:sbml" 
-	source="urn:miriam:biomodels.db:BIOMD0000000021">
+	source="https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000012?filename=BIOMD0000000012_url.xml">
 	<listOfChanges>
 		<changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_mT']/@value" newValue="0.28"/>
   		<changeAttribute target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='V_dT']/@value" newValue="4.8"/>

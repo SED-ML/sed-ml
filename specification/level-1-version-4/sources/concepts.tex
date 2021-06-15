@@ -218,11 +218,7 @@ In addition, annotation of SED-ML elements should use a standardised URI \hyperr
 % ~~~ MODEL REFERENCES ~~~
 \subsection{Model references}
 \label{sec:modelURI}
-The URI of a \hyperref[class:model]{model} should preferably point to a public, consistent location that provides the model description file. References to curated, open model bases are recommended, such as the BioModels Database. However, any resource registered with MIRIAM resources\footnote{\url{http://www.ebi.ac.uk/miriam/main/}} can easily be referenced.
-
-One way for referencing a model from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}. MIRIAM enables identification of a data resource (in this case a model resource) by a predefined URN. A data entry inside that resource is identified by an ID. That way each single  model in a particular model repository can be unambiguously referenced. One model repository that is part of MIRIAM resources is the \concept{BioModels Database} \citep{LDR+10}. Its data resource name in MIRIAM is \code{urn:miriam:biomodels.db}. To refer to a particular model, a standardised identifier scheme is defined in \concept{MIRIAM Resources}\footnote{\url{http://www.ebi.ac.uk/miriam/}}. The ID entry maps to a particular model in the model repository. That model is never deleted. A sample BioModels Database ID is \code{BIOMD0000000048}. Together with the data resource name it becomes unambiguously identifiable by the URN \code{urn:miriam:biomodels.db:BIOMD0000000048}. 
-
-SED-ML does not specify how to resolve the URNs. However, MIRIAM Resources offers web services to do so\footnote{\url{http://www.ebi.ac.uk/miriam/}}. For the above example of the \code{urn:miriam:biomodels.db:BIOMD0000000048} model, the resolved URL may look like \code{\url{http://www.ebi.ac.uk/biomodels-main/BIOMD0000000048}}.
+\changed{The two principle recommended methods for referencing data is by URL or by relative pathname.  Any URL} should preferably point to a public, consistent location that provides the model description file. References to curated, open model bases are recommended, such as the BioModels Database. \changed{Relative pathnames are useful both when working with a collection or folder of related files, or when the files are collected into a \hyperref[sec:archive]{COMBINE archive}.}
 
 For additional information see the \hyperref[sec:model_source]{\element{source}} attribute on \Model.
 
@@ -232,12 +228,10 @@ An alternative means to obtain a model may be to provide a single resource conta
 % ~~~ DATA REFERENCES ~~~
 \subsection{Data references}
 \label{sec:dataURI}
-One way for referencing a data file from a SED-ML file is adopted from the \concept{MIRIAM URI Scheme}. MIRIAM enables identification of a data resource by a predefined URN. 
+
+\changed{The two principle recommended methods for referencing data is by URL or by relative pathname.  Both of these methods will work if the file or files are transferred to a new location, or to a \hyperref[sec:archive]{COMBINE archive}.  Absolute pathnames will work when used in their original locations, but not when moved to a new location or bundled into an archive, and are therefore not recommended.}
 
 For additional information see the \hyperref[sec:data_source]{\element{source}} attribute on \hyperref[class:dataDescription]{DataDescription}.
-
-An alternative means to obtain a data file may be to provide a single resource containing necessary data files and the SED-ML file is the \hyperref[sec:archive]{COMBINE archive}. 
-
 
 % ~~~ LANGUAGE REFERENCES ~~~
 \subsection{Language references}

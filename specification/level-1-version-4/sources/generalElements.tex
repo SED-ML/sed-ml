@@ -165,7 +165,8 @@ In lower Level/Version combinations of SED-ML, the attributes \element{id} and \
 An example for an \concept{\element{id}} is given in Listing~\ref{lst:id}. In the example the model has the \concept{\element{id}} \code{m00001}.
 
 \begin{myXmlLst}{SED-ML \element{id} definition, e.g., for a model}{lst:id}
-<model id="m00001" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000012">
+<model id="m00001" language="urn:sedml:language:sbml"
+        source="https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000012?filename=BIOMD0000000012_url.xml">
 	[MODEL DEFINITION]
 </model>
 \end{myXmlLst}
@@ -189,7 +190,8 @@ of \element{name} values in a \SedDocument.
 Listing \ref{lst:name} extends the model definition in \lst{id} by a model \concept{\element{name}}.
 
 \begin{myXmlLst}{SED-ML \element{name} definition, e.g., for a model}{lst:name}
-<model id="m00001" name="Circadian oscillator" language="urn:sedml:language:sbml" source="urn:miriam:biomodels.db:BIOMD0000000012">
+<model id="m00001" name="Circadian oscillator" language="urn:sedml:language:sbml"
+        source="https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000012?filename=BIOMD0000000012_url.xml">
 	[MODEL DEFINITION]
 </model>
 \end{myXmlLst}

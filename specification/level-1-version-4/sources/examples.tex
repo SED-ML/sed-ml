@@ -288,7 +288,7 @@ SED-ML allows to describe simulation experiments from publications in a reproduc
 \label{example:leloup_sbml}
 The following example provides a SED-ML description for the simulation of the model based on the publication \cite{LeLoup1999}.
 
-The model is referenced by its SED-ML \hyperref[sec:id]{\element{id}} \code{model1} and refers to the model with the MIRIAM URN \url{urn:miriam:biomodels.db:BIOMD0000000021}. A second model is defined in the example, using \code{model1} as a source and applying additional changes to it, in this case updating two model parameters.
+The model is referenced by its SED-ML \hyperref[sec:id]{\element{id}} \code{model1} and refers to the model with the URL \url{https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000012.2?filename=BIOMD0000000012_url.xml}. A second model is defined in the example, using \code{model1} as a source and applying additional changes to it, in this case updating two model parameters.
 
 One simulation setup is defined in the \code{listOfSimulations}. It is a \code{uniformTimeCourse} over 380 time units, providing 1000 output points. The algorithm used is the CVODE solver, as denoted by the KiSAO ID \code{KiSAO:0000019}.
 
@@ -324,8 +324,7 @@ The \hyperref[class:output]{output} defined in the experiment consists of three 
 \subsection{IkappaB signaling (\texttt{L1V3\_ikkapab.omex})}
 The following example provides a SED-ML description for the simulation of the IkappaB-NF-kappaB signaling module described in \citep{hoffmann2002ikappab}.
 
-This model is referenced by its SED-ML ID \code{model1} and refers to the model with the MIRIAM URN \url{urn:miriam:biomodels.db:BIOMD0000000140}. 
-Software applications interpreting this example know how to dereference this URN and access the model in \biom \citep{N+06}.
+This model is referenced by its SED-ML ID \code{model1} and refers to the model with the URL \url{https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000140.2?filename=BIOMD0000000140_url.xml}.
 
 The simulation description specifies one simulation \code{simulation1}, which is a uniform timecourse simulation that simulates the model for 41 hours. \code{task1} then applies this simulation to the model.
 
