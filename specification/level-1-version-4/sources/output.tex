@@ -115,7 +115,7 @@ The \element{order} attribute is of type \element{non-negative integer} and, if 
 The \element{style} attribute is of type \SIdRef and, if present, must reference a \Style in the same \SedDocument.  It can be used to indicate styling information for the line, marker, and/or fill for this \Curve or \ShadedArea.  If not present, any style may be used.
 
 \paragraph*{\element{yAxis}}
-The \element{yAxis} attribute is of type \element{string} and must be defined if the parent \Plot defines both a \element{yAxis} and a \element{rightYAxis}.  If it has the value of \val{left}, it means that the data is to be displayed corresponding to the \element{yAxis} of the parent \Plot, and if it has the value of \val{right}, it means that the data is to be disaplyed corresponding to the \element{rightYAxis} of the parent \Plot.  If the parent \Plot has no defined \element{rightYAxis}, this attribute must not be defined.
+The \element{yAxis} attribute is of type \element{string} and must be defined if the parent \Plot defines both a \element{yAxis} and a \element{rightYAxis}.  If it has the value of \val{left}, it means that the data is to be displayed corresponding to the \element{yAxis} of the parent \Plot, and if it has the value of \val{right}, it means that the data is to be displayed corresponding to the \element{rightYAxis} of the parent \Plot.  If the parent \Plot has no defined \element{rightYAxis}, this attribute must not be defined.
 
 \paragraph*{\element{logX} (deprecated)}
 The \element{logX} attribute, of type \element{Boolean}, was used in previous versions of SED-ML to indicate whether the x axis of the \Plot should be linear or log10.  This allowed mutliple \Curve objects in the same \Plot to contradict each other, and has therefore been moved to \Axis.  The \element{logX} attribute on \Curve has therefore been deprecated, and will always be ignored.
@@ -192,7 +192,8 @@ The \element{type} attribute, if present, determines the type of surface and how
 \item \textbf{bar}: The data is plotted as a 3D bar plot.
 \end{itemize}
 
-
+\paragraph*{\element{logX}, \element{logY}, \element{logZ} (deprecated)}
+The \element{logX}, \element{logY} and \element{logZ} attributes, of type \element{Boolean}, were used in previous versions of SED-ML to indicate whether the respective axis of the \Plot should be linear or log10.  This allowed multiple objects in the same \Plot to contradict each other, and has therefore been moved to \Axis.  The \element{logX}, \element{logY} and \element{logZ} attributes on \Surface have therefore been deprecated, and will always be ignored.
 
 \end{blockChanged}
 %
