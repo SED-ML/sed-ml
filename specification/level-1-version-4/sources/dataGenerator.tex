@@ -13,6 +13,13 @@ A \Variable in a \DataGenerator may use the id of a \DataSource as its \element{
 When multidimensional data is output to a \Report, information about the dimensions should be stored in the output format chosen for the report, such as \CSV or \HDF.
 
 It is left up to interpreters how to store or output `ragged' matrices, where the data in some dimensions might not have the same lengths as each other.  One practice is to leave the data in this uneven state; another option is to fill out the `missing' data with NaNs.  The only requirement is that mathematical operations should not be affected by this choice.  For example, the `mean' of a vector should be the same whether or not it was extended with NaNs.
+
+\paragraph*{Output from multiple models}
+\label{sec:multiModelOutput}
+It is possible to create a \RepeatedTask that affects multiple models through different \SubTask children.  In this situation, individual \Variable children of a \DataGenerator must define both a \element{taskReference} to the \RepeatedTask and \element{modelReference} so it's clear which specific element is being tracked.  However, the question then becomes: what value does that \Variable take while the \RepeatedTask is performing a \Simulation in a \SubTask that does not involve that \Model?  In this situation, the \Variable is assumed to retain its last known value for the duration of the \Simulation (which will be its initialized value if no \Simulation has been performed yet that affects that \Variable).
+
+If those unchanging dimensions are not relevant to the desired output, it is possible to reduce the dimensionality by adding \RemainingDimension children, and only adding the ids of the \Task elements that involve the \Model the \Variable points to.
+
 \end{blockChanged}
 
 

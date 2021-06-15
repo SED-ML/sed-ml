@@ -454,13 +454,16 @@ The \concept{\element{modelReference}} element of data type \SIdRef is used to r
 \label{class:remainingDimension}
 \label{class:listOfRemainingDimensions}
 
-A \RemainingDimension object is used when a \Variable is multidimensional, but the \element{term} of the \Variable is a function that reduces the dimensionality of the data.  For example, a variable derived from a \Task inside a \RepeatedTask will have the dimensionality of both.  If the \element{term} of the parent \Variable is the `mean' function (\val{KISAO:0000825}), the following options are available:
+A \RemainingDimension object is used in two cases when a \Variable is multidimensional.  In the first case, the \element{term} of the \Variable is a function that reduces the dimensionality of the data.  For example, a variable derived from a \Task inside a \RepeatedTask will have the dimensionality of both.  If the \element{term} of the parent \Variable is the `mean' function (\val{KISAO:0000825}), the following options are available:
 
 \begin{itemize}
         \item The \Variable contains a single \RemainingDimension child that refers to the \Task.  The resulting data will have the same dimensions as if the \Variable referred directly to the \Task, but averaged over every repeat of the \RepeatedTask.  This situation is particularly common when the \Task is a stochastic time course simulation, and the \RepeatedTask is a simple loop of that \Task.
         \item The \Variable contains a single \RemainingDimension child that refers to the \RepeatedTask.  The resulting data will be a vector with the same number of entries as there were repeats of the \RepeatedTask.  This situation is particularly helpful when the \RepeatedTask is a parameter scan, and the \Variable is tracking a model variable that oscillates during the \Task.  The resulting vector will be the average value of that model variable under each of the different starting conditions.
         \item The \Variable contains no \RemainingDimension children at all.  The resulting data will be a single value, that has been averaged over both the \Task and \RepeatedTask.
 \end{itemize}
+
+In the second case, the \Variable is multidimensional, but some of those dimensions involve a \Task that does not reference the \Model from which the \Variable is drawn.  In these cases, if the \Variable is given \RemainingDimension children for the tasks that change the relevant \Model, but not the ones that do not, the resulting data will not include the dimension where the \Variable's \Model was not involved.
+
 
 A \RemainingDimension inherits the attributes and children of \SedBase, and adds the attributes \element{target} (of type \SIdRef), and \element{dimensionTarget} (of type \element{NuMLIdRef}), both of which are optional, but one of which must be present.
 
