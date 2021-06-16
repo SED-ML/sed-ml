@@ -7,7 +7,7 @@ A simulation is the execution of some defined algorithm(s). Simulations are desc
 
 \sedfig[width=0.9\textwidth]{images/uml/simulation}{The SED-ML Simulation class}{fig:simulation}
 
-\concept{Simulation} is an abstract class and serves as the container for the different types of simulation experiments. SED-ML \currentLV provides the predefined simulation classes \hyperref[class:uniformTimeCourse]{UniformTimeCourse}, \hyperref[class:oneStep]{OneStep} and \hyperref[class:steadyState]{SteadyState}. 
+\concept{Simulation} is an abstract class and serves as the container for the different types of simulation experiments. SED-ML \currentLV provides the predefined simulation classes \hyperref[class:uniformTimeCourse]{UniformTimeCourse}, \hyperref[class:oneStep]{OneStep}, \hyperref[class:steadyState]{SteadyState}, and \Analysis. 
 
 Each instance of the \concept{Simulation} class has an unambiguous and mandatory \hyperref[sec:id]{\code{id}}. An additional, optional \hyperref[sec:name]{\code{name}} may be given to the simulation. Every simulation has a required element \hyperref[class:algorithm]{\code{algorithm}} describing the simulation \hyperref[class:algorithm]{Algorithm}.
 
@@ -100,6 +100,22 @@ The \concept{SteadyState} represents a steady state computation (as for example 
 	<steadyState id="steady"> 
 		<algorithm kisaoID="KISAO:0000282" />
 	</steadyState > 
+</listOfSimulations>
+\end{myXmlLst}
+
+
+% ~~~ ANALYSIS SIMULATION ~~~
+\subsubsection{\element{Analysis}}
+\label{class:analysis}
+The \concept{Analysis} represents any sort of analysis or simulation of a \Model, entirely defined by its child \Algorithm.  If a simulation can be defined by a different \Simulation, that should be used instead, so that tools are more likely to recognize the request.  But for any simultion or any analysis not covered by \SteadyState, \OneStep, or \UniformTimeCourse, the only thing necessary is a KiSAO term for the \Algorithm defining what to do.
+
+\lsttext{analysis}{analysis}
+
+\begin{myXmlLst}{The SED-ML \code{analysis} element, defining a reachability analysis of a logical model.}{lst:analysis}
+<listOfSimulations>
+	<analysis id="reachability"> 
+		<algorithm kisaoID="KISAO:0000972" />
+	</analysis > 
 </listOfSimulations>
 \end{myXmlLst}
 
