@@ -60,64 +60,65 @@ The allowed MathML in SED-ML is restricted to the following subset:
 
 \changed{All the operations listed above describe functions of scalar-valued SED variables, or element-wise computations of matrix-valued SED variables. Matrix-valued SED variables can arise in multiple ways. For example, a variable for a basic task of a non-spatial \UniformTimeCourse would be a vector with length equal to the number of steps of the time course plus one. A \Variable for a \RepeatedTask of a non-spatial time course could be represented a matrix with dimensions for the iterations of the repeated tasks, its subtasks, and the steps of the nested basic task. MathML functions for matrices should be evaluated on an element-wise basis. For example, if $M$ and $N$ were two 2D matrix-valued SED variables, $M+3$ would add three to every element of $M$, $R = M+N$ would only be valid if $M$ and $N$ have the same dimensions, and $R_{i,j}$ would be equal to $M_{i,j} + N_{i,j}$. If the lengths of the dimensions are not equal (i.e. if $M_{i,j}$ exists but $N_{i,j}$ does not), the missing value should be assumed to be $NaN$ (not a number).  At this point, SED-ML does not define an algebra for matrix computations.}
 
+\subsubsection{MathML csymbols for dimensional input}
 
-%However, as one of SED-ML's aims is to provide post processing on the results of simulation experiments, this basic set needs to be extended by some aggregate functions. Therefore a defined set of \concept{MathML symbols} that represent vector values are supported by SED-ML. The only allowed symbols to be used in aggregate functions are the identifiers of \Variables defined in the \hyperref[class:listOfVariables]{\element{listOfVariables}} of a \DataGenerator. These \Variables represent the data collected from the simulation experiment in the associated \Task.  \changed{They always return scalar values, regardless of the dimensionality of the \Variable, and ignore any NaN values the vector or matrix might have.}
+\changed{While the new \DependentVariable class provides functionality to reduce the dimensionality of matrices, previous version of SED-ML defined the MathML functions \sedmin, \sedmax, \sedsum, and \product, each of which would reduce any n-dimensional vector to a single scalar value.  It is recommended that users switch to using \DependentVariable elements for their increased functionality, but the old functions are still defined here for backwards compatibility.}  The only allowed symbols to be used in aggregate functions are the identifiers of \Variables defined in the \hyperref[class:listOfVariables]{\element{listOfVariables}} of a \DataGenerator. These \Variables represent the data collected from the simulation experiment in the associated \Task.  \changed{They always return scalar values, regardless of the dimensionality of the \Variable, and ignore any NaN values the vector or matrix might have.}
 
-%\subsubsection*{\element{min}}
-%\label{fun:min}
-%The \concept{\element{min}} of a variable represents the smallest value the simulation experiment for that variable (Listing~\ref{lst:minFunction}). 
-%\begin{myXmlLst}{Example for the use of the MathML \code{min} function.}{lst:minFunction}
-%<apply>
-% 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#min">
-% 		min
-% 	</csymbol>
-% 	<ci> variableId </ci>
-%</apply>
-%\end{myXmlLst}
+\paragraph*{\element{min}}
+\label{fun:min}
+The \concept{\element{min}} of a variable represents the smallest value the simulation experiment for that variable (Listing~\ref{lst:minFunction}). 
+\begin{myXmlLst}{Example for the use of the MathML \code{min} function.}{lst:minFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#min">
+ 		min
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
 
-%\subsubsection*{\element{max}}
-%\label{fun:max}
-%The \concept{\element{max}} of a variable represents the largest value the simulation experiment for that variable (\lst{maxFunction}).
-%\begin{myXmlLst}{Example for the use of the MathML \code{max} function.}{lst:maxFunction}
-%<apply>
-% 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#max">
-% 		max
-% 	</csymbol>
-% 	<ci> variableId </ci>
-%</apply>
-%\end{myXmlLst}
+\paragraph*{\element{max}}
+\label{fun:max}
+The \concept{\element{max}} of a variable represents the largest value the simulation experiment for that variable (\lst{maxFunction}).
+\begin{myXmlLst}{Example for the use of the MathML \code{max} function.}{lst:maxFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#max">
+ 		max
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
 
-%\subsubsection*{\element{sum}}
-%\label{fun:sum}
-%The \concept{\element{sum}} of a variable represents the sum of all values of the variable returned by the simulation experiment (\lst{sumFunction}).
-%\begin{myXmlLst}{Example for the use of the MathML \code{sum} function.}{lst:sumFunction}
-%<apply>
-% 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#sum">
-% 		sum
-% 	</csymbol>
-% 	<ci> variableId </ci>
-%</apply>
-%\end{myXmlLst}
+\paragraph*{\element{sum}}
+\label{fun:sum}
+The \concept{\element{sum}} of a variable represents the sum of all values of the variable returned by the simulation experiment (\lst{sumFunction}).
+\begin{myXmlLst}{Example for the use of the MathML \code{sum} function.}{lst:sumFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#sum">
+ 		sum
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
 
-%\subsubsection*{\element{product}}
-%\label{fun:product}
-%The \concept{\element{product}} of a variable represents the multiplication of all values of the variable returned by the simulation experiment (\lst{productFunction}).
-%\begin{myXmlLst}{Example for the use of the MathML \code{product} function.}{lst:productFunction}
-%<apply>
-% 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#product">
-% 		product
-% 	</csymbol>
-% 	<ci> variableId </ci>
-%</apply>
-%\end{myXmlLst}
+\paragraph*{\element{product}}
+\label{fun:product}
+The \concept{\element{product}} of a variable represents the multiplication of all values of the variable returned by the simulation experiment (\lst{productFunction}).
+\begin{myXmlLst}{Example for the use of the MathML \code{product} function.}{lst:productFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#product">
+ 		product
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
 
 
-% ~~~ MATHML FUNCTIONS ~~~
-%\subsection{MathML functions}
+% ~~~ MATHML DISTRIBUTION FUNCTIONS ~~~
+\subsubsection{MathML Distribution Functions}
 \changed{The following functions are added to MathML as csymbols to represent draws from distributions:  \uniform, \normal, \lognormal, \poisson, and \sedgamma}:
 
 \begin{blockChanged}
-\subsubsection*{\element{uniform}}
+\paragraph*{\element{uniform}}
 \label{fun:uniform}
 The \uniform of a variable represents a draw from a uniform distribution.  It has two arguments:  the first is `min' and the second is `max', with `max' requried to be greater than `min'.  The draw from the distribution must be between `min' and `max', and may include `min', but may not include `max'.
 \begin{myXmlLst}{Example for the use of the MathML \code{uniform} function.}{lst:uniformFunction}
@@ -131,7 +132,7 @@ The \uniform of a variable represents a draw from a uniform distribution.  It ha
 \end{myXmlLst}
 
 
-\subsubsection*{\element{normal}}
+\paragraph*{\element{normal}}
 \label{fun:normal}
 The \normal of a variable represents a draw from a normal distribution.  It has two arguments:  the first is `mean', and the second is `stdev', that define the mean and the standard deviation, respectively, of the distribution.
 \begin{myXmlLst}{Example for the use of the MathML \code{normal} function.}{lst:normalFunction}
@@ -145,7 +146,7 @@ The \normal of a variable represents a draw from a normal distribution.  It has 
 \end{myXmlLst}
 
 
-\subsubsection*{\element{lognormal}}
+\paragraph*{\element{lognormal}}
 \label{fun:lognormal}
 The \lognormal of a variable represents a draw from a log-normal distribution.  It has two arguments:  the first is `mean', and the second is `stdev', that define the mean and the standard deviation, respectively, of the distribution.
 \begin{myXmlLst}{Example for the use of the MathML \code{lognormal} function.}{lst:lognormalFunction}
@@ -159,11 +160,11 @@ The \lognormal of a variable represents a draw from a log-normal distribution.  
 \end{myXmlLst}
 
 
-%\subsubsection*{\element{exponential}}
+%\paragraph*{\element{exponential}}
 %\label{fun:exponential}
 %The \exponential of a variable represents 
 
-\subsubsection*{\element{gamma}}
+\paragraph*{\element{gamma}}
 \label{fun:gamma}
 The \sedgamma of a variable represents a draw from a gamma distribution.  It has two arguments:  the first is `shape', and the second is `scale', that define the shape and scale, respectively, of the distribution.
 \begin{myXmlLst}{Example for the use of the MathML \code{gamma} function.}{lst:gammaFunction}
@@ -176,7 +177,7 @@ The \sedgamma of a variable represents a draw from a gamma distribution.  It has
 </apply>
 \end{myXmlLst}
 
-\subsubsection*{\element{poisson}}
+\paragraph*{\element{poisson}}
 \label{fun:poisson}
 The \poisson of a variable represents a discrete value drawn from a poisson distribution.  It has a single argument:  `rate', the expected rate of occurrences for the distribution.
 \begin{myXmlLst}{Example for the use of the MathML \code{poisson} function.}{lst:poissonFunction}
