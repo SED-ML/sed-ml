@@ -105,7 +105,7 @@ The \concept{\element{sum}} of a variable represents the sum of all values of th
 The \concept{\element{product}} of a variable represents the multiplication of all values of the variable returned by the simulation experiment (\lst{productFunction}).
 \begin{myXmlLst}{Example for the use of the MathML \code{product} function.}{lst:productFunction}
 <apply>
- 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#product">
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#product">
  		product
  	</csymbol>
  	<ci> variableId </ci>
@@ -123,7 +123,7 @@ The \concept{\element{product}} of a variable represents the multiplication of a
 The \uniform of a variable represents a draw from a uniform distribution.  It has two arguments:  the first is `min' and the second is `max', with `max' requried to be greater than `min'.  The draw from the distribution must be between `min' and `max', and may include `min', but may not include `max'.
 \begin{myXmlLst}{Example for the use of the MathML \code{uniform} function.}{lst:uniformFunction}
 <apply>
- 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#uniform">
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/functions/#uniform">
  		uniform
  	</csymbol>
  	<ci> minId </ci>
@@ -137,7 +137,7 @@ The \uniform of a variable represents a draw from a uniform distribution.  It ha
 The \normal of a variable represents a draw from a normal distribution.  It has two arguments:  the first is `mean', and the second is `stdev', that define the mean and the standard deviation, respectively, of the distribution.
 \begin{myXmlLst}{Example for the use of the MathML \code{normal} function.}{lst:normalFunction}
 <apply>
- 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#normal">
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/functions/#normal">
  		normal
  	</csymbol>
  	<ci> meanId </ci>
@@ -151,7 +151,7 @@ The \normal of a variable represents a draw from a normal distribution.  It has 
 The \lognormal of a variable represents a draw from a log-normal distribution.  It has two arguments:  the first is `mean', and the second is `stdev', that define the mean and the standard deviation, respectively, of the distribution.
 \begin{myXmlLst}{Example for the use of the MathML \code{lognormal} function.}{lst:lognormalFunction}
 <apply>
- 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#lognormal">
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/functions/#lognormal">
  		lognormal
  	</csymbol>
  	<ci> meanId </ci>
@@ -169,7 +169,7 @@ The \lognormal of a variable represents a draw from a log-normal distribution.  
 The \sedgamma of a variable represents a draw from a gamma distribution.  It has two arguments:  the first is `shape', and the second is `scale', that define the shape and scale, respectively, of the distribution.
 \begin{myXmlLst}{Example for the use of the MathML \code{gamma} function.}{lst:gammaFunction}
 <apply>
- 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#gamma">
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/functions/#gamma">
  		gamma
  	</csymbol>
  	<ci> shapeId </ci>
@@ -182,7 +182,7 @@ The \sedgamma of a variable represents a draw from a gamma distribution.  It has
 The \poisson of a variable represents a discrete value drawn from a poisson distribution.  It has a single argument:  `rate', the expected rate of occurrences for the distribution.
 \begin{myXmlLst}{Example for the use of the MathML \code{poisson} function.}{lst:poissonFunction}
 <apply>
- 	<csymbol encoding="text" definitionURL="http://sed-ml.org//#poisson">
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/functions/#poisson">
  		poisson
  	</csymbol>
  	<ci> rateId </ci>
