@@ -107,15 +107,46 @@ The \concept{SteadyState} represents a steady state computation (as for example 
 % ~~~ ANALYSIS SIMULATION ~~~
 \subsubsection{\element{Analysis}}
 \label{class:analysis}
-The \concept{Analysis} represents any sort of analysis or simulation of a \Model, entirely defined by its child \Algorithm.  If a simulation can be defined by a different \Simulation, that should be used instead, so that tools are more likely to recognize the request.  But for any simultion or any analysis not covered by \SteadyState, \OneStep, or \UniformTimeCourse, the only thing necessary is a KiSAO term for the \Algorithm defining what to do.
+The \concept{Analysis} represents any sort of analysis or simulation of a \Model, entirely defined by its child \Algorithm.  If a simulation can be defined by a different \Simulation, that should be used instead, so that tools are more likely to recognize the request.  But for any simultion or any analysis not covered by \SteadyState, \OneStep, or \UniformTimeCourse, the only thing necessary is a KiSAO term for the \Algorithm defining what to do.  The following examples illustrate analyses that could not be created with other SED-ML \Simulation classes:
 
 \lsttext{analysis}{analysis}
 
-\begin{myXmlLst}{The SED-ML \code{analysis} element, defining a reachability analysis of a logical model.}{lst:analysis}
+\begin{myXmlLst}{The SED-ML \code{analysis} element, defining a time course with a stop condition ($ObsA<9$).}{lst:analysis}
 <listOfSimulations>
-	<analysis id="reachability"> 
-		<algorithm kisaoID="KISAO:0000972" />
-	</analysis > 
+    <analysis id="time_course_to_stop_condition">
+        <algorithm kisaoID="KISAO:0000263"name="NFSim">
+            <algorithmParameter kisaoID="KISAO:0000525" value="ObsA&gt;9"/>
+            <algorithmParameter kisaoID="KISAO:0000xxx" value="0" name="start time"/>
+            <algorithmParameter kisaoID="KISAO:0000xxx" value="10000" name="max end time"/>
+            <algorithmParameter kisaoID="KISAO:0000xxx" value="0.5" name="observed step size"/>
+        </algorithm>
+    </analysis >
+</listOfSimulations>
+\end{myXmlLst}
+
+\lsttext{analysis2}{analysis2}
+
+\begin{myXmlLst}{The SED-ML \code{analysis} element, defining a non-uniform time course.}{lst:analysis2}
+<listOfSimulations>
+    <analysis id="non_uniform_time_course">
+        <algorithm kisaoID="KISAO:0000057" name="Brownian diffusion Smoluchowski method">
+            <algorithmParameter kisaoID="KISAO:0000525" value="ObsA&gt;9" name="stop condition"/>
+            <algorithmParameter kisaoID="KISAO:0000xxx" value="0" name="start time"/>
+            <algorithmParameter kisaoID="KISAO:0000xxx" value="100" name="max end time"/>
+        </algorithm>
+    </analysis >
+</listOfSimulations>
+\end{myXmlLst}
+
+\lsttext{analysis3}{analysis3}
+
+\begin{myXmlLst}{The SED-ML \code{analysis} element, defining a reachability analysis.}{lst:analysis3}
+<listOfSimulations>
+    <analysis id="non_uniform_time_course">
+        <algorithm kisaoID="KISAO:0000xxx" name="Reachability analysis">
+            <algorithmParameter kisaoID="KISAO:0000xxx" value="0" name="something_relevant"/>
+        </algorithm>
+    </analysis >
 </listOfSimulations>
 \end{myXmlLst}
 
