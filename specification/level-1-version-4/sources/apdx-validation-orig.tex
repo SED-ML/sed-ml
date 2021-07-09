@@ -1,0 +1,2325 @@
+% -*- TeX-master: "main"; fill-column: 72 -*-
+
+\section{Validation of SBML documents}
+\label{apdx-validation}
+
+\subsection{Validation and consistency rules}
+\label{validation-rules}
+
+This section summarizes all the conditions that must (or in some cases,
+at least \emph{should}) be true of an SBML Level~1 Version~1 model that
+uses the \SEDMLPackage. We use the same conventions as are used in the
+SBML Level~1 Version~1 Core specification document. In particular, there
+are different degrees of rule strictness. Formally, the differences are
+expressed in the statement of a rule: either a rule states that a
+condition \emph{must} be true, or a rule states that it \emph{should} be
+true. Rules of the former kind are strict SBML validation rules---a
+model encoded in SBML must conform to all of them in order to be
+considered valid. Rules of the latter kind are consistency rules. To
+help highlight these differences, we use the following three symbols
+next to the rule numbers:
+
+\begin{description}
+
+\item[\hspace*{6.5pt}\vSymbol\vsp] A \vSymbolName indicates a
+\emph{requirement} for SBML conformance. If a model does not follow this
+rule, it does not conform to the \SEDMLPackage specification. (Mnemonic
+intention behind the choice of symbol: ``This must be checked.'')
+
+\item[\hspace*{6.5pt}\cSymbol\csp] A \cSymbolName indicates a
+\emph{recommendation} for model consistency. If a model does not follow
+this rule, it is not considered strictly invalid as far as the
+\SEDMLPackage specification is concerned; however, it indicates that the
+model contains a physical or conceptual inconsistency. (Mnemonic
+intention behind the choice of symbol: ``This is a cause for warning.'')
+
+\item[\hspace*{6.5pt}\mSymbol\msp] A \mSymbolName indicates a strong
+recommendation for good modeling practice. This rule is not strictly a
+matter of SBML encoding, but the recommendation comes from logical
+reasoning. As in the previous case, if a model does not follow this
+rule, it is not strictly considered an invalid SBML encoding. (Mnemonic
+intention behind the choice of symbol: ``You're a star if you heed
+this.'')
+
+\end{description}
+
+The validation rules listed in the following subsections are all stated
+or implied in the rest of this specification document. They are
+enumerated here for convenience. Unless explicitly stated, all
+validation rules concern objects and attributes specifically defined in
+the \SEDMLPackage package.
+
+For \notice convenience and brevity, we use the shorthand
+``\token{sedml:\-x}'' to stand for an attribute or element name
+\token{x} in the namespace for the \SEDMLPackage package, using the
+namespace prefix \token{sedml}. In reality, the prefix string may be
+different from the literal ``\token{sedml}'' used here (and indeed, it
+can be any valid XML namespace prefix that the modeler or software
+chooses). We use ``\token{sedml:\-x}'' because it is shorter than to
+write a full explanation everywhere we refer to an attribute or element
+in the \SEDMLPackage namespace.
+
+\subsubsection*{General rules about this package}
+
+\validRule{sedml-10101}{To conform to the \SEDMLPackage specification
+for SBML Level~1 Version~1, an SBML document must declare
+\uri{http://www.sbml.org/sbml/level1/version1/sedml/version1} as the
+XMLNamespace to use for elements of this package. (Reference: SBML
+Level~1 Specification for SEDML, Version~1 \sec{xml-namespace}.)}
+
+\validRule{sedml-10102}{Wherever they appear in an SBML document,
+elements and attributes from the \SEDMLPackage must use the
+\uri{http://www.sbml.org/sbml/level1/version1/sedml/version1} namespace,
+declaring so either explicitly or implicitly. (Reference: SBML Level~1
+Specification for SEDML, Version~1 \sec{xml-namespace}.)}
+
+\subsubsection*{General rules about identifiers}
+
+\validRule{sedml-10301}{(Extends validation rule \#10301 in the
+\sbmlthreecore specification. TO DO list scope of ids) (Reference: SBML
+Level~3 Version~1 Core, Section~3.1.7.)}
+
+\validRule{sedml-10302}{The value of a \token{sedml:\-id} must conform
+to the syntax of the \class{SBML} data type \primtype{SId} (Reference:
+SBML Level~3 Version~1 Core, Section~3.1.7.)}
+
+\TODO{ANY LIST OF ELEMENTS THAT HAVE ATTRIBUTES}
+
+\subsubsection*{Rules for the extended \class{SBML} class}
+
+\validRule{sedml-20101}{In all SBML documents using the \SEDMLPackage,
+the \class{SBML} object must have the \token{sedml:\-required}
+attribute. (Reference: SBML Level~3 Version~1 Core, Section~4.1.2.)}
+
+\validRule{sedml-20102}{The value of attribute \token{sedml:\-required}
+on the \class{SBML} object must be of data type \primtype{boolean}.
+(Reference: SBML Level~3 Version~1 Core, Section~4.1.2.)}
+
+\validRule{sedml-20103}{The value of attribute \token{sedml:\-required}
+on the \class{SBML} object must be set to \val{false}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1 \sec{xml-namespace}.)}
+
+\subsubsection*{Rules for \class{SedDocument} object}
+
+\validRule{sedml-20201}{A \Document object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Document. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20202}{A \Document object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Document.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20203}{A \Document object must have the required
+attributes \token{sedml:\-level} and \token{sedml:\-version}. No other
+attributes from the SBML Level~3 SEDML namespaces are permitted on a
+\Document object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{document-class}.)}
+
+\validRule{sedml-20204}{A \Document object may contain one and only one
+instance of each of the \ListOfDataDescriptions, \ListOfModels,
+\ListOfSimulations, \ListOfAbstractTasks, \ListOfDataGenerators,
+\ListOfOutputs and \ListOfStyles elements. No other elements from the
+SBML Level~3 SEDML namespaces are permitted on a \Document object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{document-class}.)}
+
+\validRule{sedml-20205}{The attribute \token{sedml:\-level} on a
+\Document must have a value of data type \token{integer}, and must be
+non negative. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{document-class}.)}
+
+\validRule{sedml-20206}{The attribute \token{sedml:\-version} on a
+\Document must have a value of data type \token{integer}, and must be
+non negative. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{document-class}.)}
+
+\validRule{sedml-20207}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfDataDescriptions
+container object may only contain \DataDescription objects. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofdatadescriptions-class}.)}
+
+\validRule{sedml-20208}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfModels container
+object may only contain \Model objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofmodels-class}.)}
+
+\validRule{sedml-20209}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfSimulations container
+object may only contain \Simulation objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofsimulations-class}.)}
+
+\validRule{sedml-20210}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfTasks container
+object may only contain \AbstractTask objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listoftasks-class}.)}
+
+\validRule{sedml-20211}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfDataGenerators
+container object may only contain \DataGenerator objects. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofdatagenerators-class}.)}
+
+\validRule{sedml-20212}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfOutputs container
+object may only contain \Output objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofoutputs-class}.)}
+
+\validRule{sedml-20213}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfStyles container
+object may only contain \Style objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofstyles-class}.)}
+
+\validRule{sedml-20214}{A \ListOfDataDescriptions object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ListOfDataDescriptions object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofdatadescriptions-class}.)}
+
+\validRule{sedml-20215}{A \ListOfModels object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfModels object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofmodels-class}.)}
+
+\validRule{sedml-20216}{A \ListOfSimulations object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ListOfSimulations object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofsimulations-class}.)}
+
+\validRule{sedml-20217}{A \ListOfAbstractTasks object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ListOfAbstractTasks object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{listoftasks-class}.)}
+
+\validRule{sedml-20218}{A \ListOfDataGenerators object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ListOfDataGenerators object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofdatagenerators-class}.)}
+
+\validRule{sedml-20219}{A \ListOfOutputs object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfOutputs object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofoutputs-class}.)}
+
+\validRule{sedml-20220}{A \ListOfStyles object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfStyles object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofstyles-class}.)}
+
+
+\subsubsection*{Rules for \class{Model} object}
+
+\validRule{sedml-20301}{A \Model object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Model. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20302}{A \Model object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Model.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20303}{A \Model object must have the required attribute
+\token{sedml:\-source}, and may have the optional attribute
+\token{sedml:\-language}. No other attributes from the SBML Level~3
+SEDML namespaces are permitted on a \Model object. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{model-class}.)}
+
+\validRule{sedml-20304}{A \Model object may contain one and only one
+instance of the \ListOfChanges element. No other elements from the SBML
+Level~3 SEDML namespaces are permitted on a \Model object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{model-class}.)}
+
+\validRule{sedml-20305}{The attribute \token{sedml:\-source} on a \Model
+must have a value of data type \token{string}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{model-class}.)}
+
+\validRule{sedml-20306}{The attribute \token{sedml:\-language} on a
+\Model must have a value of data type \token{string}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{model-class}.)}
+
+\validRule{sedml-20307}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfChanges container
+object may only contain \Change objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofchanges-class}.)}
+
+\validRule{sedml-20308}{A \ListOfChanges object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfChanges object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofchanges-class}.)}
+
+
+\subsubsection*{Rules for \class{Change} object}
+
+\validRule{sedml-20401}{A \Change object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Change. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20402}{A \Change object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Change.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20403}{A \Change object must have the required
+attribute \token{sedml:\-target}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on a \Change object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{change-class}.)}
+
+\validRule{sedml-20404}{The attribute \token{sedml:\-target} on a
+\Change must have a value of data type \token{string}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{change-class}.)}
+
+
+\subsubsection*{Rules for \class{AddXML} object}
+
+\validRule{sedml-20501}{An \AddXML object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on an
+\AddXML. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20502}{An \AddXML object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on an \AddXML.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20503}{An \AddXML object must contain one and only one
+instance of the XMLNode element. No other elements from the SBML Level~3
+SEDML namespaces are permitted on an \AddXML object. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{addxml-class}.)}
+
+
+\subsubsection*{Rules for \class{ChangeAttribute} object}
+
+\validRule{sedml-20601}{A \ChangeAttribute object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ChangeAttribute. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-20602}{A \ChangeAttribute object may have the optional
+SBML Level~3 Core subobjects for notes and annotations. No other
+elements from the SBML Level~3 Core namespaces are permitted on a
+\ChangeAttribute. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-20603}{A \ChangeAttribute object must have the required
+attribute \token{sedml:\-newValue}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on a \ChangeAttribute object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{changeattribute-class}.)}
+
+\validRule{sedml-20604}{The attribute \token{sedml:\-newValue} on a
+\ChangeAttribute must have a value of data type \token{string}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{changeattribute-class}.)}
+
+
+\subsubsection*{Rules for \class{Variable} object}
+
+\validRule{sedml-20701}{A \Variable object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Variable. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20702}{A \Variable object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Variable.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20703}{A \Variable object may have the optional
+attributes \token{sedml:\-symbol}, \token{sedml:\-target},
+\token{sedml:\-taskReference} and \token{sedml:\-modelReference}. No
+other attributes from the SBML Level~3 SEDML namespaces are permitted on
+a \Variable object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{variable-class}.)}
+
+\validRule{sedml-20704}{A \Variable object may contain one and only one
+instance of the \ListOfRemainingDimensions element. No other elements
+from the SBML Level~3 SEDML namespaces are permitted on a \Variable
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{variable-class}.)}
+
+\validRule{sedml-20705}{The attribute \token{sedml:\-symbol} on a
+\Variable must have a value of data type \token{string}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{variable-class}.)}
+
+\validRule{sedml-20706}{The attribute \token{sedml:\-target} on a
+\Variable must have a value of data type \token{string}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{variable-class}.)}
+
+\validRule{sedml-20707}{The value of the attribute
+\token{sedml:\-taskReference} of a \Variable object must be the
+identifier of an existing \Task object defined in the enclosing \Model
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{variable-class}.)}
+
+\validRule{sedml-20708}{The value of the attribute
+\token{sedml:\-modelReference} of a \Variable object must be the
+identifier of an existing \Model object defined in the enclosing \Model
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{variable-class}.)}
+
+\validRule{sedml-20709}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfRemainingDimensions
+container object may only contain \RemainingDimension objects.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofremainingdimensions-class}.)}
+
+\validRule{sedml-20710}{A \ListOfRemainingDimensions object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ListOfRemainingDimensions object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofremainingdimensions-class}.)}
+
+
+\subsubsection*{Rules for \class{Parameter} object}
+
+\validRule{sedml-20801}{A \Parameter object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Parameter. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20802}{A \Parameter object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Parameter.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20803}{A \Parameter object must have the required
+attribute \token{sedml:\-value}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on a \Parameter object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{parameter-class}.)}
+
+\validRule{sedml-20804}{The attribute \token{sedml:\-value} on a
+\Parameter must have a value of data type \token{double}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{parameter-class}.)}
+
+
+\subsubsection*{Rules for \class{Simulation} object}
+
+\validRule{sedml-20901}{A \Simulation object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Simulation. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20902}{A \Simulation object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Simulation.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-20903}{A \Simulation object must contain one and only
+one instance of the Algorithm element. No other elements from the SBML
+Level~3 SEDML namespaces are permitted on a \Simulation object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{simulation-class}.)}
+
+
+\subsubsection*{Rules for \class{UniformTimeCourse} object}
+
+\validRule{sedml-21001}{An \UniformTimeCourse object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on an \UniformTimeCourse. (Reference: SBML
+Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21002}{An \UniformTimeCourse object may have the
+optional SBML Level~3 Core subobjects for notes and annotations. No
+other elements from the SBML Level~3 Core namespaces are permitted on an
+\UniformTimeCourse. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-21003}{An \UniformTimeCourse object must have the
+required attributes \token{sedml:\-initialTime},
+\token{sedml:\-outputStartTime} and \token{sedml:\-outputEndTime}, and
+may have the optional attributes \token{sedml:\-numberOfPoints} and
+\token{sedml:\-numberOfSteps}. No other attributes from the SBML Level~3
+SEDML namespaces are permitted on an \UniformTimeCourse object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{uniformtimecourse-class}.)}
+
+\validRule{sedml-21004}{The attribute \token{sedml:\-initialTime} on an
+\UniformTimeCourse must have a value of data type \token{double}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{uniformtimecourse-class}.)}
+
+\validRule{sedml-21005}{The attribute \token{sedml:\-outputStartTime} on
+an \UniformTimeCourse must have a value of data type \token{double}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{uniformtimecourse-class}.)}
+
+\validRule{sedml-21006}{The attribute \token{sedml:\-outputEndTime} on
+an \UniformTimeCourse must have a value of data type \token{double}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{uniformtimecourse-class}.)}
+
+\validRule{sedml-21007}{The attribute \token{sedml:\-numberOfPoints} on
+an \UniformTimeCourse must have a value of data type \token{integer}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{uniformtimecourse-class}.)}
+
+\validRule{sedml-21008}{The attribute \token{sedml:\-numberOfSteps} on
+an \UniformTimeCourse must have a value of data type \token{integer}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{uniformtimecourse-class}.)}
+
+
+\subsubsection*{Rules for \class{Algorithm} object}
+
+\validRule{sedml-21101}{An \Algorithm object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on an
+\Algorithm. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21102}{An \Algorithm object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on an \Algorithm.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21103}{An \Algorithm object must have the required
+attribute \token{sedml:\-kisaoID}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on an \Algorithm object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{algorithm-class}.)}
+
+\validRule{sedml-21104}{An \Algorithm object may contain one and only
+one instance of the \ListOfAlgorithmParameters element. No other
+elements from the SBML Level~3 SEDML namespaces are permitted on an
+\Algorithm object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{algorithm-class}.)}
+
+\validRule{sedml-21105}{The attribute \token{sedml:\-kisaoID} on an
+\Algorithm must have a value of data type \token{string}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{algorithm-class}.)}
+
+\validRule{sedml-21106}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfAlgorithmParameters
+container object may only contain \AlgorithmParameter objects.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofalgorithmparameters-class}.)}
+
+\validRule{sedml-21107}{A \ListOfAlgorithmParameters object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ListOfAlgorithmParameters object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofalgorithmparameters-class}.)}
+
+
+\subsubsection*{Rules for \class{AbstractTask} object}
+
+\validRule{sedml-21201}{An \AbstractTask object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+an \AbstractTask. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-21202}{An \AbstractTask object may have the optional
+SBML Level~3 Core subobjects for notes and annotations. No other
+elements from the SBML Level~3 Core namespaces are permitted on an
+\AbstractTask. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+
+\subsubsection*{Rules for \class{Task} object}
+
+\validRule{sedml-21301}{A \Task object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Task. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21302}{A \Task object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Task.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21303}{A \Task object may have the optional attributes
+\token{sedml:\-modelReference} and \token{sedml:\-simulationReference}.
+No other attributes from the SBML Level~3 SEDML namespaces are permitted
+on a \Task object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{task-class}.)}
+
+\validRule{sedml-21304}{The value of the attribute
+\token{sedml:\-modelReference} of a \Task object must be the identifier
+of an existing \Model object defined in the enclosing \Model object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{task-class}.)}
+
+\validRule{sedml-21305}{The value of the attribute
+\token{sedml:\-simulationReference} of a \Task object must be the
+identifier of an existing \Simulation object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{task-class}.)}
+
+
+\subsubsection*{Rules for \class{DataGenerator} object}
+
+\validRule{sedml-21401}{A \DataGenerator object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \DataGenerator. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-21402}{A \DataGenerator object may have the optional
+SBML Level~3 Core subobjects for notes and annotations. No other
+elements from the SBML Level~3 Core namespaces are permitted on a
+\DataGenerator. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21403}{A \DataGenerator object may contain one and only
+one instance of each of the \ListOfVariables, \ListOfParameters and
+ASTNode elements. No other elements from the SBML Level~3 SEDML
+namespaces are permitted on a \DataGenerator object. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{datagenerator-class}.)}
+
+\validRule{sedml-21404}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfVariables container
+object may only contain \Variable objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofvariables-class}.)}
+
+\validRule{sedml-21405}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfParameters container
+object may only contain \Parameter objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofparameters-class}.)}
+
+\validRule{sedml-21406}{A \ListOfVariables object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfVariables object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofvariables-class}.)}
+
+\validRule{sedml-21407}{A \ListOfParameters object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfParameters object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofparameters-class}.)}
+
+
+\subsubsection*{Rules for \class{Output} object}
+
+\validRule{sedml-21501}{An \Output object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on an
+\Output. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21502}{An \Output object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on an \Output.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+
+\subsubsection*{Rules for \class{Plot} object}
+
+\validRule{sedml-21601}{A \Plot object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Plot. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21602}{A \Plot object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Plot.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21603}{A \Plot object may have the optional attributes
+\token{sedml:\-legend}, \token{sedml:\-height} and
+\token{sedml:\-width}. No other attributes from the SBML Level~3 SEDML
+namespaces are permitted on a \Plot object. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{plot-class}.)}
+
+\validRule{sedml-21604}{A \Plot object may contain one and only one
+instance of each of the Axis and Axis elements. No other elements from
+the SBML Level~3 SEDML namespaces are permitted on a \Plot object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{plot-class}.)}
+
+\validRule{sedml-21605}{The attribute \token{sedml:\-legend} on a \Plot
+must have a value of data type \token{boolean}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{plot-class}.)}
+
+\validRule{sedml-21606}{The attribute \token{sedml:\-height} on a \Plot
+must have a value of data type \token{double}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{plot-class}.)}
+
+\validRule{sedml-21607}{The attribute \token{sedml:\-width} on a \Plot
+must have a value of data type \token{double}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{plot-class}.)}
+
+
+\subsubsection*{Rules for \class{Plot2D} object}
+
+\validRule{sedml-21701}{A \PlotTwoD object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\PlotTwoD. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21702}{A \PlotTwoD object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \PlotTwoD.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21703}{A \PlotTwoD object may contain one and only one
+instance of each of the \ListOfAbstractCurves and Axis elements. No
+other elements from the SBML Level~3 SEDML namespaces are permitted on a
+\PlotTwoD object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{plottwod-class}.)}
+
+\validRule{sedml-21704}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfCurves container
+object may only contain \AbstractCurve objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofcurves-class}.)}
+
+\validRule{sedml-21705}{A \ListOfAbstractCurves object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ListOfAbstractCurves object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofcurves-class}.)}
+
+
+\subsubsection*{Rules for \class{Plot3D} object}
+
+\validRule{sedml-21801}{A \PlotThreeD object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\PlotThreeD. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21802}{A \PlotThreeD object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \PlotThreeD.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21803}{A \PlotThreeD object may contain one and only
+one instance of each of the \ListOfSurfaces and Axis elements. No other
+elements from the SBML Level~3 SEDML namespaces are permitted on a
+\PlotThreeD object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{plotthreed-class}.)}
+
+\validRule{sedml-21804}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfSurfaces container
+object may only contain \Surface objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofsurfaces-class}.)}
+
+\validRule{sedml-21805}{A \ListOfSurfaces object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfSurfaces object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofsurfaces-class}.)}
+
+
+\subsubsection*{Rules for \class{AbstractCurve} object}
+
+\validRule{sedml-21901}{An \AbstractCurve object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+an \AbstractCurve. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-21902}{An \AbstractCurve object may have the optional
+SBML Level~3 Core subobjects for notes and annotations. No other
+elements from the SBML Level~3 Core namespaces are permitted on an
+\AbstractCurve. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-21903}{An \AbstractCurve object may have the optional
+attributes \token{sedml:\-logX}, \token{sedml:\-order},
+\token{sedml:\-style}, \token{sedml:\-yAxis} and
+\token{sedml:\-xDataReference}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on an \AbstractCurve object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{abstractcurve-class}.)}
+
+\validRule{sedml-21904}{The attribute \token{sedml:\-logX} on an
+\AbstractCurve must have a value of data type \token{boolean}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{abstractcurve-class}.)}
+
+\validRule{sedml-21905}{The attribute \token{sedml:\-order} on an
+\AbstractCurve must have a value of data type \token{integer}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{abstractcurve-class}.)}
+
+\validRule{sedml-21906}{The value of the attribute \token{sedml:\-style}
+of an \AbstractCurve object must be the identifier of an existing \Style
+object defined in the enclosing \Model object. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{abstractcurve-class}.)}
+
+\validRule{sedml-21907}{The attribute \token{sedml:\-yAxis} on an
+\AbstractCurve must have a value of data type \token{string}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{abstractcurve-class}.)}
+
+\validRule{sedml-21908}{The value of the attribute
+\token{sedml:\-xDataReference} of an \AbstractCurve object must be the
+identifier of an existing \DataReference object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{abstractcurve-class}.)}
+
+
+\subsubsection*{Rules for \class{Curve} object}
+
+\validRule{sedml-22001}{A \Curve object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Curve. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22002}{A \Curve object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Curve.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22003}{A \Curve object must have the required
+attributes \token{sedml:\-yDataReference} and \token{sedml:\-type}, and
+may have the optional attributes \token{sedml:\-logY},
+\token{sedml:\-xErrorUpper}, \token{sedml:\-xErrorLower},
+\token{sedml:\-yErrorUpper} and \token{sedml:\-yErrorLower}. No other
+attributes from the SBML Level~3 SEDML namespaces are permitted on a
+\Curve object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{curve-class}.)}
+
+\validRule{sedml-22004}{The value of the attribute
+\token{sedml:\-yDataReference} of a \Curve object must be the identifier
+of an existing \DataGenerator object defined in the enclosing \Model
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{curve-class}.)}
+
+\validRule{sedml-22005}{The value of the attribute \token{sedml:\-type}
+of a \Curve object must conform to the syntax of SBML data type
+\primtype{CurveType} and may only take on the allowed values of
+\primtype{CurveType} defined in SBML; that is, the value must be one of
+the following: \val{points}, \val{bar}, \val{barStacked},
+\val{horizontalBar} or \val{horizontalBarStacked}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{curve-class}.)}
+
+\validRule{sedml-22006}{The attribute \token{sedml:\-logY} on a \Curve
+must have a value of data type \token{boolean}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{curve-class}.)}
+
+\validRule{sedml-22007}{The value of the attribute
+\token{sedml:\-xErrorUpper} of a \Curve object must be the identifier of
+an existing \DataGenerator object defined in the enclosing \Model
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{curve-class}.)}
+
+\validRule{sedml-22008}{The value of the attribute
+\token{sedml:\-xErrorLower} of a \Curve object must be the identifier of
+an existing \DataGenerator object defined in the enclosing \Model
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{curve-class}.)}
+
+\validRule{sedml-22009}{The value of the attribute
+\token{sedml:\-yErrorUpper} of a \Curve object must be the identifier of
+an existing \DataGenerator object defined in the enclosing \Model
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{curve-class}.)}
+
+\validRule{sedml-22010}{The value of the attribute
+\token{sedml:\-yErrorLower} of a \Curve object must be the identifier of
+an existing \DataGenerator object defined in the enclosing \Model
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{curve-class}.)}
+
+
+\subsubsection*{Rules for \class{Surface} object}
+
+\validRule{sedml-22101}{A \Surface object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Surface. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22102}{A \Surface object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Surface.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22103}{A \Surface object must have the required
+attribute \token{sedml:\-zDataReference}, and may have the optional
+attributes \token{sedml:\-xDataReference},
+\token{sedml:\-yDataReference}, \token{sedml:\-type},
+\token{sedml:\-style}, \token{sedml:\-logX}, \token{sedml:\-logY},
+\token{sedml:\-logZ} and \token{sedml:\-order}. No other attributes from
+the SBML Level~3 SEDML namespaces are permitted on a \Surface object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{surface-class}.)}
+
+\validRule{sedml-22104}{The value of the attribute
+\token{sedml:\-zDataReference} of a \Surface object must be the
+identifier of an existing \DataGenerator object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{surface-class}.)}
+
+\validRule{sedml-22105}{The value of the attribute
+\token{sedml:\-xDataReference} of a \Surface object must be the
+identifier of an existing \DataGenerator object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{surface-class}.)}
+
+\validRule{sedml-22106}{The value of the attribute
+\token{sedml:\-yDataReference} of a \Surface object must be the
+identifier of an existing \DataGenerator object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{surface-class}.)}
+
+\validRule{sedml-22107}{The value of the attribute \token{sedml:\-type}
+of a \Surface object must conform to the syntax of SBML data type
+\primtype{SurfaceType} and may only take on the allowed values of
+\primtype{SurfaceType} defined in SBML; that is, the value must be one
+of the following: \val{parametricCurve}, \val{surfaceMesh},
+\val{surfaceContour}, \val{contour}, \val{heatMap}, \val{stackedCurves}
+or \val{bar}. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{surface-class}.)}
+
+\validRule{sedml-22108}{The value of the attribute \token{sedml:\-style}
+of a \Surface object must be the identifier of an existing \Style object
+defined in the enclosing \Model object. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{surface-class}.)}
+
+\validRule{sedml-22109}{The attribute \token{sedml:\-logX} on a \Surface
+must have a value of data type \token{boolean}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{surface-class}.)}
+
+\validRule{sedml-22110}{The attribute \token{sedml:\-logY} on a \Surface
+must have a value of data type \token{boolean}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{surface-class}.)}
+
+\validRule{sedml-22111}{The attribute \token{sedml:\-logZ} on a \Surface
+must have a value of data type \token{boolean}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{surface-class}.)}
+
+\validRule{sedml-22112}{The attribute \token{sedml:\-order} on a
+\Surface must have a value of data type \token{integer}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{surface-class}.)}
+
+
+\subsubsection*{Rules for \class{DataSet} object}
+
+\validRule{sedml-22201}{A \DataSet object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\DataSet. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22202}{A \DataSet object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \DataSet.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22203}{A \DataSet object must have the required
+attributes \token{sedml:\-label} and \token{sedml:\-dataReference}. No
+other attributes from the SBML Level~3 SEDML namespaces are permitted on
+a \DataSet object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{dataset-class}.)}
+
+\validRule{sedml-22204}{The attribute \token{sedml:\-label} on a
+\DataSet must have a value of data type \token{string}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{dataset-class}.)}
+
+\validRule{sedml-22205}{The value of the attribute
+\token{sedml:\-dataReference} of a \DataSet object must be the
+identifier of an existing \DataGenerator object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{dataset-class}.)}
+
+
+\subsubsection*{Rules for \class{Report} object}
+
+\validRule{sedml-22301}{A \Report object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Report. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22302}{A \Report object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Report.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22303}{A \Report object may contain one and only one
+instance of the \ListOfDataSets element. No other elements from the SBML
+Level~3 SEDML namespaces are permitted on a \Report object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{report-class}.)}
+
+\validRule{sedml-22304}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfDataSets container
+object may only contain \DataSet objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofdatasets-class}.)}
+
+\validRule{sedml-22305}{A \ListOfDataSets object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfDataSets object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofdatasets-class}.)}
+
+
+\subsubsection*{Rules for \class{AlgorithmParameter} object}
+
+\validRule{sedml-22401}{An \AlgorithmParameter object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on an \AlgorithmParameter. (Reference: SBML
+Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22402}{An \AlgorithmParameter object may have the
+optional SBML Level~3 Core subobjects for notes and annotations. No
+other elements from the SBML Level~3 Core namespaces are permitted on an
+\AlgorithmParameter. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-22403}{An \AlgorithmParameter object must have the
+required attributes \token{sedml:\-kisaoID} and \token{sedml:\-value}.
+No other attributes from the SBML Level~3 SEDML namespaces are permitted
+on an \AlgorithmParameter object. (Reference: SBML Level~1 Specification
+for SEDML, Version~1, \sec{algorithmparameter-class}.)}
+
+\validRule{sedml-22404}{An \AlgorithmParameter object may contain one
+and only one instance of the \ListOfAlgorithmParameters element. No
+other elements from the SBML Level~3 SEDML namespaces are permitted on
+an \AlgorithmParameter object. (Reference: SBML Level~1 Specification
+for SEDML, Version~1, \sec{algorithmparameter-class}.)}
+
+\validRule{sedml-22405}{The attribute \token{sedml:\-kisaoID} on an
+\AlgorithmParameter must have a value of data type \token{string}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{algorithmparameter-class}.)}
+
+\validRule{sedml-22406}{The attribute \token{sedml:\-value} on an
+\AlgorithmParameter must have a value of data type \token{string}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{algorithmparameter-class}.)}
+
+\validRule{sedml-22407}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfAlgorithmParameters
+container object may only contain \AlgorithmParameter objects.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofalgorithmparameters-class}.)}
+
+\validRule{sedml-22408}{A \ListOfAlgorithmParameters object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ListOfAlgorithmParameters object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofalgorithmparameters-class}.)}
+
+
+\subsubsection*{Rules for \class{Range} object}
+
+\validRule{sedml-22501}{A \Range object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Range. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22502}{A \Range object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Range.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+
+\subsubsection*{Rules for \class{ChangeXML} object}
+
+\validRule{sedml-22601}{A \ChangeXML object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\ChangeXML. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22602}{A \ChangeXML object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \ChangeXML.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22603}{A \ChangeXML object may contain one and only one
+instance of the XMLNode element. No other elements from the SBML Level~3
+SEDML namespaces are permitted on a \ChangeXML object. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{changexml-class}.)}
+
+
+\subsubsection*{Rules for \class{RemoveXML} object}
+
+\validRule{sedml-22701}{A \RemoveXML object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\RemoveXML. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22702}{A \RemoveXML object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \RemoveXML.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+
+\subsubsection*{Rules for \class{SetValue} object}
+
+\validRule{sedml-22801}{A \SetValue object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\SetValue. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22802}{A \SetValue object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \SetValue.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22803}{A \SetValue object must have the required
+attribute \token{sedml:\-modelReference}, and may have the optional
+attributes \token{sedml:\-symbol}, \token{sedml:\-target} and
+\token{sedml:\-range}. No other attributes from the SBML Level~3 SEDML
+namespaces are permitted on a \SetValue object. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{setvalue-class}.)}
+
+\validRule{sedml-22804}{A \SetValue object may contain one and only one
+instance of each of the ASTNode, \ListOfVariables and \ListOfParameters
+elements. No other elements from the SBML Level~3 SEDML namespaces are
+permitted on a \SetValue object. (Reference: SBML Level~1 Specification
+for SEDML, Version~1, \sec{setvalue-class}.)}
+
+\validRule{sedml-22805}{The value of the attribute
+\token{sedml:\-modelReference} of a \SetValue object must be the
+identifier of an existing \Model object defined in the enclosing \Model
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{setvalue-class}.)}
+
+\validRule{sedml-22806}{The attribute \token{sedml:\-symbol} on a
+\SetValue must have a value of data type \token{string}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{setvalue-class}.)}
+
+\validRule{sedml-22807}{The attribute \token{sedml:\-target} on a
+\SetValue must have a value of data type \token{string}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{setvalue-class}.)}
+
+\validRule{sedml-22808}{The value of the attribute \token{sedml:\-range}
+of a \SetValue object must be the identifier of an existing \Range
+object defined in the enclosing \Model object. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{setvalue-class}.)}
+
+\validRule{sedml-22809}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfVariables container
+object may only contain \Variable objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofvariables-class}.)}
+
+\validRule{sedml-22810}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfParameters container
+object may only contain \Parameter objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofparameters-class}.)}
+
+\validRule{sedml-22811}{A \ListOfVariables object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfVariables object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofvariables-class}.)}
+
+\validRule{sedml-22812}{A \ListOfParameters object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfParameters object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofparameters-class}.)}
+
+
+\subsubsection*{Rules for \class{UniformRange} object}
+
+\validRule{sedml-22901}{An \UniformRange object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+an \UniformRange. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-22902}{An \UniformRange object may have the optional
+SBML Level~3 Core subobjects for notes and annotations. No other
+elements from the SBML Level~3 Core namespaces are permitted on an
+\UniformRange. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-22903}{An \UniformRange object must have the required
+attributes \token{sedml:\-start}, \token{sedml:\-end},
+\token{sedml:\-numberOfPoints} and \token{sedml:\-type}. No other
+attributes from the SBML Level~3 SEDML namespaces are permitted on an
+\UniformRange object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{uniformrange-class}.)}
+
+\validRule{sedml-22904}{The attribute \token{sedml:\-start} on an
+\UniformRange must have a value of data type \token{double}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{uniformrange-class}.)}
+
+\validRule{sedml-22905}{The attribute \token{sedml:\-end} on an
+\UniformRange must have a value of data type \token{double}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{uniformrange-class}.)}
+
+\validRule{sedml-22906}{The attribute \token{sedml:\-numberOfPoints} on
+an \UniformRange must have a value of data type \token{integer}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{uniformrange-class}.)}
+
+\validRule{sedml-22907}{The attribute \token{sedml:\-type} on an
+\UniformRange must have a value of data type \token{string}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{uniformrange-class}.)}
+
+
+\subsubsection*{Rules for \class{VectorRange} object}
+
+\validRule{sedml-23001}{A \VectorRange object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\VectorRange. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23002}{A \VectorRange object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \VectorRange.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23003}{A \VectorRange object may have the optional
+attribute \token{sedml:\-value}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on a \VectorRange object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{vectorrange-class}.)}
+
+\validRule{sedml-23004}{The value of the attribute \token{sedml:\-value}
+of a \VectorRange object must be an vector of values of type
+\token{double}. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{vectorrange-class}.)}
+
+
+\subsubsection*{Rules for \class{FunctionalRange} object}
+
+\validRule{sedml-23101}{A \FunctionalRange object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \FunctionalRange. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-23102}{A \FunctionalRange object may have the optional
+SBML Level~3 Core subobjects for notes and annotations. No other
+elements from the SBML Level~3 Core namespaces are permitted on a
+\FunctionalRange. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-23103}{A \FunctionalRange object must have the required
+attribute \token{sedml:\-range}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on a \FunctionalRange object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{functionalrange-class}.)}
+
+\validRule{sedml-23104}{A \FunctionalRange object may contain one and
+only one instance of each of the \ListOfVariables, \ListOfParameters and
+ASTNode elements. No other elements from the SBML Level~3 SEDML
+namespaces are permitted on a \FunctionalRange object. (Reference: SBML
+Level~1 Specification for SEDML, Version~1,
+\sec{functionalrange-class}.)}
+
+\validRule{sedml-23105}{The value of the attribute \token{sedml:\-range}
+of a \FunctionalRange object must be the identifier of an existing
+\Range object defined in the enclosing \Model object. (Reference: SBML
+Level~1 Specification for SEDML, Version~1,
+\sec{functionalrange-class}.)}
+
+\validRule{sedml-23106}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfVariables container
+object may only contain \Variable objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofvariables-class}.)}
+
+\validRule{sedml-23107}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfParameters container
+object may only contain \Parameter objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofparameters-class}.)}
+
+\validRule{sedml-23108}{A \ListOfVariables object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfVariables object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofvariables-class}.)}
+
+\validRule{sedml-23109}{A \ListOfParameters object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfParameters object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofparameters-class}.)}
+
+
+\subsubsection*{Rules for \class{SubTask} object}
+
+\validRule{sedml-23201}{A \SubTask object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\SubTask. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23202}{A \SubTask object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \SubTask.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23203}{A \SubTask object must have the required
+attributes \token{sedml:\-order} and \token{sedml:\-task}. No other
+attributes from the SBML Level~3 SEDML namespaces are permitted on a
+\SubTask object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{subtask-class}.)}
+
+\validRule{sedml-23204}{The attribute \token{sedml:\-order} on a
+\SubTask must have a value of data type \token{integer}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{subtask-class}.)}
+
+\validRule{sedml-23205}{The value of the attribute \token{sedml:\-task}
+of a \SubTask object must be the identifier of an existing \AbstractTask
+object defined in the enclosing \Model object. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{subtask-class}.)}
+
+
+\subsubsection*{Rules for \class{OneStep} object}
+
+\validRule{sedml-23301}{An \OneStep object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on an
+\OneStep. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23302}{An \OneStep object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on an \OneStep.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23303}{An \OneStep object must have the required
+attribute \token{sedml:\-step}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on an \OneStep object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{onestep-class}.)}
+
+\validRule{sedml-23304}{The attribute \token{sedml:\-step} on an
+\OneStep must have a value of data type \token{double}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{onestep-class}.)}
+
+
+\subsubsection*{Rules for \class{SteadyState} object}
+
+\validRule{sedml-23401}{A \SteadyState object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\SteadyState. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23402}{A \SteadyState object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \SteadyState.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+
+\subsubsection*{Rules for \class{RepeatedTask} object}
+
+\validRule{sedml-23501}{A \RepeatedTask object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \RepeatedTask. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23502}{A \RepeatedTask object may have the optional
+SBML Level~3 Core subobjects for notes and annotations. No other
+elements from the SBML Level~3 Core namespaces are permitted on a
+\RepeatedTask. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23503}{A \RepeatedTask object may have the optional
+attributes \token{sedml:\-rangeId} and \token{sedml:\-resetModel}. No
+other attributes from the SBML Level~3 SEDML namespaces are permitted on
+a \RepeatedTask object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{repeatedtask-class}.)}
+
+\validRule{sedml-23504}{A \RepeatedTask object may contain one and only
+one instance of each of the \ListOfRanges, \ListOfSetValues and
+\ListOfSubTasks elements. No other elements from the SBML Level~3 SEDML
+namespaces are permitted on a \RepeatedTask object. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{repeatedtask-class}.)}
+
+\validRule{sedml-23505}{The value of the attribute
+\token{sedml:\-rangeId} of a \RepeatedTask object must be the identifier
+of an existing \Range object defined in the enclosing \Model object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{repeatedtask-class}.)}
+
+\validRule{sedml-23506}{The attribute \token{sedml:\-resetModel} on a
+\RepeatedTask must have a value of data type \token{boolean}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{repeatedtask-class}.)}
+
+\validRule{sedml-23507}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfRanges container
+object may only contain \Range objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofranges-class}.)}
+
+\validRule{sedml-23508}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfSetValues container
+object may only contain \SetValue objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofsetvalues-class}.)}
+
+\validRule{sedml-23509}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfSubTasks container
+object may only contain \SubTask objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofsubtasks-class}.)}
+
+\validRule{sedml-23510}{A \ListOfRanges object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfRanges object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofranges-class}.)}
+
+\validRule{sedml-23511}{A \ListOfSetValues object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfSetValues object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofsetvalues-class}.)}
+
+\validRule{sedml-23512}{A \ListOfSubTasks object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfSubTasks object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofsubtasks-class}.)}
+
+
+\subsubsection*{Rules for \class{ComputeChange} object}
+
+\validRule{sedml-23601}{A \ComputeChange object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ComputeChange. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-23602}{A \ComputeChange object may have the optional
+SBML Level~3 Core subobjects for notes and annotations. No other
+elements from the SBML Level~3 Core namespaces are permitted on a
+\ComputeChange. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23603}{A \ComputeChange object may contain one and only
+one instance of each of the ASTNode, \ListOfVariables and
+\ListOfParameters elements. No other elements from the SBML Level~3
+SEDML namespaces are permitted on a \ComputeChange object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{computechange-class}.)}
+
+\validRule{sedml-23604}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfVariables container
+object may only contain \Variable objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofvariables-class}.)}
+
+\validRule{sedml-23605}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfParameters container
+object may only contain \Parameter objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofparameters-class}.)}
+
+\validRule{sedml-23606}{A \ListOfVariables object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfVariables object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofvariables-class}.)}
+
+\validRule{sedml-23607}{A \ListOfParameters object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfParameters object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofparameters-class}.)}
+
+
+\subsubsection*{Rules for \class{DataDescription} object}
+
+\validRule{sedml-23701}{A \DataDescription object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \DataDescription. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-23702}{A \DataDescription object may have the optional
+SBML Level~3 Core subobjects for notes and annotations. No other
+elements from the SBML Level~3 Core namespaces are permitted on a
+\DataDescription. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-23703}{A \DataDescription object may have the optional
+attributes \token{sedml:\-format} and \token{sedml:\-source}. No other
+attributes from the SBML Level~3 SEDML namespaces are permitted on a
+\DataDescription object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{datadescription-class}.)}
+
+\validRule{sedml-23704}{A \DataDescription object may contain one and
+only one instance of each of the DimensionDescription and
+\ListOfDataSources elements. No other elements from the SBML Level~3
+SEDML namespaces are permitted on a \DataDescription object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{datadescription-class}.)}
+
+\validRule{sedml-23705}{The attribute \token{sedml:\-format} on a
+\DataDescription must have a value of data type \token{string}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{datadescription-class}.)}
+
+\validRule{sedml-23706}{The attribute \token{sedml:\-source} on a
+\DataDescription must have a value of data type \token{string}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{datadescription-class}.)}
+
+\validRule{sedml-23707}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfDataSources container
+object may only contain \DataSource objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofdatasources-class}.)}
+
+\validRule{sedml-23708}{A \ListOfDataSources object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ListOfDataSources object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofdatasources-class}.)}
+
+
+\subsubsection*{Rules for \class{DataSource} object}
+
+\validRule{sedml-23801}{A \DataSource object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\DataSource. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23802}{A \DataSource object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \DataSource.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23803}{A \DataSource object may have the optional
+attribute \token{sedml:\-indexSet}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on a \DataSource object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{datasource-class}.)}
+
+\validRule{sedml-23804}{A \DataSource object may contain one and only
+one instance of the \ListOfSlices element. No other elements from the
+SBML Level~3 SEDML namespaces are permitted on a \DataSource object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{datasource-class}.)}
+
+\validRule{sedml-23805}{The value of the attribute
+\token{sedml:\-indexSet} of a \DataSource object must be the identifier
+of an existing \ object defined in the enclosing \Model object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{datasource-class}.)}
+
+\validRule{sedml-23806}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfSlices container
+object may only contain \Slice objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofslices-class}.)}
+
+\validRule{sedml-23807}{A \ListOfSlices object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfSlices object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofslices-class}.)}
+
+
+\subsubsection*{Rules for \class{Slice} object}
+
+\validRule{sedml-23901}{A \Slice object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Slice. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23902}{A \Slice object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Slice.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-23903}{A \Slice object must have the required
+attributes \token{sedml:\-reference} and \token{sedml:\-value}, and may
+have the optional attributes \token{sedml:\-index},
+\token{sedml:\-startIndex} and \token{sedml:\-endIndex}. No other
+attributes from the SBML Level~3 SEDML namespaces are permitted on a
+\Slice object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{slice-class}.)}
+
+\validRule{sedml-23904}{The value of the attribute
+\token{sedml:\-reference} of a \Slice object must be the identifier of
+an existing \ object defined in the enclosing \Model object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{slice-class}.)}
+
+\validRule{sedml-23905}{The attribute \token{sedml:\-value} on a \Slice
+must have a value of data type \token{string}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{slice-class}.)}
+
+\validRule{sedml-23906}{The value of the attribute \token{sedml:\-index}
+of a \Slice object must be the identifier of an existing \ object
+defined in the enclosing \Model object. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{slice-class}.)}
+
+\validRule{sedml-23907}{The attribute \token{sedml:\-startIndex} on a
+\Slice must have a value of data type \token{integer}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{slice-class}.)}
+
+\validRule{sedml-23908}{The attribute \token{sedml:\-endIndex} on a
+\Slice must have a value of data type \token{integer}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{slice-class}.)}
+
+
+\subsubsection*{Rules for \class{ParameterEstimationTask} object}
+
+\validRule{sedml-24001}{A \ParameterEstimationTask object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ParameterEstimationTask. (Reference: SBML
+Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24002}{A \ParameterEstimationTask object may have the
+optional SBML Level~3 Core subobjects for notes and annotations. No
+other elements from the SBML Level~3 Core namespaces are permitted on a
+\ParameterEstimationTask. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-24003}{A \ParameterEstimationTask object must contain
+one and only one instance of each of the Algorithm, Objective,
+\ListOfAdjustableParameters and \\ListOfFitExperiments elements. No
+other elements from the SBML Level~3 SEDML namespaces are permitted on a
+\ParameterEstimationTask object. (Reference: SBML Level~1 Specification
+for SEDML, Version~1, \sec{parameterestimationtask-class}.)}
+
+\validRule{sedml-24004}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfAdjustableParameters
+container object may only contain \AdjustableParameter objects.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofadjustableparameters-class}.)}
+
+\validRule{sedml-24005}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfFitExperiments
+container object may only contain \FitExperiment objects. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{listoffitexperiments-class}.)}
+
+\validRule{sedml-24006}{A \ListOfAdjustableParameters object may have
+the optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ListOfAdjustableParameters object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofadjustableparameters-class}.)}
+
+\validRule{sedml-24007}{A \ListOfFitExperiments object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ListOfFitExperiments object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{listoffitexperiments-class}.)}
+
+
+\subsubsection*{Rules for \class{Objective} object}
+
+\validRule{sedml-24101}{An \Objective object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on an
+\Objective. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24102}{An \Objective object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on an \Objective.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+
+\subsubsection*{Rules for \class{LeastSquareObjectiveFunction} object}
+
+\validRule{sedml-24201}{A \LeastSquareObjectiveFunction object may have
+the optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \LeastSquareObjectiveFunction. (Reference:
+SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24202}{A \LeastSquareObjectiveFunction object may have
+the optional SBML Level~3 Core subobjects for notes and annotations. No
+other elements from the SBML Level~3 Core namespaces are permitted on a
+\LeastSquareObjectiveFunction. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+
+\subsubsection*{Rules for \class{AdjustableParameter} object}
+
+\validRule{sedml-24301}{An \AdjustableParameter object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on an \AdjustableParameter. (Reference: SBML
+Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24302}{An \AdjustableParameter object may have the
+optional SBML Level~3 Core subobjects for notes and annotations. No
+other elements from the SBML Level~3 Core namespaces are permitted on an
+\AdjustableParameter. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-24303}{An \AdjustableParameter object may have the
+optional attributes \token{sedml:\-initialValue},
+\token{sedml:\-modelReference} and \token{sedml:\-target}. No other
+attributes from the SBML Level~3 SEDML namespaces are permitted on an
+\AdjustableParameter object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{adjustableparameter-class}.)}
+
+\validRule{sedml-24304}{An \AdjustableParameter object must contain one
+and only one instance of the Bounds element, and may contain one and
+only one instance of the \ListOfExperimentRefs element. No other
+elements from the SBML Level~3 SEDML namespaces are permitted on an
+\AdjustableParameter object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{adjustableparameter-class}.)}
+
+\validRule{sedml-24305}{The attribute \token{sedml:\-initialValue} on an
+\AdjustableParameter must have a value of data type \token{double}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{adjustableparameter-class}.)}
+
+\validRule{sedml-24306}{The value of the attribute
+\token{sedml:\-modelReference} of an \AdjustableParameter object must be
+the identifier of an existing \Model object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{adjustableparameter-class}.)}
+
+\validRule{sedml-24307}{The attribute \token{sedml:\-target} on an
+\AdjustableParameter must have a value of data type \token{string}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{adjustableparameter-class}.)}
+
+\validRule{sedml-24308}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfExperimentRefs
+container object may only contain \ExperimentRef objects. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofexperimentrefs-class}.)}
+
+\validRule{sedml-24309}{A \ListOfExperimentRefs object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ListOfExperimentRefs object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofexperimentrefs-class}.)}
+
+
+\subsubsection*{Rules for \class{ExperimentRef} object}
+
+\validRule{sedml-24401}{An \ExperimentRef object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+an \ExperimentRef. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-24402}{An \ExperimentRef object may have the optional
+SBML Level~3 Core subobjects for notes and annotations. No other
+elements from the SBML Level~3 Core namespaces are permitted on an
+\ExperimentRef. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24403}{An \ExperimentRef object may have the optional
+attribute \token{sedml:\-experimentId}. No other attributes from the
+SBML Level~3 SEDML namespaces are permitted on an \ExperimentRef object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{experimentref-class}.)}
+
+\validRule{sedml-24404}{The value of the attribute
+\token{sedml:\-experimentId} of an \ExperimentRef object must be the
+identifier of an existing \FitExperiment object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{experimentref-class}.)}
+
+
+\subsubsection*{Rules for \class{FitExperiment} object}
+
+\validRule{sedml-24501}{A \FitExperiment object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \FitExperiment. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-24502}{A \FitExperiment object may have the optional
+SBML Level~3 Core subobjects for notes and annotations. No other
+elements from the SBML Level~3 Core namespaces are permitted on a
+\FitExperiment. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24503}{A \FitExperiment object may have the optional
+attribute \token{sedml:\-type}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on a \FitExperiment object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{fitexperiment-class}.)}
+
+\validRule{sedml-24504}{A \FitExperiment object may contain one and only
+one instance of each of the Algorithm and \ListOfFitMappings elements.
+No other elements from the SBML Level~3 SEDML namespaces are permitted
+on a \FitExperiment object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{fitexperiment-class}.)}
+
+\validRule{sedml-24505}{The value of the attribute \token{sedml:\-type}
+of a \FitExperiment object must conform to the syntax of SBML data type
+\primtype{ExperimentType} and may only take on the allowed values of
+\primtype{ExperimentType} defined in SBML; that is, the value must be
+one of the following: \val{steadyState} or \val{timeCourse}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{fitexperiment-class}.)}
+
+\validRule{sedml-24506}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfFitMappings container
+object may only contain \FitMapping objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listoffitmappings-class}.)}
+
+\validRule{sedml-24507}{A \ListOfFitMappings object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ListOfFitMappings object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{listoffitmappings-class}.)}
+
+
+\subsubsection*{Rules for \class{FitMapping} object}
+
+\validRule{sedml-24601}{A \FitMapping object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\FitMapping. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24602}{A \FitMapping object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \FitMapping.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24603}{A \FitMapping object must have the required
+attributes \token{sedml:\-dataSource}, \token{sedml:\-target} and
+\token{sedml:\-type}, and may have the optional attributes
+\token{sedml:\-weight} and \token{sedml:\-pointWeight}. No other
+attributes from the SBML Level~3 SEDML namespaces are permitted on a
+\FitMapping object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{fitmapping-class}.)}
+
+\validRule{sedml-24604}{The value of the attribute
+\token{sedml:\-dataSource} of a \FitMapping object must be the
+identifier of an existing \DataSource object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{fitmapping-class}.)}
+
+\validRule{sedml-24605}{The value of the attribute
+\token{sedml:\-target} of a \FitMapping object must be the identifier of
+an existing \DataGenerator object defined in the enclosing \Model
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{fitmapping-class}.)}
+
+\validRule{sedml-24606}{The value of the attribute \token{sedml:\-type}
+of a \FitMapping object must conform to the syntax of SBML data type
+\primtype{MappingType} and may only take on the allowed values of
+\primtype{MappingType} defined in SBML; that is, the value must be one
+of the following: \val{time}, \val{experimentalCondition} or
+\val{observable}. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{fitmapping-class}.)}
+
+\validRule{sedml-24607}{The attribute \token{sedml:\-weight} on a
+\FitMapping must have a value of data type \token{double}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1,
+\sec{fitmapping-class}.)}
+
+\validRule{sedml-24608}{The value of the attribute
+\token{sedml:\-pointWeight} of a \FitMapping object must be the
+identifier of an existing \DataSource object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{fitmapping-class}.)}
+
+
+\subsubsection*{Rules for \class{Bounds} object}
+
+\validRule{sedml-24701}{A \Bounds object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Bounds. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24702}{A \Bounds object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Bounds.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24703}{A \Bounds object may have the optional
+attributes \token{sedml:\-lowerBound}, \token{sedml:\-upperBound} and
+\token{sedml:\-scale}. No other attributes from the SBML Level~3 SEDML
+namespaces are permitted on a \Bounds object. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{bounds-class}.)}
+
+\validRule{sedml-24704}{The attribute \token{sedml:\-lowerBound} on a
+\Bounds must have a value of data type \token{double}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{bounds-class}.)}
+
+\validRule{sedml-24705}{The attribute \token{sedml:\-upperBound} on a
+\Bounds must have a value of data type \token{double}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{bounds-class}.)}
+
+\validRule{sedml-24706}{The value of the attribute \token{sedml:\-scale}
+of a \Bounds object must conform to the syntax of SBML data type
+\primtype{ScaleType} and may only take on the allowed values of
+\primtype{ScaleType} defined in SBML; that is, the value must be one of
+the following: \val{lin}, \val{log} or \val{log10}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{bounds-class}.)}
+
+
+\subsubsection*{Rules for \class{Figure} object}
+
+\validRule{sedml-24801}{A \Figure object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Figure. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24802}{A \Figure object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Figure.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24803}{A \Figure object may have the optional
+attributes \token{sedml:\-numRows} and \token{sedml:\-numCols}. No other
+attributes from the SBML Level~3 SEDML namespaces are permitted on a
+\Figure object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{figure-class}.)}
+
+\validRule{sedml-24804}{A \Figure object may contain one and only one
+instance of the \ListOfSubPlots element. No other elements from the SBML
+Level~3 SEDML namespaces are permitted on a \Figure object. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{figure-class}.)}
+
+\validRule{sedml-24805}{The attribute \token{sedml:\-numRows} on a
+\Figure must have a value of data type \token{integer}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{figure-class}.)}
+
+\validRule{sedml-24806}{The attribute \token{sedml:\-numCols} on a
+\Figure must have a value of data type \token{integer}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{figure-class}.)}
+
+\validRule{sedml-24807}{Apart from the general notes and annotations
+subobjects permitted on all SBML objects, a \ListOfSubPlots container
+object may only contain \SubPlot objects. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{listofsubplots-class}.)}
+
+\validRule{sedml-24808}{A \ListOfSubPlots object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \ListOfSubPlots object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{listofsubplots-class}.)}
+
+
+\subsubsection*{Rules for \class{SubPlot} object}
+
+\validRule{sedml-24901}{A \SubPlot object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\SubPlot. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24902}{A \SubPlot object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \SubPlot.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24903}{A \SubPlot object must have the required
+attributes \token{sedml:\-plot}, \token{sedml:\-row} and
+\token{sedml:\-col}, and may have the optional attributes
+\token{sedml:\-rowSpan} and \token{sedml:\-colSpan}. No other attributes
+from the SBML Level~3 SEDML namespaces are permitted on a \SubPlot
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{subplot-class}.)}
+
+\validRule{sedml-24904}{The value of the attribute \token{sedml:\-plot}
+of a \SubPlot object must be the identifier of an existing \Plot object
+defined in the enclosing \Model object. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{subplot-class}.)}
+
+\validRule{sedml-24905}{The attribute \token{sedml:\-row} on a \SubPlot
+must have a value of data type \token{integer}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{subplot-class}.)}
+
+\validRule{sedml-24906}{The attribute \token{sedml:\-col} on a \SubPlot
+must have a value of data type \token{integer}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{subplot-class}.)}
+
+\validRule{sedml-24907}{The attribute \token{sedml:\-rowSpan} on a
+\SubPlot must have a value of data type \token{integer}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{subplot-class}.)}
+
+\validRule{sedml-24908}{The attribute \token{sedml:\-colSpan} on a
+\SubPlot must have a value of data type \token{integer}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{subplot-class}.)}
+
+
+\subsubsection*{Rules for \class{Axis} object}
+
+\validRule{sedml-25001}{An \Axis object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on an
+\Axis. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25002}{An \Axis object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on an \Axis.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25003}{An \Axis object must have the required attribute
+\token{sedml:\-type}, and may have the optional attributes
+\token{sedml:\-min}, \token{sedml:\-max}, \token{sedml:\-grid} and
+\token{sedml:\-style}. No other attributes from the SBML Level~3 SEDML
+namespaces are permitted on an \Axis object. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{axis-class}.)}
+
+\validRule{sedml-25004}{The value of the attribute \token{sedml:\-type}
+of an \Axis object must conform to the syntax of SBML data type
+\primtype{AxisType} and may only take on the allowed values of
+\primtype{AxisType} defined in SBML; that is, the value must be one of
+the following: \val{linear} or \val{log10}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{axis-class}.)}
+
+\validRule{sedml-25005}{The attribute \token{sedml:\-min} on an \Axis
+must have a value of data type \token{double}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{axis-class}.)}
+
+\validRule{sedml-25006}{The attribute \token{sedml:\-max} on an \Axis
+must have a value of data type \token{double}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{axis-class}.)}
+
+\validRule{sedml-25007}{The attribute \token{sedml:\-grid} on an \Axis
+must have a value of data type \token{boolean}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{axis-class}.)}
+
+\validRule{sedml-25008}{The value of the attribute \token{sedml:\-style}
+of an \Axis object must be the identifier of an existing \Style object
+defined in the enclosing \Model object. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{axis-class}.)}
+
+
+\subsubsection*{Rules for \class{Style} object}
+
+\validRule{sedml-25101}{A \Style object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Style. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25102}{A \Style object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Style.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25103}{A \Style object may have the optional attribute
+\token{sedml:\-baseStyle}. No other attributes from the SBML Level~3
+SEDML namespaces are permitted on a \Style object. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{style-class}.)}
+
+\validRule{sedml-25104}{A \Style object may contain one and only one
+instance of each of the Line, Marker and Fill elements. No other
+elements from the SBML Level~3 SEDML namespaces are permitted on a
+\Style object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{style-class}.)}
+
+\validRule{sedml-25105}{The value of the attribute
+\token{sedml:\-baseStyle} of a \Style object must be the identifier of
+an existing \Style object defined in the enclosing \Model object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{style-class}.)}
+
+
+\subsubsection*{Rules for \class{Line} object}
+
+\validRule{sedml-25201}{A \Line object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Line. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25202}{A \Line object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Line.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25203}{A \Line object may have the optional attributes
+\token{sedml:\-type}, \token{sedml:\-color} and
+\token{sedml:\-thickness}. No other attributes from the SBML Level~3
+SEDML namespaces are permitted on a \Line object. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{line-class}.)}
+
+\validRule{sedml-25204}{The value of the attribute \token{sedml:\-type}
+of a \Line object must conform to the syntax of SBML data type
+\primtype{LineType} and may only take on the allowed values of
+\primtype{LineType} defined in SBML; that is, the value must be one of
+the following: \val{none}, \val{solid}, \val{dash}, \val{dot},
+\val{dashDot} or \val{dashDotDot}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{line-class}.)}
+
+\validRule{sedml-25205}{The attribute \token{sedml:\-color} on a \Line
+must have a value of data type \token{string}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{line-class}.)}
+
+\validRule{sedml-25206}{The attribute \token{sedml:\-thickness} on a
+\Line must have a value of data type \token{double}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{line-class}.)}
+
+
+\subsubsection*{Rules for \class{Marker} object}
+
+\validRule{sedml-25301}{A \Marker object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Marker. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25302}{A \Marker object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Marker.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25303}{A \Marker object may have the optional
+attributes \token{sedml:\-size}, \token{sedml:\-type},
+\token{sedml:\-fill}, \token{sedml:\-lineColor} and
+\token{sedml:\-lineThickness}. No other attributes from the SBML Level~3
+SEDML namespaces are permitted on a \Marker object. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{marker-class}.)}
+
+\validRule{sedml-25304}{The attribute \token{sedml:\-size} on a \Marker
+must have a value of data type \token{double}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{marker-class}.)}
+
+\validRule{sedml-25305}{The value of the attribute \token{sedml:\-type}
+of a \Marker object must conform to the syntax of SBML data type
+\primtype{MarkerType} and may only take on the allowed values of
+\primtype{MarkerType} defined in SBML; that is, the value must be one of
+the following: \val{none}, \val{square}, \val{circle}, \val{diamond},
+\val{xCross}, \val{plus}, \val{star}, \val{triangleUp},
+\val{triangleDown}, \val{triangleLeft}, \val{triangleRight}, \val{hDash}
+or \val{vDash}. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{marker-class}.)}
+
+\validRule{sedml-25306}{The attribute \token{sedml:\-fill} on a \Marker
+must have a value of data type \token{string}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{marker-class}.)}
+
+\validRule{sedml-25307}{The attribute \token{sedml:\-lineColor} on a
+\Marker must have a value of data type \token{string}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{marker-class}.)}
+
+\validRule{sedml-25308}{The attribute \token{sedml:\-lineThickness} on a
+\Marker must have a value of data type \token{double}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{marker-class}.)}
+
+
+\subsubsection*{Rules for \class{Fill} object}
+
+\validRule{sedml-25401}{A \Fill object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\Fill. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25402}{A \Fill object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \Fill.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25403}{A \Fill object must have the required attribute
+\token{sedml:\-color}, and may have the optional attribute
+\token{sedml:\-secondColor}. No other attributes from the SBML Level~3
+SEDML namespaces are permitted on a \Fill object. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{fill-class}.)}
+
+\validRule{sedml-25404}{The attribute \token{sedml:\-color} on a \Fill
+must have a value of data type \token{string}. (Reference: SBML Level~1
+Specification for SEDML, Version~1, \sec{fill-class}.)}
+
+\validRule{sedml-25405}{The attribute \token{sedml:\-secondColor} on a
+\Fill must have a value of data type \token{string}. (Reference: SBML
+Level~1 Specification for SEDML, Version~1, \sec{fill-class}.)}
+
+
+\subsubsection*{Rules for \class{DependentVariable} object}
+
+\validRule{sedml-25501}{A \DependentVariable object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \DependentVariable. (Reference: SBML
+Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25502}{A \DependentVariable object may have the
+optional SBML Level~3 Core subobjects for notes and annotations. No
+other elements from the SBML Level~3 Core namespaces are permitted on a
+\DependentVariable. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-25503}{A \DependentVariable object must have the
+required attribute \token{sedml:\-term}, and may have the optional
+attributes \token{sedml:\-targetTwo} and \token{sedml:\-symbolTwo}. No
+other attributes from the SBML Level~3 SEDML namespaces are permitted on
+a \DependentVariable object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{dependentvariable-class}.)}
+
+\validRule{sedml-25504}{The attribute \token{sedml:\-term} on a
+\DependentVariable must have a value of data type \token{string}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{dependentvariable-class}.)}
+
+\validRule{sedml-25505}{The attribute \token{sedml:\-targetTwo} on a
+\DependentVariable must have a value of data type \token{string}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{dependentvariable-class}.)}
+
+\validRule{sedml-25506}{The attribute \token{sedml:\-symbolTwo} on a
+\DependentVariable must have a value of data type \token{string}.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{dependentvariable-class}.)}
+
+
+\subsubsection*{Rules for \class{RemainingDimension} object}
+
+\validRule{sedml-25601}{A \RemainingDimension object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \RemainingDimension. (Reference: SBML
+Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25602}{A \RemainingDimension object may have the
+optional SBML Level~3 Core subobjects for notes and annotations. No
+other elements from the SBML Level~3 Core namespaces are permitted on a
+\RemainingDimension. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-25603}{A \RemainingDimension object may have the
+optional attributes \token{sedml:\-target} and
+\token{sedml:\-dimensionTarget}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on a \RemainingDimension object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{remainingdimension-class}.)}
+
+\validRule{sedml-25604}{The value of the attribute
+\token{sedml:\-target} of a \RemainingDimension object must be the
+identifier of an existing \ object defined in the enclosing \Model
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{remainingdimension-class}.)}
+
+\validRule{sedml-25605}{The value of the attribute
+\token{sedml:\-dimensionTarget} of a \RemainingDimension object must be
+the identifier of an existing \ object defined in the enclosing \Model
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{remainingdimension-class}.)}
+
+
+\subsubsection*{Rules for \class{DataRange} object}
+
+\validRule{sedml-25701}{A \DataRange object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\DataRange. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25702}{A \DataRange object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \DataRange.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25703}{A \DataRange object must have the required
+attribute \token{sedml:\-sourceRef}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on a \DataRange object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{datarange-class}.)}
+
+\validRule{sedml-25704}{The value of the attribute
+\token{sedml:\-sourceRef} of a \DataRange object must be the identifier
+of an existing \ object defined in the enclosing \Model object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{datarange-class}.)}
+
+
+\subsubsection*{Rules for \class{ShadedArea} object}
+
+\validRule{sedml-25801}{A \ShadedArea object may have the optional SBML
+Level~3 Core attributes \token{metaid} and \token{sboTerm}. No other
+attributes from the SBML Level~3 Core namespaces are permitted on a
+\ShadedArea. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25802}{A \ShadedArea object may have the optional SBML
+Level~3 Core subobjects for notes and annotations. No other elements
+from the SBML Level~3 Core namespaces are permitted on a \ShadedArea.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25803}{A \ShadedArea object must have the required
+attributes \token{sedml:\-yDataReferenceFrom} and
+\token{sedml:\-yDataReferenceTo}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on a \ShadedArea object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{shadedarea-class}.)}
+
+\validRule{sedml-25804}{The value of the attribute
+\token{sedml:\-yDataReferenceFrom} of a \ShadedArea object must be the
+identifier of an existing \DataGenerator object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{shadedarea-class}.)}
+
+\validRule{sedml-25805}{The value of the attribute
+\token{sedml:\-yDataReferenceTo} of a \ShadedArea object must be the
+identifier of an existing \DataGenerator object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{shadedarea-class}.)}
+
+
+\subsubsection*{Rules for \class{ParameterEstimationResultPlot} object}
+
+\validRule{sedml-25901}{A \ParameterEstimationResultPlot object may have
+the optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ParameterEstimationResultPlot.
+(Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-25902}{A \ParameterEstimationResultPlot object may have
+the optional SBML Level~3 Core subobjects for notes and annotations. No
+other elements from the SBML Level~3 Core namespaces are permitted on a
+\ParameterEstimationResultPlot. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-25903}{A \ParameterEstimationResultPlot object must
+have the required attribute \token{sedml:\-taskRef}. No other attributes
+from the SBML Level~3 SEDML namespaces are permitted on a
+\ParameterEstimationResultPlot object. (Reference: SBML Level~1
+Specification for SEDML, Version~1,
+\sec{parameterestimationresultplot-class}.)}
+
+\validRule{sedml-25904}{The value of the attribute
+\token{sedml:\-taskRef} of a \ParameterEstimationResultPlot object must
+be the identifier of an existing \Task object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{parameterestimationresultplot-class}.)}
+
+
+\subsubsection*{Rules for \class{WaterfallPlot} object}
+
+\validRule{sedml-26001}{A \WaterfallPlot object may have the optional
+SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
+other attributes from the SBML Level~3 Core namespaces are permitted on
+a \WaterfallPlot. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-26002}{A \WaterfallPlot object may have the optional
+SBML Level~3 Core subobjects for notes and annotations. No other
+elements from the SBML Level~3 Core namespaces are permitted on a
+\WaterfallPlot. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-26003}{A \WaterfallPlot object must have the required
+attribute \token{sedml:\-taskRef}. No other attributes from the SBML
+Level~3 SEDML namespaces are permitted on a \WaterfallPlot object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{waterfallplot-class}.)}
+
+\validRule{sedml-26004}{The value of the attribute
+\token{sedml:\-taskRef} of a \WaterfallPlot object must be the
+identifier of an existing \Task object defined in the enclosing \Model
+object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{waterfallplot-class}.)}
+
+
+\subsubsection*{Rules for \class{ParameterEstimationReport} object}
+
+\validRule{sedml-26101}{A \ParameterEstimationReport object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on a \ParameterEstimationReport. (Reference:
+SBML Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-26102}{A \ParameterEstimationReport object may have the
+optional SBML Level~3 Core subobjects for notes and annotations. No
+other elements from the SBML Level~3 Core namespaces are permitted on a
+\ParameterEstimationReport. (Reference: SBML Level~3 Version~1 Core,
+Section~3.2.)}
+
+\validRule{sedml-26103}{A \ParameterEstimationReport object must have
+the required attribute \token{sedml:\-taskRef}. No other attributes from
+the SBML Level~3 SEDML namespaces are permitted on a
+\ParameterEstimationReport object. (Reference: SBML Level~1
+Specification for SEDML, Version~1,
+\sec{parameterestimationreport-class}.)}
+
+\validRule{sedml-26104}{The value of the attribute
+\token{sedml:\-taskRef} of a \ParameterEstimationReport object must be
+the identifier of an existing \Task object defined in the enclosing
+\Model object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{parameterestimationreport-class}.)}
+
+

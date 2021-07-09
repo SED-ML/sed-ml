@@ -16,7 +16,7 @@
 
 % packages and commands
 \input{sources/styles/latex-macros}
-%\input{sbmlpkgspec}
+\input{sbmlpkgspec}
 
 \begin{document}
 \input{sources/frontpage}
@@ -69,13 +69,6 @@ In this section the major components of SED-ML are described. \changed{Each sect
 %% ~~~ CONCEPTS ~~~
 \input{sources/concepts}
 
-%\appendix
-%\input{sources/apdx-validation}
-
-
-%% ~~~ VALIDATION ~~~
-%\input{sources/apdx-validation}
-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% ACKNOWLEDGMENTS
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -120,6 +113,16 @@ All specification examples listed below are available as \hyperref[sec:archive]{
 Additional SED-ML examples are available at \url{http://sed-ml.org/}.
 
 \input{sources/examples}
+
+\chapter{Validation}
+\label{app:validation}
+\begin{blockChanged}
+\input{sources/apdx-validation}
+\end{blockChanged}
+
+%% ~~~ VALIDATION ~~~
+%\input{sources/apdx-validation}
+
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -295,22 +295,22 @@ In the following example, a 3x3 \Figure is defined with four subplots.  The firs
 \sedfig[width=0.6\textwidth]{images/Figure_example}{The output of Listing \vref{lst:figure_example}}{fig:figure_example}
 
 
-\subsection{\element{ParameterEstimationResultsPlot}}
-\label{class:parameterEstimationResultsPlot}
-A \ParameterEstimationResultsPlot class is used to create a default plot from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskRef} of type \SIdRef that points to that task.
+\subsection{\element{ParameterEstimationResultPlot}}
+\label{class:parameterEstimationResultPlot}
+A \ParameterEstimationResultPlot class is used to create a default plot from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskRef} of type \SIdRef that points to that task.
 
-\sedfig[width=0.7\textwidth]{images/uml/parameterEstimationResultsPlot}{The definition of the SED-ML \ParameterEstimationResultsPlot and \WaterfallPlot classes.}{fig:parameterEstimationResultsPlotFigure}
+\sedfig[width=0.7\textwidth]{images/uml/parameterEstimationResultPlot}{The definition of the SED-ML \ParameterEstimationResultPlot and \WaterfallPlot classes.}{fig:parameterEstimationResultPlotFigure}
 
 The plot should display the relevant information collected during the parameter estimation, but the specifics may vary from tool to tool depending on the particular method used.  At the very least, the optimal \AdjustableParameter values should be reported, along with any information that would let the user determine the confidence in those estimates, such as the residuals.
 
-It is possible to reproduce and/or have more control over the contents of a \Plot that covers the contents of a \ParameterEstimationTask by creating \DataGenerator elements that use \DependentVariable objects whose \element{term} references particular elements of a \ParameterEstimationTask such as the residuals of the \Objective, or the overall $\chi^2$ value of the task.  This is the only way to get direct control over the \Style of anything displayed in a \ParameterEstimationResultsPlot.  But the data itself should be displayed in some form by default in a \ParameterEstimationReport.
+It is possible to reproduce and/or have more control over the contents of a \Plot that covers the contents of a \ParameterEstimationTask by creating \DataGenerator elements that use \DependentVariable objects whose \element{term} references particular elements of a \ParameterEstimationTask such as the residuals of the \Objective, or the overall $\chi^2$ value of the task.  This is the only way to get direct control over the \Style of anything displayed in a \ParameterEstimationResultPlot.  But the data itself should be displayed in some form by default in a \ParameterEstimationReport.
 
 
 \subsection{\element{WaterfallPlot}}
 \label{class:waterfallPlot}
 The \WaterfallPlot class is used to create a default plot of a particular style from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskRef} of type \SIdRef that points to that task.
 
-Like a \ParameterEstimationResultsPlot, a \WaterfallPlot displays a range of results and data from a \ParameterEstimationTask that might not otherwise be easily accessible.  Different tools and different experiments may result in different types and styles of waterfall plots.  For an overview of the sort of data present in one, see Gillespie, 2012 \citep{gillespie2012}.
+Like a \ParameterEstimationResultPlot, a \WaterfallPlot displays a range of results and data from a \ParameterEstimationTask that might not otherwise be easily accessible.  Different tools and different experiments may result in different types and styles of waterfall plots.  For an overview of the sort of data present in one, see Gillespie, 2012 \citep{gillespie2012}.
 
 
 \end{blockChanged}
