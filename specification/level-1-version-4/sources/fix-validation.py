@@ -88,6 +88,13 @@ replacements = [
     (r"optional SED-ML Level~1 attributes \token{id}, \token{metaid}, and \token{sboTerm}", r"optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}"),
     ]
 
+def addRequiredId(paragraph):
+    idreqlist = ["\\Parameter", "\\Variable", "\\DataDescription", "\\DataSource", "\\Model", "\\Simulation", "\\AbstractTask", "\\Task", "\\RepeatedTask", "\\ParameterEstimationTask", "\\DataGenerator", "\\Style", ]
+    for req in idreqlist:
+        if req + " object may have the optional SED-ML Level~1 attributes" in paragraph:
+            return paragraph.replace(r"optional SED-ML Level~1 attributes \token{id}, \token{name},", r"required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name}")
+    return paragraph
+
 def listOfUpper(letter):
     return "listOf" + letter.group(1).upper()
 
@@ -116,6 +123,7 @@ def fix(paragraph):
     for ig in ignore:
         if ig in paragraph:
             return
+    paragraph = addRequiredId(paragraph)
     # paragraph = re.sub("")
     outfile.write(paragraph + "\n\n")
 
