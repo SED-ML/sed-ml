@@ -196,7 +196,7 @@ The \concept{SetValue} class (\fig{repeatedTask}) allows the modification of a \
 The value to be changed is identified via the combination of \changed{the attributes \code{modelReference}, \code{symbol}, and \code{target}}, in order to select an implicit or explicit variable within the referenced model.
 
 The \Math contains the expression computing the value by referring to optional \hyperref[class:parameter]{parameters}, \hyperref[class:variable]{variables} or a \hyperref[class:range]{range}.
-Again as for \hyperref[class:functionalRange]{functionalRange}, variable references retrieve always the current value of the model variable or range at the current iteration of the enclosing \hyperref[class:repeatedTask]{repeatedTask}.
+In contrast to \hyperref[class:functionalRange]{functionalRange}, variable references in \hyperref[class:setValue]{setValue} retrieve always the current value of the model variable or range at the current iteration of the enclosing \hyperref[class:repeatedTask]{repeatedTask}.
 
 \begin{myXmlLst}{A \code{setValue} element setting \code{w} to the values of the range with id \code{current}.}{lst:setValue}
 <listOfChanges>
@@ -270,7 +270,7 @@ The \concept{FunctionalRange} (\fig{range}) constructs a range through calculati
 
 The optional attribute \code{range} of type \hyperref[type:sidref]{SIdRef} may be used as a shorthand to specify the \hyperref[sec:id]{\element{id}} of another \Range. The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \hyperref[sec:id]{\element{id}} of the range is used directly. In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
 
-\changed{The value of any \Variable child of a \FunctionalRange should be calculated before the first simulation begins, and will not be affected by any \SubTask in the \RepeatedTask.}
+\changed{The value of any \Variable child of a \FunctionalRange should be calculated before the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} have been applied to the models in the \RepeatedTask and before the first simulation begins, and will not be affected by any \SubTask in the \RepeatedTask.}
 
 For example:
 
