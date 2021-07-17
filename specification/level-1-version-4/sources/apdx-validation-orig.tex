@@ -348,7 +348,7 @@ a \Variable object. (Reference: SBML Level~1 Specification for SEDML,
 Version~1, \sec{variable-class}.)}
 
 \validRule{sedml-20704}{A \Variable object may contain one and only one
-instance of the \ListOfRemainingDimensions element. No other elements
+instance of the \ListOfAppliedDimensions element. No other elements
 from the SBML Level~3 SEDML namespaces are permitted on a \Variable
 object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
 \sec{variable-class}.)}
@@ -374,17 +374,17 @@ object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
 \sec{variable-class}.)}
 
 \validRule{sedml-20709}{Apart from the general notes and annotations
-subobjects permitted on all SBML objects, a \ListOfRemainingDimensions
-container object may only contain \RemainingDimension objects.
+subobjects permitted on all SBML objects, a \ListOfAppliedDimensions
+container object may only contain \AppliedDimension objects.
 (Reference: SBML Level~1 Specification for SEDML, Version~1,
-\sec{listofremainingdimensions-class}.)}
+\sec{listofapplieddimensions-class}.)}
 
-\validRule{sedml-20710}{A \ListOfRemainingDimensions object may have the
+\validRule{sedml-20710}{A \ListOfAppliedDimensions object may have the
 optional SBML Level~3 Core attributes \token{metaid} and
 \token{sboTerm}. No other attributes from the SBML Level~3 Core
-namespaces are permitted on a \ListOfRemainingDimensions object.
+namespaces are permitted on a \ListOfAppliedDimensions object.
 (Reference: SBML Level~1 Specification for SEDML, Version~1,
-\sec{listofremainingdimensions-class}.)}
+\sec{listofapplieddimensions-class}.)}
 
 
 \subsubsection*{Rules for \class{Parameter} object}
@@ -2150,38 +2150,38 @@ SEDML, Version~1, \sec{dependentvariable-class}.)}
 \sec{dependentvariable-class}.)}
 
 
-\subsubsection*{Rules for \class{RemainingDimension} object}
+\subsubsection*{Rules for \class{AppliedDimension} object}
 
-\validRule{sedml-25601}{A \RemainingDimension object may have the
+\validRule{sedml-25601}{A \AppliedDimension object may have the
 optional SBML Level~3 Core attributes \token{metaid} and
 \token{sboTerm}. No other attributes from the SBML Level~3 Core
-namespaces are permitted on a \RemainingDimension. (Reference: SBML
+namespaces are permitted on a \AppliedDimension. (Reference: SBML
 Level~3 Version~1 Core, Section~3.2.)}
 
-\validRule{sedml-25602}{A \RemainingDimension object may have the
+\validRule{sedml-25602}{A \AppliedDimension object may have the
 optional SBML Level~3 Core subobjects for notes and annotations. No
 other elements from the SBML Level~3 Core namespaces are permitted on a
-\RemainingDimension. (Reference: SBML Level~3 Version~1 Core,
+\AppliedDimension. (Reference: SBML Level~3 Version~1 Core,
 Section~3.2.)}
 
-\validRule{sedml-25603}{A \RemainingDimension object may have the
+\validRule{sedml-25603}{A \AppliedDimension object may have the
 optional attributes \token{sedml:\-target} and
 \token{sedml:\-dimensionTarget}. No other attributes from the SBML
-Level~3 SEDML namespaces are permitted on a \RemainingDimension object.
+Level~3 SEDML namespaces are permitted on a \AppliedDimension object.
 (Reference: SBML Level~1 Specification for SEDML, Version~1,
-\sec{remainingdimension-class}.)}
+\sec{applieddimension-class}.)}
 
 \validRule{sedml-25604}{The value of the attribute
-\token{sedml:\-target} of a \RemainingDimension object must be the
+\token{sedml:\-target} of a \AppliedDimension object must be the
 identifier of an existing \ object defined in the enclosing \Model
 object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
-\sec{remainingdimension-class}.)}
+\sec{applieddimension-class}.)}
 
 \validRule{sedml-25605}{The value of the attribute
-\token{sedml:\-dimensionTarget} of a \RemainingDimension object must be
+\token{sedml:\-dimensionTarget} of a \AppliedDimension object must be
 the identifier of an existing \ object defined in the enclosing \Model
 object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
-\sec{remainingdimension-class}.)}
+\sec{applieddimension-class}.)}
 
 
 \subsubsection*{Rules for \class{DataRange} object}

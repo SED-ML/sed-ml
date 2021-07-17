@@ -148,7 +148,7 @@ For \notice convenience and brevity, we use the shorthand ``\token{x}'' to stand
 
 \validRule{20703}{A \Variable object may have the optional attributes \token{symbol}, \token{target}, \token{taskReference} and \token{modelReference}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:variable}.)}
 
-\validRule{20704}{A \Variable object may contain one and only one instance of the \ListOfRemainingDimensions element. (Reference: SED-ML Level~1 Version~4, Section \ref{class:variable}.)}
+\validRule{20704}{A \Variable object may contain one and only one instance of the \ListOfAppliedDimensions element. (Reference: SED-ML Level~1 Version~4, Section \ref{class:variable}.)}
 
 \validRule{20705}{The attribute \token{symbol} on a \Variable must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:variable}.)}
 
@@ -158,9 +158,9 @@ For \notice convenience and brevity, we use the shorthand ``\token{x}'' to stand
 
 \validRule{20708}{The value of the attribute \token{modelReference} of a \Variable object must be the identifier of an existing \Model object defined in the enclosing \Model object. (Reference: SED-ML Level~1 Version~4, Section \ref{class:variable}.)}
 
-\validRule{20709}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfRemainingDimensions container object may only contain \RemainingDimension objects. (Reference: SED-ML Level~1 Version~4, Section \ref{class:listOfRemainingDimensions}.)}
+\validRule{20709}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfAppliedDimensions container object may only contain \AppliedDimension objects. (Reference: SED-ML Level~1 Version~4, Section \ref{class:listOfAppliedDimensions}.)}
 
-\validRule{20710}{A \ListOfRemainingDimensions object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:listOfRemainingDimensions}.)}
+\validRule{20710}{A \ListOfAppliedDimensions object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:listOfAppliedDimensions}.)}
 
 
 
@@ -944,17 +944,17 @@ For \notice convenience and brevity, we use the shorthand ``\token{x}'' to stand
 
 
 
-\subsubsection*{Rules for \RemainingDimension object}
+\subsubsection*{Rules for \AppliedDimension object}
 
-\validRule{25601}{A \RemainingDimension object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
+\validRule{25601}{A \AppliedDimension object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
 
-\validRule{25602}{A \RemainingDimension object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
+\validRule{25602}{A \AppliedDimension object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
 
-\validRule{25603}{A \RemainingDimension object may have the optional attributes \token{target} and \token{dimensionTarget}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:remainingDimension}.)}
+\validRule{25603}{A \AppliedDimension object may have the optional attributes \token{target} and \token{dimensionTarget}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:appliedDimension}.)}
 
-\validRule{25604}{The value of the attribute \token{target} of a \RemainingDimension object must be the identifier of an existing \ object defined in the enclosing \Model object. (Reference: SED-ML Level~1 Version~4, Section \ref{class:remainingDimension}.)}
+\validRule{25604}{The value of the attribute \token{target} of a \AppliedDimension object must be the identifier of an existing \ object defined in the enclosing \Model object. (Reference: SED-ML Level~1 Version~4, Section \ref{class:appliedDimension}.)}
 
-\validRule{25605}{The value of the attribute \token{dimensionTarget} of a \RemainingDimension object must be the identifier of an existing \ object defined in the enclosing \Model object. (Reference: SED-ML Level~1 Version~4, Section \ref{class:remainingDimension}.)}
+\validRule{25605}{The value of the attribute \token{dimensionTarget} of a \AppliedDimension object must be the identifier of an existing \ object defined in the enclosing \Model object. (Reference: SED-ML Level~1 Version~4, Section \ref{class:appliedDimension}.)}
 
 
 

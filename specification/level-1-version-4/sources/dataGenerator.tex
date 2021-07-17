@@ -16,9 +16,12 @@ It is left up to interpreters how to store or output `ragged' matrices, where th
 
 \paragraph*{Output from multiple models}
 \label{sec:multiModelOutput}
-It is possible to create a \RepeatedTask that affects multiple models through different \SubTask children.  In this situation, individual \Variable children of a \DataGenerator must define both a \element{taskReference} to the \RepeatedTask and \element{modelReference} so it's clear which specific element is being tracked.  However, the question then becomes: what value does that \Variable take while the \RepeatedTask is performing a \Simulation in a \SubTask that does not involve that \Model?  In this situation, the \Variable is assumed to retain its last known value for the duration of the \Simulation (which will be its initialized value if no \Simulation has been performed yet that affects that \Variable).
+It is possible to create a \RepeatedTask that affects multiple models through different \SubTask children.  In this situation, individual \Variable children of a \DataGenerator must define both a \element{taskReference} to the \RepeatedTask and \element{modelReference} so it's clear which specific element is being tracked.  However, the question then becomes: what value does that \Variable take while the \RepeatedTask is performing a \Simulation in a \SubTask that does not involve that \Model?  In this situation, the \Variable is assumed to retain its last known value (should it have one) for the duration of the \Simulation (which will be its initialized value if no \Simulation has been performed yet that affects that \Variable).  If the model has no initialized value for the element, its value is assumed to be $NaN$.
 
-If those unchanging dimensions are not relevant to the desired output, it is possible to reduce the dimensionality by adding \RemainingDimension children, and only adding the ids of the \Task elements that involve the \Model the \Variable points to.
+This is an unusual situation, so much so that different simulators may create different outputs, or fail to implement support for it at all.  For this reason, it is recommended that all \SubTask elements in a \RepeatedTask reference the same \Model.
+%A \RepeatedTask for a second model can be created separately.  If the results of one \RepeatedTask are needed to set up or modify a different model, a second \RepeatedTask can be created that references a \DataGenerator from the first \RepeatedTask.  Only when multiple models depend on the results of each other will a single \RepeatedTask be needed that references both, and in that case, the experiment designer should ensure that the simulator they wish to use handles the situation in a way that makes sense for that experiment.
+%LS NOTE:  I wrote the above more detailed explanation, but I think it's too rare a situation (and too complicated to explain easily) that the shorter explanation should suffice.
+
 
 \end{blockChanged}
 
