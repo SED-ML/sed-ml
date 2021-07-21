@@ -1,5 +1,5 @@
 \section{General data types, attributes and classes}
-In this section concepts used repeatedly throughout the SED-ML specification are introduced. This includes  \hyperref[sec:dataTypes]{primitive data types}, classes (\SedBase, \Notes, \hyperref[class:notes]{Annotation}, \Parameter, \Variable), \hyperref[sec:generalAttributes]{attributes}, and \hyperref[sec:reference]{reference relations}.
+This section introduces concepts used repeatedly throughout the specification of SED-ML. This includes  \hyperref[sec:dataTypes]{primitive data types}, classes (\SedBase, \Notes, \hyperref[class:notes]{Annotation}, \Parameter, \Variable), \hyperref[sec:generalAttributes]{attributes}, and \hyperref[sec:reference]{reference relations}.
 
 The main \hyperref[sec:components]{SED-ML components} based on these general data types, attributes and classes are described in Section~\ref{sec:components}.
 
@@ -57,12 +57,12 @@ As with \SId, the equality of \concept{SIdRef} values is determined by exact cha
 \begin{blockChanged}
 \subsubsection[\element{TargetType}]{Type \element{TargetType}}
 \label{type:target}
-Type \concept{\element{TargetType}} is used to identify elements of a model.  This type is derived from type \element{string}, and it is up to the target modeling language to define what form makes sense to uniquely identify a particular element of that model.  For XML-based languages, using an \element{XPath} is required when referencing the raw XML of the model in a \ChangeXML, \AddXML, or \RemoveXML, but other schemes may be used when referencing more abstract concepts implied by the model.
+Type \concept{\element{TargetType}} is used to identify elements of a model.  This type is derived from type \element{string}, and it is up to model languages to define how elements encoded in the language should be identified.  For XML-based languages, \element{XPath} must be used inconjuction with \ChangeXML, \AddXML, or \RemoveXML. Model languages are encouraged to provide clear documentation about how model elements can be identified.
 \end{blockChanged}
 
 \subsubsection[\element{XPath}]{Type \element{XPath}}
 \label{type:xpath}
-Type \concept{\element{XPath}} is \changed{derived from type \element{TargetType} and is} used to identify nodes and attributes within an XML representation. \concept{\element{XPath}} in SED-ML is an \hyperref[sec:xpath]{XPath} version 1 expression which can be used to unambiguously identify an element or attribute in an XML file. The concept of \hyperref[sec:xpath]{XPath} is described in Section~\ref{sec:xpath}.  Note that \concept{\element{XPath}} may be used by some model languages to imply more abstract concepts implied by the model, such as pointing to an XML element to mean `the current value of this element in the changed model state'.
+Type \concept{\element{XPath}} is \changed{derived from type \element{TargetType} and is} used to identify nodes and attributes within an XML representation of a model. \concept{\element{XPath}} in SED-ML is an \hyperref[sec:xpath]{XPath} version 1 expression which can be used to unambiguously identify an element or attribute in an XML file. The concept of \hyperref[sec:xpath]{XPath} is described in Section~\ref{sec:xpath}.  Note, model languages can choose to use \concept{\element{XPath}} to identify abstract concepts implied by models that are not defined in XML files, such as `the current value of corresponding to an XML element within the state of a simulation run'.
 
 \begin{blockChanged}
 \subsubsection[\element{URN}]{Type \element{URN}}
@@ -92,22 +92,22 @@ As with \hyperref[type:numlsid]{\element{NuMLSId}}, the equality of \concept{\el
 \subsubsection[\element{AxisType}]{Type \element{AxisType}}
 \label{type:axisType}
 
-The \element{AxisType} primitive data type is used in the definition of the \Axis class.  \element{AxisType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{linear}, and \val{log10}.  Attributes of type \element{AxisType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Axis class's definition in \ref{class:axis}.
+The \element{AxisType} primitive data type is used in the definition of the \Axis class.  \element{AxisType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{linear}, and \val{log10}.  Attributes of type \element{AxisType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Axis class' definition in \ref{class:axis}.
 
 \subsubsection[\element{CurveType}]{Type \element{CurveType}}
 \label{type:curveType}
 
-The \element{CurveType} primitive data type is used in the definition of the \Curve class.  \element{CurveType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{points}, \val{bar}, \val{barStacked}, \val{horizontalBar}, and \val{horizontalBarStacked}.  Attributes of type \element{CurveType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Curve class's definition in \ref{class:curve}.
+The \element{CurveType} primitive data type is used in the definition of the \Curve class.  \element{CurveType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{points}, \val{bar}, \val{barStacked}, \val{horizontalBar}, and \val{horizontalBarStacked}.  Attributes of type \element{CurveType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Curve class' definition in \ref{class:curve}.
 
 \subsubsection[\element{SurfaceType}]{Type \element{SurfaceType}}
 \label{type:surfaceType}
 
-The \element{SurfaceType} primitive data type is used in the definition of the \Surface class.  \element{SurfaceType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{parametricCurve}, \val{surfaceMesh}, \val{surfaceContour}, \val{contour}, \val{heatMap}, \val{stackedCurves}, and \val{bar}.  Attributes of type \element{SurfaceType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Surface class's definition in \ref{class:surface}.
+The \element{SurfaceType} primitive data type is used in the definition of the \Surface class.  \element{SurfaceType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{parametricCurve}, \val{surfaceMesh}, \val{surfaceContour}, \val{contour}, \val{heatMap}, \val{stackedCurves}, and \val{bar}.  Attributes of type \element{SurfaceType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Surface class' definition in \ref{class:surface}.
 
 \subsubsection[\element{LineType}]{Type \element{LineType}}
 \label{type:lineType}
 
-The \element{LineType} primitive data type is used in the definition of the \Line class.  \element{LineType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{none}, \val{solid}, \val{dash}, \val{dot}, \val{dashDot}, and \val{dashDotDot}.  Attributes of type \element{LineType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Line class's definition in \ref{class:line}.
+The \element{LineType} primitive data type is used in the definition of the \Line class.  \element{LineType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{none}, \val{solid}, \val{dash}, \val{dot}, \val{dashDot}, and \val{dashDotDot}.  Attributes of type \element{LineType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Line class' definition in \ref{class:line}.
 
 \subsubsection[\element{SedColor}]{Type \element{SedColor}}
 \label{type:sedColor}
@@ -117,25 +117,25 @@ The \element{SedColor} primitive data type is used in the definition of various 
 \subsubsection[\element{MarkerType}]{Type \element{MarkerType}}
 \label{type:markerType}
 
-The \element{MarkerType} primitive data type is used in the definition of the \Marker class.  \element{MarkerType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{none}, \val{square}, \val{circle}, \val{diamond}, \val{xCross}, \val{plus}, \val{star}, \val{triangleUp}, \val{triangleDown}, \val{triangleLeft}, \val{triangleRight}, \val{hDash}, and \val{vDash}.  Attributes of type \element{MarkerType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Marker class's definition in \ref{class:marker}.
+The \element{MarkerType} primitive data type is used in the definition of the \Marker class.  \element{MarkerType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{none}, \val{square}, \val{circle}, \val{diamond}, \val{xCross}, \val{plus}, \val{star}, \val{triangleUp}, \val{triangleDown}, \val{triangleLeft}, \val{triangleRight}, \val{hDash}, and \val{vDash}.  Attributes of type \element{MarkerType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Marker class' definition in \ref{class:marker}.
 
 
 \subsubsection[\element{MappingType}]{Type \element{MappingType}}
 \label{type:mappingType}
 
-The \element{MappingType} primitive data type is used in the definition of the \FitMapping class.  \element{MappingType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{time}, \val{experimentalCondition} and \val{observable}.  Attributes of type \element{MappingType} cannot take on any other values.  The meaning of these values is discussed in the context of the \FitMapping class's definition in \ref{class:fitMapping}.
+The \element{MappingType} primitive data type is used in the definition of the \FitMapping class.  \element{MappingType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{time}, \val{experimentalCondition} and \val{observable}.  Attributes of type \element{MappingType} cannot take on any other values.  The meaning of these values is discussed in the context of the \FitMapping class' definition in \ref{class:fitMapping}.
 
 
 \subsubsection[\element{ExperimentType}]{Type \element{ExperimentType}}
 \label{type:experimentType}
 
-The \element{ExperimentType} primitive data type is used in the definition of the \FitExperiment class.  \element{ExperimentType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{steadyState} and \val{timeCourse}.  Attributes of type \element{ExperimentType} cannot take on any other values.  The meaning of these values is discussed in the context of the \FitExperiment class's definition in \ref{class:fitExperiment}.
+The \element{ExperimentType} primitive data type is used in the definition of the \FitExperiment class.  \element{ExperimentType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{steadyState} and \val{timeCourse}.  Attributes of type \element{ExperimentType} cannot take on any other values.  The meaning of these values is discussed in the context of the \FitExperiment class' definition in \ref{class:fitExperiment}.
 
 
 \subsubsection[\element{ScaleType}]{Type \element{ScaleType}}
 \label{type:scaleType}
 
-The \element{ScaleType} primitive data type is used in the definition of the \Bounds class.  \element{ScaleType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{lin}, \val{log}, and \val{log10}.  Attributes of type \element{ScaleType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Bounds class's definition in \ref{class:bounds}.
+The \element{ScaleType} primitive data type is used in the definition of the \Bounds class.  \element{ScaleType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{lin}, \val{log}, and \val{log10}.  Attributes of type \element{ScaleType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Bounds class' definition in \ref{class:bounds}.
 
 
 \end{blockChanged}
@@ -148,7 +148,7 @@ The \element{ScaleType} primitive data type is used in the definition of the \Bo
 \label{class:sedBase}
 \concept{SEDBase} is the base class of all SED-ML classes (\fig{sedBase}). The \concept{SEDBase} class has the optional attribute \hyperref[sec:metaid]{\element{metaid}}, and the two optional subelements \hyperref[sec:notesElement]{\element{notes}} and \hyperref[sec:annotationElement]{\element{annotation}}. 
 
-\concept{SEDBase} provides means to attach additional information on all other classes. That information can be specified by human readable \Notes or custom \Annotation.
+The optional \hyperref[sec:notesElement]{\element{notes}} and \hyperref[sec:annotationElement]{\element{annotation}} subelements provide investigators the ability to attach additional information to all SED-ML objects.
 
 \begin{blockChanged}
 \sedfig[width=0.75\textwidth]{images/uml/sedBase}{The \SEDBase, \Notes, and \Annotation classes}{fig:sedBase}
@@ -156,11 +156,11 @@ The \element{ScaleType} primitive data type is used in the definition of the \Bo
 % ~~~ ID ~~~
 \paragraph*{\element{id}}
 \label{sec:id}
-The \element{id} attribute is an optional attribute on the \SEDBase class.  The \element{id} attribute value on an object serves as its \emph{identifier}.  The data type of \element{id} on \SEDBase is \element{SId} (Section~\ref{type:sid}).  Every \element{SId} attribute value in a \SedDocument must be unique.  Whenever a SED-ML element references another SED-ML element, it uses this identifier to do so.
+The \element{id} attribute is an optional attribute on the \SEDBase class.  The \element{id} attribute value on an object serves as its \emph{identifier}.  The data type of \element{id} on \SEDBase is \element{SId} (Section~\ref{type:sid}).  Every \element{SId} attribute value in a \SedDocument must be unique.  Whenever a SED-ML element references another SED-ML element, it must use this identifier to do so.
 
 Although \element{id} is optional on \SEDBase, object classes derived from \SEDBase may stipulate that \element{id} is a required attribute for those classes.
 
-In lower Level/Version combinations of SED-ML, the attributes \element{id} and \element{name} are defined on individual object subclasses.  The movement of these attributes to \SEDBase in this version has no practical effect on these classes.
+In earlier versions of SED-ML, the attributes \element{id} and \element{name} were defined on individual object subclasses.  he movement of these attributes to \SEDBase in this version has no practical effect on these classes.
 
 An example for an \concept{\element{id}} is given in Listing~\ref{lst:id}. In the example the model has the \concept{\element{id}} \code{m00001}.
 
@@ -184,8 +184,7 @@ human-readable label for a component.  The data type of
 Schema~\citep{biron:2000,thompson:2000}.  SED-ML imposes no restrictions
 as to the content of \element{name} attributes beyond those restrictions
 defined by the \element{string} type in XML Schema.
-In addition, there are no restrictions on the uniqueness
-of \element{name} values in a \SedDocument.
+In addition, \element{name} values do not need to be unique.
 
 Listing \ref{lst:name} extends the model definition in \lst{id} by a model \concept{\element{name}}.
 
@@ -202,9 +201,9 @@ Listing \ref{lst:name} extends the model definition in \lst{id} by a model \conc
 % ~~~ META ID ~~~
 \paragraph*{\element{metaid}}
 \label{sec:metaid}
-The main purpose of the \concept{\element{metaid}} attribute of data type \code{\hyperref[type:id]{ID}} is to attach semantic annotations in form of the \Annotation class to SED-ML elements. The \concept{\element{metaid}} attribute is globally unique throughout the SED-ML document, i.e., the \concept{\element{metaid}} must be unambiguous throughout a whole SED-ML document. As such it identifies the constituent it is related to.
+The main purpose of the \concept{\element{metaid}} attribute of data type \code{\hyperref[type:id]{ID}} is to use the \Annotation class to attach semantic annotations to elements of SED-ML documents. The \concept{\element{metaid}} attribute must be globally unique throughout a SED-ML document, i.e., the \concept{\element{metaid}} must be unambiguous throughout a whole SED-ML document.
 
-In order to set either \Notes or \Annotation on a SED-ML class the \concept{\element{metaid}} is required.
+A \concept{\element{metaid}} is required to apply a \Notes or \Annotation to a SED-ML element.
 
 \paragraph*{\element{notes}}
 \label{sec:notesElement}
@@ -219,7 +218,7 @@ The optional \concept{\element{annotation}} element stores \Annotation on \SedBa
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Notes}}
 \label{class:notes}
-A \concept{Notes} is considered a human-readable description of the element it is assigned to. Instances of the \concept{Notes} class may contain any valid XHTML \citep{P+02}. The namespace URL for \code{XHTML} content inside the \Notes class is \url{http://www.w3.org/1999/xhtml}, which may be declared either in the \SedML element, or directly in the top level XHTML elements contained within the \hyperref[sec:notesElement]{\code{notes}} element. For details on of how to set the namespace and examples see the SBML specification \citep{HBH+10}.
+A \concept{Notes} can be used to provide a human-readable description of an element of a SED-ML document. Instances of the \concept{Notes} class may contain any valid XHTML \citep{P+02}. The namespace URL for \code{XHTML} content inside the \Notes class is \url{http://www.w3.org/1999/xhtml}, which may be declared either in the \SedML element, or directly in the top level XHTML elements contained within the \hyperref[sec:notesElement]{\code{notes}} element. For details on of how to set the namespace and examples see the  specification of SBML \citep{HBH+10}.
 
 \tabtext{notes}{Notes}
 
@@ -262,9 +261,9 @@ In this example, the namespace declaration is inside the \element{notes} element
 \subsection{\element{Annotation}}
 \label{class:annotation}
 
-An \concept{Annotation} is considered a computer-processable piece of information. Annotations may contain any valid XML content. For further guidelines on how to use annotations see the SBML specification \citep{HBH+10}. The style of annotations in SED-ML is briefly described in Section~\ref{sec:annotations}.
+An \concept{Annotation} can be used to capture computer-processable information about an element of a SED-ML document. Annotations may contain any valid XML content. For further guidelines on how to use annotations see the specification of SBML \citep{HBH+10}. The recommended style of annotations in SED-ML is briefly described in Section~\ref{sec:annotations}.
 
-\lsttext{annotation}{annotation} In the example, a \hyperref[class:model]{\element{model}} element is annotated with a reference to the original publication. The \element{model} contains an \concept{\element{annotation}} that uses the model-qualifier \element{isDescribedBy} to link to the external resource \element{http://identifiers.org/pubmed/10415827}. In natural language the annotation content could be interpreted as ``The model is described by the published article available from pubmed under the identifier 10415827''.
+\lsttext{annotation}{annotation} In this example, a \hyperref[class:model]{\element{model}} element is annotated with a reference to the original publication. The \element{model} contains an \concept{\element{annotation}} that uses the model-qualifier \element{isDescribedBy} to link to the external resource \element{http://identifiers.org/pubmed/10415827}. In natural language, the annotation content could be interpreted as ``The model is described by the published article available from PubMed under the identifier 10415827''.
 
 \begin{myXmlLst}{The annotation element}{lst:annotation}
 <sedML>
@@ -292,17 +291,17 @@ An \concept{Annotation} is considered a computer-processable piece of informatio
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Parameter}}
 \label{class:parameter}
-The \concept{Parameter} class (\fig{parameter}) is used to create named parameters with a constant value.
+The \concept{Parameter} class (\fig{parameter}) can be used to create named parameters with a constant value for use in mathematical expressions.
 The \concept{Parameter} class introduces the required \changed{attribute \hyperref[sec:value]{\element{value}} of type \element{double}, and inherits other attributes and children from \SEDBase, with the exception that the attribute \element{id} is required instead of optional.  The \element{id} takes on the value of the \element{value} in the context of the \Math of the parent \Calculation.  Its \element{id} may not be used in a \Calculation that is not its parent, but it must nevertheless be globally unique.}
 
 \sedfig[width=0.35\textwidth]{images/uml/parameter}{The \Parameter class}{fig:parameter}
 
-A \Parameter can be used wherever a mathematical expression to compute a value is defined, e.g., in \ComputeChange, \FunctionalRange or \DataGenerator. The \Parameter definitions are local to the particular class defining them. By using \concept{Parameters} rather than including numbers directly within a mathematical expression is that \hyperref[class:notes]{notes} and \hyperref[class:annotation]{annotations} can be associated with them.
+A \Parameter can be used wherever a mathematical expression to compute a value is defined, e.g., in \ComputeChange, \FunctionalRange or \DataGenerator. The \Parameter definitions are local to the particular class defining them. Using \concept{Parameters} rather than including numbers directly within mathematical expressions enables investigators to use \hyperref[class:notes]{notes} and \hyperref[class:annotation]{annotations} to provide additional information about the constants involved in mathematical expressions.
 
 Every \Parameter is defined inside a \ListOfParameters.  The element is optional and may contain zero to many parameters.
 
 \lsttext{parameter}{parameter}
-In the example a \concept{parameter} \code{p1} with the value \code{40} is defined. 
+This example defines a \concept{parameter} \code{p1} with the value \code{40}. 
 \begin{myXmlLst}{The definition of a parameter in SED-ML}{lst:parameter}
 <listOfParameters>
 	<parameter id="p1" name="KM" value="40" />
@@ -549,7 +548,9 @@ This section describes attributes which occur on multiple SED-ML classes, e.g., 
 % ~~~ KISAOID ~~~
 \subsubsection{\element{kisaoID}}
 \label{sec:kisaoid}
-Some classes, e.g., \hyperref[class:algorithm]{Algorithm} and \hyperref[class:algorithmParameter]{AlgorithmParameter}, have a mandatory element \concept{\element{kisaoID}} \changed{or another attribute} which references a term from the \hyperref[sec:kisao]{KiSAO} ontology. The referenced term must be defined in the correct syntax, as defined by the regular expression \code{\textasciicircum KISAO:[0-9]\{7\}\$}. The referenced \hyperref[sec:kisao]{KiSAO} term  should define the simulation \hyperref[class:algorithm]{Algorithm} or \hyperref[class:algorithmParameter]{AlgorithmParameter} as precisely as possible.  \changed{Note that the use of a colon predates KiSAO's switch to using an underscore in official KiSAO URLs.  We continue to use the colon here for backwards compatibility, and because a \element{kisaoID} is not a URL.}
+Some classes, e.g., \hyperref[class:algorithm]{Algorithm} and \hyperref[class:algorithmParameter]{AlgorithmParameter}, have a mandatory element \concept{\element{kisaoID}} \changed{or another attribute} which references a term from the \hyperref[sec:kisao]{KiSAO} ontology. The referenced term must be defined using the syntax defined by the regular expression \code{\textasciicircum KISAO:[0-9]\{7\}\$}. \changed{Note, this syntax uses colons rather than the underscores used by the official id of each KiSAO term.}
+
+Investigators are encouraged to use as precise \hyperref[sec:kisao]{KiSAO} terms as possible to indicate simulation \hyperref[class:algorithm]{Algorithm} and \hyperref[class:algorithmParameter]{AlgorithmParameter}. As needed, investigators can request additional terms.
 
 
 % ~~~ LISTOF ~~~
