@@ -186,7 +186,7 @@ The \concept{\element{listOfAlgorithmParameters}} contains the settings for the 
 \lsttext{listOfAlgorithmParameters}{listOfAlgorithmParameters}
 \begin{myXmlLst}{SED-ML listOfAlgorithmParameters element}{lst:listOfAlgorithmParameters}
 <listOfAlgorithmParameters>
-	<algorithmParameter kisaoID="KISAO:0000211" value="23"/> 
+	<algorithmParameter name="absolute tolerance" kisaoID="KISAO:0000211" value="23"/> 
 </listOfAlgorithmParameters>
 \end{myXmlLst}
 
@@ -198,7 +198,7 @@ The \concept{AlgorithmParameter} class allows to parameterize a particular simul
 
 \changed{Any \AlgorithmParameter defined in a \Simulation overrides any global \AlgorithmParameter defined in the \SedDocument.  And in the reverse, any \AlgorithmParameter left undefined in a \Simulation may be defined by a global \AlgorithmParameter element.  Any \AlgorithmParameter child of a \Simulation applies only to that individual \Simulation, and assumes its previous value (if set globally) or becomes unset (if not) outside of the context of that \Simulation (for example, within a \RepeatedTask).}
 
-\changed{NOTE:  the global \ListOfAlgorithmParameters was added to SED-ML in \currentLV.  As such, the only place to define a random seed (\code{KISAO:0000211)} for the simulation experiment as a whole in previous versions was in a \Simulation, which might be part of a \RepeatedTask.  Rather than indicating that each repeat was to receive the same seed, resulting in identical traces, users would generally use the 'seed' parameter to indicate that the experiment as a whole was to be replicable from one run to the next.  Current users of SED-ML should use a global \AlgorithmParameter for this purpose, but older versions or older files may use the previous scheme.}
+\changed{NOTE:  the global \ListOfAlgorithmParameters was added to SED-ML in \currentLV.  As such, the only place to define a random seed (\code{KISAO:0000488)} for the simulation experiment as a whole in previous versions was in a \Simulation, which might be part of a \RepeatedTask.  Rather than indicating that each repeat was to receive the same seed, resulting in identical traces, users would generally use the 'seed' parameter to indicate that the experiment as a whole was to be replicable from one run to the next.  Current users of SED-ML should use a global \AlgorithmParameter for this purpose, but older versions or older files may use the previous scheme.}
 
 \paragraph*{\element{value}}
 \label{sec:algorithmParameterValue}
@@ -207,7 +207,7 @@ The \concept{\element{value}} sets the value of the \hyperref[class:algorithmPar
 \begin{myXmlLst}{The SED-ML \concept{\code{algorithmParameter}} element setting the parameter value for the simulation algorithm. \code{KISAO:0000032} refers to the \emph{explicit fourth-order Runge-Kutta method}; \code{KISAO:00000211} refers to the \emph{absolute tolerance}.}{lst:algorithmParameter}
 <algorithm kisaoID="KISAO:0000032"> 
 	<listOfAlgorithmParameters> 
-		<algorithmParameter kisaoID="KISAO:0000211" value="23"/> 
+		<algorithmParameter name="absolute tolerance" kisaoID="KISAO:0000211" value="23"/> 
 	</listOfAlgorithmParameters>
 </algorithm>
 \end{myXmlLst}
@@ -217,29 +217,29 @@ The \concept{\element{value}} sets the value of the \hyperref[class:algorithmPar
 The child \element{listOfAlgorithmParameters} of an \AlgorithmParameter may contain parameters that modify or refine the parent parameter, depending on the KiSAO term used.  
 
 \begin{myXmlLst}{A SED-ML \code{algorithmParameter} element defining a mixed simulator, each with their own set of algorithm parameters.}{lst:algorithmParameter2}
-<algorithm kisaoID="KISAO:0000352">
+<algorithm name="hybrid method" kisaoID="KISAO:0000352">
     <listOfAlgorithmParameters>
-        <algorithmParameter kisaoID="KISAO:0000000" value="KISAO:0000019">
+        <algorithmParameter name="modeling and simulation algorithm" kisaoID="KISAO:0000000" value="KISAO:0000019">
             <listOfAlgorithmParameters>
-                <algorithmParameter kisaoID="KISAO:0000211" value="1e-07"/>
-                <algorithmParameter kisaoID="KISAO:0000475" value="BDF"/>
-                <algorithmParameter kisaoID="KISAO:0000481" value="true"/>
-                <algorithmParameter kisaoID="KISAO:0000476" value="Newton"/>
-                <algorithmParameter kisaoID="KISAO:0000477" value="Dense"/>
-                <algorithmParameter kisaoID="KISAO:0000480" value="0"/>
-                <algorithmParameter kisaoID="KISAO:0000415" value="500"/>
-                <algorithmParameter kisaoID="KISAO:0000467" value="0"/>
-                <algorithmParameter kisaoID="KISAO:0000478" value="Banded"/>
-                <algorithmParameter kisaoID="KISAO:0000209" value="1e-07"/>
-                <algorithmParameter kisaoID="KISAO:0000479" value="0"/>
+                <algorithmParameter name="absolute tolerance"   kisaoID="KISAO:0000211" value="1e-07"/>
+                <algorithmParameter name="integration method"   kisaoID="KISAO:0000475" value="BDF"/>
+                <algorithmParameter name="interpolate solution" kisaoID="KISAO:0000481" value="true"/>
+                <algorithmParameter name="iteration type"       kisaoID="KISAO:0000476" value="Newton"/>
+                <algorithmParameter name="linear solver"        kisaoID="KISAO:0000477" value="Dense"/>
+                <algorithmParameter name="lower half-bandwidth" kisaoID="KISAO:0000480" value="0"/>
+                <algorithmParameter name="maximum number of steps" kisaoID="KISAO:0000415" value="500"/>
+                <algorithmParameter name="maximum step size"    kisaoID="KISAO:0000467" value="0"/>
+                <algorithmParameter name="preconditioner"       kisaoID="KISAO:0000478" value="Banded"/>
+                <algorithmParameter name="relative tolerance"   kisaoID="KISAO:0000209" value="1e-07"/>
+                <algorithmParameter name="upper half-bandwidth" kisaoID="KISAO:0000479" value="0"/>
             </listOfAlgorithmParameters>
         </algorithmParameter>
-        <algorithmParameter kisaoID="KISAO:0000000" value="KISAO:0000282">
+        <algorithmParameter name="modeling and simulation algorithm" kisaoID="KISAO:0000000" value="KISAO:0000282">
             <listOfAlgorithmParameters>
-                <algorithmParameter kisaoID="KISAO:0000477" value="Dense"/>
-                <algorithmParameter kisaoID="KISAO:0000480" value="0"/>
-                <algorithmParameter kisaoID="KISAO:0000486" value="200"/>
-                <algorithmParameter kisaoID="KISAO:0000479" value="0"/>
+                <algorithmParameter name="linear solver"        kisaoID="KISAO:0000477" value="Dense"/>
+                <algorithmParameter name="lower half-bandwidth" kisaoID="KISAO:0000480" value="0"/>
+                <algorithmParameter name="maximum iterations"   kisaoID="KISAO:0000486" value="200"/>
+                <algorithmParameter name="upper half-bandwidth" kisaoID="KISAO:0000479" value="0"/>
             </listOfAlgorithmParameters>
         </algorithmParameter>
     </listOfAlgorithmParameters>
