@@ -454,7 +454,7 @@ The \concept{\element{modelReference}} element of data type \SIdRef is used to r
 \label{class:appliedDimension}
 \label{class:listOfAppliedDimensions}
 
-A \AppliedDimension object is used when the \element{term} of the \Variable is a function that reduces the dimensionality of the data.  For example, a variable derived from a \Task inside a \RepeatedTask will have the dimensionality of both.  If the \element{term} of the parent \Variable is the `mean' function (\val{KISAO:0000825}), the following options are available:
+An \AppliedDimension object is used when the \element{term} of the \Variable is a function that reduces the dimensionality of the data.  For example, a variable derived from a \Task inside a \RepeatedTask will have the dimensionality of both.  If the \element{term} of the parent \Variable is the `mean' function (\val{KISAO:0000825}), the following options are available:
 
 \begin{itemize}
         \item The \Variable contains a single \AppliedDimension child that refers to the \RepeatedTask.  The resulting data will have the same dimensions as if the \Variable referred directly to the \Task, but averaged over every repeat of the \RepeatedTask.  This situation is particularly common when the \Task is a stochastic time course simulation, and the \RepeatedTask is a simple loop of that \Task.
@@ -462,13 +462,15 @@ A \AppliedDimension object is used when the \element{term} of the \Variable is a
         \item The \Variable contains two \AppliedDimension children, one that refers to the \RepeatedTask and one to the \Task.  The resulting data will be a single value, that has been averaged over both the \Task and \RepeatedTask.  In this case, the function is performed on an element-by-element basis
 \end{itemize}
 
+The \element{term} of the parent \Variable with one or more \AppliedDimension children should always reference a function that reduces the dimensionality of the data (i.e. children of \element{KISAO:0000824}).
+
 %In the second case, the \Variable is multidimensional, but some of those dimensions involve a \Task that does not reference the \Model from which the \Variable is drawn.  In these cases, if the \Variable is given \AppliedDimension children for the tasks that change the relevant \Model, but not the ones that do not, the resulting data will not include the dimension where the \Variable's \Model was not involved.
 
 
-A \AppliedDimension inherits the attributes and children of \SedBase, and adds the attributes \element{target} (of type \SIdRef), and \element{dimensionTarget} (of type \element{NuMLIdRef}), both of which are optional, but one of which must be present.
+An \AppliedDimension inherits the attributes and children of \SedBase, and adds the attributes \element{target} (of type \SIdRef), and \element{dimensionTarget} (of type \element{NuMLIdRef}), both of which are optional, but one of which must be present.
 
 \paragraph*{\element{target}}
-The \element{target} attribute of a \AppliedDimension is used when the applied dimension is a \Task or \RepeatedTask, which must be implicitly involved in the construction of the dimensionality of the parent \Variable.
+The \element{target} attribute of an \AppliedDimension is used when the applied dimension is a \Task or \RepeatedTask, which must be implicitly involved in the construction of the dimensionality of the parent \Variable.
 
 Possible values for the \element{target} attribute include:
 \begin{itemize}
@@ -478,7 +480,7 @@ Possible values for the \element{target} attribute include:
 \end{itemize}
 
 \paragraph*{\element{dimensionTarget}}
-The \element{dimensionTarget} attribute of a \AppliedDimension is used when the \Variable references an external data set.  The \element{NuMLIdRef} must reference a dimension of the referenced data.
+The \element{dimensionTarget} attribute of an \AppliedDimension is used when the \Variable references an external data set.  The \element{NuMLIdRef} must reference a dimension of the referenced data.
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -44,6 +44,7 @@ replacements = [
     ("plottwod-class", "plot2D-class"),
     ("plotthreed-class", "plot3D-class"),
     ("document-class", "sed-ml-class"),
+    ("applieddimension", "appliedDimension"),
     ("algorithmparameter", "algorithmParameter"),
     ("uniformtimecourse", "uniformTimeCourse"),
     ("remainingdimension", "remainingDimension"),
