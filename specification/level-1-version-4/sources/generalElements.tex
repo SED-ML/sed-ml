@@ -160,7 +160,7 @@ The \element{id} attribute is an optional attribute on the \SEDBase class.  The 
 
 Although \element{id} is optional on \SEDBase, object classes derived from \SEDBase may stipulate that \element{id} is a required attribute for those classes.
 
-In earlier versions of SED-ML, the attributes \element{id} and \element{name} were defined on individual object subclasses.  he movement of these attributes to \SEDBase in this version has no practical effect on these classes.
+In earlier versions of SED-ML, the attributes \element{id} and \element{name} were defined on individual object subclasses.  The movement of these attributes to \SEDBase in this version has no practical effect on these classes.
 
 An example for an \concept{\element{id}} is given in Listing~\ref{lst:id}. In the example the model has the \concept{\element{id}} \code{m00001}.
 
@@ -218,7 +218,7 @@ The optional \concept{\element{annotation}} element stores \Annotation on \SedBa
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Notes}}
 \label{class:notes}
-A \concept{Notes} can be used to provide a human-readable description of an element of a SED-ML document. Instances of the \concept{Notes} class may contain any valid XHTML \citep{P+02}. The namespace URL for \code{XHTML} content inside the \Notes class is \url{http://www.w3.org/1999/xhtml}, which may be declared either in the \SedML element, or directly in the top level XHTML elements contained within the \hyperref[sec:notesElement]{\code{notes}} element. For details on of how to set the namespace and examples see the  specification of SBML \citep{HBH+10}.
+A \concept{Notes} can be used to provide a human-readable description of an element of a SED-ML document. Instances of the \concept{Notes} class may contain any valid XHTML \citep{P+02}. The namespace URL for \code{XHTML} content inside the \Notes class is \url{http://www.w3.org/1999/xhtml}, which may be declared either in the \SedML element, or directly in the top level XHTML elements contained within the \hyperref[sec:notesElement]{\code{notes}} element. For details on of how to set the namespace and examples see the SBML specification \citep{HBH+10}.
 
 \tabtext{notes}{Notes}
 
@@ -261,7 +261,7 @@ In this example, the namespace declaration is inside the \element{notes} element
 \subsection{\element{Annotation}}
 \label{class:annotation}
 
-An \concept{Annotation} can be used to capture computer-processable information about an element of a SED-ML document. Annotations may contain any valid XML content. For further guidelines on how to use annotations see the specification of SBML \citep{HBH+10}. The recommended style of annotations in SED-ML is briefly described in Section~\ref{sec:annotations}.
+An \concept{Annotation} can be used to capture computer-processable information about an element of a SED-ML document. Annotations may contain any valid XML content. For further guidelines on how to use annotations see the SBML specification \citep{HBH+10}. The recommended style of annotations in SED-ML is briefly described in Section~\ref{sec:annotations}.
 
 \lsttext{annotation}{annotation} In this example, a \hyperref[class:model]{\element{model}} element is annotated with a reference to the original publication. The \element{model} contains an \concept{\element{annotation}} that uses the model-qualifier \element{isDescribedBy} to link to the external resource \element{http://identifiers.org/pubmed/10415827}. In natural language, the annotation content could be interpreted as ``The model is described by the published article available from PubMed under the identifier 10415827''.
 

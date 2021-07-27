@@ -7,7 +7,7 @@ The Simulation Experiment Description Markup Language (SED-ML) is an XML-based f
 The number of computational models of biological systems is growing at an ever increasing pace.
 At the same time, their size and complexity are also increasing. It is now generally accepted that one must be able to exchange the mathematical structure of such models, for instance to build on existing studies by reusing models or to reproduce model results. The efforts to standardize the representation of computational models in various areas of biology, such as the Systems Biology Markup Language (SBML) \citep{Hucka:2003}, CellML \citep{cuellar:2003} or NeuroML \citep{Goddard:2001}, resulted in an increase of the exchange and re-use of models. However, the description of models is not sufficient to reproduce, reuse, and combine simulation experiments and their results. One also needs to describe the procedures the models are subjected to, i.e., the information required to reproduce simulation experiments among users and software tools. The increasing use of computational simulation experiments to inform modern biological research creates new challenges to reproduce, annotate, archive, and share such experiments.
 
-SED-ML is a computer-readable exchange format for desribing simulation experiments. Critically, SED-ML can be used with a wide range of model formats, modeling frameworks, simulation algorithms, and simulation tools. For many simulation experiments, SED-ML can capture the information in the Minimum Information About a Simulation Experiment (MIASE) \citep{Waltemath:2011} guidelines.
+SED-ML is a computer-readable exchange format for describing simulation experiments. Critically, SED-ML can be used with a wide range of model formats, modeling frameworks, simulation algorithms, and simulation tools. For many simulation experiments, SED-ML can capture the information in the Minimum Information About a Simulation Experiment (MIASE) \citep{Waltemath:2011} guidelines.
 
 SED-ML is developed as a community project and defined via this technical specification and a corresponding XML Schema. 
 
@@ -23,7 +23,7 @@ SED-ML specifies for a given simulation experiment
 \item which datasets to use (\hyperref[class:dataDescription]{DataDescription});
 \item which models to use (\Model);
 \item which modifications to apply to models before simulation or other analyses (\hyperref[class:change]{Change});
-\item which simulation, model calibration, or other analysis procedures to run on each model (\Simulation, and \AbstractTask);
+\item which simulation, model calibration, or other analysis procedures to run on each model (\Simulation and \AbstractTask);
 \item how to post-process the results of these simulations and analysis (\DataGenerator); and
 \item how these results should be presented and exported as figures and tables (\hyperref[class:output]{Output}).
 \end{itemize}
@@ -59,7 +59,7 @@ Detailed technical information about these classes is available in Chapter~\ref{
 \label{motivation:example}
 This section illustrates an example simulation experiment for the repressilator model \citep{Elowitz:2000}. The corresponding SED-ML is listed in Appendix~\ref{example:repressilator}. A \hyperref[sec:archive]{COMBINE archive} for this simulation experiment is available as \texttt{L1V3\char`_repressilator.omex} at \url{http://sed-ml.org/}.
 
-Additional example SED-ML files are available in Section~\ref{sec:app:examples}. Numerous complete examples with model files are available as COMBINE archives at \url{http://sed-ml.org/}.
+Additional example SED-ML files are available in Appendix~\ref{app:examples}. Numerous complete examples with model files are available as COMBINE archives at \url{http://sed-ml.org/}.
 
 The repressilator is a synthetic oscillating network of transcription regulators in \textit{Escherichia coli}. The network is composed of the three repressor genes Lactose Operon Repressor (\code{lacI}), Tetracycline Repressor (\code{tetR}) and Repressor CI (\code{cI}), which code for proteins binding to the promoter of the other, blocking their transcription. The three inhibitions form a cyclic negative-feedback loop. To describe the interactions of the molecular species involved in the network, the authors built a simple mathematical model of coupled first-order differential equations. All six molecular species included in the network (three mRNAs, three repressor proteins) participate in creation (transcription/translation) and degradation processes. The model was used to determine the influence of the various parameters on the dynamic behavior of the system. In particular, parameter values were sought which induce stable oscillations in the concentrations of the system components.
 
