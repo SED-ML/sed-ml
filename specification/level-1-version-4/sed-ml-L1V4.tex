@@ -32,9 +32,8 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \chapter{SED-ML technical specification}
 \label{chp:specification}
-This document represents the technical specification of SED-ML \currentLV. The corresponding UML class diagrams \changed{are included throughout this document.}. Example simulation experiments in SED-ML are provided in Appendix~\ref{app:examples}.
+This document is the technical specification of SED-ML \currentLV. The corresponding UML class diagrams \changed{are included throughout this document.}. Please note, the \changed{UML diagrams} do not capture all concepts of SED-ML. Example simulation experiments encoded with SED-ML are provided in Appendix~\ref{app:examples}. Complete examples with model files are available at \url{http://sed-ml.org/}.
 %The XML Schema is provided in Appendix~\ref{app:schema}.
-However, not all concepts of SED-ML can be captured using \changed{UML diagrams} alone. In such cases this specification is the normative document. 
 
 %\sedfig[width=\textwidth]{images/uml/all}{The SED-ML \currentLV UML class diagram}{fig:sedML}
 
@@ -47,7 +46,7 @@ However, not all concepts of SED-ML can be captured using \changed{UML diagrams}
 \pagebreak
 \section{SED-ML Components}
 \label{sec:components}
-In this section the major components of SED-ML are described. \changed{Each section defines the UML for the class described.}  Example simulation experiments are provided in Appendix~\ref{app:examples}.%, and the XML Schema is listed in Appendix~\ref{app:schema}.
+This section describes the major components of SED-ML. \changed{Each subsection includes UML diagrams for the relevant classes.}  Example simulation experiments are provided in Appendix~\ref{app:examples}. Complete examples with model files are available at \url{http://sed-ml.org/}.%, and the XML Schema is listed in Appendix~\ref{app:schema}.
 
 %% SEDML
 \input{sources/sedml}
@@ -74,28 +73,28 @@ In this section the major components of SED-ML are described. \changed{Each sect
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \chapter{Acknowledgements}
 \label{chp:acknowledgments}
-The SED-ML specification is developed with the input of many people. The following individuals served as past SED-ML Editors and contributed to SED-ML specifications. Their efforts helped shape what SED-ML is today.
+The SED-ML specification is developed with the input of many people. The following individuals have contributed to the SED-ML specifications.
 
 \begin{itemize}
-\item Richard Adams (editor, 2011-2012)
-\item Frank Bergmann (editor, 2011-2014, 2020-2022)
-\item Jonathan Cooper (editor, 2012-2015)
-\item Alan Garny (editor, 2018-2020)
-\item Tomas Helikar (editor, 2021-2023)
-\item Jonathan Karr (editor, 2021-2023)
-\item Matthias K\"{o}nig (editor, 2017-2019, 2020-2022)
-\item David Nickerson (editor, 2011-2013, 2015-2017, 2019-2021)
+\item Richard Adams (Editor, 2011-2012)
+\item Frank Bergmann (Editor, 2011-2014, 2020-2022)
+\item Jonathan Cooper (Editor, 2012-2015)
+\item Alan Garny (Editor, 2018-2020)
+\item Tomas Helikar (Editor, 2021-2023)
+\item Jonathan Karr (Editor, 2021-2023)
+\item Matthias K\"{o}nig (Editor, 2017-2019, 2020-2022)
+\item David Nickerson (Editor, 2011-2013, 2015-2017, 2019-2021)
 \item Nicolas Le Nov{\`e}re (editorial advisor, 2011-2012, 2013)
-\item Brett Olivier (editor, 2015-2017)
-\item Andrew Miller (editor, 2011-2012)
-\item Ion Moraru (editor, 2014-2016)
-\item Sven Sahle (editor, 2014-2016)
-\item Herbert Sauro (editor, 2018-2020)
-\item Lucian Smith (editor, 2016-2018)
-\item Dagmar Waltemath (editor, 2011-2014, 2017-2019)
+\item Brett Olivier (Editor, 2015-2017)
+\item Andrew Miller (Editor, 2011-2012)
+\item Ion Moraru (Editor, 2014-2016)
+\item Sven Sahle (Editor, 2014-2016)
+\item Herbert Sauro (Editor, 2018-2020)
+\item Lucian Smith (Editor, 2016-2018)
+\item Dagmar Waltemath (Editor, 2011-2014, 2017-2019)
 \end{itemize}
 
-Moreover, we would like to thank all the participants of the meetings where SED-ML has been discussed as well as the members of the SED-ML community.
+In addition, we thank the many members of the SED-ML coummunity who have contributed to the development of SED-ML.
 
 \appendix
 
@@ -104,13 +103,9 @@ Moreover, we would like to thank all the participants of the meetings where SED-
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \chapter{Examples}
 \label{app:examples}
-This appendix presents selected SED-ML examples. These examples are only illustrative and do not intend to demonstrate the full capabilities of SED-ML. For a more comprehensive view of the SED-ML features refer to the specification (Chapter~\ref{chp:specification}). 
+This appendix presents several SED-ML examples. Complete versions of these and additional examples are available as \hyperref[sec:archive]{Combine archives} at \url{http://sed-ml.org/}. These examples illustrate the main features of SED-ML. Please note, these examples do not demonstrate the full capabilities of SED-ML. The specifications of SED-ML (Chapter~\ref{chp:specification}) provide a more comprehensive view of the simulation experiments that can be captured with SED-ML. 
 
-The presented examples use models encoded in SBML and CellML\changed{, though SED-ML is not restricted to those formats. See} Section~\ref{sec:languageURI} for more information.
-
-All specification examples listed below are available as \hyperref[sec:archive]{Combine Archives} from \url{http://sed-ml.org/} under the \code{*.omex} file name for the respective example. 
-
-Additional SED-ML examples are available at \url{http://sed-ml.org/}.
+The examples presented here involved models encoded in CellML and SBML. \changed{Please note, SED-ML can be used with additional model languages. See} Section~\ref{sec:languageURI} for more information about using SED-ML with additional model languages. Example SED-ML files for additional model languages are available at \url{https://run.biosimulations.org/}.
 
 \input{sources/examples}
 
