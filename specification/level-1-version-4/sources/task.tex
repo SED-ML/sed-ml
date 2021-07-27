@@ -17,7 +17,7 @@ In SED-ML the subclasses of \concept{AbstractTask} define which \Simulations sho
 A \concept{Task} links a \Model to a certain \Simulation description via their respective identifiers (\fig{abstractTask}), using the \hyperref[sec:modelReference]{\element{modelReference}} and the \hyperref[sec:simulationReference]{\element{simulationReference}}. The task class inherits the attributes and children of the \AbstractTask.
 
 \paragraph*{\element{modelReference}}
-The \element{modelReference} attribute of type \SIdRef must refer to a \Model.  Inside a \RepeatedTask, the state of the model may have been changed, but in parallel tasks, a \Model is to assume to its initial state.
+The \element{modelReference} attribute of type \SIdRef must refer to a \Model.  Inside a \RepeatedTask, the state of the model may have been changed, \changed{otherwise, the} \Model is to assume to its initial state.
 
 \paragraph*{\element{simulationReference}}
 the \element{simulationReference} attribute of type \SIdRef must refer to a \Simulation.
@@ -58,7 +58,7 @@ In the example, a simulation setting \code{simulation1} is applied first to \cod
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsubsection{\element{Repeated Task}}
 \label{class:repeatedTask}
-The \concept{RepeatedTask} (\fig{repeatedTask}) provides a generic looping construct, allowing complex tasks to be composed from individual steps. The \concept{RepeatedTask} performs a specified task (or sequence of tasks as defined in the \hyperref[class:listOfSubTasks]{\element{listOfSubTasks}}) multiple times (where the exact number is specified through a \Range construct as defined in \hyperref[sec:rangeAttribute]{\element{range}}), while allowing specific quantities in the model \changed{or models} to be altered at each iteration (as defined in the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}}).
+The \concept{RepeatedTask} (\fig{repeatedTask}) provides \changed{a looping} construct, allowing complex tasks to be composed from individual \changed{tasks}. The \concept{RepeatedTask} performs a specified task (or sequence of tasks as defined in the \hyperref[class:listOfSubTasks]{\element{listOfSubTasks}}) multiple times (where the exact number is specified through a \Range construct as defined in \hyperref[sec:rangeAttribute]{\element{range}}), while allowing specific quantities in the model \changed{or models} to be altered at each iteration (as defined in the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}}).
 
 \sedfig[width=.8\textwidth]{images/uml/repeatedTask}{The SED-ML RepeatedTask class}{fig:repeatedTask}
 

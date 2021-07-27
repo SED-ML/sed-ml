@@ -67,7 +67,7 @@ Type \concept{\element{XPath}} is \changed{derived from type \element{TargetType
 \begin{blockChanged}
 \subsubsection[\element{URN}]{Type \element{URN}}
 \label{type:urn}
-A \element{URN} is a colon-separated string that reference an external variable, but does not imply accessibility of that variable.  The notion of implicit variables is explained in Section~\ref{sec:implicitVariable}.
+A \element{URN} is a colon-separated string that references an external variable.  \changed{It may or may not be accessible online, but should have a unique definition.}  The notion of implicit variables is explained in Section~\ref{sec:implicitVariable}.
 \end{blockChanged}
 
 \subsubsection[\element{MathML}]{Type \element{MathML}}
@@ -319,7 +319,7 @@ The \concept{\element{value}} attribute of data type \code{double} is required f
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Variable}}
 \label{class:variable}
-A \Variable (\fig{variable}) is a reference to an already existing entity, either explicitly created in the \SedDocument, or to an implicitly defined symbol.  The \Variable class inherits the attributes and children of \SEDBase, changing the attribute \element{id} to be required, and adds the context dependent attributes \hyperref[sec:target]{\element{target}}, \hyperref[sec:symbol]{\element{symbol}}, \hyperref[sec:taskReferenceAttribute]{\element{taskReference}}, and \hyperref[sec:modelReferenceAttribute]{\element{modelReference}}. It also may have any number of \AppliedDimension children, as members of its \ListOfAppliedDimensions optional child.
+A \Variable (\fig{variable}) is a reference to the mathematical value of an \changed{explicit model element such as an SBML Species or a CellML Variable, the mathematics implicitly defined by a model such as the stoichiometry matrix, or a \DataGenerator in this same SED-ML document.}  The \Variable class inherits the attributes and children of \SEDBase, changing the attribute \element{id} to be required, and adds the context dependent attributes \hyperref[sec:target]{\element{target}}, \hyperref[sec:symbol]{\element{symbol}}, \hyperref[sec:taskReferenceAttribute]{\element{taskReference}}, and \hyperref[sec:modelReferenceAttribute]{\element{modelReference}}. It also may have any number of \AppliedDimension children, as members of its \ListOfAppliedDimensions optional child.
 
 \sedfig[width=1.0\textwidth]{images/uml/variable}{The \Variable, \DependentVariable, \ListOfAppliedDimensions, and \AppliedDimension classes}{fig:variable}
 
