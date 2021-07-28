@@ -48,7 +48,7 @@ In the example the \hyperref[class:listOfModels]{\element{listOfModels}} contain
 % ~~~ MODEL:LANGUAGE ~~~
 \paragraph*{\element{language}}
 \label{sec:language}
-The \changed{required} \concept{\element{language}} attribute of data type \hyperref[type:anyURI]{\code{anyURI}} is used to specify the format of the \hyperref[class:model]{model}. Example formats are SBML (\code{urn:sedml:language:sbml}) or CellML (\code{urn:sedml:language:cellml}). The supported languages are defined in the \hyperref[sec:languageURI]{language references}.
+The \changed{required} \concept{\element{language}} attribute of data type \hyperref[type:urn]{\code{URN}} is used to specify the format of the \hyperref[class:model]{model}. Example formats are SBML (\code{urn:sedml:language:sbml}) or CellML (\code{urn:sedml:language:cellml}). The supported languages are defined in the \hyperref[sec:languageURN]{language references}.
 
 The use of the \concept{\element{language}} attribute is \changed{required} for two reasons. Firstly, it helps to decide whether or not one is able to run the simulation, that is to parse the model referenced in the SED-ML file. Secondly, the language attribute is also needed to decide how to handle the \hyperref[sec:implicitVariable]{Symbols} in the \Variable class, as the interpretation of \hyperref[sec:implicitVariable]{Symbols} depends on the language of the representation format.
 

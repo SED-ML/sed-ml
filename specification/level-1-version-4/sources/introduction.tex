@@ -45,7 +45,7 @@ The \Simulation class enables investigators to describe the settings required fo
 SED-ML uses the \AbstractTask class to specify which \Simulation or \FitExperiment to run with which \Model.
 
 \paragraph*{\DataGenerator}
-The \DataGenerator class enables investigators to encode post-processing of simulation/analysis results before the generation of outputs, e.g., one can normalize the result of an observable, or calculate the mean of several observables. In the definition of a \DataGenerator, any addressable variable or parameter of any model or \hyperref[class:dataSource]{DataSource} may be referenced, and used to calculate new values using \hyperref[sec:mathML]{MathML}.
+The \DataGenerator class enables investigators to encode post-processing of simulation/analysis results before the generation of outputs, e.g., one can normalize the result of an observable, or calculate the mean of several observables. In the definition of a \DataGenerator, any addressable variable or parameter of any model or \DataSource may be referenced, \changed{and used to calculate new values using \hyperref[sec:mathML]{MathML}}.
 
 \paragraph*{\hyperref[class:output]{Output}}
 The \hyperref[class:output]{Output} class enables investigators to describe how post-processing simulation results should be exported, such as with two dimensional plots (\hyperref[class:plot2D]{Plot2D}), three dimensional plots (\hyperref[class:plot3D]{Plot3D}), and data tables (\hyperref[class:report]{Report}).

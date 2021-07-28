@@ -17,7 +17,7 @@ This example lists the SED-ML for the example in the introduction (Section~\ref{
 The \hyperref[class:dataDescription]{DataDescription} provides means to use external datasets in simulation experiments. In this section simulation experiments using the \hyperref[class:dataDescription]{dataDescription} are presented.
 
 \subsection{Plotting data with simulations (\texttt{L1V3\_plotting-data-numl.omex})}
-This example demonstrates the use of the \hyperref[class:dataDescription]{DataDescription} and \hyperref[class:dataSource]{DataSource} to load external data in SED-ML. In the example a \hyperref[class:model]{model} is simulated (using a \hyperref[class:uniformTimeCourse]{uniformTimeCourse} simulation) and the simulation results are plotted. In addition data is plotted using the \hyperref[class:dataDescription]{dataDescription} and \hyperref[class:dataSource]{DataSource}), extracting the \token{S1} and \token{time} column from it and renders it. The listed example uses data encoded in \hyperref[sec:dataFormatNUML]{NuML} as \hyperref[sec:dataFormatURI]{format} (\code{urn:sedml:format:numl}). \changed{This document can be found at \url{http://sed-ml.org/examples/L1V3/L1V3_plotting-data-numl/plotting-data-numl.xml}, and an OMEX version at \url{http://sed-ml.org/examples/L1V3/L1V3_plotting-data-numl.omex}.}
+This example demonstrates the use of the \hyperref[class:dataDescription]{DataDescription} and \hyperref[class:dataSource]{DataSource} to load external data in SED-ML. In the example a \hyperref[class:model]{model} is simulated (using a \hyperref[class:uniformTimeCourse]{uniformTimeCourse} simulation) and the simulation results are plotted. In addition data is plotted using the \hyperref[class:dataDescription]{dataDescription} and \hyperref[class:dataSource]{DataSource}), extracting the \token{S1} and \token{time} column from it and renders it. The listed example uses data encoded in \hyperref[sec:dataFormatNUML]{NuML} as \hyperref[sec:dataFormatURN]{format} (\code{urn:sedml:format:numl}). \changed{This document can be found at \url{http://sed-ml.org/examples/L1V3/L1V3_plotting-data-numl/plotting-data-numl.xml}, and an OMEX version at \url{http://sed-ml.org/examples/L1V3/L1V3_plotting-data-numl.omex}.}
 
 The corresponding example using \hyperref[sec:dataFormatCSV]{CSV} (\code{urn:sedml:format:csv}) as format to encode the data is available as \texttt{L1V3\_plotting-data-csv.omex}.
 
@@ -187,7 +187,7 @@ NOTE: This example produces three dimensional results (time, species concentrati
 % DIFFERENT MODEL LANGUAGES
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Simulation experiments with different model languages}
-SED-ML allows to specify models in various languages, e.g., SBML \citep{Hucka:2003} and CellML \citep{cuellar:2003} (see Section~\ref{sec:languageURI} for more information). This section demonstrates the same simulation experiment with the model either in SBML (Appendix~\ref{example:vanderpol_sbml}) or in CellML (Appendix~\ref{example:vanderpol_cellml}).
+SED-ML allows to specify models in various languages, e.g., SBML \citep{Hucka:2003} and CellML \citep{cuellar:2003} (see Section~\ref{sec:languageURN} for more information). This section demonstrates the same simulation experiment with the model either in SBML (Appendix~\ref{example:vanderpol_sbml}) or in CellML (Appendix~\ref{example:vanderpol_cellml}).
 
 \subsection{Van der Pol oscillator in SBML (\texttt{L1V3\_vanderpol-sbml.omex})}
 \label{example:vanderpol_sbml}

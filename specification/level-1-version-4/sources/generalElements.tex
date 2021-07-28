@@ -10,7 +10,7 @@ The main \hyperref[sec:components]{SED-ML components} based on these general dat
 \label{sec:dataTypes}
 Primitive data types comprise the set of data types used in SED-ML classes. Most primitive types in SED-ML are taken from the data types defined in XML Schema 1.0, including \element{string}, \element{boolean}, \element{int}, \element{positiveInteger}, \element{double} and \element{XML}. 
 
-A few additional primitive types are defined by SED-ML itself: \hyperref[type:id]{\element{ID}}, \SId, \SIdRef, \hyperref[type:target]{\element{TargetType}}, \hyperref[type:xpath]{\element{XPath}}, \hyperref[type:mathml]{\element{MathML}}, \hyperref[type:anyURI]{\element{anyURI}}, \hyperref[type:numlsid]{\element{NuMLSId}}, and \hyperref[type:numlsidref]{\element{NuMLSIdRef}}.
+A few additional primitive types are defined by SED-ML itself: \hyperref[type:id]{\element{ID}}, \SId, \SIdRef, \hyperref[type:target]{\element{TargetType}}, \hyperref[type:xpath]{\element{XPath}}, \hyperref[type:mathml]{\element{MathML}}, \hyperref[type:anyURI]{\element{anyURI}}, \hyperref[type:urn]{\element{URN}}, \hyperref[type:numlsid]{\element{NuMLSId}}, and \hyperref[type:numlsidref]{\element{NuMLSIdRef}}.
 
 \subsubsection[\element{ID}]{Type \element{ID}}
 \label{type:id}
@@ -64,19 +64,19 @@ Type \concept{\element{TargetType}} is used to identify elements of a model.  Th
 \label{type:xpath}
 Type \concept{\element{XPath}} is \changed{derived from type \element{TargetType} and is} used to identify nodes and attributes within an XML representation of a model. \concept{\element{XPath}} in SED-ML is an \hyperref[sec:xpath]{XPath} version 1 expression which can be used to unambiguously identify an element or attribute in an XML file. The concept of \hyperref[sec:xpath]{XPath} is described in Section~\ref{sec:xpath}.  Note, model languages can choose to use \concept{\element{XPath}} to identify abstract concepts implied by models that are not defined in XML files, such as `the current value of corresponding to an XML element within the state of a simulation run'.
 
-\begin{blockChanged}
-\subsubsection[\element{URN}]{Type \element{URN}}
-\label{type:urn}
-A \element{URN} is a colon-separated string that references an external variable.  \changed{It may or may not be accessible online, but should have a unique definition.}  The notion of implicit variables is explained in Section~\ref{sec:implicitVariable}.
-\end{blockChanged}
-
 \subsubsection[\element{MathML}]{Type \element{MathML}}
 \label{type:mathml}
 Type \concept{\element{MathML}} is used to describe mathematical expression in \hyperref[sec:mathML]{MathML}. The concept of \hyperref[sec:mathML]{MathML} and the allowed subset of \hyperref[sec:mathML]{MathML} on a \concept{\element{MathML}} attribute is described in Section~\ref{sec:mathML}.
 
 \subsubsection[\element{anyURI}]{Type \element{anyURI}}
 \label{type:anyURI}
-Type \concept{\code{anyURI}} is used to reference model and data files, specify the language of models, the format of data files, for referencing implicit model variables, and in annotations. For a description of the uses of \concept{\code{anyURI}} see Section~\ref{sec:uriScheme}.
+Type \concept{\code{anyURI}} is used in annotations and to reference model files, data files, and implicit model variables. For a description of the uses of \concept{\code{anyURI}} see Section~\ref{sec:uriScheme}.  The notion of implicit variables is explained in Section~\ref{sec:implicitVariable}.
+
+\begin{blockChanged}
+\subsubsection[\element{URN}]{Type \element{URN}}
+\label{type:urn}
+Type \concept{\code{URN}} is used to reference the model language and data description formats.  It is derived from URI, is defined by the Network Working Group RFCs 1737 and 2141, and consists of a colon-delimited string beginning with \val{urn:}.  For a description of the uses of \concept{\code{URN}} see Section~\ref{sec:urnScheme}.
+\end{blockChanged}
 
 \subsubsection[\element{NuMLSId}]{Type \element{NuMLSId}}
 \label{type:numlsid}

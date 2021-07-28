@@ -208,13 +208,9 @@ URIs are used in SED-ML as a mechanism
 \begin{itemize}
 	\item to reference models (\ref{sec:modelURI} \hyperref[sec:modelURI]{Model references})
 	\item to reference data files (\ref{sec:dataURI} \hyperref[sec:dataURI]{Data references})
-	\item to specify the language of the referenced model (\ref{sec:languageURI} \hyperref[sec:languageURI]{Language references})
-	\item to specify the format of the referenced dataset (\ref{sec:dataFormatURI} \hyperref[sec:dataFormatURI]{Data format references})
 	\item to enable addressing implicit model variables (\ref{sec:implicitVariable}  \hyperref[sec:implicitVariable]{Symbols})
+	\item to annotate SED-ML elements (\ref{sec:annotations}  \hyperref[sec:annotations]{Annotation Scheme})
 \end{itemize}
-
-In addition, annotation of SED-ML elements should use a standardised URI \hyperref[sec:annotations]{Annotations Scheme} to ensure long-time availability of information that can unambiguously be identified.
-
 
 % ~~~ MODEL REFERENCES ~~~
 \subsection{Model references}
@@ -234,15 +230,59 @@ An alternative means to obtain a model may be to provide a single resource conta
 
 For additional information see the \hyperref[sec:data_source]{\element{source}} attribute on \hyperref[class:dataDescription]{DataDescription}.
 
+
+% ~~~ SYMBOLS ~~~
+\subsection{Symbols}
+\label{sec:implicitVariable}
+Some variables used in a simulation experiment are not explicitly defined in the model, but may be implicitly contained in it. For example, to plot a variable's behaviour over time, that variable is defined in an SBML model, whereas time is not explicitly defined. 
+
+SED-ML can refer to such implicit variables via the \concept{Symbol} concept. Such implicit variables are \changed{defined using KiSAO through the \kisaoID format to reference the implied variable}. 
+
+For example, to refer in a SED-ML file to the definition of time, the string \element{KISAO:0000832} is used.  For backwards compatibility, the string \val{urn:sedml:symbol:time} may be used.
+
+\changed{With very few exceptions, symbols refer to mathematics of a model that can be read out of the model, but cannot be set directly.  You cannot use a \element{symbol} attribute to set the time of a model, for example, nor may you set the Stoichiometry matrix nor the elasticities.  The only partial exception to this is that the amount, concentation, or particle number of a species may be set by an element using both a \element{target} attribute to indicate the species and a \element{symbol} to indicate which form to use.}
+
+\tab{symbols}~lists the predefined symbols in SED-ML.
+\begin{table}[ht]
+\center
+\begin{tabular}{p{1.8cm}p{3.7cm}p{3cm}p{6cm}}
+\toprule
+\textbf{Language} & \textbf{URN} & \textbf{KiSAO ID} & \textbf{Definition}\\
+\midrule
+SBML & \code{urn:sedml:symbol:time} & KISAO:0000832 & Time in SBML is an intrinsic model variable that is addressable in model equations via a csymbol \code{time}.\\
+\bottomrule
+\end{tabular}
+\caption{\changed{The single predefined symbol in SED-ML. For \currentLV, KiSAO IDs are used instead, though `time' is still allowed for backwards compatibility.  The latest list of KiSAO terms is available from \url{https://github.com/SED-ML/KiSAO}.}}
+\label{tab:symbols}
+\end{table}
+
+
+% ~~~ ANNOTATIONS ~~~
+\subsection{Annotation Scheme}
+\label{sec:annotations}
+When annotating SED-ML elements with semantic \hyperref[class:annotation]{annotations}, the \concept{MIRIAM URI Scheme} should be used. In addition to providing the data type (e.g., PubMed) and the particular data entry inside that data type (e.g., \code{10415827}), the relation of the annotation to the annotated element should be described using the standardized \concept{biomodels.net qualifier}. The list of qualifiers, as well as further information about their usage, is available from \url{http://www.biomodels.net/qualifiers/}.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% URN SCHEME
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{URN scheme}  
+\label{sec:urnScheme}
+URNs are a subset of URIs, and are used in SED-ML as a mechanism
+\begin{itemize}
+	\item to specify the language of the referenced model (\ref{sec:languageURN} \hyperref[sec:languageURN]{Language references})
+	\item to specify the format of the referenced dataset (\ref{sec:dataFormatURN} \hyperref[sec:dataFormatURN]{Data format references})
+\end{itemize}
+
 % ~~~ LANGUAGE REFERENCES ~~~
 \subsection{Language references}
-\label{sec:languageURI}
+\label{sec:languageURN}
 The evaluation of a SED-ML document is required in order for software to decide whether or not it can be used in a particular simulation environment. One crucial criterion is the particular model representation language used to encode the \hyperref[class:model]{model}. A simulation software usually only supports a small subset of the representation formats available to model biological systems computationally. 
 
 To help  software decide whether or not it supports a SED-ML description file, the information on the \hyperref[class:model]{model} encoding for each referenced \hyperref[class:model]{model} can be provided through the \hyperref[sec:language]{\element{language}} attribute, as the description of a language name and version through an unrestricted \code{String} is error-prone. 
 A prerequisite for a language to be fully supported by SED-ML is that a formalised language definition, e.g., an XML Schema, is provided online. SED-ML also defines a set of standard URIs to refer to particular language definitions. 
 
-To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used (\tab{languageURI}). The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{\element{name.version}}. \changed{One} can be as specific as defining a model being in a particular version of a language, e.g., SBML Level 3 Version 1 as \code{urn:sedml:language:sbml.level-3.version-1}.
+To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used (\tab{languageURN}). The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{\element{name.version}}. \changed{One} can be as specific as defining a model being in a particular version of a language, e.g., SBML Level 3 Version 1 as \code{urn:sedml:language:sbml.level-3.version-1}.
 
 For additional information see the \hyperref[sec:language]{\element{language}} attribute on \Model.
 
@@ -284,15 +324,15 @@ VCML (generic) & \code{urn:sedml:language:vcml} \\
 \bottomrule
 \end{tabular}
 \caption{Predefined model language URNs. The latest list of language URNs is available from \url{http://sed-ml.org/urns.html}.}
-\label{tab:languageURI}
+\label{tab:languageURN}
 \end{table}
 
 % ~~~ DATA FORMAT REFERENCES ~~~
 \subsection{Data format references}
-\label{sec:dataFormatURI}
+\label{sec:dataFormatURN}
 To help software decide whether or not it supports a SED-ML file, the information on the \hyperref[class:dataDescription]{dataDescription} encoding for each referenced \hyperref[class:dataDescription]{dataDescription} can be provided through the \hyperref[sec:format]{\element{format}} attribute.
 
-To specify the format of a \hyperref[class:dataDescription]{dataDescription}, a set of pre-defined SED-ML URNs can be used (\tab{dataFormatURI}). The structure of SED-ML format URNs is \element{urn:sedml:format:}\emph{\element{name.version}}. 
+To specify the format of a \hyperref[class:dataDescription]{dataDescription}, a set of pre-defined SED-ML URNs can be used (\tab{dataFormatURN}). The structure of SED-ML format URNs is \element{urn:sedml:format:}\emph{\element{name.version}}. 
 
 If it is not explicitly defined the default value for \element{format} is \code{urn:sedml:format:numl}, referring to NuML representation of the data. However, the use of the \element{format} attribute is strongly encouraged.
 
@@ -311,8 +351,8 @@ TSV & \code{urn:sedml:format:tsv} \\
 HDF5 & \code{urn:sedml:format:hdf5} \\
 \bottomrule
 \end{tabular}
-\caption{Predefined dataDescription format URNs. The latest list of format URNs is available from \url{http://sed-ml.org/}.}
-\label{tab:dataFormatURI}
+\caption{Predefined dataDescription format URNs. The latest list of format URNs is available from \url{http://sed-ml.org/urns.html}.}
+\label{tab:dataFormatURN}
 \end{table}
 
 \subsubsection{NuML (Numerical Markup Language)}
@@ -412,38 +452,6 @@ When output from multiple tasks are combined mathematically, their dimensions mu
 Each dimension may also be annotated with an ontology term such as one from the 'Semanticscience Integrated Ontology' (SIO, \url{https://bioportal.bioontology.org/ontologies/SIO}).
 
 \end{blockChanged}
-
-
-% ~~~ SYMBOLS ~~~
-\subsection{Symbols}
-\label{sec:implicitVariable}
-Some variables used in a simulation experiment are not explicitly defined in the model, but may be implicitly contained in it. For example, to plot a variable's behaviour over time, that variable is defined in an SBML model, whereas time is not explicitly defined. 
-
-SED-ML can refer to such implicit variables via the \concept{Symbol} concept. Such implicit variables are \changed{defined using KiSAO through the \kisaoID format to reference the implied variable}. 
-
-For example, to refer in a SED-ML file to the definition of time, the string \element{KISAO:0000832} is used.  For backwards compatibility, the string \val{urn:sedml:symbol:time} may be used.
-
-\changed{With very few exceptions, symbols refer to mathematics of a model that can be read out of the model, but cannot be set directly.  You cannot use a \element{symbol} attribute to set the time of a model, for example, nor may you set the Stoichiometry matrix nor the elasticities.  The only partial exception to this is that the amount, concentation, or particle number of a species may be set by an element using both a \element{target} attribute to indicate the species and a \element{symbol} to indicate which form to use.}
-
-\tab{symbols}~lists the predefined symbols in SED-ML.
-\begin{table}[ht]
-\center
-\begin{tabular}{p{1.8cm}p{3.7cm}p{3cm}p{6cm}}
-\toprule
-\textbf{Language} & \textbf{URN} & \textbf{KiSAO ID} & \textbf{Definition}\\
-\midrule
-SBML & \code{urn:sedml:symbol:time} & KISAO:0000832 & Time in SBML is an intrinsic model variable that is addressable in model equations via a csymbol \code{time}.\\
-\bottomrule
-\end{tabular}
-\caption{\changed{The single predefined symbol in SED-ML. For \currentLV, KiSAO IDs are used instead, though `time' is still allowed for backwards compatibility.  The latest list of KiSAO terms is available from \url{https://github.com/SED-ML/KiSAO}.}}
-\label{tab:symbols}
-\end{table}
-
-
-% ~~~ ANNOTATIONS ~~~
-\subsection{Annotation Scheme}
-\label{sec:annotations}
-When annotating SED-ML elements with semantic \hyperref[class:annotation]{annotations}, the \concept{MIRIAM URI Scheme} should be used. In addition to providing the data type (e.g., PubMed) and the particular data entry inside that data type (e.g., \code{10415827}), the relation of the annotation to the annotated element should be described using the standardized \concept{biomodels.net qualifier}. The list of qualifiers, as well as further information about their usage, is available from \url{http://www.biomodels.net/qualifiers/}.
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
