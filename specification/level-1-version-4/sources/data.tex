@@ -71,7 +71,7 @@ The \concept{DataSource} class (\fig{dataDescription}) extracts chunks out of th
 
 \SedDataSource elements can be used anywhere in the SED-ML Description. Specifically their \hyperref[type:id]{\element{id}} attribute can be \changed{referenced as the \element{target} of any \Variable, pre-pended by a \code{`\#'} inside \DataGenerator, \ComputeChange or \SetValue objects if the referenced data is a scalar, and as the \element{target} of a \Variable in any \DataGenerator even if the referenced data is multidimensional.}
 
-\changed{The \element{id} may also be used as the \element{sourceRef} of a \DataRange, and as the \element{dataSource} or \element{pointWeight} of a \FitMapping.  These referenced data may be multidimensional.}
+\changed{The \element{id} may also be used as the \element{sourceReference} of a \DataRange, and as the \element{dataSource} or \element{pointWeight} of a \FitMapping.  These referenced data may be multidimensional.}
 
 Here an example that references the \SedDataSource \token{dataS1}:
 
