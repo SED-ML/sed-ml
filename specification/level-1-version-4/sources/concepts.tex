@@ -62,7 +62,7 @@ The allowed MathML in SED-ML is restricted to the following subset:
 
 \subsubsection{MathML csymbols for dimensional input}
 
-\changed{While the new \DependentVariable class provides functionality to reduce the dimensionality of matrices, previous version of SED-ML defined the MathML functions \sedmin, \sedmax, \sedsum, and \product, each of which would reduce any n-dimensional vector to a single scalar value.  It is recommended that users switch to using \DependentVariable elements for their increased functionality, but the old functions are still defined here for backwards compatibility.}  The only allowed symbols to be used in aggregate functions are the identifiers of \Variables defined in the \hyperref[class:listOfVariables]{\element{listOfVariables}} of a \DataGenerator. These \Variables represent the data collected from the simulation experiment in the associated \Task.  \changed{They always return scalar values, regardless of the dimensionality of the \Variable, and ignore any NaN values the vector or matrix might have.}
+\changed{While the new \element{dimensionTerm} attribute of the \Variable class provides functionality to reduce the dimensionality of matrices, previous version of SED-ML defined the MathML functions \sedmin, \sedmax, \sedsum, and \product, each of which would reduce any n-dimensional vector to a single scalar value.  It is recommended that users switch to using \Variable elements with a \element{dimensionTerm} for their increased functionality, but the old functions are still defined here for backwards compatibility.}  The only allowed symbols to be used in aggregate functions are the identifiers of \Variables defined in the \hyperref[class:listOfVariables]{\element{listOfVariables}} of a \DataGenerator. These \Variables represent the data collected from the simulation experiment in the associated \Task.  \changed{They always return scalar values, regardless of the dimensionality of the \Variable, and ignore any NaN values the vector or matrix might have.}
 
 \paragraph*{\element{min}}
 \label{fun:min}
@@ -445,7 +445,7 @@ Each dimension of SED-ML \RepeatedTask output should be labeled according to the
     \item The \element{id} of the requested variable, or the infix representation of the \Math from the \DataGenerator.
 \end{itemize}
 
-When a \DependentVariable is used to reduce the dimensionality of a set of data (using an appropriate KiSAO \element{term} and \AppliedDimension children), information about the dimension reduction may be included as annotation, i.e. one could annotate a \SubTask dimension as 'averaged over the \RepeatedTask \element{[id]}'.  When a \DataGenerator contains a \DependentVariable that outputs a matrix, that matrix can also be labeled appropriately (such as with species or reaction ids).
+When a \Variable's \element{dimensionTerm} is used to reduce the dimensionality of a set of data (using an appropriate KiSAO value and \AppliedDimension children), information about the dimension reduction may be included as annotation, i.e. one could annotate a \SubTask dimension as 'averaged over the \RepeatedTask \element{[id]}'.  When a \DataGenerator contains a \Variable that outputs a matrix, that matrix can also be labeled appropriately (such as with species or reaction ids).
 
 When output from multiple tasks are combined mathematically, their dimensions must match exactly, so the ids from either (or a combination of both) may be used.  Again, annotations are recommended to describe how the data was combined.
 

@@ -319,19 +319,41 @@ The \concept{\element{value}} attribute of data type \code{double} is required f
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Variable}}
 \label{class:variable}
-A \Variable (\fig{variable}) is a reference to the mathematical value of an \changed{explicit model element such as an SBML Species or a CellML Variable, the mathematics implicitly defined by a model such as the stoichiometry matrix, or a \DataGenerator in this same SED-ML document.}  The \Variable class inherits the attributes and children of \SEDBase, changing the attribute \element{id} to be required, and adds the context dependent attributes \hyperref[sec:target]{\element{target}}, \hyperref[sec:symbol]{\element{symbol}}, \hyperref[sec:taskReferenceAttribute]{\element{taskReference}}, and \hyperref[sec:modelReferenceAttribute]{\element{modelReference}}. It also may have any number of \AppliedDimension children, as members of its \ListOfAppliedDimensions optional child.
+A \Variable (\fig{variable}) is a reference to a mathematical value.  The \Variable class inherits the attributes and children of \SEDBase, changing the attribute \element{id} to be required, and adds several more.  \changed{A \Variable references a single mathematical element (which in some cases may be multidimensional) by using its attributes \element{target}, \element{symbol}, \element{target2}, \element{symbol2}, and \element{term}, either together or separately.  It may also need to reference a particular model in a particular context by using the \element{modelReference} and \element{taskReference} attributes.  Finally, it may reduce the dimensionality of the resulting math by using the \element{dimensionTerm} attribute with one or more \AppliedDimension children, as members of its \ListOfAppliedDimensions child.  All of these additional attributes and child objects are optional, but must together be used to fully define a unique mathematical reference.}
 
-\sedfig[width=1.0\textwidth]{images/uml/variable}{The \Variable, \DependentVariable, \ListOfAppliedDimensions, and \AppliedDimension classes}{fig:variable}
+\sedfig[width=1.0\textwidth]{images/uml/variable}{The \Variable, \ListOfAppliedDimensions, and \AppliedDimension classes}{fig:variable}
 
-If the variable is defined through a reference to a model constituent, such as an SBML species, or to an entity within the SED-ML file itself, then the reference is specified using the \hyperref[sec:target]{\element{target}} attribute. If the variable is defined through a reference to a \hyperref[sec:implicitVariable]{Symbol}, rather than one explicitly appearing in the model, then the \hyperref[sec:symbol]{\element{symbol}} attribute is used. 
+\begin{blockChanged}
+A \Variable may be used in one of the following ways:
+\begin{itemize}
+        \item To reference an explicit element of a model, using the \element{target} attribute.  An SBML Species or a CellML Variable are two examples.
+        \item To reference a \DataGenerator or \DataSource in the same document, using the \element{target} attribute.  A \element{target} with the value \val{\#dataSource1} is one example.
+        \item To reference an implicit element of a model, using the \element{symbol} attribute.  `Time' in an SBML model is one example.
+        \item To reference an implicit aspect of an explicit model element, using both the \element{target} and \element{symbol} attributes.  `The concentration of an SBML Species' is one example.
+        \item To reference a mathematical concept implicit in the model, using the \element{term} attribute.  `The Stoichiometry matrix' is one example.
+        \item To reference a mathematical concept implicit in the model for one or two explicit or implicit model elements, using the \element{term} attribute in combination with one or more of the \element{target}, \element{symbol}, \element{target2}, and \element{symbol2} attributes.  `The rate of change of species \code{S1} with respect to time' is one example; `the elasticity of reaction \code{J1} with respect to \code{p0}' is another.
+        \item To reference a mathematical dimension reduction of any of the above, using the \element{dimensionTerm} in combination with one or more \AppliedDimension children, along with other attributes as above that point to any multidimensional construct.  `The average of model variable \code{P0} over time' is one example; `the minimum eigenvalue' is another.
+\end{itemize}
+
+In addition, a \Variable must either reference data directly (using a \element{target} that points to a \DataSource or \DataGenerator), or clearly reference a single model or task/model combination from which the above mathematics is derived.  This can be done using the \element{taskReference} and/or \element{modelReference} attributes, and depends on the context of the \Variable:
 
 \begin{itemize}
-	\item A \Variable is always placed inside a \hyperref[class:listOfVariables]{listOfVariables}.  \changed{If it is the base class, its XML name will be \val{variable}; if it is the derived \DependentVariable class, its XML name will be \val{dependentVariable}.}
-	\item \changed{The \hyperref[sec:symbol]{\element{symbol}} and \hyperref[sec:target]{\element{target}} attributes (plus the \element{term}, \element{symbol2}, and \element{target2} attributes of a \DependentVariable) must collectively define exactly one element with mathematical meaning.}
-	\item A \Variable element must contain a \hyperref[sec:taskReference]{taskReference} if it occurs inside a \hyperref[class:listOfVariables]{\element{listOfVariables}} inside a \hyperref[class:dataGenerator]{dataGenerator} element. The only exception is if the \Variable references a \hyperref[class:dataSource]{DataSource}, in which case no \hyperref[sec:taskReference]{taskReference} is required.
-	\item A \Variable element must contain a \hyperref[sec:modelReference]{modelReference} if it occurs inside a \hyperref[class:listOfVariables]{\element{listOfVariables}} inside a \hyperref[class:computeChange]{computeChange} element.  \changed{It must also define the \element{modelReference} if its \element{taskReference} points to a \RepeatedTask that contains references to multiple models.}
-	\item A \Variable element appearing within a \hyperref[class:functionalRange]{functionalRange} or \hyperref[class:setValue]{setValue} element must contain a \hyperref[sec:modelReference]{modelReference} if and only if it references a model variable.
+        \item In a \ComputeChange child of a \Model, there is no task, and a single \element{modelReference} is used to reference the initial state of any model, including the parent of the \ComputeChange.  The \element{taskReference} must not be defined.
+        \item In a \FunctionalRange, the task is taken to be the parent of the \FunctionalRange, and the \element{model\-Reference} is taken to be the model being changed by the parent \AbstractTask.  Either the \element{modelReference} or \element{taskReference} may be defined so as to be explicit.  The \element{modelReference} is required if the parent \AbstractTask itself references multiple models.
+        \item In a \DataGenerator, the task must be defined with the \element{taskReference} attribute.  To be explicit, or if the referenced \AbstractTask uses multiple models, the \element{modelReference} attribute may also be defined.
+        \item In a \SetValue, the \element{taskReference} is taken to be the parent \AbstractTask, and the \element{modelReference} is used to reference the current state of any model.  If the model in question is not modified by the \AbstractTask, that model's initial state is used.  The \element{taskReference} may be set explicitly if desired, and must reference the parent \AbstractTask if so.
 \end{itemize}
+
+If the \Variable is referencing data directly, neither \element{targetReference} nor \element{modelReference} may be defined.
+
+For a \Variable child of a \DataGenerator, the \Variable is by definition multidimensional, taking on the dimensions of the referenced \AbstractTask in addition to its base definition.  In all other cases, the \Variable has only the dimensions of its base definition, and is derived from the current or initial state of the referenced \Model, as above.  In essense, this means that a \Variable that points to \val{p1} in a \Model can be:
+\begin{itemize}
+        \item The scalar value of \code{p1} in the context of a \ComputeChange,
+        \item A vector of \code{p1} values in the context of a \DataGenerator pointing to a timecourse \Task, or
+        \item A multidimensional vector of \code{p1} values in the context of a \DataGenerator pointing to a \RepeatedTask of timecourses.
+\end{itemize}
+
+\end{blockChanged}
 
 \lsttext{variable}{variable}
 In the example a variable \code{v1} is defined to compute a change on a model constituent (referenced by the \hyperref[sec:target]{\element{target}} attribute on \hyperref[class:computeChange]{\element{computeChange}}). The value of \code{v1} corresponds to the value of the targeted model constituent referenced by the \code{target} attribute. The second variable \code{v2} is used inside a \hyperref[class:dataGenerator]{\element{dataGenerator}}. As the variable is \concept{time} as used in \code{task1}, the \hyperref[sec:symbol]{\element{symbol}} attribute is used to refer to the SED-ML URI for time.
@@ -374,13 +396,15 @@ An instance of \Variable can refer to a model constituent inside a particular \h
 Note that while it is possible to write \changed{XPath expressions} that select multiple nodes within a referenced model, when used within a \concept{\element{target}} attribute, a single element or attribute \emph{must} be selected by the expression.
 
 \begin{blockChanged}
-The \concept{\element{target}} attribute may also be used in three situations to reference another SED-ML element with mathematical meaning, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \SId of the element (i.e. \val{\#id001}).
+The \concept{\element{target}} attribute may also be used in several situations to reference another SED-ML element with mathematical meaning, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \SId of the element (i.e. \val{\#id001}):
 
-The first situation is a \Variable inside a \RepeatedTask, which may use a \element{target} to reference a \Range.  In this situation, the \Variable has the mathematical meaning of the scalar value of the \Range for that iteration of the \RepeatedTask.
+\begin{itemize}
+        \item Any \Variable may use a \element{target} to reference a \DataSource.  In this situation, the \Variable has the mathematical meaning and dimensionality (which may be reduced) of the referenced data.
 
-The second situation is that any \Variable may use a \element{target} to reference a scalar \DataSource.  In this situation, the \Variable has the mathematical meaning of that scalar value.
+        \item A \Variable inside a \DataGenerator may use a \element{target} to reference a different \DataGenerator.  In this situation, the \Variable has the mathematical meaning and dimensionality (which may be reduced) of that \DataGenerator.
 
-The final situation is a \Variable inside a \DataGenerator, which may use a \element{target} to reference a multidimensional \DataSource.  In this situation, the \Variable has the mathematical meaning of the referenced external data.  If the \element{id} of the \Variable is used inside a \Math element, any function applied to it is assumed to apply to each individual scalar value of that data.
+        \item A \Variable inside a \RepeatedTask may use a \element{target} to reference a \Range.  In this situation, the \Variable has the mathematical meaning of the scalar value of the \Range for that iteration of the \RepeatedTask.
+\end{itemize}
 
 There are no other situations in SED-ML where the \element{id} of a SED-ML element may be used as the \element{target} of a \Variable.  Also note that multidimensional \DataSource ids may not be used in \RepeatedTask elements, nor \Range ids in \DataGenerator elements.  (To access multidimensional data for a \Range, a \DataRange may be used instead.)
 \end{blockChanged}
@@ -434,6 +458,32 @@ The example \changed{encodes a variable \val{t1} defined to be the SED-ML symbol
 </listOfVariables>
 \end{myXmlLst}
 
+\begin{blockChanged}
+\paragraph*{\element{term}}
+\label{sec:term}
+The \element{term} attribute is of type \element{string}, and should conform to the syntax of a \kisaoID, though the string \val{urn:sedml:symbol:time} may be used for backwards compatibility.  The \element{term} may refer to a function (such as `rate of change', \code{KISAO:0000834}) that relates two variables to each other, instead of just one, or it may refer to an analysis (such as `the eigenvalue matrix', \code{KISAO:0000813}) that is dependent on the model as a whole and not on individual model elements.
+
+\paragraph*{\element{target2}}
+\label{sec:target2}
+A \element{target2} attribute has exactly the same constraints and behavior as a \element{target} attribute, but refers to a second mathematical element, and is always used in conjunction with a \element{term}.
+
+\paragraph*{\element{symbol2}}
+\label{sec:symbol2}
+A \element{symbol2} attribute has exactly the same constraints and behavior as a \element{symbol} attribute, but refers to a second mathematical element, and is always used in conjunction with a \element{term}.
+
+
+\begin{myXmlLst}{SED-ML variable definition of `the rate of change of S1 with respect to time'}{lst:sedmlDimensionTerm}
+<listOfVariables>
+	<variable id="S1prime" name="S1'"  taskReference="task1"
+		target="/sbml:sbml/sbml:listOfSpecies/sbml:species[@id='S1']"
+		symbol2="KISAO:0000832"
+		dimensionTerm="KISAO:0000834" />
+</listOfVariables>
+\end{myXmlLst}
+
+\end{blockChanged}
+
+
 % ~~~ TASK REFERENCE ~~~
 \paragraph*{\element{taskReference}}
 \label{sec:taskReferenceAttribute}
@@ -444,8 +494,19 @@ The \concept{\element{taskReference}} element of data type \SIdRef is used to re
 \label{sec:modelReferenceAttribute}
 The \concept{\element{modelReference}} element of data type \SIdRef is used to reference a \Model via a \hyperref[sec:modelReference]{modelReference}. The usage depends on the context the \Variable is used in.
 
+\changed{Together, the \element{taskReference} and \element{modelReference} attributes define a model and its context which the other attributes use to pull data from.}
+
 
 \begin{blockChanged}
+
+\paragraph*{\element{dimensionTerm}}
+\label{sec:dimensionTerm}
+A \element{dimensionTerm} attribute has exactly the same constraints as the \element{term} attribute, but must refer to a KiSAO term that reduces the dimensionality of multidimensional data.  Currently, all such KiSAO terms inherit from \val{KISAO:0000824} (`aggregation function') and includes functions such as mean (\val{KISAO:0000825}), standard deviation (\val{KISAO:0000826}), and maximum (\val{KISAO:0000828}).
+
+Together with the \AppliedDimension children, the \element{dimensionTerm} defines how to reduce the dimensionality of the data defined by the other attributes of a \Variable.
+
+
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % APPLIEDDIMENSION
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -453,7 +514,7 @@ The \concept{\element{modelReference}} element of data type \SIdRef is used to r
 \label{class:appliedDimension}
 \label{class:listOfAppliedDimensions}
 
-An \AppliedDimension object is used when the \element{term} of the \Variable is a function that reduces the dimensionality of the data.  For example, a variable derived from a \Task inside a \RepeatedTask will have the dimensionality of both.  If the \element{term} of the parent \Variable is the `mean' function (\val{KISAO:0000825}), the following options are available:
+An \AppliedDimension object is exclusively used when the \element{dimensionTerm} of the \Variable is defined.  For example, a variable derived from a \Task inside a \RepeatedTask will have the dimensionality of both.  If the \element{dimensionTerm} of the parent \Variable is the `mean' function (\val{KISAO:0000825}), the following options are available:
 
 \begin{itemize}
         \item The \Variable contains a single \AppliedDimension child that refers to the \RepeatedTask.  The resulting data will have the same dimensions as if the \Variable referred directly to the \Task, but averaged over every repeat of the \RepeatedTask.  This situation is particularly common when the \Task is a stochastic time course simulation, and the \RepeatedTask is a simple loop of that \Task.
@@ -483,39 +544,6 @@ The \element{dimensionTarget} attribute of an \AppliedDimension is used when the
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% DEPENDENTVARIABLE
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{\element{DependentVariable}}
-\label{class:dependentVariable}
-
-The \DependentVariable object is a child of the \Variable class, extending it to include three new attributes:  \element{term} (of type \element{string}), \element{target2} (of \changed{type \element{TargetType}}), and \element{symbol2} (of type string).  A dependent variable is necessary when the desired variable is a composite of two other variables, such as `the rate of change of S1 with respect to time'.
-
-In a \DependentVariable, the \element{term} is used to define an analysis to be performed on the model as a whole, or the relationship of the two variables (i.e. `rate of change'), the \element{target} or \element{symbol} attributes are used to define the first such variable, and the new \element{target2} and \element{symbol2} is used to define the second variable.  
-
-\paragraph*{\element{term}}
-\label{sec:term}
-The \element{term} attribute is of type \element{string}, and should conform to the syntax of a \kisaoID, though the string \val{urn:sedml:symbol:time} may be used for backwards compatibility.  The \element{term} may refer to a function (such as `rate of change', \code{KISAO:0000834}) that relates two variables to each other, instead of just one, or it may refer to an analysis (such as 'the eigenvalue matrix', \code{KISAO:0000813}) that is dependent on the model as a whole and not on individual model elements.
-
-\paragraph*{\element{target2}}
-\label{sec:target2}
-A \element{target2} attribute has exactly the same constraints and behavior as a \element{target} attribute, but refers to a second mathematical element.
-
-\paragraph*{\element{symbol2}}
-\label{sec:symbol2}
-A \element{symbol2} attribute has exactly the same constraints and behavior as a \element{symbol} attribute, but refers to a second mathematical element.
-
-
-\begin{myXmlLst}{SED-ML dependent variable definition of 'the rate of change of S1 with respect to time'}{lst:sedmlDependentVariable}
-<listOfVariables>
-	<dependentVariable id="S1prime" name="S1'"  taskReference="task1"
-		term="KISAO:0000834"
-		target="/sbml:sbml/sbml:listOfSpecies/sbml:species[@id='S1']"
-		symbol2="KISAO:0000832" />
-</listOfVariables>
-\end{myXmlLst}
-
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % CALCULATION
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Calculation}}
@@ -527,7 +555,7 @@ The \Calculation class is an abstract base class for the \ComputeChange, \DataGe
 
 \sedfig[width=0.9\textwidth]{images/uml/calculation}{The \Calculation, \Math, \ListOfVariables, \ListOfParameters, and \Parameter classes.}{fig:calculation}
 
-In the \ListOfVariables, the \Variable elements define identifiers referring to model variables or range values, which may then be used within the \Math expression. These references always retrieve the current value of the variable in the context of the \Calculation.  A \ListOfVariables may contain any number of \Variable and/or \DependentVariable entries.
+In the \ListOfVariables, the \Variable elements define identifiers referring to model variables or range values, which may then be used within the \Math expression. These references always retrieve the current value of the variable in the context of the \Calculation.  A \ListOfVariables may contain any number of \Variable entries.
 
 In the \ListOfParameters, the \Parameter elements define simple values that may be used in the \Math of the \Calculation.
 
