@@ -514,12 +514,12 @@ Together with the \AppliedDimension children, the \element{dimensionTerm} define
 \label{class:appliedDimension}
 \label{class:listOfAppliedDimensions}
 
-An \AppliedDimension object is exclusively used when the \element{dimensionTerm} of the \Variable is defined.  For example, a variable derived from a \Task inside a \RepeatedTask will have the dimensionality of both.  If the \element{dimensionTerm} of the parent \Variable is the `mean' function (\val{KISAO:0000825}), the following options are available:
+An \AppliedDimension object is exclusively used when the \element{dimensionTerm} of the \Variable is defined, and describes which dimension or dimensions that function is applied to.  When multiple dimensions are defined, the function is applied over both at once, and not sequentially.  For example, a variable derived from a \Task inside a \RepeatedTask will have the dimensionality of both.  If the \element{dimensionTerm} of the parent \Variable is the `mean' function (\val{KISAO:0000825}), the following options are available:
 
 \begin{itemize}
         \item The \Variable contains a single \AppliedDimension child that refers to the \RepeatedTask.  The resulting data will have the same dimensions as if the \Variable referred directly to the \Task, but averaged over every repeat of the \RepeatedTask.  This situation is particularly common when the \Task is a stochastic time course simulation, and the \RepeatedTask is a simple loop of that \Task.
         \item The \Variable contains a single \AppliedDimension child that refers to the \Task.  The resulting data will be a vector with the same number of entries as there were repeats of the \RepeatedTask.  This situation is particularly helpful when the \RepeatedTask is a parameter scan, and the \Variable is tracking a model variable that oscillates during the \Task.  The resulting vector will be the average value of that model variable under each of the different starting conditions.
-        \item The \Variable contains two \AppliedDimension children, one that refers to the \RepeatedTask and one to the \Task.  The resulting data will be a single value, that has been averaged over both the \Task and \RepeatedTask.  In this case, the function is performed on an element-by-element basis
+        \item The \Variable contains two \AppliedDimension children, one that refers to the \RepeatedTask and one to the \Task.  The resulting data will be a single value, that has been averaged over both the \Task and \RepeatedTask.  In this case, the function is performed on an element-by-element basis.
 \end{itemize}
 
 The \element{term} of the parent \Variable with one or more \AppliedDimension children should always reference a function that reduces the dimensionality of the data (i.e. children of \element{KISAO:0000824}).
