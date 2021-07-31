@@ -6,6 +6,7 @@ Created on Thu Jul  8 14:00:04 2021
 """
 
 import re
+import math
 
 infile = open("apdx-validation-orig.tex", "r")
 outfile = open("apdx-validation.tex", "w")
@@ -87,7 +88,111 @@ replacements = [
     ("Reference: SED-ML Level~1 Version~4, Section~3.2", "Reference: SED-ML Level~1 Version~4, Section~\\ref{class:sedBase}"),
     (r"may have the optional SED-ML Level~1 attributes \token{metaid} and \token{sboTerm}.", r"may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}."),
     (r"optional SED-ML Level~1 attributes \token{id}, \token{metaid}, and \token{sboTerm}", r"optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}"),
+    (r"the enclosing \Model object", "the document"),
+    ("rangeId", "range"),
     ]
+
+
+replaced_rules ={
+    25504: ("valid", "The value of The value of the \element{target} attribute of an \AppliedDimension must be the identifier of an existing \RepeatedTask or \SubTask object in the document, or the identifier of a \Task referenced by a \SubTask.", "class:appliedDimension"),
+    25505: ("valid", "The value of the \element{dimensionTarget} of an \AppliedDimension must be the identifier of a dimension of the referenced data.", "class:appliedDimension"),
+    23505: ("valid", "The value of the \element{range} of a \RepeatedTask must be the identifier of an existing \Range child of that \RepeatedTask.", "class:range"),
+    22806: ("valid", "The value of the \element{range} attribute of a \SetValue must be the identifier of an existing \Range child of the parent \RepeatedTask.", "class:setValue"),
+    23105: ("valid", "The value of the \element{range} attribute of a \FunctionalRange must be the identifier of an existing \Range sibling of the \FunctionalRange.", "class:functionalRange"),
+    24404: ("valid", "The value of the \element{experiment} attribute of a \ExperimentRef must be the identifier of an existing \FitExperiment child of the parent \ParameterEstimationTask.", "class:variable"),
+    24608: ("valid", "The value of the \element{pointWeight} attribute of a \FitMapping must be the identifier of an existing \DataGenerator or \DataSource object in the document.", "class:fitMapping"),
+    
+    }
+
+
+new_rules ={
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+    # 00000: ("valid", "", "class:"),
+
+}
+
+new_rules = {}
+
+karr = """    
+\item The references that are required in specific contexts are set in those contexts (e.g., each variable of each data generator has a task reference).
+\item The references which are not allowed in specific contexts are not set in those contexts (e.g., no variable of a data generator has a model reference).
+\item Each reference (e.g., from a task to a model) can be resolved.
+\item URLs should be used in place of URNs for model sources because URNs will likely be deprecated in a future version of SED-ML (warning).
+\item Each model source can be resolved.
+\item The networks of references are acyclic:
+    \begin{itemize}[labelwidth=0pt]
+        \item Model references.
+        \item Compute model changes.
+        \item Repeated tasks.
+        \item Functional ranges.
+    \end{itemize}
+\item Each container element has at least one child:
+    \begin{itemize}[labelwidth=0pt]
+    \item Repeated tasks have at least one subtask.
+    \item Reports have at least one data set.
+    \item 2D plots have at least one curve.
+    \item 3D plots have at least one surface.
+    \end{itemize}
+\item The source of each model is encoded in its language. 
+    \begin{itemize}[labelwidth=0pt]
+    \item CellML-encoded models: The validator uses LibCellML (\href{https://libcellml.org}{https://\allowbreak{}lib\allowbreak{}cell\allowbreak{}ml.\allowbreak{}org}) to check that each model source is a valid CellML file. 
+    \item NeuroML-encoded models: The validator uses LibNeuroML \citep{vella2014libneuroml} to check that each model source is a valid NeuroML file. 
+    \item SBML-encoded models: The validator uses LibSBML \citep{bornstein2008libsbml} to check that each model source is a valid SBML file. 
+    \item Other XML-encoded models: The validator checks that each model source is a valid XML file. 
+    \item Other formats: The validator warns users that these model sources could not be validated.
+    \end{itemize}
+\item For XML-encoded models, the namespaces required to describe each model change and variable of each data generator are defined.
+\item For XML-encoded models, each element of each model change is an XML element or a list of XML elements. 
+\item For XML-encoded models, each target of each static model change is a valid XPath.
+\item Each uniform range has at least one step.
+\item When a repeated task has multiple ranges, the secondary ranges are at least as long as the primary range.
+\item The output start time of each time course simulation is at least its initial time.
+\item The end time of each time course simulation is at least its output start time.
+\item Each time course has at least one step.
+\item Each time course has a number of steps evenly divisible by five (warning). This validation rule was motivated by observing that many SED-ML files in BioModels have extra unintended steps due to historical confusion about the meaning of the SED-ML attribute which stores this information and bugs in creating SED-ML files by some software tools. Note, we are helping address the underlying causes for both of these issues through revisions to the SED-ML specifications and fixes to these software tools.
+\item The KiSAO id of each algorithm and the KiSAO id of each algorithm parameter are ids of KiSAO terms for specific algorithms and algorithm parameters.
+\item Each parameter of an algorithm has a unique KiSAO id.
+\item For XML-encoded models, each target of each data generator to a static model is a valid XPath that matches a single model element.
+\item Each mathematical expression can be evaluated (e.g., all symbols are defined).
+\item Each data set has a unique label within each report (warning).
+\item The axes of the curves and surfaces of plots have consistent (log or linear) scales (warning).
+\item The data generators for each plot are linked to basic simulation tasks and not repeated tasks (warning). The validator raises warnings for such plots because the SED-ML specifications do not officially support such plots, and some software tools do not have the capability to create these plots.
+\item Each task contributes to at least one output (warning).
+\item Each data generator contributes to at least one output (warning).
+\item The shapes of the outputs of the sub-tasks of each repeated task are consistent (warning).
+\item The shapes of the outputs of the variables of each data generator are consistent (warning).
+\item The shapes of the outputs of the data sets of each report are consistent (warning).
+\item The shapes of the outputs of the x and y data of each curve are consistent (warning).
+\item The shapes of the outputs of the x, y, and z data of each surface are consistent (warning).    
+"""
 
 def addRequiredId(paragraph):
     idreqlist = ["\\Parameter", "\\Variable", "\\DataDescription", "\\DataSource", "\\Model", "\\Simulation", "\\AbstractTask", "\\Task", "\\RepeatedTask", "\\ParameterEstimationTask", "\\DataGenerator", "\\Style", ]
@@ -123,21 +228,70 @@ def fix(paragraph):
         paragraph = re.sub(regexp[0], regexp[1], paragraph)
     for ig in ignore:
         if ig in paragraph:
-            return
+            return ""
     paragraph = addRequiredId(paragraph)
     # paragraph = re.sub("")
-    outfile.write(paragraph + "\n\n")
+    return paragraph;
+
+def writeNewRule(rnum):
+    valid, text, ref = new_rules[rnum]
+    outfile.write("\\" + valid + "Rule{" + str(rnum) + "}{" + text + "  (Reference: SED-ML Level~1 Version~4, Section \\ref{" + ref + "})}\n\n")
+
+def writeReplacedRule(rnum):
+    valid, text, ref = replaced_rules[rnum]
+    outfile.write("\\" + valid + "Rule{" + str(rnum) + "}{" + text + "  (Reference: SED-ML Level~1 Version~4, Section \\ref{" + ref + "})}\n\n")
+
+def writeNewBefore(val):
+    deletelist = []
+    for rnum in new_rules:
+        if rnum < val:
+            writeNewRule(rnum)
+            deletelist.append(rnum)
+    for deleteme in deletelist:
+        del new_rules[deleteme]
+
+prevValidationNumber = 0
+
+def getValidationNumber(paragraph):
+    pvec = re.split("{|}", paragraph)
+    print(pvec)
+    if len(pvec) > 1:
+        if pvec[1].isnumeric():
+            print(pvec[1])
+            return int(pvec[1])
+        else:
+            print("0")
+            return 0
+    print(str(prevValidationNumber))
+    return prevValidationNumber
+
+def fixAndWrite(paragraph):
+    global prevValidationNumber
+    paragraph = fix(paragraph)
+    num = getValidationNumber(paragraph)
+    if num==0:
+        target = math.floor(prevValidationNumber/100)*100+100
+        print("valid: ", str(target))
+        writeNewBefore(target)
+    else:
+        writeNewBefore(num)
+    prevValidationNumber = num
+    if num in replaced_rules:
+        writeReplacedRule(num)
+    else:
+        outfile.write(paragraph + "\n\n")
 
 paragraph = ""
 for line in infile:
     line = line.rstrip()
-    if line == "":
-        fix(paragraph)
+    if line == "" and paragraph != "":
+        fixAndWrite(paragraph)
         paragraph = ""
     else:
         paragraph += " " + line
 
-fix(paragraph)
+fixAndWrite(paragraph)
+writeNewBefore(100000)
 
 infile.close()
 outfile.close()
