@@ -332,7 +332,7 @@ A \Variable may be used in one of the following ways:
         \item To reference an implicit aspect of an explicit model element, using both the \element{target} and \element{symbol} attributes.  `The concentration of an SBML Species' is one example.
         \item To reference a mathematical concept implicit in the model, using the \element{term} attribute.  `The Stoichiometry matrix' is one example.
         \item To reference a mathematical concept implicit in the model for one or two explicit or implicit model elements, using the \element{term} attribute in combination with one or more of the \element{target}, \element{symbol}, \element{target2}, and \element{symbol2} attributes.  `The rate of change of species \code{S1} with respect to time' is one example; `the elasticity of reaction \code{J1} with respect to \code{p0}' is another.
-        \item To reference a mathematical dimension reduction of any of the above, using the \element{dimensionTerm} in combination with one or more \AppliedDimension children, along with other attributes as above that point to any multidimensional construct.  `The average of model variable \code{P0} over time' is one example; `the minimum eigenvalue' is another.
+        \item To reference a mathematical dimension reduction of any of the above, using the \element{dimensionTerm} in combination with one or more \AppliedDimension children, along with other attributes as above that point to any multidimensional construct.  `The average of model variable \code{P0} over time' is one example; `the smallest eigenvalue' is another.
 \end{itemize}
 
 In addition, a \Variable must either reference data directly (using a \element{target} that points to a \DataSource or \DataGenerator), or clearly reference a single model or task/model combination from which the above mathematics is derived.  This can be done using the \element{taskReference} and/or \element{modelReference} attributes, and depends on the context of the \Variable:
@@ -365,7 +365,7 @@ In the example a variable \code{v1} is defined to compute a change on a model co
 			<listOfChanges>
 				<computeChange target="TARGET ELEMENT OR ATTRIBUTE">
 				<listOfVariables>
-				   <variable id="v1" name="maximum velocity" target="\changed{Path} TO MODEL ELEMENT/ATTRIBUTE" />
+				   <variable id="v1" name="maximum velocity" target="PATH TO MODEL ELEMENT/ATTRIBUTE" />
 				   [FURTHER VARIABLE DEFINITIONS]
 				</listOfVariables>
 				[..]
@@ -461,7 +461,7 @@ The example \changed{encodes a variable \val{t1} defined to be the SED-ML symbol
 \begin{blockChanged}
 \paragraph*{\element{term}}
 \label{sec:term}
-The \element{term} attribute is of type \element{string}, and should conform to the syntax of a \kisaoID, though the string \val{urn:sedml:symbol:time} may be used for backwards compatibility.  The \element{term} may refer to a function (such as `rate of change', \code{KISAO:0000834}) that relates two variables to each other, instead of just one, or it may refer to an analysis (such as `the eigenvalue matrix', \code{KISAO:0000813}) that is dependent on the model as a whole and not on individual model elements.
+The \element{term} attribute is of type \element{string}, and should conform to the syntax of a \kisaoID.  The \element{term} may refer to a function (such as `rate of change', \code{KISAO:0000834}) that relates two variables to each other, instead of just one, or it may refer to an analysis (such as `the eigenvalue matrix', \code{KISAO:0000813}) that is dependent on the model as a whole and not on individual model elements.
 
 \paragraph*{\element{target2}}
 \label{sec:target2}
@@ -501,7 +501,7 @@ The \concept{\element{modelReference}} element of data type \SIdRef is used to r
 
 \paragraph*{\element{dimensionTerm}}
 \label{sec:dimensionTerm}
-A \element{dimensionTerm} attribute has exactly the same constraints as the \element{term} attribute, but must refer to a KiSAO term that reduces the dimensionality of multidimensional data.  Currently, all such KiSAO terms inherit from \val{KISAO:0000824} (`aggregation function') and includes functions such as mean (\val{KISAO:0000825}), standard deviation (\val{KISAO:0000826}), and maximum (\val{KISAO:0000828}).
+A \element{dimensionTerm} attribute has exactly the same constraints as the \element{term} attribute, but must refer to a KiSAO term that reduces the dimensionality of multidimensional data.  Currently, all such KiSAO terms inherit from \val{KISAO:0000824} (`aggregation function') and includes functions such as mean (\val{KISAO:\-0000825}), standard deviation (\val{KISAO:0000826}), and maximum (\val{KISAO:0000828}).
 
 Together with the \AppliedDimension children, the \element{dimensionTerm} defines how to reduce the dimensionality of the data defined by the other attributes of a \Variable.
 
