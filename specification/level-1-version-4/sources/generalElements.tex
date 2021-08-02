@@ -263,7 +263,7 @@ In this example, the namespace declaration is inside the \element{notes} element
 
 An \concept{Annotation} can be used to capture computer-processable information about an element of a SED-ML document. Annotations may contain any valid XML content. For further guidelines on how to use annotations see the SBML specification \citep{HBH+10}. The recommended style of annotations in SED-ML is briefly described in Section~\ref{sec:annotations}.
 
-\lsttext{annotation}{annotation} In this example, a \hyperref[class:model]{\element{model}} element is annotated with a reference to the original publication. The \element{model} contains an \concept{\element{annotation}} that uses the model-qualifier \element{isDescribedBy} to link to the external resource \element{http://identifiers.org/pubmed/10415827}. In natural language, the annotation content could be interpreted as ``The model is described by the published article available from PubMed under the identifier 10415827''.
+\lsttext{annotation}{annotation} In this example, a \hyperref[class:model]{\element{model}} element is annotated with a reference to the original publication. The \element{model} contains an \concept{\element{annotation}} that uses the model-qualifier \element{isDescribedBy} to link to the external resource \element{https://identifiers.org/pubmed/10415827}. In natural language, the annotation content could be interpreted as ``The model is described by the published article available from PubMed under the identifier 10415827''.
 
 \begin{myXmlLst}{The annotation element}{lst:annotation}
 <sedML>
@@ -274,7 +274,7 @@ An \concept{Annotation} can be used to capture computer-processable information 
 				<rdf:Description rdf:about="#_001">
 				<bqmodel:isDescribedBy>
 				<rdf:Bag>
-					<rdf:li rdf:resource="http://identifiers.org/pubmed/10415827"/>
+					<rdf:li rdf:resource="https://identifiers.org/pubmed/10415827"/>
 				</rdf:Bag>
 				</bqmodel:isDescribedBy>
     			</rdf:Description>

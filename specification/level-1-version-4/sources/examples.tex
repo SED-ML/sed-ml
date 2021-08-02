@@ -3,7 +3,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{Example simulation experiment (\texttt{L1V3\_repressilator.omex})}
 \label{example:repressilator}
-This example lists the SED-ML for the example in the introduction (Section~\ref{motivation:example}).  \changed{It illustrates the use of a \element{dimensionTerm} to calculate the maximum value of a vector with the KiSAO term for 'maximum' (\val{KISAO:0000828}) as the \element{term}.  This document can be found at \url{http://sed-ml.org/examples/L1V4/L1V4_repressilator/repressilator.xml}, and an OMEX version at \url{http://sed-ml.org/examples/L1V4/L1V4_repressilator.omex}.}
+This example lists the SED-ML for the example in the introduction (Section~\ref{motivation:example}).  \changed{It illustrates the use of a \element{dimensionTerm} to calculate the maximum value of a vector with the KiSAO term for 'maximum' (\val{KISAO:0000828}) as the \element{term}.  This document can be found at \url{https://sed-ml.org/examples/L1V4/L1V4_repressilator/repressilator.xml}, and an OMEX version at \url{https://sed-ml.org/examples/L1V4/L1V4_repressilator.omex}.}
 
 \myXmlImport{SED-ML document for example simulation experiment.}
 {lst:repressilator}
@@ -17,7 +17,7 @@ This example lists the SED-ML for the example in the introduction (Section~\ref{
 The \hyperref[class:dataDescription]{DataDescription} provides means to use external datasets in simulation experiments. In this section simulation experiments using the \hyperref[class:dataDescription]{dataDescription} are presented.
 
 \subsection{Plotting data with simulations (\texttt{L1V3\_plotting-data-numl.omex})}
-This example demonstrates the use of the \hyperref[class:dataDescription]{DataDescription} and \hyperref[class:dataSource]{DataSource} to load external data in SED-ML. In the example a \hyperref[class:model]{model} is simulated (using a \hyperref[class:uniformTimeCourse]{uniformTimeCourse} simulation) and the simulation results are plotted. In addition data is plotted using the \hyperref[class:dataDescription]{dataDescription} and \hyperref[class:dataSource]{DataSource}), extracting the \token{S1} and \token{time} column from it and renders it. The listed example uses data encoded in \hyperref[sec:dataFormatNUML]{NuML} as \hyperref[sec:dataFormatURN]{format} (\code{urn:sedml:format:numl}). \changed{This document can be found at \url{http://sed-ml.org/examples/L1V3/L1V3_plotting-data-numl/plotting-data-numl.xml}, and an OMEX version at \url{http://sed-ml.org/examples/L1V3/L1V3_plotting-data-numl.omex}.}
+This example demonstrates the use of the \hyperref[class:dataDescription]{DataDescription} and \hyperref[class:dataSource]{DataSource} to load external data in SED-ML. In the example a \hyperref[class:model]{model} is simulated (using a \hyperref[class:uniformTimeCourse]{uniformTimeCourse} simulation) and the simulation results are plotted. In addition data is plotted using the \hyperref[class:dataDescription]{dataDescription} and \hyperref[class:dataSource]{DataSource}), extracting the \token{S1} and \token{time} column from it and renders it. The listed example uses data encoded in \hyperref[sec:dataFormatNUML]{NuML} as \hyperref[sec:dataFormatURN]{format} (\code{urn:sedml:format:numl}). \changed{This document can be found at \url{https://sed-ml.org/examples/L1V3/L1V3_plotting-data-numl/plotting-data-numl.xml}, and an OMEX version at \url{https://sed-ml.org/examples/L1V3/L1V3_plotting-data-numl.omex}.}
 
 The corresponding example using \hyperref[sec:dataFormatCSV]{CSV} (\code{urn:sedml:format:csv}) as format to encode the data is available as \texttt{L1V3\_plotting-data-csv.omex}.
 
@@ -51,7 +51,7 @@ The \RepeatedTask makes it possible to encode a large number of different simula
 \subsection{Time course parameter scan (\texttt{L1V3\_repeated-scan-oscli.omex})}
 In this example a \hyperref[class:repeatedTask]{repeatedTask} is used to run repeated \hyperref[class:uniformTimeCourse]{uniformTimeCourse} simulations with a deterministic simulation algorithm. Within the \hyperref[class:repeatedTask]{repeatedTask} after each run the parameter value is changed, resulting in a time course parameter scan.
 
-NOTE: This example produces three dimensional results (time, species concentration, multiple repeats).  SED-ML \currentLV \changed{provides ways to post-process these values with the \element{dimensionTerm} of the \Variable class, but here they are not used, meaning that every individual element in the \element{xDataReference} is plotted vs. every individual element in the \element{yDataReference}, effectively flattening the values by overlaying them onto the desired plot.  The breaks between dimensions should be used as breaks between any connected lines, so that spurious lines from the end of one plot to the beginning of the next are not present.  This document can be found at \url{http://sed-ml.org/examples/L1V3/L1V3_repeated-scan-oscli/repeated-scan-oscli.xml}, and an OMEX version at \url{http://sed-ml.org/examples/L1V3/L1V3_repeated-scan-oscli.omex}.}
+NOTE: This example produces three dimensional results (time, species concentration, multiple repeats).  SED-ML \currentLV \changed{provides ways to post-process these values with the \element{dimensionTerm} of the \Variable class, but here they are not used, meaning that every individual element in the \element{xDataReference} is plotted vs. every individual element in the \element{yDataReference}, effectively flattening the values by overlaying them onto the desired plot.  The breaks between dimensions should be used as breaks between any connected lines, so that spurious lines from the end of one plot to the beginning of the next are not present.  This document can be found at \url{https://sed-ml.org/examples/L1V3/L1V3_repeated-scan-oscli/repeated-scan-oscli.xml}, and an OMEX version at \url{https://sed-ml.org/examples/L1V3/L1V3_repeated-scan-oscli.omex}.}
 
 \begin{figure}[ht]
     \centering
@@ -74,7 +74,7 @@ NOTE: This example produces three dimensional results (time, species concentrati
 
 % ~~~ STEADY STATE PARAMETER SCAN ~~~
 \subsection{Steady state parameter scan (\texttt{L1V3\_repeated-steady-scan-oscli.omex})}
-In this example a \hyperref[class:repeatedTask]{repeatedTask} is used in combination with a \hyperref[class:steadyState]{steadyState} simulation task (performing a steady state computation). On each repeat a parameter is varied resulting in a steady state parameter scan.  \changed{This document can be found at \url{http://sed-ml.org/examples/L1V3/L1V3_repeated-steady-scan-oscli/repeated-steady-scan-oscli.xml}, and an OMEX version at \url{http://sed-ml.org/examples/L1V3/L1V3_repeated-steady-scan-oscli.omex}.}
+In this example a \hyperref[class:repeatedTask]{repeatedTask} is used in combination with a \hyperref[class:steadyState]{steadyState} simulation task (performing a steady state computation). On each repeat a parameter is varied resulting in a steady state parameter scan.  \changed{This document can be found at \url{https://sed-ml.org/examples/L1V3/L1V3_repeated-steady-scan-oscli/repeated-steady-scan-oscli.xml}, and an OMEX version at \url{https://sed-ml.org/examples/L1V3/L1V3_repeated-steady-scan-oscli.omex}.}
 
 \begin{figure}[ht!]
     \centering
@@ -103,7 +103,7 @@ Running just one stochastic trace does not provide a complete picture of the beh
 
 NOTE: This example produces three dimensional results (time, species concentration, multiple repeats). SED-ML \currentLV \changed{provides ways to post-process these values with the \element{dimensionTerm} of the \Variable class, but here they are not used, meaning that every individual element in the \element{xDataReference} is plotted vs. every individual element in the \element{yDataReference}, effectively flattening the values by overlaying them onto the desired plot.  The breaks between dimensions should be used as breaks between any connected lines, so that spurious lines from the end of one plot to the beginning of the next are not present.}
 
-\changed{This document can be found at \url{http://sed-ml.org/examples/L1V3/L1V3_repeated-stochastic-runs/repeated-stochastic-runs.xml}, and an OMEX version at \url{http://sed-ml.org/examples/L1V3/L1V3_repeated-stochastic-runs.omex}.}
+\changed{This document can be found at \url{https://sed-ml.org/examples/L1V3/L1V3_repeated-stochastic-runs/repeated-stochastic-runs.xml}, and an OMEX version at \url{https://sed-ml.org/examples/L1V3/L1V3_repeated-stochastic-runs.omex}.}
 
 \begin{figure}[ht]
     \centering
@@ -131,7 +131,7 @@ Often it is interesting to see how the dynamic behavior of a model changes when 
 
 Note: In the example a \hyperref[class:functionalRange]{functionalRange} is used, although the same result could also be achieved using the \hyperref[class:setValue]{setValue} element directly.
 
-\changed{This document can be found at \url{http://sed-ml.org/examples/L1V3/L1V3_oscli-nested-pulse/oscli-nested-pulse.xml}, and an OMEX version at \url{http://sed-ml.org/examples/L1V3/L1V3_oscli-nested-pulse.omex}.}
+\changed{This document can be found at \url{https://sed-ml.org/examples/L1V3/L1V3_oscli-nested-pulse/oscli-nested-pulse.xml}, and an OMEX version at \url{https://sed-ml.org/examples/L1V3/L1V3_oscli-nested-pulse.omex}.}
 
 \begin{figure}[ht]
     \centering
@@ -159,7 +159,7 @@ This example uses a \hyperref[class:repeatedTask]{repeatedTask} which runs over 
 
 NOTE: This example produces three dimensional results (time, species concentration, multiple repeats). SED-ML \currentLV \changed{provides ways to post-process these values with the \element{dimensionTerm} attribute of the \Variable class, but here they are not used, meaning that every individual element in the \element{xDataReference} is plotted vs. every individual element in the \element{yDataReference}, effectively flattening the values by overlaying them onto the desired plot.  The breaks between dimensions should be used as breaks between any connected lines, so that spurious lines from the end of one plot to the beginning of the next are not present.}
 
-\changed{This document can be found at \url{http://sed-ml.org/examples/L1V3/L1V3_parameter-scan-2d/parameter-scan-2d.xml}, and an OMEX version at \url{http://sed-ml.org/examples/L1V3/L1V3_parameter-scan-2d.omex}.}
+\changed{This document can be found at \url{https://sed-ml.org/examples/L1V3/L1V3_parameter-scan-2d/parameter-scan-2d.xml}, and an OMEX version at \url{https://sed-ml.org/examples/L1V3/L1V3_parameter-scan-2d.omex}.}
 
 \begin{figure}[ht]
     \centering
@@ -191,7 +191,7 @@ SED-ML allows to specify models in various languages, e.g., SBML \citep{Hucka:20
 
 \subsection{Van der Pol oscillator in SBML (\texttt{L1V3\_vanderpol-sbml.omex})}
 \label{example:vanderpol_sbml}
-The following example provides a SED-ML description for the simulation of the Van der Pol oscillator in SBML \citep{Hucka:2003}. The time-course and the behavior in the phase plane are plotted. The mathematical model and the performed simulation experiment are identical to Appendix~\ref{example:vanderpol_cellml}.  \changed{This document can be found at \url{http://sed-ml.org/examples/L1V3/L1V3_vanderpol-sbml/vanderpol.xml}, and an OMEX version at \url{http://sed-ml.org/examples/L1V3/L1V3_vanderpol-sbml.omex}.}
+The following example provides a SED-ML description for the simulation of the Van der Pol oscillator in SBML \citep{Hucka:2003}. The time-course and the behavior in the phase plane are plotted. The mathematical model and the performed simulation experiment are identical to Appendix~\ref{example:vanderpol_cellml}.  \changed{This document can be found at \url{https://sed-ml.org/examples/L1V3/L1V3_vanderpol-sbml/vanderpol.xml}, and an OMEX version at \url{https://sed-ml.org/examples/L1V3/L1V3_vanderpol-sbml.omex}.}
 
 \begin{figure}[ht]
     \centering
@@ -214,7 +214,7 @@ The following example provides a SED-ML description for the simulation of the Va
 
 \subsection{Van der Pol oscillator in CellML (\texttt{L1V3\_vanderpol-cellml.omex})}
 \label{example:vanderpol_cellml}
-The following example provides a SED-ML description for the simulation of the Van der Pol model in CellML \citep{cuellar:2003}. The time-course and the behavior in the phase plane are plotted. The mathematical model and the performed simulation experiment are identical to Appendix~\ref{example:vanderpol_sbml}.  \changed{This document can be found at \url{http://sed-ml.org/examples/L1V3/L1V3_vanderpol-cellml/vanderpol.xml}, and an OMEX version at \url{http://sed-ml.org/examples/L1V3/L1V3_vanderpol-cellml.omex}.}
+The following example provides a SED-ML description for the simulation of the Van der Pol model in CellML \citep{cuellar:2003}. The time-course and the behavior in the phase plane are plotted. The mathematical model and the performed simulation experiment are identical to Appendix~\ref{example:vanderpol_sbml}.  \changed{This document can be found at \url{https://sed-ml.org/examples/L1V3/L1V3_vanderpol-cellml/vanderpol.xml}, and an OMEX version at \url{https://sed-ml.org/examples/L1V3/L1V3_vanderpol-cellml.omex}.}
 
 \begin{figure}[ht]
     \centering
@@ -300,7 +300,7 @@ One simulation setup is defined in the \code{listOfSimulations}. It is a \code{u
 
 A number of \hyperref[class:dataGenerator]{dataGenerators} are defined, which are the prerequisite for defining the simulation \hyperref[class:output]{output}. The first \hyperref[class:dataGenerator]{dataGenerator} with \hyperref[sec:id]{\element{id}} \code{time} collects the simulation time. \code{tim1} maps on the \code{Mt} entity in the model that is used in \code{task1} which in the model \code{model1}. The dataGenerator named \code{\texttt{per\_tim1}} maps on the \code{Cn} entity in \code{model1}. Finally  the fourth and fifth dataGenerators map on the \code{Mt} and \code{\texttt{per\_tim}} entity respectively in the updated model with ID \code{model2}.
 
-The \hyperref[class:output]{output} defined in the experiment consists of three \hyperref[class:plot2D]{2D plots}. The first plot has two \hyperref[class:curve]{curves} and provides the time course of the simulation using the tim mRNA concentrations from both tasks. The second plot shows the \code{\texttt{per\_tim}} concentration against the \code{tim} concentration for the oscillating model. The third plot shows the same plot for the chaotic model. The resulting three plots are depicted in Figure \ref{fig:leloup-sbml1} and \ref{fig:leloup-sbml2}.  \changed{This document can be found at \url{http://sed-ml.org/examples/L1V3/L1V3_leloup-sbml/leloup-sbml.xml}, and an OMEX version at \url{http://sed-ml.org/examples/L1V3/L1V3_leloup-sbml.omex}.}
+The \hyperref[class:output]{output} defined in the experiment consists of three \hyperref[class:plot2D]{2D plots}. The first plot has two \hyperref[class:curve]{curves} and provides the time course of the simulation using the tim mRNA concentrations from both tasks. The second plot shows the \code{\texttt{per\_tim}} concentration against the \code{tim} concentration for the oscillating model. The third plot shows the same plot for the chaotic model. The resulting three plots are depicted in Figure \ref{fig:leloup-sbml1} and \ref{fig:leloup-sbml2}.  \changed{This document can be found at \url{https://sed-ml.org/examples/L1V3/L1V3_leloup-sbml/leloup-sbml.xml}, and an OMEX version at \url{https://sed-ml.org/examples/L1V3/L1V3_leloup-sbml.omex}.}
 
 \begin{figure}[ht]
     \centering
@@ -334,7 +334,7 @@ This model is referenced by its SED-ML ID \code{model1} and refers to the model 
 
 The simulation description specifies one simulation \code{simulation1}, which is a uniform timecourse simulation that simulates the model for 41 hours. \code{task1} then applies this simulation to the model.
 
-As output this simulation description collects four parameters: \code{Total\_NFkBn}, \code{Total\_IkBbeta}, \code{Total\_IkBeps} and \code{Total\_IkBalpha}. These variables are plotted against the simulation time as shown in Figure \ref{fig:ikappab1} and \ref{fig:ikappab2}.  \changed{This document can be found at \url{http://sed-ml.org/examples/L1V3/L1V3_ikappab/ikappab.xml}, and an OMEX version at \url{http://sed-ml.org/examples/L1V3/L1V3_ikappab.omex}.}
+As output this simulation description collects four parameters: \code{Total\_NFkBn}, \code{Total\_IkBbeta}, \code{Total\_IkBeps} and \code{Total\_IkBalpha}. These variables are plotted against the simulation time as shown in Figure \ref{fig:ikappab1} and \ref{fig:ikappab2}.  \changed{This document can be found at \url{https://sed-ml.org/examples/L1V3/L1V3_ikappab/ikappab.xml}, and an OMEX version at \url{https://sed-ml.org/examples/L1V3/L1V3_ikappab.omex}.}
 
 \begin{figure}[ht]
     \centering

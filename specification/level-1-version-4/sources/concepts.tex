@@ -323,7 +323,7 @@ VCML (generic) & \code{urn:sedml:language:vcml} \\
 \changed{ZGINML (generic)} & \code{urn:sedml:language:zginml} \\
 \bottomrule
 \end{tabular}
-\caption{Predefined model language URNs. The latest list of language URNs is available from \url{http://sed-ml.org/urns.html}.}
+\caption{Predefined model language URNs. The latest list of language URNs is available from \url{https://sed-ml.org/urns.html}.}
 \label{tab:languageURN}
 \end{table}
 
@@ -351,7 +351,7 @@ TSV & \code{urn:sedml:format:tsv} \\
 HDF5 & \code{urn:sedml:format:hdf5} \\
 \bottomrule
 \end{tabular}
-\caption{Predefined dataDescription format URNs. The latest list of format URNs is available from \url{http://sed-ml.org/urns.html}.}
+\caption{Predefined dataDescription format URNs. The latest list of format URNs is available from \url{https://sed-ml.org/urns.html}.}
 \label{tab:dataFormatURN}
 \end{table}
 
@@ -499,11 +499,11 @@ The Numerical Markup Language (\concept{NuML}) aims to standardize the exchange 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{KiSAO}
 \label{sec:kisao}
-The Kinetic Simulation Algorithm Ontology (\concept{KiSAO} \citep{CWK+10}) is used in SED-ML to specify simulation \hyperref[class:algorithm]{algorithms} and \hyperref[class:algorithmParameter]{algorithmParameters}. \concept{KiSAO} is a community-driven approach of classifying and structuring simulation approaches by model characteristics and numerical characteristics. The ontology is available in OWL format from \concept{BioPortal} at \url{http://purl.bioontology.org/ontology/KiSAO}. 
+The Kinetic Simulation Algorithm Ontology (\concept{KiSAO} \citep{CWK+10}) is used in SED-ML to specify simulation \hyperref[class:algorithm]{algorithms} and \hyperref[class:algorithmParameter]{algorithmParameters}. \concept{KiSAO} is a community-driven approach of classifying and structuring simulation approaches by model characteristics and numerical characteristics. The ontology is available in OWL format from \concept{BioPortal} at \url{https://purl.bioontology.org/ontology/KiSAO}. 
 
 Defining simulation \hyperref[class:algorithm]{algorithms} through \concept{KISAO} terms not only identifies the simulation algorithm used for the SED-ML simulation, it also enables software to find related algorithms, if the specific implementation is not available. For example, software could decide to use the CVODE integration library for an analysis instead of a specific Runge Kutta 4,5 implementation. 
 
-Should a particular simulation algorithm or algorithm parameter not exist in \concept{KiSAO}, please request one via \url{http://www.biomodels.net/kisao/}.
+Should a particular simulation algorithm or algorithm parameter not exist in \concept{KiSAO}, please request one via \url{https://github.com/SED-ML/KiSAO/issues/new/choose}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% COMBINE ARCHIVE
@@ -513,10 +513,10 @@ Should a particular simulation algorithm or algorithm parameter not exist in \co
 
 A \concept{COMBINE archive} \citep{Bergmann2014} is a single file that supports the exchange of all the information necessary for a modeling and simulation experiment in biology. A \concept{COMBINE archive} file is a ZIP container that includes a manifest file, listing the content of the archive, an optional metadata file adding information about the archive and its content, and the files describing the model. The content of a \concept{COMBINE archive} consists of files encoded in COMBINE standards whenever possible, but may include additional files defined by an Internet Media Type. Several tools that support the \concept{COMBINE archive} are available, either as independent libraries or embedded in modeling software.
 
-The \concept{COMBINE archive} is described at \url{http://co.mbine.org/documents/archive} and 
+The \concept{COMBINE archive} is described at \url{https://co.mbine.org/documents/archive} and 
 in \citep{Bergmann2014}.
 
-\concept{COMBINE archives} are the recommended means for distributing simulation experiment descriptions in SED-ML, the respective data and model files, and the \hyperref[class:output]{Outputs} of the simulation experiment (figures and reports). All SED-ML specification examples in Appendix~\ref{app:examples} are available as \concept{COMBINE archive} from \url{http://sed-ml.org}.
+\concept{COMBINE archives} are the recommended means for distributing simulation experiment descriptions in SED-ML, the respective data and model files, and the \hyperref[class:output]{Outputs} of the simulation experiment (figures and reports). All SED-ML specification examples in Appendix~\ref{app:examples} are available as \concept{COMBINE archive} from \url{https://sed-ml.org}.
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %% RESOURCES
@@ -524,4 +524,4 @@ in \citep{Bergmann2014}.
 \section{SED-ML resources}
 \label{sec:resources}
 
-Information on SED-ML can be found on \url{http://sed-ml.org}. The SED-ML XML Schema, the UML schema, SED-ML examples, and additional information is available from \url{https://github.com/sed-ml}.
+Information on SED-ML can be found on \url{https://sed-ml.org}. The SED-ML XML Schema, the UML schema, SED-ML examples, and additional information is available from \url{https://github.com/sed-ml}.
