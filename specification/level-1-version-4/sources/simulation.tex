@@ -125,7 +125,7 @@ The \concept{Analysis} represents any sort of analysis or simulation of a \Model
 </listOfSimulations>
 \end{myXmlLst}
 
-\lsttext{analysis2}{analysis2}
+\lsttext{analysis2}{analysis}
 
 \begin{myXmlLst}{The SED-ML \code{analysis} element, defining a non-uniform time course.}{lst:analysis2}
 <listOfSimulations>
@@ -139,13 +139,13 @@ The \concept{Analysis} represents any sort of analysis or simulation of a \Model
 </listOfSimulations>
 \end{myXmlLst}
 
-\lsttext{analysis3}{analysis3}
+\lsttext{analysis3}{analysis}
 
-\begin{myXmlLst}{The SED-ML \code{analysis} element, defining a reachability analysis.  Note: these KiSAO terms have not yet been created.}{lst:analysis3}
+\begin{myXmlLst}{The SED-ML \code{analysis} element, defining the Klarner ASP logical model trap space identification method, using the reduced model.}{lst:analysis3}
 <listOfSimulations>
     <analysis id="non_uniform_time_course">
-        <algorithm kisaoID="KISAO:0000xxx" name="Reachability analysis">
-            <algorithmParameter kisaoID="KISAO:0000xxx" value="0" name="something_relevant"/>
+        <algorithm kisaoID="KISAO:0000662" name="Klarner ASP logical model trap space identification method">
+            <algorithmParameter kisaoID="KISAO:0000216" value="true" name="use reduced model"/>
         </algorithm>
     </analysis >
 </listOfSimulations>
