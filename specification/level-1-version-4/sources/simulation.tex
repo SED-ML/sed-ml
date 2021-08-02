@@ -117,9 +117,9 @@ The \concept{Analysis} represents any sort of analysis or simulation of a \Model
     <analysis id="time_course_to_stop_condition">
         <algorithm kisaoID="KISAO:0000263"name="NFSim">
             <algorithmParameter kisaoID="KISAO:0000525" value="ObsA&gt;9"/>
-            <algorithmParameter kisaoID="KISAO:0000xxx" value="0" name="start time"/>
-            <algorithmParameter kisaoID="KISAO:0000xxx" value="10000" name="max end time"/>
-            <algorithmParameter kisaoID="KISAO:0000xxx" value="0.5" name="observed step size"/>
+            <algorithmParameter kisaoID="KISAO:0000840" value="0" name="start time"/>
+            <algorithmParameter kisaoID="KISAO:0000841" value="10000" name="max end time"/>
+            <algorithmParameter kisaoID="KISAO:0000842" value="0.5" name="observed step size"/>
         </algorithm>
     </analysis >
 </listOfSimulations>
@@ -132,8 +132,8 @@ The \concept{Analysis} represents any sort of analysis or simulation of a \Model
     <analysis id="non_uniform_time_course">
         <algorithm kisaoID="KISAO:0000057" name="Brownian diffusion Smoluchowski method">
             <algorithmParameter kisaoID="KISAO:0000525" value="ObsA&gt;9" name="stop condition"/>
-            <algorithmParameter kisaoID="KISAO:0000xxx" value="0" name="start time"/>
-            <algorithmParameter kisaoID="KISAO:0000xxx" value="100" name="max end time"/>
+            <algorithmParameter kisaoID="KISAO:0000840" value="0" name="start time"/>
+            <algorithmParameter kisaoID="KISAO:0000841" value="100" name="max end time"/>
         </algorithm>
     </analysis >
 </listOfSimulations>
@@ -141,7 +141,7 @@ The \concept{Analysis} represents any sort of analysis or simulation of a \Model
 
 \lsttext{analysis3}{analysis3}
 
-\begin{myXmlLst}{The SED-ML \code{analysis} element, defining a reachability analysis.}{lst:analysis3}
+\begin{myXmlLst}{The SED-ML \code{analysis} element, defining a reachability analysis.  Note: these KiSAO terms have not yet been created.}{lst:analysis3}
 <listOfSimulations>
     <analysis id="non_uniform_time_course">
         <algorithm kisaoID="KISAO:0000xxx" name="Reachability analysis">
