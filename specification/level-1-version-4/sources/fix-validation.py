@@ -90,6 +90,8 @@ replacements = [
     (r"optional SED-ML Level~1 attributes \token{id}, \token{metaid}, and \token{sboTerm}", r"optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}"),
     (r"the enclosing \Model object", "the document"),
     ("rangeId", "range"),
+    ("symbolTwo", "symbol2"),
+    ("targetTwo", "target2"),
     ]
 
 
@@ -101,13 +103,33 @@ replaced_rules ={
     23105: ("valid", "The value of the \element{range} attribute of a \FunctionalRange must be the identifier of an existing \Range sibling of the \FunctionalRange.", "class:functionalRange"),
     24404: ("valid", "The value of the \element{experiment} attribute of a \ExperimentRef must be the identifier of an existing \FitExperiment child of the parent \ParameterEstimationTask.", "class:variable"),
     24608: ("valid", "The value of the \element{pointWeight} attribute of a \FitMapping must be the identifier of an existing \DataGenerator or \DataSource object in the document.", "class:fitMapping"),
-    
+    20305: ("valid", r"The attribute \token{language} on a \Model must have a value of data type \token{URN}", "class:model"),
+    20306: ("valid", r"The attribute \token{source} on a \Model must have a value of data type \token{anyURI}", "class:model"),
+    20706: ("valid", r"The attribute \token{target} on a \Variable must have a value of data type \token{TargetType}", "class:variable"),
+    20711: ("valid", r"The attribute \token{target2} on a \Variable must have a value of data type \token{TargetType}", "class:variable"),
+    20709: ("valid", r"The attribute \token{term} on a \Variable must have a value of data type \token{anyURI}", "class:variable"),
+    22808: ("valid", r"The attribute \token{target} on a \SetValue must have a value of data type \token{TargetType}", "class:setValue"),
+    23705: ("valid", r"The attribute \token{source} on a \DataDescription must have a value of data type \token{anyURI}", "class:dataDescription"),
+    23706: ("valid", r"The attribute \token{format} on a \DataDescription must have a value of data type \token{URN}", "class:dataDescription"),
+    24305: ("valid", r"The attribute \token{target} on an \AdjustableParameter must have a value of data type \token{TargetType}", "class:adjustableParameter"),
+    25205: ("valid", r"The attribute \token{color} on a \Line must have a value of data type \token{SedColor}", "class:line"),
+    25306: ("valid", r"The attribute \token{fill} on a \Marker must have a value of data type \token{SedColor}", "class:marker"),
+    25307: ("valid", r"The attribute \token{lineColor} on a \Marker must have a value of data type \token{SedColor}", "class:marker"),
+    25404: ("valid", r"The attribute \token{color} on a \Fill must have a value of data type \token{SedColor}", "class:fill"),
     }
 
 
 new_rules ={
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
+    20350: ("valid", "There must not be circular dependencies in model resolution.  The \element{source} attribute of a \Model may not directly or indirectly reference itself.", "class:model"),
+    20351: ("valid", "There must not be circular cross-dependencies in model change resolution.  The \element{target} and \element{source} attributes of a \ComputeChange may not correspond to the \element{target} and \element{source} of a different \ComputeChange in a different \Model.", "class:model"),
+    23150: ("valid", "There must not be circular dependencies in the calculatino of functional ranges.  No \Variable child of a \FunctionalRange may directly or indirectly reference the parent \FunctionalRange.", "class:functionalRange"),
+    23550: ("valid", "There must not be circular dependencies in repeated tasks.  The \element{task} attribute of a \SubTask may not directly or indirectly reference its parent \RepeatedTask.", "class:repeatedTask"),
+    23551: ("valid", "Every \RepeatedTask must have exactly one \ListOfRanges child containing at least one child \Range object.", "class:repeatedTask"),
+    23552: ("valid", "Every \RepeatedTask must have exactly one \ListOfSubTasks child containing at least one child \SubTask object.", "class:repeatedTask"),
+    24050: ("valid", "Every \ParameterEstimationTask must have exactly one \ListOfAdjustableParameters child containing at least one child \AdjustableParameter object.", "class:parameterEstimationTask"),
+    24051: ("valid", "Every \ParameterEstimationTask must have exactly one \ListOfFitExperiments child containing at least one child \FitExperiment object.", "class:parameterEstimationTask"),
+    20750: ("valid", "Every \Variable with a defined \element{dimensionTerm} attribute must have exactly one \ListOfAppliedDimensions child containing at least one child \AppliedDimension object.", "class:variable"),
+    24550: ("valid", "Every \FitExperiment must have exactly one \ListOfFitMappings child containing at least one child \FitMapping object.", "class:fitExperiment"),
     # 00000: ("valid", "", "class:"),
     # 00000: ("valid", "", "class:"),
     # 00000: ("valid", "", "class:"),
@@ -139,20 +161,12 @@ new_rules ={
 
 }
 
-new_rules = {}
-
 karr = """    
-\item The references that are required in specific contexts are set in those contexts (e.g., each variable of each data generator has a task reference).
 \item The references which are not allowed in specific contexts are not set in those contexts (e.g., no variable of a data generator has a model reference).
-\item Each reference (e.g., from a task to a model) can be resolved.
 \item URLs should be used in place of URNs for model sources because URNs will likely be deprecated in a future version of SED-ML (warning).
-\item Each model source can be resolved.
 \item The networks of references are acyclic:
     \begin{itemize}[labelwidth=0pt]
-        \item Model references.
         \item Compute model changes.
-        \item Repeated tasks.
-        \item Functional ranges.
     \end{itemize}
 \item Each container element has at least one child:
     \begin{itemize}[labelwidth=0pt]
@@ -212,12 +226,20 @@ res = [
     (r"No other elements from the SED-ML .*?namespace are permitted on a.*?\. ", ""),
     (r"No other element from the SED-ML namespaces is permitted on a.*?\. ", ""),
     (r"No other attributes from the SED-ML.*namespaces are permitted on a.*?\. ", ""),
-    (r"No other attributes from the SED-ML namespace are permitted on a.*?\. ", "")
+    (r"No other attributes from the SED-ML namespace are permitted on a.*?\. ", ""),
+    (r"Rules for(.*?) object}$", r"Rules for\1 objects}"),
+    (r"\\SedDocument objects", r"the \\SedDocument object"),
+    ]
+
+removed_rules = [
+    20101,
+    20102,
+    20103,
+    25405,
     ]
 
 ignore = [
-    "sedml-2010",
-    "Rules for the extended \SedML class"
+    "Rules for the extended \SedML class",
     ]
 
 def fix(paragraph):
@@ -278,7 +300,7 @@ def fixAndWrite(paragraph):
     prevValidationNumber = num
     if num in replaced_rules:
         writeReplacedRule(num)
-    else:
+    elif num not in removed_rules:
         outfile.write(paragraph + "\n\n")
 
 paragraph = ""
