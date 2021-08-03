@@ -202,7 +202,7 @@ The \concept{AlgorithmParameter} class allows to parameterize a particular simul
 
 \paragraph*{\element{value}}
 \label{sec:algorithmParameterValue}
-The \concept{\element{value}} sets the value of the \hyperref[class:algorithmParameter]{AlgorithmParameter}.  For XML purposes, it is of type \element{string}, but should contain a value that makes sense for the \element{kisaoID} in question:  if the KiSAO term is a value, the string should contain a number; if the KiSAO term is a Boolean, the string should contain the string \val{true} or \val{false}, etc.  \changed{The string must be non-empty; to explicitly state that a value is not set, this should be encoded in the string as a value such as \val{null} or \val{unset}, as makes sense for the term in question.}
+The \concept{\element{value}} sets the value of the \hyperref[class:algorithmParameter]{AlgorithmParameter}.  For XML purposes, it is of type \element{string}, but should contain a value that makes sense for the \element{kisaoID} in question:  if the KiSAO term is a value, the string should contain a number; if the KiSAO term is a Boolean, the string should contain the string \val{true} or \val{false}, etc.  \changed{The string must be non-empty; to explicitly state that a value is not set, this should be encoded in the string as a \element{KISAO:0000629}, which indicates that the value is \code{Null}.}
 
 \begin{myXmlLst}{The SED-ML \concept{\code{algorithmParameter}} element setting the parameter value for the simulation algorithm. \code{KISAO:0000032} refers to the \emph{explicit fourth-order Runge-Kutta method}; \code{KISAO:00000211} refers to the \emph{absolute tolerance}.}{lst:algorithmParameter}
 <algorithm kisaoID="KISAO:0000032"> 
