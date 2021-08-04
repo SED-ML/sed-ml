@@ -89,11 +89,6 @@ Type \concept{\element{NuMLSIdRef}} is used for all attributes that refer to ide
 As with \hyperref[type:numlsid]{\element{NuMLSId}}, the equality of \concept{\element{NuMLSIdRef}} values is determined by exact character sequence match; i.e., comparisons of these identifiers must be performed in a case-sensitive manner.
 
 \begin{blockChanged}
-\subsubsection[\element{AxisType}]{Type \element{AxisType}}
-\label{type:axisType}
-
-The \element{AxisType} primitive data type is used in the definition of the \Axis class.  \element{AxisType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{linear}, and \val{log10}.  Attributes of type \element{AxisType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Axis class's definition in \ref{class:axis}.
-
 \subsubsection[\element{CurveType}]{Type \element{CurveType}}
 \label{type:curveType}
 
@@ -132,10 +127,15 @@ The \element{MappingType} primitive data type is used in the definition of the \
 The \element{ExperimentType} primitive data type is used in the definition of the \FitExperiment class.  \element{ExperimentType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{steadyState} and \val{timeCourse}.  Attributes of type \element{ExperimentType} cannot take on any other values.  The meaning of these values is discussed in the context of the \FitExperiment class's definition in \ref{class:fitExperiment}.
 
 
+\subsubsection[\element{AxisType}]{Type \element{AxisType}}
+\label{type:axisType}
+
+The \element{AxisType} primitive data type is used in the definition of the \Axis class.  \element{AxisType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{linear}, and \val{log10}.  Attributes of type \element{AxisType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Axis class's definition in \ref{class:axis}.
+
 \subsubsection[\element{ScaleType}]{Type \element{ScaleType}}
 \label{type:scaleType}
 
-The \element{ScaleType} primitive data type is used in the definition of the \Bounds class.  \element{ScaleType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{lin}, \val{log}, and \val{log10}.  Attributes of type \element{ScaleType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Bounds class's definition in \ref{class:bounds}.
+The \element{ScaleType} primitive data type is used in the definition of the \Bounds class.  \element{ScaleType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{linear}, \val{log}, and \val{log10}.  Attributes of type \element{ScaleType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Bounds class's definition in \ref{class:bounds}.
 
 
 \end{blockChanged}
