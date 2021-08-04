@@ -398,19 +398,19 @@ The particular method used to determine the least squares can be defined through
 
 \subsubsection{\element{AdjustableParameter}}
 \label{class:adjustableParameter}
-\label{class:listOfExperimentRefs}
+\label{class:listOfExperimentReferences}
 
-The \AdjustableParameter inherits from \SedBase, and adds a required attribute \element{target} \changed{of type \Target}, a required child \Bounds, and an optional child \ListOfExperimentRefs with zero or more \ExperimentRef elements, and an optional attribute \element{initalValue} of type \code{double}.
+The \AdjustableParameter inherits from \SedBase, and adds a required attribute \element{target} \changed{of type \Target}, a required child \Bounds, and an optional child \ListOfExperimentReferences with zero or more \ExperimentReference elements, and an optional attribute \element{initalValue} of type \code{double}.
 
 The \element{target} of an \AdjustableParameter must point to an adjustable element of the \Model referenced by the parent \ParameterEstimationTask.  This element is one of the elements whose value can be changed by the task in order to optimize the fit experiments.
 
-\sedfig[width=0.8\textwidth]{images/uml/adjustableParameter}{The SED-ML \AdjustableParameter, \Bounds, \ListOfExperimentRefs, and \ExperimentRef classes}{fig:adjustableParameter}
+\sedfig[width=0.8\textwidth]{images/uml/adjustableParameter}{The SED-ML \AdjustableParameter, \Bounds, \ListOfExperimentReferences, and \ExperimentReference classes}{fig:adjustableParameter}
 
 The \element{initialValue}, if defined, is the value that the \AdjustableParameter is to be set at the beginning of the \ParameterEstimationTask.  Otherwise, the value of the \AdjustableParameter at the model's current state is used, unless that value is outside the \element{upperBound} and \element{lowerBound}, in which case any value between or including those values is allowed.
 
 The required \Bounds child of the \AdjustableParameter defines the allowed range of values for the targeted element.
 
-If an \AdjustableParameter has no \ExperimentRef children, it is adjusted for every \FitExperiment.  If an \AdjustableParameter has one or more \ExperimentRef children, it is only adjusted in those experiments; in all other experiments it retains its initial value (the value of the optional \element{initialValue} of the \AdjustableParameter, if defined, or the value it obtained from the model, if not).
+If an \AdjustableParameter has no \ExperimentReference children, it is adjusted for every \FitExperiment.  If an \AdjustableParameter has one or more \ExperimentReference children, it is only adjusted in those experiments; in all other experiments it retains its initial value (the value of the optional \element{initialValue} of the \AdjustableParameter, if defined, or the value it obtained from the model, if not).
 
 \subsubsection{\element{Bounds}}
 \label{class:bounds}
@@ -428,10 +428,10 @@ The \element{scale}, of type \ScaleType, defines the structure of the search spa
 \end{itemize}
 
 
-\subsubsection{\element{ExperimentRef}}
-\label{class:experimentRef}
+\subsubsection{\element{ExperimentReference}}
+\label{class:experimentReference}
 
-An \ExperimentRef inherits from \SedBase and adds the single required attribute \element{experiment}, of type \SIdRef, which must point to a \FitExperiment in the same \ParameterEstimationTask.  
+An \ExperimentReference inherits from \SedBase and adds the single required attribute \element{experiment}, of type \SIdRef, which must point to a \FitExperiment in the same \ParameterEstimationTask.  
 
 
 \subsubsection{\element{FitExperiment}}
