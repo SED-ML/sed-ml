@@ -238,7 +238,7 @@ The example shows the definition of a dataSet. The referenced dataGenerator \ele
 
 \subsection{\element{ParameterEstimationReport}}
 \label{class:parameterEstimationReport}
-A \ParameterEstimationReport class is used to create a default report from a \ParameterEstimationTask.  It has a single required attribute \element{taskRef} of type \SIdRef that points to that task.
+A \ParameterEstimationReport class is used to create a default report from a \ParameterEstimationTask.  It has a single required attribute \element{taskReference} of type \SIdRef that points to that task.
 
 \sedfig[width=0.35\textwidth]{images/uml/parameterEstimationReport}{The definition of the SED-ML \ParameterEstimationReport  class.}{fig:parameterEstimationReport}
 
@@ -297,7 +297,7 @@ In the following example, a 3x3 \Figure is defined with four subplots.  The firs
 
 \subsection{\element{ParameterEstimationResultPlot}}
 \label{class:parameterEstimationResultPlot}
-A \ParameterEstimationResultPlot class is used to create a default plot from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskRef} of type \SIdRef that points to that task.
+A \ParameterEstimationResultPlot class is used to create a default plot from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskReference} of type \SIdRef that points to that task.
 
 \sedfig[width=0.7\textwidth]{images/uml/parameterEstimationResultPlot}{The definition of the SED-ML \ParameterEstimationResultPlot and \WaterfallPlot classes.}{fig:parameterEstimationResultPlotFigure}
 
@@ -308,7 +308,7 @@ It is possible to reproduce and/or have more control over the contents of a \Plo
 
 \subsection{\element{WaterfallPlot}}
 \label{class:waterfallPlot}
-The \WaterfallPlot class is used to create a default plot of a particular style from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskRef} of type \SIdRef that points to that task.
+The \WaterfallPlot class is used to create a default plot of a particular style from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskReference} of type \SIdRef that points to that task.
 
 Like a \ParameterEstimationResultPlot, a \WaterfallPlot displays a range of results and data from a \ParameterEstimationTask that might not otherwise be easily accessible.  Different tools and different experiments may result in different types and styles of waterfall plots.  For an overview of the sort of data present in one, see Gillespie, 2012 \citep{gillespie2012}.
 
