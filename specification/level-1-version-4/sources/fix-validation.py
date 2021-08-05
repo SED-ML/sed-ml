@@ -92,6 +92,12 @@ replacements = [
     ("rangeId", "range"),
     ("symbolTwo", "symbol2"),
     ("targetTwo", "target2"),
+    ("\\notice ", ""),
+    ("modelReference", "model\-Reference"),
+    ("outputStartTime", "output\-Start\-Time"),
+    ("numberOfSteps", "number\-Of\-Steps"),
+    ("experimentalCondition", "experimental\-Condition"),
+    ("yDataReference", "yData\-Reference"),
     ]
 
 

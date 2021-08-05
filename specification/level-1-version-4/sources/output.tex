@@ -27,7 +27,7 @@ The output of a SED-ML file may be used to compare simulation executions from th
 \label{class:plot}
 The \Plot is an abstract base class for two- and three-dimensional plot outputs.  It defines the size and axes of a plot, as well as whether or not a legend should be displayed.
 
-\sedfig[width=0.75\textwidth]{images/uml/plot}{The definition of the SED-ML \Plot, \PlotTwo, \PlotThree, \Axis, \ListOfCurves, and \ListOfSurfaces classes.  The \AbstractCurve and \Surface classes are defined below.}{fig:plot}
+\sedfig[width=0.7\textwidth]{images/uml/plot}{The definition of the SED-ML \Plot, \PlotTwo, \PlotThree, \Axis, \ListOfCurves, and \ListOfSurfaces classes.  The \AbstractCurve and \Surface classes are defined below.}{fig:plot}
 
 The \Plot class inherits the attributes and children from \SedBase, and adds three optional attributes:  \element{legend}, of type Boolean, \element{height} of type \element{double}, and \element{width} of type \element{double}.  It also defines two optional \Axis children, an \element{xAxis} and a \element{yAxis}.
 
@@ -173,7 +173,7 @@ A \Surface is a parallel class to \AbstractCurve that defines a three-dimensiona
 \paragraph*{\element{xDataReference}, \element{yDataReference}, and \element{zDataReference}}
 The three data reference attributes must point to \DataGenerator elements in the same \SedDocument, which define the surface to be plotted.  \changed{All three attributes are required.  If the \element{zDataReference} is intended to be plotted by index, the \element{xDataReference} and \element{yDataReference} attributes should point to \DataGenerator elements that generate those indices.}
 
-\changed{As with an \AbstractCurve, the dimensionality of the \element{xDataReference}, \element{yDataReference} and \element{zDataReference} must match each other, but need not be one-dimensional.  When a surface is being displayed, each one-dimensional vector within the x,  y, and z data should be displayed on the same plot.  This will effectively flatten the data to the three dimensions of the plot.  When the data is being plotted as lines, Each vector should be plotted with its own line, so that the plot is not overlaid with spurious lines from the end of one vector to the beginning of the next.}
+\changed{As with an \AbstractCurve, the dimensionality of the attributes \element{xDataReference}, \element{yDataReference} and \element{zDataReference} must match each other, but need not be one-dimensional.  When a surface is being displayed, each one-dimensional vector within the x,  y, and z data should be displayed on the same plot.  This will effectively flatten the data to the three dimensions of the plot.  When the data is being plotted as lines, Each vector should be plotted with its own line, so that the plot is not overlaid with spurious lines from the end of one vector to the beginning of the next.}
 
 
 \paragraph*{\element{style}}
