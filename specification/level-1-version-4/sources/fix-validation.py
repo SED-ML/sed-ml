@@ -107,7 +107,7 @@ replaced_rules ={
     23505: ("valid", "The value of the \element{range} of a \RepeatedTask must be the identifier of an existing \Range child of that \RepeatedTask.", "class:range"),
     22806: ("valid", "The value of the \element{range} attribute of a \SetValue must be the identifier of an existing \Range child of the parent \RepeatedTask.", "class:setValue"),
     23105: ("valid", "The value of the \element{range} attribute of a \FunctionalRange must be the identifier of an existing \Range sibling of the \FunctionalRange.", "class:functionalRange"),
-    24404: ("valid", "The value of the \element{experiment} attribute of a \ExperimentRef must be the identifier of an existing \FitExperiment child of the parent \ParameterEstimationTask.", "class:variable"),
+    24404: ("valid", "The value of the \element{experiment} attribute of a \ExperimentReference must be the identifier of an existing \FitExperiment child of the parent \ParameterEstimationTask.", "class:variable"),
     24608: ("valid", "The value of the \element{pointWeight} attribute of a \FitMapping must be the identifier of an existing \DataGenerator or \DataSource object in the document.", "class:fitMapping"),
     20305: ("valid", r"The attribute \token{language} on a \Model must have a value of data type \token{URN}", "class:model"),
     20306: ("valid", r"The attribute \token{source} on a \Model must have a value of data type \token{anyURI}", "class:model"),

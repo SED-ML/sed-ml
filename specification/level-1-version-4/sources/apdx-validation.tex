@@ -688,7 +688,7 @@ For convenience and brevity, we use the shorthand ``\token{x}'' to stand for an 
 
 \validRule{24303}{An \AdjustableParameter object must have the required attribute \token{target}, and may have the optional attributes \token{initialValue} and \token{model\-Reference}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:adjustableParameter}.)}
 
-\validRule{24304}{An \AdjustableParameter object must contain one and only one instance of the Bounds element, and may contain one and only one instance of the \ListOfExperimentRefs element. (Reference: SED-ML Level~1 Version~4, Section \ref{class:adjustableParameter}.)}
+\validRule{24304}{An \AdjustableParameter object must contain one and only one instance of the Bounds element, and may contain one and only one instance of the \ListOfExperimentReferences element. (Reference: SED-ML Level~1 Version~4, Section \ref{class:adjustableParameter}.)}
 
 \validRule{24305}{The attribute \token{target} on an \AdjustableParameter must have a value of data type \token{TargetType}  (Reference: SED-ML Level~1 Version~4, Section \ref{class:adjustableParameter})}
 
@@ -696,19 +696,19 @@ For convenience and brevity, we use the shorthand ``\token{x}'' to stand for an 
 
 \validRule{24307}{The value of the attribute \token{model\-Reference} of an \AdjustableParameter object must be the identifier of an existing \Model object defined in the document. (Reference: SED-ML Level~1 Version~4, Section \ref{class:adjustableParameter}.)}
 
-\validRule{24308}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfExperimentRefs container object may only contain \ExperimentRef objects. (Reference: SED-ML Level~1 Version~4, Section \ref{class:listOfExperimentRefs}.)}
+\validRule{24308}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfExperimentReferences container object may only contain \ExperimentReference objects. (Reference: SED-ML Level~1 Version~4, Section \ref{class:listOfExperimentReferences}.)}
 
-\validRule{24309}{A \ListOfExperimentRefs object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:listOfExperimentRefs}.)}
+\validRule{24309}{A \ListOfExperimentReferences object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:listOfExperimentReferences}.)}
 
-\subsubsection*{Rules for \ExperimentRef objects}
+\subsubsection*{Rules for \ExperimentReference objects}
 
-\validRule{24401}{An \ExperimentRef object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
+\validRule{24401}{An \ExperimentReference object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
 
-\validRule{24402}{An \ExperimentRef object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
+\validRule{24402}{An \ExperimentReference object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
 
-\validRule{24403}{An \ExperimentRef object must have the required attribute \token{experimentId}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:experimentRef}.)}
+\validRule{24403}{An \ExperimentReference object must have the required attribute \token{experimentId}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:experimentReference}.)}
 
-\validRule{24404}{The value of the \element{experiment} attribute of a \ExperimentRef must be the identifier of an existing \FitExperiment child of the parent \ParameterEstimationTask.  (Reference: SED-ML Level~1 Version~4, Section \ref{class:variable})}
+\validRule{24404}{The value of the \element{experiment} attribute of a \ExperimentReference must be the identifier of an existing \FitExperiment child of the parent \ParameterEstimationTask.  (Reference: SED-ML Level~1 Version~4, Section \ref{class:variable})}
 
 \subsubsection*{Rules for \FitExperiment objects}
 

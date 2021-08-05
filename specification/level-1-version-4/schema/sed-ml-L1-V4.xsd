@@ -582,12 +582,12 @@
 		</xs:complexType>
 	</xs:element>
 
-	<xs:element name="listOfExperimentRefs">
+	<xs:element name="listOfExperimentReferences">
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="SEDBase">
 					<xs:choice minOccurs="0" maxOccurs="unbounded">
-						<xs:element ref="experimentRef"/>
+						<xs:element ref="experimentReference"/>
 					</xs:choice>
 				</xs:extension>
 			</xs:complexContent>
@@ -630,7 +630,7 @@
 				<xs:extension base="SEDBase">
 					<xs:sequence>
 						<xs:element ref="bounds"/>
-						<xs:element ref="listOfExperimentRefs" minOccurs="0" />
+						<xs:element ref="listOfExperimentReferences" minOccurs="0" />
 					</xs:sequence>
 					<xs:attribute name="target" type="TargetType" use="required"/>
 					<xs:attribute name="initialValue" type="xs:double" use="optional"/>
@@ -651,7 +651,7 @@
 		</xs:complexType>
 	</xs:element>
 
-	<xs:element name="experimentRef">
+	<xs:element name="experimentReference">
 		<xs:complexType>
 			<xs:complexContent>
 				<xs:extension base="SEDBase">

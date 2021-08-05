@@ -1744,7 +1744,7 @@ object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
 
 \validRule{sedml-24304}{An \AdjustableParameter object must contain one
 and only one instance of the Bounds element, and may contain one and
-only one instance of the \ListOfExperimentRefs element. No other
+only one instance of the \ListOfExperimentReferences element. No other
 elements from the SBML Level~3 SEDML namespaces are permitted on an
 \AdjustableParameter object. (Reference: SBML Level~1 Specification for
 SEDML, Version~1, \sec{adjustableparameter-class}.)}
@@ -1766,43 +1766,43 @@ the identifier of an existing \Model object defined in the enclosing
 Version~1, \sec{adjustableparameter-class}.)}
 
 \validRule{sedml-24308}{Apart from the general notes and annotations
-subobjects permitted on all SBML objects, a \ListOfExperimentRefs
-container object may only contain \ExperimentRef objects. (Reference:
+subobjects permitted on all SBML objects, a \ListOfExperimentReferences
+container object may only contain \ExperimentReference objects. (Reference:
 SBML Level~1 Specification for SEDML, Version~1,
-\sec{listofexperimentrefs-class}.)}
+\sec{listofexperimentReferences-class}.)}
 
-\validRule{sedml-24309}{A \ListOfExperimentRefs object may have the
+\validRule{sedml-24309}{A \ListOfExperimentReferences object may have the
 optional SBML Level~3 Core attributes \token{metaid} and
 \token{sboTerm}. No other attributes from the SBML Level~3 Core
-namespaces are permitted on a \ListOfExperimentRefs object. (Reference:
+namespaces are permitted on a \ListOfExperimentReferences object. (Reference:
 SBML Level~1 Specification for SEDML, Version~1,
-\sec{listofexperimentrefs-class}.)}
+\sec{listofexperimentReferences-class}.)}
 
 
-\subsubsection*{Rules for \class{ExperimentRef} object}
+\subsubsection*{Rules for \class{ExperimentReference} object}
 
-\validRule{sedml-24401}{An \ExperimentRef object may have the optional
+\validRule{sedml-24401}{An \ExperimentReference object may have the optional
 SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
 other attributes from the SBML Level~3 Core namespaces are permitted on
-an \ExperimentRef. (Reference: SBML Level~3 Version~1 Core,
+an \ExperimentReference. (Reference: SBML Level~3 Version~1 Core,
 Section~3.2.)}
 
-\validRule{sedml-24402}{An \ExperimentRef object may have the optional
+\validRule{sedml-24402}{An \ExperimentReference object may have the optional
 SBML Level~3 Core subobjects for notes and annotations. No other
 elements from the SBML Level~3 Core namespaces are permitted on an
-\ExperimentRef. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
+\ExperimentReference. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
 
-\validRule{sedml-24403}{An \ExperimentRef object must have the required
+\validRule{sedml-24403}{An \ExperimentReference object must have the required
 attribute \token{sedml:\-experimentId}. No other attributes from the
-SBML Level~3 SEDML namespaces are permitted on an \ExperimentRef object.
+SBML Level~3 SEDML namespaces are permitted on an \ExperimentReference object.
 (Reference: SBML Level~1 Specification for SEDML, Version~1,
-\sec{experimentref-class}.)}
+\sec{experimentReference-class}.)}
 
 \validRule{sedml-24404}{The value of the attribute
-\token{sedml:\-experimentId} of an \ExperimentRef object must be the
+\token{sedml:\-experimentId} of an \ExperimentReference object must be the
 identifier of an existing \FitExperiment object defined in the enclosing
 \Model object. (Reference: SBML Level~1 Specification for SEDML,
-Version~1, \sec{experimentref-class}.)}
+Version~1, \sec{experimentReference-class}.)}
 
 
 \subsubsection*{Rules for \class{FitExperiment} object}
