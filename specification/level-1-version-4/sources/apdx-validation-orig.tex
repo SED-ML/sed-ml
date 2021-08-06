@@ -87,17 +87,15 @@ SBML Level~3 Version~1 Core, Section~3.1.7.)}
 
 \subsubsection*{Rules for the extended \class{SBML} class}
 
-\validRule{sedml-20101}{In all SBML documents using the \SEDMLPackage,
-the \class{SBML} object must have the \token{sedml:\-required}
-attribute. (Reference: SBML Level~3 Version~1 Core, Section~4.1.2.)}
+\validRule{sedml-10303}{The value of a \token{sedml:\-metaid} must
+conform to the syntax of the XML Type ID (Reference: SBML Level~3
+Version~1 Core, Section~3.1.6.)}
 
-\validRule{sedml-20102}{The value of attribute \token{sedml:\-required}
-on the \class{SBML} object must be of data type \primtype{boolean}.
-(Reference: SBML Level~3 Version~1 Core, Section~4.1.2.)}
+\validRule{sedml-20101}{Invalid namespace declared. (Reference: SBML
+Level~1 Specification for SEDML, Version~1 \sec{primitive-types}.)}
 
-\validRule{sedml-20103}{The value of attribute \token{sedml:\-required}
-on the \class{SBML} object must be set to \val{false}. (Reference: SBML
-Level~1 Specification for SEDML, Version~1 \sec{xml-namespace}.)}
+\validRule{sedml-20102}{Allowed attributes (Reference: SBML Level~1
+Specification for SEDML, Version~1 \sec{primitive-types}.)}
 
 \subsubsection*{Rules for \class{SedDocument} object}
 
@@ -356,10 +354,11 @@ from the SBML Level~3 Core namespaces are permitted on a \Variable.
 \validRule{sedml-20703}{A \Variable object may have the optional
 attributes \token{sedml:\-symbol}, \token{sedml:\-target},
 \token{sedml:\-taskReference}, \token{sedml:\-modelReference},
-\token{sedml:\-term}, \token{sedml:\-symbolTwo} and
-\token{sedml:\-targetTwo}. No other attributes from the SBML Level~3
-SEDML namespaces are permitted on a \Variable object. (Reference: SBML
-Level~1 Specification for SEDML, Version~1, \sec{variable-class}.)}
+\token{sedml:\-term}, \token{sedml:\-symbolTwo},
+\token{sedml:\-targetTwo} and \token{sedml:\-dimensionTerm}. No other
+attributes from the SBML Level~3 SEDML namespaces are permitted on a
+\Variable object. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{variable-class}.)}
 
 \validRule{sedml-20704}{A \Variable object may contain one and only one
 instance of the \ListOfAppliedDimensions element. No other elements from
@@ -399,13 +398,17 @@ SBML Level~1 Specification for SEDML, Version~1, \sec{variable-class}.)}
 \Variable must have a value of data type \token{string}. (Reference:
 SBML Level~1 Specification for SEDML, Version~1, \sec{variable-class}.)}
 
-\validRule{sedml-20712}{Apart from the general notes and annotations
+\validRule{sedml-20712}{The attribute \token{sedml:\-dimensionTerm} on a
+\Variable must have a value of data type \token{string}. (Reference:
+SBML Level~1 Specification for SEDML, Version~1, \sec{variable-class}.)}
+
+\validRule{sedml-20713}{Apart from the general notes and annotations
 subobjects permitted on all SBML objects, a \ListOfAppliedDimensions
 container object may only contain \AppliedDimension objects. (Reference:
 SBML Level~1 Specification for SEDML, Version~1,
 \sec{listofapplieddimensions-class}.)}
 
-\validRule{sedml-20713}{A \ListOfAppliedDimensions object may have the
+\validRule{sedml-20714}{A \ListOfAppliedDimensions object may have the
 optional SBML Level~3 Core attributes \token{metaid} and
 \token{sboTerm}. No other attributes from the SBML Level~3 Core
 namespaces are permitted on a \ListOfAppliedDimensions object.
@@ -495,14 +498,14 @@ an \UniformTimeCourse must have a value of data type \token{double}.
 \sec{uniformtimecourse-class}.)}
 
 \validRule{sedml-21007}{The attribute \token{sedml:\-numberOfPoints} on
-an \UniformTimeCourse must have a value of data type \token{integer}.
-(Reference: SBML Level~1 Specification for SEDML, Version~1,
-\sec{uniformtimecourse-class}.)}
+an \UniformTimeCourse must have a value of data type \token{integer},
+and must be non negative. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{uniformtimecourse-class}.)}
 
 \validRule{sedml-21008}{The attribute \token{sedml:\-numberOfSteps} on
-an \UniformTimeCourse must have a value of data type \token{integer}.
-(Reference: SBML Level~1 Specification for SEDML, Version~1,
-\sec{uniformtimecourse-class}.)}
+an \UniformTimeCourse must have a value of data type \token{integer},
+and must be non negative. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{uniformtimecourse-class}.)}
 
 
 \subsubsection*{Rules for \class{Algorithm} object}
@@ -1197,14 +1200,14 @@ SBML Level~1 Specification for SEDML, Version~1,
 \sec{uniformrange-class}.)}
 
 \validRule{sedml-22907}{The attribute \token{sedml:\-numberOfPoints} on
-an \UniformRange must have a value of data type \token{integer}.
-(Reference: SBML Level~1 Specification for SEDML, Version~1,
-\sec{uniformrange-class}.)}
+an \UniformRange must have a value of data type \token{integer}, and
+must be non negative. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{uniformrange-class}.)}
 
 \validRule{sedml-22908}{The attribute \token{sedml:\-numberOfSteps} on
-an \UniformRange must have a value of data type \token{integer}.
-(Reference: SBML Level~1 Specification for SEDML, Version~1,
-\sec{uniformrange-class}.)}
+an \UniformRange must have a value of data type \token{integer}, and
+must be non negative. (Reference: SBML Level~1 Specification for SEDML,
+Version~1, \sec{uniformrange-class}.)}
 
 
 \subsubsection*{Rules for \class{VectorRange} object}
@@ -1767,42 +1770,43 @@ Version~1, \sec{adjustableparameter-class}.)}
 
 \validRule{sedml-24308}{Apart from the general notes and annotations
 subobjects permitted on all SBML objects, a \ListOfExperimentReferences
-container object may only contain \ExperimentReference objects. (Reference:
-SBML Level~1 Specification for SEDML, Version~1,
-\sec{listofexperimentReferences-class}.)}
+container object may only contain \ExperimentReference objects.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofexperimentreferences-class}.)}
 
-\validRule{sedml-24309}{A \ListOfExperimentReferences object may have the
-optional SBML Level~3 Core attributes \token{metaid} and
+\validRule{sedml-24309}{A \ListOfExperimentReferences object may have
+the optional SBML Level~3 Core attributes \token{metaid} and
 \token{sboTerm}. No other attributes from the SBML Level~3 Core
-namespaces are permitted on a \ListOfExperimentReferences object. (Reference:
-SBML Level~1 Specification for SEDML, Version~1,
-\sec{listofexperimentReferences-class}.)}
+namespaces are permitted on a \ListOfExperimentReferences object.
+(Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{listofexperimentreferences-class}.)}
 
 
 \subsubsection*{Rules for \class{ExperimentReference} object}
 
-\validRule{sedml-24401}{An \ExperimentReference object may have the optional
-SBML Level~3 Core attributes \token{metaid} and \token{sboTerm}. No
-other attributes from the SBML Level~3 Core namespaces are permitted on
-an \ExperimentReference. (Reference: SBML Level~3 Version~1 Core,
+\validRule{sedml-24401}{An \ExperimentReference object may have the
+optional SBML Level~3 Core attributes \token{metaid} and
+\token{sboTerm}. No other attributes from the SBML Level~3 Core
+namespaces are permitted on an \ExperimentReference. (Reference: SBML
+Level~3 Version~1 Core, Section~3.2.)}
+
+\validRule{sedml-24402}{An \ExperimentReference object may have the
+optional SBML Level~3 Core subobjects for notes and annotations. No
+other elements from the SBML Level~3 Core namespaces are permitted on an
+\ExperimentReference. (Reference: SBML Level~3 Version~1 Core,
 Section~3.2.)}
 
-\validRule{sedml-24402}{An \ExperimentReference object may have the optional
-SBML Level~3 Core subobjects for notes and annotations. No other
-elements from the SBML Level~3 Core namespaces are permitted on an
-\ExperimentReference. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
-
-\validRule{sedml-24403}{An \ExperimentReference object must have the required
-attribute \token{sedml:\-experimentId}. No other attributes from the
-SBML Level~3 SEDML namespaces are permitted on an \ExperimentReference object.
-(Reference: SBML Level~1 Specification for SEDML, Version~1,
-\sec{experimentReference-class}.)}
+\validRule{sedml-24403}{An \ExperimentReference object must have the
+required attribute \token{sedml:\-experimentId}. No other attributes
+from the SBML Level~3 SEDML namespaces are permitted on an
+\ExperimentReference object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{experimentreference-class}.)}
 
 \validRule{sedml-24404}{The value of the attribute
-\token{sedml:\-experimentId} of an \ExperimentReference object must be the
-identifier of an existing \FitExperiment object defined in the enclosing
-\Model object. (Reference: SBML Level~1 Specification for SEDML,
-Version~1, \sec{experimentReference-class}.)}
+\token{sedml:\-experimentId} of an \ExperimentReference object must be
+the identifier of an existing \FitExperiment object defined in the
+enclosing \Model object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{experimentreference-class}.)}
 
 
 \subsubsection*{Rules for \class{FitExperiment} object}
@@ -2316,17 +2320,17 @@ other elements from the SBML Level~3 Core namespaces are permitted on a
 Section~3.2.)}
 
 \validRule{sedml-25803}{A \ParameterEstimationResultPlot object must
-have the required attribute \token{sedml:\-taskReference}. No other attributes
-from the SBML Level~3 SEDML namespaces are permitted on a
+have the required attribute \token{sedml:\-taskReference}. No other
+attributes from the SBML Level~3 SEDML namespaces are permitted on a
 \ParameterEstimationResultPlot object. (Reference: SBML Level~1
 Specification for SEDML, Version~1,
 \sec{parameterestimationresultplot-class}.)}
 
 \validRule{sedml-25804}{The value of the attribute
-\token{sedml:\-taskReference} of a \ParameterEstimationResultPlot object must
-be the identifier of an existing \Task object defined in the enclosing
-\Model object. (Reference: SBML Level~1 Specification for SEDML,
-Version~1, \sec{parameterestimationresultplot-class}.)}
+\token{sedml:\-taskReference} of a \ParameterEstimationResultPlot object
+must be the identifier of an existing \Task object defined in the
+enclosing \Model object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{parameterestimationresultplot-class}.)}
 
 
 \subsubsection*{Rules for \class{WaterfallPlot} object}
@@ -2343,8 +2347,8 @@ elements from the SBML Level~3 Core namespaces are permitted on a
 \WaterfallPlot. (Reference: SBML Level~3 Version~1 Core, Section~3.2.)}
 
 \validRule{sedml-25903}{A \WaterfallPlot object must have the required
-attribute \token{sedml:\-taskReference}. No other attributes from the SBML
-Level~3 SEDML namespaces are permitted on a \WaterfallPlot object.
+attribute \token{sedml:\-taskReference}. No other attributes from the
+SBML Level~3 SEDML namespaces are permitted on a \WaterfallPlot object.
 (Reference: SBML Level~1 Specification for SEDML, Version~1,
 \sec{waterfallplot-class}.)}
 
@@ -2370,17 +2374,17 @@ other elements from the SBML Level~3 Core namespaces are permitted on a
 Section~3.2.)}
 
 \validRule{sedml-26003}{A \ParameterEstimationReport object must have
-the required attribute \token{sedml:\-taskReference}. No other attributes from
-the SBML Level~3 SEDML namespaces are permitted on a
+the required attribute \token{sedml:\-taskReference}. No other
+attributes from the SBML Level~3 SEDML namespaces are permitted on a
 \ParameterEstimationReport object. (Reference: SBML Level~1
 Specification for SEDML, Version~1,
 \sec{parameterestimationreport-class}.)}
 
 \validRule{sedml-26004}{The value of the attribute
-\token{sedml:\-taskReference} of a \ParameterEstimationReport object must be
-the identifier of an existing \Task object defined in the enclosing
-\Model object. (Reference: SBML Level~1 Specification for SEDML,
-Version~1, \sec{parameterestimationreport-class}.)}
+\token{sedml:\-taskReference} of a \ParameterEstimationReport object
+must be the identifier of an existing \Task object defined in the
+enclosing \Model object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{parameterestimationreport-class}.)}
 
 
 \subsubsection*{Rules for \class{Analysis} object}

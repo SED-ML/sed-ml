@@ -98,120 +98,101 @@ replacements = [
     ("numberOfSteps", "number\-Of\-Steps"),
     ("experimentalCondition", "experimental\-Condition"),
     ("yDataReference", "yData\-Reference"),
+    ('3.1.6', '\\ref{sec:metaid}'),
+    (r"value of data type \token{integer}, and must be non negative", r"positive value of data type \token{integer}"),
+    (r"{Plot2D}", r"{PlotTwo}"),
+    (r"{Plot3D}", r"{PlotThree}"),
     ]
 
 
 replaced_rules ={
-    25504: ("valid", "The value of The value of the \element{target} attribute of an \AppliedDimension must be the identifier of an existing \RepeatedTask or \SubTask object in the document, or the identifier of a \Task referenced by a \SubTask.", "class:appliedDimension"),
-    25505: ("valid", "The value of the \element{dimensionTarget} of an \AppliedDimension must be the identifier of a dimension of the referenced data.", "class:appliedDimension"),
-    23505: ("valid", "The value of the \element{range} of a \RepeatedTask must be the identifier of an existing \Range child of that \RepeatedTask.", "class:range"),
-    22806: ("valid", "The value of the \element{range} attribute of a \SetValue must be the identifier of an existing \Range child of the parent \RepeatedTask.", "class:setValue"),
-    23105: ("valid", "The value of the \element{range} attribute of a \FunctionalRange must be the identifier of an existing \Range sibling of the \FunctionalRange.", "class:functionalRange"),
-    24404: ("valid", "The value of the \element{experiment} attribute of a \ExperimentReference must be the identifier of an existing \FitExperiment child of the parent \ParameterEstimationTask.", "class:variable"),
-    24608: ("valid", "The value of the \element{pointWeight} attribute of a \FitMapping must be the identifier of an existing \DataGenerator or \DataSource object in the document.", "class:fitMapping"),
     20305: ("valid", r"The attribute \token{language} on a \Model must have a value of data type \token{URN}", "class:model"),
     20306: ("valid", r"The attribute \token{source} on a \Model must have a value of data type \token{anyURI}", "class:model"),
     20706: ("valid", r"The attribute \token{target} on a \Variable must have a value of data type \token{TargetType}", "class:variable"),
-    20711: ("valid", r"The attribute \token{target2} on a \Variable must have a value of data type \token{TargetType}", "class:variable"),
     20709: ("valid", r"The attribute \token{term} on a \Variable must have a value of data type \token{anyURI}", "class:variable"),
+    20711: ("valid", r"The attribute \token{target2} on a \Variable must have a value of data type \token{TargetType}", "class:variable"),
+    22806: ("valid", "The value of the \element{range} attribute of a \SetValue must be the identifier of an existing \Range child of the parent \RepeatedTask.", "class:setValue"),
     22808: ("valid", r"The attribute \token{target} on a \SetValue must have a value of data type \token{TargetType}", "class:setValue"),
+    23105: ("valid", "The value of the \element{range} attribute of a \FunctionalRange must be the identifier of an existing \Range sibling of the \FunctionalRange.", "class:functionalRange"),
+    23505: ("valid", "The value of the \element{range} of a \RepeatedTask must be the identifier of an existing \Range child of that \RepeatedTask.", "class:range"),
     23705: ("valid", r"The attribute \token{source} on a \DataDescription must have a value of data type \token{anyURI}", "class:dataDescription"),
     23706: ("valid", r"The attribute \token{format} on a \DataDescription must have a value of data type \token{URN}", "class:dataDescription"),
     24305: ("valid", r"The attribute \token{target} on an \AdjustableParameter must have a value of data type \token{TargetType}", "class:adjustableParameter"),
+    24404: ("valid", "The value of the \element{experiment} attribute of a \ExperimentReference must be the identifier of an existing \FitExperiment child of the parent \ParameterEstimationTask.", "class:variable"),
+    24608: ("valid", "The value of the \element{pointWeight} attribute of a \FitMapping must be the identifier of an existing \DataGenerator or \DataSource object in the document.", "class:fitMapping"),
     25205: ("valid", r"The attribute \token{color} on a \Line must have a value of data type \token{SedColor}", "class:line"),
     25306: ("valid", r"The attribute \token{fill} on a \Marker must have a value of data type \token{SedColor}", "class:marker"),
     25307: ("valid", r"The attribute \token{lineColor} on a \Marker must have a value of data type \token{SedColor}", "class:marker"),
     25404: ("valid", r"The attribute \token{color} on a \Fill must have a value of data type \token{SedColor}", "class:fill"),
+    25504: ("valid", "The value of The value of the \element{target} attribute of an \AppliedDimension must be the identifier of an existing \RepeatedTask or \SubTask object in the document, or the identifier of a \Task referenced by a \SubTask.", "class:appliedDimension"),
+    25505: ("valid", "The value of the \element{dimensionTarget} of an \AppliedDimension must be the identifier of a dimension of the referenced data.", "class:appliedDimension"),
     }
 
 
 new_rules ={
+    20250: ("modeling", r"Every \SedDocument should contain at least one \Output.", "class:sed-ml"),
     20350: ("valid", "There must not be circular dependencies in model resolution.  The \element{source} attribute of a \Model may not directly or indirectly reference itself.", "class:model"),
     20351: ("valid", "There must not be circular cross-dependencies in model change resolution.  The \element{target} and \element{source} attributes of a \ComputeChange may not correspond to the \element{target} and \element{source} of a different \ComputeChange in a different \Model.", "class:model"),
+    20352: ("valid", "The model pointed to by the \element{source} attribute must exist.", "class:model"),
+    20353: ("valid", "The model pointed to by the \element{source} attribute must be encoded in the language defined by the \element{language} attribute.", "class:model"),
+    20354: ("modeling", "Avoid using URNs for the \element{source} attribute of a \Model, as these have become increasingly harder to resolve.", "class:model"),
+    20355: ("valid", r"A \Model may only contain an \AddXML child if its \element{language} attribute describes an XML-based language.", "class:model"),
+    20356: ("valid", r"A \Model may only contain a \RemoveXML child if its \element{language} attribute describes an XML-based language.", "class:model"),
+    20357: ("valid", r"A \Model may only contain a \ChangeXML child if its \element{language} attribute describes an XML-based language.", "class:model"),
+    20550: ("valid", "The \element{target} attribute of an \AddXML object must point to a valid target in the \Model \element{source}.", "class:change"),
+    20551: ("valid", "The \element{target} attribute of an \AddXML object be a valid XPath when the \Model \element{language} attribute points to an XML-based language.", "class:change"),
+    20552: ("valid", r"The XML child of an \AddXML object must be a valid XML element or list of XML elements.", "class:addXml"),
+    20553: ("valid", r"The XML child of an \AddXML object must be in a namespace defined by the \element{source} attribute of the parent \Model object, or explicitly define its own namespace understood by the language of the target model.", "class:addXml"),
+    20650: ("valid", "The \element{target} attribute of a \ChangeAttribute object must point to a valid target in the \Model \element{source}.", "class:change"),
+    20651: ("valid", "The \element{target} attribute of a \ChangeAttribute object be a valid XPath when the \Model \element{language} attribute points to an XML-based language.", "class:change"),
+    20750: ("valid", "Every \Variable with a defined \element{dimensionTerm} attribute must have exactly one \ListOfAppliedDimensions child containing at least one child \AppliedDimension object.", "class:variable"),
+    20751: ("valid", "Every \Variable with a defined \element{target2} or \element{symbol2} attribute must also define the \element{term} attribute.", "class:variable"),
+    20752: ("valid", "The \element{target}, \element{symbol}, \element{term}, \element{target2} and \element{symbol2} attributes of a \Variable must collectively define a single mathematical concept.", "class:variable"),
+    20753: ("valid", r"When the \element{target} attribute of a \Variable is an XPath, it must point to a single model element or attribute.", "class:variable"),
+    21050: ("consistency", r'Avoid use of the \element{numberOfPoints} attribute of a \UniformTimeCourse in favor of the \element{numberOfSteps} attribute.  "Number of Steps" accurately reflects the meaning of the attribute.', "class:uniformTimeCourse"),
+    21051: ("valid", r"The value of the \element{outputStartTime} attribute of a \UniformTimeCourse must be equal to or greater than the value of the \element{initialTime} attribute.", "class:uniformTimeCourse"),
+    21052: ("valid", r"The value of the \element{endTime} attribute of a \UniformTimeCourse must be equal to or greater than the value of the \element{outputStartTime} attribute.", "class:uniformTimeCourse"),
+    21053: ("modeling", r"The value of the \element{numberOfPoints} attribute of a \UniformTimeCourse should typically be evenly divisible by five.  When this is not the case, it often indicates that the modeler is unaware that the definition of the attribute is actually 'the number of points not including the initial state'.", "class:uniformTimeCourse"),
+    21150: ("valid", r"The value of the \element{kisaoID} attribute of an \Algorithm must be the ID of an algorithm in the KiSAO ontology.", "class:algorithm"),
+    21250: ("modeling", r"Every \AbstractTask should contribute to at least one \Output.", "class:abstractTask"),
+    21550: ("modeling", r"Every \DataGenerator should contribute to at least one \Output.", "class:dataGenerator"),
+    21551: ("modeling", r"The shape of the output of every \Variable child of the same \DataGenerator should either be scalar or be consistent with its \Variable siblings.", "class:dataGenerator"),
+    21750: ("modeling", r"The shape of the data referenced by every \AbstractCurve child of a single \PlotTwo object should be consistent", "class:plot2D"),
+    21850: ("modeling", r"The shape of the data referenced by every \Surface child of a single \PlotThree object should be consistent", "class:plot3D"),
+    21950: ("consistency", r"No \element{logX} attribute of any \AbstractCurve should be set.  Instead, the \element{type} attribute of the corresponding \Axis should be used.", "class:abstractCurve"),
+    22050: ("consistency", r"No \element{logY} attribute of any \Curve should be set.  Instead, the \element{type} attribute of the corresponding \Axis should be used.", "class:curve"),
+    22150: ("consistency", r"No \element{logX}, \element{logY}, or \element{logZ} attribute of any \Surface should be set.  Instead, the \element{type} attribute of the corresponding \Axis should be used.", "class:abstractCurve"),
+    22250: ("modeling", r"The \element{label} attributes of the \DataSet children of a single \Report should be unique for clarity.", "class:dataSet"),
+    22350: ("modeling", r"The shape of the output of every \DataSet child of the same \Report should be consistent.", "class:report"),
+    22450: ("valid", r"The value of the \element{kisaoID} attribute of an \AlgorithmParameter must be the ID of an algorithm parameter in the KiSAO ontology that is associated with the \element{kisaoID} of its parent \Algorithm.", "class:algorithmParameter"),
+    22451: ("valid", r"The value of the every \element{kisaoID} attribute of the \AlgorithmParameter children of a single \Algorithm must be unique.", "class:algorithmParameter"),
+    22650: ("valid", "The \element{target} attribute of a \ChangeXML object must point to a valid target in the \Model \element{source}.", "class:change"),
+    22651: ("valid", "The \element{target} attribute of a \ChangeXML object be a valid XPath when the \Model \element{language} attribute points to an XML-based language.", "class:change"),
+    22652: ("valid", r"The XML child of an \ChangeXML object must be a valid XML element or list of XML elements.", "class:changeXml"),
+    22653: ("valid", r"The XML child of an \ChangeXML object must be in a namespace defined by the \element{source} attribute of the parent \Model object, or explicitly define its own namespace understood by the language of the target model.", "class:changeXml"),
+    22750: ("valid", "The \element{target} attribute of a \RemoveXML object must point to a valid target in the \Model \element{source}.", "class:change"),
+    22751: ("valid", "The \element{target} attribute of a \RemoveXML object be a valid XPath when the \Model \element{language} attribute points to an XML-based language.", "class:change"),
+    22752: ("valid", r"The XML child of an \RemoveXML object must be a valid XML element or list of XML elements.", "class:removeXml"),
+    22753: ("valid", r"The XML child of an \RemoveXML object must be in a namespace defined by the \element{source} attribute of the parent \Model object, or explicitly define its own namespace understood by the language of the target model.", "class:removeXml"),
+    22950: ("consistency", r'Avoid use of the \element{numberOfPoints} attribute of a \UniformRange in favor of the \element{numberOfSteps} attribute.  "Number of Steps" accurately reflects the meaning of the attribute.', "class:uniformRange"),
+    22951: ("modeling", r"The value of the \element{numberOfPoints} attribute of a \UniformRange should typically be evenly divisible by five.  When this is not the case, it often indicates that the modeler is unaware that the definition of the attribute is actually `the number of points not including the initial state'.", "class:uniformRange"),
     23150: ("valid", "There must not be circular dependencies in the calculatino of functional ranges.  No \Variable child of a \FunctionalRange may directly or indirectly reference the parent \FunctionalRange.", "class:functionalRange"),
     23550: ("valid", "There must not be circular dependencies in repeated tasks.  The \element{task} attribute of a \SubTask may not directly or indirectly reference its parent \RepeatedTask.", "class:repeatedTask"),
     23551: ("valid", "Every \RepeatedTask must have exactly one \ListOfRanges child containing at least one child \Range object.", "class:repeatedTask"),
     23552: ("valid", "Every \RepeatedTask must have exactly one \ListOfSubTasks child containing at least one child \SubTask object.", "class:repeatedTask"),
+    23553: ("valid", "When a \RepeatedTask has multiple \Range children, they all must have at least as many entries as the one referenced by the \element{range} attribute.", "class:repeatedTask"),
+    23554: ("modeling", r"The shape of the output of every \SubTask child of the same \RepeatedTask should be consistent", "class:repeatedTask"),
+    23650: ("valid", "The \element{target} attribute of a \ComputeChange object must be a valid XPath when the \Model \element{language} attribute points to an XML-based language.", "class:change"),
+    23651: ("valid", "The \element{target} attribute of a \ComputeChange object be a valid XPath when the \Model \element{language} attribute points to an XML-based language.", "class:change"),
     24050: ("valid", "Every \ParameterEstimationTask must have exactly one \ListOfAdjustableParameters child containing at least one child \AdjustableParameter object.", "class:parameterEstimationTask"),
     24051: ("valid", "Every \ParameterEstimationTask must have exactly one \ListOfFitExperiments child containing at least one child \FitExperiment object.", "class:parameterEstimationTask"),
-    20750: ("valid", "Every \Variable with a defined \element{dimensionTerm} attribute must have exactly one \ListOfAppliedDimensions child containing at least one child \AppliedDimension object.", "class:variable"),
     24550: ("valid", "Every \FitExperiment must have exactly one \ListOfFitMappings child containing at least one child \FitMapping object.", "class:fitExperiment"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-    # 00000: ("valid", "", "class:"),
-
+    # 00000: ("valid", r"", "class:"),
 }
 
-karr = """    
+karr = """
 \item The references which are not allowed in specific contexts are not set in those contexts (e.g., no variable of a data generator has a model reference).
-\item URLs should be used in place of URNs for model sources because URNs will likely be deprecated in a future version of SED-ML (warning).
-\item The networks of references are acyclic:
-    \begin{itemize}[labelwidth=0pt]
-        \item Compute model changes.
-    \end{itemize}
-\item Each container element has at least one child:
-    \begin{itemize}[labelwidth=0pt]
-    \item Repeated tasks have at least one subtask.
-    \item Reports have at least one data set.
-    \item 2D plots have at least one curve.
-    \item 3D plots have at least one surface.
-    \end{itemize}
-\item The source of each model is encoded in its language. 
-    \begin{itemize}[labelwidth=0pt]
-    \item CellML-encoded models: The validator uses LibCellML (\href{https://libcellml.org}{https://\allowbreak{}lib\allowbreak{}cell\allowbreak{}ml.\allowbreak{}org}) to check that each model source is a valid CellML file. 
-    \item NeuroML-encoded models: The validator uses LibNeuroML \citep{vella2014libneuroml} to check that each model source is a valid NeuroML file. 
-    \item SBML-encoded models: The validator uses LibSBML \citep{bornstein2008libsbml} to check that each model source is a valid SBML file. 
-    \item Other XML-encoded models: The validator checks that each model source is a valid XML file. 
-    \item Other formats: The validator warns users that these model sources could not be validated.
-    \end{itemize}
-\item For XML-encoded models, the namespaces required to describe each model change and variable of each data generator are defined.
-\item For XML-encoded models, each element of each model change is an XML element or a list of XML elements. 
-\item For XML-encoded models, each target of each static model change is a valid XPath.
-\item Each uniform range has at least one step.
-\item When a repeated task has multiple ranges, the secondary ranges are at least as long as the primary range.
-\item The output start time of each time course simulation is at least its initial time.
-\item The end time of each time course simulation is at least its output start time.
-\item Each time course has at least one step.
-\item Each time course has a number of steps evenly divisible by five (warning). This validation rule was motivated by observing that many SED-ML files in BioModels have extra unintended steps due to historical confusion about the meaning of the SED-ML attribute which stores this information and bugs in creating SED-ML files by some software tools. Note, we are helping address the underlying causes for both of these issues through revisions to the SED-ML specifications and fixes to these software tools.
-\item The KiSAO id of each algorithm and the KiSAO id of each algorithm parameter are ids of KiSAO terms for specific algorithms and algorithm parameters.
-\item Each parameter of an algorithm has a unique KiSAO id.
-\item For XML-encoded models, each target of each data generator to a static model is a valid XPath that matches a single model element.
 \item Each mathematical expression can be evaluated (e.g., all symbols are defined).
-\item Each data set has a unique label within each report (warning).
-\item The axes of the curves and surfaces of plots have consistent (log or linear) scales (warning).
-\item The data generators for each plot are linked to basic simulation tasks and not repeated tasks (warning). The validator raises warnings for such plots because the SED-ML specifications do not officially support such plots, and some software tools do not have the capability to create these plots.
-\item Each task contributes to at least one output (warning).
-\item Each data generator contributes to at least one output (warning).
-\item The shapes of the outputs of the sub-tasks of each repeated task are consistent (warning).
-\item The shapes of the outputs of the variables of each data generator are consistent (warning).
-\item The shapes of the outputs of the data sets of each report are consistent (warning).
-\item The shapes of the outputs of the x and y data of each curve are consistent (warning).
-\item The shapes of the outputs of the x, y, and z data of each surface are consistent (warning).    
 """
 
 def addRequiredId(paragraph):
