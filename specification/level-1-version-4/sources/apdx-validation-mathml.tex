@@ -1,0 +1,41 @@
+\subsubsection*{Rules for \Math objects}
+
+\validRule{10201}{Wherever MathML content appears in an SBML document, the MathML content must be placed within a \token{math} element, and that \token{math} element must be either explicitly or implicitly declared to be in the XML namespace \val{http://www.w3.org/1998/Math/MathML}.  (Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
+
+\validRule{10202}{The following is a list of the only MathML~2.0 elements permitted in SED-ML Level~1 Version~4: \token{abs}, \token{and}, \token{annotation}, \token{annotation-xml}, \token{apply}, \token{arccosh}, \token{arccos}, \token{arccoth}, \token{arccot}, \token{arccsch}, \token{arccsc}, \token{arcsech}, \token{arcsec}, \token{arcsinh}, \token{arcsin}, \token{arctanh}, \token{arctan}, \token{ceiling}, \token{ci}, \token{cn}, \token{cosh}, \token{cos}, \token{coth}, \token{cot}, \token{csch}, \token{csc}, \token{csymbol}, \token{degree}, \token{divide}, \token{eq}, \token{exponentiale}, \token{exp}, \token{factorial}, \token{false}, \token{floor}, \token{geq}, \token{gt}, \token{implies}, \token{infinity}, \token{leq}, \token{ln}, \token{logbase}, \token{log}, \token{lt}, \token{max}, \token{min}, \token{minus}, \token{neq}, \token{notanumber}, \token{not}, \token{or}, \token{otherwise}, \token{piecewise}, \token{piece}, \token{pi}, \token{plus}, \token{power}, \token{quotient}, \token{rem}, \token{root}, \token{sech}, \token{sec}, \token{semantics}, \token{sep}, \token{sinh}, \token{sin}, \token{tanh}, \token{tan}, \token{times}, \token{true}, and \token{xor}. (Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
+
+% Might need to remove the 'vertwo' options above: \vertwo{\token{implies},} \vertwo{\token{max},} \vertwo{\token{min}, \vertwo{\token{quotient},} \vertwo{\token{rem}}
+
+\validRule{10203}{In the SED-ML subset of MathML~2.0, the MathML attribute \token{encoding} is only permitted on \token{csymbol}, \token{annotation} and \token{annotation-xml}.  No other MathML elements may have an \token{encoding} attribute. (Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
+
+\validRule{10204}{In the SED-ML subset of MathML~2.0, the MathML attribute \token{definitionURL} is only permitted on \token{ci}, \token{csymbol} and \token{semantics}.  No other MathML elements may have a \token{definitionURL} attribute. (Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
+
+\validRule{10205}{In SED-ML, the only values permitted for the attribute \token{definitionURL} on a \token{csymbol} are
+\val{http://sed-ml.org/\#min},
+\val{http://sed-ml.org/\#max},
+\val{http://sed-ml.org/\#sum},\linebreak
+\val{http://sed-ml.org/\#product},
+\val{http://sed-ml.org/functions/\#uniform},\linebreak
+\val{http://sed-ml.org/functions/\#normal},
+\val{http://sed-ml.org/functions/\#lognormal},
+\val{http://sed-ml.org/functions/\#gamma}, and
+\val{http://sed-ml.org/functions/\#poisson}.
+(Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
+
+\validRule{10206}{In the SBML subset of MathML~2.0, the MathML attribute \token{type} is only permitted on the \token{cn} construct. No other MathML elements may have a \token{type} attribute. (Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
+
+\validRule{10207}{The only permitted values for the attribute \token{type} on MathML \token{cn} elements are \val{e-notation}, \val{real}, \val{integer}, and \val{rational}. (Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
+
+\validRule{10214}{A MathML \token{ci} element may not be the first element within a MathML \token{apply} element.  (Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
+
+\validRule{10215}{If a MathML \token{ci} element is not the first element within a MathML \token{apply}, then the \token{ci} element's value may only be chosen from the following set of identifiers: the identifiers of \Variable and \Parameter objects defined in the enclosing \ComputeChange, \DataGenerator, or \FunctionalRange object.  (Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
+
+\validRule{10218}{A MathML operator must be supplied the number of arguments appropriate for that operator.  (Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
+
+\consistencyRule{10219}{Avoid using the following values for the attribute \token{definitionURL} on a \token{csymbol}, as they have been superceded by the \element{term} attribute of a \Variable:
+\val{http://sed-ml.org/\#min},
+\val{http://sed-ml.org/\#max},
+\val{http://sed-ml.org/\#sum}, and
+\val{http://sed-ml.org/\#product}.
+(Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
+

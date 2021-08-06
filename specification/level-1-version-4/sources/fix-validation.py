@@ -274,8 +274,10 @@ def getValidationNumber(paragraph):
     print(str(prevValidationNumber))
     return prevValidationNumber
 
+writeMath = True
+
 def fixAndWrite(paragraph):
-    global prevValidationNumber
+    global prevValidationNumber, writeMath
     paragraph = fix(paragraph)
     num = getValidationNumber(paragraph)
     if num==0:
@@ -289,6 +291,9 @@ def fixAndWrite(paragraph):
         writeReplacedRule(num)
     elif num not in removed_rules:
         outfile.write(paragraph + "\n\n")
+    elif writeMath:
+        outfile.write("\\input{sources/apdx-validation-mathml.tex}\n\n")
+        writeMath = False
 
 paragraph = ""
 for line in infile:
