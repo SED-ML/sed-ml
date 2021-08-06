@@ -62,7 +62,7 @@ Type \concept{\element{TargetType}} is used to identify elements of a model.  Th
 
 \subsubsection[\element{XPath}]{Type \element{XPath}}
 \label{type:xpath}
-Type \concept{\element{XPath}} is \changed{derived from type \element{TargetType} and is} used to identify nodes and attributes within an XML representation of a model. \concept{\element{XPath}} in SED-ML is an \hyperref[sec:xpath]{XPath} version 1 expression which can be used to unambiguously identify an element or attribute in an XML file. The concept of \hyperref[sec:xpath]{XPath} is described in Section~\ref{sec:xpath}.  Note, model languages can choose to use \concept{\element{XPath}} to identify abstract concepts implied by models that are not defined in XML files, such as `the current value of corresponding to an XML element within the state of a simulation run'.
+Type \concept{\element{XPath}} is \changed{derived from type \element{TargetType} and is} used to identify nodes and attributes within an XML representation of a model. \concept{\element{XPath}} in SED-ML is an \hyperref[sec:xpath]{XPath} version 1 expression which can be used to unambiguously identify an element or attribute in an XML file. The concept of \hyperref[sec:xpath]{XPath} is described in Section~\ref{sec:xpath}.  Note, model languages can choose to use \concept{\element{XPath}} to identify abstract concepts implied by models that are not defined in XML files, such as `the current value of the object corresponding to an XML element within the state of a simulation run'.
 
 \subsubsection[\element{MathML}]{Type \element{MathML}}
 \label{type:mathml}
@@ -338,13 +338,12 @@ A \Variable may be used in one of the following ways:
 In addition, a \Variable must either reference data directly (using a \element{target} that points to a \DataSource or \DataGenerator), or clearly reference a single model or task/model combination from which the above mathematics is derived.  This can be done using the \element{taskReference} and/or \element{modelReference} attributes, and depends on the context of the \Variable:
 
 \begin{itemize}
+        \item If the \element{target} of the \Variable references a \DataSource, neither the \element{modelReference} nor the \element{task\-Reference} may be defined, as external data has neither models nor tasks.  Otherwise:
         \item In a \ComputeChange child of a \Model, there is no task, and a single \element{modelReference} is used to reference the initial state of any model, including the parent of the \ComputeChange.  The \element{taskReference} must not be defined.
         \item In a \FunctionalRange, the task is taken to be the parent of the \FunctionalRange, and the \element{model\-Reference} is taken to be the model being changed by the parent \AbstractTask.  Either the \element{modelReference} or \element{taskReference} may be defined so as to be explicit.  The \element{modelReference} is required if the parent \AbstractTask itself references multiple models.
-        \item In a \DataGenerator, the task must be defined with the \element{taskReference} attribute.  To be explicit, or if the referenced \AbstractTask uses multiple models, the \element{modelReference} attribute may also be defined.
+        \item In a \DataGenerator, the task must be defined with the \element{taskReference} attribute.  If the referenced \AbstractTask uses multiple models, the \element{modelReference} attribute must also be defined.  The \element{modelReference} attribute may also be defined to be explicit.
         \item In a \SetValue, the \element{taskReference} is taken to be the parent \AbstractTask, and the \element{modelReference} is used to reference the current state of any model.  If the model in question is not modified by the \AbstractTask, that model's initial state is used.  The \element{taskReference} may be set explicitly if desired, and must reference the parent \AbstractTask if so.
 \end{itemize}
-
-If the \Variable is referencing data directly, neither \element{targetReference} nor \element{modelReference} may be defined.
 
 For a \Variable child of a \DataGenerator, the \Variable is by definition multidimensional, taking on the dimensions of the referenced \AbstractTask in addition to its base definition.  In all other cases, the \Variable has only the dimensions of its base definition, and is derived from the current or initial state of the referenced \Model, as above.  In essense, this means that a \Variable that points to \val{p1} in a \Model can be:
 \begin{itemize}

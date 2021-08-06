@@ -2010,20 +2010,24 @@ defined in the enclosing \Model object. (Reference: SBML Level~1
 Specification for SEDML, Version~1, \sec{subplot-class}.)}
 
 \validRule{sedml-24905}{The attribute \token{sedml:\-row} on a \SubPlot
-must have a value of data type \token{integer}. (Reference: SBML Level~1
-Specification for SEDML, Version~1, \sec{subplot-class}.)}
+must have a value of data type \token{integer}, and must be non
+negative. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{subplot-class}.)}
 
 \validRule{sedml-24906}{The attribute \token{sedml:\-col} on a \SubPlot
-must have a value of data type \token{integer}. (Reference: SBML Level~1
-Specification for SEDML, Version~1, \sec{subplot-class}.)}
+must have a value of data type \token{integer}, and must be non
+negative. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{subplot-class}.)}
 
 \validRule{sedml-24907}{The attribute \token{sedml:\-rowSpan} on a
-\SubPlot must have a value of data type \token{integer}. (Reference:
-SBML Level~1 Specification for SEDML, Version~1, \sec{subplot-class}.)}
+\SubPlot must have a value of data type \token{integer}, and must be non
+negative. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{subplot-class}.)}
 
 \validRule{sedml-24908}{The attribute \token{sedml:\-colSpan} on a
-\SubPlot must have a value of data type \token{integer}. (Reference:
-SBML Level~1 Specification for SEDML, Version~1, \sec{subplot-class}.)}
+\SubPlot must have a value of data type \token{integer}, and must be non
+negative. (Reference: SBML Level~1 Specification for SEDML, Version~1,
+\sec{subplot-class}.)}
 
 
 \subsubsection*{Rules for \class{Axis} object}
@@ -2328,9 +2332,10 @@ Specification for SEDML, Version~1,
 
 \validRule{sedml-25804}{The value of the attribute
 \token{sedml:\-taskReference} of a \ParameterEstimationResultPlot object
-must be the identifier of an existing \Task object defined in the
-enclosing \Model object. (Reference: SBML Level~1 Specification for
-SEDML, Version~1, \sec{parameterestimationresultplot-class}.)}
+must be the identifier of an existing \ParameterEstimationTask object
+defined in the enclosing \Model object. (Reference: SBML Level~1
+Specification for SEDML, Version~1,
+\sec{parameterestimationresultplot-class}.)}
 
 
 \subsubsection*{Rules for \class{WaterfallPlot} object}
@@ -2354,9 +2359,9 @@ SBML Level~3 SEDML namespaces are permitted on a \WaterfallPlot object.
 
 \validRule{sedml-25904}{The value of the attribute
 \token{sedml:\-taskReference} of a \WaterfallPlot object must be the
-identifier of an existing \Task object defined in the enclosing \Model
-object. (Reference: SBML Level~1 Specification for SEDML, Version~1,
-\sec{waterfallplot-class}.)}
+identifier of an existing \ParameterEstimationTask object defined in the
+enclosing \Model object. (Reference: SBML Level~1 Specification for
+SEDML, Version~1, \sec{waterfallplot-class}.)}
 
 
 \subsubsection*{Rules for \class{ParameterEstimationReport} object}
@@ -2382,9 +2387,10 @@ Specification for SEDML, Version~1,
 
 \validRule{sedml-26004}{The value of the attribute
 \token{sedml:\-taskReference} of a \ParameterEstimationReport object
-must be the identifier of an existing \Task object defined in the
-enclosing \Model object. (Reference: SBML Level~1 Specification for
-SEDML, Version~1, \sec{parameterestimationreport-class}.)}
+must be the identifier of an existing \ParameterEstimationTask object
+defined in the enclosing \Model object. (Reference: SBML Level~1
+Specification for SEDML, Version~1,
+\sec{parameterestimationreport-class}.)}
 
 
 \subsubsection*{Rules for \class{Analysis} object}

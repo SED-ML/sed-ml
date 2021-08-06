@@ -15,6 +15,8 @@ replacements = [
     ("SBML", "SED-ML"),
     ("an SED", "a SED"),
     ("an \SED", "a \\SED"),
+    ("an \One", "a \\One"),
+    ("An \One", "A \\One"),
     (r"Rule{sedml-", r"Rule{"),
     ("http://www.sbml.org/sbml/level1/version1/sedml/version1", "http://sed-ml.org/sed-ml/level1/version4"),
     ("\label", "\n\\label"),
@@ -102,7 +104,17 @@ replacements = [
     (r"value of data type \token{integer}, and must be non negative", r"positive value of data type \token{integer}"),
     (r"{Plot2D}", r"{PlotTwo}"),
     (r"{Plot3D}", r"{PlotThree}"),
+    (r"thickness} on a \Line must have a value", r"thickness} on a \Line must have a non-negative value"),
+    (r"hickness} on a \Marker must have a value", r"hickness} on a \Marker must have a non-negative value"),
+    (r"size} on a \Marker must have a value", r"size} on a \Marker must have a non-negative value"),
+    (r"step} on a \OneStep must have a value", r"step} on a \OneStep must have a non-negative value"),
+    (r"height} on a \Plot must have a value", r"height} on a \Plot must have a non-negative value"),
+    (r"width} on a \Plot must have a value", r"width} on a \Plot must have a non-negative value"),
+    (r"\subsubsection*{General rules about identifiers}", "\\input{sources/apdx-validation-mathml.tex}\n\n\\subsubsection*{General rules about identifiers}")
     ]
+    # elif writeMath:
+    #     outfile.write("\\input{sources/apdx-validation-mathml.tex}\n\n")
+    #     writeMath = False
 
 
 replaced_rules ={
@@ -140,53 +152,84 @@ new_rules ={
     20356: ("valid", r"A \Model may only contain a \RemoveXML child if its \element{language} attribute describes an XML-based language.", "class:model"),
     20357: ("valid", r"A \Model may only contain a \ChangeXML child if its \element{language} attribute describes an XML-based language.", "class:model"),
     20550: ("valid", "The \element{target} attribute of an \AddXML object must point to a valid target in the \Model \element{source}.", "class:change"),
-    20551: ("valid", "The \element{target} attribute of an \AddXML object be a valid XPath when the \Model \element{language} attribute points to an XML-based language.", "class:change"),
+    20551: ("valid", "The \element{target} attribute of an \AddXML object be a valid XPath when the \Model \element{language} attribute describes an XML-based language.", "class:change"),
     20552: ("valid", r"The XML child of an \AddXML object must be a valid XML element or list of XML elements.", "class:addXml"),
     20553: ("valid", r"The XML child of an \AddXML object must be in a namespace defined by the \element{source} attribute of the parent \Model object, or explicitly define its own namespace understood by the language of the target model.", "class:addXml"),
     20650: ("valid", "The \element{target} attribute of a \ChangeAttribute object must point to a valid target in the \Model \element{source}.", "class:change"),
-    20651: ("valid", "The \element{target} attribute of a \ChangeAttribute object be a valid XPath when the \Model \element{language} attribute points to an XML-based language.", "class:change"),
+    20651: ("valid", "The \element{target} attribute of a \ChangeAttribute object be a valid XPath when the \Model \element{language} attribute describes an XML-based language.", "class:change"),
     20750: ("valid", "Every \Variable with a defined \element{dimensionTerm} attribute must have exactly one \ListOfAppliedDimensions child containing at least one child \AppliedDimension object.", "class:variable"),
     20751: ("valid", "Every \Variable with a defined \element{target2} or \element{symbol2} attribute must also define the \element{term} attribute.", "class:variable"),
     20752: ("valid", "The \element{target}, \element{symbol}, \element{term}, \element{target2} and \element{symbol2} attributes of a \Variable must collectively define a single mathematical concept.", "class:variable"),
     20753: ("valid", r"When the \element{target} attribute of a \Variable is an XPath, it must point to a single model element or attribute.", "class:variable"),
+    20754: ("valid", r"If the \element{target} of a \Variable child of a \DataGenerator points to a \DataSource, neither the \Variable's \element{taskReference} nor \element{modelRefernce} may be set.", "class:variable"),
     21050: ("consistency", r'Avoid use of the \element{numberOfPoints} attribute of a \UniformTimeCourse in favor of the \element{numberOfSteps} attribute.  "Number of Steps" accurately reflects the meaning of the attribute.', "class:uniformTimeCourse"),
     21051: ("valid", r"The value of the \element{outputStartTime} attribute of a \UniformTimeCourse must be equal to or greater than the value of the \element{initialTime} attribute.", "class:uniformTimeCourse"),
     21052: ("valid", r"The value of the \element{endTime} attribute of a \UniformTimeCourse must be equal to or greater than the value of the \element{outputStartTime} attribute.", "class:uniformTimeCourse"),
     21053: ("modeling", r"The value of the \element{numberOfPoints} attribute of a \UniformTimeCourse should typically be evenly divisible by five.  When this is not the case, it often indicates that the modeler is unaware that the definition of the attribute is actually 'the number of points not including the initial state'.", "class:uniformTimeCourse"),
+    21054: ("valid", r'Only one of the attributes \element{numberOfPoints} or \element{numberOfSteps} may be defined on a \UniformTimeCourse.', "class:uniformTimeCourse"),
     21150: ("valid", r"The value of the \element{kisaoID} attribute of an \Algorithm must be the ID of an algorithm in the KiSAO ontology.", "class:algorithm"),
     21250: ("modeling", r"Every \AbstractTask should contribute to at least one \Output.", "class:abstractTask"),
     21550: ("modeling", r"Every \DataGenerator should contribute to at least one \Output.", "class:dataGenerator"),
     21551: ("modeling", r"The shape of the output of every \Variable child of the same \DataGenerator should either be scalar or be consistent with its \Variable siblings.", "class:dataGenerator"),
-    21750: ("modeling", r"The shape of the data referenced by every \AbstractCurve child of a single \PlotTwo object should be consistent", "class:plot2D"),
-    21850: ("modeling", r"The shape of the data referenced by every \Surface child of a single \PlotThree object should be consistent", "class:plot3D"),
+    21552: ("valid", r"If the \element{target} of a \Variable child of a \DataGenerator does not point to a \DataSource, the \Variable's \element{taskReference} must be set.", "class:variable"),
+    21553: ("valid", r"If the \element{taskReference} of a \Variable child of a \DataGenerator is set and references an \AbstractTask that references multiple models, the \element{modelReference} of the \Variable must also be set.", "class:variable"),
+    21554: ("valid", r"If the \element{taskReference} of a \Variable child of a \DataGenerator is set, the \element{modelReference} of the \Variable, if also set, must reference a \Model modified by the referenced \AbstractTask.", "class:variable"),
+    21750: ("modeling", r"The shape of the data referenced by every \AbstractCurve child of a single \PlotTwo object should be consistent.", "class:plot2D"),
+    21850: ("modeling", r"The shape of the data referenced by every \Surface child of a single \PlotThree object should be consistent.", "class:plot3D"),
     21950: ("consistency", r"No \element{logX} attribute of any \AbstractCurve should be set.  Instead, the \element{type} attribute of the corresponding \Axis should be used.", "class:abstractCurve"),
     22050: ("consistency", r"No \element{logY} attribute of any \Curve should be set.  Instead, the \element{type} attribute of the corresponding \Axis should be used.", "class:curve"),
+    22051: ("valid", r"If defined, the \element{xErrorUpper} attribute must reference data with the same dimensionality as that referenced by the \element{xDataReference} attribute.", "class:curve"),
+    22052: ("valid", r"If defined, the \element{xErrorLower} attribute must reference data with the same dimensionality as that referenced by the \element{xDataReference} attribute.", "class:curve"),
+    22053: ("valid", r"If defined, the \element{yErrorUpper} attribute must reference data with the same dimensionality as that referenced by the \element{yDataReference} attribute.", "class:curve"),
+    22054: ("valid", r"If defined, the \element{yErrorLower} attribute must reference data with the same dimensionality as that referenced by the \element{yDataReference} attribute.", "class:curve"),
     22150: ("consistency", r"No \element{logX}, \element{logY}, or \element{logZ} attribute of any \Surface should be set.  Instead, the \element{type} attribute of the corresponding \Axis should be used.", "class:abstractCurve"),
-    22250: ("modeling", r"The \element{label} attributes of the \DataSet children of a single \Report should be unique for clarity.", "class:dataSet"),
+    22250: ("valid", r"The \element{label} attributes of the \DataSet children of a single \Report must be unique.", "class:dataSet"),
     22350: ("modeling", r"The shape of the output of every \DataSet child of the same \Report should be consistent.", "class:report"),
     22450: ("valid", r"The value of the \element{kisaoID} attribute of an \AlgorithmParameter must be the ID of an algorithm parameter in the KiSAO ontology that is associated with the \element{kisaoID} of its parent \Algorithm.", "class:algorithmParameter"),
     22451: ("valid", r"The value of the every \element{kisaoID} attribute of the \AlgorithmParameter children of a single \Algorithm must be unique.", "class:algorithmParameter"),
     22650: ("valid", "The \element{target} attribute of a \ChangeXML object must point to a valid target in the \Model \element{source}.", "class:change"),
-    22651: ("valid", "The \element{target} attribute of a \ChangeXML object be a valid XPath when the \Model \element{language} attribute points to an XML-based language.", "class:change"),
+    22651: ("valid", "The \element{target} attribute of a \ChangeXML object be a valid XPath when the \Model \element{language} attribute describes an XML-based language.", "class:change"),
     22652: ("valid", r"The XML child of an \ChangeXML object must be a valid XML element or list of XML elements.", "class:changeXml"),
     22653: ("valid", r"The XML child of an \ChangeXML object must be in a namespace defined by the \element{source} attribute of the parent \Model object, or explicitly define its own namespace understood by the language of the target model.", "class:changeXml"),
     22750: ("valid", "The \element{target} attribute of a \RemoveXML object must point to a valid target in the \Model \element{source}.", "class:change"),
-    22751: ("valid", "The \element{target} attribute of a \RemoveXML object be a valid XPath when the \Model \element{language} attribute points to an XML-based language.", "class:change"),
+    22751: ("valid", "The \element{target} attribute of a \RemoveXML object be a valid XPath when the \Model \element{language} attribute describes an XML-based language.", "class:change"),
     22752: ("valid", r"The XML child of an \RemoveXML object must be a valid XML element or list of XML elements.", "class:removeXml"),
     22753: ("valid", r"The XML child of an \RemoveXML object must be in a namespace defined by the \element{source} attribute of the parent \Model object, or explicitly define its own namespace understood by the language of the target model.", "class:removeXml"),
+    22850: ("valid", r"If the \element{target} of a \Variable child of a \SetValue does not point to a \DataSource, the \Variable's \element{modelReference} must be set.", "class:variable"),
+    22851: ("valid", r"If the \element{target} of a \Variable child of a \SetValue does not point to a \DataSource, the \Variable's \element{taskReference}, if set, must reference the parent \AbstractTask.", "class:variable"),
     22950: ("consistency", r'Avoid use of the \element{numberOfPoints} attribute of a \UniformRange in favor of the \element{numberOfSteps} attribute.  "Number of Steps" accurately reflects the meaning of the attribute.', "class:uniformRange"),
     22951: ("modeling", r"The value of the \element{numberOfPoints} attribute of a \UniformRange should typically be evenly divisible by five.  When this is not the case, it often indicates that the modeler is unaware that the definition of the attribute is actually `the number of points not including the initial state'.", "class:uniformRange"),
+    22952: ("valid", r'Only one of the attributes \element{numberOfPoints} or \element{numberOfSteps} may be defined on a \UniformRange.', "class:uniformRange"),
     23150: ("valid", "There must not be circular dependencies in the calculatino of functional ranges.  No \Variable child of a \FunctionalRange may directly or indirectly reference the parent \FunctionalRange.", "class:functionalRange"),
+    23151: ("valid", "The \element{modelReference} attribute of a \Variable child of a \FunctionalRange must be defined if the \element{target} does not point to external data and the parent \FunctionalRange is a child of an \AbstractTask that involves more than one \Model.", "class:functionalRange"),
     23550: ("valid", "There must not be circular dependencies in repeated tasks.  The \element{task} attribute of a \SubTask may not directly or indirectly reference its parent \RepeatedTask.", "class:repeatedTask"),
     23551: ("valid", "Every \RepeatedTask must have exactly one \ListOfRanges child containing at least one child \Range object.", "class:repeatedTask"),
     23552: ("valid", "Every \RepeatedTask must have exactly one \ListOfSubTasks child containing at least one child \SubTask object.", "class:repeatedTask"),
     23553: ("valid", "When a \RepeatedTask has multiple \Range children, they all must have at least as many entries as the one referenced by the \element{range} attribute.", "class:repeatedTask"),
-    23554: ("modeling", r"The shape of the output of every \SubTask child of the same \RepeatedTask should be consistent", "class:repeatedTask"),
-    23650: ("valid", "The \element{target} attribute of a \ComputeChange object must be a valid XPath when the \Model \element{language} attribute points to an XML-based language.", "class:change"),
-    23651: ("valid", "The \element{target} attribute of a \ComputeChange object be a valid XPath when the \Model \element{language} attribute points to an XML-based language.", "class:change"),
+    23554: ("modeling", r"The shape of the output of every \SubTask child of the same \RepeatedTask should be consistent.", "class:repeatedTask"),
+    23650: ("valid", "The \element{target} attribute of a \ComputeChange object must be a valid XPath when the \Model \element{language} attribute describes an XML-based language.", "class:change"),
+    23651: ("valid", "The \element{target} attribute of a \ComputeChange object be a valid XPath when the \Model \element{language} attribute describes an XML-based language.", "class:change"),
+    23652: ("valid", "The \element{taskReference} attribute of a \Variable child of a \ComputeChange object must not be defined.", "class:change"),
+    23950: ("valid", r"If a \Slice defines both an \element{startIndex} and an \element{endIndex}, the value of the \element{endIndex} must be equal to or greater than that of the \element{startIndex}.", "class:slice"),
     24050: ("valid", "Every \ParameterEstimationTask must have exactly one \ListOfAdjustableParameters child containing at least one child \AdjustableParameter object.", "class:parameterEstimationTask"),
     24051: ("valid", "Every \ParameterEstimationTask must have exactly one \ListOfFitExperiments child containing at least one child \FitExperiment object.", "class:parameterEstimationTask"),
     24550: ("valid", "Every \FitExperiment must have exactly one \ListOfFitMappings child containing at least one child \FitMapping object.", "class:fitExperiment"),
+    24650: ("valid", r"A \FitMapping object may not define both its \element{weight} attribute and its \element{pointWeight} attribute, but may leave both undefined.", "class:fitMapping"),
+    24651: ("valid", r"The value of every element referenced by the \element{pointWeight} attribute of a \FitMapping object must either be non-negative or defined as \element{notanumber} for missing data.  No element may be set to \val{infinity}.", "class:fitMapping"),
+    24652: ("valid", r"The value of the \element{weight} attribute of a \FitMapping object must not be infinite or negative.", "class:fitMapping"),
+    24653: ("modeling", r"The value of every element referenced by the \element{pointWeight} attribute of a \FitMapping should typically fall between 0 and 1, inclusive.", "class:fitMapping"),
+    24654: ("modeling", r"The \element{pointWeight} attribute of a \FitMapping, if defined, must point to a \DataGenerator or \DataSource with the same dimensionality as the data referenced by the \element{dataSource} attribute.", "class:fitMapping"),
+    24750: ("valid", r"The value of the \element{upperBound} attribute of a \Bounds object must be greater than or equal to the value of the \element{lowerBound} attribute.", "class:bounds"),
+    25050: ("valid", r"If an \Axis defines both its \element{max} attribute and its \element{min} attribute, the value of the \element{max} must be greater than or equal to the value of the \element{min} attribute.", "class:axis"),
+    25550: ("valid", "Every \AppliedDimension must have either its \element{target} attribute or its \element{dimensionTarget} attribute set, but not both.", "class:appliedDimension"),
+    25750: ("valid", r"The \element{yDataReferenceFrom} and \element{yDataReferenceTo} attributes of a \ShadedArea must reference data with the same dimensionality as each other.", "class:shadedArea"),
+    24950: ("valid", r"If defined, the \element{rowSpan} attribute of a \SubPlot must have a value greater than or equal to one, and less than or equal to one plus the \element{numRows} attribute of the parent \Figure minus the \element{row} attribute of the \SubPlot.", "class:subPlot"),
+    24951: ("valid", r"If defined, the \element{colSpan} attribute of a \SubPlot must have a value greater than or equal to one, and less than or equal to one plus the \element{numCols} attribute of the parent \Figure minus the \element{col} attribute of the \SubPlot.", "class:subPlot"),
+    # 00000: ("valid", r"", "class:"),
+    # 00000: ("valid", r"", "class:"),
+    # 00000: ("valid", r"", "class:"),
+    # 00000: ("valid", r"", "class:"),
+    # 00000: ("valid", r"", "class:"),
     # 00000: ("valid", r"", "class:"),
 }
 
@@ -274,8 +317,6 @@ def getValidationNumber(paragraph):
     print(str(prevValidationNumber))
     return prevValidationNumber
 
-writeMath = True
-
 def fixAndWrite(paragraph):
     global prevValidationNumber, writeMath
     paragraph = fix(paragraph)
@@ -291,9 +332,6 @@ def fixAndWrite(paragraph):
         writeReplacedRule(num)
     elif num not in removed_rules:
         outfile.write(paragraph + "\n\n")
-    elif writeMath:
-        outfile.write("\\input{sources/apdx-validation-mathml.tex}\n\n")
-        writeMath = False
 
 paragraph = ""
 for line in infile:

@@ -28,7 +28,7 @@
 
 \validRule{10214}{A MathML \token{ci} element may not be the first element within a MathML \token{apply} element.  (Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
 
-\validRule{10215}{If a MathML \token{ci} element is not the first element within a MathML \token{apply}, then the \token{ci} element's value may only be chosen from the following set of identifiers: the identifiers of \Variable and \Parameter objects defined in the enclosing \ComputeChange, \DataGenerator, or \FunctionalRange object.  (Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
+\validRule{10215}{If a MathML \token{ci} element is not the first element within a MathML \token{apply}, then the \token{ci} element's value may only be chosen from the following set of identifiers: the identifiers of \Variable and \Parameter objects defined in the enclosing \ComputeChange, \DataGenerator, or \FunctionalRange object, and, if the parent of the \Math is a \SetValue, the value of that \SetValue's \element{range} attribute.  (Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
 
 \validRule{10218}{A MathML operator must be supplied the number of arguments appropriate for that operator.  (Reference: SED-ML Level~1 Version~4, Section~\ref{sec:mathML}.)}
 
