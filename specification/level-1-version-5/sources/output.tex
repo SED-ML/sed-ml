@@ -4,19 +4,14 @@
 \subsection{\element{Output}}
 \label{class:output}
 
-The abstract \Output class describes how the results of a simulation are presented (\fig{output}). \changed{The available output classes are \Plot, \Report, \ParameterEstimationReport, and \Figure.} The data used in an \Output is provided via the \DataGenerator class.
+The abstract \Output class describes how the results of a simulation are presented (\fig{output}). The available output classes are \Plot, \Report, \ParameterEstimationReport, and \Figure. The data used in an \Output is provided via the \DataGenerator class.
 
 \sedfig[width=0.6\textwidth]{images/uml/output}{The definition of the SED-ML \Output class. The subclasses are defined below.}{fig:output}
 
-\begin{blockChanged}
 The \Output class inherits the \element{id} and \element{name} attributes from \SedBase, as well as the optional \element{annotation} and \element{notes} chidren.  When producing a printed table or figure, users may want to use the \element{name} as the title, and the \element{notes} as the legend.
-\end{blockChanged}
 
-\begin{blockChanged}
 The output of a SED-ML file may be used to compare simulation executions from the same tool or from different tools.  As such, interpreters may choose to focus on the output of a SED-ML file, and execute only the tasks necessary to produce this output.  Repeated executions of the same SED-ML should always produce comparable output.  When a stochastic run is given a seed, interpreters should be aware that users may expect to get identical results from repeated runs on the same architecture, including when tasks are run in parallel.
-\end{blockChanged}
 
-\begin{blockChanged}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % OUTPUT COMPONENTS
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
@@ -63,7 +58,6 @@ Each child \Surface of a \PlotThree represents a surface to be displayed on the 
 
 \paragraph*{\element{zAxis}}
 When a \PlotThree contains a child \element{zAxis}, that \Axis defines the characteristics of the z axis. If no \element{zAxis} is provided, those characteristics are undefined, and the tool may choose how and whether to display that axis, as well as what type it is (linear or logarithmic).
-\end{blockChanged}
 
 
 % ~~~ Axis ~~~
@@ -71,7 +65,6 @@ When a \PlotThree contains a child \element{zAxis}, that \Axis defines the chara
 \label{class:axis}
 The \Axis class is used to define whether an axis for a given \Plot is linear or logarithmic, and how to display it.  It inherits the attributes and children from \SedBase, and adds the required attribute \element{type} of type \AxisType (either `linear' or `log10'), as well as the optional attributes \element{min} and \element{max}, both of type \element{double}, \element{grid} of type \element{boolean}, and \element{style} of type \SIdRef.
 
-\begin{blockChanged}
 \paragraph*{\element{name} and \element{id}}
 The \Axis class inherits the \element{name} and \element{id} attributes from \SedBase.  The \element{name}, if present, should be used as the label for the axis.  If it is not present, the \element{id} may be used.
 
@@ -98,14 +91,14 @@ The \element{reverse} attribute indicates whether the axis should be plotted fro
 
 \subsubsection{\element{AbstractCurve}}
 \label{class:abstractCurve}
-An \AbstractCurve is a two-dimensional \Output component representing a (processed) simulation result (\fig{abstractCurve}). Zero or more \AbstractCurve instances define a \PlotTwo (\fig{output}).  The \AbstractCurve class defines the attributes common to the \Curve and \ShadedArea child classes.  In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase, it also defines the \changed{required attribute \element{xDataReference}, and the optional attributes} \element{order}, \element{style}, and \element{yAxis}.  It is also legal but discouraged to include an attribute \element{logX}.
+An \AbstractCurve is a two-dimensional \Output component representing a (processed) simulation result (\fig{abstractCurve}). Zero or more \AbstractCurve instances define a \PlotTwo (\fig{output}).  The \AbstractCurve class defines the attributes common to the \Curve and \ShadedArea child classes.  In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase, it also defines the required attribute \element{xDataReference}, and the optional attributes \element{order}, \element{style}, and \element{yAxis}.  It is also legal but discouraged to include an attribute \element{logX}.
 
-\changed{The \element{name} of the \AbstractCurve should be used to label the curve in the given \PlotTwo, or, if \element{name} is not defined, the \element{id} may be used.  If neither are present, the \element{name} or \element{id} of the referenced \element{yDataReference} may be used in the case of a \Curve or the \element{yDataReferenceFrom} and/or \element{yDataReferenceTo} in the case of a \ShadedArea.  Because of the complications this can engender, it is highly recommended to define the \element{name} of all \AbstractCurve elements.}
+The \element{name} of the \AbstractCurve should be used to label the curve in the given \PlotTwo, or, if \element{name} is not defined, the \element{id} may be used.  If neither are present, the \element{name} or \element{id} of the referenced \element{yDataReference} may be used in the case of a \Curve or the \element{yDataReferenceFrom} and/or \element{yDataReferenceTo} in the case of a \ShadedArea.  Because of the complications this can engender, it is highly recommended to define the \element{name} of all \AbstractCurve elements.
 
 \paragraph*{\element{xDataReference}}
-The \element{xDataReference} attribute must be an \SIdRef to a \DataGenerator in the same \SedDocument.  The referenced \DataGenerator will contain the information for the x coordinates for the data to be plotted.  \changed{If the y-coordinate data is ordinal or categorical, this attribute should point to a simple ordinal \DataGenerator.}
+The \element{xDataReference} attribute must be an \SIdRef to a \DataGenerator in the same \SedDocument.  The referenced \DataGenerator will contain the information for the x coordinates for the data to be plotted.  If the y-coordinate data is ordinal or categorical, this attribute should point to a simple ordinal \DataGenerator.
 
-\changed{The dimensionality of the \element{xDataReference} must match the y data, but need not be one-dimensional.  When a curve is being displayed, each one-dimensional vector within the x and y data should be displayed on the same plot.  This will effectively flatten the data to the two dimensions of the plot.  When being displayed as lines, each vector should be plotted separately, so that the plot is not overlaid with spurious lines from the end of one vector to the beginning of the next.}
+The dimensionality of the \element{xDataReference} must match the y data, but need not be one-dimensional.  When a curve is being displayed, each one-dimensional vector within the x and y data should be displayed on the same plot.  This will effectively flatten the data to the two dimensions of the plot.  When being displayed as lines, each vector should be plotted separately, so that the plot is not overlaid with spurious lines from the end of one vector to the beginning of the next.
 
 
 \paragraph*{\element{order}}
@@ -120,15 +113,12 @@ The \element{yAxis} attribute is of type \element{string} and must be defined if
 \paragraph*{\element{logX} (deprecated)}
 The \element{logX} attribute, of type \element{Boolean}, was used in previous versions of SED-ML to indicate whether the x axis of the \Plot should be linear or log10.  This allowed mutliple \Curve objects in the same \Plot to contradict each other, and has therefore been moved to \Axis.  The \element{logX} attribute on \Curve has therefore been deprecated, and will always be ignored.
 
-\end{blockChanged}
-
 
 % ~~~ CURVE ~~~
 \subsubsection{\element{Curve}}
 \label{class:curve}
-A \Curve is a two-dimensional \Output component representing a (processed) simulation result (\fig{output}). Zero or more \Curve instances define a \PlotTwo (\fig{output}). \changed{In addition to the attributes  it inherits from \AbstractCurve (and \SedBase), it also defines the required attribute \element{yDataReference} of type \SIdRef.  It also defines the optional attribute \element{type} of type \CurveType, and the optional attributes \element{xErrorUpper}, \element{xErrorLower}, \element{yErrorUpper}, and \element{yErrorLower}, all of type \SIdRef.}
+A \Curve is a two-dimensional \Output component representing a (processed) simulation result (\fig{output}). Zero or more \Curve instances define a \PlotTwo (\fig{output}). In addition to the attributes  it inherits from \AbstractCurve (and \SedBase), it also defines the required attribute \element{yDataReference} of type \SIdRef.  It also defines the optional attribute \element{type} of type \CurveType, and the optional attributes \element{xErrorUpper}, \element{xErrorLower}, \element{yErrorUpper}, and \element{yErrorLower}, all of type \SIdRef.
 
-\begin{blockChanged}
 \paragraph*{\element{yDataReference}}
 Like the \element{xDataReference}, the \element{yDataReference} must be the \element{SId} of a \DataGenerator in the same \SedDocument.  The referenced \DataGenerator will contain the information for the y coordinates for the data to be plotted.  The dimensions of the y data should match the x data.  If the y data is multi-dimensional (such as time course data over several stochastic replicates), one dimension should match the x data (time, in our example), and the other dimension should simply be replicated as separate curves on the same plot (with the same style and label).
 
@@ -155,25 +145,22 @@ A \ShadedArea is an \AbstractCurve that defines an area instead of a series of p
 \paragraph*{\element{yDataReferenceFrom} and \element{yDataReferenceTo}}
 The attributes \element{yDataReferenceFrom} and \element{yDataReferenceTo} are both of type \SIdRef, and must reference data of the same dimensionality.  The values of the two attributes may be swapped, with the only effect being the direction of the shading between them, if two fill colors are used.
 
-\end{blockChanged}
-
 
 
 % ~~~ SURFACE ~~~
 \subsubsection{\element{Surface}}
 \label{class:surface}
-\begin{blockChanged}
-A \Surface is a parallel class to \AbstractCurve that defines a three-dimensional surface instead of a two-dimensional curve (\fig{surface}).  In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase, it also defines the \changed{required} attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \SIdRef.  It also defines the optional attributes \element{style} of type \SIdRef, and \element{type}, of type \SurfaceType.
+A \Surface is a parallel class to \AbstractCurve that defines a three-dimensional surface instead of a two-dimensional curve (\fig{surface}).  In addition to the optional \element{id} and \element{name} attributes it inherits from \SedBase, it also defines the required attributes \element{xDataReference}, \element{yDataReference}, and \element{zDataReference}, all of type \SIdRef.  It also defines the optional attributes \element{style} of type \SIdRef, and \element{type}, of type \SurfaceType.
 
-\changed{The \element{name} of the \Surface should be used to label the surface in the given \PlotThree, or, if \element{name} is not defined, the \element{id} may be used.  If neither are present, the \element{name} or \element{id} of the referenced \element{zDataReference} may be used.  In general, it is highly recommended to define the \element{name} of all \Surface elements.}
+The \element{name} of the \Surface should be used to label the surface in the given \PlotThree, or, if \element{name} is not defined, the \element{id} may be used.  If neither are present, the \element{name} or \element{id} of the referenced \element{zDataReference} may be used.  In general, it is highly recommended to define the \element{name} of all \Surface elements.
 
 
 \sedfig[width=0.6\textwidth]{images/uml/surface}{The definition of the SED-ML \Surface class.}{fig:surface}
 
 \paragraph*{\element{xDataReference}, \element{yDataReference}, and \element{zDataReference}}
-The three data reference attributes must point to \DataGenerator elements in the same \SedDocument, which define the surface to be plotted.  \changed{All three attributes are required.  If the \element{zDataReference} is intended to be plotted by index, the \element{xDataReference} and \element{yDataReference} attributes should point to \DataGenerator elements that generate those indices.}
+The three data reference attributes must point to \DataGenerator elements in the same \SedDocument, which define the surface to be plotted.  All three attributes are required.  If the \element{zDataReference} is intended to be plotted by index, the \element{xDataReference} and \element{yDataReference} attributes should point to \DataGenerator elements that generate those indices.
 
-\changed{As with an \AbstractCurve, the dimensionality of the attributes \element{xDataReference}, \element{yDataReference} and \element{zDataReference} must match each other, but need not be one-dimensional.  When a surface is being displayed, each one-dimensional vector within the x,  y, and z data should be displayed on the same plot.  This will effectively flatten the data to the three dimensions of the plot.  When the data is being plotted as lines, Each vector should be plotted with its own line, so that the plot is not overlaid with spurious lines from the end of one vector to the beginning of the next.}
+As with an \AbstractCurve, the dimensionality of the attributes \element{xDataReference}, \element{yDataReference} and \element{zDataReference} must match each other, but need not be one-dimensional.  When a surface is being displayed, each one-dimensional vector within the x,  y, and z data should be displayed on the same plot.  This will effectively flatten the data to the three dimensions of the plot.  When the data is being plotted as lines, Each vector should be plotted with its own line, so that the plot is not overlaid with spurious lines from the end of one vector to the beginning of the next.
 
 
 \paragraph*{\element{style}}
@@ -195,7 +182,6 @@ The \element{type} attribute, if present, determines the type of surface and how
 \paragraph*{\element{logX}, \element{logY}, \element{logZ} (deprecated)}
 The \element{logX}, \element{logY} and \element{logZ} attributes, of type \element{Boolean}, were used in previous versions of SED-ML to indicate whether the respective axis of the \Plot should be linear or log10.  This allowed multiple objects in the same \Plot to contradict each other, and has therefore been moved to \Axis.  The \element{logX}, \element{logY} and \element{logZ} attributes on \Surface have therefore been deprecated, and will always be ignored.
 
-\end{blockChanged}
 %
 
 
@@ -206,13 +192,10 @@ The \element{logX}, \element{logY} and \element{logZ} attributes, of type \eleme
 \subsection{\element{Report}}
 \label{class:report}
 \label{class:listOfDataSets}
-\begin{blockChanged}
 The \concept{Report} class defines a data map consisting of several single instances of the \DataSet in the child \element{listOfDataSets} (\fig{report}). Its output returns the simulation result processed via \DataGenerators in actual numbers. The elements of the report are defined by creating an instance of the \DataSet for each element of the report and are identified by the \element{label} of the \DataSet. 
-\end{blockChanged}
 
-The simulation result itself, i.e.\ concrete result numbers, are not stored in SED-ML, but the directive how to calculate them from the output of the simulator is provided through the \hyperref[class:dataGenerator]{dataGenerator}. The encoding of simulation results is not part of SED-ML \currentLV, \changed{but it is recommended that 2D output be exported as \CSV files, using the \element{label} as column headers, and that output with more dimensions be exported as \HDF, again using the \element{label} to uniquely identify the data sets.}
+The simulation result itself, i.e.\ concrete result numbers, are not stored in SED-ML, but the directive how to calculate them from the output of the simulator is provided through the \hyperref[class:dataGenerator]{dataGenerator}. The encoding of simulation results is not part of SED-ML \currentLV, but it is recommended that 2D output be exported as \CSV files, using the \element{label} as column headers, and that output with more dimensions be exported as \HDF, again using the \element{label} to uniquely identify the data sets.
 
-\begin{blockChanged}
 %% ~~~ DATASET ~~~
 \subsubsection{\element{DataSet}}
 \label{class:dataSet}
@@ -312,5 +295,3 @@ The \WaterfallPlot class is used to create a default plot of a particular style 
 
 Like a \ParameterEstimationResultPlot, a \WaterfallPlot displays a range of results and data from a \ParameterEstimationTask that might not otherwise be easily accessible.  Different tools and different experiments may result in different types and styles of waterfall plots.  For an overview of the sort of data present in one, see Gillespie, 2012 \citep{gillespie2012}.
 
-
-\end{blockChanged}

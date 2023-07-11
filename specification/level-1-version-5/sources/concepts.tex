@@ -30,10 +30,10 @@ The allowed MathML in SED-ML is restricted to the following subset:
 \item \emph{arithmetic operators}: \token{plus}, \token{minus},
   \token{times}, \token{divide}, \token{power}, \token{root},
   \token{abs}, \token{exp}, \token{ln}, \token{log},
-  \token{floor}, \token{ceiling}, \token{factorial}, \changed{\token{quotient}, \token{max}, \token{min}, \token{rem}}
+  \token{floor}, \token{ceiling}, \token{factorial}, \token{quotient}, \token{max}, \token{min}, \token{rem}
 
 \item \emph{logical operators}: \token{and}, \token{or},
-  \token{xor}, \token{not}, \changed{\token{implies}}
+  \token{xor}, \token{not}, \token{implies}
 
 \item \emph{qualifiers}: \token{degree},
   \token{logbase}
@@ -58,11 +58,11 @@ The allowed MathML in SED-ML is restricted to the following subset:
 % ~~~ MATHML SYMBOLS ~~~
 \subsection{MathML symbols}
 
-\changed{All the operations listed above describe functions of scalar-valued SED variables, or element-wise computations of matrix-valued SED variables. Matrix-valued SED variables can arise in multiple ways. For example, a variable for a basic task of a non-spatial \UniformTimeCourse would be a vector with length equal to the number of steps of the time course plus one. A \Variable for a \RepeatedTask of a non-spatial time course could be represented a matrix with dimensions for the iterations of the repeated tasks, its subtasks, and the steps of the nested basic task. MathML functions for matrices should be evaluated on an element-wise basis. For example, if $M$ and $N$ were two 2D matrix-valued SED variables, $M+3$ would add three to every element of $M$, $R = M+N$ would only be valid if $M$ and $N$ have the same dimensions, and $R_{i,j}$ would be equal to $M_{i,j} + N_{i,j}$. If the lengths of the dimensions are not equal (i.e. if $M_{i,j}$ exists but $N_{i,j}$ does not), the missing value should be assumed to be $NaN$ (not a number).  At this point, SED-ML does not define an algebra for matrix computations.}
+All the operations listed above describe functions of scalar-valued SED variables, or element-wise computations of matrix-valued SED variables. Matrix-valued SED variables can arise in multiple ways. For example, a variable for a basic task of a non-spatial \UniformTimeCourse would be a vector with length equal to the number of steps of the time course plus one. A \Variable for a \RepeatedTask of a non-spatial time course could be represented a matrix with dimensions for the iterations of the repeated tasks, its subtasks, and the steps of the nested basic task. MathML functions for matrices should be evaluated on an element-wise basis. For example, if $M$ and $N$ were two 2D matrix-valued SED variables, $M+3$ would add three to every element of $M$, $R = M+N$ would only be valid if $M$ and $N$ have the same dimensions, and $R_{i,j}$ would be equal to $M_{i,j} + N_{i,j}$. If the lengths of the dimensions are not equal (i.e. if $M_{i,j}$ exists but $N_{i,j}$ does not), the missing value should be assumed to be $NaN$ (not a number).  At this point, SED-ML does not define an algebra for matrix computations.
 
 \subsubsection{MathML csymbols for dimensional input}
 
-\changed{While the new \element{dimensionTerm} attribute of the \Variable class provides functionality to reduce the dimensionality of matrices, previous version of SED-ML defined the MathML functions \sedmin, \sedmax, \sedsum, and \product, each of which would reduce any n-dimensional vector to a single scalar value.  It is recommended that users switch to using \Variable elements with a \element{dimensionTerm} for their increased functionality, but the old functions are still defined here for backwards compatibility.}  The only allowed symbols to be used in aggregate functions are the identifiers of \Variables defined in the \hyperref[class:listOfVariables]{\element{listOfVariables}} of a \DataGenerator. These \Variables represent the data collected from the simulation experiment in the associated \Task.  \changed{They always return scalar values, regardless of the dimensionality of the \Variable, and ignore any NaN values the vector or matrix might have.}
+While the new \element{dimensionTerm} attribute of the \Variable class provides functionality to reduce the dimensionality of matrices, previous version of SED-ML defined the MathML functions \sedmin, \sedmax, \sedsum, and \product, each of which would reduce any n-dimensional vector to a single scalar value.  It is recommended that users switch to using \Variable elements with a \element{dimensionTerm} for their increased functionality, but the old functions are still defined here for backwards compatibility.  The only allowed symbols to be used in aggregate functions are the identifiers of \Variables defined in the \hyperref[class:listOfVariables]{\element{listOfVariables}} of a \DataGenerator. These \Variables represent the data collected from the simulation experiment in the associated \Task.  They always return scalar values, regardless of the dimensionality of the \Variable, and ignore any NaN values the vector or matrix might have.
 
 \paragraph*{\element{min}}
 \label{fun:min}
@@ -115,9 +115,8 @@ The \concept{\element{product}} of a variable represents the multiplication of a
 
 % ~~~ MATHML DISTRIBUTION FUNCTIONS ~~~
 \subsubsection{MathML Distribution Functions}
-\changed{The following functions are added to MathML as csymbols to represent draws from distributions:  \uniform, \normal, \lognormal, \poisson, and \sedgamma}:
+The following functions are added to MathML as csymbols to represent draws from distributions:  \uniform, \normal, \lognormal, \poisson, and \sedgamma:
 
-\begin{blockChanged}
 \paragraph*{\element{uniform}}
 \label{fun:uniform}
 The \uniform of a variable represents a draw from a uniform distribution.  It has two arguments:  the first is `min' and the second is `max', with `max' requried to be greater than `min'.  The draw from the distribution must be between `min' and `max', and may include `min', but may not include `max'.
@@ -189,8 +188,6 @@ The \poisson of a variable represents a discrete value drawn from a poisson dist
 </apply>
 \end{myXmlLst}
 
-\end{blockChanged}
-
 
 
 % ~~~ NA VALUES ~~~
@@ -215,7 +212,7 @@ URIs are used in SED-ML as a mechanism
 % ~~~ MODEL REFERENCES ~~~
 \subsection{Model references}
 \label{sec:modelURI}
-\changed{The two principle recommended methods for referencing data is by URL or by relative pathname.  Any URL} should preferably point to a public, consistent location that provides the model description file. References to curated, open model bases are recommended, such as the BioModels Database. \changed{Relative pathnames are useful both when working with a collection or folder of related files, or when the files are collected into a \hyperref[sec:archive]{COMBINE archive}.}
+The two principle recommended methods for referencing data is by URL or by relative pathname.  Any URL should preferably point to a public, consistent location that provides the model description file. References to curated, open model bases are recommended, such as the BioModels Database. Relative pathnames are useful both when working with a collection or folder of related files, or when the files are collected into a \hyperref[sec:archive]{COMBINE archive}.
 
 For additional information see the \hyperref[sec:model_source]{\element{source}} attribute on \Model.
 
@@ -226,7 +223,7 @@ An alternative means to obtain a model may be to provide a single resource conta
 \subsection{Data references}
 \label{sec:dataURI}
 
-\changed{The two principle recommended methods for referencing data is by URL or by relative pathname.  Both of these methods will work if the file or files are transferred to a new location, or to a \hyperref[sec:archive]{COMBINE archive}.  Absolute pathnames will work when used in their original locations, but not when moved to a new location or bundled into an archive, and are therefore not recommended.}
+The two principle recommended methods for referencing data is by URL or by relative pathname.  Both of these methods will work if the file or files are transferred to a new location, or to a \hyperref[sec:archive]{COMBINE archive}.  Absolute pathnames will work when used in their original locations, but not when moved to a new location or bundled into an archive, and are therefore not recommended.
 
 For additional information see the \hyperref[sec:data_source]{\element{source}} attribute on \hyperref[class:dataDescription]{DataDescription}.
 
@@ -236,11 +233,11 @@ For additional information see the \hyperref[sec:data_source]{\element{source}} 
 \label{sec:implicitVariable}
 Some variables used in a simulation experiment are not explicitly defined in the model, but may be implicitly contained in it. For example, to plot a variable's behaviour over time, that variable is defined in an SBML model, whereas time is not explicitly defined. 
 
-SED-ML can refer to such implicit variables via the \concept{Symbol} concept. Such implicit variables are \changed{defined using KiSAO through the \kisaoID format to reference the implied variable}. 
+SED-ML can refer to such implicit variables via the \concept{Symbol} concept. Such implicit variables are defined using KiSAO through the \kisaoID format to reference the implied variable.
 
 For example, to refer in a SED-ML file to the definition of time, the string \element{KISAO:0000832} is used.  For backwards compatibility, the string \val{urn:sedml:symbol:time} may be used.
 
-\changed{With very few exceptions, symbols refer to mathematics of a model that can be read out of the model, but cannot be set directly.  You cannot use a \element{symbol} attribute to set the time of a model, for example, nor may you set the Stoichiometry matrix nor the elasticities.  The only partial exception to this is that the amount, concentation, or particle number of a species may be set by an element using both a \element{target} attribute to indicate the species and a \element{symbol} to indicate which form to use.}
+With very few exceptions, symbols refer to mathematics of a model that can be read out of the model, but cannot be set directly.  You cannot use a \element{symbol} attribute to set the time of a model, for example, nor may you set the Stoichiometry matrix nor the elasticities.  The only partial exception to this is that the amount, concentation, or particle number of a species may be set by an element using both a \element{target} attribute to indicate the species and a \element{symbol} to indicate which form to use.
 
 \tab{symbols}~lists the predefined symbols in SED-ML.
 \begin{table}[ht]
@@ -252,7 +249,7 @@ For example, to refer in a SED-ML file to the definition of time, the string \el
 SBML & \code{urn:sedml:symbol:time} & KISAO:0000832 & Time in SBML is an intrinsic model variable that is addressable in model equations via a csymbol \code{time}.\\
 \bottomrule
 \end{tabular}
-\caption{\changed{The single predefined symbol in SED-ML. For \currentLV, KiSAO IDs are used instead, though `time' is still allowed for backwards compatibility.  The latest list of KiSAO terms is available from \url{https://github.com/SED-ML/KiSAO}.}}
+\caption{The single predefined symbol in SED-ML. For \currentLV, KiSAO IDs are used instead, though `time' is still allowed for backwards compatibility.  The latest list of KiSAO terms is available from \url{https://github.com/SED-ML/KiSAO}.}
 \label{tab:symbols}
 \end{table}
 
@@ -282,7 +279,7 @@ The evaluation of a SED-ML document is required in order for software to decide 
 To help  software decide whether or not it supports a SED-ML description file, the information on the \hyperref[class:model]{model} encoding for each referenced \hyperref[class:model]{model} can be provided through the \hyperref[sec:language]{\element{language}} attribute, as the description of a language name and version through an unrestricted \code{String} is error-prone. 
 A prerequisite for a language to be fully supported by SED-ML is that a formalised language definition, e.g., an XML Schema, is provided online. SED-ML also defines a set of standard URIs to refer to particular language definitions. 
 
-To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used (\tab{languageURN}). The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{\element{name.version}}. \changed{One} can be as specific as defining a model being in a particular version of a language, e.g., SBML Level 3 Version 1 as \code{urn:sedml:language:sbml.level-3.version-1}.
+To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used (\tab{languageURN}). The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{\element{name.version}}. One can be as specific as defining a model being in a particular version of a language, e.g., SBML Level 3 Version 1 as \code{urn:sedml:language:sbml.level-3.version-1}.
 
 For additional information see the \hyperref[sec:language]{\element{language}} attribute on \Model.
 
@@ -292,21 +289,21 @@ For additional information see the \hyperref[sec:language]{\element{language}} a
 \toprule
 \textbf{Language} & \textbf{URN}\\
 \midrule
-\changed{BNGL (generic)} & \code{urn:sedml:language:bngl} \\
+BNGL (generic) & \code{urn:sedml:language:bngl} \\
 CellML (generic) & \code{urn:sedml:language:cellml} \\
 CellML 1.0 & \code{urn:sedml:language:cellml.1\_0} \\
 CellML 1.1 & \code{urn:sedml:language:cellml.1\_1} \\
-\changed{CellML 2.0} & \code{urn:sedml:language:cellml.2\_0} \\
-\changed{GINML (generic)} & \code{urn:sedml:language:ginml} \\
-\changed{HOC (generic)} & \code{urn:sedml:language:hoc} \\
-\changed{Kappa (generic)} & \code{urn:sedml:language:kappa} \\
-\changed{LEMS (generic)} & \code{urn:sedml:language:lems} \\
-\changed{MorpheusML (generic)} & \code{urn:sedml:language:morpheusml} \\
+CellML 2.0 & \code{urn:sedml:language:cellml.2\_0} \\
+GINML (generic) & \code{urn:sedml:language:ginml} \\
+HOC (generic) & \code{urn:sedml:language:hoc} \\
+Kappa (generic) & \code{urn:sedml:language:kappa} \\
+LEMS (generic) & \code{urn:sedml:language:lems} \\
+MorpheusML (generic) & \code{urn:sedml:language:morpheusml} \\
 NeuroML (generic) & \code{urn:sedml:language:neuroml} \\
 NeuroML Version 1.8.1 Level 1 &	\code{urn:sedml:language:neuroml.version-1\_8\_1.level-1} \\
 NeuroML Version 1.8.1 Level 2 &	\code{urn:sedml:language:neuroml.version-1\_8\_1.level-2} \\
-\changed{NeuroML Version 1.8.1 Level 3} &	\code{urn:sedml:language:neuroml.version-1\_8\_1.level-3} \\
-\changed{NeuroML Version 2.1} &	\code{urn:sedml:language:neuroml.version-2\_1} \\
+NeuroML Version 1.8.1 Level 3 &	\code{urn:sedml:language:neuroml.version-1\_8\_1.level-3} \\
+NeuroML Version 2.1 &	\code{urn:sedml:language:neuroml.version-2\_1} \\
 PharmML (generic) & \code{urn:sedml:language:pharmml} \\
 SBML (generic) & \code{urn:sedml:language:sbml} \\
 SBML Level 1 Version 1 & \code{urn:sedml:language:sbml.level-1.version-1} \\
@@ -318,9 +315,9 @@ SBML Level 2 Version 4 & \code{urn:sedml:language:sbml.level-2.version-4} \\
 SBML Level 2 Version 5 & \code{urn:sedml:language:sbml.level-2.version-5} \\
 SBML Level 3 Version 1 & \code{urn:sedml:language:sbml.level-3.version-1} \\
 SBML Level 3 Version 2 & \code{urn:sedml:language:sbml.level-3.version-2} \\
-\changed{Smoldyn (generic)} & \code{urn:sedml:language:smoldyn} \\
+Smoldyn (generic) & \code{urn:sedml:language:smoldyn} \\
 VCML (generic) & \code{urn:sedml:language:vcml} \\
-\changed{ZGINML (generic)} & \code{urn:sedml:language:zginml} \\
+ZGINML (generic) & \code{urn:sedml:language:zginml} \\
 \bottomrule
 \end{tabular}
 \caption{Predefined model language URNs. The latest list of language URNs is available from \url{https://sed-ml.org/urns.html}.}
@@ -430,7 +427,6 @@ The format \concept{TSV} (\code{urn:sedml:format:tsv}) is defined identical to \
 \end{itemize}
 
 
-\begin{blockChanged}
 \subsubsection{HDF5 (Hierarchical Data Format version 5)}
 \label{sec:dataFormatHDF5}
 The format \concept{HDF5} is defined at \url{https://portal.hdfgroup.org/display/HDF5/HDF5}.  It supports the storage of multidimensional data, and is therefore ideal for storing the SED-ML output of repeated tasks; particularly nested repeated tasks.
@@ -451,19 +447,17 @@ When output from multiple tasks are combined mathematically, their dimensions mu
 
 Each dimension may also be annotated with an ontology term such as one from the 'Semanticscience Integrated Ontology' (SIO, \url{https://bioportal.bioontology.org/ontologies/SIO}).
 
-\end{blockChanged}
-
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % XPATH
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \section{XPath}  
 \label{sec:xpath}
-\concept{XPath} is a language for finding and referencing information in an XML document \citep{xpath:1999}. Within SED-ML \currentLV, XPath version 1 expressions \changed{can be used to identify nodes and attributes within an XML representation of an XML-encoded model} in the following ways:
+\concept{XPath} is a language for finding and referencing information in an XML document \citep{xpath:1999}. Within SED-ML \currentLV, XPath version 1 expressions can be used to identify nodes and attributes within an XML representation of an XML-encoded model in the following ways:
 
 \begin{itemize}
-	\item {Within a \Variable definition, where \concept{XPath} identifies the model variable required for manipulation in SED-ML.  \changed{In this context, the XPath must always reference a single XML element, and not an attribute nor multiple XML elements.}}
-	\item {Within a \hyperref[class:change]{Change} definition, where \concept{XPath} is used to identify the target XML to which a change should be applied.  \changed{In this context, the XPath may point to anything in the XML as appropriate for the \Change (i.e. an attribute in a \ChangeAttribute; one or more elements or attributes to remove in a \RemoveXML, etc.).}}
+	\item {Within a \Variable definition, where \concept{XPath} identifies the model variable required for manipulation in SED-ML.  In this context, the XPath must always reference a single XML element, and not an attribute nor multiple XML elements.}
+	\item {Within a \hyperref[class:change]{Change} definition, where \concept{XPath} is used to identify the target XML to which a change should be applied.  In this context, the XPath may point to anything in the XML as appropriate for the \Change (i.e. an attribute in a \ChangeAttribute; one or more elements or attributes to remove in a \RemoveXML, etc.).}
 \end{itemize}
 
 For proper application, \concept{XPath} expressions should contain prefixes that allow their resolution to the correct XML namespace within an XML document. For example, the \concept{XPath} expression referring to a species \emph{X} in an SBML model:

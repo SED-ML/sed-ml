@@ -54,15 +54,13 @@ Type \concept{SIdRef} is used for all attributes that refer to identifiers of ty
 
 As with \SId, the equality of \concept{SIdRef} values is determined by exact character sequence match; i.e., comparisons of these identifiers must be performed in a case-sensitive manner.
 
-\begin{blockChanged}
 \subsubsection[\element{TargetType}]{Type \element{TargetType}}
 \label{type:target}
 Type \concept{\element{TargetType}} is used to identify elements of a model.  This type is derived from type \element{string}, and it is up to model languages to define how elements encoded in the language should be identified.  For XML-based languages, \element{XPath} must be used in conjuction with \ChangeXML, \AddXML, or \RemoveXML. Model languages are encouraged to provide clear documentation about how model elements can be identified.
-\end{blockChanged}
 
 \subsubsection[\element{XPath}]{Type \element{XPath}}
 \label{type:xpath}
-Type \concept{\element{XPath}} is \changed{derived from type \element{TargetType} and is} used to identify nodes and attributes within an XML representation of a model. \concept{\element{XPath}} in SED-ML is an \hyperref[sec:xpath]{XPath} version 1 expression which can be used to unambiguously identify an element or attribute in an XML file. The concept of \hyperref[sec:xpath]{XPath} is described in Section~\ref{sec:xpath}.  Note, model languages can choose to use \concept{\element{XPath}} to identify abstract concepts implied by models that are not defined in XML files, such as `the current value of the object corresponding to an XML element within the state of a simulation run'.
+Type \concept{\element{XPath}} is derived from type \element{TargetType} and is used to identify nodes and attributes within an XML representation of a model. \concept{\element{XPath}} in SED-ML is an \hyperref[sec:xpath]{XPath} version 1 expression which can be used to unambiguously identify an element or attribute in an XML file. The concept of \hyperref[sec:xpath]{XPath} is described in Section~\ref{sec:xpath}.  Note, model languages can choose to use \concept{\element{XPath}} to identify abstract concepts implied by models that are not defined in XML files, such as `the current value of the object corresponding to an XML element within the state of a simulation run'.
 
 \subsubsection[\element{MathML}]{Type \element{MathML}}
 \label{type:mathml}
@@ -72,11 +70,9 @@ Type \concept{\element{MathML}} is used to describe mathematical expression in \
 \label{type:anyURI}
 Type \concept{\code{anyURI}} is used in annotations and to reference model files, data files, and implicit model variables. For a description of the uses of \concept{\code{anyURI}} see Section~\ref{sec:uriScheme}.  The notion of implicit variables is explained in Section~\ref{sec:implicitVariable}.
 
-\begin{blockChanged}
 \subsubsection[\element{URN}]{Type \element{URN}}
 \label{type:urn}
 Type \concept{\code{URN}} is used to reference the model language and data description formats.  It is derived from URI, is defined by the Network Working Group RFCs 1737 and 2141, and consists of a colon-delimited string beginning with \val{urn:}.  For a description of the uses of \concept{\code{URN}} see Section~\ref{sec:urnScheme}.
-\end{blockChanged}
 
 \subsubsection[\element{NuMLSId}]{Type \element{NuMLSId}}
 \label{type:numlsid}
@@ -88,7 +84,6 @@ Type \concept{\element{NuMLSIdRef}} is used for all attributes that refer to ide
 
 As with \hyperref[type:numlsid]{\element{NuMLSId}}, the equality of \concept{\element{NuMLSIdRef}} values is determined by exact character sequence match; i.e., comparisons of these identifiers must be performed in a case-sensitive manner.
 
-\begin{blockChanged}
 \subsubsection[\element{CurveType}]{Type \element{CurveType}}
 \label{type:curveType}
 
@@ -138,8 +133,6 @@ The \element{AxisType} primitive data type is used in the definition of the \Axi
 The \element{ScaleType} primitive data type is used in the definition of the \Bounds class.  \element{ScaleType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{linear}, \val{log}, and \val{log10}.  Attributes of type \element{ScaleType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Bounds class's definition in \ref{class:bounds}.
 
 
-\end{blockChanged}
-
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % SEDBASE
@@ -150,7 +143,6 @@ The \element{ScaleType} primitive data type is used in the definition of the \Bo
 
 The optional \hyperref[sec:notesElement]{\element{notes}} and \hyperref[sec:annotationElement]{\element{annotation}} subelements provide investigators the ability to attach additional information to all SED-ML objects.
 
-\begin{blockChanged}
 \sedfig[width=0.75\textwidth]{images/uml/sedBase}{The \SEDBase, \Notes, and \Annotation classes}{fig:sedBase}
 
 % ~~~ ID ~~~
@@ -194,7 +186,6 @@ Listing \ref{lst:name} extends the model definition in \lst{id} by a model \conc
 	[MODEL DEFINITION]
 </model>
 \end{myXmlLst}
-\end{blockChanged}
 
 
 
@@ -292,7 +283,7 @@ An \concept{Annotation} can be used to capture computer-processable information 
 \subsection{\element{Parameter}}
 \label{class:parameter}
 The \concept{Parameter} class (\fig{parameter}) can be used to create named parameters with a constant value for use in mathematical expressions.
-The \concept{Parameter} class introduces the required \changed{attribute \hyperref[sec:value]{\element{value}} of type \element{double}, and inherits other attributes and children from \SEDBase, with the exception that the attribute \element{id} is required instead of optional.  The \element{id} takes on the value of the \element{value} in the context of the \Math of the parent \Calculation.  Its \element{id} may not be used in a \Calculation that is not its parent, but it must nevertheless be globally unique.}
+The \concept{Parameter} class introduces the required attribute \hyperref[sec:value]{\element{value}} of type \element{double}, and inherits other attributes and children from \SEDBase, with the exception that the attribute \element{id} is required instead of optional.  The \element{id} takes on the value of the \element{value} in the context of the \Math of the parent \Calculation.  Its \element{id} may not be used in a \Calculation that is not its parent, but it must nevertheless be globally unique.
 
 \sedfig[width=0.35\textwidth]{images/uml/parameter}{The \Parameter class}{fig:parameter}
 
@@ -319,11 +310,10 @@ The \concept{\element{value}} attribute of data type \code{double} is required f
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \subsection{\element{Variable}}
 \label{class:variable}
-A \Variable (\fig{variable}) is a reference to a mathematical value.  The \Variable class inherits the attributes and children of \SEDBase, changing the attribute \element{id} to be required, and adds several more.  \changed{A \Variable references a single mathematical element (which in some cases may be multidimensional) by using its attributes \element{target}, \element{symbol}, \element{target2}, \element{symbol2}, and \element{term}, either together or separately.  It may also need to reference a particular model in a particular context by using the \element{modelReference} and \element{taskReference} attributes.  Finally, it may reduce the dimensionality of the resulting math by using the \element{dimensionTerm} attribute with one or more \AppliedDimension children, as members of its \ListOfAppliedDimensions child.  All of these additional attributes and child objects are optional, but must together be used to fully define a unique mathematical reference.}
+A \Variable (\fig{variable}) is a reference to a mathematical value.  The \Variable class inherits the attributes and children of \SEDBase, changing the attribute \element{id} to be required, and adds several more.  A \Variable references a single mathematical element (which in some cases may be multidimensional) by using its attributes \element{target}, \element{symbol}, \element{target2}, \element{symbol2}, and \element{term}, either together or separately.  It may also need to reference a particular model in a particular context by using the \element{modelReference} and \element{taskReference} attributes.  Finally, it may reduce the dimensionality of the resulting math by using the \element{dimensionTerm} attribute with one or more \AppliedDimension children, as members of its \ListOfAppliedDimensions child.  All of these additional attributes and child objects are optional, but must together be used to fully define a unique mathematical reference.
 
 \sedfig[width=1.0\textwidth]{images/uml/variable}{The \Variable, \ListOfAppliedDimensions, and \AppliedDimension classes}{fig:variable}
 
-\begin{blockChanged}
 A \Variable may be used in one of the following ways:
 \begin{itemize}
         \item To reference an explicit element of a model, using the \element{target} attribute.  An SBML Species or a CellML Variable are two examples.
@@ -351,8 +341,6 @@ For a \Variable child of a \DataGenerator, the \Variable is by definition multid
         \item A vector of \code{p1} values in the context of a \DataGenerator pointing to a timecourse \Task, or
         \item A multidimensional vector of \code{p1} values in the context of a \DataGenerator pointing to a \RepeatedTask of timecourses.
 \end{itemize}
-
-\end{blockChanged}
 
 \lsttext{variable}{variable}
 In the example a variable \code{v1} is defined to compute a change on a model constituent (referenced by the \hyperref[sec:target]{\element{target}} attribute on \hyperref[class:computeChange]{\element{computeChange}}). The value of \code{v1} corresponds to the value of the targeted model constituent referenced by the \code{target} attribute. The second variable \code{v2} is used inside a \hyperref[class:dataGenerator]{\element{dataGenerator}}. As the variable is \concept{time} as used in \code{task1}, the \hyperref[sec:symbol]{\element{symbol}} attribute is used to refer to the SED-ML URI for time.
@@ -390,11 +378,10 @@ In the example a variable \code{v1} is defined to compute a change on a model co
 % ~~~ TARGET ~~~
 \paragraph*{\element{target}}
 \label{sec:target}
-An instance of \Variable can refer to a model constituent inside a particular \hyperref[class:model]{model} through \changed{the address stored in the \concept{\element{target}} attribute, such as an \code{\hyperref[type:xpath]{XPath}} expression}. 
+An instance of \Variable can refer to a model constituent inside a particular \hyperref[class:model]{model} through the address stored in the \concept{\element{target}} attribute, such as an \code{\hyperref[type:xpath]{XPath}} expression.
 
-Note that while it is possible to write \changed{XPath expressions} that select multiple nodes within a referenced model, when used within a \concept{\element{target}} attribute, a single element or attribute \emph{must} be selected by the expression.
+Note that while it is possible to write XPath expressions that select multiple nodes within a referenced model, when used within a \concept{\element{target}} attribute, a single element or attribute \emph{must} be selected by the expression.
 
-\begin{blockChanged}
 The \concept{\element{target}} attribute may also be used in several situations to reference another SED-ML element with mathematical meaning, by containing a fragment identifier consisting of a hash character (\code{\#}) followed by the \SId of the element (i.e. \val{\#id001}):
 
 \begin{itemize}
@@ -406,7 +393,6 @@ The \concept{\element{target}} attribute may also be used in several situations 
 \end{itemize}
 
 There are no other situations in SED-ML where the \element{id} of a SED-ML element may be used as the \element{target} of a \Variable.  Also note that multidimensional \DataSource ids may not be used in \RepeatedTask elements, nor \Range ids in \DataGenerator elements.  (To access multidimensional data for a \Range, a \DataRange may be used instead.)
-\end{blockChanged}
 
 \lsttexta{target}{target}
 In the example the \concept{\element{target}} is used to reference a species with \element{id='PY'} in an SBML model.
@@ -444,12 +430,12 @@ The \hyperref[sec:xpath]{XPath} expression used in the \concept{\code{target}} a
 % ~~~ SYMBOL ~~~
 \paragraph*{\element{symbol}}
 \label{sec:symbol}
-The \concept{\element{symbol}} \changed{attribute of type \element{string} is used to refer either to a predefined, implicit variable or to a predefined implicit function to be performed on the \element{target}.  In both cases, the \element{symbol} should be a \kisaoID (and follow the format of that attribute) that represents} that variable's concept. The notion of implicit variables is explained in Section~\ref{sec:implicitVariable}.  \changed{For backwards compatibility, the old string \val{urn:sedml:symbol:time} is also allowed, though interpreters should interpret \val{KISAO:0000832} as meaning the same thing.}
+The \concept{\element{symbol}} attribute of type \element{string} is used to refer either to a predefined, implicit variable or to a predefined implicit function to be performed on the \element{target}.  In both cases, the \element{symbol} should be a \kisaoID (and follow the format of that attribute) that represents that variable's concept. The notion of implicit variables is explained in Section~\ref{sec:implicitVariable}.  For backwards compatibility, the old string \val{urn:sedml:symbol:time} is also allowed, though interpreters should interpret \val{KISAO:0000832} as meaning the same thing.
 
-\changed{In the case where the \element{symbol} refers to a function, the function is applied to the \element{target} of the \Variable.  If the function reduces the dimensionality of the \Variable, at least one \AppliedDimension child should be used.}
+In the case where the \element{symbol} refers to a function, the function is applied to the \element{target} of the \Variable.  If the function reduces the dimensionality of the \Variable, at least one \AppliedDimension child should be used.
 
 \lsttexta{symbol}{symbol}
-The example \changed{encodes a variable \val{t1} defined to be the SED-ML symbol for \code{time}.  How to use this variable to calculate a change is} explained in Section~\ref{class:computeChange}.
+The example encodes a variable \val{t1} defined to be the SED-ML symbol for \code{time}.  How to use this variable to calculate a change is explained in Section~\ref{class:computeChange}.
 
 \begin{myXmlLst}{SED-ML \code{symbol} definition}{lst:symbol}
 <listOfVariables>
@@ -457,7 +443,6 @@ The example \changed{encodes a variable \val{t1} defined to be the SED-ML symbol
 </listOfVariables>
 \end{myXmlLst}
 
-\begin{blockChanged}
 \paragraph*{\element{term}}
 \label{sec:term}
 The \element{term} attribute is of type \element{string}, and should conform to the syntax of a \kisaoID.  The \element{term} may refer to a function (such as `rate of change', \code{KISAO:0000834}) that relates two variables to each other, instead of just one, or it may refer to an analysis (such as `the eigenvalue matrix', \code{KISAO:0000813}) that is dependent on the model as a whole and not on individual model elements.
@@ -480,8 +465,6 @@ A \element{symbol2} attribute has exactly the same constraints and behavior as a
 </listOfVariables>
 \end{myXmlLst}
 
-\end{blockChanged}
-
 
 % ~~~ TASK REFERENCE ~~~
 \paragraph*{\element{taskReference}}
@@ -493,10 +476,8 @@ The \concept{\element{taskReference}} element of data type \SIdRef is used to re
 \label{sec:modelReferenceAttribute}
 The \concept{\element{modelReference}} element of data type \SIdRef is used to reference a \Model via a \hyperref[sec:modelReference]{modelReference}. The usage depends on the context the \Variable is used in.
 
-\changed{Together, the \element{taskReference} and \element{modelReference} attributes define a model and its context which the other attributes use to pull data from.}
+Together, the \element{taskReference} and \element{modelReference} attributes define a model and its context which the other attributes use to pull data from.
 
-
-\begin{blockChanged}
 
 \paragraph*{\element{dimensionTerm}}
 \label{sec:dimensionTerm}
@@ -573,11 +554,10 @@ A \Calculation's mandatory child element \concept{\element{math}} contains a Mat
 This section describes attributes which occur on multiple SED-ML classes, e.g., \kisaoID, or \hyperref[class:listOf]{\element{listOf*}} constructs.
 \label{sec:generalAttributes}
 
-\end{blockChanged}
 % ~~~ KISAOID ~~~
 \subsubsection{\element{kisaoID}}
 \label{sec:kisaoid}
-Some classes, e.g., \hyperref[class:algorithm]{Algorithm} and \hyperref[class:algorithmParameter]{AlgorithmParameter}, have a mandatory element \concept{\element{kisaoID}} \changed{or another attribute} which references a term from the \hyperref[sec:kisao]{KiSAO} ontology. The referenced term must be defined using the syntax defined by the regular expression \code{\textasciicircum KISAO:[0-9]\{7\}\$}. \changed{Note, this syntax uses colons rather than the underscores used by the official id of each KiSAO term.}
+Some classes, e.g., \hyperref[class:algorithm]{Algorithm} and \hyperref[class:algorithmParameter]{AlgorithmParameter}, have a mandatory element \concept{\element{kisaoID}} or another attribute which references a term from the \hyperref[sec:kisao]{KiSAO} ontology. The referenced term must be defined using the syntax defined by the regular expression \code{\textasciicircum KISAO:[0-9]\{7\}\$}. Note, this syntax uses colons rather than the underscores used by the official id of each KiSAO term.
 
 Investigators are encouraged to use as precise \hyperref[sec:kisao]{KiSAO} terms as possible to indicate simulation \hyperref[class:algorithm]{Algorithm} and \hyperref[class:algorithmParameter]{AlgorithmParameter}. As needed, investigators can request additional terms.
 

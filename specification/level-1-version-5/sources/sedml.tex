@@ -11,13 +11,13 @@ Each SED-ML \currentLV document has a main class called \concept{SED-ML} which d
 	\item \AbstractTask (for the linkage of models and simulation setups), 
 	\item \DataGenerator (for the definition of post-processing),
 	\item \hyperref[class:output]{Output} (for the specification of plots and reports).
-	\item \hyperref[class:style]{Style} \changed{(for the specification of plot element styles)}.
-	\item \AlgorithmParameter \changed{(for the definition of global algorithm parameters)}.
+	\item \hyperref[class:style]{Style} (for the specification of plot element styles).
+	\item \AlgorithmParameter (for the definition of global algorithm parameters).
 \end{itemize}
 
 A SED-ML document needs to have the SED-ML namespace defined through the mandatory \hyperref[sec:xmlns]{\element{xmlns}} attribute. In addition, the SED-ML \hyperref[sec:level]{\element{level}} and \hyperref[sec:version]{\element{version}} attributes are required.
 
-The root element of each SED-ML XML file is the \code{sedML} element, encoding \hyperref[sec:level]{\element{level}} and \hyperref[sec:version]{\element{version}} of the file, and setting the necessary namespaces. Nested inside the \code{sedML} element are the six optional lists serving as containers for the encoded information: \hyperref[class:listOfDataDescriptions]{\element{listOfDataDescriptions}} for all external data, \hyperref[class:listOfModels]{\element{listOfModels}} for all models, \hyperref[class:listOfSimulations]{\element{listOfSimulations}} for all simulations, \hyperref[class:listOfTasks]{\element{listOfTasks}} for all tasks, \hyperref[class:listOfDataGenerators]{\element{listOfDataGenerators}} for all post-processing definitions, \hyperref[class:listOfOutputs]{\element{listOfOutputs}} for all output definitions, \changed{\ListOfStyles for all style definitions. and \ListOfAlgorithmParameters for parameters that apply to processing this SED-ML file as a whole}.
+The root element of each SED-ML XML file is the \code{sedML} element, encoding \hyperref[sec:level]{\element{level}} and \hyperref[sec:version]{\element{version}} of the file, and setting the necessary namespaces. Nested inside the \code{sedML} element are the six optional lists serving as containers for the encoded information: \hyperref[class:listOfDataDescriptions]{\element{listOfDataDescriptions}} for all external data, \hyperref[class:listOfModels]{\element{listOfModels}} for all models, \hyperref[class:listOfSimulations]{\element{listOfSimulations}} for all simulations, \hyperref[class:listOfTasks]{\element{listOfTasks}} for all tasks, \hyperref[class:listOfDataGenerators]{\element{listOfDataGenerators}} for all post-processing definitions, \hyperref[class:listOfOutputs]{\element{listOfOutputs}} for all output definitions, \ListOfStyles for all style definitions. and \ListOfAlgorithmParameters for parameters that apply to processing this SED-ML file as a whole.
 
 \sedfig[width=0.7\textwidth]{images/uml/sed-ml}{The SED-ML class}{fig:sed-mlMain}
 
@@ -143,9 +143,9 @@ The \concept{\element{listOfSimulations}} element is the container for \Simulati
 \label{class:listOfTasks}
 The \concept{\element{listOfTasks}} element contains the defined \hyperref[class:task]{tasks} for the simulation experiment (\fig{sed-mlMain}). The \concept{\element{listOfTasks}} is optional and may contain zero or more tasks, each of which is an instance of a subclass of \AbstractTask.
 
-\changed{Each top-level task is defined such that its execution is independent of the others:  if one task is executed after another, the states of the models must be completely reset so there's no cross-contamination of one task to the next.  This means that the top-level tasks are particularly well suited to being executed in parallel, should that be desired.}
+Each top-level task is defined such that its execution is independent of the others:  if one task is executed after another, the states of the models must be completely reset so there's no cross-contamination of one task to the next.  This means that the top-level tasks are particularly well suited to being executed in parallel, should that be desired.
 
-\changed{SED-ML interpreters may choose to execute all the tasks in the list, or they may choose to examine the list of outputs, and only execute the tasks that are necessary to produce the requested output.  This situation comes up most often when one task is listed as a \SubTask of a \RepeatedTask:  the outputs may well only require the \RepeatedTask to be run, meaning an independent execution of the singular \Task is not necessary, even though it's on this list.}
+SED-ML interpreters may choose to execute all the tasks in the list, or they may choose to examine the list of outputs, and only execute the tasks that are necessary to produce the requested output.  This situation comes up most often when one task is listed as a \SubTask of a \RepeatedTask:  the outputs may well only require the \RepeatedTask to be run, meaning an independent execution of the singular \Task is not necessary, even though it's on this list.
 
 \lsttext{listOfTasks}{listOfTasks}
 \begin{myXmlLst}{The SED-ML \code{listOfTasks} element, defining one task}{lst:listOfTasks}
@@ -195,7 +195,6 @@ The \concept{\element{listOfOutputs}} container holds the \hyperref[class:output
 \end{myXmlLst}
 
 
-\begin{blockChanged}
 % ~~ LIST OF STYLES ~~~
 \subsubsection{\element{listOfStyles}}
 \label{class:listOfStyles}
@@ -212,9 +211,7 @@ The \concept{\element{listOfStyles}} container holds the \Style definitions of a
 	</plot2D>
 </listOfStyles>
 \end{myXmlLst}
-\end{blockChanged}
 
-\begin{blockChanged}
 % ~~ LIST OF ALGORITHM PARAMETERS ~~~
 \subsubsection{\element{listOfAlgorithmParameters} (global)}
 \label{class:globalListOfAlgorithmParameters}
@@ -226,4 +223,3 @@ The \concept{\element{listOfAlgorithmParameters}} container holds the \Algorithm
 	<algorithmParameter name="seed" kisaoID="KISAO:0000488" value="1001"/> 
 </listOfAlgorithmParameters>
 \end{myXmlLst}
-\end{blockChanged}

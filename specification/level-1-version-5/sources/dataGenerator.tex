@@ -5,7 +5,6 @@ The \concept{DataGenerator} class prepares the raw simulation results for later 
 
 \sedfig[width=0.3\textwidth]{images/uml/dataGenerator}{The SED-ML DataGenerator class.} {fig:dataGenerator}
 
-\begin{blockChanged}
 \Variable objects in \DataGenerator elements may be scalar or multidimensional.  If the \Math of a \DataGenerator attempts to apply functions to multi-dimensional elements, those functions always apply to the individual scalar values of that data.  If multiple multidimensional \Variable ids are used in the same \Math, those ids must each have the same dimensions as each other.  No vector or matrix algebra functions such as dot products or cross products are allowed.
 
 A \Variable in a \DataGenerator may use the id of a \DataSource as its \element{target}, pre-pended by a \code{`\#'}, i.e. \val{\#dataSourceId}.  This \Variable may be multidimensional, and if so, must follow the above strictures.
@@ -22,8 +21,6 @@ This is an unusual situation, so much so that different simulators may create di
 %A \RepeatedTask for a second model can be created separately.  If the results of one \RepeatedTask are needed to set up or modify a different model, a second \RepeatedTask can be created that references a \DataGenerator from the first \RepeatedTask.  Only when multiple models depend on the results of each other will a single \RepeatedTask be needed that references both, and in that case, the experiment designer should ensure that the simulator they wish to use handles the situation in a way that makes sense for that experiment.
 %LS NOTE:  I wrote the above more detailed explanation, but I think it's too rare a situation (and too complicated to explain easily) that the shorter explanation should suffice.
 
-
-\end{blockChanged}
 
 
 \lsttext{dataGenerator}{dataGenerator}

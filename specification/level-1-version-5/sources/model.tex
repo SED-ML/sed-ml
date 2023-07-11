@@ -7,13 +7,13 @@ The \concept{Model} class defines the models used in a simulation experiment (\f
 
 \sedfig[width=0.7\textwidth]{images/uml/model}{The SED-ML Model class}{fig:model}
 
-Each instance of the \concept{Model} class has the required attributes \hyperref[sec:id]{\element{id}}, \hyperref[sec:model_source]{\code{source}}, and \hyperref[sec:language]{\element{language}}, the optional attribute \hyperref[sec:name]{\element{name}}, \changed{and the optional child} \hyperref[sec:changesModel]{\element{listOfChanges}}.
+Each instance of the \concept{Model} class has the required attributes \hyperref[sec:id]{\element{id}}, \hyperref[sec:model_source]{\code{source}}, and \hyperref[sec:language]{\element{language}}, the optional attribute \hyperref[sec:name]{\element{name}}, and the optional child \hyperref[sec:changesModel]{\element{listOfChanges}}.
 
 The \hyperref[sec:language]{\code{language}} attribute defines the format the model is encoded in.
 
 The \concept{Model} class refers to the particular model of interest through the \hyperref[sec:model_source]{\element{source}} attribute. The restrictions on the model reference are
 \begin{itemize}
- \item{The model must be encoded in \changed{a well-defined format}.}
+ \item{The model must be encoded in a well-defined format.}
  \item{To refer to the model encoding language, a reference to a valid definition of that format must be given (\hyperref[sec:language]{\element{language}} attribute).}
  \item{To refer to a particular model in an external resource, an unambiguous reference must be given (\hyperref[sec:model_source]{\element{source}} attribute).}
 \end{itemize}
@@ -48,9 +48,9 @@ In the example the \hyperref[class:listOfModels]{\element{listOfModels}} contain
 % ~~~ MODEL:LANGUAGE ~~~
 \paragraph*{\element{language}}
 \label{sec:language}
-The \changed{required} \concept{\element{language}} attribute of data type \hyperref[type:urn]{\code{URN}} is used to specify the format of the \hyperref[class:model]{model}. Example formats are SBML (\code{urn:sedml:language:sbml}) or CellML (\code{urn:sedml:language:cellml}). The supported languages are defined in the \hyperref[sec:languageURN]{language references}.
+The required \concept{\element{language}} attribute of data type \hyperref[type:urn]{\code{URN}} is used to specify the format of the \hyperref[class:model]{model}. Example formats are SBML (\code{urn:sedml:language:sbml}) or CellML (\code{urn:sedml:language:cellml}). The supported languages are defined in the \hyperref[sec:languageURN]{language references}.
 
-The use of the \concept{\element{language}} attribute is \changed{required} for two reasons. Firstly, it helps to decide whether or not one is able to run the simulation, that is to parse the model referenced in the SED-ML file. Secondly, the language attribute is also needed to decide how to handle the \hyperref[sec:implicitVariable]{Symbols} in the \Variable class, as the interpretation of \hyperref[sec:implicitVariable]{Symbols} depends on the language of the representation format.
+The use of the \concept{\element{language}} attribute is required for two reasons. Firstly, it helps to decide whether or not one is able to run the simulation, that is to parse the model referenced in the SED-ML file. Secondly, the language attribute is also needed to decide how to handle the \hyperref[sec:implicitVariable]{Symbols} in the \Variable class, as the interpretation of \hyperref[sec:implicitVariable]{Symbols} depends on the language of the representation format.
 
 
 % ~~~ MODEL:SOURCE ~~~
@@ -58,7 +58,6 @@ The use of the \concept{\element{language}} attribute is \changed{required} for 
 \label{sec:model_source}
 To make a \hyperref[class:model]{model} accessible for the execution of a SED-ML file, the \concept{\element{source}} must be specified through either an URI or a reference to an \code{SId} of an existing \Model. The URI should follow the proposed \hyperref[sec:uriScheme]{URI Scheme} for \hyperref[sec:modelURI]{Model references}.
 
-\begin{blockChanged}
 There are three typical ways to identify a model with the \element{source} attribute:  by relative path, by identifier, or by URL.
 
 An example for the definition of a model via a relative path URI is given in Listing~\ref{lst:source0}. The example defines one model \code{m1} with the model \concept{\element{source}} available from \val{oscillator.xml} in the same directory or location as the SED-ML file.  A \element{source} value of \val{./oscillator.xml} would accomplish the same thing more explicitly, with \val{./} being shorthand for 'the current directory'.
@@ -72,7 +71,6 @@ An example for the definition of a model via a relative path URI is given in Lis
 </model>
 \end{myXmlLst}
 
-\end{blockChanged}
 
 An example for the definition of a model using an URL is given in Listing~\ref{lst:sourceB}. In the example one model is defined. The \element{language} of the model is \element{CellML}. The \emph{URL} pointing to the model is used in the \concept{\element{source}} attribute.
 
@@ -83,7 +81,7 @@ An example for the definition of a model using an URL is given in Listing~\ref{l
 </model>
 \end{myXmlLst}
 
-\changed{MIRIAM URNs are no longer recommended due to increased difficulty in resolving them, but the scheme is still valid and interpreters may find SED-ML files that use them.}  An example for the definition of a model via an URI is given in Listing~\ref{lst:sourceA}. The example defines one model \code{m1} with the model \concept{\element{source}} available from \code{urn:miriam:biomodels.db:BIOMD0000000012}. The MIRIAM URN can be resolved into the SBML model stored in BioModels Database under the identifier \element{BIOMD0000000012} by \changed{querying the Biomodels webservice and requesting the `main' SBML file for that biomodel. The resulting URL is \url{https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000012?filename=BIOMD0000000012_url.xml}}.
+MIRIAM URNs are no longer recommended due to increased difficulty in resolving them, but the scheme is still valid and interpreters may find SED-ML files that use them.  An example for the definition of a model via an URI is given in Listing~\ref{lst:sourceA}. The example defines one model \code{m1} with the model \concept{\element{source}} available from \code{urn:miriam:biomodels.db:BIOMD0000000012}. The MIRIAM URN can be resolved into the SBML model stored in BioModels Database under the identifier \element{BIOMD0000000012} by querying the Biomodels webservice and requesting the `main' SBML file for that biomodel. The resulting URL is \url{https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000012?filename=BIOMD0000000012_url.xml}.
 
 \begin{myXmlLst}{The SED-ML \code{source} element, using the URI scheme}{lst:sourceA}
 <model id="m1" name="repressilator" language="urn:sedml:language:sbml" 
@@ -118,13 +116,13 @@ The \concept{\element{listOfChanges}} (\fig{model}) contains the \hyperref[class
 The \concept{Change} class allows to describe changes applied to a \hyperref[class:model]{model} before simulation (\fig{sedChange}). \concept{Changes} can be of the following types:
 \begin{itemize}
 	\item{Changes based on mathematical calculations (\ComputeChange)} 
-	\item{\changed{Changes on attributes of the model} (\hyperref[class:changeAttribute]{ChangeAttribute})}
-	\item{\changed{For XML-encoded models, changes on any XML snippet of the model's XML representation} (\hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML})}
+	\item{Changes on attributes of the model (\hyperref[class:changeAttribute]{ChangeAttribute})}
+	\item{For XML-encoded models, changes on any XML snippet of the model's XML representation (\hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML})}
 \end{itemize}
 
 The \concept{Change} class is abstract and serves as the base class for different types of changes, the \hyperref[class:changeAttribute]{ChangeAttribute}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, \hyperref[class:removeXml]{RemoveXML}, and \ComputeChange.
 
-The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarget]{target} which defines the target of the change. The \hyperref[sec:changeTarget]{\element{target}} attribute holds \changed{an unambiguous description of the address of the element, elements, attribute, or attributes that are to undergo the defined changes, such as a valid \hyperref[sec:xpath]{XPath} expression pointing to the specified XML. For \hyperref[sec:newXml]{NewXML}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, and \hyperref[class:removeXml]{RemoveXML}, \hyperref[sec:changeTarget]{target} must be an \hyperref[sec:xpath]{XPath} expression.} \changed{This \hyperref[sec:xpath]{XPath} expression must always select an appropriate target for the particular \Change used}.
+The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarget]{target} which defines the target of the change. The \hyperref[sec:changeTarget]{\element{target}} attribute holds an unambiguous description of the address of the element, elements, attribute, or attributes that are to undergo the defined changes, such as a valid \hyperref[sec:xpath]{XPath} expression pointing to the specified XML. For \hyperref[sec:newXml]{NewXML}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, and \hyperref[class:removeXml]{RemoveXML}, \hyperref[sec:changeTarget]{target} must be an \hyperref[sec:xpath]{XPath} expression. This \hyperref[sec:xpath]{XPath} expression must always select an appropriate target for the particular \Change used.
 
 \sedfig[width=1.0\textwidth]{images/uml/change}{The SED-ML Change class}{fig:sedChange}
 
@@ -132,19 +130,19 @@ The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarge
 % ~~~ target ~~~
 \paragraph*{\element{target}}
 \label{sec:changeTarget}
-The \concept{\element{target}} attribute holds \changed{an unambiguous description of the address of an element or attribute of a model that is to undergo the defined changes. For XML model languages such as SBML, \hyperref[sec:changeTarget]{\element{target}} must be} a valid \hyperref[sec:xpath]{XPath} expression of data type \hyperref[type:xpath]{\element{xpath}} pointing to the \changed{XML} that is to undergo the defined changes.
+The \concept{\element{target}} attribute holds an unambiguous description of the address of an element or attribute of a model that is to undergo the defined changes. For XML model languages such as SBML, \hyperref[sec:changeTarget]{\element{target}} must be a valid \hyperref[sec:xpath]{XPath} expression of data type \hyperref[type:xpath]{\element{xpath}} pointing to the XML that is to undergo the defined changes.
 
 
 % ~~~ NewXML ~~~
 \subsubsection{\element{NewXML}}
 \label{sec:newXml}
-The \concept{\element{newXML}} element provides a piece of XML code (\fig{sedChange}). \concept{\element{NewXML}} must hold a valid piece of XML \changed{in the appropriate namespace} which after insertion into the original model must result in a valid model file (according to the model language specification as given by the \hyperref[sec:language]{\element{language}} attribute of the \hyperref[class:model]{model}).
+The \concept{\element{newXML}} element provides a piece of XML code (\fig{sedChange}). \concept{\element{NewXML}} must hold a valid piece of XML in the appropriate namespace which after insertion into the original model must result in a valid model file (according to the model language specification as given by the \hyperref[sec:language]{\element{language}} attribute of the \hyperref[class:model]{model}).
 
 The \concept{\element{newXML}} element is used at two different places inside SED-ML \currentLV:
 
 \begin{enumerate}
 	\item{If it is used as a sub-element of the \hyperref[class:addXml]{\element{addXML}} element, then the XML it contains \emph{is inserted as a child} of the XML element addressed by the XPath.}
-	\item{If it is used as a sub-element of the \hyperref[class:changeXml]{\element{changeXML}} element, then the XML it contains \emph{replaces} the XML element \changed{or elements} addressed by the XPath.}
+	\item{If it is used as a sub-element of the \hyperref[class:changeXml]{\element{changeXML}} element, then the XML it contains \emph{replaces} the XML element or elements addressed by the XPath.}
 \end{enumerate}
 
 Examples are given in the relevant change class definitions.
@@ -153,7 +151,7 @@ Examples are given in the relevant change class definitions.
 % ~~~ AddXML ~~~
 \subsubsection{\element{AddXML}}
 \label{class:addXml}
-The \concept{AddXML} class specifies a snippet of XML that is added as a child of the element selected by the XPath expression in the \hyperref[sec:changeTarget]{\element{target}} attribute (\fig{sedChange}). The new piece of XML code is provided by the \hyperref[sec:newXml]{NewXML} class, \changed{and may contain one or more XML elements}.
+The \concept{AddXML} class specifies a snippet of XML that is added as a child of the element selected by the XPath expression in the \hyperref[sec:changeTarget]{\element{target}} attribute (\fig{sedChange}). The new piece of XML code is provided by the \hyperref[sec:newXml]{NewXML} class, and may contain one or more XML elements.
 
 An example for a change that adds an additional parameter to a model is given in \lst{addXML}. In the example the model is changed so that a parameter with ID \code{V\_mT} is added to its list of parameters. The \code{newXML} element adds an additional XML element to the original model. The element's name is \code{parameter} and it is added to the existing parent element \code{listOfParameters} that is addressed by the XPath expression in the \code{target} attribute.
 
@@ -176,7 +174,7 @@ An example for a change that adds an additional parameter to a model is given in
 \label{class:changeXml}
 The \concept{ChangeXML} class allows you to replace any XML element(s) in the model that can be addressed by a valid XPath expression (\fig{sedChange}).
 
-The XPath expression is specified in the required \hyperref[sec:changeTarget]{\element{target}} attribute, \changed{and may target one or more XML elements}. The replacement XML content is specified in the \hyperref[sec:newXml]{NewXML} class, \changed{and may also contain one or more XML elements}.
+The XPath expression is specified in the required \hyperref[sec:changeTarget]{\element{target}} attribute, and may target one or more XML elements. The replacement XML content is specified in the \hyperref[sec:newXml]{NewXML} class, and may also contain one or more XML elements.
 
 An example for a change that adds an additional parameter to a model is given in \lst{changeXML}. In the example the model is changed in the way that its parameter with ID \code{V\_mT} is substituted by two other parameters \code{V\_mT\_1} and \code{V\_mT\_2}. The \code{target} attribute defines that the parameter with ID \code{V\_mT} is to be changed. The \code{newXML} element then specifies the XML that is to be exchanged for that parameter.
 
@@ -199,7 +197,7 @@ An example for a change that adds an additional parameter to a model is given in
 % ~~~ RemoveXML ~~~
 \subsubsection{\element{RemoveXML}}
 \label{class:removeXml}
-The \concept{RemoveXML} class can be used to delete \changed{one or more} XML elements or attributes in the model that are addressed by the XPath expression (\fig{sedChange}). The XPath is specified in the required \hyperref[sec:changeTarget]{\element{target}} attribute.
+The \concept{RemoveXML} class can be used to delete one or more XML elements or attributes in the model that are addressed by the XPath expression (\fig{sedChange}). The XPath is specified in the required \hyperref[sec:changeTarget]{\element{target}} attribute.
 
 An example for the removal of an XML element from a model is given in Listing~\ref{lst:removeXML}. In the example the model is changed by deleting the reaction with ID \code{V\_mT} from the model's list of reactions.
 
@@ -217,14 +215,14 @@ An example for the removal of an XML element from a model is given in Listing~\r
 \label{class:changeAttribute}
 The \concept{ChangeAttribute} class allows to define updates on the attribute values of the corresponding model (\fig{sedChange}). \concept{ChangeAttribute} requires to specify the \hyperref[sec:changeTarget]{\element{target}} of the change, i.e., the location of the addressed attribute, and also the \hyperref[sec:newValue]{\element{newValue}} of that attribute. Note that the \hyperref[sec:changeTarget]{\element{target}} must select a single attribute within the corresponding model.
 
-\changed{Despite its name, the `attribute' changed by this class need not be an XML attribute, and hence, its \element{target} need not be an \XPath.  Every target model language may define what `attributes' may be changed by this contruct, and how to indicate those attributes.}
+Despite its name, the `attribute' changed by this class need not be an XML attribute, and hence, its \element{target} need not be an \XPath.  Every target model language may define what `attributes' may be changed by this contruct, and how to indicate those attributes.
 
 The \hyperref[class:changeXml]{ChangeXML} class covers the possibilities provided by the \concept{ChangeAttribute} class, i.e, everything that can be expressed by a \concept{ChangeAttribute} construct can also be expressed by \hyperref[class:changeXml]{ChangeXML}. However, for the common case of changing an attribute value \concept{ChangeAttribute} is easier to use, and so it is recommended to use the \concept{ChangeAttribute} for any changes of an attribute's value, and to use the more general \hyperref[class:changeXml]{ChangeXML} for other cases.
 
 
 \paragraph*{\element{newValue}}
 \label{sec:newValue}
-The mandatory \concept{\element{newValue}} attribute of data type \code{string} assignes a new value to the \changed{targeted attribute}.
+The mandatory \concept{\element{newValue}} attribute of data type \code{string} assignes a new value to the targeted attribute.
 
 The example in Listing~\ref{lst:changeAttribute} shows the update of the value of two parameters inside an SBML model.
 
@@ -242,23 +240,17 @@ The example in Listing~\ref{lst:changeAttribute} shows the update of the value o
 % ~~~ ComputeChange ~~~
 \subsubsection{\element{ComputeChange}}
 \label{class:computeChange}
-The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any \changed{single} element or attribute of a \Model addressable by \changed{a \hyperref[sec:changeTarget]{\element{target}}}, based on a calculation (\fig{sedChange}).  \changed{It inherits the \element{target} attribute from the \Change abstract base class, as well as the standard \SedBase attributes and children, and adds the optional attribute \element{symbol} (of type string).  Its ability to perform a calculation is described in the \Calculation class.  (For implementations, if multiple inheritance is not possible, the children of \Calculation should just be added directly to the \ComputeChange class itself.)}
-
-\begin{blockChanged}
+The \concept{ComputeChange} class permits to change, prior to the experiment, the numerical value of any single element or attribute of a \Model addressable by a \hyperref[sec:changeTarget]{\element{target}}, based on a calculation (\fig{sedChange}).  It inherits the \element{target} attribute from the \Change abstract base class, as well as the standard \SedBase attributes and children, and adds the optional attribute \element{symbol} (of type string).  Its ability to perform a calculation is described in the \Calculation class.  (For implementations, if multiple inheritance is not possible, the children of \Calculation should just be added directly to the \ComputeChange class itself.)
 
 The change is calculated from the \Math of the \Calculation, and applied to the \element{target} of the \Change.  In this context, a \element{target} that points to an XML element (either the \element{target} of the \ComputeChange or a \element{target} of a child \Variable) is referencing that element's mathematical meaning.  For some model languages (such as SBML), this means that the model state must be initialized, so the element value can be read (in the case of a \Variable) or changed (in the case of a \ComputeChange).
 
 In contrast, a \element{target} that points to an XML attribute simply is referencing that attribute's value, which may be read or set directly in the XML document without initializing the whole model.
 
-\end{blockChanged}
+Note also that when a \concept{ComputeChange} refers to another model, that model is not allowed to be modified by \concept{ComputeChange}s which directly or indirectly refer to this model, nor to the target of this \ComputeChange. In other words, cycles in the definitions of computed changes are prohibited.  This does mean that other models may also need to be initialized (and changes applied) in order to apply the changes to this model.
 
-Note also that when a \concept{ComputeChange} refers to another model, that model is not allowed to be modified by \concept{ComputeChange}s which directly or indirectly refer to this model, \changed{nor to the target of this \ComputeChange}. In other words, cycles in the definitions of computed changes are prohibited.  \changed{This does mean that other models may also need to be initialized (and changes applied) in order to apply the changes to this model.}
-
-\begin{blockChanged}
 \paragraph*{\element{symbol}}
 \label{sec:cc_symbol}
 The optional \element{symbol} attribute of data type \code{string} may be used in addition to the \element{target} when the particular value associated with the \element{target} may be described in multiple ways.  In particular, a species whose value could be expressed either as a concentration or an amount may be set by using the \element{target} to point to the species, and setting the \element{symbol} to \val{KISAO:0000838} to set the concentration, or setting the \element{symbol} to \val{KISAO:0000836} to set the amount.
-\end{blockChanged}
 
 \lsttext{computeChange}{computeChange}
 
