@@ -1,0 +1,53 @@
+\subsection{\element{DataGenerator}}
+\label{class:dataGenerator}
+
+The \concept{DataGenerator} class prepares the raw simulation results for later output (\fig{dataGenerator}). It encodes the post-processing  to be applied to the simulation data. The post-processing steps could be anything, from simple normalisations of data to mathematical calculations.  It inherits from \Calculation, changing the \element{id} attribute to be required instead of optional.
+
+\sedfig[width=0.3\textwidth]{images/uml/dataGenerator}{The SED-ML DataGenerator class.} {fig:dataGenerator}
+
+\begin{blockChanged}
+\Variable objects in \DataGenerator elements may be scalar or multidimensional.  If the \Math of a \DataGenerator attempts to apply functions to multi-dimensional elements, those functions always apply to the individual scalar values of that data.  If multiple multidimensional \Variable ids are used in the same \Math, those ids must each have the same dimensions as each other.  No vector or matrix algebra functions such as dot products or cross products are allowed.
+
+A \Variable in a \DataGenerator may use the id of a \DataSource as its \element{target}, pre-pended by a \code{`\#'}, i.e. \val{\#dataSourceId}.  This \Variable may be multidimensional, and if so, must follow the above strictures.
+
+When multidimensional data is output to a \Report, information about the dimensions should be stored in the output format chosen for the report, such as \CSV or \HDF.
+
+It is left up to interpreters how to store or output `ragged' matrices, where the data in some dimensions might not have the same lengths as each other.  One practice is to leave the data in this uneven state; another option is to fill out the `missing' data with NaNs.  The only requirement is that mathematical operations should not be affected by this choice.  For example, the `mean' of a vector should be the same whether or not it was extended with NaNs.
+
+\paragraph*{Output from multiple models}
+\label{sec:multiModelOutput}
+It is possible to create a \RepeatedTask that affects multiple models through different \SubTask children.  In this situation, individual \Variable children of a \DataGenerator must define both a \element{taskReference} to the \RepeatedTask and \element{modelReference} so it's clear which specific element is being tracked.  However, the question then becomes: what value does that \Variable take while the \RepeatedTask is performing a \Simulation in a \SubTask that does not involve that \Model?  In this situation, the \Variable is assumed to retain its last known value (should it have one) for the duration of the \Simulation (which will be its initialized value if no \Simulation has been performed yet that affects that \Variable).  If the model has no initialized value for the element, its value is assumed to be $NaN$.
+
+This is an unusual situation, so much so that different simulators may create different outputs, or fail to implement support for it at all.  For this reason, it is recommended that all \SubTask elements in a \RepeatedTask reference the same \Model.
+%A \RepeatedTask for a second model can be created separately.  If the results of one \RepeatedTask are needed to set up or modify a different model, a second \RepeatedTask can be created that references a \DataGenerator from the first \RepeatedTask.  Only when multiple models depend on the results of each other will a single \RepeatedTask be needed that references both, and in that case, the experiment designer should ensure that the simulator they wish to use handles the situation in a way that makes sense for that experiment.
+%LS NOTE:  I wrote the above more detailed explanation, but I think it's too rare a situation (and too complicated to explain easily) that the shorter explanation should suffice.
+
+
+\end{blockChanged}
+
+
+\lsttext{dataGenerator}{dataGenerator}
+In the example the \code{listOfDataGenerator} contains two \code{dataGenerator} elements. 
+The first one, \code{d1}, refers to the task definition \code{task1} (which itself refers to a particular model), and from the corresponding model it reuses the symbol \code{time}. The second one, \code{d2}, references a particular species defined in the same model (and referred to via the \code{taskReference="task1"}). The model species with \code{id} \code{PX} is reused for the data generator \code{d2} without further post-processing.
+\begin{myXmlLst}{Definition of two \code{dataGenerator} elements, \emph{time} and \emph{LaCI repressor}}{lst:dataGenerator}
+<listOfDataGenerators>
+	<dataGenerator id="d1" name="time">
+		<listOfVariables>
+			<variable id="time" taskReference="task1" symbol="KISAO:0000832" />
+		</listOfVariables >
+		<listOfParameters />
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<ci> time </ci>
+		</math>
+	</dataGenerator>
+	<dataGenerator id="d2" name="LaCI repressor">
+		<listOfVariables>
+			<variable id="v1" taskReference="task1" 
+				target="/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id='PX']" />
+		</listOfVariables>
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<math:ci>v1</math:ci>
+		</math>
+	</dataGenerator>
+</listOfDataGenerators>
+\end{myXmlLst}

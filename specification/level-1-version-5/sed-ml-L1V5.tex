@@ -1,0 +1,147 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Master file SED-ML specification 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\listfiles
+\documentclass[pdftex,rgb,dvipsnames,svgnames,hyperref,table]{report}
+\usepackage{tocvsec2}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{scalefnt}
+\usepackage{suffix}
+%\usepackage{textcmds}
+
+% layout (initialy done for the SBGN project)
+\input{sources/styles/latex-style}
+
+% packages and commands
+\input{sources/styles/latex-macros}
+\input{sbmlpkgspec}
+
+\begin{document}
+\input{sources/frontpage}
+\sedmltableofcontents
+\newpage
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% INTRODUCTION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\input{sources/introduction}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% TECHNICAL SPECIFICATION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\chapter{SED-ML technical specification}
+\label{chp:specification}
+This document is the technical specification of SED-ML \currentLV. The corresponding UML class diagrams \changed{are included throughout this document.}. Please note, the \changed{UML diagrams} do not capture all concepts of SED-ML. Example simulation experiments encoded with SED-ML are provided in Appendix~\ref{app:examples}. Complete examples with model files are available at \url{https://sed-ml.org/}.
+%The XML Schema is provided in Appendix~\ref{app:schema}.
+
+%\sedfig[width=\textwidth]{images/uml/all}{The SED-ML \currentLV UML class diagram}{fig:sedML}
+
+\settocdepth{subsubsection}
+
+%% ~~~ GENERAL LANGUAGE ELEMENTS ~~~
+\input{sources/generalElements}
+
+%% ~~~ COMPONENTS ~~~
+\pagebreak
+\section{SED-ML Components}
+\label{sec:components}
+This section describes the major components of SED-ML. \changed{Each subsection includes UML diagrams for the relevant classes.}  Example simulation experiments are provided in Appendix~\ref{app:examples}. Complete examples with model files are available at \url{https://sed-ml.org/}.%, and the XML Schema is listed in Appendix~\ref{app:schema}.
+
+%% SEDML
+\input{sources/sedml}
+%% DATA
+\input{sources/data}
+%% MODEL
+\input{sources/model}
+%% SIMULATION
+\input{sources/simulation}
+%% TASK
+\input{sources/task}
+%% DATA GENERATOR
+\input{sources/dataGenerator}
+%% OUTPUT
+\input{sources/output}
+%% STYLES
+\input{sources/style}
+
+%% ~~~ CONCEPTS ~~~
+\input{sources/concepts}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% ACKNOWLEDGMENTS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\chapter{Acknowledgements}
+\label{chp:acknowledgments}
+The SED-ML specification is developed with the input of many people. The following individuals have contributed to the SED-ML specifications.
+
+\begin{itemize}
+\item Richard Adams (Editor, 2011-2012)
+\item Frank Bergmann (Editor, 2011-2014, 2020-2022)
+\item Jonathan Cooper (Editor, 2012-2015)
+\item Alan Garny (Editor, 2018-2020)
+\item Tom\'{a}\v{s} Helikar (Editor, 2021-2023)
+\item Jonathan Karr (Editor, 2021-2023)
+\item Matthias K\"{o}nig (Editor, 2017-2019, 2020-2022)
+\item David Nickerson (Editor, 2011-2013, 2015-2017, 2019-2021)
+\item Nicolas Le Nov{\`e}re (editorial advisor, 2011-2012, 2013)
+\item Brett Olivier (Editor, 2015-2017)
+\item Andrew Miller (Editor, 2011-2012)
+\item Ion Moraru (Editor, 2014-2016)
+\item Sven Sahle (Editor, 2014-2016)
+\item Herbert Sauro (Editor, 2018-2020)
+\item Lucian Smith (Editor, 2016-2018)
+\item Dagmar Waltemath (Editor, 2011-2014, 2017-2019)
+\end{itemize}
+
+The most recent funding for this effort includes:
+\begin{itemize}
+\item{National Institute for Biomedical Imaging and Bioengineering award P41GM109824. (LS, HS, DN, JK)}
+\item{National Institute of General Medical Sciences award R01GM123032. (LS, HS)}
+\item{National Science Foundation award 1933453 (LS, HS)}
+\item{National Institute of General Medical Sciences, grant R35GM119771 (JK)}
+\item{Federal Ministry of Education and Research (BMBF, Germany) within the research network de.NBI (grant number 031L0104A) (FB)}
+\item{National Institute of Health grant number R35GM119770 (TH)}
+\item{The Federal Ministry of Education and Research (BMBF, Germany) within the research network Systems Medicine of the Liver (grant number 031L0054) and by the German Research Foundation (DFG) within the Research Unit Program FOR 5151 QuaLiPerF by grant number 436883643. (MK)}
+\end{itemize}
+
+In addition, we thank the many members of the SED-ML coummunity who have contributed to the development of SED-ML.
+
+\appendix
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% EXAMPLES
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\chapter{Examples}
+\label{app:examples}
+This appendix presents several SED-ML examples. Complete versions of these and additional examples are available as \hyperref[sec:archive]{Combine archives} at \url{https://sed-ml.org/}. These examples illustrate the main features of SED-ML. Please note, these examples do not demonstrate the full capabilities of SED-ML. The specifications of SED-ML (Chapter~\ref{chp:specification}) provide a more comprehensive view of the simulation experiments that can be captured with SED-ML. 
+
+The examples presented here involved models encoded in CellML and SBML. \changed{Please note, SED-ML can be used with additional model languages. See} Section~\ref{sec:languageURN} for more information about using SED-ML with additional model languages. Example SED-ML files for additional model languages are available at \url{https://run.biosimulations.org/}.
+
+\input{sources/examples}
+
+\chapter{Validation}
+\label{app:validation}
+\begin{blockChanged}
+\input{sources/apdx-validation}
+\end{blockChanged}
+
+%% ~~~ VALIDATION ~~~
+%\input{sources/apdx-validation}
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% XML SCHEMA
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\chapter{XML Schema}
+%\label{app:schema}
+%Listing \ref{lst:schema} shows the full SED-ML XML Schema.
+%\myXmlImport{The SED-ML XML Schema definition}{lst:schema}{schema/sed-ml-L1-V4.xsd}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% REFERENCES
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\bibliographystyle{abbrv}
+\bibliography{sed-ml}
+\end{document}

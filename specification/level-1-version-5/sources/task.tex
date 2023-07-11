@@ -1,0 +1,483 @@
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% ABSTRACT TASK
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{AbstractTask}}
+\label{class:abstractTask}
+In SED-ML the subclasses of \concept{AbstractTask} define which \Simulations should be executed with which \Models in the simulation experiment. \concept{AbstractTask} is the base class of all SED-ML tasks, i.e.\ \Task and \RepeatedTask.  \changed{It inherits the attributes and children of \SedBase, but changes the \element{id} attribute to be required instead of optional.}
+
+\sedfig[width=0.9\textwidth]{images/uml/abstractTask}{The SED-ML \AbstractTask and \Task classes.  The \RepeatedTask and \ParameterEstimationTask classes are defined below.}{fig:abstractTask}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% TASK
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsubsection{\element{Task}}
+\label{class:task}
+
+A \concept{Task} links a \Model to a certain \Simulation description via their respective identifiers (\fig{abstractTask}), using the \hyperref[sec:modelReference]{\element{modelReference}} and the \hyperref[sec:simulationReference]{\element{simulationReference}}. The task class inherits the attributes and children of the \AbstractTask.
+
+\paragraph*{\element{modelReference}}
+The \element{modelReference} attribute of type \SIdRef must refer to a \Model.  Inside a \RepeatedTask, the state of the model may have been changed, \changed{otherwise, the} \Model is to assume to its initial state.
+
+\paragraph*{\element{simulationReference}}
+the \element{simulationReference} attribute of type \SIdRef must refer to a \Simulation.
+
+In SED-ML it is only possible to link one \Simulation description to one \Model at a time. However, one can define as many tasks as needed within one experiment description. Please note that the tasks may be executed in any order, as determined by the implementation.
+
+
+In the example, a simulation setting \code{simulation1} is applied first to \code{model1} and then to \code{model2}.
+\begin{myXmlLst}{The \code{task} element}{lst:task}
+<listOfTasks>
+	<task id="t1" name="task definition" modelReference="model1" 
+		simulationReference="simulation1" />
+	<task id="t2" name="another task definition" modelReference="model2" 
+		simulationReference="simulation1" />
+</listOfTasks>
+\end{myXmlLst}
+
+
+\begin{blockChanged}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% SIMPLEREPEATED TASK
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%\subsubsection{\element{SimpleRepeated Task}}
+%\label{class:simpleRepeatedTask}
+%The \concept{SimpleRepeatedTask} inherits from \Task, and provides a simplified looping construct that performs the \Task multiple times, resetting the model or not, according to its \element{resetModel} attribute.  The task itself is defined by the \element{modelReference} and \element{simulationReference} attributes it inherits from \Task.
+
+%\paragraph*{\element{resetModel}}
+%The \element{resetModel} attribute, 
+%\element{boolean} defines whether, for each execution of the simulation, the model is to be reset (\val{true}) or not (\val{false}).
+
+%\paragraph*{\element{numRepeats}}
+%The \element{numRepeats}, of type \element{positive integer}, defines the number of times the simulation is to be performed.
+\end{blockChanged}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% REPEATED TASK
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsubsection{\element{Repeated Task}}
+\label{class:repeatedTask}
+The \concept{RepeatedTask} (\fig{repeatedTask}) provides \changed{a looping} construct, allowing complex tasks to be composed from individual \changed{tasks}. The \concept{RepeatedTask} performs a specified task (or sequence of tasks as defined in the \hyperref[class:listOfSubTasks]{\element{listOfSubTasks}}) multiple times (where the exact number is specified through a \Range construct as defined in \hyperref[sec:rangeAttribute]{\element{range}}), while allowing specific quantities in the model \changed{or models} to be altered at each iteration (as defined in the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}}).
+
+\sedfig[width=.8\textwidth]{images/uml/repeatedTask}{The SED-ML RepeatedTask class}{fig:repeatedTask}
+
+The \concept{RepeatedTask} inherits the required attribute \hyperref[sec:id]{\element{id}} and optional attribute \hyperref[sec:name]{\element{name}} from \AbstractTask. Additionally it has the two required attributes \hyperref[sec:rangeAttribute]{\element{range}} and \hyperref[sec:resetModel]{\element{resetModel}}, \changed{an optional attribute \hyperref[sec:concatenateAttribute]{\element{concatenate}},} and the child elements \hyperref[class:listOfRanges]{\element{listOfRanges}} (required), \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} (optional) and \hyperref[class:subTask]{\element{listOfSubTasks}} (required).
+
+The order of activities within each iteration of a \concept{RepeatedTask} is as follows:
+\begin{itemize} 
+	\item The \changed{entire} model state \changed{for any involved \Model} is reset if specified by the \hyperref[sec:resetModel]{\element{resetModel}} attribute.
+	\item Any changes to the model \changed{or models} specified by \hyperref[class:setValue]{SetValue} objects in the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} are applied to \changed{each} \Model.
+\end{itemize}
+
+\changed{Then, for each \SubTask child of the \RepeatedTask, in the order specified by its \hyperref[sec:subTaskOrder]{\element{order}} attribute:}
+\begin{itemize}
+        \item \changed{Any \AlgorithmParameter children of the associated \Simulation are applied (with the possible exception of the \code{seed}; see Section \ref{class:algorithmParameter}).}
+        \item \changed{Any \SetValue children of the \SubTask are applied to the relevant \Model.}
+        \item \changed{The referenced \Task or \RepeatedTask of the \SubTask is executed.}
+
+\end{itemize}
+
+
+\lsttext{repeatedTask}{repeatedTask}
+In the example, \code{task1} is repeated three times, each time with a different value for a model parameter \code{w}.
+\begin{myXmlLst}{The \code{repeatedTask} element}{lst:repeatedTask}
+<task id="task1" modelReference="model1" simulationReference="simulation1" />
+<repeatedTask id="task3" resetModel="false" range="current"
+    xmlns:s='http://www.sbml.org/sbml/level3/version1/core'>
+  <listOfRanges>
+    <vectorRange id="current"> 
+        <value> 1 </value> 
+        <value> 4 </value> 
+        <value> 10 </value> 
+    </vectorRange> 
+  </listOfRanges>
+  <listOfChanges>
+     <setValue target="/s:sbml/s:model/s:listOfParameters/s:parameter[@id='w']" modelReference="model1">
+       <listOfVariables> 
+         <variable id="val" name="current range value" target="#current" /> 
+       </listOfVariables> 
+       <math xmlns="http://www.w3.org/1998/Math/MathML"> 
+         <ci> val </ci> 
+       </math> 
+     </setValue> 
+  </listOfChanges>
+  <listOfSubTasks>
+    <subTask task="task1" />
+  </listOfSubTasks>
+</repeatedTask>
+\end{myXmlLst}
+ 
+% ~~~ RANGE ~~~
+\paragraph*{\element{range}}
+\label{sec:rangeAttribute}
+The \RepeatedTask has a required attribute \concept{\element{range}} of type \SIdRef. It specifies which \concept{\element{range}} defined in the \hyperref[class:listOfRanges]{\element{listOfRanges}} this repeated task iterates over. Listing~\ref{lst:repeatedTask} shows an example of a \hyperref[class:repeatedTask]{repeatedTask} iterating over a single range comprising the values: \code{1}, \code{4} and \code{10}.
+If there are multiple ranges in the \hyperref[class:listOfRanges]{\element{listOfRanges}}, then only the master \concept{\element{range}} identified by this attribute determines how many iterations there will be in the \hyperref[class:repeatedTask]{repeatedTask}. All other ranges must allow for at least as many iterations as the master range, and will be moved through in lock-step; their values can be used in \hyperref[class:setValue]{setValue} constructs.
+
+% ~~~ RESET MODEL ~~~
+\paragraph*{\element{resetModel}}
+\label{sec:resetModel}
+The \hyperref[class:repeatedTask]{repeatedTask} has a required attribute \concept{\element{resetModel}} of type \code{boolean}. It specifies whether the model \changed{or models} should be reset to the initial state before processing an iteration of the defined \hyperref[class:subTask]{subTasks}. Here initial state refers to the state of the model \changed{or models} as given in the \hyperref[class:listOfModels]{\element{listOfModels}}.
+
+In the example in  Listing~\ref{lst:repeatedTask} the repeated task is not to be reset, so a change is made, \code{task1} is carried out, another change is made, then \code{task1} continues from there, another change is applied, and \code{task1} is carried out a last time.
+
+\changed{When the \element{resetModel} attribute is set to \val{true}, the individual repeats may be executed in parallel.}
+
+\begin{blockChanged}
+% ~~~ CONCATENATE ~~~
+\paragraph*{\element{concatenate}}
+\label{sec:concatenateAttribute}
+The \RepeatedTask has an optional attribute \concept{\element{concatenate}} of type \code{boolean}. It specifies whether the output of the subtasks should be appended to the results of the previous outputs (\val{true}), or whether it should be added in parallel, as a new dimension of the output (\val{false}).
+
+If this attribute is not defined, the interpreter may either concatenate or parallelize the results.  As this makes the results less comparable between interpreters, it is strongly suggested that this attribute be defined.
+\end{blockChanged}
+
+%% ~~~ LIST OF CHANGES ~~~
+\paragraph*{\element{listOfChanges}}
+\label{sec:changesRepeatedTask}
+The optional \concept{\element{listOfChanges}} element contains one or many \hyperref[class:setValue]{SetValue} elements. These elements allow the modification of values in the model \changed{or models} prior to the next iteration of the \RepeatedTask.
+
+%% ~~~ REPEATED TASK : LIST OF SUBTASKS ~~~
+\paragraph*{\element{listOfSubTasks}}
+\label{class:listOfSubTasks}
+The required \concept{\element{listOfSubTasks}} contains one or more \hyperref[class:subTask]{subTasks} that specify which \hyperref[class:abstractTask]{Tasks} are performed in every iteration of the \RepeatedTask. All \hyperref[class:subTask]{subTasks} have to be carried out sequentially, each continuing from the current model state \changed{or states} (i.e.\ as at the end of the previous \hyperref[class:subTask]{subTask}).  \changed{If the \element{concatentate} attribute is set \val{true}, the results are} concatenated (thus appearing identical to a single complex simulation), \changed{and if set \val{false}, the results are added to a matrix with the additional dimension of the repeated task.} The order in which to run multiple \hyperref[class:subTask]{subTasks} must be specified using the \hyperref[sec:subTaskOrder]{\element{order}} attribute on the \hyperref[class:subTask]{subTask}.  \changed{Subtasks can also be executed in parallel when they do not share any state. Interpreters can determine this from the descriptions of the subtasks.}
+
+\begin{myXmlLst}{The \code{subTask} element. In this example the task \code{task2} must be executed before \code{task1}.}{lst:subTask}
+<listOfSubTasks>
+	<subTask task="task1" order="2"/> 
+	<subTask task="task2" order="1"/> 
+</listOfSubTasks>
+\end{myXmlLst}
+
+% ~~~ LIST OF RANGES ~~~
+\paragraph*{\element{listOfRanges}}
+\label{class:listOfRanges}
+The \concept{\element{listOfRanges}} defines one or more \hyperref[class:range]{ranges} used in the \hyperref[class:repeatedTask]{repeatedTask}.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% TASK COMPONENTS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{Task} components}
+\label{class:taskComponents}
+
+% ~~~ SUBTASK ~~~
+\subsubsection{\element{SubTask}}
+\label{class:subTask}
+A \concept{SubTask} (\fig{repeatedTask}) defines the subtask which is executed in every iteration of the enclosing \RepeatedTask. The \concept{SubTask} has a required attribute \hyperref[sec:subTaskTask]{\element{task}} that references the \hyperref[sec:id]{\element{id}} of another \AbstractTask. The order in which to run multiple \concept{subTasks} must be specified via the required attribute \hyperref[sec:subTaskOrder]{\element{order}}.  \changed{It may contain a child \ListOfChanges to specify any changes that apply at the beginning of the particular subtask, in contrast to the \ListOfChanges child of the \RepeatedTask itself, which specifies changes that apply before any of the subtasks.}
+
+\paragraph*{\element{task}}
+\label{sec:subTaskTask}
+The required element \concept{\element{task}} of data type \SIdRef specifies the \AbstractTask executed by this \SubTask.
+
+\paragraph*{\element{order}}
+\label{sec:subTaskOrder}
+The required attribute \concept{\element{order}} of data type \element{integer} specifies the order in which to run multiple \concept{subTasks} in the \hyperref[class:listOfSubTasks]{\element{listOfSubTasks}}. To specify that one \concept{subTask} should be executed before another its \concept{\element{order}} attribute must have a lower number (e.g.\ in Listing~\ref{lst:subTask}).
+
+\changed{Leaving the \element{order} undefined for a \SubTask implies that the \SubTask may be executed before or after any other \SubTask.  Giving the same \element{order} to multiple \SubTask elements is an explicit statement that each \SubTask in the group may be executed before or after any other \SubTask in the group. It is recommended that users always explicitly set the \element{order} attribute for this reason.}
+
+\changed{Any \element{order} value does not imply whether the \SubTask may be executed in parallel with other \SubTask elements.  Interpreters who wish to parallelize subtasks should operate from the assumption that in the default case, each \SubTask would be executed in some order, and adjust accordingly.}
+
+\begin{blockChanged}
+\paragraph*{\element{listOfChanges}}
+\label{sec:subTaskListOfChanges}
+The \SetValue children of the \ListOfChanges of this \SubTask define changes to apply to the model state \changed{or states} before this \SubTask is carried out.  This allows model changes between individual \SubTask elements, perhaps based on the changed state of the model itself.  The set of all \SetValue children of the first \SubTask are applied after the set of \SetValue children of the \RepeatedTask itself.
+\end{blockChanged}
+
+
+
+% ~~~ SET VALUE ~~~
+\subsubsection{\element{SetValue}}
+\label{class:setValue}
+The \concept{SetValue} class (\fig{repeatedTask}) allows the modification of a \Model.  \changed{Each \SetValue in the \ListOfChanges child of the \RepeatedTask fires before each repeat, and each \SetValue in the \ListOfChanges child of a \SubTask fires before the execution of that \SubTask.}
+
+\concept{SetValue} inherits from the \ComputeChange class, which allows it to compute arbitrary expressions involving a number of \hyperref[class:variable]{variables} and \hyperref[class:parameter]{parameters}. \concept{SetValue} \changed{inherits the standard attributes and children from \SedBase, a required \element{target} and optional \element{symbol} from \ComputeChange, and adds} a mandatory \element{modelReference} attribute and the optional attribute \element{range}.
+
+The value to be changed is identified via the combination of \changed{the attributes \code{modelReference}, \code{symbol}, and \code{target}}, in order to select an implicit or explicit variable within the referenced model.
+
+The \Math contains the expression computing the value by referring to optional \hyperref[class:parameter]{parameters}, \hyperref[class:variable]{variables} or a \hyperref[class:range]{range}.
+In contrast to \hyperref[class:functionalRange]{functionalRange}, variable references in \hyperref[class:setValue]{setValue} retrieve always the current value of the model variable or range at the current iteration of the enclosing \hyperref[class:repeatedTask]{repeatedTask}.
+
+\begin{myXmlLst}{A \code{setValue} element setting \code{w} to the values of the range with id \code{current}.}{lst:setValue}
+<listOfChanges>
+	<setValue target="/s:sbml/s:model/s:listOfParameters/s:parameter[@id='w']"
+		range="current" modelReference="model1">
+		<math xmlns="http://www.w3.org/1998/Math/MathML">
+			<ci> current </ci>
+		</math>
+	</setValue>
+</listOfChanges>
+\end{myXmlLst}
+
+\paragraph*{\element{modelReference}}
+\label{sec:subTaskModelReference}
+\changed{The required element \concept{\element{modelReference}} of data type \SIdRef specifies the \Model this \SetValue is to modify.  Each \SetValue elements in the same \RepeatedTask may potentially reference a different \Model.}
+
+\paragraph*{\element{range}}
+\label{sec:subTaskRange}
+\changed{The optional attribute \concept{\element{range}} of data type \SIdRef, if defined, must reference a \Range child of the parent \RepeatedTask.}
+
+As in \hyperref[class:functionalRange]{functionalRange}, the attribute \code{range} may be used as a shorthand to specify the \code{id} of another \concept{Range}. The current value of the referenced range may then be used within the \Math defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \code{id} of the range is used directly. In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
+
+
+
+% ~~~ RANGE ~~~
+\subsubsection{\element{Range}}
+\label{class:range}
+The \concept{Range} class is the abstract base class for the different types of ranges, i.e. \UniformRange, \VectorRange, \FunctionalRange, and \DataRange (\fig{range}). 
+
+\changed{The \Range is the iterative element of the repeated simulation experiment. Each \Range defines a collection of values to iterate over. Its \element{id} may be used as the \element{target} of a \Variable within the \RepeatedTask by pre-pending a `\#' (i.e. \val{\#rangeId}).  It is used in that context to mean the value of the range for the current iteration of the \RepeatedTask.}
+
+\sedfig[width=1.0\textwidth]{images/uml/range}{The SED-ML Range class}{fig:range}
+
+\paragraph{\element{UniformRange}}
+\label{class:uniformRange}
+The \concept{UniformRange} (\fig{range}) allows the definition of a \Range with uniformly spaced values. In this it is quite similar to what is used in the \hyperref[class:uniformTimeCourse]{UniformTimeCourse}. The \concept{UniformRange} is defined via three mandatory attributes: \element{start}, the start value; \element{end}, the end value and \changed{\code{numberOfSteps} which defines defines the number of points in addition to the start value (the actual number of points in the range will be} \code{numberOfSteps+1}). A fourth attribute \code{type} that can take the values \code{linear} or \code{log} determines whether to draw the values logarithmically (with a base of $10$) or linearly.
+
+\changed{The \element{numberOfSteps} attribute used to be called \element{numberOfPoints}, but was changed to better reflect the meaning of the attribute.  The old attribute name is allowed, but is deprecated.  The SED-ML meaning of both attributes is the same, and has not changed.}
+
+For example, the following \concept{UniformRange} will produce \code{101} values uniformly spaced on the interval \code{$[0, 10]$} in ascending order.
+\begin{myXmlLst}{The \code{UniformRange} element}{lst:uniformRange}
+<uniformRange id="current" start="0.0" end="10.0" numberOfSteps="100" type="linear" /> 
+\end{myXmlLst}
+
+The following logarithmic example generates the three values \code{1}, \code{10} and \code{100}.
+\begin{myXmlLst}{The \code{UniformRange} element with a logarithmic range.}{lst:uniformRangeLog}
+<uniformRange id="current" start="1.0" end="100.0" numberOfSteps="2" type="log" />
+\end{myXmlLst}
+
+\paragraph{\element{VectorRange}}
+\label{class:vectorRange}
+
+The \concept{VectorRange} (\fig{range}) describes an ordered collection of real values, listing them explicitly within child \hyperref[class:value]{\element{value}} elements.
+
+For example, the range below iterates over the values $1$, $4$ and $10$ in that order.
+\begin{myXmlLst}{The \code{VectorRange} element}{lst:vectorRange}
+<vectorRange id="current"> 
+	<value> 1 </value> 
+	<value> 4 </value> 
+	<value> 10 </value> 
+</vectorRange> 
+\end{myXmlLst}
+
+\paragraph{\element{Value}}
+\label{class:value}
+The \concept{Value} (\fig{range}) describes a single value, e.g., the \concept{Value}s in a \VectorRange.
+
+\paragraph{\element{FunctionalRange}}
+\label{class:functionalRange}
+The \concept{FunctionalRange} (\fig{range}) constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables. In this it is similar to the \ComputeChange element, and shares some of the same child elements (but is not a subclass of \ComputeChange). It consists of an optional attribute \code{range}, two optional elements \ListOfVariables and \ListOfParameters, and a required element \Math.
+
+The optional attribute \code{range} of type \hyperref[type:sidref]{SIdRef} may be used as a shorthand to specify the \hyperref[sec:id]{\element{id}} of another \Range. The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \hyperref[sec:id]{\element{id}} of the range is used directly. In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
+
+\changed{The value of any \Variable child of a \FunctionalRange should be calculated before the \hyperref[sec:changesRepeatedTask]{\element{listOfChanges}} have been applied to the models in the \RepeatedTask and before the first simulation begins, and will not be affected by any \SubTask in the \RepeatedTask.}
+
+For example:
+
+\begin{myXmlLst}{An example of a \code{functionalRange} where a parameter \code{w} of model \code{model2} is multiplied by \code{index} each time it is called.}{lst:functionalRange}
+<functionalRange id="current" range="index"
+	xmlns:s='http://www.sbml.org/sbml/level3/version1/core'>
+	<listOfVariables>
+		<variable id="w" name="current parameter value" modelReference="model2"
+			target="/s:sbml/s:model/s:listOfParameters/s:parameter[@id='w']" />
+	</listOfVariables>
+	<math xmlns="http://www.w3.org/1998/Math/MathML">
+	  <apply>
+	    <times/>
+		  <ci> w </ci>
+          <ci> index </ci>
+      </apply>
+	</math>
+</functionalRange>
+\end{myXmlLst}
+
+Here is another example, this time using the values in a piecewise expression: 
+
+\begin{myXmlLst}{A \code{functionalRange} element that returns \code{8} if \code{index} is smaller than \code{1}, \code{0.1} if \code{index} is between \code{4} and \code{6}, and \code{8} otherwise.}{lst:functionalRange2}
+<uniformRange id="index" start="0" end="10" numberOfSteps="100" />
+<functionalRange id="current" range="index">
+	<math xmlns="http://www.w3.org/1998/Math/MathML">
+		<piecewise>
+			<piece>
+				<cn> 8 </cn>
+				<apply>
+					<lt />
+					<ci> index </ci>
+					<cn> 1 </cn>
+				</apply>
+			</piece>
+			<piece>
+				<cn> 0.1 </cn>
+				<apply>
+					<and />
+					<apply>
+						<geq />
+                    	<ci> index </ci>
+                    	<cn> 4 </cn>
+					</apply>
+					<apply>
+						<lt />
+						<ci> index </ci>
+						<cn> 6 </cn>
+					</apply>
+				</apply>
+			</piece>
+			<otherwise>
+				<cn> 8 </cn>
+			</otherwise>
+		</piecewise>
+	</math>
+</functionalRange>
+\end{myXmlLst}
+
+\begin{blockChanged}
+\paragraph{\element{DataRange}}
+\label{class:dataRange}
+The \concept{DataRange} (\fig{range}) constructs a range by reference to external data. It inherits from \Range, and adds the required atribute \element{sourceReference} of type \hyperref[type:sidref]{SIdRef}.  The \element{sourceReference} must point to a \DataDescription with a single dimension, whose values are used as the values of the range.
+
+For example:
+
+\begin{myXmlLst}{An example of a \code{dataRange} which tracks a variable from an external file.}{lst:dataRange}
+    <dataRange id="current" sourceReference="dosage_times" />
+\end{myXmlLst}
+\end{blockChanged}
+
+
+
+\begin{blockChanged}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% PARAMETER ESTIMATION TASK
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{ParameterEstimationTask}}
+\label{class:parameterEstimationTask}
+\label{class:listOfAdjustableParameters}
+\label{class:listOfFitExperiments}
+
+The \ParameterEstimationTask inherits from \AbstractTask, and defines a parameter estimation experiment:  given a set of constraints, what are the optimal parameter values for a particular model? A \ParameterEstimationTask calculates optimal \AdjustableParameter values for every \FitExperiment child of the task.   It  provides access to the optimal values for the estimated parameters, and will also change the model state such that the estimated parameters will have those values.  If used in a \ParameterEstimationResultPlot, \WaterfallPlot, or \ParameterEstimationReport, various other pieces of information will be output, as defined in those classes.
+
+\sedfig[width=0.9\textwidth]{images/uml/parameterEstimationTask}{The SED-ML \ParameterEstimationTask class}{fig:parameterEstimationTask}
+
+
+A \ParameterEstimationTask has four required children: an \Algorithm, an \Objective, at least one \AdjustableParameter in a \ListOfAdjustableParameters, and at least one \FitExperiment in a \ListOfFitExperiments.  It also has a required \element{modelReference} attribute of type \SIdRef.
+
+\paragraph*{\element{modelReference}}
+The \element{modelReference} attribute of data type \SIdRef is used to reference a \Model in the same \SedDocument.  This model is the one to be used for parameter fitting.
+
+
+\paragraph*{\element{algorithm}}
+The \element{algorithm} child of a \ParameterEstimationTask defines the \Algorithm to be used for parameter fitting.  Any algorithm parameters must be included as child \AlgorithmParameter elements.  The \Algorithm class is defined in section \ref{class:algorithm}.  One particular algorithm parameter is KiSAO:0000498 (\val{number of runs}), which can be used to set up a repeated \ParameterEstimationTask.
+
+
+\paragraph*{\element{objective}}
+The \element{objective} child of the \ParameterEstimationTask defines the objective function to be minimized during the parameter estimation.  In \currentLV, there is only a single \Objective option: the \LeastSquareObjectiveFunction (called \val{leastSquareObjectiveFunction} instead of \val{objective}).  In future versions of SED-ML, other objectives may be introduced that cover additional use cases.
+
+
+\paragraph*{\element{adjustableParameters}}
+The required \ListOfAdjustableParameters child of a \ParameterEstimationTask must contain at least one \AdjustableParameter.  Each \AdjustableParameter defines a single parameter to be estimated.
+
+
+\paragraph*{\element{fitExperiments}}
+The required \ListOfFitExperiments child of a \ParameterEstimationTask must contain at least one \FitExperiment.  Each \FitExperiment defines a mapping between experimental data and observables from the model as well as any initial conditions that need to be applied to the model.
+
+
+\subsubsection{\element{Objective}}
+\label{class:objective}
+
+The \Objective inherits from \SedBase, and does not introduce any new attributes or children.  It is an abstract base class intended to (eventually) organize the different objective function possibilities for parameter estimation tasks.
+
+\sedfig[width=0.4\textwidth]{images/uml/objective}{The SED-ML \Objective and \LeastSquareObjectiveFunction classes}{fig:objective}
+
+
+\subsubsection{\element{LeastSquareObjectiveFunction}}
+\label{class:leastSquareObjectiveFunction}
+
+The \LeastSquareObjectiveFunction inherits from \Objective, and does not introduce any new attributes or children.  Its use indicates that the \ParameterEstimationTask is to minimize the least squares of the residuals of the fit experiments to estimate the parameters.
+
+The particular method used to determine the least squares can be defined through the use of \AlgorithmParameters on the \Algorithm of the \ParameterEstimationTask.
+
+
+\subsubsection{\element{AdjustableParameter}}
+\label{class:adjustableParameter}
+\label{class:listOfExperimentReferences}
+
+The \AdjustableParameter inherits from \SedBase, and adds a required attribute \element{target} \changed{of type \Target}, a required child \Bounds, and an optional child \ListOfExperimentReferences with zero or more \ExperimentReference elements, and an optional attribute \element{initalValue} of type \code{double}.
+
+The \element{target} of an \AdjustableParameter must point to an adjustable element of the \Model referenced by the parent \ParameterEstimationTask.  This element is one of the elements whose value can be changed by the task in order to optimize the fit experiments.
+
+\sedfig[width=0.8\textwidth]{images/uml/adjustableParameter}{The SED-ML \AdjustableParameter, \Bounds, \ListOfExperimentReferences, and \ExperimentReference classes}{fig:adjustableParameter}
+
+The \element{initialValue}, if defined, is the value that the \AdjustableParameter is to be set at the beginning of the \ParameterEstimationTask.  Otherwise, the value of the \AdjustableParameter at the model's current state is used, unless that value is outside the \element{upperBound} and \element{lowerBound}, in which case any value between or including those values is allowed.
+
+The required \Bounds child of the \AdjustableParameter defines the allowed range of values for the targeted element.
+
+If an \AdjustableParameter has no \ExperimentReference children, it is adjusted for every \FitExperiment.  If an \AdjustableParameter has one or more \ExperimentReference children, it is only adjusted in those experiments; in all other experiments it retains its initial value (the value of the optional \element{initialValue} of the \AdjustableParameter, if defined, or the value it obtained from the model, if not).
+
+\subsubsection{\element{Bounds}}
+\label{class:bounds}
+
+A \Bounds object defines the allowable range of values for an \AdjustableParameter.  A \Bounds inherits from \SedBase, and adds three required attributes (\element{upperBound} and \element{lowerBound}, both of type \code{double}, and \element{scale}, of type \ScaleType), and one optional attribute (\element{initialValue}, of type \element{double}).
+
+The \element{lowerBound} defines the lowest value the parent \AdjustableParameter may take during the \ParameterEstimationTask, and \element{upperBound} the highest, with both values being legal outputs of the system.  The \element{lowerBound} must be less than or equal to the \element{upperBound}, though if it is equal, there is nothing to optimize, since only that single value is allowed.
+
+The \element{scale}, of type \ScaleType, defines the structure of the search space between the upper and lower bounds.  The allowed values are:
+
+\begin{itemize}
+\item linear:  The bounds enclose a linear search space
+\item log:  The bounds enclose a search space scaled by its natural log.
+\item log10:  The bounds enclose a search space scaled by its log base-10 values.
+\end{itemize}
+
+
+\subsubsection{\element{ExperimentReference}}
+\label{class:experimentReference}
+
+An \ExperimentReference inherits from \SedBase and adds the single required attribute \element{experiment}, of type \SIdRef, which must point to a \FitExperiment in the same \ParameterEstimationTask.  
+
+
+\subsubsection{\element{FitExperiment}}
+\label{class:fitExperiment}
+\label{class:listOfFitMappings}
+
+The \FitExperiment inherits from \SedBase, and adds the required attribute \element{type} of type \ExperimentType, a required \Algorithm child, and a required \ListOfFitMappings child which must in turn contain one or more \FitMapping children.
+
+\sedfig[width=0.9\textwidth]{images/uml/fitExperiment}{The SED-ML \FitExperiment, \ListOfFitMappings, and \FitMappings classes}{fig:fitExperiment}
+
+A \FitExperiment describes an experiment for which there are known experimental conditions, and expected experimental output.  The differences between the expected experimental output and the simulated output is used by the \Objective to determine the optimal values to use for the \AdjustableParameters.
+
+
+The \element{type} attribute indicates whether the experiment is a time-course experiment (\val{timeCourse}), or a steady-state experiment (\val{steadyState}).
+
+The \Algorithm of a \FitExperiment describes the algorithm (time course or steady state), and can also be used to define any algorithm parameters of the experiment.
+
+The \FitMapping children are used to map externallly-set experimental conditions, observables, and time (in time course experiments) to the model.
+
+
+\subsubsection{\element{FitMapping}}
+\label{class:fitMapping}
+
+A \FitMapping inherits from \SedBase, and adds three required attributes \element{dataSouce} and \element{target}, both of type \SIdRef, \element{type} of type \MappingType, and two optional attributes \element{weight} of type \code{positive double}, and \element{pointWeight} of type \SIdRef.  A \FitMapping is used to correlate elements of a model simulation with data for that simulation, whether time, inputs (experimental conditions) or outputs (observables).
+
+The \element{type} is of type \MappingType, and may take one of the following three values:
+
+\begin{itemize}
+\item time:  Used only in time course simulations, a \val{time} \FitMapping maps the time points of the observables to the time points of the simulated output.  This also serves to declare what time points must be output by the simulation:  unlike a \UniformTimeCourse, a \FitExperiment time course must at least output the time points mapped here, so that the observables may be directly compared to each other.  (Note that here as in elsewhere in SED-ML, `time' is used as a common label of what is more formally an `independent variable' for some simulators.)
+\item experimentalCondition:  Any \FitMapping of type \val{experimentalCondition} maps a single value to a model element.  The model element must be set to the value as part of the model's initial condition.
+\item observable:  An \val{observable} \FitMapping maps the output of the simulation to a set of data.  These data  are used by the \Objective to calculate the goodness of fit.
+\end{itemize}
+
+The \element{dataSource} is an \SIdRef to a \DataSource in the \SedDocument.  This is a pointer to the expected values of the \val{observable} \FitMappings, to the time values of \val{time} \FitMappings, or the target initial conditions of \val{experimentalConditions} \FitMappings.
+
+The \element{target} is an \SIdRef to a \DataGenerator in the \SedDocument.  Any \Variable in the referenced \DataGenerator must contain a \element{modelRef} to a \Model referenced in an \AdjustableParameter that applies to this \FitExperiment.
+
+The \element{weight} or \element{pointWeight} attributes are used for \val{observable} \FitMappings to weight the contribution of that particular observable to the \Objective function.  For every \FitMapping of type \val{observable}, either \element{weight} or \element{pointWeight} must be defined.  For \FitMappings with \element{type} of \val{experimentalCondition} or \val{time}, neither attribute may be defined.
+
+If \element{weight} is defined, that value is used as the weight for all values in the series.  If \element{pointWeight} is defined instead, it must be an \SIdRef to a \DataGenerator or \DataSource with the same dimensionality as the \token{dataSource}.  Each value in the referenced \element{pointWeight} is then used as the weight of the comparison of the corresponding \element{dataSource} and \element{target}.
+
+No weight may be negative or infinite.  A \code{NaN} may be used in a \element{pointWeight} vector for missing data.  Commonly, all weights will have a value between zero and one.
+
+
+
+
+
+
+\end{blockChanged}

@@ -1,0 +1,87 @@
+% =============================================================================
+% frontpage
+% =============================================================================
+
+\begin{titlepage}
+
+%\vspace*{0.75in}
+
+\begin{center}
+
+  \textbf{\sffamily\bfseries\huge
+    Simulation Experiment Description\\ Markup Language (SED-ML) :\\[0.3em]
+    Level~1 Version~\changed{4}}
+
+\vspace*{0.5in}
+
+\large
+\today\\[0.25in]
+
+%\cornersize{0.3}\ovalbox{\begin{minipage}{4.9in}\color{DarkRed}
+%Disclaimer: This is a working draft of the Simulation Experiment 
+%Description Markup Language (SED-ML) Level~1 Version~3 specification.  
+%It is not a normative document.
+%\end{minipage}}
+
+\vspace{0.5in}
+
+\textbf{\sffamily Editors}\\[7pt]
+\begin{tabular}{l>{\hspace*{15pt}}r}
+Lucian Smith & \emph{University of Washington, USA}\\
+Frank T Bergmann & \emph{BioQUANT/COS, Heidelberg University, Germany}\\
+Alan Garny & \emph{Auckland Bioengineering Institute, New Zealand}\\
+Tom\'{a}\v{s} Helikar & \emph{University of Nebraska-Lincoln, USA}\\
+Jonathan Karr & \emph{Icahn School of Medicine at Mount Sinai, USA}\\
+David Nickerson & \emph{Auckland Bioengineering Institute, New Zealand}\\
+Herbert Sauro & \emph{University of Washington, USA}\\
+Dagmar Waltemath & \emph{University of Greifswald, Germany}\\
+Matthias K\"{o}nig & \emph{Humboldt University of Berlin, Germany}\\
+\end{tabular}
+ 
+\vspace{1.2in}
+
+\normalsize
+\begin{minipage}{5.5in}
+\begin{center}
+  To find the most up to date information about SED-ML, including links to published SED-ML files, examples, and supporting software, please visit\linebreak
+  \url{https://sed-ml.org/}
+
+  \paragraph*{}
+  The latest release of the \currentLV specification is available at
+  \url{https://identifiers.org/combine.specifications/sed-ml.level-1.version-4}
+
+  \paragraph*{}
+  To discuss SED-ML and the SED-ML specification write to the mailing list \mailto{sed-ml-discuss@googlegroups.com}.
+
+  \paragraph*{}
+  To contact the SED-ML editors write to \mailto{sed-ml-editors@googlegroups.com}.
+\end{center}
+\end{minipage}
+\vfill
+
+
+\centerline{\includegraphics[width=2in]{images/logoSedml.png}}
+
+\end{center}
+
+\end{titlepage}
+
+% The title page is considered unnumbered and the next page after this
+% starts with the page number 1 (actually, i), but the duplication of page
+% number 1 confuses hyperref and leads to the following latex warning:
+%
+%   "pdfTeX warning (ext4): destination with the same identifier
+%   (name{page.1}) has been already used, duplicate ignored"
+%
+% The following change makes the title page have page number 1 and the next
+% page after that it becomes page ii.  This is unorthodox, but seems not
+% completely unreasonable, and it avoids the confusing warning above.
+
+\setcounter{page}{2}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 
