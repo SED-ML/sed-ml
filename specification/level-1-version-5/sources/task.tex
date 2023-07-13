@@ -7,6 +7,13 @@ In SED-ML the subclasses of \concept{AbstractTask} define which \Simulations sho
 
 \sedfig[width=0.9\textwidth]{images/uml/abstractTask}{The SED-ML \AbstractTask and \Task classes.  The \RepeatedTask and \ParameterEstimationTask classes are defined below.}{fig:abstractTask}
 
+\begin{blockChanged}
+\paragraph*{\element{algorithm}}
+\label{sec:task-algorithm}
+The optional child \concept{\element{algorithm}} element defines the algorithm or algorithms used for the execution of the \AbstractTask. The algorithm is defined via the \Algorithm class.
+\end{blockChanged}
+
+
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % TASK
@@ -17,10 +24,10 @@ In SED-ML the subclasses of \concept{AbstractTask} define which \Simulations sho
 A \concept{Task} links a \Model to a certain \Simulation description via their respective identifiers (\fig{abstractTask}), using the \hyperref[sec:modelReference]{\element{modelReference}} and the \hyperref[sec:simulationReference]{\element{simulationReference}}. The task class inherits the attributes and children of the \AbstractTask.
 
 \paragraph*{\element{modelReference}}
-The \element{modelReference} attribute of type \SIdRef must refer to a \Model.  Inside a \RepeatedTask, the state of the model may have been changed, otherwise, the \Model is to assume to its initial state.
+The optional \element{modelReference} attribute of type \SIdRef must, \changed{if defined,} refer to a \Model.  Inside a \RepeatedTask, the state of the model may have been changed, otherwise, the \Model is \changed{assumed to be in} its initial state.  \changed{If the child \Algorithm is not defined, this attribute is required.} 
 
 \paragraph*{\element{simulationReference}}
-the \element{simulationReference} attribute of type \SIdRef must refer to a \Simulation.
+The optional \element{simulationReference} attribute of type \SIdRef must, \changed{if defined,} refer to a \Simulation.  \changed{If the child \Algorithm is not defined, this attribute is required.}
 
 In SED-ML it is only possible to link one \Simulation description to one \Model at a time. However, one can define as many tasks as needed within one experiment description. Please note that the tasks may be executed in any order, as determined by the implementation.
 
@@ -339,7 +346,7 @@ The \element{modelReference} attribute of data type \SIdRef is used to reference
 
 
 \paragraph*{\element{algorithm}}
-The \element{algorithm} child of a \ParameterEstimationTask defines the \Algorithm to be used for parameter fitting.  Any algorithm parameters must be included as child \AlgorithmParameter elements.  The \Algorithm class is defined in section \ref{class:algorithm}.  One particular algorithm parameter is KiSAO:0000498 (\val{number of runs}), which can be used to set up a repeated \ParameterEstimationTask.
+The \changed{inherited} \element{algorithm} child of a \ParameterEstimationTask \changed{is changed to be required:  it} defines the \Algorithm to be used for parameter fitting.  Any algorithm parameters must be included as child \AlgorithmParameter elements.  The \Algorithm class is defined in section \ref{class:algorithm}.  One particular algorithm parameter is KiSAO:0000498 (\val{number of runs}), which can be used to set up a repeated \ParameterEstimationTask.
 
 
 \paragraph*{\element{objective}}

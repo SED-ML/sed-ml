@@ -5,7 +5,7 @@
 \label{class:simulation}
 A simulation is the execution of some defined algorithm(s). Simulations are described differently depending on the type of simulation experiment to be performed (\fig{simulation}). 
 
-\sedfig[width=0.9\textwidth]{images/uml/simulation}{The SED-ML Simulation class}{fig:simulation}
+\sedfig[width=0.9\textwidth]{images/uml/simulation}{The definitions of the \Simulation, \SteadyState, \OneStep, \UniformTimeCourse, and \Analysis classes}{fig:simulation}
 
 \concept{Simulation} is an abstract class and serves as the container for the different types of simulation experiments. SED-ML \currentLV provides the predefined simulation classes \hyperref[class:uniformTimeCourse]{UniformTimeCourse}, \hyperref[class:oneStep]{OneStep}, \hyperref[class:steadyState]{SteadyState}, and \Analysis. 
 
@@ -23,8 +23,8 @@ Each instance of the \concept{Simulation} class has an unambiguous and mandatory
 \end{myXmlLst}
 
 \paragraph*{\element{algorithm}}
-\label{sec:algorithm}
-The mandatory attribute \concept{\element{algorithm}} defines the simulation algorithms used for the execution of the \hyperref[class:simulation]{simulation}. The algorithms are defined via the \hyperref[class:algorithm]{Algorithm} class.
+\label{sec:sim-algorithm}
+The mandatory \changed{child \concept{\element{algorithm}} element} defines the simulation algorithm or algorithms used for the execution of the \hyperref[class:simulation]{simulation}. The algorithm is defined via the \Algorithm class.
 
 
 %% ~~~ UNIFORM TIMECOURSE SIMULATION ~~~
@@ -150,98 +150,6 @@ The \concept{Analysis} represents any sort of analysis or simulation of a \Model
 </listOfSimulations>
 \end{myXmlLst}
 
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% SIMULATION COMPONENTS
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{\element{Simulation} components}
-\label{class:simulationComponents}
-
-% ~~~ ALGORITHM ~~~
-\subsubsection{\element{Algorithm}}
-\label{class:algorithm}
-The \concept{Algorithm} class has a mandatory element \hyperref[sec:kisaoid]{\element{kisaoID}} which contains a \hyperref[sec:kisao]{KiSAO} reference to the particular simulation algorithm used in the \hyperref[class:simulation]{simulation}. In addition, the \concept{Algorithm} has an optional \hyperref[class:listOfAlgorithmParameters]{\element{listOfAlgorithmParameters}}, a collection of \hyperref[class:algorithmParameter]{algorithmParameter}, which are used to parameterize the \concept{algorithm}.
-
-The example given in Listing~\ref{lst:simulation}, completed by algorithm definitions results in the code given in Listing \ref{lst:algorithm}. In the example, for both simulations a algorithm is defined. In the first simulation \code{s1} a deterministic approach is used (Euler forward method), in the second simulation \code{s2} a stochastic approach is used (Stochsim nearest neighbor).
-
-\begin{myXmlLst}{The SED-ML \code{algorithm} element for two different time course simulations, defining two different algorithms. KISAO:0000030 refers to the \emph{Euler forward method} ; KISAO:0000021 refers to the \emph{StochSim nearest neighbor algorithm}.}{lst:algorithm}
-<listOfSimulations>
-	<uniformTimeCourse id="s1" name="time course simulation over 100 minutes" [..]>
-		<algorithm kisaoID="KISAO:0000030" />
-	</uniformTimeCourse>
-	<uniformTimeCourse id="s2" name="time course definition for concentration of p" [..]>
-		<algorithm kisaoID="KISAO:0000021" />
-	</uniformTimeCourse>
-</listOfSimulations>
-\end{myXmlLst}
-
-
-% ~~~ LIST OF ALGORITHM PARAMETERS ~~~
-\paragraph*{\element{listOfAlgorithmParameters}}
-\label{class:listOfAlgorithmParameters}
-The \concept{\element{listOfAlgorithmParameters}} contains the settings for the simulation algorithm used in a \hyperref[class:simulation]{simulation} (\fig{simulation}). It may list several instances of the \hyperref[class:algorithmParameter]{AlgorithmParameter} class. The \concept{\element{listOfAlgorithmParameters}} is optional and may contain zero to many parameters.
-
-\lsttext{listOfAlgorithmParameters}{listOfAlgorithmParameters}
-\begin{myXmlLst}{SED-ML listOfAlgorithmParameters element}{lst:listOfAlgorithmParameters}
-<listOfAlgorithmParameters>
-	<algorithmParameter name="absolute tolerance" kisaoID="KISAO:0000211" value="23"/> 
-</listOfAlgorithmParameters>
-\end{myXmlLst}
-
-
-% ~~~ ALGORITHM PARAMETER ~~~
-\subsubsection{\element{AlgorithmParameter}}
-\label{class:algorithmParameter}
-The \concept{AlgorithmParameter} class allows to parameterize a particular simulation \hyperref[class:algorithm]{algorithm}. The set of possible parameters for a particular instance is determined by the algorithm that is referenced by the \element{kisaoID} of the enclosing \hyperref[class:algorithm]{algorithm} element (\fig{simulation}). Parameters of simulation algorithms are unambiguously referenced by the mandatory \hyperref[sec:kisaoid]{\element{kisaoID}} attribute. Their value is set in the mandatory \hyperref[sec:algorithmParameterValue]{\element{value}} attribute.  An \AlgorithmParameter may also have child \AlgorithmParameter elements through a \ListOfAlgorithmParameters.
-
-Any \AlgorithmParameter defined in a \Simulation overrides any global \AlgorithmParameter defined in the \SedDocument.  And in the reverse, any \AlgorithmParameter left undefined in a \Simulation may be defined by a global \AlgorithmParameter element.  Any \AlgorithmParameter child of a \Simulation applies only to that individual \Simulation, and assumes its previous value (if set globally) or becomes unset (if not) outside of the context of that \Simulation (for example, within a \RepeatedTask).
-
-NOTE:  the global \ListOfAlgorithmParameters was added to SED-ML in \currentLV.  As such, the only place to define a random seed (\code{KISAO:0000488)} for the simulation experiment as a whole in previous versions was in a \Simulation, which might be part of a \RepeatedTask.  Rather than indicating that each repeat was to receive the same seed, resulting in identical traces, users would generally use the 'seed' parameter to indicate that the experiment as a whole was to be replicable from one run to the next.  Current users of SED-ML should use a global \AlgorithmParameter for this purpose, but older versions or older files may use the previous scheme.
-
-\paragraph*{\element{value}}
-\label{sec:algorithmParameterValue}
-The \concept{\element{value}} sets the value of the \hyperref[class:algorithmParameter]{AlgorithmParameter}.  For XML purposes, it is of type \element{string}, but should contain a value that makes sense for the \element{kisaoID} in question:  if the KiSAO term is a value, the string should contain a number; if the KiSAO term is a Boolean, the string should contain the string \val{true} or \val{false}, etc.  The string must be non-empty; to explicitly state that a value is not set, this should be encoded in the string as a \element{KISAO:0000629}, which indicates that the value is \code{Null}.
-
-\begin{myXmlLst}{The SED-ML \concept{\code{algorithmParameter}} element setting the parameter value for the simulation algorithm. \code{KISAO:0000032} refers to the \emph{explicit fourth-order Runge-Kutta method}; \code{KISAO:00000211} refers to the \emph{absolute tolerance}.}{lst:algorithmParameter}
-<algorithm kisaoID="KISAO:0000032"> 
-	<listOfAlgorithmParameters> 
-		<algorithmParameter name="absolute tolerance" kisaoID="KISAO:0000211" value="23"/> 
-	</listOfAlgorithmParameters>
-</algorithm>
-\end{myXmlLst}
-
-\paragraph*{\element{listOfAlgorithmParameters}}
-The child \element{listOfAlgorithmParameters} of an \AlgorithmParameter may contain parameters that modify or refine the parent parameter, depending on the KiSAO term used.  
-
-\begin{myXmlLst}{A SED-ML \code{algorithmParameter} element defining a mixed simulator, each with their own set of algorithm parameters.}{lst:algorithmParameter2}
-<algorithm name="hybrid method" kisaoID="KISAO:0000352">
-    <listOfAlgorithmParameters>
-        <algorithmParameter name="modeling and simulation algorithm" kisaoID="KISAO:0000000" value="KISAO:0000019">
-            <listOfAlgorithmParameters>
-                <algorithmParameter name="absolute tolerance"   kisaoID="KISAO:0000211" value="1e-07"/>
-                <algorithmParameter name="integration method"   kisaoID="KISAO:0000475" value="BDF"/>
-                <algorithmParameter name="interpolate solution" kisaoID="KISAO:0000481" value="true"/>
-                <algorithmParameter name="iteration type"       kisaoID="KISAO:0000476" value="Newton"/>
-                <algorithmParameter name="linear solver"        kisaoID="KISAO:0000477" value="Dense"/>
-                <algorithmParameter name="lower half-bandwidth" kisaoID="KISAO:0000480" value="0"/>
-                <algorithmParameter name="maximum number of steps" kisaoID="KISAO:0000415" value="500"/>
-                <algorithmParameter name="maximum step size"    kisaoID="KISAO:0000467" value="0"/>
-                <algorithmParameter name="preconditioner"       kisaoID="KISAO:0000478" value="Banded"/>
-                <algorithmParameter name="relative tolerance"   kisaoID="KISAO:0000209" value="1e-07"/>
-                <algorithmParameter name="upper half-bandwidth" kisaoID="KISAO:0000479" value="0"/>
-            </listOfAlgorithmParameters>
-        </algorithmParameter>
-        <algorithmParameter name="modeling and simulation algorithm" kisaoID="KISAO:0000000" value="KISAO:0000282">
-            <listOfAlgorithmParameters>
-                <algorithmParameter name="linear solver"        kisaoID="KISAO:0000477" value="Dense"/>
-                <algorithmParameter name="lower half-bandwidth" kisaoID="KISAO:0000480" value="0"/>
-                <algorithmParameter name="maximum iterations"   kisaoID="KISAO:0000486" value="200"/>
-                <algorithmParameter name="upper half-bandwidth" kisaoID="KISAO:0000479" value="0"/>
-            </listOfAlgorithmParameters>
-        </algorithmParameter>
-    </listOfAlgorithmParameters>
-</algorithm>
-\end{myXmlLst}
 
 
 

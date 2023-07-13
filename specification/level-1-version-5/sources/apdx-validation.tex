@@ -126,13 +126,16 @@ For convenience and brevity, we use the shorthand ``\token{x}'' to stand for an 
 
 \subsubsection*{Rules for \Change objects}
 
-\validRule{20401}{A \Change object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
+\validRule{20401}{A \Change object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, \changed{\token{target}} and \token{metaid}. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
 
 \validRule{20402}{A \Change object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
 
-\validRule{20403}{A \Change object must have the required attribute \token{target}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:change}.)}
+\validRule{20403}{\changed{If a \Change object has no child \Algorithm element, it must define the } attribute \token{target}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:change}.)}
 
 \validRule{20404}{The attribute \token{target} on a \Change must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:change}.)}
+
+\validRule{20450}{\changed{A \Change object or one of its derived classes may contain exactly one child \Algorithm element. (Reference: SED-ML Level~1 Version~4, Section \ref{class:change}.)}}
+
 
 \subsubsection*{Rules for \AddXML objects}
 
@@ -276,19 +279,23 @@ For convenience and brevity, we use the shorthand ``\token{x}'' to stand for an 
 
 \validRule{21203}{An \AbstractTask object must have the required attribute \token{id}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:task}.)}
 
+\validRule{21250}{An \AbstractTask object may contain exactly one child \Algorithm element. (Reference: SED-ML Level~1 Version~4, Section \ref{class:task}.)}
+
 \modelingRule{21250}{Every \AbstractTask should contribute to at least one \Output.  (Reference: SED-ML Level~1 Version~4, Section \ref{class:abstractTask})}
 
 \subsubsection*{Rules for \Task objects}
 
-\validRule{21301}{A \Task object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name} and \token{metaid}. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
+\validRule{21301}{A \Task object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name}, \changed{\token{metaid}, \token{model\-Reference}, and \token{simulation\-Reference}}. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
 
 \validRule{21302}{A \Task object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~4, Section~\ref{class:sedBase}.)}
 
-\validRule{21303}{A \Task object must have the required attributes \token{model\-Reference} and \token{simulationReference}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:task}.)}
+\validRule{21303}{\changed{If a \Task object has no child \Algorithm, it must define the attributes} \token{model\-Reference} and \token{simulationReference}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:task}.)}
 
 \validRule{21304}{The value of the attribute \token{model\-Reference} of a \Task object must be the identifier of an existing \Model object defined in the document. (Reference: SED-ML Level~1 Version~4, Section \ref{class:task}.)}
 
 \validRule{21305}{The value of the attribute \token{simulationReference} of a \Task object must be the identifier of an existing \Simulation object defined in the document. (Reference: SED-ML Level~1 Version~4, Section \ref{class:task}.)}
+
+\validRule{21350}{An \AbstractTask object may contain exactly one child \Algorithm element. (Reference: SED-ML Level~1 Version~4, Section \ref{class:task}.)}
 
 \subsubsection*{Rules for \DataGenerator objects}
 
@@ -323,6 +330,8 @@ For convenience and brevity, we use the shorthand ``\token{x}'' to stand for an 
 \validRule{21553}{If the \element{taskReference} of a \Variable child of a \DataGenerator is set and references an \AbstractTask that references multiple models, the \element{modelReference} of the \Variable must also be set.  (Reference: SED-ML Level~1 Version~4, Section \ref{class:variable})}
 
 \validRule{21554}{If the \element{taskReference} of a \Variable child of a \DataGenerator is set, the \element{modelReference} of the \Variable, if also set, must reference a \Model modified by the referenced \AbstractTask.  (Reference: SED-ML Level~1 Version~4, Section \ref{class:variable})}
+
+\validRule{21555}{An \Output object or one of its derived classes may contain exactly one child \Algorithm element. (Reference: SED-ML Level~1 Version~4, Section \ref{class:output}.)}
 
 \subsubsection*{Rules for \Plot objects}
 
@@ -618,7 +627,7 @@ For convenience and brevity, we use the shorthand ``\token{x}'' to stand for an 
 
 \validRule{23109}{A \ListOfParameters object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:listOfParameters}.)}
 
-\validRule{23150}{There must not be circular dependencies in the calculatino of functional ranges.  No \Variable child of a \FunctionalRange may directly or indirectly reference the parent \FunctionalRange.  (Reference: SED-ML Level~1 Version~4, Section \ref{class:functionalRange})}
+\validRule{23150}{There must not be circular dependencies in the calculation of functional ranges.  No \Variable child of a \FunctionalRange may directly or indirectly reference the parent \FunctionalRange.  (Reference: SED-ML Level~1 Version~4, Section \ref{class:functionalRange})}
 
 \validRule{23151}{The \element{modelReference} attribute of a \Variable child of a \FunctionalRange must be defined if the \element{target} does not point to external data and the parent \FunctionalRange is a child of an \AbstractTask that involves more than one \Model.  (Reference: SED-ML Level~1 Version~4, Section \ref{class:functionalRange})}
 
@@ -702,7 +711,7 @@ For convenience and brevity, we use the shorthand ``\token{x}'' to stand for an 
 
 \validRule{23603}{A \ComputeChange object may have the optional attribute \token{symbol}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:computeChange}.)}
 
-\validRule{23604}{A \ComputeChange object may contain one and only one instance of each of the ASTNode, \ListOfVariables and \ListOfParameters elements. (Reference: SED-ML Level~1 Version~4, Section \ref{class:computeChange}.)}
+\validRule{23604}{A \ComputeChange object may contain one and only one instance of each of the ASTNode, \Algorithm, \ListOfVariables, and \ListOfParameters elements. (Reference: SED-ML Level~1 Version~4, Section \ref{class:computeChange}.)}
 
 \validRule{23605}{The attribute \token{symbol} on a \ComputeChange must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:computeChange}.)}
 
@@ -728,7 +737,7 @@ For convenience and brevity, we use the shorthand ``\token{x}'' to stand for an 
 
 \validRule{23703}{A \DataDescription object must have the required attributes \token{source} and \token{id}, and may have the optional attribute \token{format}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:dataDescription}.)}
 
-\validRule{23704}{A \DataDescription object may contain one and only one instance of each of the DimensionDescription and \ListOfDataSources elements. (Reference: SED-ML Level~1 Version~4, Section \ref{class:dataDescription}.)}
+\validRule{23704}{A \DataDescription object may contain one and only one instance of each of the ASTNode, \DimensionDescription, and \ListOfDataSources elements. (Reference: SED-ML Level~1 Version~4, Section \ref{class:dataDescription}.)}
 
 \validRule{23705}{The attribute \token{source} on a \DataDescription must have a value of data type \token{anyURI}  (Reference: SED-ML Level~1 Version~4, Section \ref{class:dataDescription})}
 
@@ -782,7 +791,7 @@ For convenience and brevity, we use the shorthand ``\token{x}'' to stand for an 
 
 \validRule{24003}{A \ParameterEstimationTask object must have the required attribute \token{model\-Reference}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:parameterEstimationTask}.)}
 
-\validRule{24004}{A \ParameterEstimationTask object must contain one and only one instance of each of the Algorithm, Objective, \ListOfAdjustableParameters and \\ListOfFitExperiments elements. (Reference: SED-ML Level~1 Version~4, Section \ref{class:parameterEstimationTask}.)}
+\validRule{24004}{A \ParameterEstimationTask object must contain one and only one instance of each of the Algorithm, Objective, \ListOfAdjustableParameters and \ListOfFitExperiments elements. (Reference: SED-ML Level~1 Version~4, Section \ref{class:parameterEstimationTask}.)}
 
 \validRule{24005}{The value of the attribute \token{model\-Reference} of a \ParameterEstimationTask object must be the identifier of an existing \Model object defined in the document. (Reference: SED-ML Level~1 Version~4, Section \ref{class:parameterEstimationTask}.)}
 
@@ -848,7 +857,7 @@ For convenience and brevity, we use the shorthand ``\token{x}'' to stand for an 
 
 \validRule{24503}{A \FitExperiment object must have the required attribute \token{type}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:fitExperiment}.)}
 
-\validRule{24504}{A \FitExperiment object must contain one and only one instance of each of the Algorithm and \\ListOfFitMappings elements. (Reference: SED-ML Level~1 Version~4, Section \ref{class:fitExperiment}.)}
+\validRule{24504}{A \FitExperiment object must contain one and only one instance of each of the \Algorithm and \ListOfFitMappings elements. (Reference: SED-ML Level~1 Version~4, Section \ref{class:fitExperiment}.)}
 
 \validRule{24505}{The value of the attribute \token{type} of a \FitExperiment object must conform to the syntax of SED-ML data type \code{ExperimentType} and may only take on the allowed values of \code{ExperimentType} defined in SED-ML; that is, the value must be one of the following: \val{steadyState} or \val{timeCourse}. (Reference: SED-ML Level~1 Version~4, Section \ref{class:fitExperiment}.)}
 

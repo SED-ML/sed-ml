@@ -12,6 +12,14 @@ The \Output class inherits the \element{id} and \element{name} attributes from \
 
 The output of a SED-ML file may be used to compare simulation executions from the same tool or from different tools.  As such, interpreters may choose to focus on the output of a SED-ML file, and execute only the tasks necessary to produce this output.  Repeated executions of the same SED-ML should always produce comparable output.  When a stochastic run is given a seed, interpreters should be aware that users may expect to get identical results from repeated runs on the same architecture, including when tasks are run in parallel.
 
+\begin{blockChanged}
+\paragraph*{\element{algorithm}}
+\label{sec:output-algorithm}
+The optional child \concept{\element{algorithm}} element defines the algorithm or algorithms used for the execution of the \Output. The algorithm is defined via the \Algorithm class.
+\end{blockChanged}
+
+
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % OUTPUT COMPONENTS
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
