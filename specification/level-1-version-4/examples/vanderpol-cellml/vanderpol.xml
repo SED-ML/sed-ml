@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<sedML level="1" version="3" xmlns="http://sed-ml.org/sed-ml/level1/version3" xmlns:cellml="http://www.cellml.org/cellml/1.0#">
+<sedML level="1" version="4" xmlns="http://sed-ml.org/sed-ml/level1/version4" xmlns:cellml="http://www.cellml.org/cellml/1.0#">
     <listOfSimulations>
         <uniformTimeCourse id="simulation1" initialTime="0" numberOfPoints="1000" outputEndTime="100" outputStartTime="0">
             <algorithm kisaoID="KISAO:0000019">

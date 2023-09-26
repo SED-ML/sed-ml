@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sedML level="1" version="3" xmlns="http://sed-ml.org/sed-ml/level1/version3">
+<sedML level="1" version="4" xmlns="http://sed-ml.org/sed-ml/level1/version4">
     <listOfDataDescriptions>
         <dataDescription id="Data1" name="oscillator data" source="./oscli.numl" format="urn:sedml:format:numl">
             <dimensionDescription>
