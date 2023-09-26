@@ -4,7 +4,7 @@
  <notes><p xmlns="http://www.w3.org/1999/xhtml">Comparing Limit Cycles and strange attractors for
         oscillation in Drosophila</p></notes> 
  <listOfSimulations>
-   <uniformTimeCourse id="simulation1" algorithm="KiSAO:0000019" 
+   <uniformTimeCourse id="simulation1"
     initialTime="0" outputStartTime="0" outputEndTime="380" 
     numberOfPoints="1000" >
      <algorithm kisaoID="KISAO:0000019"/>
