@@ -57,8 +57,8 @@
   <listOfOutputs>
     <plot2D id="plot1" name="Steady State Scan (Oscli)">
       <listOfCurves>
-        <curve id="curve1" logX="false" logY="false" xDataReference="J0_v0_1" yDataReference="S1_1" />
-        <curve id="curve2" logX="false" logY="false" xDataReference="J0_v0_1" yDataReference="S2_1" />
+        <curve id="curve1" xDataReference="J0_v0_1" yDataReference="S1_1" />
+        <curve id="curve2" xDataReference="J0_v0_1" yDataReference="S2_1" />
       </listOfCurves>
     </plot2D>
     <report id="report1" name="Steady State Values">

@@ -113,13 +113,13 @@
   <listOfOutputs>
     <plot2D id="plot1" name="Steady State Scan (Boris 2D)">
       <listOfCurves>
-        <curve id="curve1" logX="false" logY="false" xDataReference="J4_KK5_1" yDataReference="MKK_1" />
-        <curve id="curve2" logX="false" logY="false" xDataReference="J4_KK5_1" yDataReference="MKK_P_1" />
+        <curve id="curve1" xDataReference="J4_KK5_1" yDataReference="MKK_1" />
+        <curve id="curve2" xDataReference="J4_KK5_1" yDataReference="MKK_P_1" />
       </listOfCurves>
     </plot2D>
     <plot2D id="plot2" name="MKK_TOT vs J4_KK5">
       <listOfCurves>
-        <curve id="curve3" logX="false" logY="false" xDataReference="J4_KK5_1" yDataReference="MKK_TOT" />
+        <curve id="curve3" xDataReference="J4_KK5_1" yDataReference="MKK_TOT" />
       </listOfCurves>
     </plot2D>
     <report id="report1" name="Steady State Values (Boris2D)">

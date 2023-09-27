@@ -63,13 +63,13 @@
   <listOfOutputs>
     <plot2D id="plot1" name="BM140 Total_NFkBn">
       <listOfCurves>
-        <curve  id="c1" logX="false" logY="false" xDataReference="time" 
+        <curve  id="c1" xDataReference="time" 
         yDataReference="Total_NFkBn" />
-            <curve  id="c2" logX="false" logY="false" xDataReference="time"
+            <curve  id="c2" xDataReference="time"
         yDataReference="Total_IkBbeta" />
-        <curve  id="c3" logX="false" logY="false" xDataReference="time"
+        <curve  id="c3" xDataReference="time"
         yDataReference="Total_IkBeps" />
-        <curve id="c4" logX="false" logY="false" xDataReference="time"
+        <curve id="c4" xDataReference="time"
         yDataReference="Total_IkBalpha" />
       </listOfCurves>
     </plot2D>

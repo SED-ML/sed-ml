@@ -90,17 +90,17 @@
     <listOfOutputs>
         <plot2D id="plot1">
             <listOfCurves>
-                <curve id="curve1_1" logX="false" logY="false" xDataReference="xDataGenerator1_1" yDataReference="yDataGenerator1_1"/>
+                <curve id="curve1_1" xDataReference="xDataGenerator1_1" yDataReference="yDataGenerator1_1"/>
             </listOfCurves>
         </plot2D>
         <plot2D id="plot2">
             <listOfCurves>
-                <curve id="curve2_1" logX="false" logY="false" xDataReference="xDataGenerator2_1" yDataReference="yDataGenerator2_1"/>
+                <curve id="curve2_1" xDataReference="xDataGenerator2_1" yDataReference="yDataGenerator2_1"/>
             </listOfCurves>
         </plot2D>
         <plot2D id="plot3">
             <listOfCurves>
-                <curve id="curve3_1" logX="false" logY="false" xDataReference="xDataGenerator3_1" yDataReference="yDataGenerator3_1"/>
+                <curve id="curve3_1" xDataReference="xDataGenerator3_1" yDataReference="yDataGenerator3_1"/>
             </listOfCurves>
         </plot2D>
     </listOfOutputs>
