@@ -12,7 +12,7 @@
     <task id="task0" modelReference="model1" simulationReference="stepper" />
     <repeatedTask id="task1" resetModel="false" range="index">
       <listOfRanges>
-        <uniformRange id="index" start="0" end="10" numberOfPoints="100" type="linear" />
+        <uniformRange id="index" start="0" end="10" numberOfSteps="100" type="linear" />
         <functionalRange id="current" range="index">
           <math xmlns="http://www.w3.org/1998/Math/MathML">
             <piecewise>

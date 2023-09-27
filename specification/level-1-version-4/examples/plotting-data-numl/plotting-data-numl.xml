@@ -20,7 +20,7 @@
         </dataDescription>
     </listOfDataDescriptions>
     <listOfSimulations>
-        <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="10" numberOfPoints="400">
+        <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="10" numberOfSteps="400">
             <algorithm kisaoID="KISAO:0000019">
                 <listOfAlgorithmParameters>
                     <algorithmParameter kisaoID="KISAO:0000209" value="1E-06"/>

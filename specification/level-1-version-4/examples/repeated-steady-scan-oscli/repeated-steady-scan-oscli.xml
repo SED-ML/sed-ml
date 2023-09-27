@@ -13,7 +13,7 @@
     <task id="task0" modelReference="model1" simulationReference="steady1" />
     <repeatedTask id="task1" resetModel="true" range="current">
       <listOfRanges>
-        <uniformRange id="current" start="0" end="10" numberOfPoints="100" type="linear" />
+        <uniformRange id="current" start="0" end="10" numberOfSteps="100" type="linear" />
       </listOfRanges>
       <listOfChanges>
         <setValue target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='J0_v0']"

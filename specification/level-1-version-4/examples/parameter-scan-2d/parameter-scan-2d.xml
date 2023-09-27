@@ -38,7 +38,7 @@
     </repeatedTask>
     <repeatedTask id="task2" resetModel="false" range="current1">
       <listOfRanges>
-        <uniformRange id="current1" start="1" end="40" numberOfPoints="100" type="linear" />
+        <uniformRange id="current1" start="1" end="40" numberOfSteps="100" type="linear" />
       </listOfRanges>
       <listOfChanges>
         <setValue target="/sbml:sbml/sbml:model/sbml:listOfParameters/sbml:parameter[@id='J4_KK5']"

@@ -10,7 +10,7 @@
         <jd2:header>
           <jd2:VersionHeader JDesignerVersion="1.0" />
           <jd2:ModelHeader Author="" ModelVersion="" ModelTitle="BorisEJB" />
-          <jd2:TimeCourseDetails timeStart="0" timeEnd="4000" numberOfPoints="1000" />
+          <jd2:TimeCourseDetails timeStart="0" timeEnd="4000" numberOfSteps="1000" />
         </jd2:header>
         <jd2:JDGraphicsHeader BackGroundColor="FFFFFFEF" />
         <jd2:listOfCompartments>
