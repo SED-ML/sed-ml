@@ -11,7 +11,7 @@
             <jd2:header>
                <jd2:VersionHeader JDesignerVersion = "1.0"/>
                <jd2:ModelHeader Author = "" ModelVersion = "" ModelTitle = "Oscli (Heinrich model)"/>
-               <jd2:TimeCourseDetails timeStart = "0" timeEnd = "15" numberOfPoints = "300"/>
+               <jd2:TimeCourseDetails timeStart = "0" timeEnd = "15" numberOfSteps = "300"/>
             </jd2:header>
             <jd2:JDGraphicsHeader BackGroundColor = "FFFFFFEF"/>
             <jd2:listOfCompartments>

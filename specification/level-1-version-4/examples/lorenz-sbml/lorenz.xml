@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sedML xmlns="http://sed-ml.org/sed-ml/level1/version3" level="1" version="3">
+<sedML xmlns="http://sed-ml.org/sed-ml/level1/version4" level="1" version="4">
   <listOfSimulations>
-    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="50" numberOfPoints="10000">
+    <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="50" numberOfSteps="10000">
       <algorithm kisaoID="KISAO:0000019">
         <listOfAlgorithmParameters>
             <algorithmParameter kisaoID="KISAO:0000211" value="1e-07"/>
@@ -78,17 +78,17 @@
   <listOfOutputs>
       <plot2D id="plot1">
         <listOfCurves>
-            <curve id="curve1_1" logX="false" logY="false" xDataReference="xDataGenerator1_1" yDataReference="yDataGenerator1_1"/>
+            <curve id="curve1_1" xDataReference="xDataGenerator1_1" yDataReference="yDataGenerator1_1"/>
         </listOfCurves>
     </plot2D>
     <plot2D id="plot2">
         <listOfCurves>
-            <curve id="curve2_1" logX="false" logY="false" xDataReference="xDataGenerator2_1" yDataReference="yDataGenerator2_1"/>
+            <curve id="curve2_1" xDataReference="xDataGenerator2_1" yDataReference="yDataGenerator2_1"/>
         </listOfCurves>
     </plot2D>
     <plot2D id="plot3">
         <listOfCurves>
-            <curve id="curve3_1" logX="false" logY="false" xDataReference="xDataGenerator3_1" yDataReference="yDataGenerator3_1"/>
+            <curve id="curve3_1" xDataReference="xDataGenerator3_1" yDataReference="yDataGenerator3_1"/>
         </listOfCurves>
     </plot2D>
   </listOfOutputs>

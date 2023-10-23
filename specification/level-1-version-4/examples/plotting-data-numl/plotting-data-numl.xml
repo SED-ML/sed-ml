@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<sedML level="1" version="3" xmlns="http://sed-ml.org/sed-ml/level1/version3">
+<sedML level="1" version="4" xmlns="http://sed-ml.org/sed-ml/level1/version4">
     <listOfDataDescriptions>
         <dataDescription id="Data1" name="oscillator data" source="./oscli.numl" format="urn:sedml:format:numl">
             <dimensionDescription>
-                <compositeDescription indexType="double" id="time" name="time" xmlns="http://www.numl.org/numl/
-level1/version1">
+                <compositeDescription indexType="double" id="time" name="time" xmlns="http://www.numl.org/numl/level1/version1">
                     <compositeDescription indexType="string" id="SpeciesIds" name="SpeciesIds">
                         <atomicDescription valueType="double" name="Concentrations"/>
                     </compositeDescription>
@@ -21,7 +20,7 @@ level1/version1">
         </dataDescription>
     </listOfDataDescriptions>
     <listOfSimulations>
-        <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="10" numberOfPoints="400">
+        <uniformTimeCourse id="sim1" initialTime="0" outputStartTime="0" outputEndTime="10" numberOfSteps="400">
             <algorithm kisaoID="KISAO:0000019">
                 <listOfAlgorithmParameters>
                     <algorithmParameter kisaoID="KISAO:0000209" value="1E-06"/>
@@ -84,9 +83,9 @@ level1/version1">
     <listOfOutputs>
         <plot2D id="plot1" name="Time Course (Oscli)">
             <listOfCurves>
-                <curve id="curve1" logX="false" logY="false" xDataReference="time_1" yDataReference="S1_1"/>
-                <curve id="curve2" logX="false" logY="false" xDataReference="time_1" yDataReference="S2_1"/>
-                <curve id="curve3" logX="false" logY="false" xDataReference="dgDataTime" yDataReference="dgDataS1"/>
+                <curve id="curve1" xDataReference="time_1" yDataReference="S1_1"/>
+                <curve id="curve2" xDataReference="time_1" yDataReference="S2_1"/>
+                <curve id="curve3" xDataReference="dgDataTime" yDataReference="dgDataS1"/>
             </listOfCurves>
         </plot2D>
     </listOfOutputs>
