@@ -155,7 +155,7 @@ def create_omex(folder, omex_file, strict=True):
 if __name__ == "__main__":
     for archive_id in ARCHIVES:
         archive_dir = os.path.join(EXAMPLES_DIR, archive_id)
-        omex_file = os.path.join(OMEX_DIR, "L1V3_{}.omex".format(archive_id))
+        omex_file = os.path.join(OMEX_DIR, "L1V4_{}.omex".format(archive_id))
 
         strict = True
         create_omex(archive_dir, omex_file, strict=strict)
