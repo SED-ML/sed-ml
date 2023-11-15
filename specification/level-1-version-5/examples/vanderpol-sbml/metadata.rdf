@@ -2,11 +2,8 @@
 <rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:dcterms='http://purl.org/dc/terms/' xmlns:vCard='http://www.w3.org/2006/vcard/ns#'>
   <rdf:Description rdf:about='.'>
     <dcterms:description>SED-ML L1V3 specification example.</dcterms:description>
-    <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -35,11 +32,8 @@
   </rdf:Description>
   <rdf:Description rdf:about='manifest.json'>
     <dcterms:description>Information to create archive metadata</dcterms:description>
-    <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -60,11 +54,8 @@
   </rdf:Description>
   <rdf:Description rdf:about='vanderpol.xml'>
     <dcterms:description>Van der Pol simulation experiment</dcterms:description>
-    <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -85,11 +76,8 @@
   </rdf:Description>
   <rdf:Description rdf:about='vanderpol-sbml.xml'>
     <dcterms:description>Van der Pol CellML model.</dcterms:description>
-    <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -110,11 +98,8 @@
   </rdf:Description>
   <rdf:Description rdf:about='results/sedml_webtools/plot1.pdf'>
     <dcterms:description>SED-ML webtools results.</dcterms:description>
-    <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -143,11 +128,8 @@
   </rdf:Description>
   <rdf:Description rdf:about='results/sedml_webtools/plot2.pdf'>
     <dcterms:description>SED-ML webtools results.</dcterms:description>
-    <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -176,11 +158,8 @@
   </rdf:Description>
   <rdf:Description rdf:about='results/tellurium/plot1.pdf'>
     <dcterms:description>tellurium results.</dcterms:description>
-    <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
@@ -193,11 +172,8 @@
   </rdf:Description>
   <rdf:Description rdf:about='results/tellurium/plot2.pdf'>
     <dcterms:description>tellurium results.</dcterms:description>
-    <dcterms:modified rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
-    </dcterms:modified>
     <dcterms:created rdf:parseType='Resource'>
-      <dcterms:W3CDTF>2018-06-14T09:15:12Z</dcterms:W3CDTF>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
     </dcterms:created>
     <dcterms:creator rdf:parseType='Resource'>
       <vCard:hasName rdf:parseType='Resource'>
