@@ -213,7 +213,14 @@ The \concept{Range} class is the abstract base class for the different types of 
 
 The \Range is the iterative element of the repeated simulation experiment. Each \Range defines a collection of values to iterate over. Its \element{id} may be used as the \element{target} of a \Variable within the \RepeatedTask by pre-pending a `\#' (i.e. \val{\#rangeId}).  It is used in that context to mean the value of the range for the current iteration of the \RepeatedTask.
 
-\sedfig[width=1.0\textwidth]{images/uml/range}{The SED-ML Range class}{fig:range}
+\begin{blockChanged}
+\paragraph*{\element{algorithm}}
+\label{sec:range-algorithm}
+The optional child \concept{\element{algorithm}} element may define the algorithm used for the execution of the \Range. The algorithm is defined via the \Algorithm class.
+\end{blockChanged}
+
+\sedfig[width=0.7\textwidth]{images/uml/range}{The SED-ML Range class}{fig:range}
+
 
 \paragraph{\element{UniformRange}}
 \label{class:uniformRange}
@@ -251,7 +258,7 @@ The \concept{Value} (\fig{range}) describes a single value, e.g., the \concept{V
 
 \paragraph{\element{FunctionalRange}}
 \label{class:functionalRange}
-The \concept{FunctionalRange} (\fig{range}) constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables. In this it is similar to the \ComputeChange element, and shares some of the same child elements (but is not a subclass of \ComputeChange). It consists of an optional attribute \code{range}, two optional elements \ListOfVariables and \ListOfParameters, and a required element \Math.
+The \concept{FunctionalRange} (\fig{range}) constructs a range through calculations that determine the next value based on the value(s) of other range(s) or model variables. \changed{It inherits an optional child \Algorithm from \Range, adds the optional attribute \code{range}, and also inherits from \Calculation, from which it gets the three optional children \Math, \ListOfVariables, and \ListOfParameters.}
 
 The optional attribute \code{range} of type \hyperref[type:sidref]{SIdRef} may be used as a shorthand to specify the \hyperref[sec:id]{\element{id}} of another \Range. The current value of the referenced range may then be used within the function defining this \concept{FunctionalRange}, just as if that range had been referenced using a \hyperref[class:variable]{variable} element, except that the \hyperref[sec:id]{\element{id}} of the range is used directly. In other words, whenever the expression contains a \code{ci} element that contains the value specified in the \code{range} attribute, the value of the referenced range is to be inserted.
 
