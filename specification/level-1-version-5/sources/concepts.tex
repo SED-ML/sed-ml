@@ -429,7 +429,7 @@ The format \concept{TSV} (\code{urn:sedml:format:tsv}) is defined identical to \
 
 \subsubsection{HDF5 (Hierarchical Data Format version 5)}
 \label{sec:dataFormatHDF5}
-The format \concept{HDF5} is defined at \url{https://portal.hdfgroup.org/display/HDF5/HDF5}.  It supports the storage of multidimensional data, and is therefore ideal for storing the SED-ML output of repeated tasks; particularly nested repeated tasks.
+The format \concept{HDF5} is defined at \url{https://portal.hdfgroup.org/display/HDF5/HDF5}.  It supports the storage of multidimensional data, and is therefore ideal for storing the SED-ML output of repeated tasks; particularly nested repeated tasks.  \changed{It also supports external storage of data, making it appropriate for extremely large data sets, such as that output by spatial simulations.}
 
 Each dimension of SED-ML \RepeatedTask output should be labeled according to the relevant \element{id} of the SED-ML object that describes that dimension, namely:
 

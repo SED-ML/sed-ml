@@ -57,26 +57,24 @@ SED-ML specifies for a given simulation experiment
 \item how these results should be presented and exported as figures and tables (\hyperref[class:output]{Output}).
 \end{itemize}
 
-A \hyperref[class:sed-ml]{SED-ML document} contains the following main objects to describe this information: \hyperref[class:dataDescription]{DataDescription}, \Model, \hyperref[class:change]{Change}, \Simulation, \AbstractTask, \DataGenerator, and \hyperref[class:output]{Output}.
+A \hyperref[class:sed-ml]{SED-ML document} contains the following main objects to describe this information: \hyperref[class:dataDescription]{DataDescription}, \Model, \Simulation, \AbstractTask, \DataGenerator, and \Output.
 
 \paragraph*{\hyperref[class:dataDescription]{DataDescription}}
 The \hyperref[class:dataDescription]{DataDescription} class enables investigators to specify datasets for a simulation experiment. Such data can be used for instance to parameterize model simulations or to plot data together with simulation results.
 
 \paragraph*{\Model}
-The \Model class enables investigators to describe the models involved in a simulation experiment.
-
-The \hyperref[class:change]{Change} class enables investigators to describe how models should be modified (pre-processing), e.g., changing the value of a parameter, or general changes on any element of the model representation that is addressable by an unambiguous target, such as an \hyperref[sec:xpath]{XPath} expression for an entity in an XML-encoded model, e.g., substituting one element of an XML description of a model for another.
+The \Model class enables investigators to describe the externally-defined models involved in a simulation experiment.
 
 \paragraph*{\Simulation}
 The \Simulation class enables investigators to describe the settings required for each simulation and analysis. These includes information such as the type of each simulation/analysis, the algorithm required to execute the simulation/analysis, and the algorithm parameters that the simulation/analysis should be executed with.
 
 \paragraph*{\AbstractTask}
-SED-ML uses the \AbstractTask class to specify which \Simulation or \FitExperiment to run with which \Model.
+The \AbstractTask's three child classes (\Task, \RepeatedTask, and \ParameterEstimationTask) enable investigators to specify an execution of an experiment through a combination of a \Simulation or \FitExperiment with a \Model. This allows investigators to describe a variety of different experiment formats in a flexible way.
 
 \paragraph*{\DataGenerator}
 The \DataGenerator class enables investigators to encode post-processing of simulation/analysis results before the generation of outputs, e.g., one can normalize the result of an observable, or calculate the mean of several observables. In the definition of a \DataGenerator, any addressable variable or parameter of any model or \DataSource may be referenced, and used to calculate new values using \hyperref[sec:mathML]{MathML}.
 
-\paragraph*{\hyperref[class:output]{Output}}
+\paragraph*{\Output}
 The \hyperref[class:output]{Output} class enables investigators to describe how post-processing simulation results should be exported, such as with two dimensional plots (\hyperref[class:plot2D]{Plot2D}), three dimensional plots (\hyperref[class:plot3D]{Plot3D}), and data tables (\hyperref[class:report]{Report}).
 
 Detailed technical information about these classes is available in Chapter~\ref{chp:specification}. 
@@ -97,12 +95,11 @@ The repressilator is a synthetic oscillating network of transcription regulators
 \label{sec:timecourse}
 Figure~1c of the reference publication \citep{Elowitz:2000} (reproduced with SED-ML in \fig{rep_tc1} and \fig{rep_tc2}) reported the following simulation. 
 
-\begin{enumerate}
- 	\item{Import the repressilator model identified by the Unified Resource Identifier (URI) \citep{Berners-Lee:2005}\\ 	\url{https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000012?filename=BIOMD0000000012_url.xml}.}
- 	\item {Select a method for ODE numerical integration (CVODE, KISAO:0000019).}
- 	\item{Run a uniform time course simulation for 1000\,min, recording output each minute.}
- 	\item{Plot the amount of \code{lacI}, \code{tetR} and \code{cI} against time in a 2D plot.}
- \end{enumerate}
+\begin{itemize}
+ 	\item{\changed{The \Model imports the repressilator model} identified by the Unified Resource Identifier (URI) \citep{Berners-Lee:2005}\\ \url{https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000012?filename=BIOMD0000000012_url.xml}.}
+ 	\item{\changed{The \Simulation defines a uniform time course simulation for 1000 minutes, recording output each minute, using CVODE (KISAO:0000019).}}
+        \item{\changed{Several \DataGenerator elements and an \Output are used to define a 2D plot of \code{lacI}, \code{tetR} and \code{cI} against time.}}
+ \end{itemize}
 
 \begin{figure}[ht]
     \centering
@@ -126,14 +123,13 @@ Figure~1c of the reference publication \citep{Elowitz:2000} (reproduced with SED
 \label{sec:preprocessing}
 A common step in a simulation experiment is the modification of model parameters before simulation. When changing the parameter values for the protein copies per promoter, \code{tps$\_$repr}, and the leakiness in protein copies per promoter, \code{tps$\_$active}, as illustrated below, the system's behavior switches from sustained oscillations to damped oscillations (\fig{rep_pre1} and \fig{rep_pre2}).
 
-\begin{enumerate}
-	\item{Import the model as in Section~\ref{sec:timecourse} above.}
-	\item{Change the value of the parameter \code{tps$\_$repr} from \code{0.0005} to \code{1.3e-05}.}
-	\item{Change the value of the parameter \code{tps$\_$active} from \code{0.5} to \code{0.013}.}
-	\item{Select the same ODE integration method (CVODE).}
-	\item{Run a uniform time course for 1000~min, recording output each minute.}
-	\item Plot the amount of \code{lacI}, \code{tetR} and \code{cI} against time in a 2D plot.
-\end{enumerate}
+\begin{itemize}
+	\item{\changed{Everything is defined as in Section~\ref{sec:timecourse} above.}}
+	\item{\changed{Two child \Change elements of the \Model are defined that change the value of the parameter \code{tps$\_$repr} from \code{0.0005} to \code{1.3e-05}, and \code{tps$\_$active} from \code{0.5} to \code{0.013}.}}
+	\item{\changed{The same \Simulation, \DataGenerator, and \Output elements are used.}}
+\end{itemize}
+
+\pagebreak
 
 \begin{figure}[ht]
     \centering
@@ -157,13 +153,11 @@ A common step in a simulation experiment is the modification of model parameters
 \label{sec:postprocessing}
 In a simulation experiment, the raw numerical output of simulations must often be post-processed before plotting or reporting. Normalized plots (\fig{rep_post1} and \fig{rep_post2}) of the results of the first simulation (Section~\ref{sec:timecourse}), which highlights the influence of the variables on each other (in phase-plane), can be constructed as follows:
 
-(Please note that the description steps 1 - 4 remain as in Section~\ref{sec:timecourse} above.)
-\begin{enumerate}
-	\item[5.]{Collect \code{lacI(t)}, \code{tetR(t)} and \code{cI(t)}.}
-	\item[6.]{Compute the greatest value for each of the repressor proteins, \code{max(lacI(t))}, \code{max(tetR(t))}, \code{max(cI(t))}.}
-	\item[7.]{Normalize the data for each of the repressor proteins by dividing each time point by its maximum value, i.e., \code{lacI(t)/max(lacI(t))}, \code{tetR(t)/max(tetR(t))}, and \code{cI(t)/max(cI(t))}.}
-	\item[8.]{Plot the normalized \code{lacI} protein as a function of the normalized \code{cI}, the normalized \code{cI} as a function of the normalized \code{tetR} protein, and the normalized \code{tetR} protein against the normalized \code{lacI} protein in a 2D plot.}
-\end{enumerate}
+\begin{itemize}
+	\item{\changed{Everything is initially defined as in Section~\ref{sec:timecourse} above.}}
+        \item{\changed{Three new \DataGenerator elements are defined that normalize the values of \code{lacI(t)}, \code{tetR(t)} and \code{cI(t)} by dividing each by their respective maximums.}}
+	\item{\changed{A new 2D plot \Output is created where these normalized values are plotted against each other:  \code{lacI} vs. \code{cI}, \code{cI} vs. \code{tetR}, and \code{tetR} vs. \code{lacI}.}}
+\end{itemize}
 
 \begin{figure}[ht]
     \centering

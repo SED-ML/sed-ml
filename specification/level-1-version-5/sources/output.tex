@@ -6,7 +6,7 @@
 
 The abstract \Output class describes how the results of a simulation are presented (\fig{output}). The available output classes are \Plot, \Report, \ParameterEstimationReport, and \Figure. The data used in an \Output is provided via the \DataGenerator class.
 
-\sedfig[width=0.6\textwidth]{images/uml/output}{The definition of the SED-ML \Output class. The subclasses are defined below.}{fig:output}
+\sedfig[width=0.6\textwidth]{images/uml/output}{The definition of the SED-ML \Output and \AnalyticOutput classes. The subclasses are defined below.}{fig:output}
 
 The \Output class inherits the \element{id} and \element{name} attributes from \SedBase, as well as the optional \element{annotation} and \element{notes} chidren.  When producing a printed table or figure, users may want to use the \element{name} as the title, and the \element{notes} as the legend.
 
@@ -24,9 +24,17 @@ The optional child \concept{\element{algorithm}} element defines the algorithm u
 % OUTPUT COMPONENTS
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
+% ~~~ AnalyticOutput ~~~
+\begin{blockChanged}
+\subsection{\element{AnalyticOutput}}
+\label{class:analyticOutput}
+Like \Analysis class, the \AnalyticOutput class represents any sort of output from a simulation experiment, entirely defined by its child \Algorithm.  If the output can be defined by a different \Output object, that should be used instead, so that tools are more likely to recognize the request.  But for any output not covered by a \Plot subclass, \Report, \Figure, or \ParameterEstimationReport, the only thing necessary is a KiSAO term for the \Algorithm defining what to do.  One might used the \AnalyticOutput class to define spatial output, for example, or an animation.  As long as a KiSAO term can be created to describe the output, it can be captured in an \AnalyticOutput.
+\end{blockChanged}
+
+
 
 % ~~~ PLOT ~~~
-\subsubsection{\element{Plot}}
+\subsection{\element{Plot}}
 \label{class:plot}
 The \Plot is an abstract base class for two- and three-dimensional plot outputs.  It defines the size and axes of a plot, as well as whether or not a legend should be displayed.
 
@@ -190,6 +198,25 @@ The \element{type} attribute, if present, determines the type of surface and how
 \paragraph*{\element{logX}, \element{logY}, \element{logZ} (deprecated)}
 The \element{logX}, \element{logY} and \element{logZ} attributes, of type \element{Boolean}, were used in previous versions of SED-ML to indicate whether the respective axis of the \Plot should be linear or log10.  This allowed multiple objects in the same \Plot to contradict each other, and has therefore been moved to \Axis.  The \element{logX}, \element{logY} and \element{logZ} attributes on \Surface have therefore been deprecated, and will always be ignored.
 
+
+\subsubsection{\element{ParameterEstimationResultPlot}}
+\label{class:parameterEstimationResultPlot}
+A \ParameterEstimationResultPlot class is used to create a default plot from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskReference} of type \SIdRef that points to that task.
+
+\sedfig[width=0.7\textwidth]{images/uml/parameterEstimationResultPlot}{The definition of the SED-ML \ParameterEstimationResultPlot and \WaterfallPlot classes.}{fig:parameterEstimationResultPlotFigure}
+
+The plot should display the relevant information collected during the parameter estimation, but the specifics may vary from tool to tool depending on the particular method used.  At the very least, the optimal \AdjustableParameter values should be reported, along with any information that would let the user determine the confidence in those estimates, such as the residuals.
+
+It is possible to reproduce and/or have more control over the contents of a \Plot that covers the contents of a \ParameterEstimationTask by creating \DataGenerator elements that use \Variable objects using a \element{dimensionTerm} and referencing particular elements of a \ParameterEstimationTask such as the residuals of the \Objective, or the overall $\chi^2$ value of the task.  This is the only way to get direct control over the \Style of anything displayed in a \ParameterEstimationResultPlot.  But the data itself should be displayed in some form by default in a \ParameterEstimationReport.
+
+
+\subsubsection{\element{WaterfallPlot}}
+\label{class:waterfallPlot}
+The \WaterfallPlot class is used to create a default plot of a particular style from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskReference} of type \SIdRef that points to that task.
+
+Like a \ParameterEstimationResultPlot, a \WaterfallPlot displays a range of results and data from a \ParameterEstimationTask that might not otherwise be easily accessible.  Different tools and different experiments may result in different types and styles of waterfall plots.  For an overview of the sort of data present in one, see Gillespie, 2012 \citep{gillespie2012}.
+
+
 %
 
 
@@ -285,21 +312,4 @@ In the following example, a 3x3 \Figure is defined with four subplots.  The firs
 
 \sedfig[width=0.6\textwidth]{images/Figure_example}{The output of Listing \vref{lst:figure_example}}{fig:figure_example}
 
-
-\subsection{\element{ParameterEstimationResultPlot}}
-\label{class:parameterEstimationResultPlot}
-A \ParameterEstimationResultPlot class is used to create a default plot from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskReference} of type \SIdRef that points to that task.
-
-\sedfig[width=0.7\textwidth]{images/uml/parameterEstimationResultPlot}{The definition of the SED-ML \ParameterEstimationResultPlot and \WaterfallPlot classes.}{fig:parameterEstimationResultPlotFigure}
-
-The plot should display the relevant information collected during the parameter estimation, but the specifics may vary from tool to tool depending on the particular method used.  At the very least, the optimal \AdjustableParameter values should be reported, along with any information that would let the user determine the confidence in those estimates, such as the residuals.
-
-It is possible to reproduce and/or have more control over the contents of a \Plot that covers the contents of a \ParameterEstimationTask by creating \DataGenerator elements that use \Variable objects using a \element{dimensionTerm} and referencing particular elements of a \ParameterEstimationTask such as the residuals of the \Objective, or the overall $\chi^2$ value of the task.  This is the only way to get direct control over the \Style of anything displayed in a \ParameterEstimationResultPlot.  But the data itself should be displayed in some form by default in a \ParameterEstimationReport.
-
-
-\subsection{\element{WaterfallPlot}}
-\label{class:waterfallPlot}
-The \WaterfallPlot class is used to create a default plot of a particular style from a \ParameterEstimationTask.  It inherits from \Plot, and adds a single required attribute \element{taskReference} of type \SIdRef that points to that task.
-
-Like a \ParameterEstimationResultPlot, a \WaterfallPlot displays a range of results and data from a \ParameterEstimationTask that might not otherwise be easily accessible.  Different tools and different experiments may result in different types and styles of waterfall plots.  For an overview of the sort of data present in one, see Gillespie, 2012 \citep{gillespie2012}.
 

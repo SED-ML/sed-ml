@@ -1,5 +1,5 @@
-\section{General data types, attributes and classes}
-This section introduces concepts used repeatedly throughout the specification of SED-ML. This includes  \hyperref[sec:dataTypes]{primitive data types}, classes (\SedBase, \Notes, \hyperref[class:notes]{Annotation}, \Parameter, \Variable), \hyperref[sec:generalAttributes]{attributes}, and \hyperref[sec:reference]{reference relations}.
+\section{General data types and classes}
+This section introduces concepts used repeatedly throughout the specification of SED-ML. This includes  \hyperref[sec:dataTypes]{primitive data types}, \hyperref[sec:reference]{reference relations}, and base classes (\SedBase, \Notes, \hyperref[class:notes]{Annotation}, \Calculation, \Parameter, \Variable).
 
 The main \hyperref[sec:components]{SED-ML components} based on these general data types, attributes and classes are described in Section~\ref{sec:components}.
 
@@ -10,7 +10,42 @@ The main \hyperref[sec:components]{SED-ML components} based on these general dat
 \label{sec:dataTypes}
 Primitive data types comprise the set of data types used in SED-ML classes. Most primitive types in SED-ML are taken from the data types defined in XML Schema 1.0, including \element{string}, \element{boolean}, \element{int}, \element{positiveInteger}, \element{double} and \element{XML}. 
 
-A few additional primitive types are defined by SED-ML itself: \hyperref[type:id]{\element{ID}}, \SId, \SIdRef, \hyperref[type:target]{\element{TargetType}}, \hyperref[type:xpath]{\element{XPath}}, \hyperref[type:mathml]{\element{MathML}}, \hyperref[type:anyURI]{\element{anyURI}}, \hyperref[type:urn]{\element{URN}}, \hyperref[type:numlsid]{\element{NuMLSId}}, and \hyperref[type:numlsidref]{\element{NuMLSIdRef}}.
+\begin{blockChanged}
+A few additional primitive types are defined by SED-ML itself, summarized in Table \ref{tab:datatypes}, and described more fully below.
+
+\begin{table}[ht]
+\center
+\begin{tabular}{lll}
+\toprule
+\textbf{Data type} & \textbf{Summary} & \textbf{Used}\\
+\midrule
+\hyperref[type:id]{\element{ID}} & External unique ID & Everywhere, as `metaid'\\
+\SId & Internal unique ID & Everywhere, as `id'\\ 
+\SIdRef & Reference to an \SId & All internal references\\
+\hyperref[type:target]{\element{TargetType}} & External reference to model element & In `target' attributes \\
+\hyperref[type:xpath]{\element{XPath}} & External references to XML elements & In `target' attributes referencing XML\\
+\hyperref[type:mathml]{\element{MathML}} & Math definitions & Anywhere calculations are performed\\
+\hyperref[type:anyURI]{\element{anyURI}} & Reference to external resource &  \Variable, \DataDescription and \Model \\
+\hyperref[type:urn]{\element{URN}} & Externally-defined definition & \DataDescription and \Model \\
+\hyperref[type:numlsid]{\element{NuMLSId}} & An ID in a NuML element & \DimensionDescription \\
+\hyperref[type:numlsidref]{\element{NuMLSIdRef}} & Reference to a \NuMLSId & \DataSource, \Slice \\
+\SedColor & Definition of RGB/RGBA for SED-ML & \Line, \Marker, and \Fill \\
+\CurveType & Defined list of possible curve types & The \Curve `type' attribute\\
+\SurfaceType & Defined list of possible surface types & The \Surface `type' attribute \\
+\LineType & Defined list of possible line types & The \Line `type' attribute \\
+\MarkerType & Defined list of possible marker types & The \Marker `type' attribute \\
+\MappingType & Defined list of possible fit mapping types & The \FitMapping `type' attribute \\
+\ExperimentType & Defined list of possible fit experiment types & The \FitExperiment `type' attribute \\
+\AxisType & Defined list of possible axis types & The \Axis `type' attribute \\
+\ScaleType & Defined list of possible bounds scale types & The \Bounds `scale' attribute \\
+\bottomrule
+\end{tabular}
+\caption{Primitive data types defined by SED-ML.}
+\label{tab:datatypes}
+\end{table}
+
+\end{blockChanged}
+
 
 \subsubsection[\element{ID}]{Type \element{ID}}
 \label{type:id}
@@ -132,6 +167,125 @@ The \element{AxisType} primitive data type is used in the definition of the \Axi
 
 The \element{ScaleType} primitive data type is used in the definition of the \Bounds class.  \element{ScaleType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{linear}, \val{log}, and \val{log10}.  Attributes of type \element{ScaleType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Bounds class's definition in \ref{class:bounds}.
 
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% REFERENCE RELATION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{Reference relations}
+\label{sec:reference}
+
+The \concept{reference} concept is used to refer to a particular element inside the SED-ML document. It may occur as an association between:
+
+\begin{itemize}
+	\item{two \Models (\hyperref[sec:modelReference]{modelReference})}
+	\item{a \Variable and a \Model (\hyperref[sec:modelReference]{modelReference})}
+	\item{a \Variable and an \AbstractTask (\hyperref[sec:taskReference]{taskReference})}
+	\item{a \Task and the simulated \Model (\hyperref[sec:modelReference]{modelReference})}
+	\item{a \Task and the \Simulation (\hyperref[sec:simulationReference]{simulationReference})}
+	\item{an \hyperref[class:output]{Output} and a \DataGenerator (\hyperref[sec:dataReference]{dataReference})}
+\end{itemize}
+
+The definition of a \Task requires a reference to a particular \Model object (\hyperref[sec:modelReference]{modelReference}); furthermore, the \hyperref[class:abstractTask]{Task} object must be associated with a particular \Simulation object (\hyperref[sec:simulationReference]{simulationReference}).
+
+Depending on the use of the \concept{reference} relation in connection with a \Variable object, it may take different roles: 
+
+\begin{enumerate}
+\item[a.]{The \concept{reference} association might occur between a \Variable object and a \Model object, e.g., if the variable is to define a \hyperref[class:change]{Change}. 
+In that case the \code{variable} element contains a \hyperref[sec:modelReference]{modelReference} to refer to the particular model that contains the variable used to define the change.}
+
+\item[b.]{If the \concept{reference} is used as an association between a \Variable object and an \AbstractTask object inside the \hyperref[class:dataGenerator]{dataGenerator} class, then the \code{variable} element contains a \hyperref[sec:taskReference]{taskReference} to unambiguously refer to an observable in a given task.}
+\end{enumerate}
+
+
+% ~~~ MODEL REFERENCE ~~~
+\subsubsection{modelReference}
+\label{sec:modelReference}
+The \concept{modelReference} is a \hyperref[sec:reference]{reference} used to refer to a particular \Model via a \SIdRef. The \concept{modelReference} either represents a relation between two \Model objects, a \Variable object and a \Model object, or a relation between a \Task object and a \Model object.
+
+The \hyperref[sec:model_source]{\code{source}} attribute of a \Model is allowed to reference either a URI or an \SId of a second \Model. Circular constructs where a model \code{A} refers to a model \code{B} and \code{B} to \code{A} (directly or indirectly) are invalid.
+
+If pre-processing needs to be applied to a model before simulation, then the model update can be specified by creating a \hyperref[class:change]{Change} object. In the particular case that a change must be calculated with a mathematical function, variables need to be defined. To refer to an existing entity in a defined \Model, the \concept{modelReference} is used. 
+
+The \code{modelReference} attribute of the \code{variable} element contains the \concept{id} of a model that is defined in the document. 
+
+\lsttext{modelReference1}{modelReference} 
+In the example, a change is  applied on model \code{m0001}. In the \code{computeChange} element a list of variables is defined. One of those variable is \code{v1} which is defined in another model (\code{cellML}). The \hyperref[sec:xpath]{XPath} expression given in the \hyperref[sec:target]{target} attribute identifies the variable in the model which carries the ID \code{cellML}.
+\begin{myXmlLst}{SED-ML \code{modelReference} attribute inside a variable definition of a \code{computeChange} element}{lst:modelReference1}
+<model id="m0001" [..]>
+	<listOfChanges>
+		<computeChange>
+			<listOfVariables>
+				<variable id="v1" modelReference="cellML" target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" />
+     			[..]
+			</listOfVariables>
+			<listOfParameters [..] />
+    			<math>
+     			[CALCULATION OF CHANGE]
+    			</math>
+   		</computeChange>
+	</listOfChanges>
+	[..]
+</model>
+\end{myXmlLst}
+
+The \concept{modelReference} is also used to indicate that a \Model object is used in a particular  \Task. Listing \ref{lst:modelReference2} shows how this can be done for a sample SED-ML document.
+
+\begin{myXmlLst}{SED-ML \code{modelReference} definition inside a \element{task} element}{lst:modelReference2}
+<listOfTasks>
+	<task id="t1" name="Baseline" modelReference="model1" simulationReference="simulation1" />
+	<task id="t2" name="Modified" modelReference="model2" simulationReference="simulation1" />
+</listOfTasks>
+\end{myXmlLst}
+
+The example defines two different tasks; the first one applies the simulation settings of \code{simulation1} on \code{model1}, the second one applies the same simulation settings on \code{model2}.
+
+
+% ~~~ SIMULATION REFERENCE ~~~
+\subsubsection{simulationReference}
+\label{sec:simulationReference}
+The \concept{simulationReference} is used to refer to a particular \Simulation  via a \SIdRef, e.g., in a \Task. 
+
+Listing \ref{lst:modelReference2} shows the reference to a defined simulation for a sample SED-ML document. In the example, both tasks \code{t1} and \code{t2} use the simulation settings defined in \code{simulation1} to run the experiment.
+
+
+% ~~~ TASK REFERENCE ~~~
+\subsubsection{taskReference}
+\label{sec:taskReference}
+The \concept{taskReference} is a \hyperref[sec:reference]{reference} used to refer to a particular \AbstractTask via a \SIdRef. The \concept{taskReference} is used in \SubTask to reference the respective subtask, or in \Variable within a \DataGenerator.
+
+\DataGenerator objects are created to apply post-processing to the simulation results before final output. 
+For certain types of post-processing \Variable objects need to be created.
+These link to a \hyperref[class:abstractTask]{task} defined within the \ListOfTasks from which the model that contains the variable of interest can be inferred. A \concept{taskReference} association is used to realise that link from a \Variable object inside a \DataGenerator to an \AbstractTask object. Listing \ref{lst:reference3} gives an example.
+
+\begin{myXmlLst}{SED-ML \code{taskReference} definition inside a \element{dataGenerator} element}{lst:reference3}
+<listOfDataGenerators>
+	<dataGenerator id="tim3" name="tim mRNA (difference v1-v2+20)">
+	<listOfVariables>
+   		<variable id="v1" taskReference="t1" [..] />
+  	</listOfVariables>
+  	<math [..]/>
+	</dataGenerator>
+</listOfDataGenerators>
+\end{myXmlLst}
+
+The example shows the definition of a variable \code{v1} in a \code{dataGenerator} element. The variable appears in the model that is used in task \code{t1}. The task definition of \code{t1} might look as shown in Listing~\ref{lst:taskReferences}.
+
+\begin{myXmlLst}{Use of the reference relations in a task definition}{lst:taskReferences}
+<listOfTasks>
+	<task id="t1" name="task definition" modelReference="model1" simulationReference="simulation1" />
+</listOfTasks>
+\end{myXmlLst}
+Task \code{t1} references the model \code{model1}. Therefore we can conclude that the variable \code{v1} defined in \lst{reference3} targets an element of the model with ID \code{model1}. The targeting process itself will be explained in section \ref{sec:target} on \refpage{sec:target}.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% LISTOF containers
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+\subsection{\element{listOf*} containers}
+\label{class:listOf}
+SED-ML \concept{\element{listOf*}} elements serve as containers for a collection of objects of the same type. For example, the \hyperref[class:listOfModels]{\element{listOfModels}} contains all \Model objects of a SED-ML document. Lists do not carry any further semantics nor do they add additional attributes. They might, however, be annotated with \Notes and \Annotation as they are derived from \hyperref[class:sedBase]{SEDBase}. All \concept{\element{listOf*}} elements are optional in a SED-ML document (with exception of \hyperref[class:listOfRanges]{\element{listOfRanges}} and \hyperref[class:subTask]{\element{listOfSubTasks}} in a \RepeatedTask, which are mandatory).
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -277,10 +431,128 @@ An \concept{Annotation} can be used to capture computer-processable information 
 \end{myXmlLst}
 
 
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Algorithm
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{Algorithm}}
+\label{class:algorithm}
+\changed{The \concept{Algorithm} class is used as a child of the \Simulation, \AbstractTask, \Change, \Output, and \FitExperiment classes (defined later) as a way to declare uses of those classes that are not explicitly defined in this specification.  Instead, the algorithms are defined in the KiSAO ontology, which can be changed and adapted outside of the release cycle of SED-ML specifications.  The KiSAO ontology was originally designed to store \Simulation algorithms and algorithm parameters, and is expanding into the other types of algorithms as well.}
+
+An \Algorithm has a mandatory attribute \element{kisaoID} which contains a \hyperref[sec:kisao]{KiSAO} reference to the particular algorithm used \changed{by its parent \Simulation, \AbstractTask, \Change, \Output, or \FitExperiment}. In addition, the \Algorithm has an optional \hyperref[class:listOfAlgorithmParameters]{\element{listOfAlgorithmParameters}} child containing \hyperref[class:algorithmParameter]{algorithmParameter} children, which are used to parameterize the \concept{algorithm}.  \changed{If the algorithm in question is a hybrid algorithm, the root \Algorithm object's \element{kisaoID} will reference the hybrid algorithm itself, and may have \AlgorithmParameter children indicating which specific algorithms are being combined.}
+
+\sedfig[width=0.9\textwidth]{images/uml/algorithm}{The \Algorithm, \ListOfAlgorithmParameters, and \AlgorithmParameter classes.}{fig:algorithm}
+
+The example given in Listing~\ref{lst:simulation}, completed by algorithm definitions results in the code given in Listing \ref{lst:algorithm}. In the example, for both simulations an algorithm is defined. In the first simulation \code{s1} a deterministic approach is used (Euler forward method), in the second simulation \code{s2} a stochastic approach is used (Stochsim nearest neighbor).
+
+\begin{myXmlLst}{The SED-ML \code{algorithm} element for two different time course simulations, defining two different algorithms. KISAO:0000030 refers to the \emph{Euler forward method} ; KISAO:0000021 refers to the \emph{StochSim nearest neighbor algorithm}.}{lst:algorithm}
+<listOfSimulations>
+	<uniformTimeCourse id="s1" name="time course simulation over 100 minutes" [..]>
+		<algorithm kisaoID="KISAO:0000030" />
+	</uniformTimeCourse>
+	<uniformTimeCourse id="s2" name="time course definition for concentration of p" [..]>
+		<algorithm kisaoID="KISAO:0000021" />
+	</uniformTimeCourse>
+</listOfSimulations>
+\end{myXmlLst}
+
+
+% ~~~ LIST OF ALGORITHM PARAMETERS ~~~
+\paragraph*{\element{listOfAlgorithmParameters}}
+\label{class:listOfAlgorithmParameters}
+The \concept{\element{listOfAlgorithmParameters}} contains the settings for the simulation algorithm used in a \hyperref[class:simulation]{simulation} (\fig{simulation}). It may list several instances of the \hyperref[class:algorithmParameter]{AlgorithmParameter} class. The \concept{\element{listOfAlgorithmParameters}} is optional and may contain zero to many parameters.
+
+\lsttext{listOfAlgorithmParameters}{listOfAlgorithmParameters}
+\begin{myXmlLst}{SED-ML listOfAlgorithmParameters element}{lst:listOfAlgorithmParameters}
+<listOfAlgorithmParameters>
+	<algorithmParameter name="absolute tolerance" kisaoID="KISAO:0000211" value="23"/> 
+</listOfAlgorithmParameters>
+\end{myXmlLst}
+
+
+% ~~~ ALGORITHM PARAMETER ~~~
+\subsubsection{\element{AlgorithmParameter}}
+\label{class:algorithmParameter}
+The \concept{AlgorithmParameter} class allows to parameterize a particular simulation \hyperref[class:algorithm]{algorithm}. The set of possible parameters for a particular instance is determined by the algorithm that is referenced by the \element{kisaoID} of the enclosing \hyperref[class:algorithm]{algorithm} element (\fig{simulation}). Parameters of simulation algorithms are unambiguously referenced by the mandatory \element{kisaoID} attribute. Their value is set in the mandatory \hyperref[sec:algorithmParameterValue]{\element{value}} attribute.  An \AlgorithmParameter may also have child \AlgorithmParameter elements through a \ListOfAlgorithmParameters.
+
+Any \AlgorithmParameter defined in a \Simulation overrides any global \AlgorithmParameter defined in the \SedDocument.  And in the reverse, any \AlgorithmParameter left undefined in a \Simulation may be defined by a global \AlgorithmParameter element.  Any \AlgorithmParameter child of a \Simulation applies only to that individual \Simulation, and assumes its previous value (if set globally) or becomes unset (if not) outside of the context of that \Simulation (for example, within a \RepeatedTask).
+
+NOTE:  the global \ListOfAlgorithmParameters was added to SED-ML in \currentLV.  As such, the only place to define a random seed (\code{KISAO:0000488)} for the simulation experiment as a whole in previous versions was in a \Simulation, which might be part of a \RepeatedTask.  Rather than indicating that each repeat was to receive the same seed, resulting in identical traces, users would generally use the 'seed' parameter to indicate that the experiment as a whole was to be replicable from one run to the next.  Current users of SED-ML should use a global \AlgorithmParameter for this purpose, but older versions or older files may use the previous scheme.
+
+\paragraph*{\element{value}}
+\label{sec:algorithmParameterValue}
+The \concept{\element{value}} sets the value of the \hyperref[class:algorithmParameter]{AlgorithmParameter}.  For XML purposes, it is of type \element{string}, but should contain a value that makes sense for the \element{kisaoID} in question:  if the KiSAO term is a value, the string should contain a number; if the KiSAO term is a Boolean, the string should contain the string \val{true} or \val{false}, etc.  The string must be non-empty; to explicitly state that a value is not set, this should be encoded in the string as a \element{KISAO:0000629}, which indicates that the value is \code{Null}.
+
+\begin{myXmlLst}{The SED-ML \concept{\code{algorithmParameter}} element setting the parameter value for the simulation algorithm. \code{KISAO:0000032} refers to the \emph{explicit fourth-order Runge-Kutta method}; \code{KISAO:00000211} refers to the \emph{absolute tolerance}.}{lst:algorithmParameter}
+<algorithm kisaoID="KISAO:0000032"> 
+	<listOfAlgorithmParameters> 
+		<algorithmParameter name="absolute tolerance" kisaoID="KISAO:0000211" value="23"/> 
+	</listOfAlgorithmParameters>
+</algorithm>
+\end{myXmlLst}
+
+\paragraph*{\element{listOfAlgorithmParameters}}
+The child \element{listOfAlgorithmParameters} of an \AlgorithmParameter may contain parameters that modify or refine the parent parameter, depending on the KiSAO term used.  
+
+\begin{myXmlLst}{A SED-ML \code{algorithmParameter} element defining a mixed simulator, each with their own set of algorithm parameters.}{lst:algorithmParameter2}
+<algorithm name="hybrid method" kisaoID="KISAO:0000352">
+    <listOfAlgorithmParameters>
+        <algorithmParameter name="modeling and simulation algorithm" kisaoID="KISAO:0000000" value="KISAO:0000019">
+            <listOfAlgorithmParameters>
+                <algorithmParameter name="absolute tolerance"   kisaoID="KISAO:0000211" value="1e-07"/>
+                <algorithmParameter name="integration method"   kisaoID="KISAO:0000475" value="BDF"/>
+                <algorithmParameter name="interpolate solution" kisaoID="KISAO:0000481" value="true"/>
+                <algorithmParameter name="iteration type"       kisaoID="KISAO:0000476" value="Newton"/>
+                <algorithmParameter name="linear solver"        kisaoID="KISAO:0000477" value="Dense"/>
+                <algorithmParameter name="lower half-bandwidth" kisaoID="KISAO:0000480" value="0"/>
+                <algorithmParameter name="maximum number of steps" kisaoID="KISAO:0000415" value="500"/>
+                <algorithmParameter name="maximum step size"    kisaoID="KISAO:0000467" value="0"/>
+                <algorithmParameter name="preconditioner"       kisaoID="KISAO:0000478" value="Banded"/>
+                <algorithmParameter name="relative tolerance"   kisaoID="KISAO:0000209" value="1e-07"/>
+                <algorithmParameter name="upper half-bandwidth" kisaoID="KISAO:0000479" value="0"/>
+            </listOfAlgorithmParameters>
+        </algorithmParameter>
+        <algorithmParameter name="modeling and simulation algorithm" kisaoID="KISAO:0000000" value="KISAO:0000282">
+            <listOfAlgorithmParameters>
+                <algorithmParameter name="linear solver"        kisaoID="KISAO:0000477" value="Dense"/>
+                <algorithmParameter name="lower half-bandwidth" kisaoID="KISAO:0000480" value="0"/>
+                <algorithmParameter name="maximum iterations"   kisaoID="KISAO:0000486" value="200"/>
+                <algorithmParameter name="upper half-bandwidth" kisaoID="KISAO:0000479" value="0"/>
+            </listOfAlgorithmParameters>
+        </algorithmParameter>
+    </listOfAlgorithmParameters>
+</algorithm>
+\end{myXmlLst}
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% CALCULATION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{Calculation}}
+\label{class:calculation}
+\label{class:listOfVariables}
+\label{class:listOfParameters}
+
+The \Calculation class is an abstract base class for the \ComputeChange, \DataGenerator, and \FunctionalRange classes (defined later).  A \Calculation inherits from \SedBase, and adds three children:  a required \Math child, and optional lists of \Variable and \Parameter objects.  In all three of its uses, it performs a calculation that optionally may depend on locally-defined elements.  This abstract class is provided for convenience, since all three other classes contain this same relatively complicated structure.  However, as \FunctionalRange also inherits from \Range, and \ComputeChange also inherits from \Change, implementations may choose to simply re-instantiate the child elements of \Calculation on these or other derived classes, in environments where multiple inheritance is illegal or infeasible.
+
+\sedfig[width=0.9\textwidth]{images/uml/calculation}{The \Calculation, \Math, \ListOfVariables, \ListOfParameters, and \Parameter classes.}{fig:calculation}
+
+In the \ListOfVariables, the \Variable elements define identifiers referring to model variables or range values, which may then be used within the \Math expression. These references always retrieve the current value of the variable in the context of the \Calculation.  A \ListOfVariables may contain any number of \Variable entries.
+
+In the \ListOfParameters, the \Parameter elements define simple values that may be used in the \Math of the \Calculation.
+
+The \Math encompasses the mathematical expression that is used to compute the value for the \Calculation.
+
+% ~~~ MATH ~~~
+\subsubsection{\element{Math}}
+\label{sec:math}
+A \Calculation's \changed{optional} child element \concept{\element{math}} contains a MathML expression used to calculate a value in the context of the \Calculation.  The available subset of mathematical functions and elements which can be used in the \Math element are listed in Section~\hyperref[sec:mathML]{MathML}.  \changed{If there is no child \concept{algorithm} of the derived class, or if the child \concept{algorithm} is not defined, then this math child is required.}
+
+
+
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % PARAMETER
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{\element{Parameter}}
+\subsubsection{\element{Parameter}}
 \label{class:parameter}
 The \concept{Parameter} class (\fig{parameter}) can be used to create named parameters with a constant value for use in mathematical expressions.
 The \concept{Parameter} class introduces the required attribute \hyperref[sec:value]{\element{value}} of type \element{double}, and inherits other attributes and children from \SEDBase, with the exception that the attribute \element{id} is required instead of optional.  The \element{id} takes on the value of the \element{value} in the context of the \Math of the parent \Calculation.  Its \element{id} may not be used in a \Calculation that is not its parent, but it must nevertheless be globally unique.
@@ -308,7 +580,7 @@ The \concept{\element{value}} attribute of data type \code{double} is required f
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % VARIABLE
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{\element{Variable}}
+\subsubsection{\element{Variable}}
 \label{class:variable}
 A \Variable (\fig{variable}) is a reference to a mathematical value.  The \Variable class inherits the attributes and children of \SEDBase, changing the attribute \element{id} to be required, and adds several more.  A \Variable references a single mathematical element (which in some cases may be multidimensional) by using its attributes \element{target}, \element{symbol}, \element{target2}, \element{symbol2}, and \element{term}, either together or separately.  It may also need to reference a particular model in a particular context by using the \element{modelReference} and \element{taskReference} attributes.  Finally, it may reduce the dimensionality of the resulting math by using the \element{dimensionTerm} attribute with one or more \AppliedDimension children, as members of its \ListOfAppliedDimensions child.  All of these additional attributes and child objects are optional, but must together be used to fully define a unique mathematical reference.
 
@@ -490,7 +762,7 @@ Together with the \AppliedDimension children, the \element{dimensionTerm} define
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % APPLIEDDIMENSION
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{\element{AppliedDimension}}
+\subsubsection{\element{AppliedDimension}}
 \label{class:appliedDimension}
 \label{class:listOfAppliedDimensions}
 
@@ -522,252 +794,4 @@ Possible values for the \element{target} attribute include:
 \paragraph*{\element{dimensionTarget}}
 The \element{dimensionTarget} attribute of an \AppliedDimension is used when the \Variable references an external data set.  The \element{NuMLIdRef} must reference a dimension of the referenced data.
 
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% CALCULATION
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{\element{Calculation}}
-\label{class:calculation}
-\label{class:listOfVariables}
-\label{class:listOfParameters}
-
-The \Calculation class is an abstract base class for the \ComputeChange, \DataGenerator, and \FunctionalRange classes (defined later).  A \Calculation inherits from \SedBase, and adds three children:  a required \Math child, and optional lists of \Variable and \Parameter objects.  In all three of its uses, it performs a calculation that optionally may depend on locally-defined elements.  This abstract class is provided for convenience, since all three other classes contain this same relatively complicated structure.  However, as \FunctionalRange also inherits from \Range, and \ComputeChange also inherits from \Change, implementations may choose to simply re-instantiate the child elements of \Calculation on these or other derived classes, in environments where multiple inheritance is illegal or infeasible.
-
-\sedfig[width=0.9\textwidth]{images/uml/calculation}{The \Calculation, \Math, \ListOfVariables, \ListOfParameters, and \Parameter classes.}{fig:calculation}
-
-In the \ListOfVariables, the \Variable elements define identifiers referring to model variables or range values, which may then be used within the \Math expression. These references always retrieve the current value of the variable in the context of the \Calculation.  A \ListOfVariables may contain any number of \Variable entries.
-
-In the \ListOfParameters, the \Parameter elements define simple values that may be used in the \Math of the \Calculation.
-
-The \Math encompasses the mathematical expression that is used to compute the value for the \Calculation.
-
-% ~~~ MATH ~~~
-\subsubsection{\element{Math}}
-\label{sec:math}
-A \Calculation's \changed{optional} child element \concept{\element{math}} contains a MathML expression used to calculate a value in the context of the \Calculation.  The available subset of mathematical functions and elements which can be used in the \Math element are listed in Section~\hyperref[sec:mathML]{MathML}.  \changed{If there is no child \concept{algorithm} of the derived class, or if the child \concept{algorithm} is not defined, then this math child is required.}
-
-
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% Algorithm
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{\element{Algorithm}}
-\label{class:algorithm}
-\changed{The \concept{Algorithm} class is used as a child of the \Simulation, \AbstractTask, \Change, \Output, and \FitExperiment classes as a way to declare uses of those classes that are not explicitly defined in this specification.  Instead, the algorithms are defined in the KiSAO ontology, which can be changed and adapted outside of the release cycle of SED-ML specifications.  The KiSAO ontology was originally designed to store \Simulation algorithms and algorithm parameters, and is expanding into the other types of algorithms as well.}
-
-An \Algorithm has a mandatory attribute \hyperref[sec:kisaoid]{\element{kisaoID}} which contains a \hyperref[sec:kisao]{KiSAO} reference to the particular algorithm used \changed{by its parent \Simulation, \AbstractTask, \Change, \Output, or \FitExperiment}. In addition, the \Algorithm has an optional \hyperref[class:listOfAlgorithmParameters]{\element{listOfAlgorithmParameters}} child containing \hyperref[class:algorithmParameter]{algorithmParameter} children, which are used to parameterize the \concept{algorithm}.  \changed{If the algorithm in question is a hybrid algorithm, the root \Algorithm object's \element{kisaoID} will reference the hybrid algorithm itself, and may have \AlgorithmParameter children indicating which specific algorithms are being combined.}
-
-\sedfig[width=0.9\textwidth]{images/uml/algorithm}{The \Algorithm, \ListOfAlgorithmParameters, and \AlgorithmParameter classes.}{fig:algorithm}
-
-The example given in Listing~\ref{lst:simulation}, completed by algorithm definitions results in the code given in Listing \ref{lst:algorithm}. In the example, for both simulations an algorithm is defined. In the first simulation \code{s1} a deterministic approach is used (Euler forward method), in the second simulation \code{s2} a stochastic approach is used (Stochsim nearest neighbor).
-
-\begin{myXmlLst}{The SED-ML \code{algorithm} element for two different time course simulations, defining two different algorithms. KISAO:0000030 refers to the \emph{Euler forward method} ; KISAO:0000021 refers to the \emph{StochSim nearest neighbor algorithm}.}{lst:algorithm}
-<listOfSimulations>
-	<uniformTimeCourse id="s1" name="time course simulation over 100 minutes" [..]>
-		<algorithm kisaoID="KISAO:0000030" />
-	</uniformTimeCourse>
-	<uniformTimeCourse id="s2" name="time course definition for concentration of p" [..]>
-		<algorithm kisaoID="KISAO:0000021" />
-	</uniformTimeCourse>
-</listOfSimulations>
-\end{myXmlLst}
-
-
-% ~~~ LIST OF ALGORITHM PARAMETERS ~~~
-\paragraph*{\element{listOfAlgorithmParameters}}
-\label{class:listOfAlgorithmParameters}
-The \concept{\element{listOfAlgorithmParameters}} contains the settings for the simulation algorithm used in a \hyperref[class:simulation]{simulation} (\fig{simulation}). It may list several instances of the \hyperref[class:algorithmParameter]{AlgorithmParameter} class. The \concept{\element{listOfAlgorithmParameters}} is optional and may contain zero to many parameters.
-
-\lsttext{listOfAlgorithmParameters}{listOfAlgorithmParameters}
-\begin{myXmlLst}{SED-ML listOfAlgorithmParameters element}{lst:listOfAlgorithmParameters}
-<listOfAlgorithmParameters>
-	<algorithmParameter name="absolute tolerance" kisaoID="KISAO:0000211" value="23"/> 
-</listOfAlgorithmParameters>
-\end{myXmlLst}
-
-
-% ~~~ ALGORITHM PARAMETER ~~~
-\subsubsection{\element{AlgorithmParameter}}
-\label{class:algorithmParameter}
-The \concept{AlgorithmParameter} class allows to parameterize a particular simulation \hyperref[class:algorithm]{algorithm}. The set of possible parameters for a particular instance is determined by the algorithm that is referenced by the \element{kisaoID} of the enclosing \hyperref[class:algorithm]{algorithm} element (\fig{simulation}). Parameters of simulation algorithms are unambiguously referenced by the mandatory \hyperref[sec:kisaoid]{\element{kisaoID}} attribute. Their value is set in the mandatory \hyperref[sec:algorithmParameterValue]{\element{value}} attribute.  An \AlgorithmParameter may also have child \AlgorithmParameter elements through a \ListOfAlgorithmParameters.
-
-Any \AlgorithmParameter defined in a \Simulation overrides any global \AlgorithmParameter defined in the \SedDocument.  And in the reverse, any \AlgorithmParameter left undefined in a \Simulation may be defined by a global \AlgorithmParameter element.  Any \AlgorithmParameter child of a \Simulation applies only to that individual \Simulation, and assumes its previous value (if set globally) or becomes unset (if not) outside of the context of that \Simulation (for example, within a \RepeatedTask).
-
-NOTE:  the global \ListOfAlgorithmParameters was added to SED-ML in \currentLV.  As such, the only place to define a random seed (\code{KISAO:0000488)} for the simulation experiment as a whole in previous versions was in a \Simulation, which might be part of a \RepeatedTask.  Rather than indicating that each repeat was to receive the same seed, resulting in identical traces, users would generally use the 'seed' parameter to indicate that the experiment as a whole was to be replicable from one run to the next.  Current users of SED-ML should use a global \AlgorithmParameter for this purpose, but older versions or older files may use the previous scheme.
-
-\paragraph*{\element{value}}
-\label{sec:algorithmParameterValue}
-The \concept{\element{value}} sets the value of the \hyperref[class:algorithmParameter]{AlgorithmParameter}.  For XML purposes, it is of type \element{string}, but should contain a value that makes sense for the \element{kisaoID} in question:  if the KiSAO term is a value, the string should contain a number; if the KiSAO term is a Boolean, the string should contain the string \val{true} or \val{false}, etc.  The string must be non-empty; to explicitly state that a value is not set, this should be encoded in the string as a \element{KISAO:0000629}, which indicates that the value is \code{Null}.
-
-\begin{myXmlLst}{The SED-ML \concept{\code{algorithmParameter}} element setting the parameter value for the simulation algorithm. \code{KISAO:0000032} refers to the \emph{explicit fourth-order Runge-Kutta method}; \code{KISAO:00000211} refers to the \emph{absolute tolerance}.}{lst:algorithmParameter}
-<algorithm kisaoID="KISAO:0000032"> 
-	<listOfAlgorithmParameters> 
-		<algorithmParameter name="absolute tolerance" kisaoID="KISAO:0000211" value="23"/> 
-	</listOfAlgorithmParameters>
-</algorithm>
-\end{myXmlLst}
-
-\paragraph*{\element{listOfAlgorithmParameters}}
-The child \element{listOfAlgorithmParameters} of an \AlgorithmParameter may contain parameters that modify or refine the parent parameter, depending on the KiSAO term used.  
-
-\begin{myXmlLst}{A SED-ML \code{algorithmParameter} element defining a mixed simulator, each with their own set of algorithm parameters.}{lst:algorithmParameter2}
-<algorithm name="hybrid method" kisaoID="KISAO:0000352">
-    <listOfAlgorithmParameters>
-        <algorithmParameter name="modeling and simulation algorithm" kisaoID="KISAO:0000000" value="KISAO:0000019">
-            <listOfAlgorithmParameters>
-                <algorithmParameter name="absolute tolerance"   kisaoID="KISAO:0000211" value="1e-07"/>
-                <algorithmParameter name="integration method"   kisaoID="KISAO:0000475" value="BDF"/>
-                <algorithmParameter name="interpolate solution" kisaoID="KISAO:0000481" value="true"/>
-                <algorithmParameter name="iteration type"       kisaoID="KISAO:0000476" value="Newton"/>
-                <algorithmParameter name="linear solver"        kisaoID="KISAO:0000477" value="Dense"/>
-                <algorithmParameter name="lower half-bandwidth" kisaoID="KISAO:0000480" value="0"/>
-                <algorithmParameter name="maximum number of steps" kisaoID="KISAO:0000415" value="500"/>
-                <algorithmParameter name="maximum step size"    kisaoID="KISAO:0000467" value="0"/>
-                <algorithmParameter name="preconditioner"       kisaoID="KISAO:0000478" value="Banded"/>
-                <algorithmParameter name="relative tolerance"   kisaoID="KISAO:0000209" value="1e-07"/>
-                <algorithmParameter name="upper half-bandwidth" kisaoID="KISAO:0000479" value="0"/>
-            </listOfAlgorithmParameters>
-        </algorithmParameter>
-        <algorithmParameter name="modeling and simulation algorithm" kisaoID="KISAO:0000000" value="KISAO:0000282">
-            <listOfAlgorithmParameters>
-                <algorithmParameter name="linear solver"        kisaoID="KISAO:0000477" value="Dense"/>
-                <algorithmParameter name="lower half-bandwidth" kisaoID="KISAO:0000480" value="0"/>
-                <algorithmParameter name="maximum iterations"   kisaoID="KISAO:0000486" value="200"/>
-                <algorithmParameter name="upper half-bandwidth" kisaoID="KISAO:0000479" value="0"/>
-            </listOfAlgorithmParameters>
-        </algorithmParameter>
-    </listOfAlgorithmParameters>
-</algorithm>
-\end{myXmlLst}
-
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% GENERAL ATTRIBUTES
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{General attributes and elements}
-This section describes attributes which occur on multiple SED-ML classes, e.g., \kisaoID, or \hyperref[class:listOf]{\element{listOf*}} constructs.
-\label{sec:generalAttributes}
-
-% ~~~ KISAOID ~~~
-\subsubsection{\element{kisaoID}}
-\label{sec:kisaoid}
-Some classes, e.g., \hyperref[class:algorithm]{Algorithm} and \hyperref[class:algorithmParameter]{AlgorithmParameter}, have a mandatory element \concept{\element{kisaoID}} or another attribute which references a term from the \hyperref[sec:kisao]{KiSAO} ontology. The referenced term must be defined using the syntax defined by the regular expression \code{\textasciicircum KISAO:[0-9]\{7\}\$}. Note, this syntax uses colons rather than the underscores used by the official id of each KiSAO term.
-
-Investigators are encouraged to use as precise \hyperref[sec:kisao]{KiSAO} terms as possible to indicate simulation \hyperref[class:algorithm]{Algorithm} and \hyperref[class:algorithmParameter]{AlgorithmParameter}. As needed, investigators can request additional terms.
-
-
-% ~~~ LISTOF ~~~
-\subsubsection{\element{listOf*} containers}
-\label{class:listOf}
-SED-ML \concept{\element{listOf*}} elements serve as containers for a collection of objects of the same type. For example, the \hyperref[class:listOfModels]{\element{listOfModels}} contains all \Model objects of a SED-ML document. Lists do not carry any further semantics nor do they add additional attributes. They might, however, be annotated with \Notes and \Annotation as they are derived from \hyperref[class:sedBase]{SEDBase}. All \concept{\element{listOf*}} elements are optional in a SED-ML document (with exception of \hyperref[class:listOfRanges]{\element{listOfRanges}} and \hyperref[class:subTask]{\element{listOfSubTasks}} in a \RepeatedTask, which are mandatory).
-
-
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% REFERENCE RELATION
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\subsection{Reference relations}
-\label{sec:reference}
-
-The \concept{reference} concept is used to refer to a particular element inside the SED-ML document. It may occur as an association between:
-
-\begin{itemize}
-	\item{two \Models (\hyperref[sec:modelReference]{modelReference})}
-	\item{a \Variable and a \Model (\hyperref[sec:modelReference]{modelReference})}
-	\item{a \Variable and an \AbstractTask (\hyperref[sec:taskReference]{taskReference})}
-	\item{a \Task and the simulated \Model (\hyperref[sec:modelReference]{modelReference})}
-	\item{a \Task and the \Simulation (\hyperref[sec:simulationReference]{simulationReference})}
-	\item{an \hyperref[class:output]{Output} and a \DataGenerator (\hyperref[sec:dataReference]{dataReference})}
-\end{itemize}
-
-The definition of a \Task requires a reference to a particular \Model object (\hyperref[sec:modelReference]{modelReference}); furthermore, the \hyperref[class:abstractTask]{Task} object must be associated with a particular \Simulation object (\hyperref[sec:simulationReference]{simulationReference}).
-
-Depending on the use of the \concept{reference} relation in connection with a \Variable object, it may take different roles: 
-
-\begin{enumerate}
-\item[a.]{The \concept{reference} association might occur between a \Variable object and a \Model object, e.g., if the variable is to define a \hyperref[class:change]{Change}. 
-In that case the \code{variable} element contains a \hyperref[sec:modelReference]{modelReference} to refer to the particular model that contains the variable used to define the change.}
-
-\item[b.]{If the \concept{reference} is used as an association between a \Variable object and an \AbstractTask object inside the \hyperref[class:dataGenerator]{dataGenerator} class, then the \code{variable} element contains a \hyperref[sec:taskReference]{taskReference} to unambiguously refer to an observable in a given task.}
-\end{enumerate}
-
-
-% ~~~ MODEL REFERENCE ~~~
-\subsubsection{modelReference}
-\label{sec:modelReference}
-The \concept{modelReference} is a \hyperref[sec:reference]{reference} used to refer to a particular \Model via a \SIdRef. The \concept{modelReference} either represents a relation between two \Model objects, a \Variable object and a \Model object, or a relation between a \Task object and a \Model object.
-
-The \hyperref[sec:model_source]{\code{source}} attribute of a \Model is allowed to reference either a URI or an \SId of a second \Model. Circular constructs where a model \code{A} refers to a model \code{B} and \code{B} to \code{A} (directly or indirectly) are invalid.
-
-If pre-processing needs to be applied to a model before simulation, then the model update can be specified by creating a \hyperref[class:change]{Change} object. In the particular case that a change must be calculated with a mathematical function, variables need to be defined. To refer to an existing entity in a defined \Model, the \concept{modelReference} is used. 
-
-The \code{modelReference} attribute of the \code{variable} element contains the \concept{id} of a model that is defined in the document. 
-
-\lsttext{modelReference1}{modelReference} 
-In the example, a change is  applied on model \code{m0001}. In the \code{computeChange} element a list of variables is defined. One of those variable is \code{v1} which is defined in another model (\code{cellML}). The \hyperref[sec:xpath]{XPath} expression given in the \hyperref[sec:target]{target} attribute identifies the variable in the model which carries the ID \code{cellML}.
-\begin{myXmlLst}{SED-ML \code{modelReference} attribute inside a variable definition of a \code{computeChange} element}{lst:modelReference1}
-<model id="m0001" [..]>
-	<listOfChanges>
-		<computeChange>
-			<listOfVariables>
-				<variable id="v1" modelReference="cellML" target="/cellml:model/cellml:component[@cmeta:id='MP']/cellml:variable[@name='vsP']/@initial_value" />
-     			[..]
-			</listOfVariables>
-			<listOfParameters [..] />
-    			<math>
-     			[CALCULATION OF CHANGE]
-    			</math>
-   		</computeChange>
-	</listOfChanges>
-	[..]
-</model>
-\end{myXmlLst}
-
-The \concept{modelReference} is also used to indicate that a \Model object is used in a particular  \Task. Listing \ref{lst:modelReference2} shows how this can be done for a sample SED-ML document.
-
-\begin{myXmlLst}{SED-ML \code{modelReference} definition inside a \element{task} element}{lst:modelReference2}
-<listOfTasks>
-	<task id="t1" name="Baseline" modelReference="model1" simulationReference="simulation1" />
-	<task id="t2" name="Modified" modelReference="model2" simulationReference="simulation1" />
-</listOfTasks>
-\end{myXmlLst}
-
-The example defines two different tasks; the first one applies the simulation settings of \code{simulation1} on \code{model1}, the second one applies the same simulation settings on \code{model2}.
-
-
-% ~~~ SIMULATION REFERENCE ~~~
-\subsubsection{simulationReference}
-\label{sec:simulationReference}
-The \concept{simulationReference} is used to refer to a particular \Simulation  via a \SIdRef, e.g., in a \Task. 
-
-Listing \ref{lst:modelReference2} shows the reference to a defined simulation for a sample SED-ML document. In the example, both tasks \code{t1} and \code{t2} use the simulation settings defined in \code{simulation1} to run the experiment.
-
-
-% ~~~ TASK REFERENCE ~~~
-\subsubsection{taskReference}
-\label{sec:taskReference}
-The \concept{taskReference} is a \hyperref[sec:reference]{reference} used to refer to a particular \AbstractTask via a \SIdRef. The \concept{taskReference} is used in \SubTask to reference the respective subtask, or in \Variable within a \DataGenerator.
-
-\DataGenerator objects are created to apply post-processing to the simulation results before final output. 
-For certain types of post-processing \Variable objects need to be created.
-These link to a \hyperref[class:abstractTask]{task} defined within the \ListOfTasks from which the model that contains the variable of interest can be inferred. A \concept{taskReference} association is used to realise that link from a \Variable object inside a \DataGenerator to an \AbstractTask object. Listing \ref{lst:reference3} gives an example.
-
-\begin{myXmlLst}{SED-ML \code{taskReference} definition inside a \element{dataGenerator} element}{lst:reference3}
-<listOfDataGenerators>
-	<dataGenerator id="tim3" name="tim mRNA (difference v1-v2+20)">
-	<listOfVariables>
-   		<variable id="v1" taskReference="t1" [..] />
-  	</listOfVariables>
-  	<math [..]/>
-	</dataGenerator>
-</listOfDataGenerators>
-\end{myXmlLst}
-
-The example shows the definition of a variable \code{v1} in a \code{dataGenerator} element. The variable appears in the model that is used in task \code{t1}. The task definition of \code{t1} might look as shown in Listing~\ref{lst:taskReferences}.
-
-\begin{myXmlLst}{Use of the reference relations in a task definition}{lst:taskReferences}
-<listOfTasks>
-	<task id="t1" name="task definition" modelReference="model1" simulationReference="simulation1" />
-</listOfTasks>
-\end{myXmlLst}
-Task \code{t1} references the model \code{model1}. Therefore we can conclude that the variable \code{v1} defined in \lst{reference3} targets an element of the model with ID \code{model1}. The targeting process itself will be explained in section \ref{sec:target} on \refpage{sec:target}.
 
