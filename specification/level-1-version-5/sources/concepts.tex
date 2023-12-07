@@ -1,0 +1,521 @@
+\pagebreak
+\chapter{Concepts used in SED-ML}
+\label{chp:concepts}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% MATHML
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{MathML}
+\label{sec:mathML}
+SED-ML encodes mathematical expressions using a subset of \concept{MathML} 2.0 \citep{CIM+01}. \concept{MathML} is an international standard for encoding mathematical expressions using XML. It is also used as a representation of mathematical expressions in other formats, such as SBML and CellML, two of the model languages supported by SED-ML. 
+
+SED-ML files can use mathematical expressions to encode for example pre-processing steps applied to the computational model (\ComputeChange), or post processing steps applied to the raw simulation data before output (\DataGenerator). 
+
+SED-ML classes reference \concept{MathML} expressions via the element \Math of data type \hyperref[type:mathml]{\element{MathML}}.
+
+% ~~~ MATHML ELEMENTS ~~~
+\subsection{MathML elements}
+The allowed MathML in SED-ML is restricted to the following subset: 
+
+\begin{itemize}\setlength{\parskip}{-0.1ex}
+
+\item \emph{token}: \token{cn}, \token{ci}, \token{csymbol},
+  \token{sep}
+  
+\item \emph{general}: \token{apply}, \token{piecewise},
+  \token{piece}, \token{otherwise} 
+
+\item \emph{relational operators}: \token{eq}, \token{neq},
+  \token{gt}, \token{lt}, \token{geq}, \token{leq}
+
+\item \emph{arithmetic operators}: \token{plus}, \token{minus},
+  \token{times}, \token{divide}, \token{power}, \token{root},
+  \token{abs}, \token{exp}, \token{ln}, \token{log},
+  \token{floor}, \token{ceiling}, \token{factorial}, \token{quotient}, \token{max}, \token{min}, \token{rem}
+
+\item \emph{logical operators}: \token{and}, \token{or},
+  \token{xor}, \token{not}, \token{implies}
+
+\item \emph{qualifiers}: \token{degree},
+  \token{logbase}
+
+\item \emph{trigonometric operators}: \token{sin}, \token{cos},
+  \token{tan}, \token{sec}, \token{csc}, \token{cot},
+  \token{sinh}, \token{cosh}, \token{tanh}, \token{sech},
+  \token{csch}, \token{coth}, \token{arcsin}, \token{arccos},
+  \token{arctan}, \token{arcsec}, \token{arccsc}, \token{arccot},
+  \token{arcsinh}, \token{arccosh}, \token{arctanh},
+  \token{arcsech}, \token{arccsch}, \token{arccoth}
+
+\item \emph{constants}: \token{true}, \token{false},
+  \token{notanumber}, \token{pi}, \token{infinity},
+  \token{exponentiale}
+
+\item \emph{MathML annotations}: \token{semantics},
+  \token{annotation}, \token{annotation-xml}
+\end{itemize}
+
+
+% ~~~ MATHML SYMBOLS ~~~
+\subsection{MathML symbols}
+
+All the operations listed above describe functions of scalar-valued SED variables, or element-wise computations of matrix-valued SED variables. Matrix-valued SED variables can arise in multiple ways. For example, a variable for a basic task of a non-spatial \UniformTimeCourse would be a vector with length equal to the number of steps of the time course plus one. A \Variable for a \RepeatedTask of a non-spatial time course could be represented a matrix with dimensions for the iterations of the repeated tasks, its subtasks, and the steps of the nested basic task. MathML functions for matrices should be evaluated on an element-wise basis. For example, if $M$ and $N$ were two 2D matrix-valued SED variables, $M+3$ would add three to every element of $M$, $R = M+N$ would only be valid if $M$ and $N$ have the same dimensions, and $R_{i,j}$ would be equal to $M_{i,j} + N_{i,j}$. If the lengths of the dimensions are not equal (i.e. if $M_{i,j}$ exists but $N_{i,j}$ does not), the missing value should be assumed to be $NaN$ (not a number).  At this point, SED-ML does not define an algebra for matrix computations.
+
+\subsubsection{MathML csymbols for dimensional input}
+
+While the new \element{dimensionTerm} attribute of the \Variable class provides functionality to reduce the dimensionality of matrices, previous version of SED-ML defined the MathML functions \sedmin, \sedmax, \sedsum, and \product, each of which would reduce any n-dimensional vector to a single scalar value.  It is recommended that users switch to using \Variable elements with a \element{dimensionTerm} for their increased functionality, but the old functions are still defined here for backwards compatibility.  The only allowed symbols to be used in aggregate functions are the identifiers of \Variables defined in the \hyperref[class:listOfVariables]{\element{listOfVariables}} of a \DataGenerator. These \Variables represent the data collected from the simulation experiment in the associated \Task.  They always return scalar values, regardless of the dimensionality of the \Variable, and ignore any NaN values the vector or matrix might have.
+
+\paragraph*{\element{min}}
+\label{fun:min}
+The \concept{\element{min}} of a variable represents the smallest value the simulation experiment for that variable (Listing~\ref{lst:minFunction}). 
+\begin{myXmlLst}{Example for the use of the MathML \code{min} function.}{lst:minFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#min">
+ 		min
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
+
+\paragraph*{\element{max}}
+\label{fun:max}
+The \concept{\element{max}} of a variable represents the largest value the simulation experiment for that variable (\lst{maxFunction}).
+\begin{myXmlLst}{Example for the use of the MathML \code{max} function.}{lst:maxFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#max">
+ 		max
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
+
+\paragraph*{\element{sum}}
+\label{fun:sum}
+The \concept{\element{sum}} of a variable represents the sum of all values of the variable returned by the simulation experiment (\lst{sumFunction}).
+\begin{myXmlLst}{Example for the use of the MathML \code{sum} function.}{lst:sumFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#sum">
+ 		sum
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
+
+\paragraph*{\element{product}}
+\label{fun:product}
+The \concept{\element{product}} of a variable represents the multiplication of all values of the variable returned by the simulation experiment (\lst{productFunction}).
+\begin{myXmlLst}{Example for the use of the MathML \code{product} function.}{lst:productFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/#product">
+ 		product
+ 	</csymbol>
+ 	<ci> variableId </ci>
+</apply>
+\end{myXmlLst}
+
+
+% ~~~ MATHML DISTRIBUTION FUNCTIONS ~~~
+\subsubsection{MathML Distribution Functions}
+The following functions are added to MathML as csymbols to represent draws from distributions:  \uniform, \normal, \lognormal, \poisson, and \sedgamma:
+
+\paragraph*{\element{uniform}}
+\label{fun:uniform}
+The \uniform of a variable represents a draw from a uniform distribution.  It has two arguments:  the first is `min' and the second is `max', with `max' requried to be greater than `min'.  The draw from the distribution must be between `min' and `max', and may include `min', but may not include `max'.
+\begin{myXmlLst}{Example for the use of the MathML \code{uniform} function.}{lst:uniformFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/functions/#uniform">
+ 		uniform
+ 	</csymbol>
+ 	<ci> minId </ci>
+ 	<ci> maxId </ci>
+</apply>
+\end{myXmlLst}
+
+
+\paragraph*{\element{normal}}
+\label{fun:normal}
+The \normal of a variable represents a draw from a normal distribution.  It has two arguments:  the first is `mean', and the second is `stdev', that define the mean and the standard deviation, respectively, of the distribution.
+\begin{myXmlLst}{Example for the use of the MathML \code{normal} function.}{lst:normalFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/functions/#normal">
+ 		normal
+ 	</csymbol>
+ 	<ci> meanId </ci>
+ 	<ci> stdevId </ci>
+</apply>
+\end{myXmlLst}
+
+
+\paragraph*{\element{lognormal}}
+\label{fun:lognormal}
+The \lognormal of a variable represents a draw from a log-normal distribution.  It has two arguments:  the first is `mean', and the second is `stdev', that define the mean and the standard deviation, respectively, of the distribution.
+\begin{myXmlLst}{Example for the use of the MathML \code{lognormal} function.}{lst:lognormalFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/functions/#lognormal">
+ 		lognormal
+ 	</csymbol>
+ 	<ci> meanId </ci>
+ 	<ci> stdevId </ci>
+</apply>
+\end{myXmlLst}
+
+
+%\paragraph*{\element{exponential}}
+%\label{fun:exponential}
+%The \exponential of a variable represents 
+
+\paragraph*{\element{gamma}}
+\label{fun:gamma}
+The \sedgamma of a variable represents a draw from a gamma distribution.  It has two arguments:  the first is `shape', and the second is `scale', that define the shape and scale, respectively, of the distribution.
+\begin{myXmlLst}{Example for the use of the MathML \code{gamma} function.}{lst:gammaFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/functions/#gamma">
+ 		gamma
+ 	</csymbol>
+ 	<ci> shapeId </ci>
+ 	<ci> scaleId </ci>
+</apply>
+\end{myXmlLst}
+
+\paragraph*{\element{poisson}}
+\label{fun:poisson}
+The \poisson of a variable represents a discrete value drawn from a poisson distribution.  It has a single argument:  `rate', the expected rate of occurrences for the distribution.
+\begin{myXmlLst}{Example for the use of the MathML \code{poisson} function.}{lst:poissonFunction}
+<apply>
+ 	<csymbol encoding="text" definitionURL="http://sed-ml.org/functions/#poisson">
+ 		poisson
+ 	</csymbol>
+ 	<ci> rateId </ci>
+</apply>
+\end{myXmlLst}
+
+
+
+% ~~~ NA VALUES ~~~
+\subsection{NA values}
+NA (not available) values can occur within a simulation experiment. Examples are missing values in a \hyperref[class:dataSource]{DataSource} or simulation results with NA values. All math operations encoded in \hyperref[sec:mathML]{MathML} in SED-ML are well defined on NA values. 
+
+NA values in a \hyperref[class:curve]{Curve} or \hyperref[class:surface]{Surface} should be ignored during plotting.
+  
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% URI SCHEME
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{URI scheme}  
+\label{sec:uriScheme}
+URIs are used in SED-ML as a mechanism
+\begin{itemize}
+	\item to reference models (\ref{sec:modelURI} \hyperref[sec:modelURI]{Model references})
+	\item to reference data files (\ref{sec:dataURI} \hyperref[sec:dataURI]{Data references})
+	\item to enable addressing implicit model variables (\ref{sec:implicitVariable}  \hyperref[sec:implicitVariable]{Symbols})
+	\item to annotate SED-ML elements (\ref{sec:annotations}  \hyperref[sec:annotations]{Annotation Scheme})
+\end{itemize}
+
+% ~~~ MODEL REFERENCES ~~~
+\subsection{Model references}
+\label{sec:modelURI}
+The two principle recommended methods for referencing data is by URL or by relative pathname.  Any URL should preferably point to a public, consistent location that provides the model description file. References to curated, open model bases are recommended, such as the BioModels Database. Relative pathnames are useful both when working with a collection or folder of related files, or when the files are collected into a \hyperref[sec:archive]{COMBINE archive}.
+
+For additional information see the \hyperref[sec:model_source]{\element{source}} attribute on \Model.
+
+An alternative means to obtain a model may be to provide a single resource containing necessary models and a SED-ML file. Although a specification of such a resource is beyond the scope of this document, the recommended means is the \hyperref[sec:archive]{COMBINE archive}.
+
+
+% ~~~ DATA REFERENCES ~~~
+\subsection{Data references}
+\label{sec:dataURI}
+
+The two principle recommended methods for referencing data is by URL or by relative pathname.  Both of these methods will work if the file or files are transferred to a new location, or to a \hyperref[sec:archive]{COMBINE archive}.  Absolute pathnames will work when used in their original locations, but not when moved to a new location or bundled into an archive, and are therefore not recommended.
+
+For additional information see the \hyperref[sec:data_source]{\element{source}} attribute on \hyperref[class:dataDescription]{DataDescription}.
+
+
+% ~~~ SYMBOLS ~~~
+\subsection{Symbols}
+\label{sec:implicitVariable}
+Some variables used in a simulation experiment are not explicitly defined in the model, but may be implicitly contained in it. For example, to plot a variable's behaviour over time, that variable is defined in an SBML model, whereas time is not explicitly defined. 
+
+SED-ML can refer to such implicit variables via the \concept{Symbol} concept. Such implicit variables are defined using KiSAO through the \kisaoID format to reference the implied variable.
+
+For example, to refer in a SED-ML file to the definition of time, the string \element{KISAO:0000832} is used.  For backwards compatibility, the string \val{urn:sedml:symbol:time} may be used.
+
+With very few exceptions, symbols refer to mathematics of a model that can be read out of the model, but cannot be set directly.  You cannot use a \element{symbol} attribute to set the time of a model, for example, nor may you set the Stoichiometry matrix nor the elasticities.  The only partial exception to this is that the amount, concentation, or particle number of a species may be set by an element using both a \element{target} attribute to indicate the species and a \element{symbol} to indicate which form to use.
+
+\tab{symbols}~lists the predefined symbols in SED-ML.
+\begin{table}[ht]
+\center
+\begin{tabular}{p{1.8cm}p{3.7cm}p{3cm}p{6cm}}
+\toprule
+\textbf{Language} & \textbf{URN} & \textbf{KiSAO ID} & \textbf{Definition}\\
+\midrule
+SBML & \code{urn:sedml:symbol:time} & KISAO:0000832 & Time in SBML is an intrinsic model variable that is addressable in model equations via a csymbol \code{time}.\\
+\bottomrule
+\end{tabular}
+\caption{The single predefined symbol in SED-ML. For \currentLV, KiSAO IDs are used instead, though `time' is still allowed for backwards compatibility.  The latest list of KiSAO terms is available from \url{https://github.com/SED-ML/KiSAO}.}
+\label{tab:symbols}
+\end{table}
+
+
+% ~~~ ANNOTATIONS ~~~
+\subsection{Annotation Scheme}
+\label{sec:annotations}
+When annotating SED-ML elements with semantic \hyperref[class:annotation]{annotations}, the \concept{MIRIAM URI Scheme} should be used. In addition to providing the data type (e.g., PubMed) and the particular data entry inside that data type (e.g., \code{10415827}), the relation of the annotation to the annotated element should be described using the standardized \concept{biomodels.net qualifier}. The list of qualifiers, as well as further information about their usage, is available from \url{http://www.biomodels.net/qualifiers/}.
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% URN SCHEME
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{URN scheme}  
+\label{sec:urnScheme}
+URNs are a subset of URIs, and are used in SED-ML as a mechanism
+\begin{itemize}
+	\item to specify the language of the referenced model (\ref{sec:languageURN} \hyperref[sec:languageURN]{Language references})
+	\item to specify the format of the referenced dataset (\ref{sec:dataFormatURN} \hyperref[sec:dataFormatURN]{Data format references})
+\end{itemize}
+
+% ~~~ LANGUAGE REFERENCES ~~~
+\subsection{Language references}
+\label{sec:languageURN}
+The evaluation of a SED-ML document is required in order for software to decide whether or not it can be used in a particular simulation environment. One crucial criterion is the particular model representation language used to encode the \hyperref[class:model]{model}. A simulation software usually only supports a small subset of the representation formats available to model biological systems computationally. 
+
+To help  software decide whether or not it supports a SED-ML description file, the information on the \hyperref[class:model]{model} encoding for each referenced \hyperref[class:model]{model} can be provided through the \hyperref[sec:language]{\element{language}} attribute, as the description of a language name and version through an unrestricted \code{String} is error-prone. 
+A prerequisite for a language to be fully supported by SED-ML is that a formalised language definition, e.g., an XML Schema, is provided online. SED-ML also defines a set of standard URIs to refer to particular language definitions. 
+
+To specify the language a model is encoded in, a set of pre-defined SED-ML URNs can be used (\tab{languageURN}). The structure of SED-ML language URNs is \element{urn:sedml:language:}\emph{\element{name.version}}. One can be as specific as defining a model being in a particular version of a language, e.g., SBML Level 3 Version 1 as \code{urn:sedml:language:sbml.level-3.version-1}.
+
+For additional information see the \hyperref[sec:language]{\element{language}} attribute on \Model.
+
+\begin{table}[ht]
+\center
+\begin{tabular}{p{5cm}p{10cm}}
+\toprule
+\textbf{Language} & \textbf{URN}\\
+\midrule
+BNGL (generic) & \code{urn:sedml:language:bngl} \\
+CellML (generic) & \code{urn:sedml:language:cellml} \\
+CellML 1.0 & \code{urn:sedml:language:cellml.1\_0} \\
+CellML 1.1 & \code{urn:sedml:language:cellml.1\_1} \\
+CellML 2.0 & \code{urn:sedml:language:cellml.2\_0} \\
+GINML (generic) & \code{urn:sedml:language:ginml} \\
+HOC (generic) & \code{urn:sedml:language:hoc} \\
+Kappa (generic) & \code{urn:sedml:language:kappa} \\
+LEMS (generic) & \code{urn:sedml:language:lems} \\
+MorpheusML (generic) & \code{urn:sedml:language:morpheusml} \\
+NeuroML (generic) & \code{urn:sedml:language:neuroml} \\
+NeuroML Version 1.8.1 Level 1 &	\code{urn:sedml:language:neuroml.version-1\_8\_1.level-1} \\
+NeuroML Version 1.8.1 Level 2 &	\code{urn:sedml:language:neuroml.version-1\_8\_1.level-2} \\
+NeuroML Version 1.8.1 Level 3 &	\code{urn:sedml:language:neuroml.version-1\_8\_1.level-3} \\
+NeuroML Version 2.1 &	\code{urn:sedml:language:neuroml.version-2\_1} \\
+PharmML (generic) & \code{urn:sedml:language:pharmml} \\
+SBML (generic) & \code{urn:sedml:language:sbml} \\
+SBML Level 1 Version 1 & \code{urn:sedml:language:sbml.level-1.version-1} \\
+SBML Level 1 Version 2 & \code{urn:sedml:language:sbml.level-1.version-2} \\
+SBML Level 2 Version 1 & \code{urn:sedml:language:sbml.level-2.version-1} \\
+SBML Level 2 Version 2 & \code{urn:sedml:language:sbml.level-2.version-2} \\
+SBML Level 2 Version 3 & \code{urn:sedml:language:sbml.level-2.version-3} \\
+SBML Level 2 Version 4 & \code{urn:sedml:language:sbml.level-2.version-4} \\
+SBML Level 2 Version 5 & \code{urn:sedml:language:sbml.level-2.version-5} \\
+SBML Level 3 Version 1 & \code{urn:sedml:language:sbml.level-3.version-1} \\
+SBML Level 3 Version 2 & \code{urn:sedml:language:sbml.level-3.version-2} \\
+Smoldyn (generic) & \code{urn:sedml:language:smoldyn} \\
+VCML (generic) & \code{urn:sedml:language:vcml} \\
+ZGINML (generic) & \code{urn:sedml:language:zginml} \\
+\bottomrule
+\end{tabular}
+\caption{Predefined model language URNs. The latest list of language URNs is available from \url{https://sed-ml.org/urns.html}.}
+\label{tab:languageURN}
+\end{table}
+
+% ~~~ DATA FORMAT REFERENCES ~~~
+\subsection{Data format references}
+\label{sec:dataFormatURN}
+To help software decide whether or not it supports a SED-ML file, the information on the \hyperref[class:dataDescription]{dataDescription} encoding for each referenced \hyperref[class:dataDescription]{dataDescription} can be provided through the \hyperref[sec:format]{\element{format}} attribute.
+
+To specify the format of a \hyperref[class:dataDescription]{dataDescription}, a set of pre-defined SED-ML URNs can be used (\tab{dataFormatURN}). The structure of SED-ML format URNs is \element{urn:sedml:format:}\emph{\element{name.version}}. 
+
+If it is not explicitly defined the default value for \element{format} is \code{urn:sedml:format:numl}, referring to NuML representation of the data. However, the use of the \element{format} attribute is strongly encouraged.
+
+For additional information see the \hyperref[sec:format]{\element{format}} attribute on \hyperref[class:dataDescription]{DataDescription} and the description of individual formats and their use in SED-ML below.
+
+\begin{table}[ht]
+\center
+\begin{tabular}{p{5cm}p{10cm}}
+\toprule
+\textbf{Data Format} & \textbf{URN}\\
+\midrule
+NuML (generic) & \code{urn:sedml:format:numl} \\
+NuML Level 1 Version 1 & \code{urn:sedml:format:numl.level-1.version-1} \\
+CSV & \code{urn:sedml:format:csv} \\
+TSV & \code{urn:sedml:format:tsv} \\
+HDF5 & \code{urn:sedml:format:hdf5} \\
+\bottomrule
+\end{tabular}
+\caption{Predefined dataDescription format URNs. The latest list of format URNs is available from \url{https://sed-ml.org/urns.html}.}
+\label{tab:dataFormatURN}
+\end{table}
+
+\subsubsection{NuML (Numerical Markup Language)}
+\label{sec:dataFormatNUML}
+\hyperref[sec:numl]{NuML} is an exchange format for numerical data. Data in the \concept{NuML} format (\code{urn:sedml:format:numl}) is defined via \code{resultComponents} with a single dataset corresponding to a single \code{resultComponent}. In the case that a \concept{NuML} file consists of multiple \code{resultComponents} the first \code{resultComponent} contains the data used in the \hyperref[class:dataDescription]{DataDescription}. There is currently no mechanism in SED-ML to reference the additional \code{resultComponents}.
+
+If a \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} is set on the \hyperref[class:dataDescription]{DataDescription}, than this \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} must be identical to the \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} of the \concept{NuML} file.
+
+\subsubsection{CSV (Comma Separated Values)}
+\label{sec:dataFormatCSV}
+Data in the \concept{CSV} format (\code{urn:sedml:format:csv}) must follow the following rules when used in combination with SED-ML: 
+
+\begin{itemize}
+    \item Each record is one line - Line separator may be LF (0x0A) or CRLF (0x0D0A), a line separator may also be embedded in the data (making a record more than one line but still acceptable).
+    \item Fields are separated with commas.
+    \item Embedded commas - Field must be delimited with double-quotes.
+    \item Leading and trailing whitespace is ignored - Unless the field is delimited with double-quotes in that case the whitespace is preserved.
+    \item Embedded double-quotes - Embedded double-quote characters must be doubled, and the field must be delimited with double-quotes.
+    \item Embedded line-breaks - Fields must be surounded by double-quotes.
+    \item Always Delimiting - Fields may always be delimited with double quotes, the delimiters will be parsed and discarded by the reading applications.
+	\item The first record is the header record defining the unique column ids 
+	\item Lines starting with "\#" are treated as comment lines and ignored
+	\item Empty lines are allowed and ignored
+	\item For numerical data the "." decimal separator is used
+	\item The following strings are interpreted as NaN: "", "\#N/A", "\#N/A N/A", "\#NA", "-1.\#IND", "-1.\#QNAN", "-NaN", "-nan", "1.\#IND", "1.\#QNAN", "N/A", "NA", "NULL", "NaN", "nan".
+\end{itemize}
+
+A dataset in \concept{CSV} is always encoding two dimensional data. 
+
+When using data in the \concept{CSV} format  SED-ML, the \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} is required on the \hyperref[class:dataDescription]{DataDescription}. 
+
+The {\element{dimensionDescription}} must consist of an outer \code{compositeDescription} with \code{indexType="integer"} which allows to reference the rows of the \concept{CSV} by index and a inner \code{compositeDescription} which allows to reference the columns of the \concept{CSV} by their column header id. Within the inner \code{compositeDescription} exactly one \code{atomicDescription} must exist. All data in the \concept{CSV} must have the same type  which is defined via the \element{valueType} on the \element{atomicDescription}.
+
+Below an example of the required \hyperref[sec:dimensionDescription]{\element{dimensionDescription}} for a \concept{CSV} is provided. In the example the \code{time} and \code{S1} columns are read from the \concept{CSV} file
+\begin{myXmlLst}{Example CSV}{lst:exampleCSV}
+# ./example.csv
+time, S1, S2
+0.0, 10.0, 0.0
+0.1, 9.9, 0.1
+0.2, 9.8, 0.2
+\end{myXmlLst}
+
+\begin{myXmlLst}{SED-ML \code{dimensionDescription} element for the example.csv}{lst:dimensionDescriptionCSV}
+
+<dataDescription id="datacsv" name="Example CSV dataset" source="./example.csv" format="urn:sedml:format:csv">
+  <dimensionDescription>
+    <compositeDescription indexType="integer" name="Index">
+      <compositeDescription indexType="string" name="ColumnIds">
+        <atomicDescription valueType="double" name="Values" />
+      </compositeDescription>
+    </compositeDescription>
+  </dimensionDescription>
+  <listOfDataSources>
+    <dataSource id="dataTime">
+      <listOfSlices>
+        <slice reference="ColumnIds" value="time" />
+      </listOfSlices>
+    </dataSource>
+    <dataSource id="dataS1">
+      <listOfSlices>
+        <slice reference="ColumnIds" value="S1" />
+      </listOfSlices>
+    </dataSource>
+  </listOfDataSources>
+  ...          
+</dataDescription>
+\end{myXmlLst} 
+
+\subsubsection{TSV (Tab Separated Values)}
+\label{sec:dataFormatTSV}
+The format \concept{TSV} (\code{urn:sedml:format:tsv}) is defined identical to \hyperref[sec:dataFormatCSV]{\element{CSV}} with the exceptions listed below
+\begin{itemize}
+    \item Fields are separated with tabs instead of commas.
+    \item Embedded tab - Field must be delimited with double-quotes (embedded comma field must not be delimited with double quotes)
+\end{itemize}
+
+
+\subsubsection{HDF5 (Hierarchical Data Format version 5)}
+\label{sec:dataFormatHDF5}
+The format \concept{HDF5} is defined at \url{https://portal.hdfgroup.org/display/HDF5/HDF5}.  It supports the storage of multidimensional data, and is therefore ideal for storing the SED-ML output of repeated tasks; particularly nested repeated tasks.  \changed{It also supports external storage of data, making it appropriate for extremely large data sets, such as that output by spatial simulations.}
+
+Each dimension of SED-ML \RepeatedTask output should be labeled according to the relevant \element{id} of the SED-ML object that describes that dimension, namely:
+
+\begin{itemize}
+    \item The \element{id} of the top-level \RepeatedTask
+    \item The \element{id} of the \SubTask
+    \item The \element{id} of any nested \SubTask (for arbitrarily-deeply nested subtasks).
+    \item The dimension of the data itself (i.e. \code{time} for a \UniformTimeCourse).
+    \item The \element{id} of the requested variable, or the infix representation of the \Math from the \DataGenerator.
+\end{itemize}
+
+When a \Variable's \element{dimensionTerm} is used to reduce the dimensionality of a set of data (using an appropriate KiSAO value and \AppliedDimension children), information about the dimension reduction may be included as annotation, i.e. one could annotate a \SubTask dimension as 'averaged over the \RepeatedTask \element{[id]}'.  When a \DataGenerator contains a \Variable that outputs a matrix, that matrix can also be labeled appropriately (such as with species or reaction ids).
+
+When output from multiple tasks are combined mathematically, their dimensions must match exactly, so the ids from either (or a combination of both) may be used.  Again, annotations are recommended to describe how the data was combined.
+
+Each dimension may also be annotated with an ontology term such as one from the 'Semanticscience Integrated Ontology' (SIO, \url{https://bioportal.bioontology.org/ontologies/SIO}).
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% XPATH
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{XPath}  
+\label{sec:xpath}
+\concept{XPath} is a language for finding and referencing information in an XML document \citep{xpath:1999}. Within SED-ML \currentLV, XPath version 1 expressions can be used to identify nodes and attributes within an XML representation of an XML-encoded model in the following ways:
+
+\begin{itemize}
+	\item {Within a \Variable definition, where \concept{XPath} identifies the model variable required for manipulation in SED-ML.  In this context, the XPath must always reference a single XML element, and not an attribute nor multiple XML elements.}
+	\item {Within a \hyperref[class:change]{Change} definition, where \concept{XPath} is used to identify the target XML to which a change should be applied.  In this context, the XPath may point to anything in the XML as appropriate for the \Change (i.e. an attribute in a \ChangeAttribute; one or more elements or attributes to remove in a \RemoveXML, etc.).}
+\end{itemize}
+
+For proper application, \concept{XPath} expressions should contain prefixes that allow their resolution to the correct XML namespace within an XML document. For example, the \concept{XPath} expression referring to a species \emph{X} in an SBML model:
+\begin{alltt}
+/sbml:sbml/sbml:model/sbml:listOfSpecies/sbml:species[@id=`X'] {\tickYes -\emph{CORRECT}}
+\end{alltt}
+is preferable to 
+\begin{alltt}
+/sbml/model/listOfSpecies/species[@id=`X'] {\tickNo -\emph{INCORRECT} }
+\end{alltt}
+
+which will only be interpretable by standard XML software tools if the SBML file declares no namespaces (and hence is invalid SBML).
+
+Following the convention of other \concept{XPath} host languages such as XPointer and XSLT, the prefixes used within \concept{XPath} expressions must be declared using namespace declarations within the SED-ML document, and be in-scope for the relevant expression. Thus for the correct example above, there must also be an ancestor element of the node containing the 
+ssion that has an attribute like:
+\begin{alltt}
+xmlns:sbml=`http://www.sbml.org/sbml/level3/version1/core'
+\end{alltt}
+(a different namespace URI may be used; the key point is that the prefix `sbml' must match that used in the XPath expression).
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% NUML
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{NuML}
+\label{sec:numl}
+The Numerical Markup Language (\concept{NuML}) aims to standardize the exchange and archiving of numerical results. Additional information including the \concept{NuML} specification is available from \url{https://github.com/NuML/NuML}.
+
+\concept{NuML} constructs are used in SED-ML for referencing external data sets in the \hyperref[class:dataDescription]{DataDescription} class. NuML is used to define the \hyperref[sec:dimensionDescription]{DimensionDescription} of external datasets in the \hyperref[class:dataDescription]{DataDescription}. In addition, \hyperref[type:numlsid]{\element{NuMLSIds}} are used for retrieving subsets of data via either the \hyperref[sec:indexSet]{\element{indexSet}} element in the \hyperref[class:dataSource]{DataSource} or within the \hyperref[class:slice]{Slice} class.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% KISAO
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{KiSAO}
+\label{sec:kisao}
+The Kinetic Simulation Algorithm Ontology (\concept{KiSAO} \citep{CWK+10}) is used in SED-ML to specify simulation \hyperref[class:algorithm]{algorithms} and \hyperref[class:algorithmParameter]{algorithmParameters}. \concept{KiSAO} is a community-driven approach of classifying and structuring simulation approaches by model characteristics and numerical characteristics. The ontology is available in OWL format from \concept{BioPortal} at \url{https://purl.bioontology.org/ontology/KiSAO}. 
+
+Defining simulation \hyperref[class:algorithm]{algorithms} through \concept{KISAO} terms not only identifies the simulation algorithm used for the SED-ML simulation, it also enables software to find related algorithms, if the specific implementation is not available. For example, software could decide to use the CVODE integration library for an analysis instead of a specific Runge Kutta 4,5 implementation. 
+
+Should a particular simulation algorithm or algorithm parameter not exist in \concept{KiSAO}, please request one via \url{https://github.com/SED-ML/KiSAO/issues/new/choose}.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% COMBINE ARCHIVE
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{COMBINE archive}
+\label{sec:archive}
+
+A \concept{COMBINE archive} \citep{Bergmann2014} is a single file that supports the exchange of all the information necessary for a modeling and simulation experiment in biology. A \concept{COMBINE archive} file is a ZIP container that includes a manifest file, listing the content of the archive, an optional metadata file adding information about the archive and its content, and the files describing the model. The content of a \concept{COMBINE archive} consists of files encoded in COMBINE standards whenever possible, but may include additional files defined by an Internet Media Type. Several tools that support the \concept{COMBINE archive} are available, either as independent libraries or embedded in modeling software.
+
+The \concept{COMBINE archive} is described at \url{https://co.mbine.org/documents/archive} and 
+in \citep{Bergmann2014}.
+
+\concept{COMBINE archives} are the recommended means for distributing simulation experiment descriptions in SED-ML, the respective data and model files, and the \hyperref[class:output]{Outputs} of the simulation experiment (figures and reports). All SED-ML specification examples in Appendix~\ref{app:examples} are available as \concept{COMBINE archive} from \url{https://sed-ml.org}.
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+%% RESOURCES
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\section{SED-ML resources}
+\label{sec:resources}
+
+Information on SED-ML can be found on \url{https://sed-ml.org}. The SED-ML XML Schema, the UML schema, SED-ML examples, and additional information is available from \url{https://github.com/sed-ml}.

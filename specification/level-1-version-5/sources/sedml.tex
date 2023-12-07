@@ -1,0 +1,225 @@
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% SED-ML
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{SED-ML} top level element}
+\label{class:sed-ml}
+Each SED-ML \currentLV document has a main class called \concept{SED-ML} which defines the document's structure and content (\fig{sed-mlMain}). It consists of several parts connected to the \concept{SED-ML} class via \hyperref[class:listOf]{\element{listOf*}} constructs: 
+\begin{itemize}
+	\item \hyperref[class:dataDescription]{DataDescription} (for specification of external data), 
+	\item \Model (for specification of models),
+	\item \Simulation (for specification of simulation setups), 
+	\item \AbstractTask (for the linkage of models and simulation setups), 
+	\item \DataGenerator (for the definition of post-processing),
+	\item \hyperref[class:output]{Output} (for the specification of plots and reports).
+	\item \hyperref[class:style]{Style} (for the specification of plot element styles).
+	\item \AlgorithmParameter (for the definition of global algorithm parameters).
+\end{itemize}
+
+A SED-ML document needs to have the SED-ML namespace defined through the mandatory \hyperref[sec:xmlns]{\element{xmlns}} attribute. In addition, the SED-ML \hyperref[sec:level]{\element{level}} and \hyperref[sec:version]{\element{version}} attributes are required.
+
+The root element of each SED-ML XML file is the \code{sedML} element, encoding \hyperref[sec:level]{\element{level}} and \hyperref[sec:version]{\element{version}} of the file, and setting the necessary namespaces. Nested inside the \code{sedML} element are the six optional lists serving as containers for the encoded information: \hyperref[class:listOfDataDescriptions]{\element{listOfDataDescriptions}} for all external data, \hyperref[class:listOfModels]{\element{listOfModels}} for all models, \hyperref[class:listOfSimulations]{\element{listOfSimulations}} for all simulations, \hyperref[class:listOfTasks]{\element{listOfTasks}} for all tasks, \hyperref[class:listOfDataGenerators]{\element{listOfDataGenerators}} for all post-processing definitions, \hyperref[class:listOfOutputs]{\element{listOfOutputs}} for all output definitions, \ListOfStyles for all style definitions. and \ListOfAlgorithmParameters for parameters that apply to processing this SED-ML file as a whole.
+
+\sedfig[width=0.7\textwidth]{images/uml/sed-ml}{The SED-ML class}{fig:sed-mlMain}
+
+
+The basic XML structure of a SED-ML file is shown in listing \vref{lst:sedmlRoot}.
+
+\begin{myXmlLst}{The SED-ML root element}{lst:sedmlRoot}
+<?xml version="1.0" encoding="utf-8"?>
+<sedML xmlns:math="http://www.w3.org/1998/Math/MathML" 
+       xmlns="http://sed-ml.org/sed-ml/level1/version4" level="1" version="4">
+	<listOfDataDescriptions>
+	  	[DATA REFERENCES AND TRANSFORMATIONS]
+  	</listOfDataDescriptions>
+	<listOfModels>
+		[MODEL REFERENCES AND APPLIED CHANGES]	 	
+ 	</listOfModels>
+	<listOfSimulations>
+		[SIMULATION SETUPS]
+	</listOfSimulations>
+	<listOfTasks>
+		[MODELS LINKED TO SIMULATIONS]
+	</listOfTasks>
+	<listOfDataGenerators>
+		[DEFINITION OF POST-PROCESSING]
+	</listOfDataGenerators>
+	<listOfOutputs>
+		[DEFINITION OF OUTPUT]
+	</listOfOutputs>
+	<listOfStyles>
+		[DEFINITION OF STYLES]
+	</listOfStyles>
+	<listOfAlgorithmParameters>
+		[PARAMETERS TO APPLY TO THE ENTIRE SIMULATION PROCESS]
+	</listOfAlgorithmParameters>
+</sedML>
+\end{myXmlLst}
+
+% ~~~ XMLNS ~~~
+\subsubsection{\element{xmlns}}
+\label{sec:xmlns}
+The \concept{\element{xmlns}} attribute declares the namespace for the SED-ML document. The pre-defined namespace for SED-ML documents is \url{http://sed-ml.org/sed-ml/level1/version4}. 
+
+In addition, SED-ML makes use of the \hyperref[sec:mathML]{MathML} namespace \url{http://www.w3.org/1998/Math/MathML} to enable the encoding of mathematical expressions. SED-ML \hyperref[class:notes]{notes} use the XHTML namespace \url{http://www.w3.org/1999/xhtml}. Additional external namespaces might be used in \hyperref[class:annotation]{annotations}.
+
+% ~~~ LEVEL ~~~
+\subsubsection{\element{level}}
+\label{sec:level}
+The current SED-ML \concept{\element{level}} is \code{\level}. Major revisions containing substantial changes will lead to the definition of forthcoming levels. The \concept{\element{level}} attribute is required and its value is a fixed \code{decimal}. For SED-ML \currentLV the value is set to \code{\level}, as shown in the example in Listing~\ref{lst:sedmlRoot}.
+
+% ~~~ VERSION ~~~
+\subsubsection{\element{version}}
+\label{sec:version}
+The current SED-ML \concept{\element{version}} is \code{\version}. Minor revisions containing corrections and refinements of SED-ML elements, or new constructs which do not affect backwards compatibility, will lead to the definition of forthcoming versions.
+
+The \concept{\element{version}} attribute is required and its value is a fixed \code{decimal}. For SED-ML \currentLV the value is set to \code{\version}, as shown in the example in Listing~\ref{lst:sedmlRoot}.
+
+% ~~~ LIST OF DATA DESCRIPTIONS ~~~
+\subsubsection{\element{listOfDataDescriptions}}
+\label{class:listOfDataDescriptions}
+In order to reference data in a simulation experiment, the data files along with a description on how to access such files and what information to extract from them have to be defined. The \hyperref[class:sed-ml]{SED-ML document} uses the \concept{\element{listOfDataDescriptions}} container to define \hyperref[class:dataDescription]{DataDescription}s for referencing external data (\fig{sed-mlMain}). The \concept{\element{listOfDataDescriptions}} is optional and may contain zero or more \hyperref[class:dataDescription]{DataDescriptions}.
+
+\lsttext{listOfDataDescriptions}{listOfDataDescriptions}
+
+\begin{myXmlLst}{SED-ML listOfDataDescriptions element}{lst:listOfDataDescriptions}
+<listOfDataDescriptions>
+	<dataDescription id="Data1" name="Oscli Time Course Data" source="./oscli.numl">
+		<dimensionDescription>
+			<compositeDescription indexType="double" id="time" name="time" xmlns="http://www.numl.org/numl/level1/version1">
+        			<compositeDescription indexType="string" id="SpeciesIds" name="SpeciesIds">
+         			<atomicDescription valueType="double" name="Concentrations" />
+          		</compositeDescription>
+      		</compositeDescription>
+		</dimensionDescription>
+		<listOfDataSources>
+			<dataSource id="dataS1">
+				<listOfSlices>
+					<slice reference="SpeciesIds" value="S1" />
+				</listOfSlices>
+			</dataSource>
+			<dataSource id="dataTime" indexSet="time" />
+		</listOfDataSources>
+	</dataDescription>
+</listOfDataDescriptions>
+\end{myXmlLst}
+
+
+% ~~~ LIST OF MODELS ~~
+\subsubsection{\element{listOfModels}}
+\label{class:listOfModels}
+The models used in a simulation experiment are defined in the \concept{\element{listOfModels}} container (\fig{sed-mlMain}). The \concept{\element{listOfModels}} is optional and may contain zero or more \Models. However, if a \hyperref[class:sed-ml]{SED-ML document} contains one or more \hyperref[class:abstractTask]{Tasks}, at least one \Model must be defined to which the \hyperref[class:abstractTask]{Task} elements refer (see Section~\ref{sec:modelReference}).
+
+\lsttext{listOfModels}{listOfModels}
+
+\begin{myXmlLst}{SED-ML listOfModels element}{lst:listOfModels}
+<listOfModels>
+	<model id="m0001" language="urn:sedml:language:sbml" 
+		source="https://www.ebi.ac.uk/biomodels/model/download/BIOMD0000000012?filename=BIOMD0000000012_url.xml" />
+	<model id="m0002" language="urn:sedml:language:cellml" 
+		source="https://models.cellml.org/workspace/leloup_gonze_goldbeter_1999/rawfile/bfaac0e80b23726ffe05b02f98b3d1d01a2ee3b7/leloup_gonze_goldbeter_1999_a.cellml" />
+</listOfModels>
+\end{myXmlLst}
+
+
+% ~~~ LIST OF SIMULATIONS ~~
+\subsubsection{\element{listOfSimulations}}
+\label{class:listOfSimulations}
+The \concept{\element{listOfSimulations}} element is the container for \Simulation descriptions (\fig{sed-mlMain}). The \concept{\element{listOfSimulations}} is optional and may contain zero or more \Simulations. However, if the \hyperref[class:sed-ml]{SED-ML document} contains one or more \hyperref[class:abstractTask]{Tasks}, at least one \Simulation element must be defined to which the \hyperref[class:abstractTask]{Task} elements refer (see Section \ref{sec:simulationReference}).
+
+\lsttext{listOfSimulations}{listOfSimulation}
+\begin{myXmlLst}{The SED-ML \element{listOfSimulations} element, containing two simulation setups}{lst:listOfSimulations}
+<listOfSimulations>
+	<simulation id="s1" [..]>
+		[UNIFORM TIMECOURSE DEFINITION]
+	</simulation>
+	<simulation id="s2" [..]>
+   		[UNIFORM TIMECOURSE DEFINITION]
+	</simulation>
+</listOfSimulations>
+\end{myXmlLst}
+ 
+% ~~~ LIST OF TASKS ~~~
+\subsubsection{\element{listOfTasks}}
+\label{class:listOfTasks}
+The \concept{\element{listOfTasks}} element contains the defined \hyperref[class:task]{tasks} for the simulation experiment (\fig{sed-mlMain}). The \concept{\element{listOfTasks}} is optional and may contain zero or more tasks, each of which is an instance of a subclass of \AbstractTask.
+
+Each top-level task is defined such that its execution is independent of the others:  if one task is executed after another, the states of the models must be completely reset so there's no cross-contamination of one task to the next.  This means that the top-level tasks are particularly well suited to being executed in parallel, should that be desired.
+
+SED-ML interpreters may choose to execute all the tasks in the list, or they may choose to examine the list of outputs, and only execute the tasks that are necessary to produce the requested output.  This situation comes up most often when one task is listed as a \SubTask of a \RepeatedTask:  the outputs may well only require the \RepeatedTask to be run, meaning an independent execution of the singular \Task is not necessary, even though it's on this list.
+
+\lsttext{listOfTasks}{listOfTasks}
+\begin{myXmlLst}{The SED-ML \code{listOfTasks} element, defining one task}{lst:listOfTasks}
+<listOfTasks>
+	<task id="t1" name="simulating v1" modelReference="m1" simulationReference="s1">
+	[FURTHER TASK DEFINITIONS]
+</listOfTasks>
+\end{myXmlLst}
+
+
+% ~~~ LIST OF DATA GENERATORS ~~~
+\subsubsection{\element{listOfDataGenerators}}
+\label{class:listOfDataGenerators}
+The \concept{\element{listOfDataGenerators}} container holds the \hyperref[class:dataGenerator]{dataGenerator} definitions of a simulation experiment (\fig{sed-mlMain}). The \concept{\element{listOfDataGenerators}} is optional and in general may contain zero or more \DataGenerators.
+
+In SED-ML, all variable and parameter values used in the \hyperref[class:output]{Output} class need to be defined as a \DataGenerator beforehand.
+
+\lsttext{listOfDataGenerators}{listOfDataGenerators}
+
+\begin{myXmlLst}{The \code{listOfDataGenerators} element, defining two data generators \emph{time} and \emph{LaCI repressor}}{lst:listOfDataGenerators}
+<listOfDataGenerators>
+	<dataGenerator id="d1" name="time">
+		[DATA GENERATOR DEFINITION FOLLOWING]
+	</dataGenerator>
+	<dataGenerator id="LaCI" name="LaCI repressor">
+		[DATA GENERATOR DEFINITION FOLLOWING]
+	</dataGenerator>
+</listOfDataGenerators>
+\end{myXmlLst}
+
+
+% ~~ LIST OF OUTPUTS ~~~
+\subsubsection{\element{listOfOutputs}}
+\label{class:listOfOutputs}
+The \concept{\element{listOfOutputs}} container holds the \hyperref[class:output]{Output} definitions of a simulation experiment (\fig{sed-mlMain}). The \concept{\element{listOfOutputs}} is optional and may contain zero or more outputs.
+
+\lsttext{listOfOutputs}{listOfOutputs}
+\begin{myXmlLst}{The \concept{listOfOutput} element}{lst:listOfOutputs}
+<listOfOutputs>
+	<report id="report1">
+		[REPORT DEFINITION FOLLOWING]
+	</report>
+	<plot2D id="plot1">
+		[2D PLOT DEFINITION FOLLOWING] 
+	</plot2D>
+</listOfOutputs>
+\end{myXmlLst}
+
+
+% ~~ LIST OF STYLES ~~~
+\subsubsection{\element{listOfStyles}}
+\label{class:listOfStyles}
+The \concept{\element{listOfStyles}} container holds the \Style definitions of a simulation experiment (\fig{sed-mlMain}). The \concept{\element{listOfStyles}} is optional and may contain zero or more styles.
+
+\lsttext{listOfStyles}{listOfStyles}
+\begin{myXmlLst}{The \concept{listOfStyles} element}{lst:listOfStyles}
+<listOfStyles>
+	<style id="redline">
+		[STYLE DEFINITION FOLLOWING]
+	</style>
+	<plot2D id="redline_bluesquares" baseStyle="redline">
+		[STYLE DEFINITION FOLLOWING] 
+	</plot2D>
+</listOfStyles>
+\end{myXmlLst}
+
+% ~~ LIST OF ALGORITHM PARAMETERS ~~~
+\subsubsection{\element{listOfAlgorithmParameters} (global)}
+\label{class:globalListOfAlgorithmParameters}
+The \concept{\element{listOfAlgorithmParameters}} container holds the \AlgorithmParameter objects that apply globally.  This can include parameters like a seed (\code{KISAO:0000488}) that apply to the simulation experiment as a whole, as well as algorithm parameters that might apply to all tasks of a particular type, such as the absolute tolerance (\code{KISAO:0000211}).  If an \AlgorithmParameter is defined for a particular \Simulation, it will take precedent over any global \AlgorithmParameter with the same KiSAO ID.  The \concept{\element{listOfAlgorithmParameters}} is optional and may contain zero or more parameters.
+
+\begin{myXmlLst}{The global \concept{listOfAlgorithParameters} element}{lst:globalListOfAlgorithmParameters}
+<listOfAlgorithmParameters>
+	<algorithmParameter name="absolute tolerance" kisaoID="KISAO:0000211" value="23"/> 
+	<algorithmParameter name="seed" kisaoID="KISAO:0000488" value="1001"/> 
+</listOfAlgorithmParameters>
+\end{myXmlLst}

@@ -1,0 +1,309 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' xmlns:dcterms='http://purl.org/dc/terms/' xmlns:vCard='http://www.w3.org/2006/vcard/ns#'>
+  <rdf:Description rdf:about='.'>
+    <dcterms:description>SED-ML L1V3 specification example.</dcterms:description>
+    <dcterms:created rdf:parseType='Resource'>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
+    </dcterms:created>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>David</vCard:family-name>
+        <vCard:given-name>Nickerson</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='nickerso@users.sourceforge.net' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Garny</vCard:family-name>
+        <vCard:given-name>Alan</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='alan.garny@inria.fr' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>König</vCard:family-name>
+        <vCard:given-name>Matthias</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
+      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Bergmann</vCard:family-name>
+        <vCard:given-name>Frank</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='fbergmann@caltech.edu' />
+      <vCard:organization-name>Caltech</vCard:organization-name>
+    </dcterms:creator>
+  </rdf:Description>
+  <rdf:Description rdf:about='manifest.json'>
+    <dcterms:description>Information to create archive metadata</dcterms:description>
+    <dcterms:created rdf:parseType='Resource'>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
+    </dcterms:created>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>David</vCard:family-name>
+        <vCard:given-name>Nickerson</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='nickerso@users.sourceforge.net' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>König</vCard:family-name>
+        <vCard:given-name>Matthias</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
+      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
+    </dcterms:creator>
+  </rdf:Description>
+  <rdf:Description rdf:about='lorenz.xml'>
+    <dcterms:description>Lorenz simulation experiment</dcterms:description>
+    <dcterms:created rdf:parseType='Resource'>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
+    </dcterms:created>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Nickerson</vCard:family-name>
+        <vCard:given-name>David</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='nickerso@users.sourceforge.net' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>König</vCard:family-name>
+        <vCard:given-name>Matthias</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
+      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
+    </dcterms:creator>
+  </rdf:Description>
+  <rdf:Description rdf:about='lorenz.rst'>
+    <dcterms:description>Documentation used to create PMR exposure page.</dcterms:description>
+    <dcterms:created rdf:parseType='Resource'>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
+    </dcterms:created>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Nickerson</vCard:family-name>
+        <vCard:given-name>David</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='nickerso@users.sourceforge.net' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>König</vCard:family-name>
+        <vCard:given-name>Matthias</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
+      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
+    </dcterms:creator>
+  </rdf:Description>
+  <rdf:Description rdf:about='lorenz-model.cellml'>
+    <dcterms:description>Lorenz CellML model.</dcterms:description>
+    <dcterms:created rdf:parseType='Resource'>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
+    </dcterms:created>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Nickerson</vCard:family-name>
+        <vCard:given-name>David</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='nickerso@users.sourceforge.net' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>König</vCard:family-name>
+        <vCard:given-name>Matthias</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
+      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
+    </dcterms:creator>
+  </rdf:Description>
+  <rdf:Description rdf:about='results/opencor/plot1.pdf'>
+    <dcterms:description>OpenCOR results.</dcterms:description>
+    <dcterms:created rdf:parseType='Resource'>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
+    </dcterms:created>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Garny</vCard:family-name>
+        <vCard:given-name>Alan</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='alan.garny@inria.fr' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Nickerson</vCard:family-name>
+        <vCard:given-name>David</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='nickerso@users.sourceforge.net' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>König</vCard:family-name>
+        <vCard:given-name>Matthias</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
+      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
+    </dcterms:creator>
+  </rdf:Description>
+  <rdf:Description rdf:about='results/opencor/plot2.pdf'>
+    <dcterms:description>OpenCOR results.</dcterms:description>
+    <dcterms:created rdf:parseType='Resource'>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
+    </dcterms:created>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Garny</vCard:family-name>
+        <vCard:given-name>Alan</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='alan.garny@inria.fr' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Nickerson</vCard:family-name>
+        <vCard:given-name>David</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='nickerso@users.sourceforge.net' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>König</vCard:family-name>
+        <vCard:given-name>Matthias</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
+      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
+    </dcterms:creator>
+  </rdf:Description>
+  <rdf:Description rdf:about='results/opencor/plot3.pdf'>
+    <dcterms:description>OpenCOR results.</dcterms:description>
+    <dcterms:created rdf:parseType='Resource'>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
+    </dcterms:created>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Garny</vCard:family-name>
+        <vCard:given-name>Alan</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='alan.garny@inria.fr' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Nickerson</vCard:family-name>
+        <vCard:given-name>David</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='nickerso@users.sourceforge.net' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>König</vCard:family-name>
+        <vCard:given-name>Matthias</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
+      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
+    </dcterms:creator>
+  </rdf:Description>
+  <rdf:Description rdf:about='results/sedml_webtools/plot1.pdf'>
+    <dcterms:description>SED-ML webtools results.</dcterms:description>
+    <dcterms:created rdf:parseType='Resource'>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
+    </dcterms:created>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Bergmann</vCard:family-name>
+        <vCard:given-name>Frank</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='fbergmann@caltech.edu' />
+      <vCard:organization-name>Caltech</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Nickerson</vCard:family-name>
+        <vCard:given-name>David</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='nickerso@users.sourceforge.net' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>König</vCard:family-name>
+        <vCard:given-name>Matthias</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
+      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
+    </dcterms:creator>
+  </rdf:Description>
+  <rdf:Description rdf:about='results/sedml_webtools/plot2.pdf'>
+    <dcterms:description>SED-ML webtools results.</dcterms:description>
+    <dcterms:created rdf:parseType='Resource'>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
+    </dcterms:created>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Bergmann</vCard:family-name>
+        <vCard:given-name>Frank</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='fbergmann@caltech.edu' />
+      <vCard:organization-name>Caltech</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Nickerson</vCard:family-name>
+        <vCard:given-name>David</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='nickerso@users.sourceforge.net' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>König</vCard:family-name>
+        <vCard:given-name>Matthias</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
+      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
+    </dcterms:creator>
+  </rdf:Description>
+  <rdf:Description rdf:about='results/sedml_webtools/plot3.pdf'>
+    <dcterms:description>SED-ML webtools results.</dcterms:description>
+    <dcterms:created rdf:parseType='Resource'>
+      <dcterms:W3CDTF>2023-11-15T19:21:29Z</dcterms:W3CDTF>
+    </dcterms:created>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Bergmann</vCard:family-name>
+        <vCard:given-name>Frank</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='fbergmann@caltech.edu' />
+      <vCard:organization-name>Caltech</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>Nickerson</vCard:family-name>
+        <vCard:given-name>David</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='nickerso@users.sourceforge.net' />
+      <vCard:organization-name>Auckland Bioengineering Institute</vCard:organization-name>
+    </dcterms:creator>
+    <dcterms:creator rdf:parseType='Resource'>
+      <vCard:hasName rdf:parseType='Resource'>
+        <vCard:family-name>König</vCard:family-name>
+        <vCard:given-name>Matthias</vCard:given-name>
+      </vCard:hasName>
+      <vCard:hasEmail rdf:resource='konigmatt@googlemail.com' />
+      <vCard:organization-name>Humboldt University Berlin</vCard:organization-name>
+    </dcterms:creator>
+  </rdf:Description>
+</rdf:RDF>
