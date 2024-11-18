@@ -1,0 +1,116 @@
+{ "entries": [
+  { "location" : "manifest.xml",
+    "format" : "http://identifiers.org/combine.specifications/omex-manifest"
+  },
+  { "location" : "metadata.rdf",
+    "format" : "http://identifiers.org/combine.specifications/omex-metadata"
+  },
+  { "location" : ".",
+    "format" : "http://identifiers.org/combine.specifications/omex",
+    "description" : "SED-ML L1V3 specification example.",
+    "creators" : [
+      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Alan", "familyName": "Garny", "email": "alan.garny@inria.fr", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"},
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"}
+    ]
+  },
+  {
+    "location" : "manifest.json",
+    "format" : "http://purl.org/NET/mediatypes/application/json",
+    "description" : "Information to create archive metadata",
+    "creators" : [
+      { "givenName": "Nickerson", "familyName": "David", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+    ]
+  },
+  {
+    "location" : "lorenz.xml",
+    "format" : "http://identifiers.org/combine.specifications/sed-ml",
+    "master" : true,
+    "description": "Lorenz simulation experiment",
+    "creators" : [
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+    ]
+  },
+  {
+    "location" : "lorenz.rst",
+    "format" : "http://purl.org/NET/mediatypes/text/plain",
+    "description": "Documentation used to create PMR exposure page.",
+    "creators" : [
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+    ]
+  },
+  {
+    "location" : "lorenz-model.cellml",
+    "format" : "http://identifiers.org/combine.specifications/cellml",
+    "description": "Lorenz CellML model.",
+    "creators" : [
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+    ]
+  },
+  {
+    "location" : "results/opencor/plot1.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "OpenCOR results.",
+    "creators" : [
+      { "givenName": "Alan", "familyName": "Garny", "email": "alan.garny@inria.fr", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+    ]
+  },
+  {
+    "location" : "results/opencor/plot2.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "OpenCOR results.",
+    "creators" : [
+      { "givenName": "Alan", "familyName": "Garny", "email": "alan.garny@inria.fr", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+    ]
+  },
+  {
+    "location" : "results/opencor/plot3.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "OpenCOR results.",
+    "creators" : [
+      { "givenName": "Alan", "familyName": "Garny", "email": "alan.garny@inria.fr", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+    ]
+  },
+  {
+    "location" : "results/sedml_webtools/plot1.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "SED-ML webtools results.",
+    "creators" : [
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+    ]
+  },
+  {
+    "location" : "results/sedml_webtools/plot2.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "SED-ML webtools results.",
+    "creators" : [
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+    ]
+  },
+  {
+    "location" : "results/sedml_webtools/plot3.pdf",
+    "format" : "http://purl.org/NET/mediatypes/application/pdf",
+    "description": "SED-ML webtools results.",
+    "creators" : [
+      { "givenName": "Frank", "familyName": "Bergmann", "email": "fbergmann@caltech.edu", "organisation": "Caltech"},
+      { "givenName": "David", "familyName": "Nickerson", "email": "nickerso@users.sourceforge.net", "organisation": "Auckland Bioengineering Institute"},
+      { "givenName": "Matthias", "familyName": "König", "email": "konigmatt@googlemail.com", "organisation": "Humboldt University Berlin"}
+    ]
+  }
+
+]}

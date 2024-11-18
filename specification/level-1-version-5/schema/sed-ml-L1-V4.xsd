@@ -1,0 +1,1290 @@
+<xs:schema targetNamespace="http://sed-ml.org/sed-ml/level1/version4" xmlns="http://sed-ml.org/sed-ml/level1/version4"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:math="http://www.w3.org/1998/Math/MathML"
+	elementFormDefault="qualified">
+	<xs:import namespace="http://www.w3.org/1998/Math/MathML" schemaLocation="sedml-mathml.xsd" />
+
+
+	<xs:simpleType name="SId">
+		<xs:annotation>
+			<xs:documentation>
+				The type SId is used throughout SED-ML as the
+				type of the 'id' attributes on SED-ML elements.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(_|[a-z]|[A-Z])(_|[a-z]|[A-Z]|[0-9])*" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Attribute group for elements with a required ID attribute -->
+	<xs:attributeGroup name="idGroup">
+		<xs:attribute name="id" use="required" type="SId"></xs:attribute>
+	</xs:attributeGroup>
+
+	<!-- SED Base class -->
+	<xs:complexType name="SEDBase">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+				The SEDBase type is the
+				base type of all main types in SED-ML. It
+				serves as a container for
+				the annotation of any part of the
+				experiment description.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="notes" minOccurs="0" />
+			<xs:element ref="annotation" minOccurs="0" />
+		</xs:sequence>
+		<!--
+			This must be a variable-type identifier, i.e., (Letter | '_')
+			(NCNameChar)* that is unique in the document.
+		-->
+		<xs:attribute name="metaid" type="xs:ID" use="optional"></xs:attribute>
+		<xs:attribute name="id" use="optional" type="SId"></xs:attribute>
+		<xs:attribute name="name" use="optional" type="xs:string"></xs:attribute>
+	</xs:complexType>
+
+	<!-- SED ML Top level element -->
+	<xs:element name="sedML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="listOfDataDescriptions" minOccurs="0" />
+						<xs:element ref="listOfSimulations" minOccurs="0" />
+						<xs:element ref="listOfModels" minOccurs="0" />
+						<xs:element ref="listOfTasks" minOccurs="0" />
+						<xs:element ref="listOfDataGenerators" minOccurs="0" />
+						<xs:element ref="listOfOutputs" minOccurs="0" />
+						<xs:element ref="listOfStyles" minOccurs="0" />
+						<xs:element ref="listOfAlgorithmParameters" minOccurs="0" />
+					</xs:sequence>
+					<xs:attribute name="level" type="xs:decimal" use="required" fixed="1" />
+					<xs:attribute name="version" type="xs:decimal" use="required" fixed="4" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- notes and annotations -->
+	<xs:element name="notes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any namespace="http://www.w3.org/1999/xhtml"
+					processContents="skip" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="annotation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- KiSAO ID type -->
+	<xs:simpleType name="KisaoType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="KISAO:[0-9]{7}" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SedColor">
+		<xs:restriction base="xs:hexBinary">
+		<xs:pattern value=".{6}{.{2}}?" />
+		<xs:minLength value="6" />
+			<xs:maxLength value="8" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TargetType">
+		<xs:restriction base="xs:string">
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="anyURN">
+		<xs:restriction base="xs:anyURI">
+			<xs:pattern value="urn:.*" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- global element declarations -->
+	<xs:element name="variable">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="listOfAppliedDimensions" minOccurs="0" />
+					</xs:sequence>
+					<!-- Attributes that point to where you're looking -->
+					<xs:attribute name="taskReference" type="SId" use="optional" />
+					<xs:attribute name="modelReference" type="SId" use="optional" />
+
+					<!-- Attributes that define what you're looking for	-->
+					<xs:attribute name="target" type="TargetType" use="optional" />
+					<xs:attribute name="symbol" type="xs:string" use="optional" />
+					<xs:attribute name="target2" type="TargetType" use="optional" />
+					<xs:attribute name="symbol2" type="xs:string" use="optional" />
+					<xs:attribute name="term" type="xs:anyURI" use="optional" />
+
+					<!-- Attribute that helps define how to reduce dimensionality -->
+					<xs:attribute name="dimensionTerm" type="xs:anyURI" use="optional" />
+					<xs:attributeGroup ref="idGroup" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="parameter">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:attributeGroup ref="idGroup" />
+					<xs:attribute name="value" type="xs:double" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- The model(s) to simulate/analyse -->
+	<xs:element name="model">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="listOfChanges" minOccurs="0" />
+					</xs:sequence>
+					<xs:attribute name="language" type="anyURN" use="required" />
+					<xs:attribute name="source" type="xs:anyURI" use="required" />
+					<xs:attributeGroup ref="idGroup" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- Model pre-processing changes -->
+	<xs:element name="newXML">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any processContents="skip" minOccurs="1" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="Change">
+		<xs:complexContent>
+			<xs:extension base="SEDBase">
+				<xs:attribute name="target" use="required" type="TargetType" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="changeAttribute">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Change">
+					<xs:attribute name="newValue" type="xs:string" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="changeXML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Change">
+					<xs:sequence>
+						<xs:element ref="newXML" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="addXML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Change">
+					<xs:sequence>
+						<xs:element ref="newXML" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="removeXML">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Change" />
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="ComputeChange">
+		<xs:complexContent>
+			<xs:extension base="Change">
+				<xs:sequence>
+					<xs:element ref="listOfVariables" minOccurs="0" />
+					<xs:element ref="listOfParameters" minOccurs="0" />
+					<xs:element ref="math:math" />
+				</xs:sequence>
+				<xs:attribute name="symbol" use="optional" type="xs:string" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="computeChange" type="ComputeChange"/>
+	
+
+	<!-- The simulation/analysis algorithms to use -->
+	<xs:element name="algorithm">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="listOfAlgorithmParameters" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="kisaoID" type="KisaoType" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="algorithmParameter">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="listOfAlgorithmParameters" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="kisaoID" type="KisaoType" use="required"/>
+					<xs:attribute name="value" type="xs:string" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="appliedDimension">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:attribute name="target" type="SId" use="optional"/>
+					<xs:attribute name="dimensionTarget" type="SId" use="optional"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="Simulation">
+		<xs:complexContent>
+			<xs:extension base="SEDBase">
+				<xs:sequence>
+					<xs:element ref="algorithm" />
+				</xs:sequence>
+				<xs:attributeGroup ref="idGroup" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="uniformTimeCourse">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Simulation">
+					<xs:attribute name="outputStartTime" type="xs:double" use="required" />
+					<xs:attribute name="outputEndTime" type="xs:double" use="required" />
+					<xs:attribute name="numberOfPoints" type="xs:integer" use="optional" />
+					<xs:attribute name="numberOfSteps" type="xs:integer" use="optional" />
+					<xs:attribute name="initialTime" type="xs:double" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="oneStep">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Simulation">
+					<xs:attribute name="step" type="xs:double" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="steadyState">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Simulation">
+					<!-- There is actually no difference from the base type here -->
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="analysis">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Simulation">
+					<!-- There is actually no difference from the base type here. Again! -->
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- The various task elements inherit from AbstractTask -->
+	<xs:complexType name="AbstractTask">
+		<xs:complexContent>
+			<xs:extension base="SEDBase">
+				<xs:attributeGroup ref="idGroup" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="task">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="AbstractTask">
+					<xs:attribute name="simulationReference" type="SId"	use="required" />
+					<xs:attribute name="modelReference" type="SId" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="repeatedTask">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="AbstractTask">
+					<xs:sequence>
+						<xs:element ref="listOfRanges"/>
+						<xs:element name="listOfChanges" type="repeatedTaskListOfChanges" minOccurs="0"/>
+						<xs:element ref="listOfSubTasks"/>
+					</xs:sequence>
+					<xs:attribute name="range" type="SId" use="required"/>
+					<xs:attribute name="resetModel" type="SId" use="required"/>
+					<xs:attribute name="concatenate" type="xs:boolean" use="optional"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Child elements of repeatedTask -->
+	<xs:complexType name="Range">
+		<xs:complexContent>
+			<xs:extension base="SEDBase" />
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:simpleType name="LogOrLinear">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="log"/>
+			<xs:enumeration value="linear"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="AxisType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="log10"/>
+			<xs:enumeration value="linear"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ScaleType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="log"/>
+			<xs:enumeration value="log10"/>
+			<xs:enumeration value="linear"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MappingType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="time"/>
+			<xs:enumeration value="experimentalCondition"/>
+			<xs:enumeration value="observable"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CurveType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="points"/>
+			<xs:enumeration value="bar"/>
+			<xs:enumeration value="barStacked"/>
+			<xs:enumeration value="horizontalBar"/>
+			<xs:enumeration value="horizontalBarStacked"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SurfaceType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="parametricCurve"/>
+			<xs:enumeration value="surfaceMesh"/>
+			<xs:enumeration value="surfaceContour"/>
+			<xs:enumeration value="contour"/>
+			<xs:enumeration value="heatMap"/>
+			<xs:enumeration value="stackedCurves"/>
+			<xs:enumeration value="bar"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="LineType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="none"/>
+			<xs:enumeration value="solid"/>
+			<xs:enumeration value="dash"/>
+			<xs:enumeration value="dot"/>
+			<xs:enumeration value="dashDot"/>
+			<xs:enumeration value="dashDotDot"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MarkerType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="none"/>
+			<xs:enumeration value="square"/>
+			<xs:enumeration value="circle"/>
+			<xs:enumeration value="diamond"/>
+			<xs:enumeration value="xCross"/>
+			<xs:enumeration value="plus"/>
+			<xs:enumeration value="star"/>
+			<xs:enumeration value="triangleUp"/>
+			<xs:enumeration value="triangleDown"/>
+			<xs:enumeration value="triangleLeft"/>
+			<xs:enumeration value="triangleRight"/>
+			<xs:enumeration value="hDash"/>
+			<xs:enumeration value="vDash"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ExperimentType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="steadyState"/>
+			<xs:enumeration value="timeCourse"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="uniformRange">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Range">
+					<xs:attribute name="start" type="xs:double" use="required"/>
+					<xs:attribute name="end" type="xs:double" use="required"/>
+					<xs:attribute name="numberOfPoints" type="xs:integer" use="optional"/>
+					<xs:attribute name="numberOfSteps" type="xs:integer" use="optional"/>
+					<xs:attribute name="type" type="LogOrLinear" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="vectorRange">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Range">
+					<xs:sequence>
+						<xs:element name="value" type="xs:double" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="functionalRange">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Range">
+					<xs:sequence>
+						<xs:element ref="listOfVariables" minOccurs="0" />
+						<xs:element ref="listOfParameters" minOccurs="0" />
+						<xs:element ref="math:math" />
+					</xs:sequence>
+					<xs:attribute name="range" type="SId" use="optional"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="dataRange">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Range">
+					<xs:attribute name="sourceReference" type="SId" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="setValue">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ComputeChange">
+					<xs:attribute name="modelReference" type="SId" use="required"/>
+					<xs:attribute name="range" type="SId" use="optional"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="subTask">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element name="listOfChanges" type="repeatedTaskListOfChanges" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="task" type="SId" use="required"/>
+					<xs:attribute name="order" type="xs:integer" use="optional"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="parameterEstimationTask">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="AbstractTask">
+					<xs:sequence>
+						<xs:element ref="algorithm"/>
+						<xs:choice>
+							<xs:element ref="leastSquareObjectiveFunction"/>
+						</xs:choice>
+						<xs:element ref="listOfAdjustableParameters"/>
+						<xs:element ref="listOfFitExperiments"/>
+					</xs:sequence>
+					<xs:attribute name="modelReference" type="SId" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfAdjustableParameters">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="adjustableParameter"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfFitExperiments">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="fitExperiment"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfExperimentReferences">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="experimentReference"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfFitMappings">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="fitMapping"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="Objective">
+		 <xs:complexContent>
+			 <xs:extension base="SEDBase">
+				 <!-- There is actually no difference from the base type here -->
+			 </xs:extension>
+		 </xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="leastSquareObjectiveFunction">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Objective">
+					<!-- There is actually no difference from the base type here -->
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="adjustableParameter">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="bounds"/>
+						<xs:element ref="listOfExperimentReferences" minOccurs="0" />
+					</xs:sequence>
+					<xs:attribute name="target" type="TargetType" use="required"/>
+					<xs:attribute name="initialValue" type="xs:double" use="optional"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="bounds">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:attribute name="upperBound" type="xs:double" use="required"/>
+					<xs:attribute name="lowerBound" type="xs:double" use="required"/>
+					<xs:attribute name="scale" type="ScaleType" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="experimentReference">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:attribute name="experiment" type="SId" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="fitExperiment">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="algorithm" />
+						<xs:element ref="listOfFitMappings" />
+					</xs:sequence>
+					<xs:attribute name="type" type="ExperimentType" use="required"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="fitMapping">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:attribute name="type" type="MappingType" use="required"/>
+					<xs:attribute name="dataSource" type="SId" use="required"/>
+					<xs:attribute name="target" type="SId" use="required"/>
+					<xs:attribute name="weight" type="xs:double" use="optional"/>
+					<xs:attribute name="pointWeight" type="SId" use="optional"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- Post-processing using a data generator -->
+	<xs:element name="dataGenerator">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="listOfVariables" minOccurs="0" />
+						<xs:element ref="listOfParameters" minOccurs="0" />
+						<xs:element ref="math:math" />
+					</xs:sequence>
+					<xs:attributeGroup ref="idGroup" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	
+	<!-- Simulation experiment outputs -->
+	<xs:complexType name="Output">
+		<xs:complexContent>
+			<xs:extension base="SEDBase">
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="Plot">
+		<xs:complexContent>
+			<xs:extension base="Output">
+				<xs:sequence>
+					<xs:element name="xAxis" type="axis" minOccurs="0" />
+					<xs:element name="yAxis" type="axis" minOccurs="0" />
+				</xs:sequence>
+				<xs:attribute name="legend" type="xs:boolean" use="optional" />
+				<xs:attribute name="height" type="xs:double" use="optional" />
+				<xs:attribute name="width" type="xs:double" use="optional" />
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="axis">
+		<xs:complexContent>
+			<xs:extension base="SEDBase">
+				 <xs:attribute name="type" type="AxisType" use="required" />
+				 <xs:attribute name="min" type="xs:boolean" use="optional" />
+				 <xs:attribute name="max" type="xs:boolean" use="optional" />
+				 <xs:attribute name="grid" type="xs:boolean" use="optional" />
+				 <xs:attribute name="style" type="xs:boolean" use="optional" />
+				 <xs:attribute name="reverse" type="xs:boolean" use="optional" />
+			 </xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="plot2D">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Plot">
+					<xs:sequence>
+						<xs:element name="rightYAxis" type="axis" minOccurs="0" />
+						<xs:element ref="listOfCurves" minOccurs="0" />
+					</xs:sequence>
+					<xs:attributeGroup ref="idGroup" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="plot3D">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Plot">
+					<xs:sequence>
+						<xs:element ref="listOfSurfaces" minOccurs="0" />
+						<xs:element name="zAxis" type="axis" minOccurs="0" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="report">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Output">
+					<xs:sequence>
+						<xs:element ref="listOfDataSets" minOccurs="0" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="RightOrLeft">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="right"/>
+			<xs:enumeration value="left"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="AbstractCurve">
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:attribute name="xDataReference" type="SId" use="required" />
+					<xs:attribute name="logX" use="optional" type="xs:boolean" />
+					<xs:attribute name="order" use="optional" type="xs:nonNegativeInteger" />
+					<xs:attribute name="style" use="optional" type="SId" />
+					<xs:attribute name="yAxis" use="optional" type="RightOrLeft" />
+				</xs:extension>
+			</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="curve">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="AbstractCurve">
+					<xs:attribute name="yDataReference" type="SId" use="required" />
+					<xs:attribute name="logY" use="optional" type="xs:boolean" />
+					<xs:attribute name="type" use="required" type="CurveType" />
+					<xs:attribute name="xErrorUpper" use="optional" type="SId" />
+					<xs:attribute name="xErrorLower" use="optional" type="SId" />
+					<xs:attribute name="yErrorUpper" use="optional" type="SId" />
+					<xs:attribute name="yErrorLower" use="optional" type="SId" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="shadedArea">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="AbstractCurve">
+					<xs:attribute name="yDataReferenceFrom" type="SId" use="required" />
+					<xs:attribute name="yDataReferenceTo" type="SId" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="surface">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:attribute name="yDataReference" type="SId" use="required" />
+					<xs:attribute name="xDataReference" type="SId" use="required" />
+					<xs:attribute name="zDataReference" type="SId" use="required" />
+					<xs:attribute name="logY" use="optional" type="xs:boolean" />
+					<xs:attribute name="logX" use="optional" type="xs:boolean" />
+					<xs:attribute name="logZ" use="optional" type="xs:boolean" />
+					<xs:attribute name="style" use="optional" type="SId" />
+					<xs:attribute name="type" use="optional" type="SurfaceType" />
+					<xs:attribute name="order" use="optional" type="xs:nonNegativeInteger" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="dataSet">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:attribute name="dataReference" type="SId" use="required" />
+					<xs:attribute name="label" use="required" type="xs:string" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="parameterEstimationReport">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Output">
+					<xs:attribute name="taskReference" type="SId" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="waterfallPlot">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Plot">
+					<xs:attribute name="taskReference" type="SId" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="parameterEstimationResultPlot">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Plot">
+					<xs:attribute name="taskReference" type="SId" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="figure">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Output">
+					<xs:sequence>
+						<xs:element ref="listOfSubPlots" minOccurs="0" />
+					</xs:sequence>
+					<xs:attribute name="numRows" type="xs:positiveInteger" use="required" />
+					<xs:attribute name="numCols" type="xs:positiveInteger" use="required" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="subPlot">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Output">
+					<xs:attribute name="plot" type="SId" use="required" />
+					<xs:attribute name="row" type="xs:positiveInteger" use="required" />
+					<xs:attribute name="col" type="xs:positiveInteger" use="required" />
+					<xs:attribute name="rowSpan" type="xs:positiveInteger" use="optional" />
+					<xs:attribute name="colSpan" type="xs:positiveInteger" use="optional" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="style">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="line" minOccurs="0" maxOccurs="1" />
+						<xs:element ref="marker" minOccurs="0" maxOccurs="1" />
+						<xs:element ref="fill" minOccurs="0" maxOccurs="1" />
+					</xs:sequence>
+					<xs:attributeGroup ref="idGroup" />
+					<xs:attribute name="baseStyle" type="SId" use="optional" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="line">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:attribute name="type" type="LineType" use="optional" />
+					<xs:attribute name="color" type="SedColor" use="optional" />
+					<xs:attribute name="thickness" type="xs:double" use="optional" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="marker">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:attribute name="type" type="MarkerType" use="optional" />
+					<xs:attribute name="size" type="xs:double" use="optional" />
+					<xs:attribute name="fill" type="SedColor" use="optional" />
+					<xs:attribute name="lineColor" type="SedColor" use="optional" />
+					<xs:attribute name="lineThickness" type="xs:double" use="optional" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="fill">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:attribute name="color" type="SedColor" use="optional" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- listOf elements -->
+	<xs:element name="listOfVariables">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="variable" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfParameters">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="parameter" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfAlgorithmParameters">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="algorithmParameter" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfAppliedDimensions">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="appliedDimension" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfTasks">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="task" />
+						<xs:element ref="repeatedTask" />
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfDataDescriptions">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="dataDescription"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="dataDescription">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="dimensionDescription"/>
+						<xs:element ref="listOfDataSources"/>
+					</xs:sequence>
+					<xs:attribute name="source" type="anyURN" use="required" />
+					<xs:attribute name="format" type="xs:string" use="optional" />
+					<xs:attributeGroup ref="idGroup" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="dimensionDescription">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any namespace="http://www.numl.org/numl/level1/version1"
+					processContents="skip" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfDataSources">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="dataSource"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="dataSource">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>						
+						<xs:element ref="listOfSlices" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+					<xs:attribute name="indexSet" type="SId" use="optional" />
+					<xs:attributeGroup ref="idGroup" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfSlices">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="slice"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="slice">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:attribute name="reference" type="SId" use="required" />
+					<xs:attribute name="value" type="xs:string" use="required" />
+					<xs:attribute name="index" type="SId" use="optional" />
+					<xs:attribute name="startIndex" type="xs:int" use="optional" />
+					<xs:attribute name="endIndex" type="xs:int" use="optional" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfStyles">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="style"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfSimulations">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="uniformTimeCourse"/>
+						<xs:element ref="oneStep"/>
+						<xs:element ref="steadyState"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfOutputs">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="plot2D" />
+						<xs:element ref="plot3D" />
+						<xs:element ref="figure" />
+						<xs:element ref="report" />
+						<xs:element ref="parameterEstimationReport" />
+						<xs:element ref="parameterEstimationResultPlot" />
+						<xs:element ref="waterfallPlot" />
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfModels">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="model" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfDataGenerators">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="dataGenerator" minOccurs="0" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfCurves">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="curve"/>
+						<xs:element ref="shadedArea"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfSurfaces">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="surface" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfSubPlots">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="subPlot" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfDataSets">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="dataSet" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfChanges">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="changeAttribute" />
+						<xs:element ref="changeXML" />
+						<xs:element ref="addXML" />
+						<xs:element ref="removeXML" />
+						<xs:element ref="computeChange" />
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="listOfRanges">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:choice maxOccurs="unbounded">
+						<xs:element ref="uniformRange" />
+						<xs:element ref="vectorRange" />
+						<xs:element ref="functionalRange" />
+						<xs:element ref="dataRange" />
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="repeatedTaskListOfChanges">
+		<xs:complexContent>
+			<xs:extension base="SEDBase">
+				<xs:sequence>
+					<xs:element ref="setValue" minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="listOfSubTasks">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="SEDBase">
+					<xs:sequence>
+						<xs:element ref="subTask" maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,6 @@
+requests
+sbmlutils
+
+# tellurium>=2.0.2
+# -e git+https://github.com/sys-bio/tellurium.git@2.0-sedml-L1V3#egg=tellurium
+# working against develop branch locally

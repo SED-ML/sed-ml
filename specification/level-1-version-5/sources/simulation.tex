@@ -1,0 +1,156 @@
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% SIMULATION
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\subsection{\element{Simulation}}
+\label{class:simulation}
+A simulation is the execution of some defined algorithm(s). Simulations are described differently depending on the type of simulation experiment to be performed (\fig{simulation}). 
+
+\sedfig[width=0.9\textwidth]{images/uml/simulation}{The definitions of the \Simulation, \SteadyState, \OneStep, \UniformTimeCourse, and \Analysis classes}{fig:simulation}
+
+\concept{Simulation} is an abstract class and serves as the container for the different types of simulation experiments. SED-ML \currentLV provides the predefined simulation classes \hyperref[class:uniformTimeCourse]{UniformTimeCourse}, \hyperref[class:oneStep]{OneStep}, \hyperref[class:steadyState]{SteadyState}, and \Analysis. 
+
+Each instance of the \concept{Simulation} class has an unambiguous and mandatory \hyperref[sec:id]{\code{id}}. An additional, optional \hyperref[sec:name]{\code{name}} may be given to the simulation. Every simulation has a required element \hyperref[class:algorithm]{\code{algorithm}} describing the simulation \hyperref[class:algorithm]{Algorithm}.
+
+\begin{myXmlLst}{The SED-ML \code{listOfSimulations} element, defining two different UniformTimecourse simulations}{lst:simulation}
+<listOfSimulations>
+	<uniformTimeCourse [..]>
+		[SIMULATION SPECIFICATION]
+	</uniformTimeCourse>
+	<uniformTimeCourse [..]>
+		[SIMULATION SPECIFICATION]
+	</uniformTimeCourse>
+</listOfSimulations>
+\end{myXmlLst}
+
+\paragraph*{\element{algorithm}}
+\label{sec:sim-algorithm}
+The mandatory \changed{child \concept{\element{algorithm}} element} defines the simulation algorithm or algorithms used for the execution of the \hyperref[class:simulation]{simulation}. The algorithm is defined via the \Algorithm class.
+
+
+%% ~~~ UNIFORM TIMECOURSE SIMULATION ~~~
+\subsubsection{\element{UniformTimeCourse}}
+\label{class:uniformTimeCourse}
+The \concept{UniformTimeCourse} class calculates a time course output with equidistant time points. Each instance of the \concept{UniformTimeCourse} class has, in addition to the elements from \Simulation, the mandatory elements \hyperref[sec:initialTime]{\code{initialTime}}, \hyperref[sec:outputStartTime]{\code{outputStartTime}}, \hyperref[sec:outputEndTime]{\code{outputEndTime}}, and \hyperref[sec:numberOfSteps]{\code{numberOfSteps}} (\fig{simulation}).
+
+\lsttext{timecourse}{uniformTimeCourse}
+
+\begin{myXmlLst}{The SED-ML \code{uniformTimeCourse} element, defining a uniform time course simulation over 2500 time units with 1000 simulation points.}{lst:timecourse}
+<listOfSimulations>
+	<uniformTimeCourse id="s1"  name="time course simulation of variable v1 over 100 minutes"  
+		initialTime="0" outputStartTime="0" outputEndTime="2500" numberOfSteps="1000">
+		<algorithm [..] />
+ 	</uniformTimeCourse>
+</listOfSimulations>
+\end{myXmlLst}
+
+\paragraph*{\element{initialTime}}
+\label{sec:initialTime}
+The attribute \concept{\element{initialTime}} of type \code{double} represents what the time is at the start of the simulation, for purposes of output variables, and for calculating the \element{outputStartTime} and \element{outputEndTime}.  In most cases, this will be \code{0.0}.  The model must be set up such that \element{intialTime} is correct internally with respect to any output variables that may be produced.
+Listing~\ref{lst:timecourse} shows an example. 
+
+\paragraph*{\element{outputStartTime}}
+\label{sec:outputStartTime}
+Sometimes a researcher is not interested in simulation results at the start of the simulation, i.e., the initial time. The \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} class uses the attribute \concept{\element{outputStartTime}} of type \code{double}, and describes the time (relative to the \element{intialTime}) that output is to be collected. To be valid the \concept{\element{outputStartTime}} cannot be before \hyperref[sec:initialTime]{\element{initialTime}}. For an example, see Listing~\ref{lst:timecourse}. 
+
+\paragraph*{\element{outputEndTime}}
+\label{sec:outputEndTime}
+The attribute \concept{\element{outputEndTime}} of type \code{double} marks the end time of the simulation, relative to the \element{initialTime}. See Listing~\ref{lst:timecourse} for an example. 
+
+\paragraph*{\element{numberOfSteps}}
+\label{sec:numberOfSteps}
+When executed, the \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} simulation produces an output on a regular grid starting with \hyperref[sec:outputStartTime]{\element{outputStartTime}} and ending with \hyperref[sec:outputEndTime]{\element{outputEndTime}}. The attribute \concept{\element{numberOfSteps}} of type \code{integer} describes the number of steps expected to produce the result. Software interpreting the \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} is expected to produce a first outputPoint at time \hyperref[sec:outputStartTime]{\element{outputStartTime}} and then \concept{\element{numberOfSteps}} output points with the results of the simulation. Thus a total of \code{numberOfSteps + 1} output points will be produced.
+
+Just because the output points lie on the regular grid described above, does not mean that the simulation algorithm has to work with the same step size. Usually the step size the simulator chooses will be adaptive and much smaller than the required output step size. On the other hand a stochastic simulator might not have any new events occurring between two grid points. Nevertheless the simulator has to produce data on this regular grid. For an example, see Listing~\ref{lst:timecourse}.
+
+This attribute used to be named \element{numberOfPoints}, but was defined to be `the number of output points minus one', which was confusing.  The old name is thus deprecated, and the new name is more in line with its definition.
+
+
+% ~~~ ONESTEP SIMULATION ~~~
+\subsubsection{\element{OneStep}}
+\label{class:oneStep}
+
+The \concept{OneStep} class calculates one further output step for the model from its current state. Each instance of the \concept{OneStep} class has, in addition to the elements from \Simulation, the mandatory element \hyperref[sec:step]{\code{step}} (\fig{simulation}).
+
+\lsttext{oneStep}{oneStep}
+
+\begin{myXmlLst}{The SED-ML \code{oneStep} element, specifying to apply the simulation algorithm for another output step of size 0.1.}{lst:oneStep}
+<listOfSimulations> 
+	<oneStep id="s1" step="0.1"> 
+		<algorithm kisaoID="KISAO:0000019" />
+	</oneStep> 
+</listOfSimulations>
+\end{myXmlLst}
+
+\paragraph*{\element{step}}
+\label{sec:step}
+The \hyperref[class:oneStep]{OneStep} class has one required attribute \concept{\element{step}} of type \code{double}. It defines the next output point that should be reached by the algorithm, by specifying the increment from the current output point. Listing~\ref{lst:oneStep} shows an example. 
+
+Note that the \concept{\element{step}} does not necessarily equate to one integration step. The simulator is allowed to take as many steps as needed. However, after running oneStep, the desired output time is reached.
+
+
+% ~~~ STEADYSTATE SIMULATION ~~~
+\subsubsection{\element{SteadyState}}
+\label{class:steadyState}
+The \concept{SteadyState} represents a steady state computation (as for example implemented by NLEQ or Kinsolve). The \concept{SteadyState} class has no additional elements than the elements from \Simulation (\fig{simulation}).
+
+\lsttext{steadyState}{steadyState}
+
+\begin{myXmlLst}{The SED-ML \code{steadyState} element, defining a steady state simulation with id \code{steady}.}{lst:steadyState}
+<listOfSimulations>
+	<steadyState id="steady"> 
+		<algorithm kisaoID="KISAO:0000282" />
+	</steadyState > 
+</listOfSimulations>
+\end{myXmlLst}
+
+
+% ~~~ ANALYSIS SIMULATION ~~~
+\subsubsection{\element{Analysis}}
+\label{class:analysis}
+The \concept{Analysis} represents any sort of analysis or simulation of a \Model, entirely defined by its child \Algorithm.  If a simulation can be defined by a different \Simulation, that should be used instead, so that tools are more likely to recognize the request.  But for any simultion or any analysis not covered by \SteadyState, \OneStep, or \UniformTimeCourse, the only thing necessary is a KiSAO term for the \Algorithm defining what to do.  The following examples illustrate analyses that could not be created with other SED-ML \Simulation classes:
+
+\lsttext{analysis}{analysis}
+
+\begin{myXmlLst}{The SED-ML \code{analysis} element, defining a time course with a stop condition ($ObsA<9$).}{lst:analysis}
+<listOfSimulations>
+    <analysis id="time_course_to_stop_condition">
+        <algorithm kisaoID="KISAO:0000263"name="NFSim">
+            <algorithmParameter kisaoID="KISAO:0000525" value="ObsA&gt;9"/>
+            <algorithmParameter kisaoID="KISAO:0000840" value="0" name="start time"/>
+            <algorithmParameter kisaoID="KISAO:0000841" value="10000" name="max end time"/>
+            <algorithmParameter kisaoID="KISAO:0000842" value="0.5" name="observed step size"/>
+        </algorithm>
+    </analysis >
+</listOfSimulations>
+\end{myXmlLst}
+
+\lsttext{analysis2}{analysis}
+
+\begin{myXmlLst}{The SED-ML \code{analysis} element, defining a non-uniform time course.}{lst:analysis2}
+<listOfSimulations>
+    <analysis id="non_uniform_time_course">
+        <algorithm kisaoID="KISAO:0000057" name="Brownian diffusion Smoluchowski method">
+            <algorithmParameter kisaoID="KISAO:0000525" value="ObsA&gt;9" name="stop condition"/>
+            <algorithmParameter kisaoID="KISAO:0000840" value="0" name="start time"/>
+            <algorithmParameter kisaoID="KISAO:0000841" value="100" name="max end time"/>
+        </algorithm>
+    </analysis >
+</listOfSimulations>
+\end{myXmlLst}
+
+\lsttext{analysis3}{analysis}
+
+\begin{myXmlLst}{The SED-ML \code{analysis} element, defining the Klarner ASP logical model trap space identification method, using the reduced model.}{lst:analysis3}
+<listOfSimulations>
+    <analysis id="non_uniform_time_course">
+        <algorithm kisaoID="KISAO:0000662" name="Klarner ASP logical model trap space identification method">
+            <algorithmParameter kisaoID="KISAO:0000216" value="true" name="use reduced model"/>
+        </algorithm>
+    </analysis >
+</listOfSimulations>
+\end{myXmlLst}
+
+
+
+
+

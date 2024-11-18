@@ -1,0 +1,259 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\token}[1]{\texttt{#1}}
+\newcommand{\concept}[1]{\textcolor{blue}{#1}}
+\newcommand{\element}[1]{\texttt{#1}}
+\newcommand{\alert}[1]{\textcolor{red}{#1}}
+\newcommand{\note}[1]{\paragraph*{} \emph{\scshape{\alert{Please Note}}: #1} \newline}
+\newcommand{\mailto}[1]   {\link{mailto:#1}{#1}}
+\newcommand{\link}[2]     {\literalFont{\href{#1}{#2}}}
+\newcommand{\literalFont}[1]{\textup{\texttt{#1}}}
+\newcommand{\version}{4\xspace}
+\newcommand{\level}{1\xspace}
+\newcommand{\LoneVone}{Level~1 Version~1\xspace}
+\newcommand{\LoneVtwo}{Level~1 Version~2\xspace}
+\newcommand{\LoneVthree}{Level~1 Version~3\xspace}
+\newcommand{\LoneVfour}{Level~1 Version~4\xspace}
+\newcommand{\currentLV}{Level~1 Version~5\xspace}
+\newcommand{\previousLV}{Level~1 Version~4\xspace}
+\newcommand{\biom}{BioModels Database\xspace}
+% attribute table layout
+\newcommand{\attribute}{attribute\xspace}
+\newcommand{\desc}{description\xspace}
+\newcommand{\subelements}{sub-elements\xspace}
+
+\newcommand{\SedModel}{\hyperref[class:model]{Model}\xspace}
+\newcommand{\SedDataSource}{\hyperref[class:dataSource]{DataSource}\xspace}
+\newcommand{\SedDataDescription}{\hyperref[class:dataDescription]{DataDescription}\xspace}
+\newcommand{\SedSlice}{\hyperref[class:slice]{Slice}\xspace}
+
+\newcommand{\refpage}[1]{\hyperref[#1]{page \pageref{#1}}} % to hyperref to a particular page in the spec
+\newcommand{\tabcap}[1]{  % to create table captions for overview tables for each SED-ML class
+Attributes and nested elements for \concept{#1}. \emph{$^{o}$}denotes optional elements and attributes.
+}
+
+\newcommand{\tabtext}[2]{ % to create the introducing table text for each table reference
+\tab{#1}~shows all attributes and sub-elements for the \concept{#2} element. % as defined by the SED-ML \currentLV XML Schema.
+}
+
+\newcommand{\lsttext}[2]{ % to create the introducing listing text for each listing reference
+  Listing~\vref{lst:#1} shows the use of the \element{#2} element. % in a SED-ML file.
+}
+
+\newcommand{\lsttexta}[2]{ % to create the introducing listing text for each listing reference
+  Listing~\vref{lst:#1} shows the use of the \element{#2} attribute in a SED-ML file.}
+
+%
+\newcommand{\chap}[1]     {Chapter~\protect\ref{chap:#1}\xspace}
+\newcommand{\sect}[1]     {Section~\protect\ref{sec:#1}\xspace}
+\newcommand{\fig}[1]      {Figure~\protect\vref{fig:#1}\xspace}
+\newcommand{\tab}[1]      {Table~\protect\vref{tab:#1}\xspace}
+\newcommand{\lst}[1]      {Listing~\protect\ref{lst:#1}\xspace}
+\newcommand{\eg}          {e.\,g.,\xspace}
+\newcommand{\ie}          {i.\,e.,\xspace}
+
+\newcommand{\tickYes}{\hspace{1pt}\ding{52}}
+\newcommand{\tickNo}{\hspace{1pt}\ding{56}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  environments
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% standard figure layout
+\newcommand{\sedfig}[4][]
+	{\begin{figure}[H]\begin{center}{\includegraphics[width=0.9\textwidth,#1]{#2}}\caption{#3}\label{#4}\end{center}\end{figure}}
+
+\newcommand{\sedfigX}[4][]
+	{\begin{figure}[H]\begin{center}{\includegraphics[#1]{#2}}\caption{#3}\label{#4}\end{center}\end{figure}}
+
+% standard XML listing layout
+\lstnewenvironment{myXmlLst}[2]
+	{\lstset{basicstyle=\ttfamily\scriptsize, caption={#1},label={#2}, keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue}, commentstyle=\color{red}, captionpos=b, breaklines=true, xleftmargin=1.5em, xrightmargin=1.5em, numbers=left, numberstyle=\ttfamily\tiny, numbersep=5pt, tabsize=4, showstringspaces=false, language=XML}} %, float=!h
+	{}
+
+% listings in appendixes:
+\newcommand{\myXmlImport}[3]	{\lstinputlisting[basicstyle=\ttfamily\scriptsize,caption={#1},label={#2},%
+	keywordstyle=\color{blue}\bfseries, stringstyle=\color{blue}, commentstyle=\color{red}, captionpos=b, breaklines=true, xleftmargin=1.5em, xrightmargin=1.5em, numbers=left, numberstyle=\ttfamily\tiny, numbersep=5pt, tabsize=4, showstringspaces=false, language=XML, stepnumber=1]{#3}} %float=h!
+
+\newcommand{\changedColor}{Maroon}
+
+\newcommand{\changed}[1]{\textcolor{\changedColor}{#1}}
+\newcommand{\val}[1]{``\token{#1}''}
+
+\newcommand{\normal} {\hyperref[fun:normal]{normal}\xspace}
+\newcommand{\lognormal} {\hyperref[fun:lognormal]{lognormal}\xspace}
+\newcommand{\poisson} {\hyperref[fun:poisson]{poisson}\xspace}
+\newcommand{\sedgamma} {\hyperref[fun:gamma]{gamma}\xspace}
+\newcommand{\sedmin} {\hyperref[fun:min]{min}\xspace}
+\newcommand{\sedmax} {\hyperref[fun:max]{max}\xspace}
+\newcommand{\sedsum} {\hyperref[fun:sum]{sum}\xspace}
+\newcommand{\product} {\hyperref[fun:product]{product}\xspace}
+\newcommand{\sedcount} {\hyperref[fun:count]{count}\xspace}
+\newcommand{\mean} {\hyperref[fun:mean]{mean}\xspace}
+\newcommand{\stdev} {\hyperref[fun:stdev]{stdev}\xspace}
+\newcommand{\variance} {\hyperref[fun:variance]{variance}\xspace}
+\newcommand{\uniform} {\hyperref[fun:uniform]{uniform}\xspace}
+
+\newcommand{\kisaoID} {\element{kisaoID}\xspace}
+
+\newcommand{\AxisType} {\hyperref[type:axisType]{AxisType}\xspace}
+\newcommand{\CurveType} {\hyperref[type:curveType]{CurveType}\xspace}
+\newcommand{\SurfaceType} {\hyperref[type:surfaceType]{SurfaceType}\xspace}
+\newcommand{\SedColor} {\hyperref[type:sedColor]{SedColor}\xspace}
+\newcommand{\LineType} {\hyperref[type:lineType]{LineType}\xspace}
+\newcommand{\MarkerType} {\hyperref[type:markerType]{MarkerType}\xspace}
+\newcommand{\NuMLSIdRef} {\hyperref[type:numlsidref]{NuMLSIdRef}\xspace}
+\newcommand{\NuMLSId} {\hyperref[type:numlsid]{NuMLSId}\xspace}
+\newcommand{\SIdRef} {\hyperref[type:sidref]{SIdRef}\xspace}
+\newcommand{\SId} {\hyperref[type:sid]{SId}\xspace}
+\newcommand{\ExperimentType} {\hyperref[type:experimentType]{ExperimentType}\xspace}
+\newcommand{\MappingType} {\hyperref[type:mappingType]{MappingType}\xspace}
+\newcommand{\ScaleType} {\hyperref[type:scaleType]{ScaleType}\xspace}
+\newcommand{\XPath} {\hyperref[sec:xpath]{XPath}\xspace}
+\newcommand{\Target} {Target\xspace}
+
+
+\newcommand{\AbstractCurve} {\hyperref[class:abstractCurve]{\emph{AbstractCurve}}\xspace}
+\newcommand{\AbstractTask} {\hyperref[class:abstractTask]{\emph{AbstractTask}}\xspace}
+\newcommand{\AddXML} {\hyperref[class:addXml]{AddXML}\xspace}
+\newcommand{\AdjustableParameter} {\hyperref[class:adjustableParameter]{AdjustableParameter}\xspace}
+\newcommand{\AdjustableParameters} {\hyperref[class:adjustableParameter]{AdjustableParameters}\xspace}
+\newcommand{\AlgorithmParameter} {\hyperref[class:algorithmParameter]{AlgorithmParameter}\xspace}
+\newcommand{\AlgorithmParameters} {\hyperref[class:algorithmParameter]{AlgorithmParameters}\xspace}
+\newcommand{\Algorithm} {\hyperref[class:algorithm]{Algorithm}\xspace}
+\newcommand{\Analysis} {\hyperref[class:analysis]{Analysis}\xspace}
+\newcommand{\Annotation} {\hyperref[class:annotation]{Annotation}\xspace}
+\newcommand{\Axis} {\hyperref[class:axis]{Axis}\xspace}
+\newcommand{\Bounds} {\hyperref[class:bounds]{Bounds}\xspace}
+\newcommand{\Calculation} {\hyperref[class:calculation]{Calculation}\xspace}
+\newcommand{\Change} {\hyperref[class:change]{Change}\xspace}
+\newcommand{\ChangeXML} {\hyperref[class:changeXml]{ChangeXML}\xspace}
+\newcommand{\ChangeAttribute} {\hyperref[class:changeAttribute]{ChangeAttribute}\xspace}
+\newcommand{\ComputeChange} {\hyperref[class:computeChange]{ComputeChange}\xspace}
+\newcommand{\CSV} {\hyperref[sec:dataFormatCSV]{CSV}\xspace}
+\newcommand{\Curve} {\hyperref[class:curve]{Curve}\xspace}
+\newcommand{\DataDescription} {\hyperref[class:dataDescription]{DataDescription}\xspace}
+\newcommand{\DataGenerators} {\hyperref[class:dataGenerator]{DataGenerators}\xspace}
+\newcommand{\DataGenerator} {\hyperref[class:dataGenerator]{DataGenerator}\xspace}
+\newcommand{\DataRange} {\hyperref[class:dataRange]{DataRange}\xspace}
+\newcommand{\DataReference} {\hyperref[sec:dataReference]{DataReference}\xspace}
+\newcommand{\DataSet} {\hyperref[class:dataSet]{DataSet}\xspace}
+\newcommand{\DataSource} {\hyperref[class:dataSource]{DataSource}\xspace}
+\newcommand{\DimensionDescription} {\hyperref[class:dimensionDescription]{DimensionDescription}\xspace}
+\newcommand{\ExperimentReference} {\hyperref[class:experimentReference]{ExperimentReference}\xspace}
+\newcommand{\Figure} {\hyperref[class:figure]{Figure}\xspace}
+\newcommand{\Fill} {\hyperref[class:fill]{Fill}\xspace}
+\newcommand{\FitExperiments} {\hyperref[class:fitExperiment]{FitExperiments}\xspace}
+\newcommand{\FitExperiment} {\hyperref[class:fitExperiment]{FitExperiment}\xspace}
+\newcommand{\FitMapping} {\hyperref[class:fitMapping]{FitMapping}\xspace}
+\newcommand{\FitMappings} {\hyperref[class:fitMapping]{FitMappings}\xspace}
+\newcommand{\FunctionalRange} {\hyperref[class:functionalRange]{FunctionalRange}\xspace}
+\newcommand{\HDF} {\hyperref[sec:dataFormatHDF5]{HDF5}\xspace}
+\newcommand{\LeastSquareObjectiveFunction} {\hyperref[class:leastSquareObjectiveFunction]{LeastSquareObjectiveFunction}\xspace}
+\newcommand{\Line} {\hyperref[class:line]{Line}\xspace}
+\newcommand{\ListOfAdjustableParameters} {\hyperref[class:listOfAdjustableParameters]{ListOfAdjustableParameters}\xspace}
+\newcommand{\ListOfAlgorithmParameters} {\hyperref[class:listOfAlgorithmParameters]{ListOfAlgorithmParameters}\xspace}
+\newcommand{\ListOfChanges} {\hyperref[sec:changesModel]{ListOfChanges}\xspace}
+\newcommand{\ListOfCurves} {\hyperref[class:listOfCurves]{ListOfCurves}\xspace}
+\newcommand{\ListOfDataSets} {\hyperref[class:listOfDataSets]{ListOfDataSets}\xspace}
+\newcommand{\ListOfDataSources} {\hyperref[class:listOfDataSources]{ListOfDataSources}\xspace}
+\newcommand{\ListOfDataDescriptions} {\hyperref[class:listOfDataDescriptions]{ListOfDataDescriptions}\xspace}
+\newcommand{\ListOfDataGenerators} {\hyperref[class:listOfDataGenerators]{ListOfDataGenerators}\xspace}
+\newcommand{\ListOfExperimentReferences} {\hyperref[class:listOfExperimentReferences]{ListOfExperimentReferences}\xspace}
+\newcommand{\ListOfFitExperiments} {\hyperref[class:listOfFitExperiments]{ListOfFitExperiments}\xspace}
+\newcommand{\ListOfFitMappings} {\hyperref[class:listOfFitMappings]{ListOfFitMappings}\xspace}
+\newcommand{\ListOfModels} {\hyperref[class:listOfModels]{ListOfModels}\xspace}
+\newcommand{\ListOfOutputs} {\hyperref[class:listOfOutputs]{ListOfOutputs}\xspace}
+\newcommand{\ListOfParameters} {\hyperref[class:listOfParameters]{ListOfParameters}\xspace}
+\newcommand{\ListOfRanges} {\hyperref[class:listOfRanges]{ListOfRanges}\xspace}
+\newcommand{\ListOfAppliedDimensions} {\hyperref[class:listOfAppliedDimensions]{ListOfAppliedDimensions}\xspace}
+\newcommand{\ListOfSimulations} {\hyperref[class:listOfSimulations]{ListOfSimulations}\xspace}
+\newcommand{\ListOfSlices} {\hyperref[class:listOfSlices]{ListOfSlices}\xspace}
+\newcommand{\ListOfStyles} {\hyperref[class:listOfStyles]{ListOfStyles}\xspace}
+\newcommand{\ListOfSubTasks} {\hyperref[class:listOfSubTasks]{ListOfSubTasks}\xspace}
+\newcommand{\ListOfSubPlots} {\hyperref[class:listOfSubPlots]{ListOfSubPlots}\xspace}
+\newcommand{\ListOfSurfaces} {\hyperref[class:listOfSurfaces]{ListOfSurfaces}\xspace}
+\newcommand{\ListOfTasks} {\hyperref[class:listOfTasks]{ListOfTasks}\xspace}
+\newcommand{\ListOfVariables} {\hyperref[class:listOfVariables]{ListOfVariables}\xspace}
+\newcommand{\Marker} {\hyperref[class:marker]{Marker}\xspace}
+\newcommand{\Math} {\hyperref[sec:math]{Math}\xspace}
+\newcommand{\Models} {\hyperref[class:model]{Models}\xspace}
+\newcommand{\Model} {\hyperref[class:model]{Model}\xspace}
+\newcommand{\Notes} {\hyperref[class:notes]{Notes}\xspace}
+\newcommand{\Objective} {\hyperref[class:objective]{Objective}\xspace}
+\newcommand{\OneStep} {\hyperref[class:oneStep]{OneStep}\xspace}
+\newcommand{\Output} {\hyperref[class:output]{Output}\xspace}
+\newcommand{\ParameterEstimationReport} {\hyperref[class:parameterEstimationReport]{ParameterEstimationReport}\xspace}
+\newcommand{\ParameterEstimationResultPlot} {\hyperref[class:parameterEstimationResultPlot]{ParameterEstimationResultPlot}\xspace}
+\newcommand{\ParameterEstimationTask} {\hyperref[class:parameterEstimationTask]{ParameterEstimationTask}\xspace}
+\newcommand{\Parameter} {\hyperref[class:parameter]{Parameter}\xspace}
+\newcommand{\PlotThree} {\hyperref[class:plot3D]{Plot3D}\xspace}
+\newcommand{\PlotTwo} {\hyperref[class:plot2D]{Plot2D}\xspace}
+\newcommand{\Plot} {\hyperref[class:plot]{\emph{Plot}}\xspace}
+\newcommand{\Range} {\hyperref[class:range]{Range}\xspace}
+\newcommand{\AppliedDimension} {\hyperref[class:appliedDimension]{AppliedDimension}\xspace}
+\newcommand{\RemoveXML} {\hyperref[class:removeXml]{RemoveXML}\xspace}
+\newcommand{\RepeatedTask} {\hyperref[class:repeatedTask]{RepeatedTask}\xspace}
+\newcommand{\Report} {\hyperref[class:report]{Report}\xspace}
+\newcommand{\SEDBase} {\hyperref[class:sedBase]{\emph{SEDBase}}\xspace}
+\newcommand{\SedBase} {\hyperref[class:sedBase]{\emph{SEDBase}}\xspace}
+\newcommand{\SedDocument} {\hyperref[class:sed-ml]{SED-ML Document}\xspace}
+\newcommand{\SedML} {\hyperref[class:sed-ml]{SedML}\xspace}
+\newcommand{\SetValue} {\hyperref[class:setValue]{SetValue}\xspace}
+\newcommand{\ShadedArea} {\hyperref[class:shadedArea]{ShadedArea}\xspace}
+\newcommand{\SimpleRepeatedTask} {\hyperref[class:simpleRepeatedTask]{SimpleRepeatedTask}\xspace}
+\newcommand{\Simulations} {\hyperref[class:simulation]{Simulations}\xspace}
+\newcommand{\Simulation} {\hyperref[class:simulation]{Simulation}\xspace}
+\newcommand{\Slice} {\hyperref[class:slice]{Slice}\xspace}
+\newcommand{\SteadyState} {\hyperref[class:steadyState]{SteadyState}\xspace}
+\newcommand{\Style} {\hyperref[class:style]{Style}\xspace}
+\newcommand{\SubPlot} {\hyperref[class:subPlot]{SubPlot}\xspace}
+\newcommand{\SubTask} {\hyperref[class:subTask]{SubTask}\xspace}
+\newcommand{\Surface} {\hyperref[class:surface]{Surface}\xspace}
+\newcommand{\Task} {\hyperref[class:task]{Task}\xspace}
+\newcommand{\UniformTimeCourse} {\hyperref[class:uniformTimeCourse]{UniformTimeCourse}\xspace}
+\newcommand{\UniformRange} {\hyperref[class:uniformRange]{UniformRange}\xspace}
+\newcommand{\Variables} {\hyperref[class:variable]{Variables}\xspace}
+\newcommand{\Variable} {\hyperref[class:variable]{Variable}\xspace}
+\newcommand{\VectorRange} {\hyperref[class:vectorRange]{VectorRange}\xspace}
+\newcommand{\WaterfallPlot} {\hyperref[class:waterfallPlot]{WaterfallPlot}\xspace}
+%\newcommand{\Variable} {\hyperref[class:variable]{Variable}\xspace}
+
+
+\newenvironment{blockChanged}{\color{\changedColor}}{\color{black}}
+
+
+\def\sedmltableofcontents{%
+  \if@notoc
+  \else
+    \begingroup
+      \small%
+      % Tighten spacing between lines within an entry.
+      % This assumes 10 pt font!
+      \setlength{\baselineskip}{9.7pt}%
+      % Now adjust inter-entry spacing.
+      \addtolength{\parskip}{-1.35 ex}%
+      \if@twocolumntoc
+        \setlength{\columnsep}{16pt}%
+        \begin{multicols}{2}
+      \fi
+      \tableofcontents%
+      \if@twocolumntoc
+        \end{multicols}
+      \fi
+      \normalsize%
+      \addtolength{\parskip}{1.45 ex}%
+    \endgroup
+  \fi}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../sed-ml-L1V3"
+%%% End: 
+
+
