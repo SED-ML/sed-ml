@@ -1,0 +1,1105 @@
+% -*- TeX-master: "main"; fill-column: 72 -*-
+
+\section{Validation of SED-ML documents} 
+\label{apdx-validation}
+
+\subsection{Validation and consistency rules} 
+\label{validation-rules}
+
+This section summarizes all the conditions that must (or in some cases, at least \emph{should}) be true of a SED-ML Level~1 Version~5 model that uses the SED-ML. We use the same conventions as are used in the SED-ML Level~1 Version~5 Core specification document. In particular, there are different degrees of rule strictness. Formally, the differences are expressed in the statement of a rule: either a rule states that a condition \emph{must} be true, or a rule states that it \emph{should} be true. Rules of the former kind are strict SED-ML validation rules---a model encoded in SED-ML must conform to all of them in order to be considered valid. Rules of the latter kind are consistency rules. To help highlight these differences, we use the following three symbols next to the rule numbers:
+
+\begin{description}
+
+\item[\hspace*{6.5pt}\vSymbol\vsp] A \vSymbolName indicates a \emph{requirement} for SED-ML conformance. If a model does not follow this rule, it does not conform to the SED-ML specification. (Mnemonic intention behind the choice of symbol: ``This must be checked.'')
+
+\item[\hspace*{6.5pt}\cSymbol\csp] A \cSymbolName indicates a \emph{recommendation} for model consistency. If a model does not follow this rule, it is not considered strictly invalid as far as the SED-ML specification is concerned; however, it indicates that the model contains a physical or conceptual inconsistency. (Mnemonic intention behind the choice of symbol: ``This is a cause for warning.'')
+
+\item[\hspace*{6.5pt}\mSymbol\msp] A \mSymbolName indicates a strong recommendation for good modeling practice. This rule is not strictly a matter of SED-ML encoding, but the recommendation comes from logical reasoning. As in the previous case, if a model does not follow this rule, it is not strictly considered an invalid SED-ML encoding. (Mnemonic intention behind the choice of symbol: ``You're a star if you heed this.'')
+
+\end{description}
+
+The validation rules listed in the following subsections are all stated or implied in the rest of this specification document. They are enumerated here for convenience. Unless explicitly stated, all validation rules concern objects and attributes specifically defined in SED-ML.
+
+For convenience and brevity, we use the shorthand ``\token{x}'' to stand for an attribute or element name \token{x} in the namespace for SED-ML, using the namespace prefix \token{sedml}. In reality, the prefix string may be different from the literal ``\token{sedml}'' used here (and indeed, it can be any valid XML namespace prefix that the modeler or software chooses). We use ``\token{x}'' because it is shorter than to write a full explanation everywhere we refer to an attribute or element in the SED-ML namespace.
+
+\subsubsection*{General rules about this package}
+
+\validRule{10101}{To conform to the SED-ML specification for SED-ML Level~1 Version~5, a SED-ML document must declare \uri{http://sed-ml.org/sed-ml/level1/version5} as the XMLNamespace to use for elements of this package. (Reference: SED-ML Level~1 Version~5 Section \ref{sec:xmlns}.)}
+
+\validRule{10102}{Wherever they appear in a SED-ML document, elements and attributes from the SED-ML must use the \uri{http://sed-ml.org/sed-ml/level1/version5} namespace, declaring so either explicitly or implicitly. (Reference: SED-ML Level~1 Version~5 Section \ref{sec:xmlns}.)}
+
+\input{sources/apdx-validation-mathml.tex}
+
+\subsubsection*{General rules about identifiers}
+
+\validRule{10301}{The value of the attribute id on every SED-ML object must be unique across the set of all id attribute values of all objects in a SED-ML document. (Reference: SED-ML Level~1 Version~5, Section~\ref{sec:id}.)}
+
+\validRule{10302}{The value of a \token{id} must conform to the syntax of the \SedML data type \code{SId} (Reference: SED-ML Level~1 Version~5, Section~\ref{sec:id}.)}
+
+%\TODO{ANY LIST OF ELEMENTS THAT HAVE ATTRIBUTES}
+
+
+
+\validRule{10303}{The value of a \token{metaid} must conform to the syntax of the XML Type ID (Reference: SED-ML Level~1 Version~5, Section~\ref{sec:metaid}.)}
+
+\subsubsection*{Rules for the \SedDocument object}
+
+\validRule{20201}{A \SedDocument object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20202}{A \SedDocument object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20203}{A \SedDocument object must have the required attributes \token{level} and \token{version}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:sed-ml}.)}
+
+\validRule{20204}{A \SedDocument object may contain one and only one instance of each of the \ListOfDataDescriptions, \ListOfModels, \ListOfSimulations, \ListOfTasks, \ListOfDataGenerators, \ListOfOutputs, \ListOfStyles and \ListOfAlgorithmParameters elements. (Reference: SED-ML Level~1 Version~5, Section \ref{class:sed-ml}.)}
+
+\validRule{20205}{The attribute \token{level} on a \SedDocument must have a positive value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:sed-ml}.)}
+
+\validRule{20206}{The attribute \token{version} on a \SedDocument must have a positive value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:sed-ml}.)}
+
+\validRule{20207}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfDataDescriptions container object may only contain \DataDescription objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfDataDescriptions}.)}
+
+\validRule{20208}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfModels container object may only contain \Model objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfModels}.)}
+
+\validRule{20209}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfSimulations container object may only contain \Simulation objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfSimulations}.)}
+
+\validRule{20210}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfTasks container object may only contain \AbstractTask objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfTasks}.)}
+
+\validRule{20211}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfDataGenerators container object may only contain \DataGenerator objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfDataGenerators}.)}
+
+\validRule{20212}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfOutputs container object may only contain \Output objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfOutputs}.)}
+
+\validRule{20213}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfStyles container object may only contain \Style objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfStyles}.)}
+
+\validRule{20214}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfAlgorithmParameters container object may only contain \AlgorithmParameter objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfAlgorithmParameters}.)}
+
+\validRule{20215}{A \ListOfDataDescriptions object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfDataDescriptions}.)}
+
+\validRule{20216}{A \ListOfModels object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfModels}.)}
+
+\validRule{20217}{A \ListOfSimulations object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfSimulations}.)}
+
+\validRule{20218}{A \ListOfTasks object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfTasks}.)}
+
+\validRule{20219}{A \ListOfDataGenerators object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfDataGenerators}.)}
+
+\validRule{20220}{A \ListOfOutputs object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfOutputs}.)}
+
+\validRule{20221}{A \ListOfStyles object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfStyles}.)}
+
+\validRule{20222}{A \ListOfAlgorithmParameters object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfAlgorithmParameters}.)}
+
+\modelingRule{20250}{Every \SedDocument should contain at least one \Output.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:sed-ml})}
+
+\subsubsection*{Rules for \Model objects}
+
+\validRule{20301}{A \Model object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name} and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20302}{A \Model object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20303}{A \Model object must have the required attributes \token{language}, \token{source} and \token{id}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:model}.)}
+
+\validRule{20304}{A \Model object may contain one and only one instance of the \ListOfChanges element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:model}.)}
+
+\validRule{20305}{The attribute \token{language} on a \Model must have a value of data type \token{URN}  (Reference: SED-ML Level~1 Version~5, Section \ref{class:model})}
+
+\validRule{20306}{The attribute \token{source} on a \Model must have a value of data type \token{anyURI}  (Reference: SED-ML Level~1 Version~5, Section \ref{class:model})}
+
+\validRule{20307}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfChanges container object may only contain \Change objects. (Reference: SED-ML Level~1 Version~5, Section \ref{sec:changesModel}.)}
+
+\validRule{20308}{A \ListOfChanges object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{sec:changesModel}.)}
+
+\validRule{20350}{There must not be circular dependencies in model resolution.  The \element{source} attribute of a \Model may not directly or indirectly reference itself.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:model})}
+
+\validRule{20351}{There must not be circular cross-dependencies in model change resolution.  The \element{target} and \element{source} attributes of a \ComputeChange may not correspond to the \element{target} and \element{source} of a different \ComputeChange in a different \Model.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:model})}
+
+\validRule{20352}{The model pointed to by the \element{source} attribute must exist.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:model})}
+
+\validRule{20353}{The model pointed to by the \element{source} attribute must be encoded in the language defined by the \element{language} attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:model})}
+
+\modelingRule{20354}{Avoid using URNs for the \element{source} attribute of a \Model, as these have become increasingly harder to resolve.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:model})}
+
+\validRule{20355}{A \Model may only contain an \AddXML child if its \element{language} attribute describes an XML-based language.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:model})}
+
+\validRule{20356}{A \Model may only contain a \RemoveXML child if its \element{language} attribute describes an XML-based language.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:model})}
+
+\validRule{20357}{A \Model may only contain a \ChangeXML child if its \element{language} attribute describes an XML-based language.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:model})}
+
+\subsubsection*{Rules for \Change objects}
+
+\validRule{20401}{A \Change object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, \token{target} and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20402}{A \Change object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20403}{If a \Change object has no child \Algorithm element, it must define the } attribute \token{target}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:change}.)
+
+\validRule{20404}{The attribute \token{target} on a \Change must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:change}.)}
+
+\validRule{20450}{A \Change object or one of its derived classes may contain exactly one child \Algorithm element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:change}.)}
+
+
+\subsubsection*{Rules for \AddXML objects}
+
+\validRule{20501}{An \AddXML object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20502}{An \AddXML object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20503}{An \AddXML object must contain one and only one instance of the XMLNode element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:addXml}.)}
+
+\validRule{20550}{The \element{target} attribute of an \AddXML object must point to a valid target in the \Model \element{source}.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:change})}
+
+\validRule{20551}{The \element{target} attribute of an \AddXML object be a valid XPath when the \Model \element{language} attribute describes an XML-based language.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:change})}
+
+\validRule{20552}{The XML child of an \AddXML object must be a valid XML element or list of XML elements.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:addXml})}
+
+\validRule{20553}{The XML child of an \AddXML object must be in a namespace defined by the \element{source} attribute of the parent \Model object, or explicitly define its own namespace understood by the language of the target model.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:addXml})}
+
+\subsubsection*{Rules for \ChangeAttribute objects}
+
+\validRule{20601}{A \ChangeAttribute object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20602}{A \ChangeAttribute object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20603}{A \ChangeAttribute object must have the required attribute \token{newValue}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:changeAttribute}.)}
+
+\validRule{20604}{The attribute \token{newValue} on a \ChangeAttribute must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:changeAttribute}.)}
+
+\validRule{20650}{The \element{target} attribute of a \ChangeAttribute object must point to a valid target in the \Model \element{source}.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:change})}
+
+\validRule{20651}{The \element{target} attribute of a \ChangeAttribute object be a valid XPath when the \Model \element{language} attribute describes an XML-based language.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:change})}
+
+\subsubsection*{Rules for \Variable objects}
+
+\validRule{20701}{A \Variable object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name} and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20702}{A \Variable object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20703}{A \Variable object may have the optional attributes \token{symbol}, \token{target}, \token{taskReference}, \token{model\-Reference}, \token{term}, \token{symbol2}, \token{target2} and \token{dimensionTerm}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable}.)}
+
+\validRule{20704}{A \Variable object may contain one and only one instance of the \ListOfAppliedDimensions element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable}.)}
+
+\validRule{20705}{The attribute \token{symbol} on a \Variable must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable}.)}
+
+\validRule{20706}{The attribute \token{target} on a \Variable must have a value of data type \token{TargetType}  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\validRule{20707}{The value of the attribute \token{taskReference} of a \Variable object must be the identifier of an existing \AbstractTask object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable}.)}
+
+\validRule{20708}{The value of the attribute \token{model\-Reference} of a \Variable object must be the identifier of an existing \Model object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable}.)}
+
+\validRule{20709}{The attribute \token{term} on a \Variable must have a value of data type \token{anyURI}  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\validRule{20710}{The attribute \token{symbol2} on a \Variable must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable}.)}
+
+\validRule{20711}{The attribute \token{target2} on a \Variable must have a value of data type \token{TargetType}  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\validRule{20712}{The attribute \token{dimensionTerm} on a \Variable must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable}.)}
+
+\validRule{20713}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfAppliedDimensions container object may only contain \AppliedDimension objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfAppliedDimensions}.)}
+
+\validRule{20714}{A \ListOfAppliedDimensions object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfAppliedDimensions}.)}
+
+\validRule{20750}{Every \Variable with a defined \element{dimensionTerm} attribute must have exactly one \ListOfAppliedDimensions child containing at least one child \AppliedDimension object.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\validRule{20751}{Every \Variable with a defined \element{target2} or \element{symbol2} attribute must also define the \element{term} attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\validRule{20752}{The \element{target}, \element{symbol}, \element{term}, \element{target2} and \element{symbol2} attributes of a \Variable must collectively define a single mathematical concept.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\validRule{20753}{When the \element{target} attribute of a \Variable is an XPath, it must point to a single model element or attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\validRule{20754}{If the \element{target} of a \Variable child of a \DataGenerator points to a \DataSource, neither the \Variable's \element{taskReference} nor \element{modelRefernce} may be set.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\subsubsection*{Rules for \Parameter objects}
+
+\validRule{20801}{A \Parameter object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name} and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20802}{A \Parameter object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20803}{A \Parameter object must have the required attributes \token{value} and \token{id}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:parameter}.)}
+
+\validRule{20804}{The attribute \token{value} on a \Parameter must have a value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:parameter}.)}
+
+\subsubsection*{Rules for \Simulation objects}
+
+\validRule{20901}{A \Simulation object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name} and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20902}{A \Simulation object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{20903}{A \Simulation object must contain one and only one instance of the Algorithm element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:simulation}.)}
+
+\subsubsection*{Rules for \UniformTimeCourse objects}
+
+\validRule{21001}{An \UniformTimeCourse object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21002}{An \UniformTimeCourse object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21003}{An \UniformTimeCourse object must have the required attributes \token{initialTime}, \token{output\-Start\-Time} and \token{outputEndTime}, and may have the optional attributes \token{numberOfPoints} and \token{number\-Of\-Steps}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformTimeCourse}.)}
+
+\validRule{21004}{The attribute \token{initialTime} on an \UniformTimeCourse must have a value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformTimeCourse}.)}
+
+\validRule{21005}{The attribute \token{output\-Start\-Time} on an \UniformTimeCourse must have a value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformTimeCourse}.)}
+
+\validRule{21006}{The attribute \token{outputEndTime} on an \UniformTimeCourse must have a value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformTimeCourse}.)}
+
+\validRule{21007}{The attribute \token{numberOfPoints} on an \UniformTimeCourse must have a positive value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformTimeCourse}.)}
+
+\validRule{21008}{The attribute \token{number\-Of\-Steps} on an \UniformTimeCourse must have a positive value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformTimeCourse}.)}
+
+\consistencyRule{21050}{Avoid use of the \element{numberOfPoints} attribute of a \UniformTimeCourse in favor of the \element{numberOfSteps} attribute.  "Number of Steps" accurately reflects the meaning of the attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformTimeCourse})}
+
+\validRule{21051}{The value of the \element{outputStartTime} attribute of a \UniformTimeCourse must be equal to or greater than the value of the \element{initialTime} attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformTimeCourse})}
+
+\validRule{21052}{The value of the \element{endTime} attribute of a \UniformTimeCourse must be equal to or greater than the value of the \element{outputStartTime} attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformTimeCourse})}
+
+\modelingRule{21053}{The value of the \element{numberOfPoints} attribute of a \UniformTimeCourse should typically be evenly divisible by five.  When this is not the case, it often indicates that the modeler is unaware that the definition of the attribute is actually 'the number of points not including the initial state'.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformTimeCourse})}
+
+\validRule{21054}{Only one of the attributes \element{numberOfPoints} or \element{numberOfSteps} may be defined on a \UniformTimeCourse.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformTimeCourse})}
+
+\subsubsection*{Rules for \Algorithm objects}
+
+\validRule{21101}{An \Algorithm object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21102}{An \Algorithm object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21103}{An \Algorithm object must have the required attribute \token{kisaoID}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:algorithm}.)}
+
+\validRule{21104}{An \Algorithm object may contain one and only one instance of the \ListOfAlgorithmParameters element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:algorithm}.)}
+
+\validRule{21105}{The attribute \token{kisaoID} on an \Algorithm must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:algorithm}.)}
+
+\validRule{21106}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfAlgorithmParameters container object may only contain \AlgorithmParameter objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfAlgorithmParameters}.)}
+
+\validRule{21107}{A \ListOfAlgorithmParameters object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfAlgorithmParameters}.)}
+
+\validRule{21150}{The value of the \element{kisaoID} attribute of an \Algorithm must be the ID of an algorithm in the KiSAO ontology.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:algorithm})}
+
+\subsubsection*{Rules for \AbstractTask objects}
+
+\validRule{21201}{An \AbstractTask object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name} and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21202}{An \AbstractTask object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21203}{An \AbstractTask object must have the required attribute \token{id}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:task}.)}
+
+\validRule{21250}{An \AbstractTask object may contain exactly one child \Algorithm element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:task}.)}
+
+\modelingRule{21250}{Every \AbstractTask should contribute to at least one \Output.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:abstractTask})}
+
+\subsubsection*{Rules for \Task objects}
+
+\validRule{21301}{A \Task object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name}, \token{metaid}, \token{model\-Reference}, and \token{simulation\-Reference}}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)
+
+\validRule{21302}{A \Task object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21303}{If a \Task object has no child \Algorithm, it must define the attributes} \token{model\-Reference} and \token{simulationReference}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:task}.)
+
+\validRule{21304}{The value of the attribute \token{model\-Reference} of a \Task object must be the identifier of an existing \Model object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:task}.)}
+
+\validRule{21305}{The value of the attribute \token{simulationReference} of a \Task object must be the identifier of an existing \Simulation object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:task}.)}
+
+\validRule{21350}{An \AbstractTask object may contain exactly one child \Algorithm element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:task}.)}
+
+\subsubsection*{Rules for \DataGenerator objects}
+
+\validRule{21401}{A \DataGenerator object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name} and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21402}{A \DataGenerator object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21403}{A \DataGenerator object must have the required attribute \token{id}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataGenerator}.)}
+
+\validRule{21404}{A \DataGenerator object may contain one and only one instance of each of the \ListOfVariables, \ListOfParameters and ASTNode elements. (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataGenerator}.)}
+
+\validRule{21405}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfVariables container object may only contain \Variable objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfVariables}.)}
+
+\validRule{21406}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfParameters container object may only contain \Parameter objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfParameters}.)}
+
+\validRule{21407}{A \ListOfVariables object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfVariables}.)}
+
+\validRule{21408}{A \ListOfParameters object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfParameters}.)}
+
+\subsubsection*{Rules for \Output objects}
+
+\validRule{21501}{An \Output object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21502}{An \Output object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\modelingRule{21550}{Every \DataGenerator should contribute to at least one \Output.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataGenerator})}
+
+\modelingRule{21551}{The shape of the output of every \Variable child of the same \DataGenerator should either be scalar or be consistent with its \Variable siblings.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataGenerator})}
+
+\validRule{21552}{If the \element{target} of a \Variable child of a \DataGenerator does not point to a \DataSource, the \Variable's \element{taskReference} must be set.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\validRule{21553}{If the \element{taskReference} of a \Variable child of a \DataGenerator is set and references an \AbstractTask that references multiple models, the \element{modelReference} of the \Variable must also be set.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\validRule{21554}{If the \element{taskReference} of a \Variable child of a \DataGenerator is set, the \element{modelReference} of the \Variable, if also set, must reference a \Model modified by the referenced \AbstractTask.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\validRule{21555}{An \Output object or one of its derived classes may contain exactly one child \Algorithm element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:output}.)}
+
+\subsubsection*{Rules for \Plot objects}
+
+\validRule{21601}{A \Plot object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21602}{A \Plot object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21603}{A \Plot object may have the optional attributes \token{legend}, \token{height} and \token{width}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:plot}.)}
+
+\validRule{21604}{A \Plot object may contain one and only one instance of each of the Axis and Axis elements. (Reference: SED-ML Level~1 Version~5, Section \ref{class:plot}.)}
+
+\validRule{21605}{The attribute \token{legend} on a \Plot must have a value of data type \token{boolean}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:plot}.)}
+
+\validRule{21606}{The attribute \token{height} on a \Plot must have a non-negative value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:plot}.)}
+
+\validRule{21607}{The attribute \token{width} on a \Plot must have a non-negative value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:plot}.)}
+
+\subsubsection*{Rules for \PlotTwo objects}
+
+\validRule{21701}{A \PlotTwo object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21702}{A \PlotTwo object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21703}{A \PlotTwo object may contain one and only one instance of each of the \ListOfCurves and Axis elements. (Reference: SED-ML Level~1 Version~5, Section \ref{class:plot2D}.)}
+
+\validRule{21704}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfCurves container object may only contain \AbstractCurve objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfCurves}.)}
+
+\validRule{21705}{A \ListOfCurves object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfCurves}.)}
+
+\modelingRule{21750}{The shape of the data referenced by every \AbstractCurve child of a single \PlotTwo object should be consistent.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:plot2D})}
+
+\subsubsection*{Rules for \PlotThree objects}
+
+\validRule{21801}{A \PlotThree object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21802}{A \PlotThree object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21803}{A \PlotThree object may contain one and only one instance of each of the \ListOfSurfaces and Axis elements. (Reference: SED-ML Level~1 Version~5, Section \ref{class:plot3D}.)}
+
+\validRule{21804}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfSurfaces container object may only contain \Surface objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfSurfaces}.)}
+
+\validRule{21805}{A \ListOfSurfaces object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfSurfaces}.)}
+
+\modelingRule{21850}{The shape of the data referenced by every \Surface child of a single \PlotThree object should be consistent.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:plot3D})}
+
+\subsubsection*{Rules for \AbstractCurve objects}
+
+\validRule{21901}{An \AbstractCurve object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21902}{An \AbstractCurve object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{21903}{An \AbstractCurve object must have the required attribute \token{xDataReference}, and may have the optional attributes \token{logX}, \token{order}, \token{style} and \token{yAxis}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\validRule{21904}{The value of the attribute \token{xDataReference} of an \AbstractCurve object must be the identifier of an existing \DataReference object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\validRule{21905}{The attribute \token{logX} on an \AbstractCurve must have a value of data type \token{boolean}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\validRule{21906}{The attribute \token{order} on an \AbstractCurve must have a value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\validRule{21907}{The value of the attribute \token{style} of an \AbstractCurve object must be the identifier of an existing \Style object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\validRule{21908}{The attribute \token{yAxis} on an \AbstractCurve must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\consistencyRule{21950}{No \element{logX} attribute of any \AbstractCurve should be set.  Instead, the \element{type} attribute of the corresponding \Axis should be used.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:abstractCurve})}
+
+\subsubsection*{Rules for \Curve objects}
+
+\validRule{22001}{A \Curve object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22002}{A \Curve object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22003}{A \Curve object must have the required attributes \token{yData\-Reference} and \token{type}, and may have the optional attributes \token{logY}, \token{xErrorUpper}, \token{xErrorLower}, \token{yErrorUpper} and \token{yErrorLower}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\validRule{22004}{The value of the attribute \token{yData\-Reference} of a \Curve object must be the identifier of an existing \DataGenerator object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\validRule{22005}{The value of the attribute \token{type} of a \Curve object must conform to the syntax of SED-ML data type \code{CurveType} and may only take on the allowed values of \code{CurveType} defined in SED-ML; that is, the value must be one of the following: \val{points}, \val{bar}, \val{barStacked}, \val{horizontalBar} or \val{horizontalBarStacked}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\validRule{22006}{The attribute \token{logY} on a \Curve must have a value of data type \token{boolean}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\validRule{22007}{The value of the attribute \token{xErrorUpper} of a \Curve object must be the identifier of an existing \DataGenerator object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\validRule{22008}{The value of the attribute \token{xErrorLower} of a \Curve object must be the identifier of an existing \DataGenerator object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\validRule{22009}{The value of the attribute \token{yErrorUpper} of a \Curve object must be the identifier of an existing \DataGenerator object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\validRule{22010}{The value of the attribute \token{yErrorLower} of a \Curve object must be the identifier of an existing \DataGenerator object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve}.)}
+
+\consistencyRule{22050}{No \element{logY} attribute of any \Curve should be set.  Instead, the \element{type} attribute of the corresponding \Axis should be used.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve})}
+
+\validRule{22051}{If defined, the \element{xErrorUpper} attribute must reference data with the same dimensionality as that referenced by the \element{xDataReference} attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve})}
+
+\validRule{22052}{If defined, the \element{xErrorLower} attribute must reference data with the same dimensionality as that referenced by the \element{xDataReference} attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve})}
+
+\validRule{22053}{If defined, the \element{yErrorUpper} attribute must reference data with the same dimensionality as that referenced by the \element{yDataReference} attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve})}
+
+\validRule{22054}{If defined, the \element{yErrorLower} attribute must reference data with the same dimensionality as that referenced by the \element{yDataReference} attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:curve})}
+
+\subsubsection*{Rules for \Surface objects}
+
+\validRule{22101}{A \Surface object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22102}{A \Surface object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22103}{A \Surface object must have the required attributes \token{xDataReference}, \token{yData\-Reference}, \token{zDataReference} and \token{type}, and may have the optional attributes \token{style}, \token{logX}, \token{logY}, \token{logZ} and \token{order}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:surface}.)}
+
+\validRule{22104}{The value of the attribute \token{xDataReference} of a \Surface object must be the identifier of an existing \DataGenerator object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:surface}.)}
+
+\validRule{22105}{The value of the attribute \token{yData\-Reference} of a \Surface object must be the identifier of an existing \DataGenerator object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:surface}.)}
+
+\validRule{22106}{The value of the attribute \token{zDataReference} of a \Surface object must be the identifier of an existing \DataGenerator object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:surface}.)}
+
+\validRule{22107}{The value of the attribute \token{type} of a \Surface object must conform to the syntax of SED-ML data type \code{SurfaceType} and may only take on the allowed values of \code{SurfaceType} defined in SED-ML; that is, the value must be one of the following: \val{parametricCurve}, \val{surfaceMesh}, \val{surfaceContour}, \val{contour}, \val{heatMap}, \val{stackedCurves} or \val{bar}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:surface}.)}
+
+\validRule{22108}{The value of the attribute \token{style} of a \Surface object must be the identifier of an existing \Style object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:surface}.)}
+
+\validRule{22109}{The attribute \token{logX} on a \Surface must have a value of data type \token{boolean}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:surface}.)}
+
+\validRule{22110}{The attribute \token{logY} on a \Surface must have a value of data type \token{boolean}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:surface}.)}
+
+\validRule{22111}{The attribute \token{logZ} on a \Surface must have a value of data type \token{boolean}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:surface}.)}
+
+\validRule{22112}{The attribute \token{order} on a \Surface must have a value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:surface}.)}
+
+\consistencyRule{22150}{No \element{logX}, \element{logY}, or \element{logZ} attribute of any \Surface should be set.  Instead, the \element{type} attribute of the corresponding \Axis should be used.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:abstractCurve})}
+
+\subsubsection*{Rules for \DataSet objects}
+
+\validRule{22201}{A \DataSet object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22202}{A \DataSet object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22203}{A \DataSet object must have the required attributes \token{label} and \token{dataReference}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataSet}.)}
+
+\validRule{22204}{The attribute \token{label} on a \DataSet must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataSet}.)}
+
+\validRule{22205}{The value of the attribute \token{dataReference} of a \DataSet object must be the identifier of an existing \DataGenerator object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataSet}.)}
+
+\validRule{22250}{The \element{label} attributes of the \DataSet children of a single \Report must be unique.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataSet})}
+
+\subsubsection*{Rules for \Report objects}
+
+\validRule{22301}{A \Report object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22302}{A \Report object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22303}{A \Report object may contain one and only one instance of the \ListOfDataSets element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:report}.)}
+
+\validRule{22304}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfDataSets container object may only contain \DataSet objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfDataSets}.)}
+
+\validRule{22305}{A \ListOfDataSets object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfDataSets}.)}
+
+\modelingRule{22350}{The shape of the output of every \DataSet child of the same \Report should be consistent.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:report})}
+
+\subsubsection*{Rules for \AlgorithmParameter objects}
+
+\validRule{22401}{An \AlgorithmParameter object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22402}{An \AlgorithmParameter object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22403}{An \AlgorithmParameter object must have the required attributes \token{kisaoID} and \token{value}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:algorithmParameter}.)}
+
+\validRule{22404}{An \AlgorithmParameter object may contain one and only one instance of the \ListOfAlgorithmParameters element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:algorithmParameter}.)}
+
+\validRule{22405}{The attribute \token{kisaoID} on an \AlgorithmParameter must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:algorithmParameter}.)}
+
+\validRule{22406}{The attribute \token{value} on an \AlgorithmParameter must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:algorithmParameter}.)}
+
+\validRule{22407}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfAlgorithmParameters container object may only contain \AlgorithmParameter objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfAlgorithmParameters}.)}
+
+\validRule{22408}{A \ListOfAlgorithmParameters object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfAlgorithmParameters}.)}
+
+\validRule{22450}{The value of the \element{kisaoID} attribute of an \AlgorithmParameter must be the ID of an algorithm parameter in the KiSAO ontology that is associated with the \element{kisaoID} of its parent \Algorithm.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:algorithmParameter})}
+
+\validRule{22451}{The value of the every \element{kisaoID} attribute of the \AlgorithmParameter children of a single \Algorithm must be unique.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:algorithmParameter})}
+
+\subsubsection*{Rules for \Range objects}
+
+\validRule{22501}{A \Range object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22502}{A \Range object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\subsubsection*{Rules for \ChangeXML objects}
+
+\validRule{22601}{A \ChangeXML object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22602}{A \ChangeXML object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22603}{A \ChangeXML object may contain one and only one instance of the XMLNode element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:changeXml}.)}
+
+\validRule{22650}{The \element{target} attribute of a \ChangeXML object must point to a valid target in the \Model \element{source}.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:change})}
+
+\validRule{22651}{The \element{target} attribute of a \ChangeXML object be a valid XPath when the \Model \element{language} attribute describes an XML-based language.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:change})}
+
+\validRule{22652}{The XML child of an \ChangeXML object must be a valid XML element or list of XML elements.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:changeXml})}
+
+\validRule{22653}{The XML child of an \ChangeXML object must be in a namespace defined by the \element{source} attribute of the parent \Model object, or explicitly define its own namespace understood by the language of the target model.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:changeXml})}
+
+\subsubsection*{Rules for \RemoveXML objects}
+
+\validRule{22701}{A \RemoveXML object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22702}{A \RemoveXML object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22750}{The \element{target} attribute of a \RemoveXML object must point to a valid target in the \Model \element{source}.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:change})}
+
+\validRule{22751}{The \element{target} attribute of a \RemoveXML object be a valid XPath when the \Model \element{language} attribute describes an XML-based language.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:change})}
+
+\validRule{22752}{The XML child of an \RemoveXML object must be a valid XML element or list of XML elements.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:removeXml})}
+
+\validRule{22753}{The XML child of an \RemoveXML object must be in a namespace defined by the \element{source} attribute of the parent \Model object, or explicitly define its own namespace understood by the language of the target model.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:removeXml})}
+
+\subsubsection*{Rules for \SetValue objects}
+
+\validRule{22801}{A \SetValue object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22802}{A \SetValue object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22803}{A \SetValue object must have the required attribute \token{model\-Reference}, and may have the optional attributes \token{range}, \token{symbol} and \token{target}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:setValue}.)}
+
+\validRule{22804}{A \SetValue object may contain one and only one instance of each of the ASTNode, \ListOfVariables and \ListOfParameters elements. (Reference: SED-ML Level~1 Version~5, Section \ref{class:setValue}.)}
+
+\validRule{22805}{The value of the attribute \token{model\-Reference} of a \SetValue object must be the identifier of an existing \Model object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:setValue}.)}
+
+\validRule{22806}{The value of the \element{range} attribute of a \SetValue must be the identifier of an existing \Range child of the parent \RepeatedTask.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:setValue})}
+
+\validRule{22807}{The attribute \token{symbol} on a \SetValue must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:setValue}.)}
+
+\validRule{22808}{The attribute \token{target} on a \SetValue must have a value of data type \token{TargetType}  (Reference: SED-ML Level~1 Version~5, Section \ref{class:setValue})}
+
+\validRule{22809}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfVariables container object may only contain \Variable objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfVariables}.)}
+
+\validRule{22810}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfParameters container object may only contain \Parameter objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfParameters}.)}
+
+\validRule{22811}{A \ListOfVariables object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfVariables}.)}
+
+\validRule{22812}{A \ListOfParameters object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfParameters}.)}
+
+\validRule{22850}{If the \element{target} of a \Variable child of a \SetValue does not point to a \DataSource, the \Variable's \element{modelReference} must be set.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\validRule{22851}{If the \element{target} of a \Variable child of a \SetValue does not point to a \DataSource, the \Variable's \element{taskReference}, if set, must reference the parent \AbstractTask.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\subsubsection*{Rules for \UniformRange objects}
+
+\validRule{22901}{An \UniformRange object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22902}{An \UniformRange object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{22903}{An \UniformRange object must have the required attributes \token{start}, \token{end} and \token{type}, and may have the optional attributes \token{numberOfPoints} and \token{number\-Of\-Steps}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformRange}.)}
+
+\validRule{22904}{The attribute \token{start} on an \UniformRange must have a value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformRange}.)}
+
+\validRule{22905}{The attribute \token{end} on an \UniformRange must have a value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformRange}.)}
+
+\validRule{22906}{The attribute \token{type} on an \UniformRange must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformRange}.)}
+
+\validRule{22907}{The attribute \token{numberOfPoints} on an \UniformRange must have a positive value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformRange}.)}
+
+\validRule{22908}{The attribute \token{number\-Of\-Steps} on an \UniformRange must have a positive value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformRange}.)}
+
+\consistencyRule{22950}{Avoid use of the \element{numberOfPoints} attribute of a \UniformRange in favor of the \element{numberOfSteps} attribute.  "Number of Steps" accurately reflects the meaning of the attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformRange})}
+
+\modelingRule{22951}{The value of the \element{numberOfPoints} attribute of a \UniformRange should typically be evenly divisible by five.  When this is not the case, it often indicates that the modeler is unaware that the definition of the attribute is actually `the number of points not including the initial state'.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformRange})}
+
+\validRule{22952}{Only one of the attributes \element{numberOfPoints} or \element{numberOfSteps} may be defined on a \UniformRange.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:uniformRange})}
+
+\subsubsection*{Rules for \VectorRange objects}
+
+\validRule{23001}{A \VectorRange object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23002}{A \VectorRange object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23003}{A \VectorRange object may have the optional attribute \token{value}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:vectorRange}.)}
+
+\validRule{23004}{The value of the attribute \token{value} of a \VectorRange object must be an vector of values of type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:vectorRange}.)}
+
+\subsubsection*{Rules for \FunctionalRange objects}
+
+\validRule{23101}{A \FunctionalRange object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23102}{A \FunctionalRange object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23103}{A \FunctionalRange object must have the required attribute \token{range}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:functionalRange}.)}
+
+\validRule{23104}{A \FunctionalRange object may contain one and only one instance of each of the \ListOfVariables, \ListOfParameters and ASTNode elements. (Reference: SED-ML Level~1 Version~5, Section \ref{class:functionalRange}.)}
+
+\validRule{23105}{The value of the \element{range} attribute of a \FunctionalRange must be the identifier of an existing \Range sibling of the \FunctionalRange.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:functionalRange})}
+
+\validRule{23106}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfVariables container object may only contain \Variable objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfVariables}.)}
+
+\validRule{23107}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfParameters container object may only contain \Parameter objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfParameters}.)}
+
+\validRule{23108}{A \ListOfVariables object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfVariables}.)}
+
+\validRule{23109}{A \ListOfParameters object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfParameters}.)}
+
+\validRule{23150}{There must not be circular dependencies in the calculation of functional ranges.  No \Variable child of a \FunctionalRange may directly or indirectly reference the parent \FunctionalRange.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:functionalRange})}
+
+\validRule{23151}{The \element{modelReference} attribute of a \Variable child of a \FunctionalRange must be defined if the \element{target} does not point to external data and the parent \FunctionalRange is a child of an \AbstractTask that involves more than one \Model.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:functionalRange})}
+
+\subsubsection*{Rules for \SubTask objects}
+
+\validRule{23201}{A \SubTask object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23202}{A \SubTask object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23203}{A \SubTask object must have the required attributes \token{order} and \token{task}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:subTask}.)}
+
+\validRule{23204}{A \SubTask object may contain one and only one instance of the \ListOfChanges element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:subTask}.)}
+
+\validRule{23205}{The attribute \token{order} on a \SubTask must have a value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:subTask}.)}
+
+\validRule{23206}{The value of the attribute \token{task} of a \SubTask object must be the identifier of an existing \AbstractTask object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:subTask}.)}
+
+\validRule{23207}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfChanges container object may only contain \SetValue objects. (Reference: SED-ML Level~1 Version~5, Section \ref{sec:changesModel}.)}
+
+\validRule{23208}{A \ListOfChanges object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{sec:changesModel}.)}
+
+\subsubsection*{Rules for \OneStep objects}
+
+\validRule{23301}{A \OneStep object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23302}{A \OneStep object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23303}{A \OneStep object must have the required attribute \token{step}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:oneStep}.)}
+
+\validRule{23304}{The attribute \token{step} on a \OneStep must have a non-negative value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:oneStep}.)}
+
+\subsubsection*{Rules for \SteadyState objects}
+
+\validRule{23401}{A \SteadyState object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23402}{A \SteadyState object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\subsubsection*{Rules for \RepeatedTask objects}
+
+\validRule{23501}{A \RepeatedTask object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name} and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23502}{A \RepeatedTask object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23503}{A \RepeatedTask object must have the required attributes \token{range} and \token{resetModel}, and may have the optional attribute \token{concatenate}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:repeatedTask}.)}
+
+\validRule{23504}{A \RepeatedTask object may contain one and only one instance of each of the \ListOfRanges, \ListOfChanges and \ListOfSubTasks elements. (Reference: SED-ML Level~1 Version~5, Section \ref{class:repeatedTask}.)}
+
+\validRule{23505}{The value of the \element{range} of a \RepeatedTask must be the identifier of an existing \Range child of that \RepeatedTask.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:range})}
+
+\validRule{23506}{The attribute \token{resetModel} on a \RepeatedTask must have a value of data type \token{boolean}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:repeatedTask}.)}
+
+\validRule{23507}{The attribute \token{concatenate} on a \RepeatedTask must have a value of data type \token{boolean}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:repeatedTask}.)}
+
+\validRule{23508}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfRanges container object may only contain \Range objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfRanges}.)}
+
+\validRule{23509}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfChanges container object may only contain \SetValue objects. (Reference: SED-ML Level~1 Version~5, Section \ref{sec:changesModel}.)}
+
+\validRule{23510}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfSubTasks container object may only contain \SubTask objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfSubTasks}.)}
+
+\validRule{23511}{A \ListOfRanges object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfRanges}.)}
+
+\validRule{23512}{A \ListOfChanges object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{sec:changesModel}.)}
+
+\validRule{23513}{A \ListOfSubTasks object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfSubTasks}.)}
+
+\validRule{23550}{There must not be circular dependencies in repeated tasks.  The \element{task} attribute of a \SubTask may not directly or indirectly reference its parent \RepeatedTask.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:repeatedTask})}
+
+\validRule{23551}{Every \RepeatedTask must have exactly one \ListOfRanges child containing at least one child \Range object.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:repeatedTask})}
+
+\validRule{23552}{Every \RepeatedTask must have exactly one \ListOfSubTasks child containing at least one child \SubTask object.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:repeatedTask})}
+
+\validRule{23553}{When a \RepeatedTask has multiple \Range children, they all must have at least as many entries as the one referenced by the \element{range} attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:repeatedTask})}
+
+\modelingRule{23554}{The shape of the output of every \SubTask child of the same \RepeatedTask should be consistent.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:repeatedTask})}
+
+\subsubsection*{Rules for \ComputeChange objects}
+
+\validRule{23601}{A \ComputeChange object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23602}{A \ComputeChange object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23603}{A \ComputeChange object may have the optional attribute \token{symbol}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:computeChange}.)}
+
+\validRule{23604}{A \ComputeChange object may contain one and only one instance of each of the ASTNode, \Algorithm, \ListOfVariables, and \ListOfParameters elements. (Reference: SED-ML Level~1 Version~5, Section \ref{class:computeChange}.)}
+
+\validRule{23605}{The attribute \token{symbol} on a \ComputeChange must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:computeChange}.)}
+
+\validRule{23606}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfVariables container object may only contain \Variable objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfVariables}.)}
+
+\validRule{23607}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfParameters container object may only contain \Parameter objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfParameters}.)}
+
+\validRule{23608}{A \ListOfVariables object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfVariables}.)}
+
+\validRule{23609}{A \ListOfParameters object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfParameters}.)}
+
+\validRule{23650}{The \element{target} attribute of a \ComputeChange object must be a valid XPath when the \Model \element{language} attribute describes an XML-based language.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:change})}
+
+\validRule{23651}{The \element{target} attribute of a \ComputeChange object be a valid XPath when the \Model \element{language} attribute describes an XML-based language.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:change})}
+
+\validRule{23652}{The \element{taskReference} attribute of a \Variable child of a \ComputeChange object must not be defined.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:change})}
+
+\subsubsection*{Rules for \DataDescription objects}
+
+\validRule{23701}{A \DataDescription object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name} and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23702}{A \DataDescription object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23703}{A \DataDescription object must have the required attributes \token{source} and \token{id}, and may have the optional attribute \token{format}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataDescription}.)}
+
+\validRule{23704}{A \DataDescription object may contain one and only one instance of each of the ASTNode, \DimensionDescription, and \ListOfDataSources elements. (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataDescription}.)}
+
+\validRule{23705}{The attribute \token{source} on a \DataDescription must have a value of data type \token{anyURI}  (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataDescription})}
+
+\validRule{23706}{The attribute \token{format} on a \DataDescription must have a value of data type \token{URN}  (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataDescription})}
+
+\validRule{23707}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfDataSources container object may only contain \DataSource objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfDataSources}.)}
+
+\validRule{23708}{A \ListOfDataSources object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfDataSources}.)}
+
+\subsubsection*{Rules for \DataSource objects}
+
+\validRule{23801}{A \DataSource object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name} and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23802}{A \DataSource object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23803}{A \DataSource object must have the required attributes \token{indexSet} and \token{id}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataSource}.)}
+
+\validRule{23804}{A \DataSource object may contain one and only one instance of the \ListOfSlices element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataSource}.)}
+
+\validRule{23805}{The value of the attribute \token{indexSet} of a \DataSource object must be the identifier of an existing \ object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataSource}.)}
+
+\validRule{23806}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfSlices container object may only contain \Slice objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfSlices}.)}
+
+\validRule{23807}{A \ListOfSlices object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfSlices}.)}
+
+\subsubsection*{Rules for \Slice objects}
+
+\validRule{23901}{A \Slice object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23902}{A \Slice object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{23903}{A \Slice object must have the required attribute \token{reference}, and may have the optional attributes \token{value}, \token{index}, \token{startIndex} and \token{endIndex}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:slice}.)}
+
+\validRule{23904}{The value of the attribute \token{reference} of a \Slice object must be the identifier of an existing \ object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:slice}.)}
+
+\validRule{23905}{The attribute \token{value} on a \Slice must have a value of data type \token{string}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:slice}.)}
+
+\validRule{23906}{The value of the attribute \token{index} of a \Slice object must be the identifier of an existing \RepeatedTask object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:slice}.)}
+
+\validRule{23907}{The attribute \token{startIndex} on a \Slice must have a value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:slice}.)}
+
+\validRule{23908}{The attribute \token{endIndex} on a \Slice must have a value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:slice}.)}
+
+\validRule{23950}{If a \Slice defines both an \element{startIndex} and an \element{endIndex}, the value of the \element{endIndex} must be equal to or greater than that of the \element{startIndex}.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:slice})}
+
+\subsubsection*{Rules for \ParameterEstimationTask objects}
+
+\validRule{24001}{A \ParameterEstimationTask object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name} and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24002}{A \ParameterEstimationTask object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24003}{A \ParameterEstimationTask object must have the required attribute \token{model\-Reference}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:parameterEstimationTask}.)}
+
+\validRule{24004}{A \ParameterEstimationTask object must contain one and only one instance of each of the Algorithm, Objective, \ListOfAdjustableParameters and \ListOfFitExperiments elements. (Reference: SED-ML Level~1 Version~5, Section \ref{class:parameterEstimationTask}.)}
+
+\validRule{24005}{The value of the attribute \token{model\-Reference} of a \ParameterEstimationTask object must be the identifier of an existing \Model object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:parameterEstimationTask}.)}
+
+\validRule{24006}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfAdjustableParameters container object may only contain \AdjustableParameter objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfAdjustableParameters}.)}
+
+\validRule{24007}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfFitExperiments container object may only contain \FitExperiment objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfFitExperiments}.)}
+
+\validRule{24008}{A \ListOfAdjustableParameters object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfAdjustableParameters}.)}
+
+\validRule{24009}{A \ListOfFitExperiments object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfFitExperiments}.)}
+
+\validRule{24050}{Every \ParameterEstimationTask must have exactly one \ListOfAdjustableParameters child containing at least one child \AdjustableParameter object.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:parameterEstimationTask})}
+
+\validRule{24051}{Every \ParameterEstimationTask must have exactly one \ListOfFitExperiments child containing at least one child \FitExperiment object.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:parameterEstimationTask})}
+
+\subsubsection*{Rules for \Objective objects}
+
+\validRule{24101}{An \Objective object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24102}{An \Objective object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\subsubsection*{Rules for \LeastSquareObjectiveFunction objects}
+
+\validRule{24201}{A \LeastSquareObjectiveFunction object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24202}{A \LeastSquareObjectiveFunction object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\subsubsection*{Rules for \AdjustableParameter objects}
+
+\validRule{24301}{An \AdjustableParameter object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24302}{An \AdjustableParameter object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24303}{An \AdjustableParameter object must have the required attribute \token{target}, and may have the optional attributes \token{initialValue} and \token{model\-Reference}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:adjustableParameter}.)}
+
+\validRule{24304}{An \AdjustableParameter object must contain one and only one instance of the Bounds element, and may contain one and only one instance of the \ListOfExperimentReferences element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:adjustableParameter}.)}
+
+\validRule{24305}{The attribute \token{target} on an \AdjustableParameter must have a value of data type \token{TargetType}  (Reference: SED-ML Level~1 Version~5, Section \ref{class:adjustableParameter})}
+
+\validRule{24306}{The attribute \token{initialValue} on an \AdjustableParameter must have a value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:adjustableParameter}.)}
+
+\validRule{24307}{The value of the attribute \token{model\-Reference} of an \AdjustableParameter object must be the identifier of an existing \Model object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:adjustableParameter}.)}
+
+\validRule{24308}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfExperimentReferences container object may only contain \ExperimentReference objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfExperimentReferences}.)}
+
+\validRule{24309}{A \ListOfExperimentReferences object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfExperimentReferences}.)}
+
+\subsubsection*{Rules for \ExperimentReference objects}
+
+\validRule{24401}{An \ExperimentReference object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24402}{An \ExperimentReference object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24403}{An \ExperimentReference object must have the required attribute \token{experimentId}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:experimentReference}.)}
+
+\validRule{24404}{The value of the \element{experiment} attribute of a \ExperimentReference must be the identifier of an existing \FitExperiment child of the parent \ParameterEstimationTask.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:variable})}
+
+\subsubsection*{Rules for \FitExperiment objects}
+
+\validRule{24501}{A \FitExperiment object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24502}{A \FitExperiment object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24503}{A \FitExperiment object must have the required attribute \token{type}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitExperiment}.)}
+
+\validRule{24504}{A \FitExperiment object must contain one and only one instance of each of the \Algorithm and \ListOfFitMappings elements. (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitExperiment}.)}
+
+\validRule{24505}{The value of the attribute \token{type} of a \FitExperiment object must conform to the syntax of SED-ML data type \code{ExperimentType} and may only take on the allowed values of \code{ExperimentType} defined in SED-ML; that is, the value must be one of the following: \val{steadyState} or \val{timeCourse}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitExperiment}.)}
+
+\validRule{24506}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfFitMappings container object may only contain \FitMapping objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfFitMappings}.)}
+
+\validRule{24507}{A \ListOfFitMappings object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfFitMappings}.)}
+
+\validRule{24550}{Every \FitExperiment must have exactly one \ListOfFitMappings child containing at least one child \FitMapping object.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitExperiment})}
+
+\subsubsection*{Rules for \FitMapping objects}
+
+\validRule{24601}{A \FitMapping object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24602}{A \FitMapping object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24603}{A \FitMapping object must have the required attributes \token{dataSource}, \token{target} and \token{type}, and may have the optional attributes \token{weight} and \token{pointWeight}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitMapping}.)}
+
+\validRule{24604}{The value of the attribute \token{dataSource} of a \FitMapping object must be the identifier of an existing \DataSource object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitMapping}.)}
+
+\validRule{24605}{The value of the attribute \token{target} of a \FitMapping object must be the identifier of an existing \DataGenerator object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitMapping}.)}
+
+\validRule{24606}{The value of the attribute \token{type} of a \FitMapping object must conform to the syntax of SED-ML data type \code{MappingType} and may only take on the allowed values of \code{MappingType} defined in SED-ML; that is, the value must be one of the following: \val{time}, \val{experimental\-Condition} or \val{observable}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitMapping}.)}
+
+\validRule{24607}{The attribute \token{weight} on a \FitMapping must have a value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitMapping}.)}
+
+\validRule{24608}{The value of the \element{pointWeight} attribute of a \FitMapping must be the identifier of an existing \DataGenerator or \DataSource object in the document.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitMapping})}
+
+\validRule{24650}{A \FitMapping object may not define both its \element{weight} attribute and its \element{pointWeight} attribute, but may leave both undefined.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitMapping})}
+
+\validRule{24651}{The value of every element referenced by the \element{pointWeight} attribute of a \FitMapping object must either be non-negative or defined as \element{notanumber} for missing data.  No element may be set to \val{infinity}.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitMapping})}
+
+\validRule{24652}{The value of the \element{weight} attribute of a \FitMapping object must not be infinite or negative.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitMapping})}
+
+\modelingRule{24653}{The value of every element referenced by the \element{pointWeight} attribute of a \FitMapping should typically fall between 0 and 1, inclusive.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitMapping})}
+
+\modelingRule{24654}{The \element{pointWeight} attribute of a \FitMapping, if defined, must point to a \DataGenerator or \DataSource with the same dimensionality as the data referenced by the \element{dataSource} attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:fitMapping})}
+
+\subsubsection*{Rules for \Bounds objects}
+
+\validRule{24701}{A \Bounds object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24702}{A \Bounds object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24703}{A \Bounds object must have the required attributes \token{lowerBound}, \token{upperBound} and \token{scale}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:bounds}.)}
+
+\validRule{24704}{The attribute \token{lowerBound} on a \Bounds must have a value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:bounds}.)}
+
+\validRule{24705}{The attribute \token{upperBound} on a \Bounds must have a value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:bounds}.)}
+
+\validRule{24706}{The value of the attribute \token{scale} of a \Bounds object must conform to the syntax of SED-ML data type \code{ScaleType} and may only take on the allowed values of \code{ScaleType} defined in SED-ML; that is, the value must be one of the following: \val{linear}, \val{log} or \val{log10}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:bounds}.)}
+
+\validRule{24750}{The value of the \element{upperBound} attribute of a \Bounds object must be greater than or equal to the value of the \element{lowerBound} attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:bounds})}
+
+\subsubsection*{Rules for \Figure objects}
+
+\validRule{24801}{A \Figure object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24802}{A \Figure object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24803}{A \Figure object must have the required attributes \token{numRows} and \token{numCols}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:figure}.)}
+
+\validRule{24804}{A \Figure object may contain one and only one instance of the \ListOfSubPlots element. (Reference: SED-ML Level~1 Version~5, Section \ref{class:figure}.)}
+
+\validRule{24805}{The attribute \token{numRows} on a \Figure must have a value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:figure}.)}
+
+\validRule{24806}{The attribute \token{numCols} on a \Figure must have a value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:figure}.)}
+
+\validRule{24807}{Apart from the general notes and annotations subobjects permitted on all SED-ML objects, a \ListOfSubPlots container object may only contain \SubPlot objects. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfSubPlots}.)}
+
+\validRule{24808}{A \ListOfSubPlots object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:listOfSubPlots}.)}
+
+\subsubsection*{Rules for \SubPlot objects}
+
+\validRule{24901}{A \SubPlot object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24902}{A \SubPlot object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{24903}{A \SubPlot object must have the required attributes \token{plot}, \token{row} and \token{col}, and may have the optional attributes \token{rowSpan} and \token{colSpan}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:subPlot}.)}
+
+\validRule{24904}{The value of the attribute \token{plot} of a \SubPlot object must be the identifier of an existing \Plot object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:subPlot}.)}
+
+\validRule{24905}{The attribute \token{row} on a \SubPlot must have a positive value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:subPlot}.)}
+
+\validRule{24906}{The attribute \token{col} on a \SubPlot must have a positive value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:subPlot}.)}
+
+\validRule{24907}{The attribute \token{rowSpan} on a \SubPlot must have a positive value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:subPlot}.)}
+
+\validRule{24908}{The attribute \token{colSpan} on a \SubPlot must have a positive value of data type \token{integer}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:subPlot}.)}
+
+\validRule{24950}{If defined, the \element{rowSpan} attribute of a \SubPlot must have a value greater than or equal to one, and less than or equal to one plus the \element{numRows} attribute of the parent \Figure minus the \element{row} attribute of the \SubPlot.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:subPlot})}
+
+\validRule{24951}{If defined, the \element{colSpan} attribute of a \SubPlot must have a value greater than or equal to one, and less than or equal to one plus the \element{numCols} attribute of the parent \Figure minus the \element{col} attribute of the \SubPlot.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:subPlot})}
+
+\subsubsection*{Rules for \Axis objects}
+
+\validRule{25001}{An \Axis object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25002}{An \Axis object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25003}{An \Axis object must have the required attribute \token{type}, and may have the optional attributes \token{min}, \token{max}, \token{grid}, \token{style} and \token{reverse}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:axis}.)}
+
+\validRule{25004}{The value of the attribute \token{type} of an \Axis object must conform to the syntax of SED-ML data type \code{AxisType} and may only take on the allowed values of \code{AxisType} defined in SED-ML; that is, the value must be one of the following: \val{linear} or \val{log10}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:axis}.)}
+
+\validRule{25005}{The attribute \token{min} on an \Axis must have a value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:axis}.)}
+
+\validRule{25006}{The attribute \token{max} on an \Axis must have a value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:axis}.)}
+
+\validRule{25007}{The attribute \token{grid} on an \Axis must have a value of data type \token{boolean}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:axis}.)}
+
+\validRule{25008}{The value of the attribute \token{style} of an \Axis object must be the identifier of an existing \Style object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:axis}.)}
+
+\validRule{25009}{The attribute \token{reverse} on an \Axis must have a value of data type \token{boolean}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:axis}.)}
+
+\validRule{25050}{If an \Axis defines both its \element{max} attribute and its \element{min} attribute, the value of the \element{max} must be greater than or equal to the value of the \element{min} attribute.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:axis})}
+
+\subsubsection*{Rules for \Style objects}
+
+\validRule{25101}{A \Style object may have the required SED-ML Level~1 attribute \token{id} and the optional attributes \token{name} and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25102}{A \Style object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25103}{A \Style object must have the required attribute \token{id}, and may have the optional attribute \token{baseStyle}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:style}.)}
+
+\validRule{25104}{A \Style object may contain one and only one instance of each of the Line, Marker and Fill elements. (Reference: SED-ML Level~1 Version~5, Section \ref{class:style}.)}
+
+\validRule{25105}{The value of the attribute \token{baseStyle} of a \Style object must be the identifier of an existing \Style object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:style}.)}
+
+\subsubsection*{Rules for \Line objects}
+
+\validRule{25201}{A \Line object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25202}{A \Line object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25203}{A \Line object may have the optional attributes \token{type}, \token{color} and \token{thickness}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:line}.)}
+
+\validRule{25204}{The value of the attribute \token{type} of a \Line object must conform to the syntax of SED-ML data type \code{LineType} and may only take on the allowed values of \code{LineType} defined in SED-ML; that is, the value must be one of the following: \val{none}, \val{solid}, \val{dash}, \val{dot}, \val{dashDot} or \val{dashDotDot}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:line}.)}
+
+\validRule{25205}{The attribute \token{color} on a \Line must have a value of data type \token{SedColor}  (Reference: SED-ML Level~1 Version~5, Section \ref{class:line})}
+
+\validRule{25206}{The attribute \token{thickness} on a \Line must have a non-negative value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:line}.)}
+
+\subsubsection*{Rules for \Marker objects}
+
+\validRule{25301}{A \Marker object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25302}{A \Marker object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25303}{A \Marker object may have the optional attributes \token{size}, \token{type}, \token{fill}, \token{lineColor} and \token{lineThickness}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:marker}.)}
+
+\validRule{25304}{The attribute \token{size} on a \Marker must have a non-negative value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:marker}.)}
+
+\validRule{25305}{The value of the attribute \token{type} of a \Marker object must conform to the syntax of SED-ML data type \code{MarkerType} and may only take on the allowed values of \code{MarkerType} defined in SED-ML; that is, the value must be one of the following: \val{none}, \val{square}, \val{circle}, \val{diamond}, \val{xCross}, \val{plus}, \val{star}, \val{triangleUp}, \val{triangleDown}, \val{triangleLeft}, \val{triangleRight}, \val{hDash} or \val{vDash}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:marker}.)}
+
+\validRule{25306}{The attribute \token{fill} on a \Marker must have a value of data type \token{SedColor}  (Reference: SED-ML Level~1 Version~5, Section \ref{class:marker})}
+
+\validRule{25307}{The attribute \token{lineColor} on a \Marker must have a value of data type \token{SedColor}  (Reference: SED-ML Level~1 Version~5, Section \ref{class:marker})}
+
+\validRule{25308}{The attribute \token{lineThickness} on a \Marker must have a non-negative value of data type \token{double}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:marker}.)}
+
+\subsubsection*{Rules for \Fill objects}
+
+\validRule{25401}{A \Fill object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25402}{A \Fill object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25403}{A \Fill object must have the required attribute \token{color}, and may have the optional attribute \token{secondColor}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:fill}.)}
+
+\validRule{25404}{The attribute \token{color} on a \Fill must have a value of data type \token{SedColor}  (Reference: SED-ML Level~1 Version~5, Section \ref{class:fill})}
+
+\subsubsection*{Rules for \AppliedDimension objects}
+
+\validRule{25501}{An \AppliedDimension object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25502}{An \AppliedDimension object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25503}{An \AppliedDimension object may have the optional attributes \token{target} and \token{dimensionTarget}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:appliedDimension}.)}
+
+\validRule{25504}{The value of The value of the \element{target} attribute of an \AppliedDimension must be the identifier of an existing \RepeatedTask or \SubTask object in the document, or the identifier of a \Task referenced by a \SubTask.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:appliedDimension})}
+
+\validRule{25505}{The value of the \element{dimensionTarget} of an \AppliedDimension must be the identifier of a dimension of the referenced data.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:appliedDimension})}
+
+\validRule{25550}{Every \AppliedDimension must have either its \element{target} attribute or its \element{dimensionTarget} attribute set, but not both.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:appliedDimension})}
+
+\subsubsection*{Rules for \DataRange objects}
+
+\validRule{25601}{A \DataRange object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25602}{A \DataRange object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25603}{A \DataRange object must have the required attribute \token{sourceRef}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataRange}.)}
+
+\validRule{25604}{The value of the attribute \token{sourceRef} of a \DataRange object must be the identifier of an existing \DataDescription object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:dataRange}.)}
+
+\subsubsection*{Rules for \ShadedArea objects}
+
+\validRule{25701}{A \ShadedArea object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25702}{A \ShadedArea object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25703}{A \ShadedArea object must have the required attributes \token{yData\-ReferenceFrom} and \token{yData\-ReferenceTo}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:shadedArea}.)}
+
+\validRule{25704}{The value of the attribute \token{yData\-ReferenceFrom} of a \ShadedArea object must be the identifier of an existing \DataGenerator object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:shadedArea}.)}
+
+\validRule{25705}{The value of the attribute \token{yData\-ReferenceTo} of a \ShadedArea object must be the identifier of an existing \DataGenerator object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:shadedArea}.)}
+
+\validRule{25750}{The \element{yDataReferenceFrom} and \element{yDataReferenceTo} attributes of a \ShadedArea must reference data with the same dimensionality as each other.  (Reference: SED-ML Level~1 Version~5, Section \ref{class:shadedArea})}
+
+\subsubsection*{Rules for \ParameterEstimationResultPlot objects}
+
+\validRule{25801}{A \ParameterEstimationResultPlot object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25802}{A \ParameterEstimationResultPlot object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25803}{A \ParameterEstimationResultPlot object must have the required attribute \token{taskReference}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:parameterEstimationResultPlot}.)}
+
+\validRule{25804}{The value of the attribute \token{taskReference} of a \ParameterEstimationResultPlot object must be the identifier of an existing \ParameterEstimationTask object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:parameterEstimationResultPlot}.)}
+
+\subsubsection*{Rules for \WaterfallPlot objects}
+
+\validRule{25901}{A \WaterfallPlot object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25902}{A \WaterfallPlot object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{25903}{A \WaterfallPlot object must have the required attribute \token{taskReference}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:waterfallPlot}.)}
+
+\validRule{25904}{The value of the attribute \token{taskReference} of a \WaterfallPlot object must be the identifier of an existing \ParameterEstimationTask object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:waterfallPlot}.)}
+
+\subsubsection*{Rules for \ParameterEstimationReport objects}
+
+\validRule{26001}{A \ParameterEstimationReport object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{26002}{A \ParameterEstimationReport object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{26003}{A \ParameterEstimationReport object must have the required attribute \token{taskReference}. (Reference: SED-ML Level~1 Version~5, Section \ref{class:parameterEstimationReport}.)}
+
+\validRule{26004}{The value of the attribute \token{taskReference} of a \ParameterEstimationReport object must be the identifier of an existing \ParameterEstimationTask object defined in the document. (Reference: SED-ML Level~1 Version~5, Section \ref{class:parameterEstimationReport}.)}
+
+\subsubsection*{Rules for \Analysis objects}
+
+\validRule{26101}{An \Analysis object may have the optional SED-ML Level~1 attributes \token{id}, \token{name}, and \token{metaid}. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+\validRule{26102}{An \Analysis object may have the optional SED-ML Level~1 subobjects for notes and annotations. (Reference: SED-ML Level~1 Version~5, Section~\ref{class:sedBase}.)}
+
+
+
