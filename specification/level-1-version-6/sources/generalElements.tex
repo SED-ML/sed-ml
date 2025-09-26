@@ -10,7 +10,6 @@ The main \hyperref[sec:components]{SED-ML components} based on these general dat
 \label{sec:dataTypes}
 Primitive data types comprise the set of data types used in SED-ML classes. Most primitive types in SED-ML are taken from the data types defined in XML Schema 1.0, including \element{string}, \element{boolean}, \element{int}, \element{positiveInteger}, \element{double} and \element{XML}. 
 
-\begin{blockChanged}
 A few additional primitive types are defined by SED-ML itself, summarized in Table \ref{tab:datatypes}, and described more fully below.
 
 \begin{table}[ht]
@@ -38,13 +37,12 @@ A few additional primitive types are defined by SED-ML itself, summarized in Tab
 \ExperimentType & Defined list of possible fit experiment types & The \FitExperiment `type' attribute \\
 \AxisType & Defined list of possible axis types & The \Axis `type' attribute \\
 \ScaleType & Defined list of possible bounds scale types & The \Bounds `scale' attribute \\
+\hyperref[type:listOfDoubles]{\element{listOfDoubles}} & \changed{Defined list of values} & \SpecificTimeCourse \\
 \bottomrule
 \end{tabular}
 \caption{Primitive data types defined by SED-ML.}
 \label{tab:datatypes}
 \end{table}
-
-\end{blockChanged}
 
 
 \subsubsection[\element{ID}]{Type \element{ID}}
@@ -166,6 +164,13 @@ The \element{AxisType} primitive data type is used in the definition of the \Axi
 \label{type:scaleType}
 
 The \element{ScaleType} primitive data type is used in the definition of the \Bounds class.  \element{ScaleType} is derived from type \element{string} and its values are restricted to being one of the following possibilities: \val{linear}, \val{log}, and \val{log10}.  Attributes of type \element{ScaleType} cannot take on any other values.  The meaning of these values is discussed in the context of the \Bounds class's definition in \ref{class:bounds}.
+
+\begin{blockChanged}
+\subsubsection[\element{listOfDoubles}]{Type \element{listOfDoubles}}
+\label{type:listOfDoubles}
+
+The \element{listOfDoubles} primitive data type is used in the definition of the \SpecificTimeCourse class.  \element{listOfDoubles} is derived from type \element{string} and must be a comma-separated list of \element{double} values.  A comma is legal but not necessary at the end of the list: \code{"3.2"}, \code{"3.2,"}, \code{"3.2, 10.7"}, and \code{"3.2, 10.7, 12.1, 13.0,"} are all examples of legal \element{listOfDoubles}.
+\end{blockChanged}
 
 
 

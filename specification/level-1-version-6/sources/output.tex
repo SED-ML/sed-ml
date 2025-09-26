@@ -12,13 +12,11 @@ The \Output class inherits the \element{id} and \element{name} attributes from \
 
 The output of a SED-ML file may be used to compare simulation executions from the same tool or from different tools.  As such, interpreters may choose to focus on the output of a SED-ML file, and execute only the tasks necessary to produce this output.  Repeated executions of the same SED-ML should always produce comparable output.  When a stochastic run is given a seed, interpreters should be aware that users may expect to get identical results from repeated runs on the same architecture, including when tasks are run in parallel.
 
-\begin{blockChanged}
 \paragraph*{\element{algorithm}}
 \label{sec:output-algorithm}
 The optional child \concept{\element{algorithm}} element defines the algorithm used for the execution of the \Output. The algorithm is defined via the \Algorithm class.
 
 Like the \Analysis class, the \Output class when used on its own represents any sort of output from a simulation experiment, entirely defined by its child \Algorithm.  If the output can be defined by a different \Output object, that should be used instead, so that tools are more likely to recognize the request.  But for any output not covered by a \Plot, \Report, \Figure, or \ParameterEstimationReport subclass, the only thing necessary is a KiSAO term for the \Algorithm defining what to do, along with any \AlgorithmParameter children to provide more detail.  One might use the \Output class to define spatial output, for example, or an animation.  As long as a KiSAO term can be created to describe the output, it can be captured in an \Output.
-\end{blockChanged}
 
 
 

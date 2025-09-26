@@ -125,11 +125,9 @@ The \concept{Change} class is abstract and serves as the base class for differen
 The \concept{Change} class has the mandatory attribute \hyperref[sec:changeTarget]{target} which defines the target of the change. The \hyperref[sec:changeTarget]{\element{target}} attribute holds an unambiguous description of the address of the element, elements, attribute, or attributes that are to undergo the defined changes, such as a valid \hyperref[sec:xpath]{XPath} expression pointing to the specified XML. For \hyperref[sec:newXml]{NewXML}, \hyperref[class:addXml]{AddXML}, \hyperref[class:changeXml]{ChangeXML}, and \hyperref[class:removeXml]{RemoveXML}, \hyperref[sec:changeTarget]{target} must be an \hyperref[sec:xpath]{XPath} expression. This \hyperref[sec:xpath]{XPath} expression must always select an appropriate target for the particular \Change used.
 
 
-\begin{blockChanged}
 \paragraph*{\element{algorithm}}
 \label{sec:change-algorithm}
 The optional child \concept{\element{algorithm}} element may define the algorithm used for the execution of the \Change. The algorithm is defined via the \Algorithm class.  For changes that don't easily fit into the above categories, the \ComputeChange class should be used in conjunction with the child \Algorithm to use KiSAO to define the change in question.
-\end{blockChanged}
 
 \sedfig[width=1.0\textwidth]{images/uml/change}{The SED-ML Change class}{fig:sedChange}
 

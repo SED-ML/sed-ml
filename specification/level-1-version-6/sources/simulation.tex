@@ -5,13 +5,13 @@
 \label{class:simulation}
 A simulation is the execution of some defined algorithm(s). Simulations are described differently depending on the type of simulation experiment to be performed (\fig{simulation}). 
 
-\sedfig[width=0.9\textwidth]{images/uml/simulation}{The definitions of the \Simulation, \SteadyState, \OneStep, \UniformTimeCourse, and \Analysis classes}{fig:simulation}
+\sedfig[width=0.9\textwidth]{images/uml/simulation}{The definitions of the \Simulation, \TimeCourse, \UniformTimeCourse, \NonUniformTimeCourse, \SpecificTimeCourse, \SteadyState, \OneStep, and \Analysis classes}{fig:simulation}
 
-\concept{Simulation} is an abstract class and serves as the container for the different types of simulation experiments. SED-ML \currentLV provides the predefined simulation classes \hyperref[class:uniformTimeCourse]{UniformTimeCourse}, \hyperref[class:oneStep]{OneStep}, \hyperref[class:steadyState]{SteadyState}, and \Analysis. 
+\Simulation is an abstract class and serves as the container for the different types of simulation experiments. SED-ML \currentLV provides the predefined abstract simulation class \TimeCourse, and the simulation classes \UniformTimeCourse, \NonUniformTimeCourse, \SpecificTimeCourse, \OneStep, \SteadyState, and \Analysis. 
 
-Each instance of the \concept{Simulation} class has an unambiguous and mandatory \hyperref[sec:id]{\code{id}}. An additional, optional \hyperref[sec:name]{\code{name}} may be given to the simulation. Every simulation has a required element \hyperref[class:algorithm]{\code{algorithm}} describing the simulation \hyperref[class:algorithm]{Algorithm}.
+Each instance of the \Simulation class has an unambiguous and mandatory \hyperref[sec:id]{\code{id}}. An additional, optional \hyperref[sec:name]{\code{name}} may be given to the simulation. Every simulation has a required element \hyperref[class:algorithm]{\code{algorithm}} describing the simulation \hyperref[class:algorithm]{Algorithm}.
 
-\begin{myXmlLst}{The SED-ML \code{listOfSimulations} element, defining two different UniformTimecourse simulations}{lst:simulation}
+\begin{myXmlLst}{The SED-ML \code{listOfSimulations} element, defining two different \UniformTimeCourse simulations}{lst:simulation}
 <listOfSimulations>
 	<uniformTimeCourse [..]>
 		[SIMULATION SPECIFICATION]
@@ -24,46 +24,118 @@ Each instance of the \concept{Simulation} class has an unambiguous and mandatory
 
 \paragraph*{\element{algorithm}}
 \label{sec:sim-algorithm}
-The mandatory child \concept{\element{algorithm}} element defines the simulation algorithm or algorithms used for the execution of the \hyperref[class:simulation]{simulation}. The algorithm is defined via the \Algorithm class.
+The mandatory child \concept{\element{algorithm}} element defines the simulation algorithm or algorithms used for the execution of the \Simulation. The algorithm is defined via the \Algorithm class.
+
+%% ~~~ TIMECOURSE SIMULATION ~~~
+\begin{blockChanged}
+\subsubsection{\element{TimeCourse}}
+\label{class:timeCourse}
+The abstract \TimeCourse class is the base class for three different ways of reporting output of a time course simulation: \UniformTimeCourse, \NonUniformTimeCourse, and \SpecificTimeCourse.  Each \TimeCourse has, in addition to the elements from \Simulation, the mandatory attribute \hyperref[sec:initialTime]{\code{initialTime}}, with other attributes defined by the derived classes.
+\end{blockChanged}
+
+\paragraph*{\element{initialTime}}
+\label{sec:initialTime}
+The attribute \concept{\element{initialTime}} of type \code{double} represents what the time is \changed{for the initialized model at the start of the simulation}.  In most cases, this will be \code{0.0}.  The model must be set up such that \element{intialTime} is correct internally with respect to any output variables that may be produced.
+Listing~\ref{lst:timecourse} shows an example. 
+
 
 
 %% ~~~ UNIFORM TIMECOURSE SIMULATION ~~~
 \subsubsection{\element{UniformTimeCourse}}
 \label{class:uniformTimeCourse}
-The \concept{UniformTimeCourse} class calculates a time course output with equidistant time points. Each instance of the \concept{UniformTimeCourse} class has, in addition to the elements from \Simulation, the mandatory elements \hyperref[sec:initialTime]{\code{initialTime}}, \hyperref[sec:outputStartTime]{\code{outputStartTime}}, \hyperref[sec:outputEndTime]{\code{outputEndTime}}, and \hyperref[sec:numberOfSteps]{\code{numberOfSteps}} (\fig{simulation}).
+The \UniformTimeCourse class calculates a time course output with equidistant time points. Each instance of the \UniformTimeCourse class has, in addition to the elements from \changed{\TimeCourse, the mandatory attribute} \hyperref[sec:outputStartTime]{\code{outputStartTime}}, \changed{and exactly two of the optional attributes \hyperref[sec:outputEndTime]{\code{outputEndTime}}, \hyperref[sec:numberOfSteps]{\code{numberOfSteps}} and \hyperref[sec:timeInterval]{\code{timeInterval}}} (\fig{simulation}).
 
-\lsttext{timecourse}{uniformTimeCourse}
+Just because the output points lie on a regular grid does not mean that the simulation algorithm has to work with the same step size. Usually the step size the simulator chooses will be adaptive and much smaller than the required output step size. On the other hand, a stochastic simulator might not have any new events occurring between two grid points. Nevertheless the simulator has to produce data on this regular grid. For an example, see Listing~\ref{lst:timecourse}.
 
 \begin{myXmlLst}{The SED-ML \code{uniformTimeCourse} element, defining a uniform time course simulation over 2500 time units with 1000 simulation points.}{lst:timecourse}
 <listOfSimulations>
-	<uniformTimeCourse id="s1"  name="time course simulation of variable v1 over 100 minutes"  
+	<uniformTimeCourse id="sim1"  name="time course simulation of variable v1 over 2500 time units"  
 		initialTime="0" outputStartTime="0" outputEndTime="2500" numberOfSteps="1000">
 		<algorithm [..] />
  	</uniformTimeCourse>
 </listOfSimulations>
 \end{myXmlLst}
 
-\paragraph*{\element{initialTime}}
-\label{sec:initialTime}
-The attribute \concept{\element{initialTime}} of type \code{double} represents what the time is at the start of the simulation, for purposes of output variables, and for calculating the \element{outputStartTime} and \element{outputEndTime}.  In most cases, this will be \code{0.0}.  The model must be set up such that \element{intialTime} is correct internally with respect to any output variables that may be produced.
-Listing~\ref{lst:timecourse} shows an example. 
-
 \paragraph*{\element{outputStartTime}}
 \label{sec:outputStartTime}
-Sometimes a researcher is not interested in simulation results at the start of the simulation, i.e., the initial time. The \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} class uses the attribute \concept{\element{outputStartTime}} of type \code{double}, and describes the time (relative to the \element{intialTime}) that output is to be collected. To be valid the \concept{\element{outputStartTime}} cannot be before \hyperref[sec:initialTime]{\element{initialTime}}. For an example, see Listing~\ref{lst:timecourse}. 
+Sometimes a researcher is not interested in simulation results at the start of the simulation, i.e., the initial time. The \UniformTimeCourse class uses the attribute \concept{\element{outputStartTime}} of type \code{double}, and describes the \changed{first timepoint at which output} is to be collected. To be valid, the \concept{\element{outputStartTime}} cannot be before \hyperref[sec:initialTime]{\element{initialTime}}. For an example, see Listing~\ref{lst:timecourse}. 
 
 \paragraph*{\element{outputEndTime}}
 \label{sec:outputEndTime}
-The attribute \concept{\element{outputEndTime}} of type \code{double} marks the end time of the simulation, relative to the \element{initialTime}. See Listing~\ref{lst:timecourse} for an example. 
+The attribute \concept{\element{outputEndTime}} of type \code{double}\changed{, when defined,} marks \changed{the final time point of the simulation}. See Listing~\ref{lst:timecourse} for an example. 
 
 \paragraph*{\element{numberOfSteps}}
 \label{sec:numberOfSteps}
-When executed, the \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} simulation produces an output on a regular grid starting with \hyperref[sec:outputStartTime]{\element{outputStartTime}} and ending with \hyperref[sec:outputEndTime]{\element{outputEndTime}}. The attribute \concept{\element{numberOfSteps}} of type \code{integer} describes the number of steps expected to produce the result. Software interpreting the \hyperref[class:uniformTimeCourse]{\element{UniformTimeCourse}} is expected to produce a first outputPoint at time \hyperref[sec:outputStartTime]{\element{outputStartTime}} and then \concept{\element{numberOfSteps}} output points with the results of the simulation. Thus a total of \code{numberOfSteps + 1} output points will be produced.
-
-Just because the output points lie on the regular grid described above, does not mean that the simulation algorithm has to work with the same step size. Usually the step size the simulator chooses will be adaptive and much smaller than the required output step size. On the other hand a stochastic simulator might not have any new events occurring between two grid points. Nevertheless the simulator has to produce data on this regular grid. For an example, see Listing~\ref{lst:timecourse}.
+\changed{The attribute \element{numberOfSteps} of type \code{positiveInteger}, when defined, indicates the number of steps beyond the first data point to collect.  Thus a total of \code{numberOfSteps + 1} output points will be produced.}
 
 This attribute used to be named \element{numberOfPoints}, but was defined to be `the number of output points minus one', which was confusing.  The old name is thus deprecated, and the new name is more in line with its definition.
 
+\begin{blockChanged}
+\paragraph*{\element{timeInterval}}
+\label{sec:timeInterval}
+The attribute \element{timeInterval} of type \code{double}, when defined, indicates the desired distance between collected time points.  Thus, the first collected time point will be \code{outputStartTime}, the second \code{outputStartTime + timeInterval}, etc.
+
+\paragraph{Defining a regular grid with \element{outputEndTime}, \element{numberOfSteps}, and \element{timeInterval}}
+Exactly two of the three attributes \element{outputEndTime}, \element{numberOfSteps}, and \element{timeInterval} must be defined to determine the grid of uniform time points collected by a \UniformTimeCourse.  The three options are:
+
+\begin{itemize} 
+	\item \element{ouputEndTime} and \element{numberOfSteps}.  When these two attributes are defined, the interval between \element{outputStartTime} and \element{outputEndTime} is divided into \element{numberOfSteps} equal intervals, and data is collected at the start, and at the end of each interval.  These are the two attributes defined in \LoneVfive and earlier.
+    \item \element{numberOfSteps} and \element{timeInterval}.  When these two attributes are defined, \element{numberOfSteps} data points are collected every \element{timeInterval} after the \element{outputStartTime}.
+    \item \element{timeInterval} and \element{outputEndTime}.  When these two attributes are defined, data is collected every \element{timeInterval} past the initial \element{outputStartTime} until the \element{outputEndTime} is reached.  When that time is reached, the \element{outputEndTime} is collected as the final time point, whether or not it fell on (or near) a point evenly divisible by the \element{timeInterval}.  For example, a simulation with a start of \code{0}, an end of \code{10}, and an interval of \code{3} would produce time points at \code{0, 3, 6, 9,} and \code{10}.
+
+    To ensure reproducibility across platforms, the tolerance for the time point of the final time point must be 0.000001, with the final collected time point being exactly equal to the \element{outputEndTime}.  So, if the \element{outputEndTime} is 500, the tolerance would be \code{500 * 0.000001 = 0.0005}.  Therefore, a simulation with a start of \code{0}, and end of \code{10}, and an interval of \code{3.333} would produce the time points \code{[0, 3.333, 6.666, 9.999, 10]}.  If the interval were instead \code{3.333333}, the produced time points would be \code{[0, 3.333333, 6.666666, 10]}.  If the \element{outputEndTime} is equal to \code{0} (say, if the simulation was from -10 to 0), the tolerance must be 0.000001.
+
+    However, creating a \UniformTimeCourse where users must resort to determining the tolerance of the time points to know what to output is not best practice!  Output end times should generally be a simple multiple of the \element{timeInterval}, plus the \element{outputStartTime}.
+\end{itemize}
+\end{blockChanged}
+
+%% ~~~ NONUNIFORM TIMECOURSE SIMULATION ~~~
+\begin{blockChanged}
+\subsubsection{\element{NonUniformTimeCourse}}
+\label{class:nonUniformTimeCourse}
+The \NonUniformTimeCourse class calculates a time course output with a start and end, but the intermediate time points may be determined by the simulation algorithm. Each instance of the \NonUniformTimeCourse class has, in addition to the elements from \TimeCourse, the mandatory attributes \hyperref[sec:nu_outputStartTime]{\code{outputStartTime}} and \hyperref[sec:nu_outputEndTime]{\code{outputEndTime}}. A \NonUniformTimeCourse may be useful when collecting stochastic data, as the exact points at which an output value changed may be collected.  Alternatively, a simulation with periods of rapid flux followed or interspersed with periods of low flux may collect many time points during the periods of rapid change, and only a few points during the periods of low change.
+
+Different algorithms may have defined parameters that dictate or at least influence the number of time points they output in a \NonUniformTimeCourse.  Those parameters should be set on the child \Algorithm as \AlgorithmParameters, defined by KiSAO terms. 
+
+\begin{myXmlLst}{The SED-ML \code{nonUniformTimeCourse} element, defining a uniform time course simulation over 2500 time units with 1000 simulation points.}{lst:nu_timecourse}
+<listOfSimulations>
+	<nonUniformTimeCourse id="sim2"  name="time course simulation of variable v1 over 2500 time units"  
+		initialTime="0" outputStartTime="0" outputEndTime="2500">
+		<algorithm [..] />
+ 	</nonUniformTimeCourse>
+</listOfSimulations>
+\end{myXmlLst}
+
+\paragraph*{\element{outputStartTime}}
+\label{sec:nu_outputStartTime}
+When a researcher is not interested in simulation results at the start of the simulation, i.e., the initial time, the attribute \element{outputStartTime} of type \code{double} describes the first timepoint at which output is to be collected. To be valid, the \element{outputStartTime} cannot be before \hyperref[sec:initialTime]{\element{initialTime}}.
+
+\paragraph*{\element{outputEndTime}}
+\label{sec:nu_outputEndTime}
+The attribute \concept{\element{outputEndTime}} of type \code{double} marks the final time point of the simulation. See Listing~\ref{lst:nu_timecourse} for an example. 
+
+\end{blockChanged}
+
+%% ~~~ SPECIFIC TIMECOURSE SIMULATION ~~~
+\begin{blockChanged}
+\subsubsection{\element{SpecificTimeCourse}}
+\label{class:specificTimeCourse}
+The \SpecificTimeCourse class calculates a time course output with a set of predefined output time points.  Each instance of the \SpecificTimeCourse class has, in addition to the elements from \TimeCourse, the mandatory attribute \hyperref[sec:outputTimePoints]{\code{outputTimePoints}}. One use of a \SpecificTimeCourse is to collect simulated data designed to match experimentally-collected data points, which may or may not be regularly spaced.
+
+\begin{myXmlLst}{The SED-ML \code{specificTimeCourse} element, defining a time course simulation with a particular set of collected time points.}{lst:sp_timecourse}
+<listOfSimulations>
+	<specificTimeCourse id="sim2"  name="time course simulation of variable v1 between 0 and 100"  
+		initialTime="0" outputTimePoints="0, 1, 2, 5, 10, 20, 50, 100">
+		<algorithm [..] />
+ 	</nonUniformTimeCourse>
+</listOfSimulations>
+\end{myXmlLst}
+
+\paragraph*{\element{outputTimePoints}}
+\label{sec:outputTimePoints}
+the \code{outputTimePoints} attribute is of type \code{listOfDoubles} contains a comma-separated list of values.  These values must either monotonically increase or repeat:  \code{"0, 1, 2, 2, 4"} is legal, but \code{"0, 1, 1.2, 1.1"} is not.  In addition, the first value in the list must be equal to or greater than the \hyperref[sec:initialTime]{\element{initialTime}}.
+
+\end{blockChanged}
 
 % ~~~ ONESTEP SIMULATION ~~~
 \subsubsection{\element{OneStep}}

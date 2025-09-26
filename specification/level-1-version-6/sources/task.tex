@@ -7,11 +7,9 @@ In SED-ML the subclasses of \concept{AbstractTask} define which \Simulations sho
 
 \sedfig[width=0.9\textwidth]{images/uml/abstractTask}{The SED-ML \AbstractTask and \Task classes.  The \RepeatedTask and \ParameterEstimationTask classes are defined below.}{fig:abstractTask}
 
-\begin{blockChanged}
 \paragraph*{\element{algorithm}}
 \label{sec:task-algorithm}
 The optional child \concept{\element{algorithm}} element defines the algorithm used for the execution of the \AbstractTask. The algorithm is defined via the \Algorithm class.
-\end{blockChanged}
 
 
 
@@ -213,11 +211,9 @@ The \concept{Range} class is the abstract base class for the different types of 
 
 The \Range is the iterative element of the repeated simulation experiment. Each \Range defines a collection of values to iterate over. Its \element{id} may be used as the \element{target} of a \Variable within the \RepeatedTask by pre-pending a `\#' (i.e. \val{\#rangeId}).  It is used in that context to mean the value of the range for the current iteration of the \RepeatedTask.
 
-\begin{blockChanged}
 \paragraph*{\element{algorithm}}
 \label{sec:range-algorithm}
 The optional child \concept{\element{algorithm}} element may define the algorithm used for the execution of the \Range. The algorithm is defined via the \Algorithm class.
-\end{blockChanged}
 
 \sedfig[width=0.7\textwidth]{images/uml/range}{The SED-ML Range class}{fig:range}
 

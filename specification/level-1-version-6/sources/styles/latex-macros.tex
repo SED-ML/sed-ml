@@ -11,14 +11,15 @@
 \newcommand{\mailto}[1]   {\link{mailto:#1}{#1}}
 \newcommand{\link}[2]     {\literalFont{\href{#1}{#2}}}
 \newcommand{\literalFont}[1]{\textup{\texttt{#1}}}
-\newcommand{\version}{4\xspace}
+\newcommand{\version}{5\xspace}
 \newcommand{\level}{1\xspace}
 \newcommand{\LoneVone}{Level~1 Version~1\xspace}
 \newcommand{\LoneVtwo}{Level~1 Version~2\xspace}
 \newcommand{\LoneVthree}{Level~1 Version~3\xspace}
 \newcommand{\LoneVfour}{Level~1 Version~4\xspace}
-\newcommand{\currentLV}{Level~1 Version~5\xspace}
-\newcommand{\previousLV}{Level~1 Version~4\xspace}
+\newcommand{\LoneVfive}{Level~1 Version~5\xspace}
+\newcommand{\currentLV}{Level~1 Version~6\xspace}
+\newcommand{\previousLV}{Level~1 Version~5\xspace}
 \newcommand{\biom}{BioModels Database\xspace}
 % attribute table layout
 \newcommand{\attribute}{attribute\xspace}
@@ -116,8 +117,8 @@ Attributes and nested elements for \concept{#1}. \emph{$^{o}$}denotes optional e
 \newcommand{\Target} {Target\xspace}
 
 
-\newcommand{\AbstractCurve} {\hyperref[class:abstractCurve]{\emph{AbstractCurve}}\xspace}
-\newcommand{\AbstractTask} {\hyperref[class:abstractTask]{\emph{AbstractTask}}\xspace}
+\newcommand{\AbstractCurve} {\emph{\hyperref[class:abstractCurve]{\emph{AbstractCurve}}}\xspace}
+\newcommand{\AbstractTask} {\emph{\hyperref[class:abstractTask]{\emph{AbstractTask}}}\xspace}
 \newcommand{\AddXML} {\hyperref[class:addXml]{AddXML}\xspace}
 \newcommand{\AdjustableParameter} {\hyperref[class:adjustableParameter]{AdjustableParameter}\xspace}
 \newcommand{\AdjustableParameters} {\hyperref[class:adjustableParameter]{AdjustableParameters}\xspace}
@@ -128,8 +129,8 @@ Attributes and nested elements for \concept{#1}. \emph{$^{o}$}denotes optional e
 \newcommand{\Annotation} {\hyperref[class:annotation]{Annotation}\xspace}
 \newcommand{\Axis} {\hyperref[class:axis]{Axis}\xspace}
 \newcommand{\Bounds} {\hyperref[class:bounds]{Bounds}\xspace}
-\newcommand{\Calculation} {\hyperref[class:calculation]{Calculation}\xspace}
-\newcommand{\Change} {\hyperref[class:change]{Change}\xspace}
+\newcommand{\Calculation} {\emph{\hyperref[class:calculation]{Calculation}}\xspace}
+\newcommand{\Change} {\emph{\hyperref[class:change]{Change}}\xspace}
 \newcommand{\ChangeXML} {\hyperref[class:changeXml]{ChangeXML}\xspace}
 \newcommand{\ChangeAttribute} {\hyperref[class:changeAttribute]{ChangeAttribute}\xspace}
 \newcommand{\ComputeChange} {\hyperref[class:computeChange]{ComputeChange}\xspace}
@@ -182,8 +183,9 @@ Attributes and nested elements for \concept{#1}. \emph{$^{o}$}denotes optional e
 \newcommand{\Math} {\hyperref[sec:math]{Math}\xspace}
 \newcommand{\Models} {\hyperref[class:model]{Models}\xspace}
 \newcommand{\Model} {\hyperref[class:model]{Model}\xspace}
+\newcommand{\NonUniformTimeCourse} {\hyperref[class:nonUniformTimeCourse]{NonUniformTimeCourse}\xspace}
 \newcommand{\Notes} {\hyperref[class:notes]{Notes}\xspace}
-\newcommand{\Objective} {\hyperref[class:objective]{Objective}\xspace}
+\newcommand{\Objective} {\emph{\hyperref[class:objective]{Objective}}\xspace}
 \newcommand{\OneStep} {\hyperref[class:oneStep]{OneStep}\xspace}
 \newcommand{\Output} {\hyperref[class:output]{Output}\xspace}
 \newcommand{\ParameterEstimationReport} {\hyperref[class:parameterEstimationReport]{ParameterEstimationReport}\xspace}
@@ -193,27 +195,30 @@ Attributes and nested elements for \concept{#1}. \emph{$^{o}$}denotes optional e
 \newcommand{\PlotThree} {\hyperref[class:plot3D]{Plot3D}\xspace}
 \newcommand{\PlotTwo} {\hyperref[class:plot2D]{Plot2D}\xspace}
 \newcommand{\Plot} {\hyperref[class:plot]{\emph{Plot}}\xspace}
-\newcommand{\Range} {\hyperref[class:range]{Range}\xspace}
+\newcommand{\Range} {\emph{\hyperref[class:range]{Range}}\xspace}
 \newcommand{\AppliedDimension} {\hyperref[class:appliedDimension]{AppliedDimension}\xspace}
 \newcommand{\RemoveXML} {\hyperref[class:removeXml]{RemoveXML}\xspace}
 \newcommand{\RepeatedTask} {\hyperref[class:repeatedTask]{RepeatedTask}\xspace}
 \newcommand{\Report} {\hyperref[class:report]{Report}\xspace}
-\newcommand{\SEDBase} {\hyperref[class:sedBase]{\emph{SEDBase}}\xspace}
-\newcommand{\SedBase} {\hyperref[class:sedBase]{\emph{SEDBase}}\xspace}
+\newcommand{\SEDBase} {\emph{\hyperref[class:sedBase]{\emph{SEDBase}}}\xspace}
+\newcommand{\SedBase} {\emph{\hyperref[class:sedBase]{\emph{SEDBase}}}\xspace}
 \newcommand{\SedDocument} {\hyperref[class:sed-ml]{SED-ML Document}\xspace}
 \newcommand{\SedML} {\hyperref[class:sed-ml]{SedML}\xspace}
 \newcommand{\SetValue} {\hyperref[class:setValue]{SetValue}\xspace}
 \newcommand{\ShadedArea} {\hyperref[class:shadedArea]{ShadedArea}\xspace}
 \newcommand{\SimpleRepeatedTask} {\hyperref[class:simpleRepeatedTask]{SimpleRepeatedTask}\xspace}
-\newcommand{\Simulations} {\hyperref[class:simulation]{Simulations}\xspace}
-\newcommand{\Simulation} {\hyperref[class:simulation]{Simulation}\xspace}
+\newcommand{\Simulations} {\emph{\hyperref[class:simulation]{Simulations}}\xspace}
+\newcommand{\Simulation} {\emph{\hyperref[class:simulation]{Simulation}}\xspace}
+%\newcommand{\Simulation} {\hyperref[class:simulation]{Simulation}\xspace}
 \newcommand{\Slice} {\hyperref[class:slice]{Slice}\xspace}
+\newcommand{\SpecificTimeCourse} {\hyperref[class:specificTimeCourse]{SpecificTimeCourse}\xspace}
 \newcommand{\SteadyState} {\hyperref[class:steadyState]{SteadyState}\xspace}
 \newcommand{\Style} {\hyperref[class:style]{Style}\xspace}
 \newcommand{\SubPlot} {\hyperref[class:subPlot]{SubPlot}\xspace}
 \newcommand{\SubTask} {\hyperref[class:subTask]{SubTask}\xspace}
 \newcommand{\Surface} {\hyperref[class:surface]{Surface}\xspace}
 \newcommand{\Task} {\hyperref[class:task]{Task}\xspace}
+\newcommand{\TimeCourse} {\emph{\hyperref[class:timeCourse]{TimeCourse}}\xspace}
 \newcommand{\UniformTimeCourse} {\hyperref[class:uniformTimeCourse]{UniformTimeCourse}\xspace}
 \newcommand{\UniformRange} {\hyperref[class:uniformRange]{UniformRange}\xspace}
 \newcommand{\Variables} {\hyperref[class:variable]{Variables}\xspace}
