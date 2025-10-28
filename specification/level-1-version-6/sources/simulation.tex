@@ -30,12 +30,12 @@ The mandatory child \concept{\element{algorithm}} element defines the simulation
 \begin{blockChanged}
 \subsubsection{\element{TimeCourse}}
 \label{class:timeCourse}
-The abstract \TimeCourse class is the base class for three different ways of reporting output of a time course simulation: \UniformTimeCourse, \NonUniformTimeCourse, and \SpecificTimeCourse.  Each \TimeCourse has, in addition to the elements from \Simulation, the mandatory attribute \hyperref[sec:initialTime]{\code{initialTime}}, with other attributes defined by the derived classes.
+The abstract \TimeCourse class is the base class for three different ways of reporting output of a time course simulation: \UniformTimeCourse, \NonUniformTimeCourse, and \SpecificTimeCourse.  Each \TimeCourse has, in addition to the elements from \Simulation, the mandatory attribute \hyperref[sec:initialTime]{\code{initialTime}}, with other attributes defined by the derived classes.  \changed{A \TimeCourse defines a single output time vector for all collected outputs.}
 \end{blockChanged}
 
 \paragraph*{\element{initialTime}}
 \label{sec:initialTime}
-The attribute \concept{\element{initialTime}} of type \code{double} represents what the time is \changed{for the initialized model at the start of the simulation}.  In most cases, this will be \code{0.0}.  The model must be set up such that \element{intialTime} is correct internally with respect to any output variables that may be produced.
+The attribute \concept{\element{initialTime}} of type \code{double} represents what the time is \changed{for the initialized model at the start of the simulation}.  The model must be set up such that \element{intialTime} is correct internally with respect to any output variables that may be produced.
 Listing~\ref{lst:timecourse} shows an example. 
 
 
@@ -47,7 +47,7 @@ The \UniformTimeCourse class calculates a time course output with equidistant ti
 
 Just because the output points lie on a regular grid does not mean that the simulation algorithm has to work with the same step size. Usually the step size the simulator chooses will be adaptive and much smaller than the required output step size. On the other hand, a stochastic simulator might not have any new events occurring between two grid points. Nevertheless the simulator has to produce data on this regular grid. For an example, see Listing~\ref{lst:timecourse}.
 
-\begin{myXmlLst}{The SED-ML \code{uniformTimeCourse} element, defining a uniform time course simulation over 2500 time units with 1000 simulation points.}{lst:timecourse}
+\begin{myXmlLst}{The SED-ML \code{uniformTimeCourse} element, defining a uniform time course simulation over 2500 time units with 1001 simulation points.}{lst:timecourse}
 <listOfSimulations>
 	<uniformTimeCourse id="sim1"  name="time course simulation of variable v1 over 2500 time units"  
 		initialTime="0" outputStartTime="0" outputEndTime="2500" numberOfSteps="1000">
@@ -62,28 +62,31 @@ Sometimes a researcher is not interested in simulation results at the start of t
 
 \paragraph*{\element{outputEndTime}}
 \label{sec:outputEndTime}
-The attribute \concept{\element{outputEndTime}} of type \code{double}\changed{, when defined,} marks \changed{the final time point of the simulation}. See Listing~\ref{lst:timecourse} for an example. 
+The attribute \concept{\element{outputEndTime}} of type \code{double}\changed{, when defined,} marks \changed{the final output time point of the simulation}. See Listing~\ref{lst:timecourse} for an example. 
 
 \paragraph*{\element{numberOfSteps}}
 \label{sec:numberOfSteps}
-\changed{The attribute \element{numberOfSteps} of type \code{positiveInteger}, when defined, indicates the number of steps beyond the first data point to collect.  Thus a total of \code{numberOfSteps + 1} output points will be produced.}
+\changed{The attribute \element{numberOfSteps} of type \code{positiveInteger}, when defined, indicates the number of steps beyond the first data point (the \element{outputStartTime}) to collect.  Thus a total of \code{numberOfSteps + 1} output points will be produced.}
 
 This attribute used to be named \element{numberOfPoints}, but was defined to be `the number of output points minus one', which was confusing.  The old name is thus deprecated, and the new name is more in line with its definition.
 
 \begin{blockChanged}
 \paragraph*{\element{timeInterval}}
 \label{sec:timeInterval}
-The attribute \element{timeInterval} of type \code{double}, when defined, indicates the desired distance between collected time points.  Thus, the first collected time point will be \code{outputStartTime}, the second \code{outputStartTime + timeInterval}, etc.
+The attribute \element{timeInterval} of type \code{double}, when defined, indicates the desired distance between collected time points.  Thus, the first collected time point will be \code{outputStartTime}, the second \code{outputStartTime + timeInterval}, etc.  The \element{timeInterval} must be positive and greater than zero.
 
-\paragraph{Defining a regular grid with \element{outputEndTime}, \element{numberOfSteps}, and \element{timeInterval}}
-Exactly two of the three attributes \element{outputEndTime}, \element{numberOfSteps}, and \element{timeInterval} must be defined to determine the grid of uniform time points collected by a \UniformTimeCourse.  The three options are:
+\paragraph{Defining a regular grid with \element{outputStartTime}, \element{outputEndTime}, \element{numberOfSteps}, and \element{timeInterval}}
+Exactly three of the four attributes \element{outputStartTime}, \element{outputEndTime}, \element{numberOfSteps}, and \element{timeInterval} must be defined to determine the grid of uniform time points collected by a \UniformTimeCourse.  The four options are:
 
 \begin{itemize} 
-	\item \element{ouputEndTime} and \element{numberOfSteps}.  When these two attributes are defined, the interval between \element{outputStartTime} and \element{outputEndTime} is divided into \element{numberOfSteps} equal intervals, and data is collected at the start, and at the end of each interval.  These are the two attributes defined in \LoneVfive and earlier.
-    \item \element{numberOfSteps} and \element{timeInterval}.  When these two attributes are defined, \element{numberOfSteps} data points are collected every \element{timeInterval} after the \element{outputStartTime}.
-    \item \element{timeInterval} and \element{outputEndTime}.  When these two attributes are defined, data is collected every \element{timeInterval} past the initial \element{outputStartTime} until the \element{outputEndTime} is reached.  When that time is reached, the \element{outputEndTime} is collected as the final time point, whether or not it fell on (or near) a point evenly divisible by the \element{timeInterval}.  For example, a simulation with a start of \code{0}, an end of \code{10}, and an interval of \code{3} would produce time points at \code{0, 3, 6, 9,} and \code{10}.
+	\item \element{outputStartTime}, \element{ouputEndTime} and \element{numberOfSteps}.  When these three attributes are defined, the interval between \element{outputStartTime} and \element{outputEndTime} is divided into \element{numberOfSteps} equal intervals, and data is collected at the start and at the end of each interval.  These are the attributes defined in \LoneVfive and earlier.
+    \item \element{outputStartTime}, \element{numberOfSteps} and \element{timeInterval}.  When these three attributes are defined, \element{numberOfSteps} data points are collected every \element{timeInterval} after the \element{outputStartTime}.
+    \item \element{outputEndTime}, \element{numberOfSteps} and \element{timeInterval}.  When these three attributes are defined, \element{numberOfSteps} data points are collected every \element{timeInterval} up to the \element{outputEndTime}. The implied start time of the simulation must not be earlier than the \element{initialTime}.
+    \item \element{outputStartTime}, \element{timeInterval} and \element{outputEndTime}.  When these three attributes are defined, data is collected every \element{timeInterval} past the initial \element{outputStartTime} until the \element{outputEndTime} is reached.  When that time is reached, the \element{outputEndTime} is collected as the final time point, whether or not it fell on (or near) a point evenly divisible by the \element{timeInterval}.  For example, a simulation with a start of \code{0}, an end of \code{10}, and an interval of \code{3} would produce time points at \code{0, 3, 6, 9,} and \code{10}.
 
-    To ensure reproducibility across platforms, the tolerance for the time point of the final time point must be 0.000001, with the final collected time point being exactly equal to the \element{outputEndTime}.  So, if the \element{outputEndTime} is 500, the tolerance would be \code{500 * 0.000001 = 0.0005}.  Therefore, a simulation with a start of \code{0}, and end of \code{10}, and an interval of \code{3.333} would produce the time points \code{[0, 3.333, 6.666, 9.999, 10]}.  If the interval were instead \code{3.333333}, the produced time points would be \code{[0, 3.333333, 6.666666, 10]}.  If the \element{outputEndTime} is equal to \code{0} (say, if the simulation was from -10 to 0), the tolerance must be 0.000001.
+    To determine whether to include a calculated time point and the \element{outputEndTime} vs. just including the \element{outputEndTime}, multiply the \element{timeInterval} by \code{0.000001} to determine the tolerance value:  if the closest calculated time point is within that tolerance of the \element{outputEndTime}, only include the \element{outputEndTime}.  If it is further away, include both.
+
+    As an example, if the \element{timeInterval} is 3.333, the tolerance would be \code{3.333 * 0.000001 = 0.000003333}.  Therefore, a simulation with a start of \code{0}, and end of \code{10}, and an interval of \code{3.333} would produce the time points \code{[0, 3.333, 6.666, 9.999, 10]}, since \code{9.999} is greater than \code{0.000003333} away from \code{10}.  If the interval were instead \code{3.333333}, the produced time points would be \code{[0, 3.333333, 6.666666, 10]}, since \code{9.999999} is less than \code{0.0000033333333} away from \code{10}.
 
     However, creating a \UniformTimeCourse where users must resort to determining the tolerance of the time points to know what to output is not best practice!  Output end times should generally be a simple multiple of the \element{timeInterval}, plus the \element{outputStartTime}.
 \end{itemize}
@@ -93,11 +96,11 @@ Exactly two of the three attributes \element{outputEndTime}, \element{numberOfSt
 \begin{blockChanged}
 \subsubsection{\element{NonUniformTimeCourse}}
 \label{class:nonUniformTimeCourse}
-The \NonUniformTimeCourse class calculates a time course output with a start and end, but the intermediate time points may be determined by the simulation algorithm. Each instance of the \NonUniformTimeCourse class has, in addition to the elements from \TimeCourse, the mandatory attributes \hyperref[sec:nu_outputStartTime]{\code{outputStartTime}} and \hyperref[sec:nu_outputEndTime]{\code{outputEndTime}}. A \NonUniformTimeCourse may be useful when collecting stochastic data, as the exact points at which an output value changed may be collected.  Alternatively, a simulation with periods of rapid flux followed or interspersed with periods of low flux may collect many time points during the periods of rapid change, and only a few points during the periods of low change.
+The \NonUniformTimeCourse class calculates a single time course output with a start and end, but the intermediate time points are determined by the simulation algorithm. Each instance of the \NonUniformTimeCourse class has, in addition to the elements from \TimeCourse, the mandatory attributes \hyperref[sec:nu_outputStartTime]{\code{outputStartTime}} and \hyperref[sec:nu_outputEndTime]{\code{outputEndTime}}. A \NonUniformTimeCourse may be useful when collecting stochastic data, as the exact points at which an output value changed may be collected.  Alternatively, a simulation with periods of rapid change followed or interspersed with periods of low change may collect many time points during the periods of rapid change, and only a few points during the periods of low change.
 
 Different algorithms may have defined parameters that dictate or at least influence the number of time points they output in a \NonUniformTimeCourse.  Those parameters should be set on the child \Algorithm as \AlgorithmParameters, defined by KiSAO terms. 
 
-\begin{myXmlLst}{The SED-ML \code{nonUniformTimeCourse} element, defining a uniform time course simulation over 2500 time units with 1000 simulation points.}{lst:nu_timecourse}
+\begin{myXmlLst}{The SED-ML \code{nonUniformTimeCourse} element, defining a uniform time course simulation over 2500 time units with an undefined number of output points.}{lst:nu_timecourse}
 <listOfSimulations>
 	<nonUniformTimeCourse id="sim2"  name="time course simulation of variable v1 over 2500 time units"  
 		initialTime="0" outputStartTime="0" outputEndTime="2500">
@@ -133,7 +136,7 @@ The \SpecificTimeCourse class calculates a time course output with a set of pred
 
 \paragraph*{\element{outputTimePoints}}
 \label{sec:outputTimePoints}
-the \code{outputTimePoints} attribute is of type \code{listOfDoubles} contains a comma-separated list of values.  These values must either monotonically increase or repeat:  \code{"0, 1, 2, 2, 4"} is legal, but \code{"0, 1, 1.2, 1.1"} is not.  In addition, the first value in the list must be equal to or greater than the \hyperref[sec:initialTime]{\element{initialTime}}.
+The \code{outputTimePoints} attribute of type \code{listOfDoubles} contains a comma-separated list of values.  These values must either monotonically increase or repeat:  \code{"0, 1, 2, 2, 4"} is legal, but \code{"0, 1, 1.2, 1.1"} is not.  In addition, the first value in the list must be equal to or greater than the \hyperref[sec:initialTime]{\element{initialTime}}.
 
 \end{blockChanged}
 
